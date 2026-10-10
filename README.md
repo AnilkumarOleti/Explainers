@@ -2,7 +2,7 @@
 
 **Read them here: https://anilkumaroleti.github.io/Explainers/**
 
-Each page explains one idea with a picture you can play with. There are 63 so far, in seven groups: analytics and data science, AI and technology, body and health, brain and mind, big ideas, world and history, and screen and sport.
+Each page explains one idea with a picture you can play with. There are 64 so far, in seven groups: analytics and data science, AI and technology, body and health, brain and mind, big ideas, world and history, and screen and sport.
 
 Nothing to install. Every page opens in any browser, on a phone or a laptop, and has its own address you can share, for example https://anilkumaroleti.github.io/Explainers/why-cant-you-tickle-yourself/.
 

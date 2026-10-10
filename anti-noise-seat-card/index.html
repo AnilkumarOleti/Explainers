@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Anti-Noise Seat Card | Explainers</title>
+<meta name="description" content="Noise-cancelling headphones play a mirror image of the noise, so every push meets a pull and the air at your ear stays still.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/anti-noise-seat-card/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Anti-Noise Seat Card">
+<meta property="og:description" content="Noise-cancelling headphones play a mirror image of the noise, so every push meets a pull and the air at your ear stays still.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/anti-noise-seat-card/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/anti-noise-seat-card/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one laminated seat-pocket card. Words sit bare on the card; only pictures get a thick-keyline window. */
+:root{
+  --paper:#E9EEF2; --card:#FAFCFD; --ink:#0F2540; --ink2:#51647C; --line:#C3CEDA;
+  --noise:#CF3A22; --anti:#1766C9; --hi:#FFC72C; --onhi:#0F2540; --head:#D3DDE7;
+  --display:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A1524; --card:#11213A; --ink:#EAF0F6; --ink2:#9FB1C7; --line:#2C415E;
+    --noise:#FF6E52; --anti:#5CADFF; --hi:#FFD24D; --onhi:#0F2540; --head:#2A4162;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A1524; --card:#11213A; --ink:#EAF0F6; --ink2:#9FB1C7; --line:#2C415E;
+  --noise:#FF6E52; --anti:#5CADFF; --hi:#FFD24D; --onhi:#0F2540; --head:#2A4162;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.sheet{max-width:1000px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:20px 56px;display:flex;flex-direction:column;gap:clamp(44px,7vw,80px)}
+
+/* top strip */
+.strip{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;border-bottom:3px solid var(--ink);padding-bottom:10px;font:600 .72rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.strip span:last-child{color:var(--ink2)}
+
+/* type */
+h1,h2{font-family:var(--display);text-transform:uppercase;text-wrap:balance;margin:0}
+h1{font-weight:800;font-size:clamp(2.7rem,9.2vw,5.6rem);line-height:1.02;letter-spacing:-.005em}
+h1 mark{background:linear-gradient(transparent 13%,var(--hi) 13%,var(--hi) 93%,transparent 93%);color:var(--onhi);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+h2{font-weight:700;font-size:clamp(1.8rem,5vw,2.75rem);line-height:1}
+p{margin:0;max-width:60ch}
+.lede{font-size:clamp(1.1rem,2.4vw,1.3rem);line-height:1.45;max-width:46ch}
+.tag{align-self:flex-start;background:var(--hi);color:var(--onhi);font:600 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:.42em .6em}
+.note{font-size:.9rem;color:var(--ink2);max-width:66ch}
+.cap{font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+
+section,header.hero{display:flex;flex-direction:column;gap:16px;min-width:0}
+header.hero{gap:20px}
+
+/* picture windows */
+.fig{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:clamp(14px,3vw,24px);display:flex;flex-direction:column;gap:18px;min-width:0;margin-top:8px}
+canvas{display:block;width:100%;min-width:0}
+.rule{border:0;border-top:2px solid var(--line);margin:0;width:100%}
+
+/* hero lanes */
+.lane{display:grid;grid-template-columns:12.5rem minmax(0,1fr);align-items:center;gap:6px 16px}
+.lane canvas{height:110px}
+.lane-l{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1.15rem;line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
+.sw{flex:none;width:26px;height:5px;border-radius:3px;background:var(--ink)}
+.sw.n{background:var(--noise)} .sw.a{background:var(--anti)}
+@media (max-width:640px){ .lane{grid-template-columns:minmax(0,1fr)} .lane canvas{height:84px} }
+
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.status{font:500 .9rem/1.3 var(--mono);color:var(--ink2);min-width:0}
+
+/* controls */
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--anti);outline-offset:3px}
+.switch{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:4px;font-family:var(--display);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:.03em}
+.track{width:62px;height:34px;border:3px solid var(--ink);border-radius:20px;background:var(--card);position:relative;transition:background .2s}
+.knob{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--ink);transition:transform .2s}
+.switch[aria-checked="true"] .track{background:var(--anti)}
+.switch[aria-checked="true"] .knob{transform:translateX(28px);background:var(--card)}
+.btn{border:2.5px solid var(--ink);background:var(--card);border-radius:999px;padding:.38em 1em;font-family:var(--display);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;line-height:1.2}
+.btn:hover{background:var(--hi);color:var(--onhi)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.ctls{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 32px}
+.ctl{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ctl label{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;font-weight:600}
+.ctl output{font:500 .85rem/1.6 var(--mono);color:var(--ink2)}
+input[type=range]{width:100%;height:30px;margin:0;accent-color:var(--anti)}
+.ends{display:flex;justify-content:space-between;font:500 .68rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.readout{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.readout b{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,3.2rem);line-height:1;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.readout span{color:var(--ink2);min-width:0}
+
+/* +1 −1 = 0 */
+.eq{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:10px clamp(8px,2.5vw,26px);font-family:var(--display)}
+.term{display:flex;flex-direction:column;align-items:center;gap:8px;width:7.2rem;text-align:center;font-weight:600;font-size:1.05rem;line-height:1.1;text-transform:uppercase;letter-spacing:.03em}
+.disc{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:2.5rem;border:3px solid var(--ink)}
+.disc.n{background:var(--noise);color:var(--card)} .disc.a{background:var(--anti);color:var(--card)} .disc.z{background:var(--card);color:var(--ink)}
+.op{font-weight:800;font-size:2.4rem;line-height:86px}
+@media (max-width:460px){ .disc{width:64px;height:64px;font-size:1.9rem} .op{line-height:64px;font-size:1.9rem} .term{width:5.4rem;font-size:.92rem} }
+
+#air{height:232px} #mix{height:290px}
+
+/* earcup */
+.split{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px 32px;align-items:center}
+@media (max-width:760px){ .split{grid-template-columns:minmax(0,1fr)} }
+svg{display:block;width:100%;height:auto}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.steps li::before{content:counter(s);width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--card);display:grid;place-items:center;font:800 1.2rem/1 var(--display)}
+.steps b{font-family:var(--display);font-weight:700;font-size:1.2rem;text-transform:uppercase;letter-spacing:.02em;display:block;line-height:1.15}
+.callout{background:var(--hi);color:var(--onhi);padding:14px 18px;font-weight:500;max-width:none}
+.callout b{font-family:var(--display);font-weight:800;font-size:1.5rem;text-transform:uppercase;line-height:1.05;display:block}
+
+.f-none{fill:none} .f-card{fill:var(--card)} .f-ink{fill:var(--ink)} .f-ink2{fill:var(--ink2)} .f-head{fill:var(--head)} .f-anti{fill:var(--anti)} .f-hi{fill:var(--hi)} .f-paper{fill:var(--card)}
+.s-ink{stroke:var(--ink)} .s-ink2{stroke:var(--ink2)} .s-noise{stroke:var(--noise)} .s-anti{stroke:var(--anti)}
+.svg-t{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.svg-n{font-family:var(--display);font-weight:800}
+
+/* pitch */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:20px 28px}
+@media (max-width:760px){ .duo{grid-template-columns:minmax(0,1fr)} }
+.duo>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+#cycle{height:200px} #chart{height:250px;touch-action:pan-y;cursor:ew-resize}
+
+/* history */
+.hist{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px 28px;border-top:3px solid var(--ink);padding-top:22px}
+.hist div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.hist b{font:800 2.4rem/1 var(--display);font-variant-numeric:tabular-nums}
+.hist span{font-size:.95rem;color:var(--ink2)}
+
+@media (prefers-reduced-motion: reduce){ .track,.knob{transition:none} }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="strip"><span>Anti-noise seat card</span><span>ANC-01 · For planes, trains and open-plan offices</span></div>
+
+  <header class="hero">
+    <span class="tag">How noise-cancelling headphones work</span>
+    <h1>To make quiet, <mark>add a second sound.</mark></h1>
+    <p class="lede">The headphones play the exact opposite of the noise around you. Your eardrum gets both at once, and the two add up to almost nothing.</p>
+
+    <div class="fig" data-anim="hero">
+      <div class="lane">
+        <div class="lane-l"><i class="sw n"></i>Noise from outside</div>
+        <canvas id="h1" role="img" aria-label="A large, irregular pressure wave: the noise."></canvas>
+      </div>
+      <div class="lane">
+        <div class="lane-l"><i class="sw a"></i>Anti-noise from the speaker</div>
+        <canvas id="h2" role="img" aria-label="The same wave flipped upside down: the anti-noise."></canvas>
+      </div>
+      <div class="lane">
+        <div class="lane-l"><i class="sw"></i>What reaches your eardrum</div>
+        <canvas id="h3" role="img" aria-label="The two waves added together: a nearly flat line."></canvas>
+      </div>
+      <hr class="rule">
+      <div class="row">
+        <button class="switch" id="anc" role="switch" aria-checked="true"><span class="track"><span class="knob"></span></span>Anti-noise</button>
+        <span class="status" id="ancStatus" aria-live="polite">On. The two sounds cancel.</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <span class="tag">What noise is</span>
+    <h2>Sound is air being pushed and pulled</h2>
+    <p>An engine squeezes the air, then stretches it, hundreds of times a second. Your eardrum rides that pressure up and down. Still air is silence.</p>
+    <div class="fig" data-anim="air">
+      <canvas id="air" role="img" aria-label="Air particles bunching together and spreading apart as a sound wave passes, with a curve underneath showing pressure rising where they bunch and falling where they spread."></canvas>
+      <span class="cap">Top: air particles · Bottom: the pressure they make</span>
+    </div>
+  </section>
+
+  <section>
+    <span class="tag">The trick</span>
+    <h2>A push and a pull at the same moment cancel</h2>
+    <p>Pressures add up like numbers. Plus one and minus one leave zero. So the speaker pulls on the air at the exact moment the noise pushes it.</p>
+    <div class="fig" data-anim="mix">
+      <div class="eq" role="img" aria-label="Plus one, the noise pushing, added to minus one, the speaker pulling, equals zero: the air stays still.">
+        <div class="term"><div class="disc n">+1</div>Noise pushes</div>
+        <span class="op">+</span>
+        <div class="term"><div class="disc a">−1</div>Speaker pulls</div>
+        <span class="op">=</span>
+        <div class="term"><div class="disc z">0</div>Air stays still</div>
+      </div>
+      <hr class="rule">
+      <p><strong>Now break it.</strong> Slide the anti-noise out of step and see how exact the mirror has to be.</p>
+      <canvas id="mix" role="img" aria-label="Top: the noise wave and the anti-noise wave drawn on the same line. Bottom: their sum, which is what reaches the eardrum."></canvas>
+      <div class="ctls">
+        <div class="ctl">
+          <label for="timing">Timing of the anti-noise <output id="timingOut" for="timing">on time</output></label>
+          <input type="range" id="timing" min="-180" max="180" step="1" value="0">
+          <div class="ends"><span>early</span><span>on time</span><span>late</span></div>
+        </div>
+        <div class="ctl">
+          <label for="strength">Strength of the anti-noise <output id="strengthOut" for="strength">100%, an exact match</output></label>
+          <input type="range" id="strength" min="0" max="150" step="1" value="100">
+          <div class="ends"><span>silent</span><span>too strong</span></div>
+        </div>
+      </div>
+      <div class="readout" aria-live="polite"><b id="mixBig">Cancelled</b><span id="mixSmall">The two pressures sum to zero.</span></div>
+      <div class="row">
+        <button class="btn" id="hum" aria-pressed="false">Play the hum</button>
+        <button class="btn" id="reset">Reset to a perfect mirror</button>
+      </div>
+      <p class="note">The hum is a quiet 220 Hz tone plus its anti-tone, mixed inside this page. With a perfect mirror you hear nothing. Move a slider and the hum comes back.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="tag">The machine</span>
+    <h2>Inside the cup: listen, flip, play, check</h2>
+    <div class="fig">
+      <div class="split">
+        <svg viewBox="130 20 540 320" role="img" aria-labelledby="cupT cupD">
+          <title id="cupT">Cross-section of a noise-cancelling earcup</title>
+          <desc id="cupD">Noise arrives from the left. A microphone sits on the outside of the cup. Inside are a chip and a speaker facing the ear. A second microphone sits next to the ear.</desc>
+          <circle cx="760" cy="180" r="240" class="f-head s-ink" stroke-width="4"/>
+          <path d="M470 70H400Q330 70 330 140V220Q330 290 400 290H470" class="f-card s-ink" stroke-width="12" stroke-linecap="round"/>
+          <ellipse cx="506" cy="180" rx="20" ry="46" class="f-head s-ink" stroke-width="4"/>
+          <rect x="502" y="172" width="96" height="16" rx="8" class="f-card"/>
+          <line x1="598" y1="166" x2="598" y2="194" class="s-ink f-none" stroke-width="5" stroke-linecap="round"/>
+          <rect x="464" y="54" width="82" height="40" rx="18" class="f-ink2"/>
+          <rect x="464" y="266" width="82" height="40" rx="18" class="f-ink2"/>
+          <text x="600" y="218" font-size="15" text-anchor="middle" textLength="58" lengthAdjust="spacingAndGlyphs" class="svg-t f-ink">Eardrum</text>
+
+          <g class="f-none s-noise" stroke-width="5" stroke-linecap="round">
+            <path d="M268 110Q296 180 268 250"/><path d="M232 96Q266 180 232 264"/><path d="M196 82Q236 180 196 278"/>
+          </g>
+          <text x="136" y="186" font-size="17" textLength="44" lengthAdjust="spacingAndGlyphs" class="svg-t f-ink">Noise</text>
+
+          <g class="f-none s-ink2" stroke-width="2.5" stroke-linecap="round">
+            <path d="M330 146L362 114"/><path d="M370 124L362 160"/>
+            <path d="M441 250Q384 270 344 240V132L362 118" stroke-dasharray="5 6"/>
+          </g>
+          <rect x="362" y="96" width="50" height="28" rx="4" class="f-ink"/>
+          <rect x="350" y="160" width="22" height="40" class="f-ink"/>
+          <polygon points="372,158 400,136 400,224 372,202" class="f-anti s-ink" stroke-width="3" stroke-linejoin="round"/>
+          <g class="f-none s-anti" stroke-width="4.5" stroke-linecap="round">
+            <path d="M414 156Q430 180 414 204"/><path d="M430 144Q452 180 430 216"/><path d="M446 134Q474 180 446 226"/>
+          </g>
+          <circle cx="322" cy="150" r="10" class="f-hi s-ink" stroke-width="3.5"/>
+          <circle cx="450" cy="246" r="10" class="f-hi s-ink" stroke-width="3.5"/>
+
+          <g class="f-none s-ink" stroke-width="2.5">
+            <path d="M306 131L314 142"/><path d="M387 60V95"/><path d="M386 302V214"/><path d="M450 302V258"/>
+          </g>
+          <g class="f-ink">
+            <circle cx="297" cy="119" r="15"/><circle cx="387" cy="45" r="15"/><circle cx="386" cy="317" r="15"/><circle cx="450" cy="317" r="15"/>
+          </g>
+          <g class="svg-n f-paper" font-size="20" text-anchor="middle">
+            <text x="297" y="126">1</text><text x="387" y="52">2</text><text x="386" y="324">3</text><text x="450" y="324">4</text>
+          </g>
+        </svg>
+        <ol class="steps">
+          <li><div><b>Outer microphone</b>Hears the noise a moment before your ear does.</div></li>
+          <li><div><b>Chip</b>Flips it. Every push becomes a pull of the same size.</div></li>
+          <li><div><b>Speaker</b>Plays the flipped copy along with your music.</div></li>
+          <li><div><b>Inner microphone</b>Listens beside your ear and corrects whatever is left.</div></li>
+        </ol>
+      </div>
+      <p class="callout"><b>Less than a ten-thousandth of a second</b>That is how long sound takes to cross the last 3 cm to your ear, and the anti-noise has to be waiting when it arrives.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="tag">The limit</span>
+    <h2>Low rumbles vanish. Sharp sounds get through.</h2>
+    <p>The anti-noise is always a hair late. A low note is a long, slow wave, so a hair late is still nearly on time. A high note is short and fast, and the same delay throws the mirror out of step.</p>
+    <div class="fig">
+      <div class="ctl">
+        <label for="pitch">Pitch of the noise <output id="pitchOut" for="pitch">100 Hz</output></label>
+        <input type="range" id="pitch" min="0" max="300" step="1" value="78">
+        <div class="ends"><span>deep rumble</span><span>high hiss</span></div>
+      </div>
+      <div class="chips">
+        <button class="btn" data-f="100">Engine drone</button>
+        <button class="btn" data-f="1000">Voices</button>
+        <button class="btn" data-f="6000">Hiss and clatter</button>
+      </div>
+      <div class="duo">
+        <div>
+          <span class="cap">One wave at this pitch</span>
+          <canvas id="cycle" role="img" aria-label="One full wave of the chosen pitch, the late anti-noise, and their sum. A shaded strip at the start shows how much of the wave the delay takes up."></canvas>
+        </div>
+        <div>
+          <span class="cap">Noise left over at every pitch · drag to explore</span>
+          <canvas id="chart" role="img" aria-label="Chart of how much noise is removed at each pitch from 20 hertz to 10 kilohertz. About 30 decibels quieter at the low end, shrinking to no change near 4 kilohertz, and slightly louder above that."></canvas>
+        </div>
+      </div>
+      <div class="readout" aria-live="polite"><b id="pitchBig">28 dB quieter</b><span id="pitchSmall">The delay is 0.4% of one wave.</span></div>
+      <p class="note">A simplified model with the anti-noise 40 millionths of a second late and 3% too weak. Real headphones stop sending anti-noise at high pitches and let the padded cushions block those instead.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="tag">The catch</span>
+    <h2>The noise is still there</h2>
+    <p>The cabin is as loud as ever. The cancelling happens only in the small pocket of air between the speaker and your eardrum. Lift a cup and the engine is back.</p>
+    <div class="fig">
+      <svg viewBox="0 0 540 280" role="img" aria-labelledby="pkT pkD">
+        <title id="pkT">Where the quiet is</title>
+        <desc id="pkD">A person wearing headphones. Noise waves fill the whole picture except the inside of the two earcups.</desc>
+        <defs>
+          <pattern id="nz" width="34" height="280" patternUnits="userSpaceOnUse">
+            <path d="M6 0Q28 140 6 280" class="f-none s-noise" stroke-width="3.5" opacity=".55"/>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="540" height="280" rx="6" fill="url(#nz)"/>
+        <path d="M150 284Q150 228 270 228Q390 228 390 284Z" class="f-head s-ink" stroke-width="4"/>
+        <circle cx="270" cy="152" r="72" class="f-head s-ink" stroke-width="4"/>
+        <path d="M184 140Q184 50 270 50Q356 50 356 140" class="f-none s-ink" stroke-width="9" stroke-linecap="round"/>
+        <rect x="160" y="116" width="42" height="78" rx="17" class="f-card s-ink" stroke-width="5"/>
+        <rect x="338" y="116" width="42" height="78" rx="17" class="f-card s-ink" stroke-width="5"/>
+        <path d="M424 52L366 120" class="f-none s-ink" stroke-width="2.5"/>
+        <rect x="10" y="16" width="152" height="34" class="f-card s-ink" stroke-width="2.5"/>
+        <text x="86" y="39" font-size="18" text-anchor="middle" textLength="128" lengthAdjust="spacingAndGlyphs" class="svg-t f-ink">Loud everywhere</text>
+        <rect x="358" y="16" width="172" height="34" class="f-hi s-ink" stroke-width="2.5"/>
+        <text x="444" y="39" font-size="18" text-anchor="middle" textLength="150" lengthAdjust="spacingAndGlyphs" class="svg-t" fill="#0F2540">Quiet only in here</text>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <span class="tag">From patent to seat pocket</span>
+    <div class="hist">
+      <div><b>1936</b><span>Paul Lueg, a German physicist, patents the idea of silencing sound with sound.</span></div>
+      <div><b>1978</b><span>Amar Bose, unhappy with the headphones on a flight from Zurich, works out the maths before landing.</span></div>
+      <div><b>1986</b><span>Prototype headsets protect two pilots on Voyager's nine-day non-stop flight around the world.</span></div>
+      <div><b>2000</b><span>The first QuietComfort headphones go on sale to passengers.</span></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const root = document.documentElement;
+const TAU = Math.PI * 2;
+const MONO = '500 11px "IBM Plex Mono", ui-monospace, Menlo, monospace';
+const C = {};
+const KEYS = ['paper','card','ink','ink2','line','noise','anti','hi','onhi','head'];
+function readColors(){
+  const s = getComputedStyle(root);
+  KEYS.forEach(k => { C[k] = s.getPropertyValue('--' + k).trim() || '#888'; });
+}
+
+function fit(cv){
+  const w = cv.clientWidth, h = cv.clientHeight;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W = Math.round(w * dpr), H = Math.round(h * dpr);
+  if (cv.width !== W || cv.height !== H){ cv.width = W; cv.height = H; }
+  const g = cv.getContext('2d');
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  g.clearRect(0, 0, w, h);
+  return { g, w, h };
+}
+function hline(g, x0, x1, y, color, dash){
+  g.save(); g.strokeStyle = color; g.lineWidth = 1.5; if (dash) g.setLineDash(dash);
+  g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y); g.stroke(); g.restore();
+}
+function wave(g, x0, x1, y0, unit, fn, color, fill, width){
+  const pts = [];
+  for (let x = x0; x <= x1; x += 2) pts.push([x, y0 - fn(x) * unit]);
+  if (!pts.length) return;
+  g.save(); g.lineJoin = 'round'; g.lineCap = 'round';
+  if (fill){
+    g.beginPath(); g.moveTo(pts[0][0], y0);
+    pts.forEach(p => g.lineTo(p[0], p[1]));
+    g.lineTo(pts[pts.length - 1][0], y0); g.closePath();
+    g.globalAlpha = fill; g.fillStyle = color; g.fill(); g.globalAlpha = 1;
+  }
+  g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]));
+  g.strokeStyle = color; g.lineWidth = width || 3; g.stroke(); g.restore();
+}
+function tag(g, text, x, y, color, align){
+  g.save(); g.font = MONO; g.textBaseline = 'middle';
+  const tw = g.measureText(text).width, pad = 5, bw = tw + pad * 2;
+  const bx = align === 'center' ? x - bw / 2 : align === 'right' ? x - bw : x;
+  g.globalAlpha = .9; g.fillStyle = C.card; g.fillRect(bx, y - 9, bw, 18); g.globalAlpha = 1;
+  g.fillStyle = color || C.ink2; g.fillText(text, bx + pad, y + .5); g.restore();
+  return bw;
+}
+
+/* ---------- hero: noise, anti-noise, sum ---------- */
+let k = 1, kTarget = 1;
+const nz = u => .55 * Math.sin(TAU * u) + .28 * Math.sin(TAU * u * 2.3 + 1.3) + .17 * Math.sin(TAU * u * 3.7 + .4);
+const hiss = u => .045 * Math.sin(TAU * u * 9.1) + .03 * Math.sin(TAU * u * 13.7 + 2);
+function drawHero(t){
+  const L = 230, sp = .2;
+  [['h1', u => nz(u), 'noise'], ['h2', u => -k * nz(u), 'anti'], ['h3', u => (1 - k) * nz(u) + k * hiss(u), 'ink']].forEach(r => {
+    const cv = $(r[0]); if (!cv.clientWidth) return;
+    const { g, w, h } = fit(cv);
+    hline(g, 0, w, h / 2, C.line, [5, 6]);
+    wave(g, 0, w, h / 2, h * .4, x => r[1](x / L - t * sp), C[r[2]], .13, 3);
+  });
+}
+
+/* ---------- air particles and pressure ---------- */
+function drawAir(t){
+  const cv = $('air'); if (!cv.clientWidth) return;
+  const { g, w } = fit(cv);
+  const L = Math.max(150, Math.min(240, w / 3)), A = L * .065, f = .2;
+  const ph = x => TAU * (x / L - t * f);
+  g.fillStyle = C.ink;
+  for (let r = 0; r < 6; r++){
+    const y = 16 + r * 17;
+    for (let x = -24 + (r % 2) * 6; x < w + 24; x += 12){
+      g.beginPath(); g.arc(x + A * Math.sin(ph(x)), y, 2.1, 0, TAU); g.fill();
+    }
+  }
+  const y0 = 186, unit = 30;
+  hline(g, 0, w, y0, C.line, [5, 6]);
+  wave(g, 0, w, y0, unit, x => -Math.cos(ph(x)), C.noise, .13, 3);
+  const base = (t * f) % 1;
+  for (let n = -2; n < 10; n++){
+    const xc = L * (base + .5 + n), xt = L * (base + n);
+    if (xc > 34 && xc < w - 34){ g.save(); g.strokeStyle = C.ink2; g.lineWidth = 1.5; g.beginPath(); g.moveTo(xc, 108); g.lineTo(xc, 118); g.stroke(); g.restore(); tag(g, 'push', xc, 129, C.ink, 'center'); }
+    if (xt > 34 && xt < w - 34){ g.save(); g.strokeStyle = C.ink2; g.lineWidth = 1.5; g.beginPath(); g.moveTo(xt, 108); g.lineTo(xt, 118); g.stroke(); g.restore(); tag(g, 'pull', xt, 129, C.ink, 'center'); }
+  }
+  tag(g, 'high pressure', w - 4, y0 - unit, C.ink2, 'right');
+  tag(g, 'low pressure', w - 4, y0 + unit, C.ink2, 'right');
+}
+
+/* ---------- push meets pull ---------- */
+const timing = $('timing'), strength = $('strength');
+function drawMix(t){
+  const cv = $('mix'); if (!cv.clientWidth) return;
+  const { g, w } = fit(cv);
+  const th = +timing.value * Math.PI / 180, a = +strength.value / 100;
+  const L = Math.max(130, Math.min(250, w / 2.6)), f = .18, unit = 28, y1 = 72, y2 = 210;
+  const ph = x => TAU * (x / L - t * f);
+  hline(g, 0, w, y1, C.line, [5, 6]); hline(g, 0, w, y2, C.line, [5, 6]);
+  wave(g, 0, w, y1, unit, x => Math.sin(ph(x)), C.noise, .1, 3);
+  wave(g, 0, w, y1, unit, x => -a * Math.sin(ph(x) + th), C.anti, .1, 3);
+  wave(g, 0, w, y2, unit, x => Math.sin(ph(x)) - a * Math.sin(ph(x) + th), C.ink, .1, 3.5);
+  const bw = tag(g, 'noise', 4, 12, C.noise);
+  tag(g, 'anti-noise', 4 + bw + 6, 12, C.anti);
+  tag(g, 'what reaches your eardrum', 4, 128, C.ink);
+}
+const fmtDb = d => { const r = Math.round(d); return r === 0 ? '0 dB' : (r < 0 ? '−' + (-r) : '+' + r) + ' dB'; };
+function mixReadout(){
+  const deg = +timing.value, a = +strength.value / 100, th = deg * Math.PI / 180;
+  const r = Math.sqrt(Math.max(0, 1 + a * a - 2 * a * Math.cos(th)));
+  const pct = Math.round(r * 100);
+  let big, small;
+  if (r < .02){ big = 'Cancelled'; small = 'The two pressures sum to zero.'; }
+  else if (r < .95){ big = fmtDb(20 * Math.log10(r)); small = pct + '% of the noise pressure is left.'; }
+  else if (r <= 1.05){ big = '0 dB'; small = 'No better than switching the anti-noise off.'; }
+  else { big = fmtDb(20 * Math.log10(r)); small = 'Louder than no headphones at all. Mistimed anti-noise is just more noise.'; }
+  $('mixBig').textContent = big; $('mixSmall').textContent = small;
+  const frac = Math.abs(deg) / 360 * 100;
+  $('timingOut').textContent = deg === 0 ? 'on time' : (frac < 10 ? frac.toFixed(1) : Math.round(frac)) + '% of a wave ' + (deg > 0 ? 'late' : 'early');
+  const sv = +strength.value;
+  $('strengthOut').textContent = sv === 100 ? '100%, an exact match' : sv + '% of the noise';
+  setAudio(false);
+}
+
+/* ---------- the hum ---------- */
+let ac = null, osc = null, dly = null, gB = null, master = null;
+const HUM = 220;
+function setAudio(instant){
+  if (!osc) return;
+  const deg = ((+timing.value % 360) + 360) % 360, a = +strength.value / 100, tau = deg / 360 / HUM;
+  if (instant){ dly.delayTime.value = tau; gB.gain.value = -a; }
+  else { dly.delayTime.setTargetAtTime(tau, ac.currentTime, .02); gB.gain.setTargetAtTime(-a, ac.currentTime, .02); }
+}
+function startHum(){
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return false;
+    ac = ac || new AC(); ac.resume();
+    osc = ac.createOscillator(); osc.type = 'sine'; osc.frequency.value = HUM;
+    master = ac.createGain(); master.gain.value = 0;
+    dly = ac.createDelay(.05); gB = ac.createGain();
+    osc.connect(master); osc.connect(dly); dly.connect(gB); gB.connect(master); master.connect(ac.destination);
+    setAudio(true); osc.start();
+    master.gain.setTargetAtTime(.13, ac.currentTime, .05);
+    return true;
+  } catch (e){ osc = null; return false; }
+}
+function stopHum(){
+  if (!osc) return;
+  const o = osc, m = master; osc = null;
+  try { m.gain.setTargetAtTime(0, ac.currentTime, .03); o.stop(ac.currentTime + .25); } catch (e){}
+}
+const humBtn = $('hum');
+function humUI(on){ humBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); humBtn.textContent = on ? 'Stop the hum' : 'Play the hum'; }
+humBtn.addEventListener('click', () => {
+  if (osc){ stopHum(); humUI(false); }
+  else if (startHum()) humUI(true);
+  else humBtn.textContent = 'Sound is not available here';
+});
+document.addEventListener('visibilitychange', () => { if (document.hidden && osc){ stopHum(); humUI(false); } });
+timing.addEventListener('input', mixReadout);
+strength.addEventListener('input', mixReadout);
+$('reset').addEventListener('click', () => { timing.value = 0; strength.value = 100; mixReadout(); });
+
+/* ---------- pitch: a fixed delay against every wavelength ---------- */
+const DT = 40e-6, AMP = .97, pitch = $('pitch');
+const resid = f => { const th = TAU * f * DT; return Math.sqrt(1 + AMP * AMP - 2 * AMP * Math.cos(th)); };
+const dbAt = f => 20 * Math.log10(resid(f));
+const fFromV = v => 20 * Math.pow(500, v / 300);
+const vFromF = f => 300 * Math.log(f / 20) / Math.log(500);
+const fmtHz = f => f < 100 ? Math.round(f) + ' Hz' : f < 995 ? Math.round(f / 10) * 10 + ' Hz' : (f / 1000).toFixed(1) + ' kHz';
+const M = { l: 40, r: 12, t: 14, b: 30 };
+
+function drawCycle(){
+  const cv = $('cycle'); if (!cv.clientWidth) return;
+  const { g, w, h } = fit(cv);
+  const f = fFromV(+pitch.value), frac = f * DT;
+  const x0 = 6, x1 = w - 6, pw = x1 - x0, y0 = h / 2, unit = (h / 2 - 20) / 1.95;
+  const sw = Math.max(2, frac * pw);
+  g.save(); g.globalAlpha = .6; g.fillStyle = C.hi; g.fillRect(x0, 6, sw, h - 12); g.restore();
+  hline(g, x0, x1, y0, C.line, [5, 6]);
+  const u = x => (x - x0) / pw;
+  wave(g, x0, x1, y0, unit, x => Math.sin(TAU * u(x)), C.noise, 0, 3);
+  wave(g, x0, x1, y0, unit, x => -AMP * Math.sin(TAU * (u(x) - frac)), C.anti, 0, 3);
+  wave(g, x0, x1, y0, unit, x => Math.sin(TAU * u(x)) - AMP * Math.sin(TAU * (u(x) - frac)), C.ink, .1, 3.5);
+  tag(g, 'the delay', Math.min(x0 + sw + 5, w - 80), 16, C.ink);
+  tag(g, 'what is left', w - 4, h - 14, C.ink, 'right');
+}
+
+function drawChart(){
+  const cv = $('chart'); if (!cv.clientWidth) return;
+  const { g, w, h } = fit(cv);
+  const pw = w - M.l - M.r, phh = h - M.t - M.b;
+  const X = f => M.l + pw * Math.log(f / 20) / Math.log(500);
+  const Y = d => M.t + phh * (10 - d) / 45;
+  g.font = MONO; g.textBaseline = 'middle';
+  [-30, -20, -10, 0].forEach(d => {
+    hline(g, M.l, w - M.r, Y(d), d === 0 ? C.ink2 : C.line, d === 0 ? null : [3, 5]);
+    g.fillStyle = C.ink2; g.textAlign = 'right';
+    g.fillText(d === 0 ? '0' : '−' + (-d), M.l - 7, Y(d));
+  });
+  g.fillStyle = C.ink2; g.textAlign = 'right'; g.fillText('dB', M.l - 7, Y(10) + 4);
+  [50, 200, 500, 2000, 5000].forEach(f => { g.save(); g.strokeStyle = C.line; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X(f), h - M.b); g.lineTo(X(f), h - M.b + 5); g.stroke(); g.restore(); });
+  [[20, '20 Hz', 'left'], [100, '100 Hz', 'center'], [1000, '1 kHz', 'center'], [10000, '10 kHz', 'right']].forEach(tk => {
+    g.save(); g.strokeStyle = C.ink2; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X(tk[0]), h - M.b); g.lineTo(X(tk[0]), h - M.b + 7); g.stroke(); g.restore();
+    g.fillStyle = C.ink2; g.textAlign = tk[2]; g.fillText(tk[1], X(tk[0]), h - M.b + 18);
+  });
+  const pts = [];
+  for (let px = 0; px <= pw; px += 2){ const f = 20 * Math.pow(500, px / pw); pts.push([M.l + px, Y(dbAt(f))]); }
+  const area = new Path2D();
+  area.moveTo(M.l, Y(0)); pts.forEach(p => area.lineTo(p[0], p[1])); area.lineTo(M.l + pw, Y(0)); area.closePath();
+  g.save(); g.beginPath(); g.rect(M.l, Y(0), pw, h); g.clip(); g.globalAlpha = .17; g.fillStyle = C.anti; g.fill(area); g.restore();
+  g.save(); g.beginPath(); g.rect(M.l, 0, pw, Y(0)); g.clip(); g.globalAlpha = .25; g.fillStyle = C.noise; g.fill(area); g.restore();
+  g.save(); g.lineJoin = 'round'; g.lineCap = 'round'; g.strokeStyle = C.ink; g.lineWidth = 3;
+  g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.stroke(); g.restore();
+  g.textAlign = 'left'; g.fillStyle = C.anti; g.fillText('QUIETER', M.l + 10, Y(-13));
+  g.textAlign = 'right'; g.fillStyle = C.noise; g.fillText('LOUDER', w - M.r - 4, Y(8.4));
+  const f = fFromV(+pitch.value), mx = X(f), my = Y(dbAt(f));
+  g.save(); g.strokeStyle = C.ink; g.lineWidth = 1.5; g.setLineDash([4, 4]); g.beginPath(); g.moveTo(mx, M.t); g.lineTo(mx, h - M.b); g.stroke(); g.restore();
+  g.save(); g.beginPath(); g.arc(mx, my, 7.5, 0, TAU); g.fillStyle = C.hi; g.fill(); g.lineWidth = 3; g.strokeStyle = C.ink; g.stroke(); g.restore();
+}
+function pitchReadout(){
+  const f = fFromV(+pitch.value), d = dbAt(f), pc = f * DT * 100;
+  $('pitchOut').textContent = fmtHz(f);
+  $('pitchBig').textContent = d <= -.5 ? Math.round(-d) + ' dB quieter' : d >= .5 ? Math.round(d) + ' dB louder' : 'No real change';
+  $('pitchSmall').textContent = 'The delay is ' + (pc < 1 ? pc.toFixed(1) : Math.round(pc)) + '% of one wave.';
+}
+function statics(){ pitchReadout(); drawCycle(); drawChart(); }
+pitch.addEventListener('input', statics);
+document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => { pitch.value = Math.round(vFromF(+b.dataset.f)); statics(); }));
+const chart = $('chart'); let dragging = false;
+function chartSet(e){
+  const r = chart.getBoundingClientRect(), pw = r.width - M.l - M.r;
+  pitch.value = Math.round(Math.max(0, Math.min(300, 300 * (e.clientX - r.left - M.l) / pw)));
+  statics();
+}
+chart.addEventListener('pointerdown', e => { dragging = true; try { chart.setPointerCapture(e.pointerId); } catch (x){} chartSet(e); });
+chart.addEventListener('pointermove', e => { if (dragging) chartSet(e); });
+['pointerup', 'pointercancel'].forEach(n => chart.addEventListener(n, () => { dragging = false; }));
+
+/* ---------- switch ---------- */
+const anc = $('anc');
+anc.addEventListener('click', () => {
+  const on = anc.getAttribute('aria-checked') !== 'true';
+  anc.setAttribute('aria-checked', on ? 'true' : 'false');
+  kTarget = on ? 1 : 0;
+  $('ancStatus').textContent = on ? 'On. The two sounds cancel.' : 'Off. The noise gets through.';
+});
+
+/* ---------- loop ---------- */
+const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+const seen = { hero: true, air: true, mix: true };
+if ('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(e => { seen[e.target.dataset.anim] = e.isIntersecting; }), { rootMargin: '120px' });
+  document.querySelectorAll('[data-anim]').forEach(el => io.observe(el));
+}
+let T = .35, last = performance.now();
+function tick(now){
+  const dt = Math.min(.05, (now - last) / 1000); last = now;
+  if (!still.matches) T += dt;
+  k += (kTarget - k) * (still.matches ? 1 : 1 - Math.exp(-dt * 7));
+  if (seen.hero) drawHero(T);
+  if (seen.air) drawAir(T);
+  if (seen.mix) drawMix(T);
+  requestAnimationFrame(tick);
+}
+function refresh(){ readColors(); statics(); }
+const dark = window.matchMedia('(prefers-color-scheme: dark)');
+if (dark.addEventListener) dark.addEventListener('change', refresh);
+if ('MutationObserver' in window) new MutationObserver(refresh).observe(root, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+window.addEventListener('resize', statics);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(statics);
+
+readColors(); mixReadout(); statics();
+drawHero(T); drawAir(T); drawMix(T);
+requestAnimationFrame(tick);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

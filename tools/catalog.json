@@ -164,6 +164,13 @@
           "blurb": "On a fast train your phone changes towers every minute. The internet never finds out.",
           "artifact": "a121a789-855b-420e-ac6c-13ef41055b1a",
           "ask": "How does your phone stay online at 200 km/h?"
+        },
+        {
+          "slug": "anti-noise-seat-card",
+          "title": "Anti-Noise Seat Card",
+          "blurb": "Noise-cancelling headphones play a mirror image of the noise, so every push meets a pull and the air at your ear stays still.",
+          "artifact": "NJSgaUr8n2L2P8gNEccdoJ",
+          "ask": "How do headphones make silence by adding sound?"
         }
       ]
     },
