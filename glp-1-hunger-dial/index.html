@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GLP-1 Hunger Dial | Explainers</title>
+<meta name="description" content="How Ozempic-style drugs copy a gut hormone and turn down the volume on hunger.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/glp-1-hunger-dial/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="GLP-1 Hunger Dial">
+<meta property="og:description" content="How Ozempic-style drugs copy a gut hormone and turn down the volume on hunger.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/glp-1-hunger-dial/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/glp-1-hunger-dial/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:wght@400;700&family=Michroma&display=swap">
+<style>
+:root{
+  --plate:#DCDED8; --plate-2:#CDD0C9; --edge:#B3B7AF; --ink:#1C1F22; --muted:#53585B;
+  --walnut:#6A4128; --walnut-2:#472A18;
+  --dial:#1A140E; --dial-2:#271E15; --glow:#F4A23A; --glow-soft:rgba(244,162,58,.16);
+  --dial-ink:#F3DDB8; --dial-dim:#9C8467; --needle:#D6452F;
+  --good:#2C7654; --warn:#A8501C; --rare:#6B5AA8; --screw:#9EA29B; --knob:#2B2E32; --knob-hi:#4A4F55;
+  --display:"Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --label:"Michroma", "Eurostile", "Arial", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --plate:#26292D; --plate-2:#2F3338; --edge:#41464C; --ink:#E8E6E0; --muted:#A4A6A3;
+    --walnut:#3F2718; --walnut-2:#26170D; --dial:#0E0B08; --dial-2:#18130D;
+    --good:#62C095; --warn:#E78F5A; --rare:#A898E8; --screw:#5A5F65; --knob:#17191C; --knob-hi:#3A3F45; --needle:#EE5A43;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --plate:#26292D; --plate-2:#2F3338; --edge:#41464C; --ink:#E8E6E0; --muted:#A4A6A3;
+  --walnut:#3F2718; --walnut-2:#26170D; --dial:#0E0B08; --dial-2:#18130D;
+  --good:#62C095; --warn:#E78F5A; --rare:#A898E8; --screw:#5A5F65; --knob:#17191C; --knob-hi:#3A3F45; --needle:#EE5A43;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; padding-inline:16px; padding-block:18px;
+  background:linear-gradient(90deg,var(--walnut-2),var(--walnut) 30%,var(--walnut) 70%,var(--walnut-2));
+  color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.55;
+}
+.rack{
+  max-width:1060px; margin:0 auto; border-radius:6px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg,var(--plate),var(--plate-2));
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset, 0 20px 50px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+.module{padding:clamp(28px,5vw,56px) clamp(18px,5vw,56px); border-top:1px solid var(--edge); display:grid; gap:28px}
+.module:first-child{border-top:0}
+.nameplate{display:flex; align-items:center; gap:12px; font-family:var(--label); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+.nameplate::before,.nameplate::after{content:""; width:9px; height:9px; border-radius:50%; background:radial-gradient(circle at 35% 35%,var(--plate),var(--screw)); box-shadow:0 0 0 1px var(--edge); flex:none}
+.nameplate::after{order:3}
+.nameplate span{order:2}
+h1,h2,h3{font-family:var(--display); font-stretch:118%; text-wrap:balance; margin:0; line-height:1.05}
+h1{font-size:clamp(38px,5.6vw,68px); font-weight:800; letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.2vw,46px); font-weight:760}
+h3{font-size:20px; font-weight:720; font-stretch:105%}
+p{margin:0; max-width:62ch}
+.lede{font-size:clamp(18px,2.2vw,22px); color:var(--muted); max-width:44ch}
+.small{font-size:14px; color:var(--muted)}
+b,strong{font-weight:700}
+.hl{color:var(--needle)}
+
+/* dial window */
+.window{background:radial-gradient(120% 90% at 50% 0%,var(--dial-2),var(--dial)); border-radius:10px; box-shadow:0 0 0 2px var(--edge), 0 2px 0 3px rgba(0,0,0,.12), inset 0 8px 24px rgba(0,0,0,.6); color:var(--dial-ink); padding:18px; position:relative; overflow:hidden}
+.window .wlabel{font-family:var(--label); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--dial-dim)}
+.window svg{display:block; width:100%; height:auto}
+.window p{color:var(--dial-ink)}
+svg text{font-family:var(--label)}
+.t-dim{fill:var(--dial-dim)} .t-ink{fill:var(--dial-ink)} .t-glow{fill:var(--glow)} .t-needle{fill:var(--needle)}
+.grid-l{stroke:var(--dial-dim); stroke-opacity:.25; stroke-width:1}
+
+/* hero */
+.hero{grid-template-columns:1.05fr .95fr; align-items:center; gap:clamp(24px,4vw,48px)}
+.hero .copy{display:grid; gap:20px}
+.console{display:grid; gap:18px}
+.knob-wrap{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
+#heroKnob{width:170px; height:170px; touch-action:none; cursor:grab; flex:none}
+#heroKnob:active{cursor:grabbing}
+.knob-side{display:grid; gap:8px; flex:1; min-width:150px}
+.readout{font-family:var(--label); font-size:13px; letter-spacing:.14em; text-transform:uppercase}
+.readout b{color:var(--needle); font-weight:400}
+input[type=range]{width:100%; accent-color:var(--needle)}
+input[type=range]:focus-visible{outline:2px solid var(--needle); outline-offset:4px}
+#noise{display:block; width:100%; height:190px}
+
+/* two-up */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+.window .cap{display:flex; gap:12px; align-items:center; margin-top:10px}
+.window .cap svg{width:44px; height:44px; flex:none}
+.window h3{color:var(--dial-ink); margin-block:6px 2px}
+
+/* body map */
+.bodymap{display:grid; grid-template-columns:minmax(220px,340px) 1fr; gap:28px; align-items:center}
+.spots{display:grid; gap:14px; list-style:none; margin:0; padding:0}
+.spots li{display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:start; padding:14px 0; border-bottom:1px solid var(--edge)}
+.spots li:last-child{border-bottom:0}
+.dot{width:36px; height:36px; border-radius:50%; background:var(--dial); color:var(--glow); display:grid; place-items:center; font-family:var(--label); font-size:13px; box-shadow:0 0 0 2px var(--edge), 0 0 14px var(--glow-soft)}
+.spots h3{margin-bottom:2px}
+@keyframes pulse{0%{r:9;opacity:.9}100%{r:22;opacity:0}}
+.pulse{animation:pulse 2.2s ease-out infinite}
+
+/* bars */
+.bars{display:grid; gap:16px}
+.bar-row{display:grid; grid-template-columns:minmax(120px,190px) 1fr; gap:14px; align-items:center}
+.bar-row .who{font-size:15px; line-height:1.25}
+.bar-row .who small{display:block; color:var(--dial-dim); font-size:12px}
+.meter{height:30px; border-radius:4px; background:repeating-linear-gradient(90deg, rgba(243,221,184,.08) 0 2px, transparent 2px 10px); position:relative}
+.meter i{position:absolute; inset:0 auto 0 0; border-radius:4px; background:linear-gradient(90deg,#7a4c16,var(--glow)); box-shadow:0 0 16px var(--glow-soft); display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-style:normal; font-family:var(--label); font-size:12px; color:#1A140E; min-width:52px}
+.meter i.plc{background:linear-gradient(90deg,#4a4038,#8a7a68)}
+.scale{display:grid; grid-template-columns:minmax(120px,190px) 1fr; gap:14px}
+.scale div{display:flex; justify-content:space-between; font-family:var(--label); font-size:10px; color:var(--dial-dim)}
+.kg{display:flex; gap:12px; flex-wrap:wrap}
+.kg span{font-family:var(--label); font-size:12px; letter-spacing:.06em; padding:8px 12px; border-radius:999px; background:var(--plate); border:1px solid var(--edge)}
+
+/* stop chart */
+.chart-scroll{overflow-x:auto}
+.chart-scroll svg{min-width:560px}
+.legend{display:flex; gap:20px; flex-wrap:wrap; font-family:var(--label); font-size:11px; letter-spacing:.08em; color:var(--dial-ink); margin-top:8px}
+.legend span{display:inline-flex; align-items:center; gap:8px}
+.legend i{width:22px; height:3px; display:inline-block; border-radius:2px}
+.facts{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.fact{border-top:3px solid var(--needle); padding-top:12px; display:grid; gap:4px}
+.fact .big{font-family:var(--display); font-stretch:120%; font-weight:800; font-size:32px; line-height:1}
+
+.spring{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.spring figure{margin:0; display:grid; gap:8px; justify-items:center; text-align:center}
+.spring svg{width:100%; max-width:190px; height:auto}
+.spring figcaption{font-size:15px; max-width:22ch}
+.spring figcaption b{display:block; font-family:var(--label); font-weight:400; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2px}
+
+.chips{display:flex; flex-wrap:wrap; gap:10px}
+.chips span{padding:10px 14px; border-radius:8px; border:1px solid var(--edge); background:var(--plate); font-size:15px}
+
+/* long term */
+.tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.tile{display:grid; gap:6px; align-content:start}
+.tile .big{font-family:var(--label); font-size:clamp(30px,4vw,40px); color:var(--glow); text-shadow:0 0 18px var(--glow-soft); line-height:1.1}
+.tile p{font-size:15px}
+.tile .src{color:var(--dial-dim); font-size:12px}
+.watch{list-style:none; margin:0; padding:0; display:grid}
+.watch li{display:grid; grid-template-columns:118px 1fr; gap:16px; padding:14px 0; border-bottom:1px solid var(--edge); align-items:baseline}
+.watch li:last-child{border-bottom:0}
+.chip{font-family:var(--label); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:5px 8px; border-radius:4px; border:1.5px solid currentColor; justify-self:start; white-space:nowrap}
+.c-common{color:var(--warn)} .c-plan{color:var(--needle)} .c-rare{color:var(--rare)} .c-good{color:var(--good)}
+.watch h3{font-size:18px; display:inline}
+.watch p{font-size:15px; color:var(--muted); margin-top:2px}
+.cols{display:grid; grid-template-columns:1.3fr 1fr; gap:36px; align-items:start}
+.side{display:grid; gap:22px}
+.boxed{border:1px solid var(--edge); border-radius:8px; padding:18px; display:grid; gap:10px; background:linear-gradient(180deg,transparent,rgba(0,0,0,.03))}
+
+.india{display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center}
+.india .big{font-family:var(--label); font-size:28px; color:var(--glow)}
+
+footer.module{gap:14px}
+footer ol{margin:0; padding-left:20px; font-size:14px; color:var(--muted); display:grid; gap:4px}
+footer a{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--needle); outline-offset:2px}
+
+@media (max-width:820px){
+  .hero,.two,.bodymap,.cols{grid-template-columns:1fr}
+  .facts,.tiles{grid-template-columns:1fr}
+  .bodymap svg{max-width:280px; margin:0 auto}
+}
+@media (max-width:520px){
+  .spring{grid-template-columns:1fr}
+  .spring figure{grid-template-columns:120px 1fr; justify-items:start; text-align:left; align-items:center}
+  .bar-row,.scale{grid-template-columns:1fr; gap:6px}
+  .scale div:first-child{display:none}
+  .watch li{grid-template-columns:1fr; gap:6px}
+  #heroKnob{width:140px;height:140px}
+}
+@media (prefers-reduced-motion: reduce){ .pulse{animation:none} }
+</style>
+</head>
+<body>
+<div class="rack">
+
+<!-- HERO -->
+<section class="module hero" aria-labelledby="h-hero">
+  <div class="copy">
+    <div class="nameplate"><span>GLP-1 · Model W-1 · Hunger receiver</span></div>
+    <h1 id="h-hero"><span style="white-space:nowrap">GLP-1</span> turns down the volume on hunger.</h1>
+    <p class="lede">Your gut already makes this hormone. The drugs are a long-lasting copy of it. Turn the dial.</p>
+    <p class="small">Drug names you'll hear: <b>semaglutide</b> (Ozempic, Wegovy, Rybelsus), <b>tirzepatide</b> (Mounjaro, Zepbound), <b>liraglutide</b> (Saxenda, Victoza).</p>
+  </div>
+  <div class="console">
+    <div class="window" aria-hidden="true">
+      <div class="wlabel">Food noise monitor</div>
+      <canvas id="noise"></canvas>
+    </div>
+    <div class="knob-wrap">
+      <svg id="heroKnob" viewBox="0 0 200 200" role="img" aria-label="Hunger volume knob"></svg>
+      <div class="knob-side">
+        <label for="vol" class="readout">Hunger volume: <b id="volText">Loud</b></label>
+        <input id="vol" type="range" min="0" max="100" value="82">
+        <p class="small" id="volNote">No drug: thoughts about food keep popping up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1 SIGNAL -->
+<section class="module" aria-labelledby="h-sig">
+  <div class="nameplate"><span>1 · The signal</span></div>
+  <h2 id="h-sig">After you eat, your gut texts your body: <span class="hl">"food's here."</span></h2>
+  <div class="two">
+    <div class="window">
+      <div class="wlabel">Your own GLP-1 · one burst</div>
+      <svg id="natChart" viewBox="0 0 330 180" aria-label="Your own GLP-1 falls to half in about 2 minutes and is almost gone by 10 minutes"></svg>
+      <div class="cap">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="#D6452F" stroke-width="3" stroke-linecap="round"><circle cx="13" cy="36" r="6"/><circle cx="35" cy="36" r="6"/><path d="M17 31 L38 6 M31 31 L10 6"/></g></svg>
+        <div><h3>Gone in minutes</h3><p class="small" style="color:var(--dial-dim)">An enzyme (DPP-4) cuts it up. Half is gone in about 2 minutes.</p></div>
+      </div>
+    </div>
+    <div class="window">
+      <div class="wlabel">Drug copy · one shot a week</div>
+      <svg id="drugChart" viewBox="0 0 330 180" aria-label="With a weekly injection the level builds up over weeks and stays high all week"></svg>
+      <div class="cap">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 L41 11 V23 C41 34 33 41 24 44 C15 41 7 34 7 23 V11 Z" fill="none" stroke="#F4A23A" stroke-width="3" stroke-linejoin="round"/><path d="M16 24 l6 6 l10 -12" fill="none" stroke="#F4A23A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><h3>Lasts all week</h3><p class="small" style="color:var(--dial-dim)">Built so the enzyme can't cut it. Semaglutide's half-life is about 7 days.</p></div>
+      </div>
+    </div>
+  </div>
+  <p>Same message. The drug keeps it switched on, day and night.</p>
+</section>
+
+<!-- 2 WHERE IT LANDS -->
+<section class="module" aria-labelledby="h-land">
+  <div class="nameplate"><span>2 · Where the message lands</span></div>
+  <h2 id="h-land">One message, three places.</h2>
+  <div class="bodymap">
+    <svg viewBox="0 0 300 430" role="img" aria-label="Body outline marking the brain, stomach and pancreas">
+      <g fill="var(--plate)" stroke="var(--muted)" stroke-width="2">
+        <circle cx="150" cy="64" r="44"/>
+        <path d="M132 104 h36 v18 h-36z"/>
+        <path d="M150 118 C 90 118 62 132 58 170 L 52 300 C 52 330 70 340 88 344 L 94 420 H 206 L 212 344 C 230 340 248 330 248 300 L 242 170 C 238 132 210 118 150 118 Z"/>
+      </g>
+      <!-- brain -->
+      <path d="M122 60 c-4-18 14-30 28-24 c10-10 32-4 32 12 c12 4 10 24 -2 26 c-2 12-20 14-28 6 c-10 8-30 2-30-20z" fill="var(--dial-2)" stroke="var(--glow)" stroke-width="2"/>
+      <!-- stomach (on body's left = viewer's right) -->
+      <path d="M170 176 c-6 22 -40 20 -36 50 c4 30 50 38 72 20 c22-18 14-56 -6-64 c-6-2 -4-10 -2-14 l-10-4 c-4 6-14 6-18 12z" fill="var(--dial-2)" stroke="var(--glow)" stroke-width="2"/>
+      <!-- pancreas -->
+      <path d="M96 268 c20-10 60-6 88-10 c20-2 34 4 34 12 c0 8-16 10-34 8 c-30-4-60 8-84 4 c-10-2-12-10-4-14z" fill="var(--dial-2)" stroke="var(--glow)" stroke-width="2"/>
+      <g font-size="13">
+        <circle class="pulse" cx="150" cy="58" r="9" fill="none" stroke="var(--glow)" stroke-width="2"/>
+        <circle cx="150" cy="58" r="11" fill="var(--dial)"/><text x="150" y="63" text-anchor="middle" class="t-glow">1</text>
+        <circle class="pulse" cx="172" cy="220" r="9" fill="none" stroke="var(--glow)" stroke-width="2" style="animation-delay:.7s"/>
+        <circle cx="172" cy="220" r="11" fill="var(--dial)"/><text x="172" y="225" text-anchor="middle" class="t-glow">2</text>
+        <circle class="pulse" cx="150" cy="268" r="9" fill="none" stroke="var(--glow)" stroke-width="2" style="animation-delay:1.4s"/>
+        <circle cx="150" cy="268" r="11" fill="var(--dial)"/><text x="150" y="273" text-anchor="middle" class="t-glow">3</text>
+      </g>
+    </svg>
+    <ol class="spots">
+      <li><span class="dot">1</span><div><h3>Brain</h3><p>Hunger gets quieter. Cravings and constant food thoughts fade.</p></div></li>
+      <li><span class="dot">2</span><div><h3>Stomach</h3><p>Food leaves more slowly, so you feel full sooner and longer.</p></div></li>
+      <li><span class="dot">3</span><div><h3>Pancreas</h3><p>Releases insulin when blood sugar is high, and less of the hormone that raises sugar. That's why these started as diabetes drugs.</p></div></li>
+    </ol>
+  </div>
+  <p class="small">Tirzepatide also copies a second gut hormone, GIP. That's part of why it tends to cause more weight loss.</p>
+</section>
+
+<!-- 3 VOLUME DOWN -->
+<section class="module" aria-labelledby="h-vol">
+  <div class="nameplate"><span>3 · Volume down</span></div>
+  <h2 id="h-vol">You eat less without fighting yourself. Weight falls.</h2>
+  <div class="window">
+    <div class="wlabel">Average body weight lost in large trials · ~1.5 years</div>
+    <div class="bars" style="margin-top:16px">
+      <div class="bar-row"><div class="who">Diet &amp; activity advice only<small>placebo</small></div><div class="meter"><i class="plc" style="width:calc(2.4 / 25 * 100%)">2.4%</i></div></div>
+      <div class="bar-row"><div class="who">Semaglutide 2.4 mg<small>Wegovy · STEP 1, 68 weeks</small></div><div class="meter"><i style="width:calc(14.9 / 25 * 100%)">14.9%</i></div></div>
+      <div class="bar-row"><div class="who">Tirzepatide 15 mg<small>Zepbound · SURMOUNT-1, 72 weeks</small></div><div class="meter"><i style="width:calc(20.9 / 25 * 100%)">20.9%</i></div></div>
+      <div class="scale" aria-hidden="true"><div></div><div><span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span><span>25%</span></div></div>
+    </div>
+  </div>
+  <div class="kg" aria-label="For a 90 kilogram person">
+    <span>If you weigh 90 kg →</span><span>semaglutide ≈ −13 kg</span><span>tirzepatide ≈ −19 kg</span>
+  </div>
+  <p class="small">Averages. Some people lose much more, some very little.</p>
+</section>
+
+<!-- 4 POWER OFF -->
+<section class="module" aria-labelledby="h-stop">
+  <div class="nameplate"><span>4 · Power off</span></div>
+  <h2 id="h-stop">When you stop, the hunger comes back. So does most of the weight.</h2>
+  <div class="window">
+    <div class="wlabel">SURMOUNT-4 trial · everyone took tirzepatide for 36 weeks, then half switched to a dummy shot</div>
+    <div class="chart-scroll"><svg id="stopChart" viewBox="0 0 660 340" aria-label="Weight fell about 21 percent by week 36. People who kept taking it reached minus 25 percent at week 88. People who stopped drifted back to minus 10 percent."></svg></div>
+    <div class="legend"><span><i style="background:var(--glow)"></i>Kept taking it</span><span><i style="background:var(--needle)"></i>Stopped at week 36</span></div>
+    <p class="small" style="color:var(--dial-dim);margin-top:6px">Curve shapes smoothed. Start, week 36 and week 88 values are from the trial.</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><span class="big">⅔</span><p>of lost weight came back within a year of stopping semaglutide (STEP 1 follow-up).</p></div>
+    <div class="fact"><span class="big">~1.5 yrs</span><p>average time to get back to starting weight after stopping the newer drugs (2026 review of 37 studies).</p></div>
+    <div class="fact"><span class="big">↺</span><p>Better blood pressure and blood sugar also slide back toward where they were.</p></div>
+  </div>
+
+  <h3 style="margin-top:10px">Why? The drug holds the dial. It doesn't move where the dial wants to rest.</h3>
+  <div class="spring" id="spring"></div>
+  <p>Your body defends its usual weight. After you lose weight, hunger hormones rise and you burn a bit less energy. The drug masks that pull. Remove it and the pull wins. Doctors now treat obesity like blood pressure: something you manage, not cure.</p>
+
+  <h3>What seems to help when stopping</h3>
+  <div class="chips">
+    <span>Plan the exit with a doctor</span>
+    <span>Keep strength training</span>
+    <span>Eat enough protein</span>
+    <span>Keep the new eating habits</span>
+    <span>Some stay on a lower dose or switch treatment</span>
+  </div>
+  <p class="small">A 2026 study of ~8,000 real patients found smaller average regain than in trials, mostly because many restarted or moved to another treatment.</p>
+</section>
+
+<!-- 5 LONG PLAY -->
+<section class="module" aria-labelledby="h-long">
+  <div class="nameplate"><span>5 · Long play</span></div>
+  <h2 id="h-long">Taking it for years: benefits, watch-outs, unknowns.</h2>
+
+  <div class="window">
+    <div class="wlabel">Benefits seen in multi-year trials</div>
+    <div class="tiles" style="margin-top:14px">
+      <div class="tile"><span class="big">−20%</span><p>heart attacks, strokes and heart deaths in people with heart disease and excess weight.</p><span class="src">SELECT · semaglutide · ~3 years</span></div>
+      <div class="tile"><span class="big">−24%</span><p>serious kidney disease events in people with diabetes and kidney disease.</p><span class="src">FLOW · semaglutide</span></div>
+      <div class="tile"><span class="big">Liver</span><p>Fatty-liver inflammation (MASH) improves. Semaglutide is now approved for it.</p><span class="src">ESSENCE · semaglutide</span></div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h3 style="margin-bottom:6px">Watch-outs</h3>
+      <ul class="watch">
+        <li><span class="chip c-common">Common</span><div><h3>Stomach upset</h3><p>Nausea, vomiting, constipation, diarrhoea. Worst early and after each dose increase.</p></div></li>
+        <li><span class="chip c-plan">Plan for it</span><div><h3>Muscle loss</h3><p>Around a third of the weight lost can be muscle and other lean tissue. Protein and strength training protect it.</p></div></li>
+        <li><span class="chip c-common">Uncommon</span><div><h3>Gallstones</h3><p>More likely with fast weight loss.</p></div></li>
+        <li><span class="chip c-rare">Rare</span><div><h3>Pancreatitis</h3><p>Severe belly pain spreading to the back means go to hospital.</p></div></li>
+        <li><span class="chip c-rare">Rare</span><div><h3>Eyes</h3><p>A rare optic-nerve stroke (NAION) is now on semaglutide's EU label. In diabetes, fast sugar drops can briefly worsen eye disease.</p></div></li>
+        <li><span class="chip c-rare">Precaution</span><div><h3>Thyroid &amp; pregnancy</h3><p>Caused thyroid tumours in rodents, unclear in humans. Avoided with a family history of medullary thyroid cancer, and in pregnancy.</p></div></li>
+      </ul>
+    </div>
+    <div class="side">
+      <div class="boxed">
+        <span class="chip c-good">Largely cleared</span>
+        <p><b>Suicidal thoughts:</b> the US FDA removed this warning in January 2026 after data on 100,000+ trial patients showed no rise.</p>
+        <p><b>Pancreatic cancer:</b> long trials have not shown a higher risk.</p>
+      </div>
+      <div class="boxed">
+        <span class="chip" style="color:var(--muted)">Still unknown</span>
+        <p>GLP-1 drugs have been used for diabetes since 2005. High weight-loss doses in large numbers of people only started around 2021, so most data covers under 5 years. Lifelong use is still being studied.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="wlabel">Years of experience</div>
+    <div class="chart-scroll"><svg id="timeline" viewBox="0 0 700 150" aria-label="Timeline: 2005 first GLP-1 drug, 2010 liraglutide, 2017 semaglutide for diabetes, 2021 semaglutide for weight, 2022 tirzepatide, 2026 generics in India"></svg></div>
+  </div>
+
+  <div class="india boxed">
+    <span class="big">₹</span>
+    <p><b>In India:</b> semaglutide's patent ended on 20 March 2026. Dozens of generics followed, many around ₹1,300–4,200 a month. It is still prescription-only, and needs a doctor to start, dose and stop it safely.</p>
+  </div>
+</section>
+
+<footer class="module">
+  <div class="nameplate"><span>Sources</span></div>
+  <p class="small">Educational only, not medical advice. Talk to a doctor before starting or stopping any of these drugs.</p>
+  <ol>
+    <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2032183" target="_blank" rel="noopener">STEP 1: semaglutide in adults with obesity (NEJM, 2021)</a></li>
+    <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2206038" target="_blank" rel="noopener">SURMOUNT-1: tirzepatide for obesity (NEJM, 2022)</a></li>
+    <li><a href="https://jamanetwork.com/journals/jama/fullarticle/2812936" target="_blank" rel="noopener">SURMOUNT-4: continued vs stopped tirzepatide (JAMA, 2024)</a></li>
+    <li><a href="https://www.ox.ac.uk/news/2026-01-08-new-study-finds-stopping-weight-loss-drugs-linked-faster-regain-ending-diet" target="_blank" rel="noopener">Weight regain after stopping weight-loss drugs, BMJ review (Oxford, Jan 2026)</a></li>
+    <li><a href="https://newsroom.clevelandclinic.org/2026/03/12/what-happens-when-patients-stop-taking-glp-1-drugs-new-cleveland-clinic-study-reveals-real-world-insights" target="_blank" rel="noopener">Real-world outcomes after stopping GLP-1s (Cleveland Clinic, Mar 2026)</a></li>
+    <li><a href="https://www.jci.org/articles/view/194740" target="_blank" rel="noopener">The science of safety: adverse effects of GLP-1 drugs (JCI, Feb 2026)</a></li>
+    <li><a href="https://therxindex.com/guides/glp-1-long-term-side-effects/" target="_blank" rel="noopener">GLP-1 long-term side effects evidence map, incl. FDA label change (2026)</a></li>
+    <li><a href="https://www.cnbc.com/2026/03/23/novo-nordisk-cheap-weight-loss-drugs-india-generic-ozempic-wegovy-semaglutide.html" target="_blank" rel="noopener">Generic semaglutide launches in India (CNBC, Mar 2026)</a></li>
+  </ol>
+</footer>
+</div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- knob drawing ---------- */
+  function knobSVG(angle, opts){
+    opts = opts || {};
+    const cx=100, cy=100, R=64;
+    let s="";
+    // ticks
+    for(let i=0;i<=10;i++){
+      const a=(-135+i*27)*Math.PI/180;
+      const x1=cx+Math.sin(a)*80, y1=cy-Math.cos(a)*80, x2=cx+Math.sin(a)*(i%5?86:90), y2=cy-Math.cos(a)*(i%5?86:90);
+      s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--muted)" stroke-width="${i%5?1.5:2.5}"/>`;
+    }
+    if(opts.ghost!==undefined){
+      const g=opts.ghost*Math.PI/180;
+      s+=`<line x1="${cx}" y1="${cy}" x2="${(cx+Math.sin(g)*58).toFixed(1)}" y2="${(cy-Math.cos(g)*58).toFixed(1)}" stroke="var(--muted)" stroke-width="3" stroke-dasharray="4 4" opacity=".6"/>`;
+    }
+    s+=`<circle cx="${cx}" cy="${cy}" r="${R+4}" fill="var(--edge)"/>`;
+    s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="var(--knob)"/>`;
+    for(let i=0;i<36;i++){
+      const a=i*10*Math.PI/180;
+      s+=`<line x1="${(cx+Math.sin(a)*(R-6)).toFixed(1)}" y1="${(cy-Math.cos(a)*(R-6)).toFixed(1)}" x2="${(cx+Math.sin(a)*R).toFixed(1)}" y2="${(cy-Math.cos(a)*R).toFixed(1)}" stroke="var(--knob-hi)" stroke-width="2"/>`;
+    }
+    s+=`<circle cx="${cx}" cy="${cy}" r="${R-10}" fill="var(--knob-hi)" opacity=".35"/>`;
+    s+=`<g class="kp" transform="rotate(${angle} ${cx} ${cy})"><rect x="${cx-3}" y="${cy-R+8}" width="6" height="24" rx="3" fill="var(--needle)"/></g>`;
+    return s;
+  }
+
+  /* ---------- hero knob + noise ---------- */
+  const knob=document.getElementById("heroKnob"), vol=document.getElementById("vol");
+  const volText=document.getElementById("volText"), volNote=document.getElementById("volNote");
+  function drawKnob(){ knob.innerHTML=knobSVG(-135+vol.value*2.7); }
+  function updateText(){
+    const v=+vol.value;
+    if(v>66){volText.textContent="Loud"; volNote.textContent="No drug: thoughts about food keep popping up.";}
+    else if(v>33){volText.textContent="Medium"; volNote.textContent="Starting dose: cravings ease a little.";}
+    else {volText.textContent="Quiet"; volNote.textContent="Full dose: you notice food when you're actually hungry.";}
+  }
+  vol.addEventListener("input",()=>{drawKnob();updateText();if(reduce)drawNoise(0);});
+  let dragging=false;
+  function fromPointer(e){
+    const r=knob.getBoundingClientRect();
+    const dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+    let a=Math.atan2(dx,-dy)*180/Math.PI; a=Math.max(-135,Math.min(135,a));
+    vol.value=Math.round((a+135)/2.7); vol.dispatchEvent(new Event("input"));
+  }
+  knob.addEventListener("pointerdown",e=>{dragging=true;knob.setPointerCapture(e.pointerId);fromPointer(e);});
+  knob.addEventListener("pointermove",e=>{if(dragging)fromPointer(e);});
+  knob.addEventListener("pointerup",()=>dragging=false);
+  drawKnob(); updateText();
+
+  const cv=document.getElementById("noise"), ctx=cv.getContext("2d");
+  const words=["snack?","biryani","one more","dessert","chips","is it lunch?","fridge","samosa","just a bite","chocolate","late-night maggi","sweets"];
+  const floats=words.map((w,i)=>({w,x:Math.random(),y:.12+Math.random()*.52,vx:(Math.random()*.5+.2)*(i%2?1:-1)*.0009,th:i/words.length}));
+  function size(){const d=window.devicePixelRatio||1; const r=cv.getBoundingClientRect(); cv.width=r.width*d; cv.height=r.height*d; ctx.setTransform(d,0,0,d,0,0);}
+  function drawNoise(t){
+    const W=cv.clientWidth,H=cv.clientHeight, a=vol.value/100;
+    ctx.clearRect(0,0,W,H);
+    // words
+    ctx.font="600 14px 'Atkinson Hyperlegible', system-ui, sans-serif";
+    const shown=Math.round(a*floats.length);
+    floats.forEach((f,i)=>{
+      if(!reduce){f.x+=f.vx; if(f.x>1.05)f.x=-.15; if(f.x<-.15)f.x=1.05;}
+      const vis = i<shown ? 1 : 0;
+      if(!vis) return;
+      ctx.fillStyle=`rgba(243,221,184,${0.35+0.5*a})`;
+      ctx.fillText(f.w, f.x*W, f.y*H);
+    });
+    // waveform
+    const base=H*.8;
+    ctx.strokeStyle="#F4A23A"; ctx.lineWidth=2; ctx.shadowColor="rgba(244,162,58,.6)"; ctx.shadowBlur=8;
+    ctx.beginPath();
+    for(let x=0;x<=W;x+=3){
+      const k=x/W*Math.PI*2, tt=t/1000;
+      const y=base - a*(14*Math.sin(k*3+tt*3)+9*Math.sin(k*7-tt*5)+6*Math.sin(k*13+tt*8)) - 1.5*Math.sin(k*2+tt);
+      x?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.stroke(); ctx.shadowBlur=0;
+    ctx.strokeStyle="rgba(156,132,103,.35)"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,base); ctx.lineTo(W,base); ctx.stroke();
+  }
+  size(); window.addEventListener("resize",()=>{size();drawNoise(performance.now());});
+  if(reduce){drawNoise(0);} else {(function loop(t){drawNoise(t);requestAnimationFrame(loop);})(0);}
+
+  /* ---------- helpers ---------- */
+  function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+  function txt(parent,x,y,s,cls,anchor,size){const t=el("text",{x,y,class:cls,"text-anchor":anchor||"start","font-size":size||10},parent);t.textContent=s;return t;}
+
+  /* ---------- natural GLP-1 chart (0-10 min, half-life 2 min) ---------- */
+  (function(){
+    const s=document.getElementById("natChart"); const X0=40,X1=315,Y0=20,Y1=140;
+    const x=t=>X0+t/10*(X1-X0), y=v=>Y1-v*(Y1-Y0);
+    [0,.5,1].forEach(v=>{el("line",{x1:X0,x2:X1,y1:y(v),y2:y(v),class:"grid-l"},s);});
+    [0,2,4,6,8,10].forEach(t=>txt(s,x(t),160,t+"","t-dim","middle"));
+    txt(s,X1,175,"minutes","t-dim","end",9);
+    let d=""; for(let t=0;t<=10;t+=.1){const v=Math.pow(.5,t/2); d+=(t?"L":"M")+x(t).toFixed(1)+" "+y(v).toFixed(1);}
+    el("path",{d:d+` L${x(10)} ${Y1} L${x(0)} ${Y1}Z`,fill:"rgba(244,162,58,.12)"},s);
+    el("path",{d,fill:"none",stroke:"#F4A23A","stroke-width":3},s);
+    el("line",{x1:x(2),x2:x(2),y1:y(.5),y2:Y1,stroke:"#D6452F","stroke-dasharray":"3 3","stroke-width":1.5},s);
+    el("circle",{cx:x(2),cy:y(.5),r:4,fill:"#D6452F"},s);
+    txt(s,x(2)+8,y(.5)-6,"half gone","t-needle","start",11);
+    txt(s,X0-6,y(1)+4,"full","t-dim","end",9); txt(s,X0-6,Y1+3,"0","t-dim","end",9);
+  })();
+
+  /* ---------- weekly drug chart (6 weeks) ---------- */
+  (function(){
+    const s=document.getElementById("drugChart"); const X0=40,X1=315,Y0=20,Y1=140, D=42;
+    const ke=Math.LN2/7, ka=1.0;
+    const c=t=>{let v=0;for(let k=0;k*7<=t;k++){const u=t-k*7;v+=Math.exp(-ke*u)-Math.exp(-ka*u);}return v;};
+    let max=0; for(let t=0;t<=D;t+=.1)max=Math.max(max,c(t));
+    const x=t=>X0+t/D*(X1-X0), y=v=>Y1-v/max*(Y1-Y0)*.95;
+    [0,.5,1].forEach(f=>el("line",{x1:X0,x2:X1,y1:Y1-f*(Y1-Y0),y2:Y1-f*(Y1-Y0),class:"grid-l"},s));
+    let d=""; for(let t=0;t<=D;t+=.1){d+=(t?"L":"M")+x(t).toFixed(1)+" "+y(c(t)).toFixed(1);}
+    el("path",{d:d+` L${x(D)} ${Y1} L${x(0)} ${Y1}Z`,fill:"rgba(244,162,58,.12)"},s);
+    el("path",{d,fill:"none",stroke:"#F4A23A","stroke-width":3},s);
+    for(let k=0;k<6;k++){
+      el("path",{d:`M${x(k*7)} ${Y1+2} l-4 8 h8z`,fill:"#D6452F"},s);
+      txt(s,x(k*7+3.5),160,"wk "+(k+1),"t-dim","middle");
+    }
+    txt(s,X1,175,"▲ = weekly shot","t-dim","end",9);
+    txt(s,X0-6,Y0+4,"high","t-dim","end",9); txt(s,X0-6,Y1+3,"0","t-dim","end",9);
+  })();
+
+  /* ---------- SURMOUNT-4 chart ---------- */
+  (function(){
+    const s=document.getElementById("stopChart");
+    const X0=70,X1=630,Y0=30,Y1=300;
+    const x=w=>X0+w/88*(X1-X0), y=p=>Y0+(-p)/30*(Y1-Y0);
+    [0,-10,-20,-30].forEach(p=>{el("line",{x1:X0,x2:X1,y1:y(p),y2:y(p),class:"grid-l"},s);txt(s,X0-10,y(p)+4,(p?p:"0")+"%","t-dim","end",11);});
+    [0,20,40,60,80].forEach(w=>txt(s,x(w),y(-30)+22,"wk "+w,"t-dim","middle",11));
+    txt(s,X0-10,Y0-14,"weight change","t-dim","start",10);
+    // shaded "off" zone
+    el("rect",{x:x(36),y:Y0,width:x(88)-x(36),height:Y1-Y0,fill:"rgba(214,69,47,.07)"},s);
+    el("line",{x1:x(36),x2:x(36),y1:Y0,y2:Y1,stroke:"#D6452F","stroke-dasharray":"5 4","stroke-width":1.5},s);
+    txt(s,x(36)+8,Y1-10,"half switch to a dummy shot","t-needle","start",11);
+    const lead=[[0,0],[4,-3],[8,-6.4],[12,-9.5],[16,-12.4],[20,-14.9],[24,-17],[28,-18.7],[32,-20],[36,-20.9]];
+    const keep=[[36,-20.9],[44,-22.4],[52,-23.5],[60,-24.3],[68,-24.8],[76,-25.1],[88,-25.3]];
+    const stop=[[36,-20.9],[44,-17.6],[52,-15],[60,-13.1],[68,-11.7],[76,-10.7],[88,-9.9]];
+    function smooth(pts){
+      const P=pts.map(([w,p])=>[x(w),y(p)]); let d=`M${P[0][0]} ${P[0][1]}`;
+      for(let i=0;i<P.length-1;i++){const p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||p2;
+        const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6], c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+        d+=` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;}
+      return d;}
+    el("path",{d:smooth(lead),fill:"none",stroke:"#F4A23A","stroke-width":3.5},s);
+    el("path",{d:smooth(keep),fill:"none",stroke:"#F4A23A","stroke-width":3.5},s);
+    el("path",{d:smooth(stop),fill:"none",stroke:"#D6452F","stroke-width":3.5},s);
+    [[36,-20.9,"#F4A23A","−20.9%",-10,-10,"end"],[88,-25.3,"#F4A23A","−25.3%",-4,20,"end"],[88,-9.9,"#D6452F","−9.9%",-4,-12,"end"]].forEach(([w,p,c,l,dx,dy,a])=>{
+      el("circle",{cx:x(w),cy:y(p),r:5,fill:c},s);
+      const t=txt(s,x(w)+dx,y(p)+dy,l,"","end",13); t.setAttribute("fill",c);
+    });
+  })();
+
+  /* ---------- spring knobs ---------- */
+  (function(){
+    const box=document.getElementById("spring");
+    const panels=[
+      {a:70,  lab:"Before", cap:"Your body's hunger is set high."},
+      {a:-80, lab:"On the drug", cap:"GLP-1 holds the dial down.", hold:true},
+      {a:40,  lab:"Stopped", cap:"Let go, and it swings back up.", ghost:-80, back:true}
+    ];
+    panels.forEach(p=>{
+      const f=document.createElement("figure");
+      let extra="";
+      if(p.hold){
+        extra+=`<path d="M40 150 q-18 -40 6 -78" fill="none" stroke="#F4A23A" stroke-width="6" stroke-linecap="round"/><rect x="18" y="150" width="46" height="22" rx="4" fill="#F4A23A"/><text x="41" y="165" text-anchor="middle" font-size="10" fill="#1A140E">GLP-1</text>`;
+      }
+      if(p.back){
+        extra+=`<path d="M52 58 A62 62 0 0 1 150 52" fill="none" stroke="var(--needle)" stroke-width="3" marker-end="url(#ah)"/>`;
+      }
+      f.innerHTML=`<svg viewBox="0 0 200 200" aria-hidden="true"><defs><marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--needle)"/></marker></defs>${knobSVG(p.a,{ghost:p.ghost})}${extra}</svg><figcaption><b>${p.lab}</b>${p.cap}</figcaption>`;
+      box.appendChild(f);
+    });
+  })();
+
+  /* ---------- timeline ---------- */
+  (function(){
+    const s=document.getElementById("timeline"); const X0=40,X1=660, Ya=70;
+    const x=yr=>X0+(yr-2005)/(2026-2005)*(X1-X0);
+    el("line",{x1:X0,x2:X1,y1:Ya,y2:Ya,stroke:"#9C8467","stroke-width":2},s);
+    for(let yr=2005;yr<=2026;yr++){el("line",{x1:x(yr),x2:x(yr),y1:Ya-3,y2:Ya+3,stroke:"#9C8467","stroke-width":1},s);}
+    // weight-loss dose era
+    el("rect",{x:x(2021),y:Ya-5,width:x(2026)-x(2021),height:10,rx:3,fill:"rgba(244,162,58,.35)"},s);
+    const ev=[[2005,"Exenatide","first GLP-1 drug",1],[2010,"Liraglutide","diabetes",-1],[2017,"Semaglutide","Ozempic, diabetes",1],[2021,"Wegovy","for weight loss",-1],[2022,"Tirzepatide","Mounjaro",1],[2026,"India","generics",-1]];
+    ev.forEach(([yr,a,b,up])=>{
+      el("circle",{cx:x(yr),cy:Ya,r:6,fill:"#F4A23A"},s);
+      const yy = up>0 ? Ya-34 : Ya+34;
+      const anchor = yr===2026?"end":(yr===2005?"start":"middle");
+      txt(s,x(yr),yy,yr+" · "+a,"t-ink",anchor,11);
+      txt(s,x(yr),yy+14,b,"t-dim",anchor,10);
+    });
+  })();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

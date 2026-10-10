@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reading a Property | Explainers</title>
+<meta name="description" content="You aren&#x27;t buying a flat. You&#x27;re buying six things stacked up, and a site visit shows only the top two.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/reading-a-property/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Reading a Property">
+<meta property="og:description" content="You aren&#x27;t buying a flat. You&#x27;re buying six things stacked up, and a site visit shows only the top two.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/reading-a-property/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/reading-a-property/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#EDEFE6; --paper-2:#E3E7DB; --card:#F6F7F0;
+  --grid:rgba(31,70,96,.075); --grid-major:rgba(31,70,96,.13);
+  --ink:#1D2A31; --ink-2:#4B5B62; --ink-3:#7A8A8E; --rule:#B9C3BE;
+  --blue:#1F5A8A; --blue-soft:rgba(31,90,138,.12);
+  --red:#BE3A22; --red-soft:rgba(190,58,34,.10);
+  --ground:#8A7A5C; --hatch:rgba(138,122,92,.35);
+  --hi:#E7B43C;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0E2A43; --paper-2:#12324F; --card:#11314D;
+    --grid:rgba(200,225,245,.06); --grid-major:rgba(200,225,245,.11);
+    --ink:#E6EEF3; --ink-2:#AFC3D1; --ink-3:#7F99AC; --rule:#35587A;
+    --blue:#8CC4F2; --blue-soft:rgba(140,196,242,.14);
+    --red:#FF8E73; --red-soft:rgba(255,142,115,.12);
+    --ground:#C9B48A; --hatch:rgba(201,180,138,.3);
+    --hi:#F2C55C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0E2A43; --paper-2:#12324F; --card:#11314D;
+  --grid:rgba(200,225,245,.06); --grid-major:rgba(200,225,245,.11);
+  --ink:#E6EEF3; --ink-2:#AFC3D1; --ink-3:#7F99AC; --rule:#35587A;
+  --blue:#8CC4F2; --blue-soft:rgba(140,196,242,.14);
+  --red:#FF8E73; --red-soft:rgba(255,142,115,.12);
+  --ground:#C9B48A; --hatch:rgba(201,180,138,.3);
+  --hi:#F2C55C;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid-major) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:100px 100px,100px 100px,20px 20px,20px 20px;
+  color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.62;
+  padding-inline:16px; padding-block:0 64px;
+}
+.sheet{max-width:880px;margin:0 auto}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.01em;text-wrap:balance;margin:0;line-height:1.02}
+.eyebrow,.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+p{margin:0}
+.prose{max-width:64ch;display:flex;flex-direction:column;gap:14px}
+.mono{font-family:var(--mono)}
+
+/* ---------- title block / hero ---------- */
+header.hero{padding-block:40px 8px;display:flex;flex-direction:column;gap:18px}
+.tb{display:flex;flex-wrap:wrap;border:1.5px solid var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;align-self:flex-start;background:var(--card)}
+.tb span{padding:6px 10px;border-right:1px solid var(--ink)}
+.tb span:last-child{border-right:0}
+.tb b{font-weight:500;color:var(--blue)}
+h1{font-size:clamp(52px,11vw,104px);text-transform:uppercase;letter-spacing:-.005em}
+h1 em{font-style:normal;color:var(--blue)}
+.lede{font-size:clamp(18px,2.4vw,21px);max-width:40ch;line-height:1.5}
+.lede strong{font-weight:600}
+
+/* ---------- drawing ---------- */
+.drawing{margin:22px 0 0;border:1.5px solid var(--ink);background:var(--card);position:relative}
+.drawing-scroll{overflow-x:auto}
+.drawing svg{display:block;width:100%;min-width:640px;height:auto}
+.drawing figcaption{border-top:1px solid var(--rule);padding:10px 14px;font-family:var(--mono);font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+svg .ink{stroke:var(--ink);fill:none}
+svg .ink-f{fill:var(--ink)}
+svg .thin{stroke:var(--ink-2);fill:none;stroke-width:1}
+svg .dim{stroke:var(--blue);fill:none;stroke-width:1}
+svg .dimtxt{fill:var(--blue);font-family:var(--mono);font-size:11px}
+svg .t{fill:var(--ink);font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase}
+svg .ts{fill:var(--ink-2);font-family:var(--mono);font-size:10.5px}
+svg .tred{fill:var(--red);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em}
+svg .ground{stroke:var(--ground);stroke-width:2.5}
+svg .card-f{fill:var(--card)}
+svg .paper-f{fill:var(--paper-2)}
+svg .hi-f{fill:var(--hi)}
+svg a.layer{cursor:pointer}
+svg a.layer .tag{fill:var(--paper);stroke:var(--ink);stroke-width:1.2;transition:fill .15s}
+svg a.layer:hover .tag,svg a.layer:focus .tag{fill:var(--blue-soft)}
+svg a.layer:focus{outline:none}
+svg a.layer:focus-visible .tag{stroke:var(--blue);stroke-width:2.5}
+svg .num{fill:var(--blue);font-family:var(--mono);font-size:11px;font-weight:500}
+
+/* ---------- thesis strip ---------- */
+.thesis{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--ink);border-top:0;background:var(--card)}
+.thesis > div{padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.thesis > div + div{border-left:1px solid var(--rule)}
+.thesis h3{font-size:22px;text-transform:uppercase}
+.thesis p{font-size:15.5px;color:var(--ink-2)}
+@media (max-width:620px){.thesis{grid-template-columns:1fr}.thesis > div + div{border-left:0;border-top:1px solid var(--rule)}}
+
+/* ---------- sections ---------- */
+main{display:flex;flex-direction:column;gap:72px;margin-top:72px}
+section{scroll-margin-top:20px;display:flex;flex-direction:column;gap:22px}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:end;border-bottom:1.5px solid var(--ink);padding-bottom:10px}
+.sec-no{grid-row:span 2;font-family:var(--display);font-weight:600;font-size:clamp(56px,9vw,84px);line-height:.8;color:var(--blue);font-variant-numeric:tabular-nums}
+.sec-head h2{font-size:clamp(34px,5.5vw,48px);text-transform:uppercase}
+.sec-head .eyebrow{align-self:start}
+.why{font-size:19px;font-style:italic;color:var(--ink);max-width:56ch}
+
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.check{background:var(--card);padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.check h3{font-size:20px;letter-spacing:.02em}
+.check p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.check .ask{font-family:var(--mono);font-size:12px;color:var(--blue);margin-top:4px;line-height:1.5}
+.check .ask::before{content:"ASK → ";letter-spacing:.08em;color:var(--ink-3)}
+@media (max-width:620px){.checks{grid-template-columns:1fr}}
+
+.note{border-left:3px solid var(--blue);padding:10px 16px;background:var(--blue-soft);font-size:15px;max-width:64ch;display:flex;flex-direction:column;gap:4px}
+.note .label{color:var(--blue)}
+.redline{border:1.5px dashed var(--red);background:var(--red-soft);padding:12px 16px;display:flex;flex-direction:column;gap:6px;max-width:64ch}
+.redline .label{color:var(--red)}
+.redline p{font-size:15px}
+
+/* paper stack */
+.docs{display:flex;flex-direction:column;border:1.5px solid var(--ink);background:var(--card)}
+.doc{display:grid;grid-template-columns:150px 1fr auto;gap:16px;padding:12px 16px;border-top:1px solid var(--rule);align-items:baseline}
+.doc:first-child{border-top:0}
+.doc .dname{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.02em}
+.doc p{font-size:14.5px;color:var(--ink-2)}
+.pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid currentColor;border-radius:2px;white-space:nowrap}
+.pill.kill{color:var(--red)}
+.pill.must{color:var(--blue)}
+.pill.resale{color:var(--ink-3)}
+@media (max-width:620px){.doc{grid-template-columns:1fr auto}.doc p{grid-column:1 / -1;order:3}}
+
+/* area diagram */
+.areas{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center}
+@media (max-width:700px){.areas{grid-template-columns:1fr}}
+.areas svg{width:100%;height:auto;display:block;max-width:420px}
+.areas dl{margin:0;display:flex;flex-direction:column;gap:12px}
+.areas dt{font-family:var(--display);font-weight:700;font-size:19px;display:flex;align-items:center;gap:8px}
+.areas dd{margin:0;font-size:15px;color:var(--ink-2)}
+.sw{width:14px;height:14px;display:inline-block;border:1.5px solid var(--ink)}
+
+/* calculator */
+.calc{border:1.5px solid var(--ink);background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.calc-in{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px 14px;border-right:1px solid var(--rule)}
+@media (max-width:720px){.calc-in{border-right:0;border-bottom:1px solid var(--rule)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field.wide{grid-column:1 / -1}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.field input,.field select{font-family:var(--mono);font-size:15px;padding:8px 10px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:2px;width:100%;font-variant-numeric:tabular-nums}
+.field input:focus,.field select:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+.field small{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.calc-out{padding:18px;display:flex;flex-direction:column;gap:14px}
+.big{display:flex;flex-direction:column;gap:2px}
+.big .v{font-family:var(--display);font-weight:700;font-size:clamp(40px,7vw,56px);line-height:1;font-variant-numeric:tabular-nums}
+.big .v.accent{color:var(--blue)}
+.rows{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dotted var(--rule);font-size:14.5px}
+.row span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row.total{font-weight:600;border-bottom:1.5px solid var(--ink)}
+.bar{display:flex;height:12px;border:1px solid var(--ink);margin-top:4px}
+.bar i{display:block;height:100%}
+.stripkey{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.stripkey span{display:inline-flex;align-items:center;gap:6px}
+.stripkey i{width:10px;height:10px;display:inline-block;border:1px solid var(--ink)}
+.verdict{font-size:14.5px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:10px}
+.verdict b{color:var(--ink)}
+
+/* field kit */
+.kit{border:1.5px solid var(--ink);background:var(--card)}
+.kit-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.kit-head .count{font-family:var(--mono);font-size:13px;color:var(--blue)}
+.kit-head button{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink-2);padding:5px 10px;cursor:pointer;border-radius:2px}
+.kit-head button:hover{border-color:var(--ink);color:var(--ink)}
+.kit-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.kit-cols{grid-template-columns:1fr}}
+.kit-col{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.kit-col + .kit-col{border-left:1px solid var(--rule)}
+@media (max-width:760px){.kit-col + .kit-col{border-left:0;border-top:1px solid var(--rule)}}
+.kit-col h3{font-size:18px;text-transform:uppercase;letter-spacing:.04em}
+.kit label{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:14.5px;line-height:1.45;cursor:pointer;align-items:start}
+.kit input[type=checkbox]{width:16px;height:16px;margin:3px 0 0;accent-color:var(--blue)}
+.kit input:checked + span{color:var(--ink-3);text-decoration:line-through;text-decoration-color:var(--rule)}
+
+/* redlines list */
+.reds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:620px){.reds{grid-template-columns:1fr}}
+.reds .redline{max-width:none}
+.reds h3{font-size:19px;color:var(--red)}
+
+footer{margin-top:72px;border-top:1.5px solid var(--ink);padding-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);display:flex;flex-direction:column;gap:6px;max-width:80ch}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+  <div class="tb" aria-label="Drawing title block">
+    <span>Sheet <b>A-01</b></span><span>Subject <b>Residential flat</b></span><span>Context <b>India · Hyderabad</b></span>
+  </div>
+  <h1>Reading a <em>Property</em></h1>
+  <p class="lede">You aren't buying a flat. You're buying <strong>six things stacked on top of each other</strong>, and a site visit only shows you the top two.</p>
+
+  <figure class="drawing" aria-labelledby="fig1cap">
+    <div class="drawing-scroll">
+    <svg viewBox="0 0 820 470" role="img" aria-label="Cross-section of a residential tower. Above the ground line: the location with its road, the building, one highlighted unit, and a crane for the builder. Below the ground line: a hatched band of land and a stack of documents for the title. A dimension line across the top marks the price as the sum of all layers.">
+      <defs>
+        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="8" style="stroke:var(--hatch)" stroke-width="2"/>
+        </pattern>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,1 L9,5 L0,9" style="stroke:var(--blue)" fill="none" stroke-width="1.4"/>
+        </marker>
+      </defs>
+
+      <!-- price dimension -->
+      <line class="dim" x1="40" y1="30" x2="780" y2="30" marker-start="url(#arr)" marker-end="url(#arr)"/>
+      <line class="dim" x1="40" y1="22" x2="40" y2="40"/><line class="dim" x1="780" y1="22" x2="780" y2="40"/>
+      <rect x="318" y="20" width="184" height="20" class="card-f"/>
+      <a class="layer" href="#price" aria-label="Layer 6: Price">
+        <text class="dimtxt" x="410" y="34" text-anchor="middle">06 · PRICE = SUM OF ALL LAYERS</text>
+      </a>
+
+      <!-- background neighbourhood -->
+      <g class="thin" opacity=".55">
+        <path d="M60 300 V230 H100 V210 H130 V300"/>
+        <path d="M140 300 V250 H190 V300"/>
+        <path d="M560 300 V250 H600 V300"/>
+      </g>
+      <!-- trees -->
+      <g class="thin"><circle cx="230" cy="280" r="12"/><line x1="230" y1="292" x2="230" y2="300"/><circle cx="540" cy="282" r="10"/><line x1="540" y1="292" x2="540" y2="300"/></g>
+
+      <!-- road -->
+      <line x1="40" y1="300" x2="300" y2="300" style="stroke:var(--ink-2)" stroke-width="1" stroke-dasharray="10 6" transform="translate(0,-8)"/>
+
+      <!-- building -->
+      <rect x="320" y="90" width="190" height="210" class="card-f"/>
+      <rect x="320" y="90" width="190" height="210" class="ink" stroke-width="1.8"/>
+      <g class="thin">
+        <line x1="320" y1="111" x2="510" y2="111"/><line x1="320" y1="132" x2="510" y2="132"/>
+        <line x1="320" y1="153" x2="510" y2="153"/><line x1="320" y1="174" x2="510" y2="174"/>
+        <line x1="320" y1="195" x2="510" y2="195"/><line x1="320" y1="216" x2="510" y2="216"/>
+        <line x1="320" y1="237" x2="510" y2="237"/><line x1="320" y1="258" x2="510" y2="258"/>
+        <line x1="320" y1="279" x2="510" y2="279"/>
+        <line x1="383" y1="90" x2="383" y2="300"/><line x1="447" y1="90" x2="447" y2="300"/>
+      </g>
+      <!-- highlighted unit -->
+      <rect x="447" y="153" width="63" height="21" class="hi-f" opacity=".85"/>
+      <rect x="447" y="153" width="63" height="21" class="ink" stroke-width="1.8"/>
+
+      <!-- crane -->
+      <g class="ink" stroke-width="1.4">
+        <line x1="620" y1="300" x2="620" y2="60"/><line x1="628" y1="300" x2="628" y2="60"/>
+        <path d="M620 80 L628 70 M620 110 L628 100 M620 140 L628 130 M620 170 L628 160 M620 200 L628 190 M620 230 L628 220 M620 260 L628 250"/>
+        <line x1="560" y1="60" x2="760" y2="60"/><line x1="560" y1="68" x2="760" y2="68"/>
+        <line x1="624" y1="44" x2="560" y2="60"/><line x1="624" y1="44" x2="760" y2="60"/>
+        <line x1="720" y1="68" x2="720" y2="120"/>
+        <rect x="712" y="120" width="16" height="10"/>
+      </g>
+
+      <!-- ground -->
+      <line class="ground" x1="20" y1="300" x2="800" y2="300"/>
+      <rect x="20" y="302" width="780" height="52" fill="url(#hatch)"/>
+      <!-- docs below -->
+      <g>
+        <rect x="360" y="376" width="120" height="68" class="paper-f" style="stroke:var(--ink)" stroke-width="1.2" transform="rotate(-3 420 410)"/>
+        <rect x="364" y="372" width="120" height="68" class="card-f" style="stroke:var(--ink)" stroke-width="1.2"/>
+        <g class="thin"><line x1="376" y1="390" x2="470" y2="390"/><line x1="376" y1="402" x2="460" y2="402"/><line x1="376" y1="414" x2="468" y2="414"/><line x1="376" y1="426" x2="440" y2="426"/></g>
+        <circle cx="462" cy="426" r="8" style="stroke:var(--red)" fill="none" stroke-width="1.4"/>
+      </g>
+
+      <!-- side labels for ground -->
+      <text class="ts" x="790" y="292" text-anchor="end">VISIBLE ON A SITE VISIT ↑</text>
+      <text class="tred" x="790" y="370" text-anchor="end">↓ INVISIBLE ON A SITE VISIT</text>
+
+      <!-- callouts (clickable) -->
+      <g>
+        <line class="thin" x1="120" y1="292" x2="120" y2="150"/>
+        <a class="layer" href="#location" aria-label="Layer 1: Location">
+          <rect class="tag" x="66" y="120" width="120" height="30"/>
+          <text class="num" x="76" y="140">01</text><text class="t" x="98" y="141">Location</text>
+        </a>
+
+        <line class="thin" x1="440" y1="410" x2="560" y2="410"/>
+        <a class="layer" href="#paper" aria-label="Layer 2: Paper and title">
+          <rect class="tag" x="560" y="395" width="106" height="30"/>
+          <text class="num" x="570" y="415">02</text><text class="t" x="592" y="416">Paper</text>
+        </a>
+
+        <line class="thin" x1="628" y1="170" x2="690" y2="170"/>
+        <a class="layer" href="#builder" aria-label="Layer 3: Builder">
+          <rect class="tag" x="690" y="155" width="104" height="30"/>
+          <text class="num" x="700" y="175">03</text><text class="t" x="722" y="176">Builder</text>
+        </a>
+
+        <line class="thin" x1="320" y1="230" x2="250" y2="230"/>
+        <a class="layer" href="#building" aria-label="Layer 4: Building">
+          <rect class="tag" x="148" y="215" width="112" height="30"/>
+          <text class="num" x="158" y="235">04</text><text class="t" x="180" y="236">Building</text>
+        </a>
+
+        <line class="thin" x1="510" y1="163" x2="545" y2="163"/><line class="thin" x1="545" y1="163" x2="545" y2="120"/>
+        <a class="layer" href="#unit" aria-label="Layer 5: Unit">
+          <rect class="tag" x="505" y="92" width="86" height="30"/>
+          <text class="num" x="515" y="112">05</text><text class="t" x="537" y="113">Unit</text>
+        </a>
+
+        <text class="ts" x="36" y="330">LAND · UDS (your share of the plot)</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption id="fig1cap"><span>FIG. 1 — SECTION THROUGH A PURCHASE</span><span>Tap a label to jump to that layer</span></figcaption>
+  </figure>
+
+  <div class="thesis">
+    <div>
+      <span class="label">What buyers usually do</span>
+      <h3>Inspect the top</h3>
+      <p>The kitchen, the view, the clubhouse, the sample flat. These are the easiest to see and the easiest to change later.</p>
+    </div>
+    <div>
+      <span class="label">What decides the outcome</span>
+      <h3>Inspect the bottom</h3>
+      <p>Location and title can't be renovated. A bad unit costs you money to fix. A bad title or a bad location costs you the property's value.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="order" aria-labelledby="order-h">
+  <div class="prose">
+    <p class="eyebrow" id="order-h">How to use this sheet</p>
+    <p>Check the layers in the order below. Each one is a filter. The early ones are cheap to check and eliminate the most options, so you don't fall in love with a flat before finding out its land title is disputed. Paper is a kill switch: one failure there ends the conversation no matter how good the rest is.</p>
+  </div>
+</section>
+
+<!-- 01 LOCATION -->
+<section id="location" aria-labelledby="h-loc">
+  <div class="sec-head">
+    <span class="sec-no">01</span>
+    <span class="eyebrow">Can't be changed, ever</span>
+    <h2 id="h-loc">Location</h2>
+  </div>
+  <p class="why">A building depreciates. The land under it is what appreciates, and land value is almost entirely location.</p>
+  <div class="checks">
+    <div class="check"><h3>Commute at peak hour</h3><p>Drive the route at 9 am and 7 pm on a weekday, not on a Sunday with the sales team. A 20-minute Sunday drive is often 55 minutes on a Tuesday.</p><p class="ask">What's the travel time to work, school and a hospital at rush hour?</p></div>
+    <div class="check"><h3>Water</h3><p>Where does water come from: municipal supply, borewells, or tankers? Tanker dependence is a monthly cost and a summer risk that no brochure mentions.</p><p class="ask">What did the society spend on tankers last summer?</p></div>
+    <div class="check"><h3>Flooding and lakes</h3><p>Is the plot low-lying or near a lake, nala or stormwater drain? Visit after heavy rain if you can. Check whether the land falls in a lake's full tank level (FTL) or buffer zone.</p><p class="ask">Is any part of the survey number inside an FTL or buffer boundary?</p></div>
+    <div class="check"><h3>What gets built next</h3><p>The empty land around you will not stay empty. Look at the master plan for road widening, and count the upcoming projects nearby. They compete with you on resale and rent.</p><p class="ask">What does the master plan zone the surrounding plots as?</p></div>
+  </div>
+  <div class="note"><span class="label">Hyderabad note</span><p>Since 2024, HYDRAA has demolished structures built on lake FTL and buffer land, some of which had approvals on paper. Lake proximity is now a title question as much as a flooding one.</p></div>
+</section>
+
+<!-- 02 PAPER -->
+<section id="paper" aria-labelledby="h-paper">
+  <div class="sec-head">
+    <span class="sec-no">02</span>
+    <span class="eyebrow">Kill switch</span>
+    <h2 id="h-paper">Paper</h2>
+  </div>
+  <p class="why">You don't own what you can see. You own what the documents say, and a property lawyer should read them before you pay any significant amount.</p>
+  <div class="docs" role="list">
+    <div class="doc" role="listitem"><span class="dname">RERA registration</span><p>Every new project above a size threshold must be registered with the state RERA (TG-RERA in Telangana). The registration page lists approvals, timelines, complaints and quarterly progress.</p><span class="pill kill">No number, walk</span></div>
+    <div class="doc" role="listitem"><span class="dname">Title chain</span><p>The sequence of ownership of the land for the last 30 years, ending in the person or builder selling to you. Gaps, disputes or unregistered transfers are the classic failure.</p><span class="pill kill">Lawyer reads</span></div>
+    <div class="doc" role="listitem"><span class="dname">Encumbrance certificate</span><p>Shows loans, mortgages and legal charges registered against the property. You want it clean, or with loans that the seller will close before registration.</p><span class="pill must">Must have</span></div>
+    <div class="doc" role="listitem"><span class="dname">Approved plan</span><p>Sanctioned building plan from the local authority (GHMC or HMDA in Hyderabad). Compare it with what's actually built: extra floors or converted parking are unauthorised.</p><span class="pill must">Match to site</span></div>
+    <div class="doc" role="listitem"><span class="dname">Land use</span><p>The land must be approved for residential use. Agricultural land needs a formal conversion before a building on it is legal.</p><span class="pill must">Must have</span></div>
+    <div class="doc" role="listitem"><span class="dname">Occupancy certificate</span><p>Issued when a building is complete and matches its approvals. Without it, water and power connections, loans and resale all get harder.</p><span class="pill must">Ready flats</span></div>
+    <div class="doc" role="listitem"><span class="dname">Prior sale deeds</span><p>For a resale flat: every previous sale deed, the society's no-objection letter, paid property tax receipts, and proof that the seller's home loan is closed.</p><span class="pill resale">Resale</span></div>
+  </div>
+  <div class="note"><span class="label">A useful shortcut, not a substitute</span><p>Ask which banks have approved the project for home loans. Banks do their own legal check first, so several large lenders on the list is a good sign. It still doesn't replace your own lawyer.</p></div>
+</section>
+
+<!-- 03 BUILDER -->
+<section id="builder" aria-labelledby="h-builder">
+  <div class="sec-head">
+    <span class="sec-no">03</span>
+    <span class="eyebrow">For under-construction flats, the product is a promise</span>
+    <h2 id="h-builder">Builder</h2>
+  </div>
+  <p class="why">When you buy off-plan, you're lending money to a company for three or four years. Judge it the way a lender would: by what it has already delivered.</p>
+  <div class="checks">
+    <div class="check"><h3>Visit an old project</h3><p>Go to a building this builder finished 5 to 8 years ago. Look at the lift lobbies, seepage stains, and the state of the common areas. Talk to residents at the gate.</p><p class="ask">Was it handed over on time, and did it match the brochure?</p></div>
+    <div class="check"><h3>Delivery record</h3><p>Compare promised and actual possession dates across their past projects. The RERA site shows the extensions each project has asked for.</p><p class="ask">How many past projects were delayed by more than a year?</p></div>
+    <div class="check"><h3>Complaints</h3><p>Search RERA complaints and consumer court cases under the builder's name and the project name. A few complaints are normal for a large builder. A pattern is not.</p><p class="ask">What are the complaints about: delays, quality, or refunds?</p></div>
+    <div class="check"><h3>Construction pace</h3><p>How far along is the site versus the payment you're being asked for? Construction-linked payment plans should track real progress.</p><p class="ask">Which slab is done, and what percentage have buyers already paid?</p></div>
+  </div>
+</section>
+
+<!-- 04 BUILDING -->
+<section id="building" aria-labelledby="h-bldg">
+  <div class="sec-head">
+    <span class="sec-no">04</span>
+    <span class="eyebrow">Shared with everyone for decades</span>
+    <h2 id="h-bldg">Building</h2>
+  </div>
+  <p class="why">The common parts decide your daily life and your monthly maintenance bill for as long as you live there.</p>
+  <div class="checks">
+    <div class="check"><h3>Density and UDS</h3><p>Divide the plot area by the number of flats. Fewer flats per acre means more open space, less queueing, and a bigger undivided share of land (UDS) registered in your name. UDS is the part that appreciates.</p><p class="ask">What UDS is registered for this flat, in square yards?</p></div>
+    <div class="check"><h3>Lifts and parking</h3><p>Count flats per lift. Beyond about 4 flats per lift per floor in a tall tower, morning waits get long. Check whether your car park is covered, allotted and in writing.</p><p class="ask">How many lifts serve this core, and how many are service lifts?</p></div>
+    <div class="check"><h3>Maintenance cost</h3><p>Large amenity lists mean large maintenance bills. Ask for the per-sq-ft rate and the corpus fund amount now, before they're decided for you.</p><p class="ask">What will maintenance be after the first free year?</p></div>
+    <div class="check"><h3>Power and water backup</h3><p>Check DG backup coverage (full or lifts-only), the sewage treatment plant, and rainwater harvesting. These are expensive to add later.</p><p class="ask">Is power backup 100% or only for common areas?</p></div>
+  </div>
+</section>
+
+<!-- 05 UNIT -->
+<section id="unit" aria-labelledby="h-unit">
+  <div class="sec-head">
+    <span class="sec-no">05</span>
+    <span class="eyebrow">The part everyone looks at</span>
+    <h2 id="h-unit">Unit</h2>
+  </div>
+  <p class="why">Look at it hard, but know which flaws are fixable. Tiles can be changed. Orientation, light and layout cannot.</p>
+
+  <div class="areas">
+    <svg viewBox="0 0 400 300" role="img" aria-label="Three nested rectangles showing carpet area inside built-up area inside super built-up area.">
+      <rect x="10" y="10" width="380" height="280" style="fill:var(--red-soft);stroke:var(--ink)" stroke-width="1.5"/>
+      <rect x="50" y="46" width="300" height="208" style="fill:var(--paper-2);stroke:var(--ink)" stroke-width="1.5"/>
+      <rect x="66" y="62" width="268" height="176" style="fill:var(--blue-soft);stroke:var(--ink)" stroke-width="1.5"/>
+      <text x="200" y="146" text-anchor="middle" style="fill:var(--ink);font-family:var(--display);font-weight:700;font-size:22px">CARPET</text>
+      <text x="200" y="166" text-anchor="middle" style="fill:var(--ink-2);font-family:var(--mono);font-size:11px">floor you can walk on</text>
+      <text x="200" y="40" text-anchor="middle" style="fill:var(--ink-2);font-family:var(--mono);font-size:10.5px">+ walls, balconies → BUILT-UP</text>
+      <text x="200" y="276" text-anchor="middle" style="fill:var(--red);font-family:var(--mono);font-size:10.5px">+ share of lobby, lifts, clubhouse → SUPER BUILT-UP</text>
+    </svg>
+    <dl>
+      <div><dt><i class="sw" style="background:var(--blue-soft)"></i>Carpet area</dt><dd>The usable floor inside your walls. Under RERA, builders must state the sale in carpet area. This is the number to compare flats on.</dd></div>
+      <div><dt><i class="sw" style="background:var(--paper-2)"></i>Built-up area</dt><dd>Carpet plus the thickness of walls and your balconies.</dd></div>
+      <div><dt><i class="sw" style="background:var(--red-soft)"></i>Super built-up area</dt><dd>Built-up plus your share of corridors, lifts, staircases and the clubhouse. Most price quotes are still per sq ft of this. The gap to carpet is the <b>loading</b>, often 25–35%.</dd></div>
+    </dl>
+  </div>
+
+  <div class="checks">
+    <div class="check"><h3>Light and heat</h3><p>West-facing rooms take the afternoon sun, which matters in a Hyderabad May. Stand in the flat at 3 pm if you can. Check which rooms get cross-ventilation.</p><p class="ask">Which direction do the bedrooms and balcony face?</p></div>
+    <div class="check"><h3>Usable shape</h3><p>Two flats with the same carpet area can feel very different. Angled walls, long corridors inside the flat, and columns in rooms waste space you're paying for.</p><p class="ask">Can a queen bed and wardrobe fit in the second bedroom?</p></div>
+    <div class="check"><h3>What overlooks you</h3><p>Look out of every window. A clear view today may face the next tower's kitchen balconies in three years. Note what's on the adjacent plot.</p><p class="ask">What's approved to be built on the plot next door?</p></div>
+    <div class="check"><h3>Signs of trouble</h3><p>For a ready or resale flat: damp patches, stains under windows, cracks near beams, water pressure on the top floor, and the smell of the drains.</p><p class="ask">Can I open every tap and flush every toilet?</p></div>
+  </div>
+</section>
+
+<!-- 06 PRICE -->
+<section id="price" aria-labelledby="h-price">
+  <div class="sec-head">
+    <span class="sec-no">06</span>
+    <span class="eyebrow">Last, because it only means something after 01–05</span>
+    <h2 id="h-price">Price</h2>
+  </div>
+  <p class="why">The quoted rate is per square foot of space you can't use, before the extras and before tax. The only honest number is all-in cost per square foot of carpet.</p>
+
+  <div class="calc" aria-labelledby="calc-h">
+    <form class="calc-in" id="calc" onsubmit="return false">
+      <p class="label field wide" id="calc-h">Inputs · example flat, edit freely</p>
+      <div class="field"><label for="sba">Super built-up (sq ft)</label><input id="sba" type="number" inputmode="numeric" min="1" value="1650"></div>
+      <div class="field"><label for="carpet">Carpet (sq ft)</label><input id="carpet" type="number" inputmode="numeric" min="1" value="1180"></div>
+      <div class="field"><label for="rate">Quoted rate (₹/sq ft)</label><input id="rate" type="number" inputmode="numeric" min="0" value="7500"></div>
+      <div class="field"><label for="extras">Extras (₹, lump sum)</label><input id="extras" type="number" inputmode="numeric" min="0" value="500000"><small>Car park, clubhouse, floor rise, corner premium</small></div>
+      <div class="field"><label for="stage">Stage</label>
+        <select id="stage"><option value="uc" selected>Under construction · 5% GST</option><option value="ready">Ready with OC · no GST</option></select></div>
+      <div class="field"><label for="stamp">Stamp + registration (%)</label><input id="stamp" type="number" inputmode="decimal" step="0.1" min="0" value="6"><small>Telangana urban ≈ 6%</small></div>
+      <div class="field wide"><label for="rent">Rent it would fetch (₹/month)</label><input id="rent" type="number" inputmode="numeric" min="0" value="35000"></div>
+    </form>
+    <div class="calc-out" aria-live="polite">
+      <div class="big"><span class="label">All-in cost</span><span class="v" id="o-total">—</span></div>
+      <div class="big"><span class="label">Per sq ft of carpet</span><span class="v accent" id="o-carpet">—</span></div>
+      <div>
+        <div class="bar" id="o-bar" aria-hidden="true"></div>
+        <div class="stripkey" style="margin-top:6px">
+          <span><i style="background:var(--blue)"></i>Carpet you use</span>
+          <span><i style="background:var(--red)"></i>Loading</span>
+          <span><i style="background:var(--hi)"></i>Extras</span>
+          <span><i style="background:var(--ink-3)"></i>Tax &amp; stamp</span>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><span>Base (SBA × rate)</span><span id="o-base">—</span></div>
+        <div class="row"><span>Extras</span><span id="o-extras">—</span></div>
+        <div class="row"><span>GST</span><span id="o-gst">—</span></div>
+        <div class="row"><span>Stamp + registration</span><span id="o-stamp">—</span></div>
+        <div class="row total"><span>Total</span><span id="o-total2">—</span></div>
+        <div class="row"><span>Loading</span><span id="o-load">—</span></div>
+        <div class="row"><span>Gross rental yield</span><span id="o-yield">—</span></div>
+      </div>
+      <p class="verdict" id="o-verdict"></p>
+    </div>
+  </div>
+
+  <div class="checks">
+    <div class="check"><h3>Compare registered prices</h3><p>Listing prices are asks. Registered sale values for the same building or street are what people actually paid. The state registration department and property portals publish these.</p><p class="ask">What did the last three flats in this project register at?</p></div>
+    <div class="check"><h3>Check the rent</h3><p>Residential yields in Indian cities usually sit around 2–4% a year. If the rent a flat could fetch implies a yield far below that, you're paying for expected appreciation, not for the home.</p><p class="ask">What do similar flats here rent for today, not after completion?</p></div>
+  </div>
+  <div class="note"><span class="label">Stamp duty basis</span><p>Stamp duty is charged on the agreement value or the government guidance value for the area, whichever is higher. Rates change; confirm the current figure with your lawyer or the sub-registrar before budgeting.</p></div>
+</section>
+
+<!-- RED LINES -->
+<section id="redlines" aria-labelledby="h-red">
+  <div class="sec-head">
+    <span class="sec-no" style="color:var(--red)">×</span>
+    <span class="eyebrow">Architects mark errors in red. So should you.</span>
+    <h2 id="h-red">Red lines</h2>
+  </div>
+  <div class="reds">
+    <div class="redline"><h3>No RERA number on the ad</h3><p>New projects must display it. Missing means unregistered, which means no regulator to complain to.</p></div>
+    <div class="redline"><h3>More than 10% before the agreement</h3><p>RERA bars builders from taking over 10% of the price before a registered agreement for sale. A demand for more is a demand to break the law.</p></div>
+    <div class="redline"><h3>A cash component</h3><p>Any part of the price paid off the books is unprotected, can't be recovered in a dispute, and lowers your registered value for future resale.</p></div>
+    <div class="redline"><h3>"OC is coming"</h3><p>A finished building without an occupancy certificate may have deviated from its plan. Don't pay full price for a promise.</p></div>
+    <div class="redline"><h3>Price quoted only on super built-up</h3><p>If the builder won't tell you the carpet area in writing, assume the loading is on the high side.</p></div>
+    <div class="redline"><h3>Pressure to decide today</h3><p>"Last unit at this price" is a sales script. A good property survives a week of document checks.</p></div>
+  </div>
+</section>
+
+<!-- FIELD KIT -->
+<section id="kit" aria-labelledby="h-kit">
+  <div class="sec-head">
+    <span class="sec-no">✓</span>
+    <span class="eyebrow">Take this on the visit</span>
+    <h2 id="h-kit">Field kit</h2>
+  </div>
+  <div class="kit">
+    <div class="kit-head"><span class="count" id="kit-count">0 of 0 done</span><button type="button" id="kit-reset">Clear ticks</button></div>
+    <div class="kit-cols">
+      <div class="kit-col"><h3>Before</h3>
+        <label><input type="checkbox" id="k1"><span>Look up the project on the TG-RERA site</span></label>
+        <label><input type="checkbox" id="k2"><span>Search the builder's name for complaints and delays</span></label>
+        <label><input type="checkbox" id="k3"><span>Pull registered prices for the area</span></label>
+        <label><input type="checkbox" id="k4"><span>Check the location on a lake/FTL map</span></label>
+      </div>
+      <div class="kit-col"><h3>On site</h3>
+        <label><input type="checkbox" id="k5"><span>Drive the commute at peak hour</span></label>
+        <label><input type="checkbox" id="k6"><span>Get carpet area and UDS in writing</span></label>
+        <label><input type="checkbox" id="k7"><span>Stand in the flat mid-afternoon; note sun and airflow</span></label>
+        <label><input type="checkbox" id="k8"><span>Look out every window at the adjacent plots</span></label>
+        <label><input type="checkbox" id="k9"><span>Ask residents or guards about water and power cuts</span></label>
+      </div>
+      <div class="kit-col"><h3>Before paying</h3>
+        <label><input type="checkbox" id="k10"><span>Lawyer reviews title chain, EC and approvals</span></label>
+        <label><input type="checkbox" id="k11"><span>Written cost sheet with every extra listed</span></label>
+        <label><input type="checkbox" id="k12"><span>Visit one completed project by the same builder</span></label>
+        <label><input type="checkbox" id="k13"><span>Confirm which banks will lend on it</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>Reading a Property · general guidance for residential purchases in India, with Hyderabad specifics. Not legal or financial advice.</span>
+  <span>Rates and rules change. Verify stamp duty, GST treatment and RERA requirements for your transaction with a property lawyer.</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const inr = n => {
+    if (!isFinite(n)) return '—';
+    if (Math.abs(n) >= 1e7) return '₹' + (n/1e7).toFixed(2) + ' Cr';
+    if (Math.abs(n) >= 1e5) return '₹' + (n/1e5).toFixed(1) + ' L';
+    return '₹' + Math.round(n).toLocaleString('en-IN');
+  };
+  const num = id => parseFloat($(id).value) || 0;
+
+  function calc(){
+    const sba = num('sba'), carpet = num('carpet'), rate = num('rate'),
+          extras = num('extras'), stampPct = num('stamp'), rent = num('rent');
+    const uc = $('stage').value === 'uc';
+    const base = sba * rate;
+    const agreement = base + extras;
+    const gst = uc ? agreement * 0.05 : 0;
+    const stamp = agreement * stampPct / 100;
+    const total = agreement + gst + stamp;
+    const perCarpet = carpet > 0 ? total / carpet : NaN;
+    const loading = carpet > 0 ? (sba - carpet) / carpet * 100 : NaN;
+    const yld = total > 0 ? rent * 12 / total * 100 : NaN;
+
+    $('o-total').textContent = inr(total);
+    $('o-total2').textContent = inr(total);
+    $('o-carpet').textContent = isFinite(perCarpet) ? '₹' + Math.round(perCarpet).toLocaleString('en-IN') : '—';
+    $('o-base').textContent = inr(base);
+    $('o-extras').textContent = inr(extras);
+    $('o-gst').textContent = uc ? inr(gst) : 'None';
+    $('o-stamp').textContent = inr(stamp);
+    $('o-load').textContent = isFinite(loading) ? loading.toFixed(1) + '% over carpet' : '—';
+    $('o-yield').textContent = isFinite(yld) ? yld.toFixed(2) + '% a year' : '—';
+
+    // composition bar: split base between carpet share and loading share
+    const carpetShare = sba > 0 ? base * Math.min(carpet, sba) / sba : 0;
+    const loadShare = base - carpetShare;
+    const parts = [[carpetShare,'var(--blue)'],[loadShare,'var(--red)'],[extras,'var(--hi)'],[gst+stamp,'var(--ink-3)']];
+    const bar = $('o-bar'); bar.innerHTML = '';
+    parts.forEach(([v,c]) => { if (v > 0 && total > 0){ const i = document.createElement('i'); i.style.width = (v/total*100) + '%'; i.style.background = c; bar.appendChild(i);} });
+
+    const pct = total > 0 ? Math.round(carpetShare / total * 100) : 0;
+    let v = '';
+    if (isFinite(perCarpet) && rate > 0) {
+      v = `The quoted <b>₹${rate.toLocaleString('en-IN')}</b> becomes <b>₹${Math.round(perCarpet).toLocaleString('en-IN')}</b> per sq ft you can actually use, ${(perCarpet/rate).toFixed(2)}× the headline. Only about ${pct}% of what you pay buys floor inside your walls.`;
+      if (isFinite(yld) && rent > 0) v += yld < 2 ? ' Rent covers under 2% a year, so the price leans heavily on future appreciation.' : yld > 4 ? ' A yield above 4% is strong for Indian residential.' : ' The yield is in the usual 2–4% band.';
+    }
+    $('o-verdict').innerHTML = v;
+  }
+  ['sba','carpet','rate','extras','stage','stamp','rent'].forEach(id => $(id).addEventListener('input', calc));
+  calc();
+
+  // field kit with per-viewer memory
+  const boxes = Array.from(document.querySelectorAll('.kit input[type=checkbox]'));
+  const KEY = 'reading-property-kit';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { saved = {}; }
+  boxes.forEach(b => { if (saved[b.id]) b.checked = true; });
+  function count(){
+    const n = boxes.filter(b => b.checked).length;
+    $('kit-count').textContent = n + ' of ' + boxes.length + ' done';
+    const s = {}; boxes.forEach(b => { if (b.checked) s[b.id] = 1; });
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e) {}
+  }
+  boxes.forEach(b => b.addEventListener('change', count));
+  $('kit-reset').addEventListener('click', () => { boxes.forEach(b => b.checked = false); count(); });
+  count();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

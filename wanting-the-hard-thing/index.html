@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wanting the Hard Thing | Explainers</title>
+<meta name="description" content="Why a feed feels so good and effort feels bad, and how a brain can learn to prefer the long game.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/wanting-the-hard-thing/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Wanting the Hard Thing">
+<meta property="og:description" content="Why a feed feels so good and effort feels bad, and how a brain can learn to prefer the long game.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/wanting-the-hard-thing/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/wanting-the-hard-thing/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F8FA; --panel:#ECEFF4; --panel-2:#E2E6ED;
+  --ink:#161A22; --ink-2:#384050; --muted:#5D6677; --rule:#D3D8E1;
+  --scroll:#C4245A; --scroll-soft:rgba(196,36,90,.13);
+  --effort:#0D7460; --effort-soft:rgba(13,116,96,.14);
+  --model:#3345A5; --model-soft:rgba(51,69,165,.09);
+  --neg:#8C95A5;
+  --g-strong:#0D7460; --g-moderate:#3345A5; --g-emerging:#975A0E; --g-spec:#6C6283;
+  --serif:"Literata","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --measure:66ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11151C; --panel:#1A1F29; --panel-2:#232A36;
+    --ink:#E8EBF0; --ink-2:#C6CBD5; --muted:#949CAB; --rule:#2C3340;
+    --scroll:#FF709E; --scroll-soft:rgba(255,112,158,.16);
+    --effort:#40CCA9; --effort-soft:rgba(64,204,169,.15);
+    --model:#9AA8FF; --model-soft:rgba(154,168,255,.10);
+    --neg:#6C7588;
+    --g-strong:#40CCA9; --g-moderate:#9AA8FF; --g-emerging:#EBB154; --g-spec:#B9AECF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11151C; --panel:#1A1F29; --panel-2:#232A36;
+  --ink:#E8EBF0; --ink-2:#C6CBD5; --muted:#949CAB; --rule:#2C3340;
+  --scroll:#FF709E; --scroll-soft:rgba(255,112,158,.16);
+  --effort:#40CCA9; --effort-soft:rgba(64,204,169,.15);
+  --model:#9AA8FF; --model-soft:rgba(154,168,255,.10);
+  --neg:#6C7588;
+  --g-strong:#40CCA9; --g-moderate:#9AA8FF; --g-emerging:#EBB154; --g-spec:#B9AECF;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:20px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+  font-size:clamp(1.0625rem,.97rem + .32vw,1.1875rem);line-height:1.66;
+  font-optical-sizing:auto;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--model);text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--model);outline-offset:3px;border-radius:3px}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:var(--paper);padding:.5em .9em;border-radius:6px;font-family:var(--sans);z-index:20}
+.skip:focus{top:12px}
+/* progress */
+#progress{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--effort);transform-origin:0 50%;transform:scaleX(0);z-index:15;pointer-events:none}
+/* shell + layout */
+.shell{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1100px){.layout{grid-template-columns:210px minmax(0,1fr);column-gap:64px}}
+main{min-width:0}
+/* hero */
+.hero{padding-top:clamp(44px,9vw,112px)}
+.hero h1{font-family:var(--serif);font-weight:560;font-size:clamp(3rem,1.9rem + 5.2vw,6rem);line-height:.98;letter-spacing:-.022em;margin:0;max-width:11ch;font-variation-settings:"opsz" 72}
+.dek{font-size:clamp(1.18rem,1rem + .62vw,1.5rem);line-height:1.42;color:var(--ink-2);max-width:38ch;margin:.9em 0 .7em}
+.meta{font-family:var(--sans);font-size:.92rem;color:var(--muted);margin:0}
+.hero-trace{display:block;width:100%;height:auto;margin-top:clamp(22px,4vw,44px);overflow:visible}
+.hero-trace .base{stroke:var(--rule);stroke-width:1.2}
+.hero-trace .t-scroll{stroke:var(--scroll);fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.hero-trace .t-effort{stroke:var(--effort);fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion: no-preference){
+  .hero-trace.anim .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 2.8s cubic-bezier(.35,.05,.2,1) forwards}
+  .hero-trace.anim .t-effort.draw{animation-duration:3.4s;animation-delay:.45s}
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-key{display:flex;flex-wrap:wrap;gap:6px 26px;font-family:var(--sans);font-size:.9rem;color:var(--ink-2);margin:12px 0 0;padding:0;list-style:none}
+.hero-key li{display:inline-flex;align-items:center;gap:.55em}
+/* toc */
+.toc{display:none}
+@media (min-width:1100px){
+  .toc{display:block;position:sticky;top:28px;align-self:start;margin-top:clamp(48px,7vw,88px);font-family:var(--sans);font-size:.86rem;line-height:1.35;max-height:calc(100vh - 56px);overflow:auto}
+}
+.toc ol,.toc-mobile ol{list-style:none;margin:0;padding:0}
+.toc a{display:grid;grid-template-columns:1.5em 1fr;padding:.46em 0 .46em .85em;color:var(--muted);text-decoration:none;border-left:2px solid var(--rule)}
+.toc a:hover{color:var(--ink)}
+.toc a[aria-current="true"]{color:var(--ink);border-left-color:var(--effort);font-weight:600}
+.toc-mobile{margin:28px 0 0;font-family:var(--sans);font-size:.95rem;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.toc-mobile summary{padding:.8em 0;cursor:pointer;font-weight:600}
+.toc-mobile a{display:grid;grid-template-columns:1.6em 1fr;padding:.35em 0;color:var(--ink-2);text-decoration:none}
+.toc-mobile ol{padding-bottom:.8em}
+@media (min-width:1100px){.toc-mobile{display:none}}
+/* prose */
+main section{padding:clamp(52px,7vw,92px) 0 12px}
+main section + section{border-top:1px solid var(--rule)}
+main section > *{max-width:var(--measure)}
+main section > .wide{max-width:none}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.95rem,1.35rem + 1.7vw,2.7rem);line-height:1.12;letter-spacing:-.012em;margin:0 0 .75em;font-variation-settings:"opsz" 60}
+h2 .num{display:block;font-weight:300;font-size:.62em;color:var(--effort);margin-bottom:.15em;font-variant-numeric:lining-nums}
+h3{font-family:var(--serif);font-weight:620;font-size:1.36rem;line-height:1.25;margin:2.1em 0 .55em;font-variation-settings:"opsz" 36}
+h4{font-family:var(--serif);font-weight:620;font-size:1.14rem;line-height:1.3;margin:0 0 .45em}
+p{margin:0 0 1.05em}
+strong{font-weight:640}
+.lede{font-size:1.24em;line-height:1.5}
+.math{font-family:var(--serif);font-style:italic;white-space:nowrap}
+.pull{font-size:1.36em;line-height:1.38;font-style:italic;font-weight:380;margin:1.5em 0 1.6em;color:var(--ink)}
+.pull::before{content:"";display:block;width:44px;height:3px;background:var(--effort);margin-bottom:.7em;border-radius:2px}
+.sowhat{margin-top:2.2em;padding-top:1.1em;border-top:1px solid var(--rule);font-size:1.1em;line-height:1.52}
+.sowhat b{font-family:var(--sans);font-size:.74em;font-weight:700;color:var(--effort);margin-right:.55em;letter-spacing:.01em;vertical-align:.08em}
+.formula{font-family:var(--sans);font-size:.95rem;color:var(--ink-2);background:var(--panel);border-radius:10px;padding:.9em 1.1em;display:flex;flex-wrap:wrap;gap:.3em 1em;align-items:baseline}
+.formula .eq{font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--ink);white-space:nowrap}
+/* evidence badges */
+.ev{white-space:normal}
+.grade{display:inline-flex;align-items:center;gap:3px;font-family:var(--sans);font-size:.72rem;font-weight:650;line-height:1.5;padding:.08em .55em .08em .45em;border-radius:999px;border:1px solid currentColor;vertical-align:.14em;white-space:nowrap;margin-left:.15em}
+.grade i{width:6px;height:6px;border-radius:50%;border:1.3px solid currentColor;display:inline-block;flex:none}
+.grade .lbl{margin-left:3px}
+.g-strong{color:var(--g-strong)} .g-strong i{background:currentColor}
+.g-moderate{color:var(--g-moderate)} .g-moderate i:nth-child(-n+3){background:currentColor}
+.g-emerging{color:var(--g-emerging)} .g-emerging i:nth-child(-n+2){background:currentColor}
+.g-spec{color:var(--g-spec)} .g-spec i:nth-child(1){background:currentColor}
+.kind{font-family:var(--sans);font-size:.76rem;color:var(--muted);margin-left:.35em}
+.howto{margin-top:clamp(40px,6vw,72px);padding:clamp(18px,3vw,28px);background:var(--panel);border-radius:14px;font-size:.98em}
+.howto p{margin:0 0 .9em;max-width:62ch}
+.grades{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 28px;font-family:var(--sans);font-size:.86rem;line-height:1.45;margin:0}
+.grades dt{margin:0 0 .3em}
+.grades dt .grade{margin-left:0}
+.grades dd{margin:0;color:var(--ink-2)}
+/* tables */
+.table-wrap{overflow-x:auto;margin:1.5em 0 1.7em;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:520px;font-family:var(--sans);font-size:.92rem;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:.7em .8em .7em 0}
+td,tbody th{border-bottom:1px solid var(--rule)}
+thead th{font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:.55em}
+tbody th{font-weight:600;color:var(--ink-2);width:27%}
+.col-scroll{color:var(--scroll)} .col-effort{color:var(--effort)}
+/* details: go deeper */
+details.deeper{margin:1.5em 0;border-left:3px solid var(--model);background:var(--model-soft);border-radius:0 10px 10px 0}
+details.deeper > summary{font-family:var(--sans);font-weight:600;font-size:.94rem;padding:.8em 1em;cursor:pointer;list-style-position:inside}
+details.deeper > div{padding:.2em 1.1em .6em;font-size:.95em}
+details.deeper > div p:last-child{margin-bottom:.6em}
+/* interactive panels */
+.lab{margin:2.3em 0 2.4em;padding:clamp(16px,3vw,30px);background:var(--panel);border-radius:16px}
+.lab-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.3em 1.2em}
+.lab-head h3{margin:0;font-size:1.32rem}
+.toy{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
+.lab-intro{font-size:.96em;color:var(--ink-2);margin:.6em 0 0;max-width:62ch}
+.controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 22px;margin:18px 0 10px;font-family:var(--sans);font-size:.9rem}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:9px;overflow:hidden;background:var(--paper)}
+.seg button{font:inherit;font-weight:600;border:0;background:transparent;color:var(--ink-2);padding:.55em .95em;cursor:pointer;line-height:1.3}
+.seg button + button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btn{font:inherit;font-weight:600;border:1px solid var(--rule);background:var(--paper);color:var(--ink);padding:.55em .95em;border-radius:9px;cursor:pointer;line-height:1.3}
+.btn:hover,.seg button:hover{border-color:var(--muted)}
+.check{display:inline-flex;gap:.5em;align-items:center;cursor:pointer;padding:.45em 0}
+.check input{width:1.05em;height:1.05em;accent-color:var(--effort);margin:0}
+.range{display:grid;gap:4px;flex:1 1 210px;min-width:190px}
+.range label{font-size:.84rem;color:var(--ink-2)}
+.range .row{display:flex;align-items:center;gap:10px}
+.range input[type=range]{width:100%;accent-color:var(--effort);margin:0}
+.range output{font-variant-numeric:tabular-nums;font-weight:650;min-width:6.4em;text-align:right;color:var(--ink)}
+.opts{display:inline-flex;flex-wrap:wrap;gap:0 18px}
+.opts[hidden]{display:none}
+.chart-wrap{margin-top:8px;min-height:240px}
+.chart{display:block;width:100%;height:auto;overflow:visible;font-family:var(--sans)}
+.chart .tick text,.chart .ax{font-size:11.5px;fill:var(--muted)}
+.chart .grid{stroke:var(--rule);stroke-width:1}
+.chart .zero{stroke:var(--muted);stroke-width:1}
+.chart .l-scroll{stroke:var(--scroll);fill:none;stroke-width:2.6;stroke-linejoin:round}
+.chart .l-scroll-dash{stroke:var(--scroll);fill:none;stroke-width:2;stroke-dasharray:6 5}
+.chart .l-effort{stroke:var(--effort);fill:none;stroke-width:2.6;stroke-linejoin:round}
+.chart .l-effort-dash{stroke:var(--effort);fill:none;stroke-width:2;stroke-dasharray:6 5}
+.chart .l-model{stroke:var(--model);fill:none;stroke-width:2;stroke-linejoin:round}
+.chart .l-model-dot{stroke:var(--model);fill:none;stroke-width:2.2;stroke-dasharray:1.5 4.5;stroke-linecap:round}
+.chart .a-effort{fill:var(--effort-soft)}
+.chart .a-scroll{fill:var(--scroll-soft)}
+.chart .stem-scroll{stroke:var(--scroll)}
+.chart .stem-effort{stroke:var(--effort)}
+.chart .stem-neg{stroke:var(--neg)}
+.chart .marker{stroke:var(--ink-2);stroke-width:1;stroke-dasharray:3 3}
+.chart .d-scroll{fill:var(--scroll)} .chart .d-effort{fill:var(--effort)} .chart .d-model{fill:var(--model)} .chart .d-ink{fill:var(--ink)}
+.chart .lbl{font-size:12px;font-weight:650}
+.chart .lbl-scroll{fill:var(--scroll)} .chart .lbl-effort{fill:var(--effort)} .chart .lbl-model{fill:var(--model)} .chart .lbl-muted{fill:var(--muted);font-weight:500}
+.chart .halo{paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round}
+.legend{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 20px;font-family:var(--sans);font-size:.82rem;color:var(--ink-2)}
+.legend li{display:inline-flex;align-items:center;gap:.5em}
+.sw{display:inline-block;width:20px;height:0;border-top:2.6px solid currentColor;flex:none}
+.sw.dash{border-top-style:dashed;border-top-width:2px}
+.sw.dot{border-top-style:dotted;border-top-width:3px}
+.sw.stem{width:3px;height:13px;border:0;background:currentColor}
+.sw.area{height:12px;border:0;background:currentColor;opacity:.3;border-radius:2px}
+.sw.thick{border-top-width:3.4px}
+.c-scroll{color:var(--scroll)} .c-effort{color:var(--effort)} .c-model{color:var(--model)} .c-neg{color:var(--neg)}
+.readouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;margin-top:14px;font-family:var(--sans)}
+.readout{background:var(--paper);border-radius:10px;padding:10px 13px}
+.readout .k{display:block;font-size:.79rem;color:var(--muted);line-height:1.35}
+.readout .v{display:block;font-size:1.28rem;font-weight:680;font-variant-numeric:tabular-nums;line-height:1.3;margin-top:3px}
+.readout .s{display:block;font-size:.78rem;color:var(--ink-2);margin-top:1px}
+.lab figcaption{font-family:var(--sans);font-size:.9rem;color:var(--ink-2);line-height:1.55;margin-top:14px;max-width:72ch}
+.lab figcaption p{margin:0 0 .6em}
+.lab details.deeper{margin:1em 0 0;background:var(--paper)}
+/* lists */
+.steps{list-style:none;padding:0;margin:1.5em 0 1.8em;counter-reset:step}
+.steps > li{counter-increment:step;position:relative;padding:1.3em 0 .6em 3.1em;border-top:1px solid var(--rule)}
+.steps > li::before{content:counter(step);position:absolute;left:0;top:.95em;font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--effort);line-height:1;font-variant-numeric:lining-nums}
+.steps p{margin:0 0 .7em}
+.steps p b,.ramp b,.unknowns b,.pro b,.con b,.takeaways b,.fine b{font-weight:680}
+.steps p > b:first-child{font-family:var(--sans);font-size:.84em;letter-spacing:.01em;color:var(--ink-2);margin-right:.3em}
+.ramp,.unknowns,.pro,.con,.fine,.takeaways{padding-left:1.15em;margin:.8em 0 1.3em}
+.ramp li,.unknowns li,.pro li,.con li,.fine li{margin-bottom:.6em}
+.twocol{display:grid;grid-template-columns:1fr;gap:0 40px}
+@media (min-width:880px){.twocol{grid-template-columns:1fr 1fr}}
+.twocol h3{margin-top:1.2em;font-size:1.2rem}
+.pro li::marker{color:var(--effort)} .con li::marker{color:var(--scroll)}
+.note{margin:1.8em 0;padding:1em 1.2em;border-radius:12px;background:var(--panel);font-size:.95em}
+.note p{margin:0}
+/* myths */
+.myths{list-style:none;padding:0;margin:1em 0 2em}
+.myths li{border-top:1px solid var(--rule)}
+.myths li:last-child{border-bottom:1px solid var(--rule)}
+.myths summary{display:grid;grid-template-columns:1fr auto 1.1em;gap:.4em 1em;align-items:center;padding:.95em 0;cursor:pointer;list-style:none;font-size:1.06em;line-height:1.4}
+.myths summary::-webkit-details-marker{display:none}
+.myths summary::after{content:"+";font-family:var(--sans);font-size:1.15em;font-weight:500;color:var(--muted);justify-self:end;line-height:1}
+.myths details[open] summary::after{content:"\2212"}
+.verdict{font-family:var(--sans);font-size:.76rem;font-weight:700;padding:.25em .65em;border-radius:6px;background:var(--scroll-soft);color:var(--scroll);white-space:nowrap}
+.myths details[open] .verdict{background:var(--scroll);color:var(--paper)}
+.myths details > div{padding:0 0 .6em;color:var(--ink-2)}
+.myths .q{font-style:italic}
+/* takeaways */
+.card{background:var(--panel);border-radius:18px;padding:clamp(22px,4vw,42px)}
+.takeaways{margin:0 0 1.2em;padding-left:1.1em}
+.takeaways li{margin-bottom:.7em}
+.takeaways li::marker{color:var(--effort)}
+.closing{font-size:1.28em;line-height:1.4;font-style:italic;margin:1.4em 0 0;max-width:34ch}
+/* references */
+.refnote{font-size:.95em;color:var(--ink-2)}
+.refs{list-style:none;padding:0;margin:1.2em 0 0;font-size:.85rem;line-height:1.5;columns:2 340px;column-gap:44px;font-family:var(--sans);color:var(--ink-2)}
+.refs li{padding-left:1.3em;text-indent:-1.3em;margin:0 0 .65em;break-inside:avoid}
+.refs i{color:var(--ink)}
+footer.colophon{margin:56px 0 72px;padding-top:18px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:.84rem;color:var(--muted);max-width:var(--measure)}
+@media (max-width:600px){
+  table{min-width:0;font-size:.82rem}
+  th,td{padding:.6em .55em .6em 0}
+  tbody th{width:30%}
+  .readout .v{font-size:1.12rem}
+  .steps > li{padding-left:2.4em}
+  .steps > li::before{font-size:1.6rem}
+  .pull{font-size:1.22em}
+}
+@media print{
+  .toc,.toc-mobile,#progress,.controls,.skip{display:none!important}
+  .lab{break-inside:avoid}
+  details > *{display:block}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="hero shell">
+  <h1>Wanting the Hard Thing</h1>
+  <p class="dek">Why effort feels bad, why a feed feels so good, and how a brain can learn to prefer the long game, with the evidence graded and the myths removed.</p>
+  <p class="meta">About 40 minutes to read, with three models you can play with.</p>
+  <svg id="hero-trace" class="hero-trace" viewBox="0 0 1200 190" preserveAspectRatio="none" role="img" aria-label="Two stylised signal traces. A thin spiky trace whose spikes shrink over time, and a thick smooth trace that starts below the baseline and rises steadily."></svg>
+  <ul class="hero-key">
+    <li><span class="sw c-scroll"></span>A feed: sharp, then fading</li>
+    <li><span class="sw thick c-effort"></span>A hard project: slow, then compounding</li>
+  </ul>
+</header>
+
+<div class="shell layout">
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#two-half-hours"><span>1</span>Two half-hours</a></li>
+    <li><a href="#reward-system"><span>2</span>The reward system in five minutes</a></li>
+    <li><a href="#scrolling-wins"><span>3</span>Why scrolling wins the moment</a></li>
+    <li><a href="#effort-wins"><span>4</span>Why effort wins the decade</a></li>
+    <li><a href="#enjoy-effort"><span>5</span>Learning to enjoy hard work</a></li>
+    <li><a href="#verdict"><span>6</span>The verdict</a></li>
+    <li><a href="#myths"><span>7</span>Myths and open questions</a></li>
+    <li><a href="#takeaways"><span>8</span>The one-page version</a></li>
+    <li><a href="#references"><span></span>References</a></li>
+  </ol>
+</nav>
+
+<main id="main">
+<details class="toc-mobile">
+  <summary>Contents</summary>
+  <ol>
+    <li><a href="#two-half-hours"><span>1</span>Two half-hours</a></li>
+    <li><a href="#reward-system"><span>2</span>The reward system in five minutes</a></li>
+    <li><a href="#scrolling-wins"><span>3</span>Why scrolling wins the moment</a></li>
+    <li><a href="#effort-wins"><span>4</span>Why effort wins the decade</a></li>
+    <li><a href="#enjoy-effort"><span>5</span>Learning to enjoy hard work</a></li>
+    <li><a href="#verdict"><span>6</span>The verdict</a></li>
+    <li><a href="#myths"><span>7</span>Myths and open questions</a></li>
+    <li><a href="#takeaways"><span>8</span>The one-page version</a></li>
+    <li><a href="#references"><span></span>References</a></li>
+  </ol>
+</details>
+
+<aside class="howto" aria-label="How to read the evidence grades">
+  <p>Every major claim carries an evidence grade. Where it matters, a note says whether the evidence is <em>causal</em> (someone manipulated something and measured the result) or <em>correlational</em> (two things were observed moving together).</p>
+  <dl class="grades">
+    <div><dt><span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span></dt><dd>Replicated, convergent findings, often causal.</dd></div>
+    <div><dt><span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></dt><dd>Good evidence with real caveats: small samples, one lab, or a leap from animals to humans.</dd></div>
+    <div><dt><span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span></span></dt><dd>A handful of studies, or mostly correlational data. Promising and unsettled.</dd></div>
+    <div><dt><span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span></dt><dd>A plausible extrapolation that nobody has tested directly.</dd></div>
+  </dl>
+</aside>
+
+<section id="two-half-hours" aria-labelledby="h-1">
+<h2 id="h-1"><span class="num">1</span>Two half-hours</h2>
+<p>It is 9:40 on a weeknight. You have thirty minutes before you should be asleep, and two ways to spend them.</p>
+<p>The first is a feed. A dog misjudges a jump. A chef does something improbable with a blowtorch. A stranger says something you half agree with. Each clip lasts fifteen or twenty seconds, so half an hour is something like ninety of them, and each one is a small lottery ticket: most are duds, a few are genuinely funny, and you never know which is next. At 10:10 you surface, faintly tired. If someone asked you to name five of the clips, you would struggle.</p>
+<p>The second is a hard problem: a model that won’t converge, a chapter you’ve been avoiding, a proof that refuses to close. The first ten minutes are unpleasant in a precise, physical way, a steady pull toward anything else. At minute fourteen you notice the bug is in the data, not the model. At minute twenty-six something clicks. At 10:10 you are also tired. But tomorrow, what you worked out is still there, and it makes the next problem slightly easier.</p>
+<p>Both half-hours ran on the same machinery: dopamine neurons, predictions and a running tally of costs and benefits. The difference is not that one was “dopamine” and the other wasn’t. The difference is <em>when</em> the brain gets paid, how <em>surprised</em> it is, what the effort <em>costs</em>, and what is <em>left behind</em>.</p>
+<div class="table-wrap">
+<table>
+<caption class="sr-only">A feed and a hard problem compared</caption>
+<thead><tr><th scope="col"><span class="sr-only">Dimension</span></th><th scope="col" class="col-scroll">Thirty minutes of a feed</th><th scope="col" class="col-effort">Thirty minutes on a hard problem</th></tr></thead>
+<tbody>
+<tr><th scope="row">When the payoff arrives</th><td>Every few seconds, unpredictably</td><td>Late, lumpy and earned</td></tr>
+<tr><th scope="row">Effort charged up front</th><td>Close to zero</td><td>High, especially at the start</td></tr>
+<tr><th scope="row">Surprise per minute</th><td>High, then fading</td><td>Low, then rising with skill</td></tr>
+<tr><th scope="row">What is left tomorrow</th><td>Very little</td><td>A slightly more capable you, for this kind of problem</td></tr>
+</tbody>
+</table>
+</div>
+<p class="pull">A feed is a slot machine that pays out in small change. A hard problem is a savings account that charges a fee to open.</p>
+<p>What follows takes both apart: the reward system in brief, why the feed wins the moment, why effort wins the decade, and how to shift your brain’s preferences toward the second.</p>
+<p class="sowhat"><b>So what?</b> The useful question isn’t whether something releases dopamine (almost everything does) but which reward schedule you are training your brain to expect.</p>
+</section>
+
+<section id="reward-system" aria-labelledby="h-2">
+<h2 id="h-2"><span class="num">2</span>The reward system in five minutes</h2>
+<p>Four pieces of machinery explain most of what follows. None of them is “the pleasure chemical”.</p>
+
+<h3>Dopamine is a teacher, not a treat</h3>
+<p>In the 1980s and ’90s, Wolfram Schultz recorded single dopamine neurons in monkeys that were given drops of juice. When juice arrived unexpectedly, the neurons fired a burst. Once a light reliably predicted the juice, the burst moved to the light, and the juice itself produced almost nothing. And when the light came on but the juice failed to arrive, the neurons dipped below their baseline at the exact moment the juice should have come (Schultz, Dayan &amp; Montague, 1997).</p>
+<p>That pattern is a <strong>reward prediction error</strong>: the reward you got minus the reward you expected. It is positive when things go better than predicted, zero when they go exactly as predicted, and negative when they disappoint. If you work with machine learning you have met it before: it is the error term in temporal-difference learning, and the fit between that equation and real neurons is one of computational neuroscience’s great successes. Later experiments showed the signal does causal work: stimulating dopamine neurons at the moment an expected reward arrives is enough to drive new learning in rats (Steinberg et al., 2013). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">causal in animals, consistent human imaging</span></span></p>
+<p class="pull">Dopamine isn’t the paycheque. It’s the memo saying the paycheque differed from what you expected, and by how much.</p>
+<details class="deeper"><summary>Go deeper: the equation behind the spike</summary><div>
+<p>In temporal-difference (TD) learning, an agent keeps a value estimate <i>V</i> for each situation. After each step it computes <span class="math">δ = r + γ·V(next) − V(now)</span>, where <i>r</i> is the reward just received and <i>γ</i> discounts the future, and then nudges its estimate: <span class="math">V(now) ← V(now) + α·δ</span>. Phasic dopamine behaves remarkably like δ (Montague, Dayan &amp; Sejnowski, 1996; Sutton &amp; Barto, 2018).</p>
+<p>Two consequences matter for this piece. Fully predicted rewards generate no δ, so repetition quietly drains the surprise out of anything. And the signal migrates backwards to the earliest reliable predictor of reward, which is why a notification sound, an app icon or the first flick of your thumb can become exciting in their own right.</p>
+</div></details>
+
+<h3>Wanting is not liking</h3>
+<p>If dopamine were pleasure, removing it should remove pleasure. It doesn’t. Kent Berridge and colleagues depleted dopamine in rats and found that the animals still made the characteristic “liking” reactions to sugar on the tongue (the rodent equivalent of licking your lips) yet would not walk across a cage to get it. Mice engineered to have extra dopamine wanted sweet rewards more, and worked harder for them, without liking them any more (Berridge &amp; Robinson, 1998; Peciña et al., 2003).</p>
+<p>Berridge’s distinction is between <strong>wanting</strong> (incentive salience: the magnetic pull a cue exerts) and <strong>liking</strong> (the hedonic glow itself). Wanting leans heavily on dopamine. Liking depends on small “hotspots” in the nucleus accumbens and ventral pallidum that use opioid and endocannabinoid signalling (Berridge &amp; Kringelbach, 2015). The two usually travel together, which is why they are easy to confuse. When they separate, you get the odd experience of wanting something you no longer enjoy. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">causal, animal</span></span> <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">for a clean split in humans</span></span></p>
+<p>In people the line is blurrier. Raising dopamine with levodopa slightly increased how much participants enjoyed music, and blocking dopamine reduced it (Ferreri et al., 2019), while blocking opioids with naltrexone also dulled musical pleasure (Mallik, Chanda &amp; Levitin, 2017). The fair summary: dopamine is mostly about motivation and learning, and at most a modulator of pleasure.</p>
+<p class="pull">Wanting is the magnet; liking is the taste. A feed can keep the magnet strong long after the taste has gone flat.</p>
+<details class="deeper"><summary>Go deeper: how do you measure “liking” in a rat?</summary><div>
+<p>Through taste reactivity. Sweet tastes elicit rhythmic tongue protrusions and lip licking; bitter tastes elicit gapes and head shakes. Similar reactions appear in human newborns and other primates, so they are a reasonable readout of hedonic impact rather than motivation. Crucially, they can be measured when a taste is placed directly in the mouth, with no wanting or effort required. That is what lets researchers pull the two apart.</p>
+</div></details>
+
+<h3>Two tempos: phasic and tonic</h3>
+<p>Dopamine works on two timescales. <strong>Phasic</strong> signals are bursts and dips lasting a fraction of a second: the prediction errors above. <strong>Tonic</strong> dopamine is the slower background level. An influential theory holds that tonic dopamine tracks the average rate of reward in your environment, and therefore the opportunity cost of time: when rewards are plentiful, idling is expensive and vigour pays; when they are scarce, conserving energy is rational (Niv et al., 2007). Newer recordings complicate the tidy split. Dopamine release in the striatum can ramp up as a reward approaches and track how worthwhile the work is, partly independently of how fast the neurons fire (Hamid et al., 2016; Mohebi et al., 2019). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">models plus animal data</span></span></p>
+<p>One implication follows from the opportunity-cost model, though nobody has tested it with phones: if your recent hours are dense with cheap rewards, your brain’s sense of what an hour “should” pay goes up, and a slow, uncertain task looks worse by comparison. <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span></p>
+
+<h3>The cost ledger</h3>
+<p>The last piece is accounting. Before acting, the brain weighs expected benefits against costs: how long you’ll wait, how hard it will be, how uncertain the outcome is. The anterior cingulate cortex (ACC), on the inner surface of the frontal lobe, sits at the centre of the effort side of this ledger. Rats with ACC damage stop climbing a barrier for a larger reward and settle for the smaller one on the floor (Walton et al., 2003). In people, the dorsal ACC and striatum encode rewards net of the effort needed to get them (Croxson et al., 2009).</p>
+<p>Dopamine tips the balance. Depleting it in the nucleus accumbens makes rats abandon effortful options for easy food they like less, even though they still eat normally (Salamone &amp; Correa, 2012). In people, higher dopamine synthesis capacity, or drugs that raise dopamine, shifts choices toward cognitively demanding, better-paid work (Westbrook et al., 2020). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">causal, animal</span></span> <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">human pharmacology</span></span></p>
+<p class="sowhat"><b>So what?</b> Your brain pays for surprise, not pleasure, and it charges for effort and delay. Change what it predicts and what it charges, and you change what it wants.</p>
+</section>
+<section id="scrolling-wins" aria-labelledby="h-3">
+<h2 id="h-3"><span class="num">3</span>Why scrolling wins the moment</h2>
+<p>Put the ledger to work on a single moment: a spare minute, two options. The feed wins almost every one of these contests, and not because you lack character. It wins on every line of the ledger at once.</p>
+
+<h3>Effort is a cost, and it feels like one</h3>
+<p>Start with the uncomfortable answer to the first question. Mental effort isn’t neutral work that happens to be tiring; the brain treats it as a cost. Offered two tasks with the same payoff, people drift toward the less demanding one (Kool et al., 2010), and they will give up real money to avoid harder versions of a working-memory task, more so as they get older (Westbrook, Kester &amp; Braver, 2013). A 2024 meta-analysis of 170 studies from 29 countries found that the more mental effort people reported on a task, the more frustration, irritation and stress they reported too, across professions, ages and task types (David, Vassena &amp; Bijleveld, 2024). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">behavioural, replicated</span></span></p>
+<p>Two caveats are worth knowing. Critics point out that the effort measure in most of those studies captures how difficult a task was rather than how intensely people chose to think, and that self-initiated thinking may feel different (Grund, Roelle &amp; Schmid, 2026). And the link was weaker in studies from Asian countries, a hint that how aversive effort feels depends partly on learning history. That thread returns in section 5.</p>
+<p>Why should effort feel bad at all? Not because thinking burns through fuel: the brain’s energy use barely changes between hard concentration and daydreaming, because task-related increases are small next to its large baseline budget (Raichle &amp; Gusnard, 2002). The leading accounts treat the feeling of effort as an <strong>opportunity-cost signal</strong>. Attention and cognitive control are limited, and the ache of concentrating is your brain reporting that those resources could be doing something else (Kurzban et al., 2013; Shenhav et al., 2017). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">theory with indirect support</span></span> One study adds a physiological twist: after a day of demanding cognitive work, glutamate had built up in the lateral prefrontal cortex and people shifted toward low-effort, immediate options (Wiehler et al., 2022). <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span><span class="kind">single study</span></span></p>
+<p>That is the core of the answer to “why does hard work feel unpleasant?” The bill for effort arrives immediately, and it arrives as a feeling. The benefits arrive later, and they arrive as abstractions.</p>
+
+<h3>The discount on “later”</h3>
+<p>Delay is the other big cost. People and animals discount future rewards <strong>hyperbolically</strong>: value falls steeply over the first stretch of waiting and then flattens (Ainslie, 1975; Mazur, 1987). The steep front of the curve is why a small reward now can beat a much larger one later, and why the same person who prefers the larger, later option when both are distant will flip to the smaller, sooner one as it comes within reach. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">replicated across species</span></span></p>
+<p class="formula"><span class="eq">V = A / (1 + kD)</span><span>The felt value <i>V</i> of a reward of size <i>A</i> at delay <i>D</i>, where <i>k</i> is your impatience.</span></p>
+
+<figure class="lab wide" id="discount" aria-labelledby="dd-title">
+  <div class="lab-head"><h3 id="dd-title">How far away can a reward be and still beat a scroll?</h3><span class="toy">Illustrative model</span></div>
+  <p class="lab-intro">A project pays 100 points at the end. A clip pays 10 points right now. Move the payoff further away and watch its felt value sink toward, and below, the clip.</p>
+  <div class="controls">
+    <div class="range"><label for="dd-delay">Delay until the big payoff</label><div class="row"><input type="range" id="dd-delay" min="0" max="100" value="41"><output id="dd-delay-out" for="dd-delay">6 months</output></div></div>
+    <div class="range"><label for="dd-k">Your impatience, k (per day)</label><div class="row"><input type="range" id="dd-k" min="0" max="100" value="65"><output id="dd-k-out" for="dd-k">0.020</output></div></div>
+    <div class="range"><label for="dd-train">Effect of training (lowers k)</label><div class="row"><input type="range" id="dd-train" min="0" max="60" value="40"><output id="dd-train-out" for="dd-train">40%</output></div></div>
+    <label class="check"><input type="checkbox" id="dd-mile">Split the payoff into monthly milestones</label>
+  </div>
+  <div class="chart-wrap" id="dd-chart"></div>
+  <ul class="legend">
+    <li><span class="sw c-model"></span>Your discount curve</li>
+    <li><span class="sw dash c-effort"></span>After training</li>
+    <li class="dd-mile-key" hidden><span class="sw dot c-model"></span>Same payoff, monthly milestones</li>
+    <li><span class="sw dash c-scroll"></span>A clip, right now</li>
+  </ul>
+  <div class="readouts" id="dd-readouts" aria-live="polite"></div>
+  <figcaption>
+    <p>Hyperbolic curves drop steeply at first and then flatten, which is why “now” has such outsized pull. Lowering <i>k</i> stretches the horizon over which a big payoff can still beat a small immediate one. Milestones don’t make the prize bigger; they move pieces of it close enough to be felt. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">for the curve shape</span></span> <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">for training effects; the sizes shown are illustrative</span></span></p>
+  </figcaption>
+  <details class="deeper"><summary>How this model works</summary><div>
+    <p>Felt value is <span class="math">V = A / (1 + kD)</span> with <i>A</i> = 100 and <i>D</i> in days. The trained curve uses <i>k</i> × (1 − training effect). The milestone version splits the same 100 points into equal monthly instalments and discounts each by its own delay. The clip is worth 10 points with no delay. The break-even delay where the two are equal is <span class="math">D* = (A/10 − 1) / k</span>. Real values of <i>k</i> vary enormously between people, reward types and amounts, so read the numbers as shapes, not measurements.</p>
+  </div></details>
+</figure>
+
+<p>Two things in that figure matter for the rest of this piece. A project whose payoff is a year away is, to your ledger, worth a small fraction of its real value, often less than the next clip. And <i>k</i> is not fixed. Vividly imagining specific future events, a technique called episodic future thinking, reduces discounting in experiments (Peters &amp; Büchel, 2010; Daniel, Stanton &amp; Epstein, 2013), with a moderate average effect across studies (Rung &amp; Madden, 2018). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">causal, mostly lab tasks</span></span></p>
+<p>Steep discounting is also linked with addictive behaviour (MacKillop et al., 2011) and, in correlational studies, with heavier smartphone use (Wilmer &amp; Chein, 2016). Whether phones steepen discounting, or impatient people simply use their phones more, is unknown. <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span><span class="kind">correlational</span></span></p>
+
+<h3>A slot machine in your pocket</h3>
+<p>Now the reward side. Behaviourists found decades ago that the most persistent behaviour comes not from reliable rewards but from unpredictable ones. On a <strong>variable-ratio schedule</strong>, where a reward arrives after an unpredictable number of responses, animals respond at high, steady rates and keep going long after the rewards stop (Ferster &amp; Skinner, 1957). Slot machines run on this schedule. So does a feed: the funny clip might be one swipe away, or twenty.</p>
+<p>Dopamine neurons have a particular taste for this uncertainty. When a cue predicted juice with 50% probability, monkeys’ dopamine neurons showed a sustained ramp of activity during the wait, largest exactly when the outcome was least predictable (Fiorillo, Tobler &amp; Schultz, 2003). And because each hit is unpredictable, the prediction error never fully learns itself away: something that pays out at random keeps surprising you. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">for the mechanisms</span></span> <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span><span class="kind">as a description of feeds: nobody has recorded dopamine neurons in a person scrolling</span></span></p>
+<details class="deeper"><summary>Go deeper: why would uncertainty itself be rewarding?</summary><div>
+<p>From a learning perspective, an uncertain option carries information: sampling it tells you something you didn’t know. Many reinforcement-learning agents are given an “exploration bonus” for exactly this reason, and novelty and uncertainty signals in the midbrain look like a biological version of it. The design problem is that a feed offers endless uncertainty with very little to learn. It is all exploration and no exploitation.</p>
+</div></details>
+
+<h3>Novelty on tap, effort near zero</h3>
+<p>Newness is a signal in its own right: the human substantia nigra and ventral tegmental area (VTA), the midbrain’s dopamine hubs, respond to novel images as such (Bunzeck &amp; Düzel, 2006). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> A recommender system is, among other things, a machine for delivering calibrated novelty: new enough to catch interest, familiar enough to be understood instantly. In one fMRI study of young adults, personalised short videos drew more activity in the VTA and in the default mode network than generic ones did (Su et al., 2021). <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span><span class="kind">single fMRI study</span></span></p>
+<p>Meanwhile the cost side of the ledger is nearly empty. A clip needs no set-up, no goal held in working memory, no tolerance for confusion and no wait. In ledger terms it is a small reward at near-zero delay and near-zero effort, and almost anything beats nothing.</p>
+
+<h3>No bottom, no stopping cue</h3>
+<p>Most pleasures come in units that suggest when to stop: the end of an episode, an empty plate. People lean on those units more than they realise, and eat more when the same food simply comes in bigger portions or units (Geier, Rozin &amp; Doros, 2006). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> Infinite scroll and autoplay remove the unit, and with it the moment of decision. You never decide to watch ninety clips. You fail to decide to stop, ninety times.</p>
+<p>A large field experiment put a number on the resulting self-control gap. Given tools to limit their own screen time, many participants used them, and the authors estimated that self-control problems account for roughly 31% of social media use (Allcott, Gentzkow &amp; Song, 2022). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">causal field experiment, model-based estimate</span></span></p>
+
+<h3>Habituation, and the “tolerance” question</h3>
+<p>Two things are well established. Prediction learning turns yesterday’s surprise into today’s baseline. And hedonic habituation is nearly universal: repeat the same kind of stimulus and it lands softer. Together they mean a feed’s best moments lose their punch, which is why the feed must keep finding new ones. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span></p>
+<p>Whether heavy scrolling causes something like drug tolerance is a different and much bigger claim. In people who have used methamphetamine heavily, dopamine transporters are reduced and take many months of abstinence to recover (Volkow et al., 2001). There is no comparable evidence in ordinary phone users. <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span> A more modest mechanism has better support: <strong>contrast</strong>. Rats switched from a large reward to a small one run more slowly than rats that only ever received the small one (Crespi, 1942). Rewards are judged against recent experience. After twenty minutes of engineered surprise a spreadsheet doesn’t feel neutral; it feels like a downgrade. <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">strong in animals</span></span> <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span><span class="kind">applied to work after scrolling</span></span></p>
+
+<figure class="lab wide" id="sim" aria-labelledby="sim-title">
+  <div class="lab-head"><h3 id="sim-title">Two reward schedules, ninety days each</h3><span class="toy">Toy model, not a recording</span></div>
+  <p class="lab-intro">A simple prediction-error learner lives through ninety days of either habit. Spikes are the day’s biggest surprise (up) and typical disappointment (down). Switch schedules, flip the options, and press play.</p>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Reward schedule">
+      <button type="button" data-mode="scroll" aria-pressed="true">Short-form scrolling</button>
+      <button type="button" data-mode="project" aria-pressed="false">Long, hard project</button>
+    </div>
+    <span class="opts" data-for="scroll"><label class="check"><input type="checkbox" id="sim-escalate">The feed escalates novelty</label></span>
+    <span class="opts" data-for="project" hidden><label class="check"><input type="checkbox" id="sim-track">Track progress visibly</label><label class="check"><input type="checkbox" id="sim-effort">Reward the effort, not only results</label></span>
+    <button class="btn" id="sim-play" type="button">Play</button>
+    <button class="btn" id="sim-new" type="button">New random run</button>
+  </div>
+  <div class="chart-wrap" id="sim-chart"></div>
+  <ul class="legend" id="sim-legend"></ul>
+  <div class="readouts" id="sim-readouts" aria-live="polite"></div>
+  <figcaption id="sim-caption"></figcaption>
+  <details class="deeper"><summary>How the simulator works</summary><div>
+    <p><b>Scrolling.</b> Each day brings 60 clips. About one in five is a hit; the rest are mild. Each clip’s impact shrinks with days of exposure (habituation) and within a session (satiation). An expectation <i>V</i> is updated after every clip with a Rescorla–Wagner rule (Rescorla &amp; Wagner, 1972), <span class="math">V ← V + 0.04·(impact − V)</span>, and the prediction error is <span class="math">impact − V</span>. “Liking” is the day’s average impact. “Urge” is a cue-driven wanting term that grows with repeated pairings and does not habituate, which is the incentive-sensitisation idea (Robinson &amp; Berridge, 1993); for feeds that part is speculative. With escalation on, the feed boosts novelty over time, partly offsetting habituation.</p>
+    <p><b>Project.</b> Skill <i>s</i> rises with each session at a rate proportional to what is left to learn. Effort cost starts high and falls with skill. Reward comes from competence (growing with skill) and from milestones every week or two. “Track progress” adds a small reward proportional to each day’s real progress. “Reward the effort” applies learned industriousness: the felt cost of effort falls as effort keeps predicting reward. The felt-reward line is reward minus effort cost, smoothed over seven days.</p>
+    <p>Every number here is invented to make mechanisms visible. The shapes follow from the mechanisms; the magnitudes do not come from data.</p>
+  </div></details>
+</figure>
+
+<p class="sowhat"><b>So what?</b> Scrolling wins because it zeroes out every cost your brain charges (effort, delay and even the decision to continue) while paying out on the schedule dopamine responds to most. That’s design, not weakness, which means the remedy is design too.</p>
+</section>
+<section id="effort-wins" aria-labelledby="h-4">
+<h2 id="h-4"><span class="num">4</span>Why effort wins the decade</h2>
+<p>If short rewards win the minute, what does sustained effort buy that a feed can’t? Mostly things that accumulate: stronger synapses, new myelin, better mental chunks, a sharper attention system and, eventually, a different relationship with effort itself.</p>
+
+<h3>You become what you repeatedly do</h3>
+<p>Every skill is a physical change. At the level of synapses, repeated co-activation strengthens connections, a phenomenon called long-term potentiation (first reported by Bliss &amp; Lømo, 1973). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span> At the level of brain regions, the changes show up in scans. Three months of juggling practice increased grey matter in a motion-processing area, which shrank back after people stopped (Draganski et al., 2004). Six weeks of juggling altered white-matter structure (Scholz et al., 2009). And trainee London taxi drivers who passed the notoriously hard “Knowledge” exam showed growth in the posterior hippocampus that trainees who failed did not (Woollett &amp; Maguire, 2011). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">MRI measures are indirect, samples small</span></span></p>
+<p>Myelin, the insulation that speeds and synchronises neural signals, turns out to be activity-dependent too. In pianists, white-matter structure tracks how much they practised in childhood (Bengtsson et al., 2005), and mice that cannot make new myelin-forming cells fail to learn a new motor skill (McKenzie et al., 2014). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">causal, animal</span></span></p>
+<details class="deeper"><summary>Go deeper: what a “grey matter increase” does and doesn’t mean</summary><div>
+<p>Structural MRI measures signal differences, not cells. A local increase could reflect more synapses, dendritic branching, glial cells, blood supply or even water content. The defensible claim is that practice changes brain tissue in task-relevant places, measurably and sometimes reversibly. Claims about exactly <em>what</em> grew, or that more is always better, go beyond the data.</p>
+</div></details>
+<p>One honest limit: what you practise is what improves. Commercial “brain-training” games make people better at the games and rarely at anything else (Simons et al., 2016; Melby-Lervåg, Redick &amp; Hulme, 2016). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span> Long, hard work pays off in the domain you work on, plus a few portable meta-skills: tolerating confusion, sustaining attention and knowing how to get unstuck.</p>
+
+<h3>Sustained attention is a skill, and it’s trainable</h3>
+<p>Attention isn’t one thing. The classic model separates networks for alerting, orienting and executive control (Posner &amp; Petersen, 1990), and sustained attention fluctuates from moment to moment between “in the zone” and “out of the zone” states that are visible in both behaviour and brain activity (Esterman et al., 2013). It can be trained. Three months of intensive meditation training improved sustained attention on a demanding vigilance task (MacLean et al., 2010), and a two-week mindfulness course reduced mind-wandering and raised scores on the reading section of the GRE (Mrazek et al., 2013). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">causal, modest samples</span></span></p>
+<p>The most direct evidence about phones comes from a randomised trial in which participants blocked mobile internet for two weeks while calls and texts still worked. Sustained attention on an objective task improved by about as much as it typically declines over ten years of ageing, alongside gains in wellbeing and mental health, even though only about a quarter of participants complied fully (Castelo et al., 2025). <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span><span class="kind">one unblinded trial; volunteers may have expected benefits</span></span></p>
+
+<h3>Experts don’t have bigger working memories. They have better chunks.</h3>
+<p>Chess masters shown a real game position for five seconds can reconstruct it almost perfectly; shown pieces scattered at random, they do little better than novices (Chase &amp; Simon, 1973). Expertise packs knowledge into larger meaningful units and builds retrieval structures in long-term memory that behave like an extension of working memory within the domain (Ericsson &amp; Kintsch, 1995). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span> This is the engine of compounding: each chunk makes the next idea cheaper to hold, which makes the next chunk easier to build.</p>
+
+<h3>Difficulty that pays</h3>
+<p>The learning literature has a counterintuitive finding with direct bearing on enjoying effort: the conditions that feel most productive often aren’t. Testing yourself beats rereading for long-term retention (Roediger &amp; Karpicke, 2006). Spacing practice out beats cramming (Cepeda et al., 2006). Mixing problem types beats practising one type at a time (Kornell &amp; Bjork, 2008), and generating an answer beats reading it (Slamecka &amp; Graf, 1978). Robert and Elizabeth Bjork call these <strong>desirable difficulties</strong> (Bjork &amp; Bjork, 2011). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">large, replicated literature</span></span></p>
+<p>The twist is that learners reliably misjudge them. In Kornell and Bjork’s study, most participants judged massed practice at least as effective as spaced practice, even though spacing had produced better results. Fluency feels like learning and struggle feels like failure, when often it is the other way round (Dunlosky et al., 2013).</p>
+
+<h3>The night shift</h3>
+<p>Part of what you build during the day is finished at night. Sleep supports the consolidation of new memories (Diekelmann &amp; Born, 2010). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span> In one elegant study, people who slept after practising a number task were more than twice as likely as those who stayed awake to discover a hidden shortcut in it (Wagner et al., 2004). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> The synaptic homeostasis hypothesis proposes that sleep also scales back the day’s synaptic strengthening, restoring the capacity to learn again (Tononi &amp; Cirelli, 2014). Some famous claims have softened: overnight gains in motor skills look smaller than early studies suggested (Pan &amp; Rickard, 2015).</p>
+<p>A late-night scroll is therefore doubly expensive. It spends the hour, and it can shave the sleep that would have finished the day’s learning.</p>
+
+<h3>Flow: effort’s dividend</h3>
+<p>Flow, Mihaly Csikszentmihalyi’s name for absorbed and effortless-feeling concentration, appears when a task’s challenge matches your skill and it offers clear goals and quick feedback (Csikszentmihalyi, 1990). Experiments that manipulate challenge relative to skill find the balanced condition the most absorbing and enjoyable (Keller &amp; Bless, 2008). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> In experience-sampling studies, people reported flow far more often at work than in leisure, while still saying they would rather be doing something else (Csikszentmihalyi &amp; LeFevre, 1989).</p>
+<p>The neuroscience of flow is young. One proposal is that parts of the prefrontal cortex quiet down (Dietrich, 2004), and imaging of experimentally induced flow found reduced activity in medial prefrontal regions (Ulrich et al., 2014). <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span></span> But the behavioural point is solid, and it is the hopeful half of the answer to the first question: many of the most enjoyable experiences people have are hard tasks at which they have become good. Enjoying effort is often the <em>consequence</em> of competence, not a precondition for it.</p>
+
+<h3>Compounding, honestly</h3>
+<p>Skill usually follows a power law: rapid early gains, then smaller gains per hour (Newell &amp; Rosenbloom, 1981). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span> So where does compounding come from? From what the skill lets you do next. Children who read well read more and pull further ahead, which Keith Stanovich called a Matthew effect after the sociologists’ term (Stanovich, 1986). Knowledge makes new knowledge cheaper to acquire. Practice matters, but not without limit: a meta-analysis found deliberate practice explained about 26% of the differences in performance in games, 21% in music, 18% in sports, 4% in education and under 1% in professions (Macnamara, Hambrick &amp; Oswald, 2014). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">with debate over how practice is defined</span></span></p>
+
+<figure class="lab wide" id="compound" aria-labelledby="cp-title">
+  <div class="lab-head"><h3 id="cp-title">The same hour a day, compounded</h3><span class="toy">Illustrative toy model, not data</span></div>
+  <p class="lab-intro">Spend the same minutes on deep work or on a feed, and watch what accumulates. Change the assumptions to see how sensitive the conclusion is.</p>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Time horizon">
+      <button type="button" data-years="1" aria-pressed="false">1 year</button>
+      <button type="button" data-years="5" aria-pressed="false">5 years</button>
+      <button type="button" data-years="10" aria-pressed="true">10 years</button>
+    </div>
+    <div class="range"><label for="cp-min">Minutes a day</label><div class="row"><input type="range" id="cp-min" min="15" max="180" step="15" value="60"><output id="cp-min-out" for="cp-min">60 min</output></div></div>
+    <div class="range"><label for="cp-days">Days a week</label><div class="row"><input type="range" id="cp-days" min="1" max="7" step="1" value="5"><output id="cp-days-out" for="cp-days">5 days</output></div></div>
+    <div class="range"><label for="cp-comp">Knowledge builds on knowledge</label><div class="row"><input type="range" id="cp-comp" min="0" max="100" value="50"><output id="cp-comp-out" for="cp-comp">Medium</output></div></div>
+  </div>
+  <div class="chart-wrap" id="cp-chart"></div>
+  <ul class="legend">
+    <li><span class="sw thick c-effort"></span>Deep work on one hard skill</li>
+    <li><span class="sw c-scroll"></span>The same time on a feed</li>
+  </ul>
+  <div class="readouts" id="cp-readouts" aria-live="polite"></div>
+  <figcaption>
+    <p>Capability grows slowly at first, accelerates as knowledge builds on knowledge, then flattens near a ceiling. The feed adds a little, forgets a lot and plateaus near zero. Set the compounding slider to zero and the gap shrinks but stays large, because the main cost of the feed isn’t what it takes away; it’s what it never adds.</p>
+  </figcaption>
+  <details class="deeper"><summary>The model’s assumptions</summary><div>
+    <p>Capability <i>C</i> runs from 0 to 100. On practice days, deep work adds <span class="math">h · 0.034 · (1 + λC/10) · (1 − C/100)</span>, where <i>h</i> is hours and <i>λ</i> is the compounding setting; the first bracket makes existing knowledge speed up learning, the second slows progress near the ceiling. Everything decays very slowly toward a small starting level (0.012% a day). The feed adds <span class="math">h · 0.02 · (1 − S/8)</span> of loosely related trivia, forgotten at 1% a day. The point is the shape: back-loaded, S-shaped returns for deep work, and a low plateau for the feed. No part of this is fitted to data.</p>
+  </div></details>
+</figure>
+
+<p class="sowhat"><b>So what?</b> Short rewards pay you in the moment and leave little behind. Hard work charges up front and pays interest in structure, in speed and eventually in enjoyment. The catch is that the interest is back-loaded, exactly the kind of reward your discount curve makes invisible.</p>
+</section>
+<section id="enjoy-effort" aria-labelledby="h-5">
+<h2 id="h-5"><span class="num">5</span>How to actually learn to enjoy hard work</h2>
+<p>The encouraging finding in this literature is that the price your brain charges for effort isn’t fixed. It is a learned estimate, and estimates can be updated. First the evidence, then the protocol.</p>
+
+<h3>Effort can become its own reward</h3>
+<p>Psychologists call the puzzle the <strong>effort paradox</strong>: effort is costly, yet people seek it out (climbing mountains, running marathons, solving cryptic crosswords) and value things more because they were hard (Inzlicht, Shenhav &amp; Olivola, 2018). People value furniture they assembled themselves above identical pre-built pieces, the so-called IKEA effect (Norton, Mochon &amp; Ariely, 2012). Rats and many other animals will often work for food when identical free food is available, a behaviour called contrafreeloading (Jensen, 1963; Inglis, Forkman &amp; Lazarus, 1997). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></p>
+<p>Robert Eisenberger’s theory of <strong>learned industriousness</strong> explains part of this. When high effort is repeatedly followed by reward, the sensation of effort itself acquires secondary reward value, and the habit of working hard generalises to new tasks (Eisenberger, 1992). A 2022 study tested the idea directly in people. Participants rewarded specifically for the effort they put into a working-memory task later preferred harder maths problems, even though they knew no further reward was on offer (Clay et al., 2022). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">causal, replicated online; long-term durability unknown</span></span></p>
+<details class="deeper"><summary>Go deeper: what the 2022 study actually did</summary><div>
+<p>In the lab experiment (121 people), the researchers measured how hard each participant was working in real time using cardiovascular signals of sympathetic arousal, and made the reward depend on that effort rather than on performance alone. Comparison groups were rewarded in ways not tied to effort. In a transfer phase with a different task, and no rewards at all, the effort-rewarded group chose more demanding maths problems. Five online experiments with 1,457 people replicated the pattern. The transfer was measured shortly after training, so we don’t yet know how long it lasts or how far it travels.</p>
+</div></details>
+<p>There may even be a hub for this. The anterior midcingulate cortex (aMCC) integrates effort, bodily state and goals, and has been proposed as central to tenacity (Touroutoglou et al., 2020). In two patients undergoing brain mapping before epilepsy surgery, electrical stimulation of this region produced a vivid sense of an approaching challenge together with the determination to push through it (Parvizi et al., 2013). <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span></span> The popular claim that doing things you don’t want to do “grows” the aMCC, though, rests on correlations, such as thicker cortex here in unusually sharp older adults, rather than on training studies. <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span></p>
+<p>One idea to discard is willpower as a fuel tank that drains with use. The “ego depletion” effect largely failed a preregistered replication run across 23 labs (Hagger et al., 2016). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">for the failed replication</span></span> The more useful model is the cost–benefit one: effort feels expensive when the brain predicts a poor return. Change the predicted return, and the felt price changes with it.</p>
+<p class="pull">You can’t enlarge a fuel tank that doesn’t exist. You can change the price your brain charges for effort.</p>
+
+<h3>The protocol</h3>
+<p>Eight practices, each tied to a mechanism above. Treat them as experiments rather than commandments: run one or two for a fortnight and keep what works.</p>
+<ol class="steps">
+<li><h4>Reward the process, not only the outcome</h4>
+<p><b>Do.</b> Decide what counts as a unit of real effort: a 50-minute focused block, ten attempted problems, one page drafted. Pay yourself for every unit, whether or not it went well. A mark on a visible chain, a good coffee, and the feed too, once the block is done.</p>
+<p><b>Why it works.</b> This is learned industriousness in practice. Pairing effort itself with reward teaches your brain that effort predicts payoff, which lowers its felt price (Eisenberger, 1992; Clay et al., 2022). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></p></li>
+<li><h4>Shrink the start</h4>
+<p><b>Do.</b> Make the first step almost comically small (“open the notebook and write the next line”) and attach it to a cue with an if–then plan: “After I make my 9 a.m. coffee, I’ll open the notebook and write one line.”</p>
+<p><b>Why it works.</b> The effort estimate is at its most pessimistic before you begin. If–then plans had a medium-to-large effect on follow-through across 94 independent tests (Gollwitzer &amp; Sheeran, 2006). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span> The idea that starting itself lowers the felt cost is plausible but less tested. <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span></p></li>
+<li><h4>Raise the friction on scrolling</h4>
+<p><b>Do.</b> Log out, move the apps off your home screen or delete them, install a delay app, and keep the phone in another room during deep work.</p>
+<p><b>Why it works.</b> Habits run on cues and ease. A self-installed app that imposed a short wait and a prompt before chosen apps opened cut actual openings by 57% over six weeks (Grüning, Riedel &amp; Lorenz-Spreen, 2023), and self-set limits reduced social media use in a large field experiment (Allcott, Gentzkow &amp; Song, 2022). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> Evidence that a phone’s mere presence drains mental capacity is mixed (Ward et al., 2017; a replication failed: Ruiz Pardo &amp; Minda, 2022), but a phone out of reach is a habit out of reach.</p></li>
+<li><h4>Effort first, then the treat</h4>
+<p><b>Do.</b> Put the pleasant thing after the demanding thing, never before: a work block, then ten minutes of whatever you like. Bundle a pleasure you only allow yourself during a chore, such as a podcast you only play at the gym.</p>
+<p><b>Why it works.</b> A preferred activity reinforces a less preferred one that comes before it (the Premack principle; Premack, 1959), and this kind of “temptation bundling” raised gym attendance in a field experiment (Milkman, Minson &amp; Volpp, 2014). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> Contrast effects suggest the reverse order, a feed before work, makes the work feel worse. <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span></p></li>
+<li><h4>Train boredom tolerance</h4>
+<p><b>Do.</b> Spend a few minutes a day with no input: a walk without headphones, a queue without your phone. When the urge to reach for the phone arrives, name it and watch it rise and fall without acting on it, a technique called urge surfing.</p>
+<p><b>Why it works.</b> Boredom is a signal that your attention wants a better use (Westgate &amp; Wilson, 2018), and many people find doing nothing surprisingly hard: in one study, 67% of men and 25% of women gave themselves an electric shock rather than sit alone with their thoughts for fifteen minutes (Wilson et al., 2014). Mindfulness training improves sustained attention (MacLean et al., 2010; Mrazek et al., 2013), and a brief urge-surfing intervention reduced smoking (Bowen &amp; Marlatt, 2009). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></p></li>
+<li><h4>Engineer flow</h4>
+<p><b>Do.</b> Give every session one clear, finishable goal and a source of fast feedback, such as tests that run or answers you can check. Tune the difficulty so you succeed most of the time but not always. If you never fail, level up; if you fail most attempts, scale down.</p>
+<p><b>Why it works.</b> Matching challenge to skill predicts absorption and enjoyment (Keller &amp; Bless, 2008). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> A machine-learning analysis found that learning is fastest at an error rate of about 15% (Wilson et al., 2019); that figure was derived for artificial learners and is only suggestive for people. <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span></span></p></li>
+<li><h4>Make progress visible</h4>
+<p><b>Do.</b> Break a distant payoff into milestones you can reach in days rather than months, and log progress somewhere you’ll see it: a chart, a checklist, a paper calendar.</p>
+<p><b>Why it works.</b> Monitoring progress improves goal attainment, especially when progress is recorded or reported (Harkin et al., 2016). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">meta-analysis of experiments</span></span> Visible progress creates frequent positive prediction errors and pulls part of a delayed reward into the steep front of your discount curve; try the milestone switch in the discounting figure. Motivation also rises as a goal gets closer (Kivetz, Urminsky &amp; Zheng, 2006). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></p></li>
+<li><h4>Protect sleep, and rest on purpose</h4>
+<p><b>Do.</b> No feed in bed, and charge the phone outside the bedroom. Between deep-work blocks, take real breaks (a walk, a stretch, a glass of water) rather than a scroll.</p>
+<p><b>Why it works.</b> Sleep consolidates what effort builds (Diekelmann &amp; Born, 2010), and bedtime phone use is associated with worse sleep (Exelmans &amp; Van den Bulck, 2016). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">correlational for phones</span></span> Brief breaks can stop attention from sagging over long tasks (Ariga &amp; Lleras, 2011), and breaks spent on a phone appear less restorative than other kinds (Kang &amp; Kurtzberg, 2019). <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span></span></p></li>
+</ol>
+
+<h3>A four-week ramp</h3>
+<p>A suggested way to combine the steps. It hasn’t been tested as a package.</p>
+<ul class="ramp">
+<li><b>Week 1, clear the ground.</b> Add friction to your two most-used apps and move the phone out of the bedroom (steps 3 and 8).</li>
+<li><b>Week 2, pay for effort.</b> Define your effort unit, shrink the start and put treats after work blocks (steps 1, 2 and 4).</li>
+<li><b>Week 3, tune the task.</b> Adjust difficulty toward flow and add daily boredom repetitions (steps 5 and 6).</li>
+<li><b>Week 4, stretch the horizon.</b> Choose a longer project and break it into visible milestones (step 7).</li>
+</ul>
+<aside class="note">
+<p><b>When it isn’t a willpower problem.</b> If effort feels impossible most of the time, and nothing seems worth doing, including things you used to enjoy, that can be a symptom rather than a trait. Altered effort-based decision-making is documented in depression (Treadway et al., 2012), and trouble starting tasks is common in ADHD. A doctor or psychologist can help tell these apart, and both are treatable.</p>
+</aside>
+<p class="sowhat"><b>So what?</b> You can’t install a love of effort by force of will. You can train it the way the brain trains anything: make effort reliably predict reward, then let competence do the rest.</p>
+</section>
+<section id="verdict" aria-labelledby="h-6">
+<h2 id="h-6"><span class="num">6</span>The verdict</h2>
+<p class="lede">What are the best tasks for the brain in the long run? Long, sustained-attention tasks, structured so the brain can follow them: <strong>long arcs, short loops</strong>.</p>
+<p>Neither extreme is ideal. A diet made mostly of short, rapid rewards builds little that lasts, rehearses switching rather than sustaining, and quietly displaces sleep and deep work. But a task whose only reward sits at the end of a very long, very hard stretch isn’t optimal either. From where you stand, hyperbolic discounting shrinks that distant reward to almost nothing while the effort bill arrives daily, and motivation predictably collapses. The best long-run diet is dominated by sustained effort on something hard and meaningful, with the delayed payoff broken into frequent, honest feedback: milestones, visible progress, problems that resolve within a single session.</p>
+<div class="table-wrap">
+<table>
+<caption class="sr-only">Short, rapid-reward tasks compared with long tasks that have short feedback loops</caption>
+<thead><tr><th scope="col"><span class="sr-only">Dimension</span></th><th scope="col" class="col-scroll">Short, rapid-reward tasks</th><th scope="col" class="col-effort">Long tasks with short feedback loops</th></tr></thead>
+<tbody>
+<tr><th scope="row">What it rehearses</th><td>Switching, and checking on cue</td><td>Holding a goal, tolerating confusion, sustaining attention</td></tr>
+<tr><th scope="row">What it builds</th><td>Little that lasts</td><td>Chunks, skill, myelinated circuits and a lower felt price for effort</td></tr>
+<tr><th scope="row">Cost now</th><td>Almost none</td><td>High at first, falling as skill grows</td></tr>
+<tr><th scope="row">Value later</th><td>Close to zero</td><td>Back-loaded and compounding</td></tr>
+<tr><th scope="row">Best role</th><td>Dessert, or a deliberate break</td><td>The main course</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="twocol wide">
+<div>
+<h3>What the long kind concretely gives you</h3>
+<ul class="pro">
+<li><b>Structure that compounds.</b> Chunks, skill and myelin make each later hour of work cheaper and more productive. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span></span></li>
+<li><b>Better versions of the attention it uses.</b> Sustained attention and tolerance for confusion are trainable, and long tasks are the practice. <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></li>
+<li><b>A lower price for effort.</b> When effort reliably predicts reward, its felt cost falls, and the habit generalises (Clay et al., 2022). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></li>
+<li><b>Flow.</b> Absorbed, effortless-feeling concentration mostly happens at things you have become good at. <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></li>
+<li><b>The things you actually want.</b> Most goals worth having are delayed-payoff goals: a craft, a body of work, a career, a relationship.</li>
+</ul>
+</div>
+<div>
+<h3>What the short kind concretely costs, as a staple</h3>
+<ul class="con">
+<li><b>Displacement.</b> Every hour spent is an hour not spent building. It is the largest and least controversial cost. <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">arithmetic</span></span></li>
+<li><b>Sleep.</b> Late-night feeds push bedtimes back and go with worse sleep. <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span><span class="kind">mostly correlational</span></span></li>
+<li><b>Switching costs.</b> Interleaving feeds with work adds switch costs and “attention residue” (Monsell, 2003; Leroy, 2009). In a lab study, TikTok-style interruptions impaired people’s ability to remember and carry out planned actions, while Twitter and YouTube interruptions did not (Chiossi et al., 2023). <span class="ev"><span class="grade g-strong" title="Evidence: strong"><i></i><i></i><i></i><i></i><span class="lbl">Strong</span></span><span class="kind">for switch costs</span></span> <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span><span class="kind">for the TikTok finding</span></span></li>
+<li><b>Contrast.</b> Dense, engineered surprise makes slower tasks feel duller. <span class="ev"><span class="grade g-spec" title="Evidence: speculative"><i></i><i></i><i></i><i></i><span class="lbl">Speculative</span></span></span></li>
+<li><b>Habit without enjoyment.</b> Cue-driven checking continues after the pleasure fades; roughly a third of social media use reflects self-control problems (Allcott, Gentzkow &amp; Song, 2022). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span></li>
+<li><b>A worrying correlation.</b> Across 71 studies and about 98,000 people, heavier short-form video use went with poorer attention (r = −.38) and inhibitory control (r = −.41) (Nguyen et al., 2025). The data are overwhelmingly correlational and the causal direction is unknown. <span class="ev"><span class="grade g-emerging" title="Evidence: emerging"><i></i><i></i><i></i><i></i><span class="lbl">Emerging</span></span><span class="kind">correlational</span></span></li>
+</ul>
+</div>
+</div>
+
+<details class="deeper"><summary>Go deeper: reading the short-form video meta-analysis like a data scientist</summary><div>
+<p>The 2025 meta-analysis pooled 71 studies with 98,299 participants. Heavier short-form video use correlated with poorer cognition overall (r = −.34), most strongly with attention and inhibitory control, and more weakly with poorer mental health (r = −.21). Three reasons to hold the numbers loosely. First, nearly all the included studies are cross-sectional and rely on self-reported use and self-reported symptoms, which share method variance and can inflate correlations. Second, the cognitive estimates rest on a much smaller subset of studies than the headline total, and critics note that most of that subset came from China. Third, the causal direction is open: people with attention difficulties may be drawn to short content, and confounders such as lost sleep could drive both. What it does establish is a consistent association worth taking seriously, and a clear case for more randomised trials.</p>
+</div></details>
+
+<h3>When short content is fine</h3>
+<p>Short-form video isn’t poison. In large datasets, the average association between adolescents’ digital technology use and their wellbeing is tiny, about the size of the association with eating potatoes (Orben &amp; Przybylski, 2019), and effects vary from person to person, with most people showing little or no effect (Beyens et al., 2020). <span class="ev"><span class="grade g-moderate" title="Evidence: moderate"><i></i><i></i><i></i><i></i><span class="lbl">Moderate</span></span></span> Short content is fine, even good, when it is:</p>
+<ul class="fine">
+<li><b>chosen,</b> not defaulted to, because you went looking for something;</li>
+<li><b>bounded,</b> with a unit set in advance, such as ten minutes or one topic;</li>
+<li><b>after</b> effort rather than instead of it;</li>
+<li><b>social,</b> like a laugh shared with someone;</li>
+<li><b>a door rather than a room,</b> like a one-minute explainer that sends you somewhere deeper.</li>
+</ul>
+<p>A workable rule: give deep work your best hours, give short content your leftover minutes, and keep both out of the hour before sleep. And watch for one tell. When you catch yourself scrolling past things you don’t even enjoy, wanting has outlived liking. That’s the cue to stop.</p>
+<p class="sowhat"><b>So what?</b> Aim for long arcs with short loops: hard, meaningful work, broken into pieces that pay out often enough for your brain to follow. Treat the feed as dessert.</p>
+</section>
+
+<section id="myths" aria-labelledby="h-7">
+<h2 id="h-7"><span class="num">7</span>Myths, and what we don’t know yet</h2>
+<h3>Myths worth retiring</h3>
+<p>Each verdict is on the right; open a myth to see the evidence behind it.</p>
+<ul class="myths">
+<li><details><summary><span class="q">“Dopamine is the pleasure chemical.”</span><span class="verdict">Mostly false</span></summary><div><p>Dopamine mainly signals prediction errors, powers wanting and energises effort. Pleasure itself leans heavily on opioid and endocannabinoid hotspots. In humans dopamine can nudge enjoyment up or down, which is why the verdict is “mostly” rather than “entirely” false (Berridge &amp; Kringelbach, 2015; Ferreri et al., 2019).</p></div></details></li>
+<li><details><summary><span class="q">“A dopamine detox resets your dopamine.”</span><span class="verdict">False as stated</span></summary><div><p>A day without your phone doesn’t reset dopamine levels or receptors. There’s no evidence that ordinary pleasures deplete dopamine, and even in heavy drug users, transporter changes take many months of abstinence to recover, not a weekend (Volkow et al., 2001). Cameron Sepah, the psychologist who popularised “dopamine fasting”, has said the name was never meant literally: the method is stimulus control borrowed from cognitive behavioural therapy (Sepah, 2019). That part is sound. Fewer cues, more friction and less contrast genuinely change behaviour.</p></div></details></li>
+<li><details><summary><span class="q">“Our attention span is now eight seconds, shorter than a goldfish’s.”</span><span class="verdict">False</span></summary><div><p>The figure comes from a 2015 Microsoft Canada marketing report that cited a statistics website; nobody has been able to trace it to actual research (Microsoft Canada, 2015). There is no single attention span. How long you can sustain attention depends on the task, your motivation and your state (Bradbury, 2016), and people routinely watch three-hour films or play games for hours. Goldfish, for the record, can remember trained tasks for months (Brown, 2015). What has plausibly changed is behaviour: in Gloria Mark’s observational studies of people at work, the average time spent on one screen before switching fell from about two and a half minutes in 2004 to roughly 47 seconds in recent years (Mark, 2023). That is a habit shaped by an environment, not a shrunken capacity.</p></div></details></li>
+<li><details><summary><span class="q">“Willpower is a battery that runs down.”</span><span class="verdict">Largely unsupported</span></summary><div><p>The ego-depletion effect behind this idea shrank to near zero in a 23-lab preregistered replication (Hagger et al., 2016). Fatigue is real, but the better model is a running cost–benefit estimate that motivation, meaning and reward can shift (Kurzban et al., 2013).</p></div></details></li>
+<li><details><summary><span class="q">“Ten thousand hours makes anyone an expert.”</span><span class="verdict">Oversimplified</span></summary><div><p>This is a popularisation of Anders Ericsson’s research that Ericsson himself disputed. Deliberate practice matters a great deal in some domains and much less in others (Ericsson, Krampe &amp; Tesch-Römer, 1993; Macnamara, Hambrick &amp; Oswald, 2014), and there is nothing magic about the number.</p></div></details></li>
+<li><details><summary><span class="q">“Scrolling permanently rewires your brain.”</span><span class="verdict">Unsupported</span></summary><div><p>Every experience changes the brain a little; that’s what learning is. But there’s no evidence that short-form video causes lasting structural damage, and most documented effects are correlational or short-term. The mobile-internet trial suggests sustained attention can improve within two weeks of cutting back (Castelo et al., 2025), a hopeful sign that whatever changes do occur are reversible.</p></div></details></li>
+<li><details><summary><span class="q">“Brain-training games make you smarter.”</span><span class="verdict">Mostly false</span></summary><div><p>You get better at the trained games and closely related tasks. Transfer to general intelligence or everyday cognition is weak to absent (Simons et al., 2016; Melby-Lervåg, Redick &amp; Hulme, 2016).</p></div></details></li>
+</ul>
+
+<h3>What we don’t know yet</h3>
+<ul class="unknowns">
+<li><b>Causality.</b> Nearly all research linking short-form video with attention problems is cross-sectional and relies on self-reported use. People with attention difficulties may gravitate to short content rather than the reverse. Randomised trials are few, short and unblinded.</li>
+<li><b>Content versus format.</b> Studies rarely separate what people watch from how it is delivered. A feed of physics explainers and a feed of pranks may do quite different things.</li>
+<li><b>Dopamine in scrolling brains.</b> Nobody has measured dopamine release or receptor changes in ordinary users while they scroll. Claims about “dopamine tolerance” extrapolate from drug and animal research.</li>
+<li><b>How long learned industriousness lasts.</b> Lab studies show effort can become rewarding within a single session. Whether that persists for months, and how far it transfers, is open.</li>
+<li><b>Why effort hurts.</b> Is it an opportunity-cost signal, a metabolic by-product such as glutamate build-up (Wiehler et al., 2022), or both? The answer matters for how best to relieve it.</li>
+<li><b>Who is vulnerable.</b> Adolescents, people with ADHD or depression, and very heavy users may respond differently, and averages hide wide individual variation (Beyens et al., 2020).</li>
+<li><b>Dose.</b> No validated threshold says how many minutes of short-form video a day is too much.</li>
+</ul>
+<p class="sowhat"><b>So what?</b> Be suspicious of any claim simpler than the evidence. Most of what’s true here is probabilistic, modest in size and still being worked out, which is a reason to run careful experiments on yourself rather than to panic.</p>
+</section>
+
+<section id="takeaways" aria-labelledby="h-8">
+<h2 id="h-8"><span class="num">8</span>The one-page version</h2>
+<div class="card wide">
+<ul class="takeaways">
+<li><b>Dopamine teaches; it doesn’t reward.</b> It mostly signals prediction errors and drives wanting. It pays out for surprise, not pleasure.</li>
+<li><b>Effort hurts because it’s billed as a cost,</b> most likely an opportunity cost, and the bill arrives immediately while the benefits arrive later.</li>
+<li><b>Later is discounted steeply.</b> A payoff a year away can feel smaller than the next clip.</li>
+<li><b>Feeds win the moment</b> by zeroing effort and delay, paying out unpredictably, supplying novelty and removing stopping cues.</li>
+<li><b>The clearest costs of heavy short-form use</b> are lost time, lost sleep and constant switching. Effects on attention itself are plausible but mostly correlational.</li>
+<li><b>Long, hard work compounds</b> into chunks, skill, myelin, trainable attention and a lower felt price for effort.</li>
+<li><b>Effort can become rewarding</b> if you reward the effort itself, not only the results.</li>
+<li><b>Make long goals legible to a short-sighted brain</b> with milestones and visible progress.</li>
+<li><b>Enjoyment often follows competence.</b> Flow is effort’s dividend.</li>
+<li><b>Short content is dessert, not poison:</b> chosen, bounded, after effort, never in bed.</li>
+</ul>
+<p class="closing">Your brain will always feel the pull of the next surprise. You get to decide what it learns to be surprised by.</p>
+</div>
+</section>
+<section id="references" aria-labelledby="h-refs">
+<h2 id="h-refs">References</h2>
+<p class="refnote">Cited in the text by author and year, listed here by first author with title and venue so each can be looked up. Evidence grades are editorial judgements based on these sources. The three interactive figures are simplified models built for intuition, not prediction.</p>
+<ul class="refs wide">
+<li>Ainslie, G. (1975). Specious reward: A behavioral theory of impulsiveness and impulse control. <i>Psychological Bulletin</i>.</li>
+<li>Allcott, H., Gentzkow, M., &amp; Song, L. (2022). Digital addiction. <i>American Economic Review</i>.</li>
+<li>Ariga, A., &amp; Lleras, A. (2011). Brief and rare mental “breaks” keep you focused: Deactivation and reactivation of task goals preempt vigilance decrements. <i>Cognition</i>.</li>
+<li>Bengtsson, S. L., et al. (2005). Extensive piano practicing has regionally specific effects on white matter development. <i>Nature Neuroscience</i>.</li>
+<li>Berridge, K. C., &amp; Kringelbach, M. L. (2015). Pleasure systems in the brain. <i>Neuron</i>.</li>
+<li>Berridge, K. C., &amp; Robinson, T. E. (1998). What is the role of dopamine in reward: Hedonic impact, reward learning, or incentive salience? <i>Brain Research Reviews</i>.</li>
+<li>Beyens, I., et al. (2020). The effect of social media on well-being differs from adolescent to adolescent. <i>Scientific Reports</i>.</li>
+<li>Bjork, E. L., &amp; Bjork, R. A. (2011). Making things hard on yourself, but in a good way: Creating desirable difficulties to enhance learning. In <i>Psychology and the Real World</i>. Worth.</li>
+<li>Bliss, T. V. P., &amp; Lømo, T. (1973). Long-lasting potentiation of synaptic transmission in the dentate area of the anaesthetized rabbit following stimulation of the perforant path. <i>Journal of Physiology</i>.</li>
+<li>Bowen, S., &amp; Marlatt, A. (2009). Surfing the urge: Brief mindfulness-based intervention for college student smokers. <i>Psychology of Addictive Behaviors</i>.</li>
+<li>Bradbury, N. A. (2016). Attention span during lectures: 8 seconds, 10 minutes, or more? <i>Advances in Physiology Education</i>.</li>
+<li>Brown, C. (2015). Fish intelligence, sentience and ethics. <i>Animal Cognition</i>.</li>
+<li>Bunzeck, N., &amp; Düzel, E. (2006). Absolute coding of stimulus novelty in the human substantia nigra/VTA. <i>Neuron</i>.</li>
+<li>Castelo, N., et al. (2025). Blocking mobile internet on smartphones improves sustained attention, mental health, and subjective well-being. <i>PNAS Nexus</i>.</li>
+<li>Cepeda, N. J., et al. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <i>Psychological Bulletin</i>.</li>
+<li>Chase, W. G., &amp; Simon, H. A. (1973). Perception in chess. <i>Cognitive Psychology</i>.</li>
+<li>Chiossi, F., et al. (2023). Short-form videos degrade our capacity to retain intentions: Effect of context switching on prospective memory. <i>Proceedings of CHI 2023</i>.</li>
+<li>Clay, G., et al. (2022). Rewarding cognitive effort increases the intrinsic value of mental labor. <i>PNAS</i>.</li>
+<li>Crespi, L. P. (1942). Quantitative variation of incentive and performance in the white rat. <i>American Journal of Psychology</i>.</li>
+<li>Croxson, P. L., et al. (2009). Effort-based cost–benefit valuation and the human brain. <i>Journal of Neuroscience</i>.</li>
+<li>Csikszentmihalyi, M. (1990). <i>Flow: The Psychology of Optimal Experience</i>. Harper &amp; Row.</li>
+<li>Csikszentmihalyi, M., &amp; LeFevre, J. (1989). Optimal experience in work and leisure. <i>Journal of Personality and Social Psychology</i>.</li>
+<li>Daniel, T. O., Stanton, C. M., &amp; Epstein, L. H. (2013). The future is now: Reducing impulsivity and energy intake using episodic future thinking. <i>Psychological Science</i>.</li>
+<li>David, L., Vassena, E., &amp; Bijleveld, E. (2024). The unpleasantness of thinking: A meta-analytic review of the association between mental effort and negative affect. <i>Psychological Bulletin</i>.</li>
+<li>Diekelmann, S., &amp; Born, J. (2010). The memory function of sleep. <i>Nature Reviews Neuroscience</i>.</li>
+<li>Dietrich, A. (2004). Neurocognitive mechanisms underlying the experience of flow. <i>Consciousness and Cognition</i>.</li>
+<li>Draganski, B., et al. (2004). Neuroplasticity: Changes in grey matter induced by training. <i>Nature</i>.</li>
+<li>Dunlosky, J., et al. (2013). Improving students’ learning with effective learning techniques. <i>Psychological Science in the Public Interest</i>.</li>
+<li>Eisenberger, R. (1992). Learned industriousness. <i>Psychological Review</i>.</li>
+<li>Ericsson, K. A., &amp; Kintsch, W. (1995). Long-term working memory. <i>Psychological Review</i>.</li>
+<li>Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <i>Psychological Review</i>.</li>
+<li>Esterman, M., et al. (2013). In the zone or zoning out? Tracking behavioral and neural fluctuations during sustained attention. <i>Cerebral Cortex</i>.</li>
+<li>Exelmans, L., &amp; Van den Bulck, J. (2016). Bedtime mobile phone use and sleep in adults. <i>Social Science &amp; Medicine</i>.</li>
+<li>Ferreri, L., et al. (2019). Dopamine modulates the reward experiences elicited by music. <i>PNAS</i>.</li>
+<li>Ferster, C. B., &amp; Skinner, B. F. (1957). <i>Schedules of Reinforcement</i>. Appleton-Century-Crofts.</li>
+<li>Fiorillo, C. D., Tobler, P. N., &amp; Schultz, W. (2003). Discrete coding of reward probability and uncertainty by dopamine neurons. <i>Science</i>.</li>
+<li>Geier, A. B., Rozin, P., &amp; Doros, G. (2006). Unit bias: A new heuristic that helps explain the effect of portion size on food intake. <i>Psychological Science</i>.</li>
+<li>Gollwitzer, P. M., &amp; Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. <i>Advances in Experimental Social Psychology</i>.</li>
+<li>Grund, A., Roelle, J., &amp; Schmid, S. (2026). Is thinking inherently unpleasant? A cautionary note on David, Vassena, and Bijleveld (2024). <i>Psychological Bulletin</i>.</li>
+<li>Grüning, D. J., Riedel, F., &amp; Lorenz-Spreen, P. (2023). Directing smartphone use through the self-nudge app one sec. <i>PNAS</i>.</li>
+<li>Hagger, M. S., et al. (2016). A multilab preregistered replication of the ego-depletion effect. <i>Perspectives on Psychological Science</i>.</li>
+<li>Hamid, A. A., et al. (2016). Mesolimbic dopamine signals the value of work. <i>Nature Neuroscience</i>.</li>
+<li>Harkin, B., et al. (2016). Does monitoring goal progress promote goal attainment? A meta-analysis of the experimental evidence. <i>Psychological Bulletin</i>.</li>
+<li>Inglis, I. R., Forkman, B., &amp; Lazarus, J. (1997). Free food or earned food? A review and fuzzy model of contrafreeloading. <i>Animal Behaviour</i>.</li>
+<li>Inzlicht, M., Shenhav, A., &amp; Olivola, C. Y. (2018). The effort paradox: Effort is both costly and valued. <i>Trends in Cognitive Sciences</i>.</li>
+<li>Jensen, G. D. (1963). Preference for bar pressing over “freeloading” as a function of number of rewarded presses. <i>Journal of Experimental Psychology</i>.</li>
+<li>Kang, S., &amp; Kurtzberg, T. R. (2019). Reach for your cell phone at your own risk: The cognitive costs of media choice for breaks. <i>Journal of Behavioral Addictions</i>.</li>
+<li>Keller, J., &amp; Bless, H. (2008). Flow and regulatory compatibility: An experimental approach to the flow model of intrinsic motivation. <i>Personality and Social Psychology Bulletin</i>.</li>
+<li>Kivetz, R., Urminsky, O., &amp; Zheng, Y. (2006). The goal-gradient hypothesis resurrected: Purchase acceleration, illusionary goal progress, and customer retention. <i>Journal of Marketing Research</i>.</li>
+<li>Kool, W., et al. (2010). Decision making and the avoidance of cognitive demand. <i>Journal of Experimental Psychology: General</i>.</li>
+<li>Kornell, N., &amp; Bjork, R. A. (2008). Learning concepts and categories: Is spacing the “enemy of induction”? <i>Psychological Science</i>.</li>
+<li>Kurzban, R., et al. (2013). An opportunity cost model of subjective effort and task performance. <i>Behavioral and Brain Sciences</i>.</li>
+<li>Leroy, S. (2009). Why is it so hard to do my work? The challenge of attention residue when switching between work tasks. <i>Organizational Behavior and Human Decision Processes</i>.</li>
+<li>MacKillop, J., et al. (2011). Delayed reward discounting and addictive behavior: A meta-analysis. <i>Psychopharmacology</i>.</li>
+<li>MacLean, K. A., et al. (2010). Intensive meditation training improves perceptual discrimination and sustained attention. <i>Psychological Science</i>.</li>
+<li>Macnamara, B. N., Hambrick, D. Z., &amp; Oswald, F. L. (2014). Deliberate practice and performance in music, games, sports, education, and professions: A meta-analysis. <i>Psychological Science</i>.</li>
+<li>Mallik, A., Chanda, M. L., &amp; Levitin, D. J. (2017). Anhedonia to music and mu-opioids: Evidence from the administration of naltrexone. <i>Scientific Reports</i>.</li>
+<li>Mark, G. (2023). <i>Attention Span: A Groundbreaking Way to Restore Balance, Happiness and Productivity</i>. Hanover Square Press.</li>
+<li>Mazur, J. E. (1987). An adjusting procedure for studying delayed reinforcement. In <i>Quantitative Analyses of Behavior, Vol. 5</i>. Erlbaum.</li>
+<li>McKenzie, I. A., et al. (2014). Motor skill learning requires active central myelination. <i>Science</i>.</li>
+<li>Melby-Lervåg, M., Redick, T. S., &amp; Hulme, C. (2016). Working memory training does not improve performance on measures of intelligence or other measures of “far transfer”: Evidence from a meta-analytic review. <i>Perspectives on Psychological Science</i>.</li>
+<li>Microsoft Canada. (2015). <i>Attention spans</i>. Consumer Insights report.</li>
+<li>Milkman, K. L., Minson, J. A., &amp; Volpp, K. G. M. (2014). Holding the Hunger Games hostage at the gym: An evaluation of temptation bundling. <i>Management Science</i>.</li>
+<li>Mohebi, A., et al. (2019). Dissociable dopamine dynamics for learning and motivation. <i>Nature</i>.</li>
+<li>Monsell, S. (2003). Task switching. <i>Trends in Cognitive Sciences</i>.</li>
+<li>Montague, P. R., Dayan, P., &amp; Sejnowski, T. J. (1996). A framework for mesencephalic dopamine systems based on predictive Hebbian learning. <i>Journal of Neuroscience</i>.</li>
+<li>Mrazek, M. D., et al. (2013). Mindfulness training improves working memory capacity and GRE performance while reducing mind wandering. <i>Psychological Science</i>.</li>
+<li>Newell, A., &amp; Rosenbloom, P. S. (1981). Mechanisms of skill acquisition and the law of practice. In <i>Cognitive Skills and Their Acquisition</i>. Erlbaum.</li>
+<li>Nguyen, L., et al. (2025). Feeds, feelings, and focus: A systematic review and meta-analysis examining the cognitive and mental health correlates of short-form video use. <i>Psychological Bulletin</i>.</li>
+<li>Niv, Y., et al. (2007). Tonic dopamine: Opportunity costs and the control of response vigor. <i>Psychopharmacology</i>.</li>
+<li>Norton, M. I., Mochon, D., &amp; Ariely, D. (2012). The IKEA effect: When labor leads to love. <i>Journal of Consumer Psychology</i>.</li>
+<li>Orben, A., &amp; Przybylski, A. K. (2019). The association between adolescent well-being and digital technology use. <i>Nature Human Behaviour</i>.</li>
+<li>Pan, S. C., &amp; Rickard, T. C. (2015). Sleep and motor learning: Is there room for consolidation? <i>Psychological Bulletin</i>.</li>
+<li>Parvizi, J., et al. (2013). The will to persevere induced by electrical stimulation of the human cingulate gyrus. <i>Neuron</i>.</li>
+<li>Peciña, S., et al. (2003). Hyperdopaminergic mutant mice have higher “wanting” but not “liking” for sweet rewards. <i>Journal of Neuroscience</i>.</li>
+<li>Peters, J., &amp; Büchel, C. (2010). Episodic future thinking reduces reward delay discounting through an enhancement of prefrontal-mediotemporal interactions. <i>Neuron</i>.</li>
+<li>Posner, M. I., &amp; Petersen, S. E. (1990). The attention system of the human brain. <i>Annual Review of Neuroscience</i>.</li>
+<li>Premack, D. (1959). Toward empirical behavior laws: I. Positive reinforcement. <i>Psychological Review</i>.</li>
+<li>Raichle, M. E., &amp; Gusnard, D. A. (2002). Appraising the brain’s energy budget. <i>PNAS</i>.</li>
+<li>Rescorla, R. A., &amp; Wagner, A. R. (1972). A theory of Pavlovian conditioning: Variations in the effectiveness of reinforcement and nonreinforcement. In <i>Classical Conditioning II</i>. Appleton-Century-Crofts.</li>
+<li>Robinson, T. E., &amp; Berridge, K. C. (1993). The neural basis of drug craving: An incentive-sensitization theory of addiction. <i>Brain Research Reviews</i>.</li>
+<li>Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <i>Psychological Science</i>.</li>
+<li>Ruiz Pardo, A. C., &amp; Minda, J. P. (2022). Reexamining the “brain drain” effect: A replication of Ward et al. (2017). <i>Acta Psychologica</i>.</li>
+<li>Rung, J. M., &amp; Madden, G. J. (2018). Experimental reductions of delay discounting and impulsive choice: A systematic review and meta-analysis. <i>Journal of Experimental Psychology: General</i>.</li>
+<li>Salamone, J. D., &amp; Correa, M. (2012). The mysterious motivational functions of mesolimbic dopamine. <i>Neuron</i>.</li>
+<li>Scholz, J., et al. (2009). Training induces changes in white-matter architecture. <i>Nature Neuroscience</i>.</li>
+<li>Schultz, W., Dayan, P., &amp; Montague, P. R. (1997). A neural substrate of prediction and reward. <i>Science</i>.</li>
+<li>Sepah, C. (2019). <i>The definitive guide to dopamine fasting 2.0</i>. Online essay.</li>
+<li>Shenhav, A., et al. (2017). Toward a rational and mechanistic account of mental effort. <i>Annual Review of Neuroscience</i>.</li>
+<li>Simons, D. J., et al. (2016). Do “brain-training” programs work? <i>Psychological Science in the Public Interest</i>.</li>
+<li>Slamecka, N. J., &amp; Graf, P. (1978). The generation effect: Delineation of a phenomenon. <i>Journal of Experimental Psychology: Human Learning and Memory</i>.</li>
+<li>Stanovich, K. E. (1986). Matthew effects in reading: Some consequences of individual differences in the acquisition of literacy. <i>Reading Research Quarterly</i>.</li>
+<li>Steinberg, E. E., et al. (2013). A causal link between prediction errors, dopamine neurons and learning. <i>Nature Neuroscience</i>.</li>
+<li>Su, C., et al. (2021). Viewing personalized video clips recommended by TikTok activates default mode network and ventral tegmental area. <i>NeuroImage</i>.</li>
+<li>Sutton, R. S., &amp; Barto, A. G. (2018). <i>Reinforcement Learning: An Introduction</i> (2nd ed.). MIT Press.</li>
+<li>Tononi, G., &amp; Cirelli, C. (2014). Sleep and the price of plasticity: From synaptic and cellular homeostasis to memory consolidation and integration. <i>Neuron</i>.</li>
+<li>Touroutoglou, A., et al. (2020). The tenacious brain: How the anterior mid-cingulate contributes to achieving goals. <i>Cortex</i>.</li>
+<li>Treadway, M. T., et al. (2012). Effort-based decision-making in major depressive disorder: A translational model of motivational anhedonia. <i>Journal of Abnormal Psychology</i>.</li>
+<li>Ulrich, M., et al. (2014). Neural correlates of experimentally induced flow experiences. <i>NeuroImage</i>.</li>
+<li>Volkow, N. D., et al. (2001). Loss of dopamine transporters in methamphetamine abusers recovers with protracted abstinence. <i>Journal of Neuroscience</i>.</li>
+<li>Wagner, U., et al. (2004). Sleep inspires insight. <i>Nature</i>.</li>
+<li>Walton, M. E., et al. (2003). Functional specialization within medial frontal cortex of the anterior cingulate for evaluating effort-related decisions. <i>Journal of Neuroscience</i>.</li>
+<li>Ward, A. F., et al. (2017). Brain drain: The mere presence of one’s own smartphone reduces available cognitive capacity. <i>Journal of the Association for Consumer Research</i>.</li>
+<li>Westbrook, A., Kester, D., &amp; Braver, T. S. (2013). What is the subjective cost of cognitive effort? Load, trait, and aging effects revealed by economic preference. <i>PLoS ONE</i>.</li>
+<li>Westbrook, A., et al. (2020). Dopamine promotes cognitive effort by biasing the benefits versus costs of cognitive work. <i>Science</i>.</li>
+<li>Westgate, E. C., &amp; Wilson, T. D. (2018). Boring thoughts and bored minds: The MAC model of boredom and cognitive engagement. <i>Psychological Review</i>.</li>
+<li>Wiehler, A., et al. (2022). A neuro-metabolic account of why daylong cognitive work alters the control of economic decisions. <i>Current Biology</i>.</li>
+<li>Wilmer, H. H., &amp; Chein, J. M. (2016). Mobile technology habits: Patterns of association among device usage, intertemporal preference, impulse control, and reward sensitivity. <i>Psychonomic Bulletin &amp; Review</i>.</li>
+<li>Wilson, R. C., et al. (2019). The eighty five percent rule for optimal learning. <i>Nature Communications</i>.</li>
+<li>Wilson, T. D., et al. (2014). Just think: The challenges of the disengaged mind. <i>Science</i>.</li>
+<li>Woollett, K., &amp; Maguire, E. A. (2011). Acquiring “the Knowledge” of London’s layout drives structural brain changes. <i>Current Biology</i>.</li>
+</ul>
+</section>
+<footer class="colophon"><p>Written in September 2026. Research moves; where a claim here is graded emerging or speculative, expect it to change. Nothing on this page is medical advice.</p></footer>
+</main>
+</div>
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function S(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(parent, x, y, s, cls, anchor) {
+    var t = S('text', { x: x.toFixed(1), y: y.toFixed(1), 'class': cls || '', 'text-anchor': anchor || 'start' }, parent);
+    t.textContent = s;
+    return t;
+  }
+  function lin(d0, d1, r0, r1) { var m = (r1 - r0) / (d1 - d0); return function (v) { return r0 + (v - d0) * m; }; }
+  function mulberry(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function path(pts) {
+    var d = '';
+    for (var i = 0; i < pts.length; i++) d += (i ? 'L' : 'M') + pts[i][0].toFixed(1) + ' ' + pts[i][1].toFixed(1);
+    return d;
+  }
+  function widthOf(el) { return Math.max(300, Math.round(el.getBoundingClientRect().width || el.clientWidth || 640)); }
+  function newSvg(container, w, h, label) {
+    container.textContent = '';
+    return S('svg', { viewBox: '0 0 ' + w + ' ' + h, width: w, height: h, 'class': 'chart', role: 'img', 'aria-label': label }, container);
+  }
+  function watch(el, cb) {
+    var last = widthOf(el);
+    function run() { var w = widthOf(el); if (Math.abs(w - last) > 2) { last = w; cb(); } }
+    if ('ResizeObserver' in window) new ResizeObserver(run).observe(el);
+    else window.addEventListener('resize', run);
+  }
+  function badge(g, kind) {
+    var m = { S: ['g-strong', 'Strong'], M: ['g-moderate', 'Moderate'], E: ['g-emerging', 'Emerging'], X: ['g-spec', 'Speculative'] }[g];
+    return '<span class="ev"><span class="grade ' + m[0] + '" title="Evidence: ' + m[1].toLowerCase() + '"><i></i><i></i><i></i><i></i><span class="lbl">' + m[1] + '</span></span>' +
+      (kind ? '<span class="kind">' + kind + '</span>' : '') + '</span>';
+  }
+  function tile(k, v, s) {
+    return '<div class="readout"><span class="k">' + k + '</span><span class="v">' + v + '</span>' + (s ? '<span class="s">' + s + '</span>' : '') + '</div>';
+  }
+  function signed(v) { return (v > 0.005 ? '+' : v < -0.005 ? '−' : '') + Math.abs(v).toFixed(2); }
+
+  /* ---------- reading progress + contents highlighting ---------- */
+  var bar = document.getElementById('progress'), ticking = false;
+  function progress() {
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || h.scrollTop) / max)) : 0;
+    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(progress); } }, { passive: true });
+  progress();
+
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var byId = {};
+  tocLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        tocLinks.forEach(function (a) { a.removeAttribute('aria-current'); });
+        var a = byId[e.target.id];
+        if (a) a.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+  }
+  document.querySelectorAll('.toc-mobile a').forEach(function (a) {
+    a.addEventListener('click', function () { var d = a.closest('details'); if (d) d.open = false; });
+  });
+
+  /* ---------- hero: two traces, drawn once ---------- */
+  var hero = document.getElementById('hero-trace');
+  function drawHero(animate) {
+    if (!hero) return;
+    var W = widthOf(hero), H = W < 640 ? 118 : 176, base = Math.round(H * 0.6);
+    hero.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    hero.setAttribute('height', H);
+    hero.textContent = '';
+    var r = mulberry(11), scale = Math.max(0.6, Math.min(1, W / 1100));
+    S('line', { x1: 0, x2: W, y1: base, y2: base, 'class': 'base' }, hero);
+    var pts = [[0, base]], x = 4;
+    while (true) {
+      x += (15 + r() * 40) * scale;
+      if (x > W - 10) break;
+      var decay = Math.exp(-(x / W) * 2.8);
+      var h = ((base - 8) * 0.95 * decay + 7) * (0.42 + 0.58 * r());
+      pts.push([x - 3.2 * scale, base], [x, base - h], [x + 3.2 * scale, base + Math.min(12, h * 0.2)], [x + 6.4 * scale, base]);
+    }
+    pts.push([W, base]);
+    var e = [], k = 8.5, c = 0.56;
+    var s0 = 1 / (1 + Math.exp(c * k)), s1 = 1 / (1 + Math.exp(-(1 - c) * k));
+    var bumps = [0.34, 0.48, 0.61, 0.72, 0.81, 0.89, 0.96];
+    var low = base + Math.round(H * 0.16), high = Math.round(H * 0.1);
+    for (var i = 0; i <= 320; i++) {
+      var t = i / 320;
+      var s = (1 / (1 + Math.exp(-(t - c) * k)) - s0) / (s1 - s0);
+      var y = low - s * (low - high);
+      for (var b = 0; b < bumps.length; b++) y -= H * 0.035 * (0.35 + t) * Math.exp(-Math.pow((t - bumps[b]) / 0.011, 2));
+      e.push([t * W, y]);
+    }
+    var p1 = S('path', { d: path(pts), 'class': 't-scroll draw' }, hero);
+    var p2 = S('path', { d: path(e), 'class': 't-effort draw' }, hero);
+    if (animate && !reduceMotion && p1.getTotalLength) {
+      [p1, p2].forEach(function (p) { p.style.setProperty('--len', Math.ceil(p.getTotalLength() + 2) + 'px'); });
+      hero.classList.remove('anim');
+      requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('anim'); }); });
+    } else {
+      hero.classList.remove('anim');
+    }
+  }
+  drawHero(true);
+  if (hero) watch(hero, function () { drawHero(false); });
+
+  /* ---------- figure: delay discounting ---------- */
+  (function () {
+    var root = document.getElementById('discount');
+    if (!root) return;
+    var elD = root.querySelector('#dd-delay'), elK = root.querySelector('#dd-k'), elT = root.querySelector('#dd-train'), elM = root.querySelector('#dd-mile');
+    var outD = root.querySelector('#dd-delay-out'), outK = root.querySelector('#dd-k-out'), outT = root.querySelector('#dd-train-out');
+    var chart = root.querySelector('#dd-chart'), ro = root.querySelector('#dd-readouts'), mileKey = root.querySelector('.dd-mile-key');
+    var A = 100, CLIP = 10, XMAX = 1095;
+    function toDays(v) { return Math.round(XMAX * Math.pow(v / 100, 2)); }
+    function toK(v) { return Math.pow(10, -3 + 2 * v / 100); }
+    function hyper(k, D) { return A / (1 + k * D); }
+    var MONTH = 30.44;
+    function nMiles(D) { return Math.max(1, Math.ceil(D / MONTH - 1e-9)); }
+    function miles(k, D) {
+      if (D <= 0) return A;
+      var s = 0, prev = 0;
+      for (var t = MONTH; prev < D; t += MONTH) {
+        var end = Math.min(t, D);
+        s += A * ((end - prev) / D) / (1 + k * end);
+        prev = end;
+      }
+      return s;
+    }
+    function fmtDelay(d) {
+      d = Math.round(d);
+      if (d <= 0) return 'Now';
+      if (d < 45) return d + (d === 1 ? ' day' : ' days');
+      var mo = Math.round(d / 30.44);
+      if (mo % 12 === 0) return (mo / 12) + (mo === 12 ? ' year' : ' years');
+      return mo + ' months';
+    }
+    function fmtBreak(d) { return d > XMAX ? 'more than 3 years' : fmtDelay(d); }
+    function kWord(k) { return k < 0.004 ? 'very patient' : k < 0.012 ? 'patient' : k < 0.03 ? 'middling' : k < 0.06 ? 'impatient' : 'very impatient'; }
+
+    function draw() {
+      var D = toDays(+elD.value), k = toK(+elK.value), tr = +elT.value / 100, k2 = k * (1 - tr), mile = elM.checked;
+      outD.textContent = fmtDelay(D);
+      outK.textContent = k.toFixed(3);
+      outT.textContent = Math.round(tr * 100) + '%';
+      mileKey.hidden = !mile;
+
+      var W = widthOf(chart), H = W < 560 ? 270 : 320, m = { l: 40, r: 14, t: 30, b: 38 };
+      var svg = newSvg(chart, W, H, 'Hyperbolic discount curves showing the felt value today of 100 points as the delay grows from now to three years, compared with a 10-point clip available now.');
+      var x = lin(0, XMAX, m.l, W - m.r), y = lin(0, 100, H - m.b, m.t);
+      [0, 25, 50, 75, 100].forEach(function (v) {
+        S('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), 'class': v === 0 ? 'zero' : 'grid' }, svg);
+        txt(svg, m.l - 7, y(v) + 4, String(v), 'ax', 'end');
+      });
+      var ticks = W < 560 ? [[0, 'Now'], [365, '1 yr'], [730, '2 yr'], [1095, '3 yr']]
+        : [[0, 'Now'], [183, '6 mo'], [365, '1 yr'], [548, '18 mo'], [730, '2 yr'], [913, '30 mo'], [1095, '3 yr']];
+      ticks.forEach(function (tk) { txt(svg, x(tk[0]), H - m.b + 19, tk[1], 'ax', tk[0] === 0 ? 'start' : tk[0] === XMAX ? 'end' : 'middle'); });
+      txt(svg, m.l, m.t - 14, 'Felt value today, out of 100', 'ax', 'start');
+
+      function curve(f, cls) {
+        var pts = [];
+        for (var d = 0; d <= XMAX; d += 5) pts.push([x(d), y(f(d))]);
+        S('path', { d: path(pts), 'class': cls }, svg);
+      }
+      if (mile) curve(function (d) { return miles(k, d); }, 'l-model-dot');
+      curve(function (d) { return hyper(k2, d); }, 'l-effort-dash');
+      curve(function (d) { return hyper(k, d); }, 'l-model');
+      S('line', { x1: m.l, x2: W - m.r, y1: y(CLIP), y2: y(CLIP), 'class': 'l-scroll-dash' }, svg);
+      txt(svg, m.l - 7, y(CLIP) + 4, '10', 'lbl lbl-scroll', 'end');
+
+      var b1 = (A / CLIP - 1) / k, b2 = (A / CLIP - 1) / k2;
+      if (b1 <= XMAX) S('circle', { cx: x(b1), cy: y(CLIP), r: 4.5, 'class': 'd-model' }, svg);
+      if (b2 <= XMAX) S('circle', { cx: x(b2), cy: y(CLIP), r: 4.5, 'class': 'd-effort' }, svg);
+
+      var v1 = hyper(k, D), v2 = hyper(k2, D), v3 = miles(k, D);
+      S('line', { x1: x(D), x2: x(D), y1: y(0), y2: y(100), 'class': 'marker' }, svg);
+      if (mile) S('circle', { cx: x(D), cy: y(v3), r: 5, 'class': 'd-model', 'fill-opacity': 0.45 }, svg);
+      S('circle', { cx: x(D), cy: y(v2), r: 5, 'class': 'd-effort' }, svg);
+      S('circle', { cx: x(D), cy: y(v1), r: 5, 'class': 'd-model' }, svg);
+      var right = x(D) > W * 0.72;
+      txt(svg, x(D) + (right ? -8 : 8), y(100) + 4, fmtDelay(D), 'lbl lbl-muted halo', right ? 'end' : 'start');
+
+      ro.innerHTML =
+        tile('Felt value today, your curve', Math.round(v1), 'k = ' + k.toFixed(3) + ', ' + kWord(k)) +
+        tile('After training', Math.round(v2), 'k = ' + k2.toFixed(3)) +
+        tile('With monthly milestones', mile ? Math.round(v3) : 'Off', mile ? nMiles(D) + (nMiles(D) === 1 ? ' instalment' : ' instalments') + ' of the same 100' : 'Switch on to compare') +
+        tile('Still beats the clip up to', fmtBreak(b1), 'After training: ' + fmtBreak(b2));
+    }
+    [elD, elK, elT].forEach(function (el) { el.addEventListener('input', draw); });
+    elM.addEventListener('change', draw);
+    draw();
+    watch(chart, draw);
+  })();
+
+  /* ---------- figure: reward-schedule simulator ---------- */
+  (function () {
+    var root = document.getElementById('sim');
+    if (!root) return;
+    var chart = root.querySelector('#sim-chart'), legend = root.querySelector('#sim-legend'), ro = root.querySelector('#sim-readouts'), cap = root.querySelector('#sim-caption');
+    var btns = root.querySelectorAll('.seg button'), optGroups = root.querySelectorAll('.opts');
+    var esc = root.querySelector('#sim-escalate'), track = root.querySelector('#sim-track'), eff = root.querySelector('#sim-effort');
+    var playBtn = root.querySelector('#sim-play'), newBtn = root.querySelector('#sim-new');
+    var mode = 'scroll', seed = 42, data = null, raf = 0, shown = 90, N = 90;
+
+    function simulate(mode, opt, seed) {
+      var r = mulberry(seed), out = [], d, i;
+      if (mode === 'scroll') {
+        var C = 60, p = 0.22, alpha = 0.04, V = 0.15, Wn = 0.35;
+        for (d = 0; d < N; d++) {
+          var hab = 1 / (1 + d / 18);
+          var nov = opt.escalate ? 1 + 0.9 * (1 - Math.exp(-d / 30)) : 1;
+          var peak = -9, dipS = 0, dipN = 0, like = 0;
+          for (var c = 0; c < C; c++) {
+            var hit = r() < p;
+            var xv = hit ? 0.9 + 0.6 * r() : 0.08 + 0.14 * r();
+            var imp = xv * hab * nov * (1 - 0.35 * c / C);
+            var dl = imp - V;
+            V += alpha * dl;
+            if (dl > peak) peak = dl;
+            if (dl < 0) { dipS += dl; dipN++; }
+            like += imp;
+          }
+          Wn += 0.07 * ((opt.escalate ? 1.1 : 0.95) - Wn);
+          out.push({ up: Math.max(0, peak), down: dipN ? dipS / dipN : 0, V: V, felt: like / C, urge: Wn, left: 0 });
+        }
+      } else {
+        var s = 0.04, Vp = 0.35, a2 = 0.2, next = 10 + Math.floor(r() * 6);
+        for (d = 0; d < N; d++) {
+          var ds = 0.024 * (1 - s) * (0.8 + 0.4 * r());
+          s += ds;
+          var cost = 0.62 * (1 - 0.65 * s);
+          if (opt.effort) cost *= 1 - 0.45 * (1 - Math.exp(-d / 20));
+          var intr = 0.85 * Math.pow(s, 1.6);
+          var mile = 0;
+          if (d === next) { mile = 0.55 + 0.7 * s; next += 9 + Math.floor(r() * 8); }
+          var micro = opt.track ? 0.04 + 4.2 * ds : 0;
+          var rew = intr + mile + micro + 0.03 * r();
+          var dlp = rew - Vp;
+          Vp += a2 * dlp;
+          out.push({ up: Math.max(0, dlp), down: Math.min(0, dlp), V: Vp, felt: rew - cost, left: s, mile: mile > 0 });
+        }
+      }
+      for (i = 0; i < out.length; i++) {
+        var sum = 0, n = 0;
+        for (var j = Math.max(0, i - 6); j <= i; j++) { sum += out[j].felt; n++; }
+        out[i].feltS = sum / n;
+      }
+      return out;
+    }
+
+    function avg(a, b, key) { var s = 0; for (var i = a; i < b; i++) s += data[i][key]; return s / (b - a); }
+
+    function render(upto) {
+      var W = widthOf(chart), H = W < 560 ? 290 : 340, m = { l: 40, r: 12, t: 26, b: 36 };
+      var label = mode === 'scroll'
+        ? 'Simulated ninety days of scrolling: daily surprise spikes shrink, liking falls, and the urge to open the app stays high.'
+        : 'Simulated ninety days on a hard project: early disappointment, then rising felt reward, milestone surprises and accumulating skill.';
+      var svg = newSvg(chart, W, H, label);
+      var x = lin(0, N - 1, m.l + 5, W - m.r - 5), y = lin(-0.7, 1.3, H - m.b, m.t);
+      [-0.5, 0.5, 1].forEach(function (v) {
+        S('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), 'class': 'grid' }, svg);
+        txt(svg, m.l - 7, y(v) + 4, v.toFixed(1), 'ax', 'end');
+      });
+      S('line', { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), 'class': 'zero' }, svg);
+      txt(svg, m.l - 7, y(0) + 4, '0', 'ax', 'end');
+      [[0, 'Day 1'], [30, 'Day 31'], [60, 'Day 61'], [89, 'Day 90']].forEach(function (tk) {
+        txt(svg, x(tk[0]), H - m.b + 19, tk[1], 'ax', tk[0] === 0 ? 'start' : tk[0] === 89 ? 'end' : 'middle');
+      });
+      txt(svg, m.l, m.t - 12, 'Signal, arbitrary units', 'ax', 'start');
+
+      var n = Math.min(upto, data.length), i, pts;
+      var sw = Math.max(1.2, Math.min(3.2, (W - m.l - m.r) / N * 0.42));
+      if (mode === 'project' && n > 1) {
+        pts = [];
+        for (i = 0; i < n; i++) pts.push([x(i), y(data[i].left)]);
+        S('path', { d: path(pts) + 'L' + x(n - 1).toFixed(1) + ' ' + y(0).toFixed(1) + 'L' + x(0).toFixed(1) + ' ' + y(0).toFixed(1) + 'Z', 'class': 'a-effort' }, svg);
+      }
+      var posCls = mode === 'scroll' ? 'stem-scroll' : 'stem-effort';
+      for (i = 0; i < n; i++) {
+        var dd = data[i];
+        if (dd.up > 0.004) S('line', { x1: x(i), x2: x(i), y1: y(0), y2: y(dd.up), 'class': posCls, 'stroke-width': sw }, svg);
+        if (dd.down < -0.004) S('line', { x1: x(i), x2: x(i), y1: y(0), y2: y(dd.down), 'class': 'stem-neg', 'stroke-width': sw }, svg);
+      }
+      function line(key, cls) {
+        if (n < 2) return;
+        var p = [];
+        for (var j = 0; j < n; j++) p.push([x(j), y(data[j][key])]);
+        S('path', { d: path(p), 'class': cls }, svg);
+      }
+      line('V', 'l-model');
+      line('feltS', mode === 'scroll' ? 'l-scroll' : 'l-effort');
+      if (mode === 'scroll') line('urge', 'l-scroll-dash');
+
+      if (n === data.length) {
+        if (mode === 'scroll') {
+          var narrow = W < 640, dx = narrow ? 80 : 62, top = data[dx].urge, bot = data[dx].feltS;
+          S('line', { x1: x(dx), x2: x(dx), y1: y(top) + 5, y2: y(bot) - 5, 'class': 'marker' }, svg);
+          if (narrow) txt(svg, W - m.r - 2, y(top) - 10, 'Wanting outlasts liking', 'lbl lbl-scroll halo', 'end');
+          else txt(svg, x(dx) + 7, (y(top) + y(bot)) / 2 + 4, 'Wanting outlasts liking', 'lbl lbl-scroll halo', 'start');
+        } else {
+          var cross = -1;
+          for (i = 0; i < data.length; i++) { if (data[i].feltS > 0) { cross = i; break; } }
+          if (cross > 0) {
+            S('line', { x1: x(cross), x2: x(cross), y1: y(-0.62), y2: y(1.22), 'class': 'marker' }, svg);
+            var rightSide = x(cross) < W * 0.62;
+            txt(svg, x(cross) + (rightSide ? 7 : -7), y(1.12), 'Net-positive from day ' + (cross + 1), 'lbl lbl-effort halo', rightSide ? 'start' : 'end');
+          }
+        }
+      }
+    }
+
+    function legendFor() {
+      var items = mode === 'scroll'
+        ? [['stem c-scroll', 'Biggest surprise of the day'], ['stem c-neg', 'Typical disappointment'], ['c-model', 'Expectation'], ['c-scroll', 'Liking: how good it feels'], ['dash c-scroll', 'Urge to open the app (wanting)']]
+        : [['stem c-effort', 'Positive surprise'], ['stem c-neg', 'Disappointment'], ['c-model', 'Expectation'], ['c-effort', 'Felt reward minus effort, 7-day average'], ['area c-effort', 'Skill: what is left behind']];
+      legend.innerHTML = items.map(function (it) { return '<li><span class="sw ' + it[0] + '"></span>' + it[1] + '</li>'; }).join('');
+    }
+
+    function caption() {
+      cap.innerHTML = mode === 'scroll'
+        ? '<p>Early standout clips produce big surprise spikes. The hits habituate, so the spikes shrink and the liking line sags, yet because hits stay unpredictable the spikes never vanish and the urge line holds its height. That gap between wanting and liking is the signature of a habit that has outlived its pleasure. Turn on escalation to watch the feed buy back some surprise with ever more novelty.</p><p>Prediction errors and habituation ' + badge('S') + ' Wanting outlasting liking, for feeds ' + badge('X') + '</p>'
+        : '<p>The first weeks run at a loss: effort costs more than the work pays, and results fall short of hopeful early expectations, producing negative surprises. As skill accumulates the same work gets cheaper, milestones start landing and competence itself begins to pay. The two switches are levers from section 5: visible progress adds reward early, when it is scarcest, and rewarding effort lowers its felt cost.</p><p>Learning curves ' + badge('S') + ' Learned industriousness ' + badge('M') + ' Magnitudes are illustrative.</p>';
+    }
+
+    function readouts() {
+      var last = data.length;
+      if (mode === 'scroll') {
+        ro.innerHTML =
+          tile('Biggest daily surprise', avg(0, 14, 'up').toFixed(2) + ' to ' + avg(last - 14, last, 'up').toFixed(2), 'Weeks 1–2 compared with weeks 12–13') +
+          tile('Liking', avg(0, 14, 'feltS').toFixed(2) + ' to ' + avg(last - 14, last, 'feltS').toFixed(2), 'Same comparison') +
+          tile('Urge on day 90', data[last - 1].urge.toFixed(2), 'Up from 0.35 on day 1') +
+          tile('Skill left behind', 'None', 'Entertainment, not capability');
+      } else {
+        var cross = -1;
+        for (var i = 0; i < last; i++) { if (data[i].feltS > 0) { cross = i; break; } }
+        ro.innerHTML =
+          tile('Felt reward minus effort', signed(avg(0, 14, 'feltS')) + ' to ' + signed(avg(last - 14, last, 'feltS')), 'Weeks 1–2 compared with weeks 12–13') +
+          tile('Turns net-positive', cross >= 0 ? 'Day ' + (cross + 1) : 'Not yet', '7-day average crosses zero') +
+          tile('Skill left behind', Math.round(data[last - 1].left * 100) + '%', 'Of the ceiling, still there on day 91') +
+          tile('Biggest surprise, final month', Math.max.apply(null, data.slice(last - 30).map(function (d) { return d.up; })).toFixed(2), 'Milestones land harder with skill');
+      }
+    }
+
+    function update(animate) {
+      data = simulate(mode, { escalate: esc.checked, track: track.checked, effort: eff.checked }, seed);
+      legendFor();
+      caption();
+      readouts();
+      if (animate && !reduceMotion) run(); else { cancelAnimationFrame(raf); shown = N; render(N); playBtn.disabled = false; }
+    }
+    function run() {
+      cancelAnimationFrame(raf);
+      var t0 = performance.now(), dur = 2600;
+      playBtn.disabled = true;
+      function step(now) {
+        var f = Math.min(1, (now - t0) / dur);
+        shown = Math.max(1, Math.round(f * N));
+        render(shown);
+        if (f < 1) raf = requestAnimationFrame(step);
+        else playBtn.disabled = false;
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.mode === mode) return;
+        mode = b.dataset.mode;
+        btns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        optGroups.forEach(function (g) { g.hidden = g.dataset.for !== mode; });
+        update(true);
+      });
+    });
+    [esc, track, eff].forEach(function (el) { el.addEventListener('change', function () { update(true); }); });
+    playBtn.addEventListener('click', function () { if (reduceMotion) { render(N); } else run(); });
+    newBtn.addEventListener('click', function () { seed = Math.floor(Math.random() * 1e9); update(true); });
+    update(false);
+    watch(chart, function () { render(shown); });
+  })();
+
+  /* ---------- figure: compounding skill ---------- */
+  (function () {
+    var root = document.getElementById('compound');
+    if (!root) return;
+    var chart = root.querySelector('#cp-chart'), ro = root.querySelector('#cp-readouts');
+    var inMin = root.querySelector('#cp-min'), inDays = root.querySelector('#cp-days'), inComp = root.querySelector('#cp-comp');
+    var outMin = root.querySelector('#cp-min-out'), outDays = root.querySelector('#cp-days-out'), outComp = root.querySelector('#cp-comp-out');
+    var yearBtns = root.querySelectorAll('.seg button');
+    var years = 10, series = null, TMAX = 3650;
+
+    function model(minutes, daysPerWeek, comp) {
+      var h = minutes / 60, K = 100, C0 = 2, rate = 0.034, phi = 0.00012, Ks = 8, rs = 0.02, phis = 0.01, lam = comp;
+      var C = C0, Sv = 0, deep = [C], scr = [Sv];
+      for (var t = 1; t <= TMAX; t++) {
+        if (((t - 1) % 7) < daysPerWeek) {
+          C += h * rate * (1 + lam * C / 10) * (1 - C / K);
+          Sv += h * rs * (1 - Sv / Ks);
+        }
+        C -= phi * (C - C0);
+        Sv -= phis * Sv;
+        deep.push(C);
+        scr.push(Sv);
+      }
+      return { deep: deep, scr: scr };
+    }
+    function compWord(v) { return v === 0 ? 'None' : v < 35 ? 'Low' : v < 70 ? 'Medium' : 'High'; }
+    function one(v) { return v < 10 ? v.toFixed(1) : Math.round(v).toString(); }
+
+    function draw() {
+      var minutes = +inMin.value, days = +inDays.value, comp = +inComp.value;
+      outMin.textContent = minutes + ' min';
+      outDays.textContent = days + (days === 1 ? ' day' : ' days');
+      outComp.textContent = compWord(comp);
+      series = model(minutes, days, comp / 100);
+
+      var T = years * 365;
+      var W = widthOf(chart), H = W < 560 ? 280 : 330, m = { l: 40, r: 16, t: 28, b: 38 };
+      var svg = newSvg(chart, W, H, 'Illustrative capability over ' + years + (years === 1 ? ' year' : ' years') + ': deep work rises along an S-shaped curve while the same time on a feed plateaus near zero.');
+      var x = lin(0, T, m.l, W - m.r), y = lin(0, 100, H - m.b, m.t);
+      [0, 25, 50, 75, 100].forEach(function (v) {
+        S('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), 'class': v === 0 ? 'zero' : 'grid' }, svg);
+        txt(svg, m.l - 7, y(v) + 4, String(v), 'ax', 'end');
+      });
+      var ticks;
+      if (years === 1) ticks = [[0, 'Start'], [91, '3 mo'], [183, '6 mo'], [274, '9 mo'], [365, '1 yr']];
+      else if (years === 5) ticks = [[0, 'Start'], [365, '1 yr'], [730, '2 yr'], [1095, '3 yr'], [1460, '4 yr'], [1825, '5 yr']];
+      else ticks = [[0, 'Start'], [730, '2 yr'], [1460, '4 yr'], [2190, '6 yr'], [2920, '8 yr'], [3650, '10 yr']];
+      ticks.forEach(function (tk) { txt(svg, x(tk[0]), H - m.b + 19, tk[1], 'ax', tk[0] === 0 ? 'start' : tk[0] === T ? 'end' : 'middle'); });
+      txt(svg, m.l, m.t - 13, 'Capability, arbitrary units', 'ax', 'start');
+
+      var step = Math.max(1, Math.round(T / 400)), deepPts = [], scrPts = [], t;
+      for (t = 0; t <= T; t += step) { deepPts.push([x(t), y(series.deep[t])]); scrPts.push([x(t), y(series.scr[t])]); }
+      deepPts.push([x(T), y(series.deep[T])]);
+      scrPts.push([x(T), y(series.scr[T])]);
+      S('path', { d: path(deepPts) + 'L' + x(T).toFixed(1) + ' ' + y(0).toFixed(1) + 'L' + x(0).toFixed(1) + ' ' + y(0).toFixed(1) + 'Z', 'class': 'a-effort' }, svg);
+      S('path', { d: path(scrPts), 'class': 'l-scroll' }, svg);
+      S('path', { d: path(deepPts), 'class': 'l-effort', 'stroke-width': 3.2 }, svg);
+
+      [1, 5, 10].forEach(function (yr) {
+        if (yr > years) return;
+        var tt = yr * 365;
+        S('circle', { cx: x(tt), cy: y(series.deep[tt]), r: 4.5, 'class': 'd-effort' }, svg);
+      });
+      var yd = y(series.deep[T]) - 10, ys = y(series.scr[T]) - 9;
+      if (Math.abs(yd - ys) < 16) yd = ys - 16;
+      txt(svg, W - m.r - 8, Math.max(m.t + 10, yd), one(series.deep[T]), 'lbl lbl-effort halo', 'end');
+      txt(svg, W - m.r - 8, ys, one(series.scr[T]), 'lbl lbl-scroll halo', 'end');
+
+      var gains = [];
+      for (var yr = 1; yr <= 10; yr++) gains.push(series.deep[yr * 365] - series.deep[(yr - 1) * 365]);
+      var best = 0;
+      for (var g = 1; g < 10; g++) if (gains[g] > gains[best]) best = g;
+      var hours = Math.round(minutes / 60 * days * 52.14 * years);
+      ro.innerHTML = [1, 5, 10].map(function (yr) {
+        return tile('After ' + yr + (yr === 1 ? ' year' : ' years'), one(series.deep[yr * 365]), 'The feed: ' + one(series.scr[yr * 365]));
+      }).join('') + tile('Fastest-growing year', 'Year ' + (best + 1), hours.toLocaleString('en-US') + ' hours of deep work over ' + years + (years === 1 ? ' year' : ' years'));
+    }
+    yearBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        years = +b.dataset.years;
+        yearBtns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        draw();
+      });
+    });
+    [inMin, inDays, inComp].forEach(function (el) { el.addEventListener('input', draw); });
+    draw();
+    watch(chart, draw);
+  })();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

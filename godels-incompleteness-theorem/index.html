@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gödel&#x27;s Incompleteness Theorem | Explainers</title>
+<meta name="description" content="A true sentence that no rulebook can prove, explained with an office and one rubber stamp.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/godels-incompleteness-theorem/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Gödel&#x27;s Incompleteness Theorem">
+<meta property="og:description" content="A true sentence that no rulebook can prove, explained with an office and one rubber stamp.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/godels-incompleteness-theorem/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/godels-incompleteness-theorem/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Instrument+Sans:wght@400;500;600&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: one ledger column. Each entry is a single large drawing with a line or two of text;
+   the violet PROVED stamp is the only loud mark on the page. */
+:root {
+  --paper: #E2ECE1;      /* eye-ease ledger green */
+  --paper-2: #D2E1D3;    /* deeper band, the region of truth */
+  --slip: #F4F8F2;       /* loose paper slips */
+  --ink: #15233A;        /* blue-black ink */
+  --ink-soft: #485A68;
+  --rule: #A5BFAD;       /* ledger rules */
+  --stamp: #5E2CA5;      /* stamp-pad violet */
+  --alarm: #A8231B;      /* contradiction */
+  --display: "Old Standard TT", "Century Schoolbook", "Bodoni MT", Georgia, serif;
+  --body: "Instrument Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --util: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0F1E19; --paper-2: #172C24; --slip: #1E372E; --ink: #E3EEE5; --ink-soft: #A3B8AB;
+    --rule: #34554A; --stamp: #C4A9FF; --alarm: #FF9282; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0F1E19; --paper-2: #172C24; --slip: #1E372E; --ink: #E3EEE5; --ink-soft: #A3B8AB;
+  --rule: #34554A; --stamp: #C4A9FF; --alarm: #FF9282; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--body); }
+.wrap { max-width: 60rem; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: clamp(32px, 6vw, 72px); display: grid; gap: clamp(48px, 8vw, 96px); }
+.wrap > * { min-width: 0; }
+
+h1, h2, h3, p, dl, dd, ol, figure { margin: 0; }
+h1 { font: 700 clamp(2.25rem, 6.2vw, 4.25rem)/1.04 var(--display); letter-spacing: -0.01em; text-wrap: balance; max-width: 17ch; }
+h2 { font: 700 clamp(1.6rem, 3.8vw, 2.5rem)/1.1 var(--display); text-wrap: balance; max-width: 26ch; }
+p { max-width: 60ch; }
+.eyebrow { font: 700 0.9rem/1 var(--util); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.lede { font-size: 1.1875rem; line-height: 1.5; max-width: 52ch; }
+
+.hero, .entry { display: grid; gap: 1.5rem; }
+.entry { border-top: 3px double var(--rule); padding-top: clamp(40px, 6vw, 72px); }
+.head { display: grid; gap: 0.9rem; }
+
+figure { display: grid; gap: 0.75rem; }
+figcaption { font-size: 0.95rem; color: var(--ink-soft); max-width: 60ch; }
+svg { display: block; width: 100%; height: auto; }
+
+/* drawing vocabulary */
+.slip { fill: var(--slip); stroke: var(--ink-soft); stroke-width: 1.5; }
+.f-ink { fill: var(--ink); }
+.f-stamp { fill: var(--stamp); }
+.ln { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.ln.dash { stroke: var(--ink-soft); stroke-dasharray: 6 7; }
+.ln.x { stroke: var(--alarm); stroke-width: 3.5; }
+.ln.faint { stroke: var(--paper); stroke-width: 1.5; opacity: 0.45; }
+.imp { fill: none; stroke: var(--stamp); stroke-width: 3; }
+.imp.ghost { stroke-dasharray: 5 7; stroke-width: 2; opacity: 0.55; }
+.t-serif { font-family: var(--display); fill: var(--ink); }
+.t-body { font-family: var(--body); fill: var(--ink); }
+.t-util { font-family: var(--util); font-weight: 700; fill: var(--ink); letter-spacing: 0.1em; }
+.t-stamp { font-family: var(--util); font-weight: 700; fill: var(--stamp); letter-spacing: 0.08em; }
+.ghost-t { opacity: 0.3; }
+.on-ink { fill: var(--paper); }
+.it { font-style: italic; }
+.gv { fill: var(--stamp); }
+
+/* hero: the stamp that never lands */
+.tool { animation: hesitate 3.8s cubic-bezier(.5, 0, .3, 1) infinite; }
+@keyframes hesitate { 0%, 100% { transform: translateY(0); } 44%, 58% { transform: translateY(62px); } }
+
+/* inline stamp */
+.stamp { display: inline-block; font: 700 1em/1 var(--util); letter-spacing: 0.12em; text-transform: uppercase; color: var(--stamp); border: 0.14em solid currentColor; border-radius: 0.2em; padding: 0.2em 0.45em 0.14em; transform: rotate(-5deg); white-space: nowrap; }
+.stamp.alarm { color: var(--alarm); }
+.stamp.plain { color: var(--ink); }
+
+/* definitions under the plan */
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem 2.5rem; }
+.pair > div { display: grid; gap: 0.3rem; min-width: 0; }
+.pair dt { font: 700 0.9rem/1 var(--util); letter-spacing: 0.16em; text-transform: uppercase; color: var(--stamp); }
+.note { font: italic 400 1.2rem/1.45 var(--display); max-width: 46ch; }
+.note b { display: block; font: 700 0.85rem/1 var(--util); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.5em; }
+
+/* encoder */
+.enc { display: grid; gap: 1.25rem; background: var(--paper-2); border: 1.5px solid var(--rule); border-radius: 6px; padding: clamp(16px, 3vw, 28px); }
+.enc > * { min-width: 0; }
+.tape { display: flex; flex-wrap: wrap; gap: 6px; min-height: 5.9rem; align-items: flex-start; }
+.cell { display: grid; justify-items: center; gap: 1px; min-width: 3.1rem; padding: 6px 8px 5px; background: var(--slip); border: 1.5px solid var(--ink-soft); border-radius: 3px; }
+.cell .sym { font: 400 1.75rem/1.15 var(--display); }
+.cell .code { font: 700 1.05rem/1.2 var(--util); color: var(--stamp); }
+.cell .pow { font-size: 0.85rem; line-height: 1.3; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.cell sup, .expr sup { font-size: 0.72em; line-height: 0; }
+.empty { color: var(--ink-soft); align-self: center; }
+.hint { font-size: 0.9rem; color: var(--ink-soft); }
+.result { display: grid; gap: 0.25rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.expr { font-size: 0.95rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; max-width: none; }
+.num { font: 700 clamp(1.7rem, 5vw, 3rem)/1.12 var(--display); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; max-width: none; }
+.num.mid { font-size: clamp(1.1rem, 2.6vw, 1.5rem); line-height: 1.3; }
+.num.long { font-size: 1rem; line-height: 1.4; font-weight: 400; }
+.keys, .presets, .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.key { display: grid; justify-items: center; gap: 2px; min-width: 2.9rem; padding: 7px 6px 5px; font: 400 1.4rem/1 var(--display); color: var(--ink); background: var(--slip); border: 1.5px solid var(--ink); border-radius: 4px; box-shadow: 0 2px 0 var(--ink); cursor: pointer; }
+.key small { font: 700 0.8rem/1 var(--util); color: var(--stamp); }
+.key:active { transform: translateY(2px); box-shadow: none; }
+.btn { font: 700 0.95rem/1 var(--util); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.6em 0.85em 0.5em; color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 4px; cursor: pointer; }
+.btn.sym { font: 400 1.05rem/1 var(--display); letter-spacing: 0.04em; text-transform: none; padding: 0.5em 0.7em; }
+.btn.primary { background: var(--stamp); border-color: var(--stamp); color: var(--paper); }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.key:focus-visible, .btn:focus-visible { outline: 3px solid var(--stamp); outline-offset: 2px; }
+.rowlabel { font: 700 0.8rem/1 var(--util); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-right: 0.25rem; }
+
+/* two-column ledgers */
+.scroll { overflow-x: auto; }
+.ledger { width: 100%; border-collapse: collapse; }
+.ledger th { font: 700 0.85rem/1.2 var(--util); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); text-align: left; padding: 0 0.9rem 0.6rem; border-bottom: 1.5px solid var(--ink); }
+.ledger td { padding: 0.8rem 0.9rem; border-bottom: 1px solid var(--rule); vertical-align: top; width: 50%; }
+.ledger th:first-child, .ledger td:first-child { padding-left: 0; }
+.ledger th + th, .ledger td + td { border-left: 3px double var(--rule); }
+.ledger td:first-child { font: italic 400 1.15rem/1.4 var(--display); }
+.ledger .n { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* the fork */
+.gslip { justify-self: center; background: var(--slip); border: 1.5px solid var(--ink-soft); border-radius: 3px; padding: 0.7rem 1.4rem; font: italic 400 clamp(1.3rem, 3.4vw, 1.9rem)/1.2 var(--display); transform: rotate(-1deg); text-align: center; }
+.gslip b { font-style: normal; color: var(--stamp); margin-right: 0.4em; }
+svg.yoke { height: 40px; }
+svg.narrow { max-width: 620px; }
+.fork { display: grid; gap: 0.5rem; }
+.branches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 5vw, 56px); }
+.branch { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+.branch h3 { font: 700 1.3rem/1.2 var(--display); }
+.chain { list-style: none; padding: 0; display: grid; gap: 0.35rem; }
+.chain li + li::before { content: "\2193"; display: block; font: 400 1.1rem/1 var(--body); color: var(--ink-soft); margin: 0 0 0.35rem 0.15rem; }
+.verdict { display: grid; gap: 0.6rem; justify-items: start; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.verdict .stamp { font-size: 1.5rem; }
+.conclusion { font: 400 clamp(1.25rem, 2.8vw, 1.6rem)/1.35 var(--display); max-width: 36ch; }
+
+/* rings */
+.truth { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2; }
+.ring { fill: var(--paper); stroke: var(--stamp); stroke-width: 2; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; transition: transform 0.7s cubic-bezier(.2, .7, .2, 1); }
+.ring.first { stroke-width: 3; }
+.dot-old { fill: var(--stamp); }
+.dot-now { fill: var(--ink); }
+.status { font-size: 0.95rem; color: var(--ink-soft); flex: 1 1 16rem; min-width: 0; }
+
+/* fine print */
+.thm { display: grid; gap: 0.9rem; max-width: 44rem; padding: clamp(18px, 3vw, 32px); background: var(--slip); border: 1.5px solid var(--ink); }
+.thm h3 { font: 700 0.85rem/1 var(--util); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.thm .st { font: italic 400 clamp(1.15rem, 2.4vw, 1.4rem)/1.45 var(--display); max-width: none; }
+.thm .fn { font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 0.8rem; max-width: none; }
+.sub { font: 700 1.3rem/1.2 var(--display); }
+.after { font: 400 clamp(1.25rem, 2.8vw, 1.6rem)/1.35 var(--display); max-width: 38ch; }
+footer { border-top: 3px double var(--rule); padding-top: 1.25rem; font-size: 0.85rem; color: var(--ink-soft); }
+footer p { max-width: 70ch; }
+
+@media (max-width: 700px) {
+  .branches { grid-template-columns: minmax(0, 1fr); }
+  svg.yoke { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tool { animation: none; transform: translateY(30px); }
+  .ring { transition: none; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Kurt Gödel · Vienna · 1931</p>
+    <h1>A true sentence that no rulebook can stamp</h1>
+    <p class="lede">Picture mathematics as an office with a rulebook and one rubber stamp, marked <span class="stamp">Proved</span>. Gödel wrote a sentence the stamp can never land on. Then he showed the sentence is true.</p>
+    <figure>
+      <svg viewBox="0 0 720 410" role="img" aria-label="A slip reading 1 + 1 = 2 carries a PROVED stamp. A second slip reads: This sentence will never be stamped PROVED. A rubber stamp hovers above it and never touches down.">
+        <g transform="rotate(-4 180 80)">
+          <rect class="slip" x="30" y="40" width="300" height="80" rx="3"/>
+          <text class="t-serif" x="56" y="92" font-size="32">1 + 1 = 2</text>
+          <g transform="rotate(-7 262 80)">
+            <rect class="imp" x="208" y="58" width="108" height="44" rx="5"/>
+            <text class="t-stamp" x="262" y="89" font-size="26" text-anchor="middle" textLength="84" lengthAdjust="spacingAndGlyphs">PROVED</text>
+          </g>
+        </g>
+        <g transform="rotate(1.2 360 310)">
+          <rect class="slip" x="40" y="232" width="640" height="156" rx="3"/>
+          <text class="t-serif it" x="78" y="300" font-size="29">This sentence will never</text>
+          <text class="t-serif it" x="78" y="342" font-size="29">be stamped PROVED.</text>
+          <g transform="rotate(-6 556 310)">
+            <rect class="imp ghost" x="470" y="280" width="172" height="60" rx="6"/>
+            <text class="t-stamp ghost-t" x="556" y="323" font-size="36" text-anchor="middle" textLength="136" lengthAdjust="spacingAndGlyphs">PROVED</text>
+          </g>
+        </g>
+        <g transform="rotate(-5 556 310)">
+          <g class="tool">
+            <ellipse class="f-ink" cx="556" cy="66" rx="42" ry="26"/>
+            <rect class="f-ink" x="539" y="80" width="34" height="74"/>
+            <rect class="f-ink" x="462" y="150" width="188" height="34" rx="7"/>
+            <rect class="f-stamp" x="470" y="184" width="172" height="11" rx="2"/>
+          </g>
+        </g>
+      </svg>
+      <figcaption>The stamp lands on ordinary truths. On this one it stops short, every time.</figcaption>
+    </figure>
+  </header>
+
+  <section class="entry" aria-labelledby="h-plan">
+    <div class="head">
+      <h2 id="h-plan">The plan was one rulebook for all of arithmetic</h2>
+      <p>Fix a short list of starting rules. Let a clerk apply them mechanically, forever, stamping whatever follows. In the 1920s David Hilbert and most mathematicians expected the stamp to do two things.</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 720 370" role="img" aria-label="A rulebook feeds a stamp. Three true statements, 2 + 2 = 4, 7 is prime, and no largest prime, each receive a PROVED stamp. The false statement 2 + 2 = 5 never does.">
+        <defs>
+          <marker id="ah-plan" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="f-ink" d="M0 0 L10 5 L0 10 z"/></marker>
+        </defs>
+        <rect class="f-ink" x="24" y="84" width="140" height="184" rx="5"/>
+        <rect class="ln faint" x="36" y="96" width="116" height="160" rx="2"/>
+        <text class="t-util on-ink" x="94" y="184" font-size="25" text-anchor="middle" textLength="100" lengthAdjust="spacingAndGlyphs">RULEBOOK</text>
+        <line class="ln" x1="170" y1="176" x2="212" y2="176" marker-end="url(#ah-plan)"/>
+
+        <ellipse class="f-ink" cx="255" cy="132" rx="20" ry="13"/>
+        <rect class="f-ink" x="247" y="140" width="16" height="30"/>
+        <rect class="f-ink" x="222" y="168" width="66" height="18" rx="4"/>
+        <rect class="f-stamp" x="227" y="186" width="56" height="6" rx="1"/>
+
+        <line class="ln" x1="298" y1="172" x2="396" y2="60" marker-end="url(#ah-plan)"/>
+        <line class="ln" x1="298" y1="176" x2="396" y2="140" marker-end="url(#ah-plan)"/>
+        <line class="ln" x1="298" y1="180" x2="396" y2="216" marker-end="url(#ah-plan)"/>
+        <line class="ln dash" x1="298" y1="186" x2="396" y2="316"/>
+        <line class="ln x" x1="362" y1="275" x2="380" y2="293"/>
+        <line class="ln x" x1="380" y1="275" x2="362" y2="293"/>
+
+        <rect class="slip" x="404" y="30" width="300" height="56" rx="3"/>
+        <text class="t-serif" x="420" y="66" font-size="22">2 + 2 = 4</text>
+        <g transform="rotate(-6 652 58)"><rect class="imp" x="610" y="41" width="84" height="34" rx="4"/><text class="t-stamp" x="652" y="65" font-size="20" text-anchor="middle" textLength="64" lengthAdjust="spacingAndGlyphs">PROVED</text></g>
+
+        <rect class="slip" x="404" y="110" width="300" height="56" rx="3"/>
+        <text class="t-serif" x="420" y="146" font-size="22">7 is prime</text>
+        <g transform="rotate(-6 652 138)"><rect class="imp" x="610" y="121" width="84" height="34" rx="4"/><text class="t-stamp" x="652" y="145" font-size="20" text-anchor="middle" textLength="64" lengthAdjust="spacingAndGlyphs">PROVED</text></g>
+
+        <rect class="slip" x="404" y="190" width="300" height="56" rx="3"/>
+        <text class="t-serif" x="420" y="226" font-size="22">no largest prime</text>
+        <g transform="rotate(-6 652 218)"><rect class="imp" x="610" y="201" width="84" height="34" rx="4"/><text class="t-stamp" x="652" y="225" font-size="20" text-anchor="middle" textLength="64" lengthAdjust="spacingAndGlyphs">PROVED</text></g>
+
+        <rect class="slip" x="404" y="290" width="300" height="56" rx="3"/>
+        <text class="t-serif" x="420" y="326" font-size="22">2 + 2 = 5</text>
+      </svg>
+      <figcaption>True statements get stamped. The false one at the bottom stays blank.</figcaption>
+    </figure>
+    <dl class="pair">
+      <div><dt>Complete</dt><dd>Every true statement about whole numbers gets stamped, sooner or later.</dd></div>
+      <div><dt>Consistent</dt><dd>The stamp never lands on both a statement and its opposite.</dd></div>
+    </dl>
+    <p class="note"><b>Königsberg · September 1930</b>On the 8th, Hilbert ends a public speech with the words “We must know. We will know.” One day earlier, at a conference in the same city, a 24-year-old Gödel had said that the plan cannot work.</p>
+  </section>
+
+  <section class="entry" aria-labelledby="h-num">
+    <div class="head">
+      <h2 id="h-num">First trick: give every statement a number</h2>
+      <p>Assign each symbol a code. Take the primes in order (2, 3, 5, 7…), raise each to the code of the symbol in that position, and multiply. Every statement lands on its own whole number, and factoring that number gives the statement back.</p>
+    </div>
+    <div class="enc" role="group" aria-label="Gödel number builder">
+      <div class="tape" id="tape" aria-hidden="true">
+        <div class="cell"><span class="sym">0</span><span class="code">6</span><span class="pow">2<sup>6</sup></span></div>
+        <div class="cell"><span class="sym">=</span><span class="code">5</span><span class="pow">3<sup>5</sup></span></div>
+        <div class="cell"><span class="sym">0</span><span class="code">6</span><span class="pow">5<sup>6</sup></span></div>
+      </div>
+      <p class="hint">Top: the symbol. Middle: its code. Bottom: the prime for that position, raised to the code.</p>
+      <div class="result" aria-live="polite">
+        <p class="expr" id="expr">2<sup>6</sup> × 3<sup>5</sup> × 5<sup>6</sup> =</p>
+        <p class="num" id="num">243,000,000</p>
+        <p class="hint" id="numMeta">The statement 0 = 0 is number 243,000,000.</p>
+      </div>
+      <div class="keys" id="keys">
+        <button class="key" type="button" id="k-0" data-s="0" aria-label="0, code 6">0<small>6</small></button>
+        <button class="key" type="button" id="k-s" data-s="s" aria-label="s, code 7">s<small>7</small></button>
+        <button class="key" type="button" id="k-eq" data-s="=" aria-label="equals, code 5">=<small>5</small></button>
+        <button class="key" type="button" id="k-plus" data-s="+" aria-label="plus, code 11">+<small>11</small></button>
+        <button class="key" type="button" id="k-times" data-s="×" aria-label="times, code 12">×<small>12</small></button>
+        <button class="key" type="button" id="k-not" data-s="~" aria-label="not, code 1">~<small>1</small></button>
+        <button class="key" type="button" id="k-or" data-s="∨" aria-label="or, code 2">∨<small>2</small></button>
+        <button class="key" type="button" id="k-if" data-s="⊃" aria-label="if then, code 3">⊃<small>3</small></button>
+        <button class="key" type="button" id="k-ex" data-s="∃" aria-label="there is, code 4">∃<small>4</small></button>
+        <button class="key" type="button" id="k-x" data-s="x" aria-label="x, code 13">x<small>13</small></button>
+        <button class="key" type="button" id="k-lp" data-s="(" aria-label="open bracket, code 8">(<small>8</small></button>
+        <button class="key" type="button" id="k-rp" data-s=")" aria-label="close bracket, code 9">)<small>9</small></button>
+        <button class="btn" type="button" id="k-back">Erase</button>
+        <button class="btn" type="button" id="k-clear">Clear</button>
+      </div>
+      <div class="presets">
+        <span class="rowlabel">Try</span>
+        <button class="btn sym" type="button" id="p-1" data-p="0=0" aria-label="0 equals 0">0 = 0</button>
+        <button class="btn sym" type="button" id="p-2" data-p="s0+s0=ss0" aria-label="1 plus 1 equals 2">s0 + s0 = ss0</button>
+        <button class="btn sym" type="button" id="p-3" data-p="~(0=s0)" aria-label="0 is not 1">~(0 = s0)</button>
+        <button class="btn sym" type="button" id="p-4" data-p="(∃x)(x=s0)" aria-label="there is an x equal to 1">(∃x)(x = s0)</button>
+      </div>
+      <p class="hint">s means “the next number”, so s0 is 1 and ss0 is 2. The code table follows the style of the one in Nagel and Newman’s book <i>Gödel’s Proof</i>.</p>
+    </div>
+    <p>A proof is a list of statements, so proofs get numbers too. Everything the office does now has a twin inside arithmetic.</p>
+    <div class="scroll">
+      <table class="ledger">
+        <thead><tr><th scope="col">In the office</th><th scope="col">In arithmetic</th></tr></thead>
+        <tbody>
+          <tr><td>A statement, such as 0 = 0</td><td>A number: <span class="n">243,000,000</span></td></tr>
+          <tr><td>A proof, which is a list of statements</td><td>A much larger number</td></tr>
+          <tr><td>“This list proves that statement”</td><td>A fact about those two numbers, as checkable as “one divides the other”</td></tr>
+          <tr><td>“That statement has a proof”</td><td>“Some number stands in that relation to it”</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="entry" aria-labelledby="h-self">
+    <div class="head">
+      <h2 id="h-self">Second trick: a statement about its own number</h2>
+      <p>“Has a proof” is now a property of numbers, so a statement about numbers can deny it of any number. Gödel built a statement that denies it of the statement’s own number.</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 720 300" role="img" aria-label="A slip reads: Statement number g has no proof. An arrow shows the slip is filed under the number g, and a second arrow shows g is the number the slip talks about. The statement refers to itself.">
+        <defs>
+          <marker id="ah-self" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="f-ink" d="M0 0 L10 5 L0 10 z"/></marker>
+        </defs>
+        <rect class="slip" x="30" y="96" width="420" height="116" rx="3"/>
+        <text class="t-serif it" x="60" y="146" font-size="28">Statement number <tspan class="gv" font-weight="700">g</tspan></text>
+        <text class="t-serif it" x="60" y="184" font-size="28">has no proof.</text>
+        <circle class="imp" cx="612" cy="154" r="64"/>
+        <text class="t-serif it gv" x="612" y="172" font-size="76" text-anchor="middle">g</text>
+        <path class="ln" d="M452 118 C 496 62, 540 60, 566 104" marker-end="url(#ah-self)"/>
+        <text class="t-body" x="502" y="50" font-size="21" text-anchor="middle">is filed under</text>
+        <path class="ln" d="M566 206 C 540 250, 496 248, 452 192" marker-end="url(#ah-self)"/>
+        <text class="t-body" x="505" y="278" font-size="21" text-anchor="middle">is the number it talks about</text>
+      </svg>
+      <figcaption>Call the statement G. In plain words, G says: “I will never be stamped.”</figcaption>
+    </figure>
+  </section>
+
+  <section class="entry" aria-labelledby="h-fork">
+    <div class="head">
+      <h2 id="h-fork">Now ask the rulebook about G</h2>
+    </div>
+    <div class="fork">
+      <p class="gslip"><b>G</b>I will never be stamped.</p>
+      <svg class="yoke" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path class="ln" d="M50 0 V5 M25 10 V5 H75 V10" vector-effect="non-scaling-stroke"/></svg>
+      <div class="branches">
+        <article class="branch">
+          <h3>Suppose the stamp lands on G</h3>
+          <svg viewBox="0 0 320 96" role="img" aria-label="G with a PROVED stamp">
+            <rect class="slip" x="4" y="10" width="312" height="76" rx="3"/>
+            <text class="t-serif it gv" x="34" y="64" font-size="46" font-weight="700">G</text>
+            <g transform="rotate(-6 232 48)"><rect class="imp" x="168" y="24" width="128" height="48" rx="5"/><text class="t-stamp" x="232" y="59" font-size="30" text-anchor="middle" textLength="100" lengthAdjust="spacingAndGlyphs">PROVED</text></g>
+          </svg>
+          <ol class="chain">
+            <li>G is stamped.</li>
+            <li>The rulebook can check its own paperwork, so it also stamps “G has a proof”.</li>
+            <li>That is the opposite of what G says. A statement and its opposite are both stamped.</li>
+          </ol>
+          <div class="verdict">
+            <span class="stamp alarm">Inconsistent</span>
+            <p>From there the stamp lands on everything, 2 + 2 = 5 included.</p>
+          </div>
+        </article>
+        <article class="branch">
+          <h3>Suppose it never does</h3>
+          <svg viewBox="0 0 320 96" role="img" aria-label="G with no stamp">
+            <rect class="slip" x="4" y="10" width="312" height="76" rx="3"/>
+            <text class="t-serif it gv" x="34" y="64" font-size="46" font-weight="700">G</text>
+            <g transform="rotate(-6 232 48)"><rect class="imp ghost" x="168" y="24" width="128" height="48" rx="5"/><text class="t-stamp ghost-t" x="232" y="59" font-size="30" text-anchor="middle" textLength="100" lengthAdjust="spacingAndGlyphs">PROVED</text></g>
+          </svg>
+          <ol class="chain">
+            <li>G stays blank forever.</li>
+            <li>That is exactly what G says will happen.</li>
+            <li>G is true, and it has no proof.</li>
+          </ol>
+          <div class="verdict">
+            <span class="stamp plain">Incomplete</span>
+            <p>A true statement the rulebook cannot reach.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <p class="conclusion">A rulebook that never contradicts itself must leave G blank. So G is true, and the rulebook cannot prove it.</p>
+  </section>
+
+  <section class="entry" aria-labelledby="h-patch">
+    <div class="head">
+      <h2 id="h-patch">Adding G to the rulebook does not close the gap</h2>
+      <p>Make G a starting rule. The enlarged rulebook is a new rulebook, and the same construction hands it a new blank statement of its own.</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 720 480" role="img" aria-label="A large region holds all true statements about numbers. Inside it, a smaller region holds what the rulebook can prove. The statement G sits in the gap between them. Each time G is added as a rule, the provable region grows and a new unprovable statement appears just outside it.">
+        <ellipse class="truth" cx="360" cy="240" rx="344" ry="225"/>
+        <text class="t-util" x="360" y="44" font-size="18" text-anchor="middle" textLength="196" lengthAdjust="spacingAndGlyphs">ALL TRUE STATEMENTS</text>
+        <text class="t-util" x="360" y="65" font-size="18" text-anchor="middle" textLength="136" lengthAdjust="spacingAndGlyphs">ABOUT NUMBERS</text>
+        <g id="rings"><ellipse class="ring first" cx="360" cy="250" rx="150" ry="95"/></g>
+        <text class="t-stamp" x="360" y="248" font-size="30" text-anchor="middle">PROVABLE</text>
+        <text class="t-body" x="360" y="274" font-size="19" text-anchor="middle">from the rulebook</text>
+        <g id="dots">
+          <circle class="dot-now" cx="515" cy="205" r="6.5"/>
+          <text class="t-serif it" x="531" y="204" font-size="24" text-anchor="middle">G</text>
+        </g>
+      </svg>
+      <div class="controls">
+        <button class="btn primary" type="button" id="addRule">Add G as a new rule</button>
+        <button class="btn" type="button" id="resetRules">Start over</button>
+        <p class="status" id="ringStatus" aria-live="polite">Rules added: 0. True statements still out of reach: at least one.</p>
+      </div>
+      <figcaption>Each added rule widens what the stamp can reach. A true statement always remains outside.</figcaption>
+    </figure>
+  </section>
+
+  <section class="entry" aria-labelledby="h-second">
+    <div class="head">
+      <h2 id="h-second">The rulebook cannot certify itself</h2>
+      <p>“This rulebook never contradicts itself” is also a statement about numbers. Gödel showed that a consistent rulebook can never stamp it. The assurance has to come from a stronger rulebook, which then needs one of its own.</p>
+    </div>
+    <figure>
+      <svg class="narrow" viewBox="0 0 520 420" role="img" aria-label="Three rulebooks stacked: arithmetic at the bottom, set theory above it, stronger set theory above that, and more beyond. Each one proves the rulebook below it consistent. None can prove itself consistent.">
+        <defs>
+          <marker id="ah-tower" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="f-ink" d="M0 0 L10 5 L0 10 z"/></marker>
+        </defs>
+        <circle class="f-ink" cx="145" cy="12" r="3"/><circle class="f-ink" cx="145" cy="24" r="3"/><circle class="f-ink" cx="145" cy="36" r="3"/>
+        <line class="ln" x1="145" y1="46" x2="145" y2="66" marker-end="url(#ah-tower)"/>
+        <rect class="f-ink" x="20" y="70" width="250" height="72" rx="5"/>
+        <text class="t-serif on-ink" x="145" y="114" font-size="22" font-weight="700" text-anchor="middle">Stronger set theory</text>
+        <path class="ln" d="M272 88 C 334 74, 334 138, 276 124" marker-end="url(#ah-tower)"/>
+        <line class="ln x" x1="310" y1="97" x2="328" y2="115"/><line class="ln x" x1="328" y1="97" x2="310" y2="115"/>
+        <text class="t-body" x="344" y="101" font-size="19">cannot prove</text>
+        <text class="t-body" x="344" y="123" font-size="19">itself consistent</text>
+        <line class="ln" x1="145" y1="144" x2="145" y2="196" marker-end="url(#ah-tower)"/>
+        <text class="t-body" x="161" y="177" font-size="19">proves it consistent</text>
+        <rect class="f-ink" x="20" y="200" width="250" height="72" rx="5"/>
+        <text class="t-serif on-ink" x="145" y="244" font-size="22" font-weight="700" text-anchor="middle">Set theory</text>
+        <path class="ln" d="M272 218 C 334 204, 334 268, 276 254" marker-end="url(#ah-tower)"/>
+        <line class="ln x" x1="310" y1="227" x2="328" y2="245"/><line class="ln x" x1="328" y1="227" x2="310" y2="245"/>
+        <text class="t-body" x="344" y="231" font-size="19">cannot prove</text>
+        <text class="t-body" x="344" y="253" font-size="19">itself consistent</text>
+        <line class="ln" x1="145" y1="274" x2="145" y2="326" marker-end="url(#ah-tower)"/>
+        <text class="t-body" x="161" y="307" font-size="19">proves it consistent</text>
+        <rect class="f-ink" x="20" y="330" width="250" height="72" rx="5"/>
+        <text class="t-serif on-ink" x="145" y="374" font-size="22" font-weight="700" text-anchor="middle">Arithmetic</text>
+        <path class="ln" d="M272 348 C 334 334, 334 398, 276 384" marker-end="url(#ah-tower)"/>
+        <line class="ln x" x1="310" y1="357" x2="328" y2="375"/><line class="ln x" x1="328" y1="357" x2="310" y2="375"/>
+        <text class="t-body" x="344" y="361" font-size="19">cannot prove</text>
+        <text class="t-body" x="344" y="383" font-size="19">itself consistent</text>
+      </svg>
+      <figcaption>Each rulebook is certified only from above. The tower has no top.</figcaption>
+    </figure>
+  </section>
+
+  <section class="entry" aria-labelledby="h-fine">
+    <div class="head">
+      <h2 id="h-fine">The fine print</h2>
+    </div>
+    <div class="thm">
+      <h3>Theorem VI of the 1931 paper, in today’s words</h3>
+      <p class="st">Take any rulebook that a machine could check, that can add and multiply whole numbers, and that never contradicts itself. Some statement about whole numbers can be neither proved nor disproved from it.</p>
+      <h3>Theorem XI</h3>
+      <p class="st">Such a rulebook cannot prove that it never contradicts itself.</p>
+      <p class="fn">Gödel’s own proof assumed slightly more than consistency. J. Barkley Rosser removed the extra assumption in 1936.</p>
+    </div>
+    <h3 class="sub">What the theorem does not say</h3>
+    <div class="scroll">
+      <table class="ledger">
+        <thead><tr><th scope="col">Claim</th><th scope="col">Ruling</th></tr></thead>
+        <tbody>
+          <tr><td>“Mathematics is unreliable.”</td><td>No. Nothing that was proved comes undone.</td></tr>
+          <tr><td>“Every system is incomplete.”</td><td>No. Arithmetic with addition alone is complete, as Presburger showed in 1929. The gap opens once multiplication joins in.</td></tr>
+          <tr><td>“G can never be known.”</td><td>No. From outside the rulebook we can see that G is true, provided the rulebook is consistent.</td></tr>
+          <tr><td>“Minds are more than machines.”</td><td>Unsettled. The theorem alone does not show it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="after">Five years later Alan Turing met the same wall in computing. No program can tell, for every program, whether it will ever stop.</p>
+  </section>
+
+  <footer>
+    <p>Source: Kurt Gödel, “Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I”, <i>Monatshefte für Mathematik und Physik</i> 38 (1931), 173–198.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  /* ---------- Gödel number builder ---------- */
+  var CODES = { '~': 1, '∨': 2, '⊃': 3, '∃': 4, '=': 5, '0': 6, 's': 7, '(': 8, ')': 9, '+': 11, '×': 12, 'x': 13 };
+  var PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43];
+  var seq = ['0', '=', '0'];
+  var tape = document.getElementById('tape');
+  var expr = document.getElementById('expr');
+  var num = document.getElementById('num');
+  var meta = document.getElementById('numMeta');
+
+  function group(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+  function renderEnc() {
+    if (typeof BigInt !== 'function') return;           /* keep the static 0 = 0 example */
+    tape.textContent = '';
+    if (!seq.length) {
+      var e = document.createElement('p');
+      e.className = 'empty';
+      e.textContent = 'Tap symbols below to write a statement.';
+      tape.appendChild(e);
+      expr.textContent = '';
+      num.className = 'num';
+      num.textContent = '—';
+      meta.textContent = 'No symbols yet.';
+      return;
+    }
+    var prod = BigInt(1), parts = [];
+    seq.forEach(function (ch, i) {
+      var c = CODES[ch], p = PRIMES[i];
+      prod *= BigInt(p) ** BigInt(c);
+      var cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.innerHTML = '<span class="sym">' + ch + '</span><span class="code">' + c + '</span><span class="pow">' + p + '<sup>' + c + '</sup></span>';
+      tape.appendChild(cell);
+      parts.push(p + '<sup>' + c + '</sup>');
+    });
+    expr.innerHTML = parts.join(' × ') + ' =';
+    var digits = prod.toString();
+    num.className = 'num' + (digits.length > 48 ? ' long' : digits.length > 15 ? ' mid' : '');
+    num.textContent = group(digits);
+    var shown = seq.join(' ');
+    meta.textContent = digits.length > 15
+      ? 'The statement ' + shown + ' is a ' + digits.length + '-digit number.'
+      : 'The statement ' + shown + ' is number ' + group(digits) + '.';
+    if (seq.length >= PRIMES.length) meta.textContent += ' That is as long as this builder goes.';
+  }
+
+  document.getElementById('keys').addEventListener('click', function (ev) {
+    var b = ev.target.closest('button');
+    if (!b) return;
+    if (b.id === 'k-back') seq.pop();
+    else if (b.id === 'k-clear') seq = [];
+    else if (b.dataset.s && seq.length < PRIMES.length) seq.push(b.dataset.s);
+    renderEnc();
+  });
+  document.querySelectorAll('[data-p]').forEach(function (b) {
+    b.addEventListener('click', function () { seq = Array.from(b.dataset.p); renderEnc(); });
+  });
+  renderEnc();
+
+  /* ---------- patching the rulebook ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  var CX = 360, CY = 250, RX = 150, RY = 95, K = 0.72, YGROW = 0.842, MAXN = 9;
+  var rings = document.getElementById('rings');
+  var dots = document.getElementById('dots');
+  var addBtn = document.getElementById('addRule');
+  var status = document.getElementById('ringStatus');
+  var n = 0;
+
+  function t(i) { return 1 - Math.pow(K, i); }
+  function scaleOf(i) { return 'scale(' + (1 + t(i)).toFixed(4) + ',' + (1 + YGROW * t(i)).toFixed(4) + ')'; }
+  function sub(i) { return i === 0 ? '' : String(i).split('').map(function (d) { return '₀₁₂₃₄₅₆₇₈₉'[+d]; }).join(''); }
+  function gpos(i) {
+    var f = (t(i) + t(i + 1)) / 2, th = (-25 + 67 * i) * Math.PI / 180;
+    return { x: CX + RX * (1 + f) * Math.cos(th), y: CY + RY * (1 + YGROW * f) * Math.sin(th), c: Math.cos(th), s: Math.sin(th) };
+  }
+  function el(name, attrs) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function drawRings(animateNewest) {
+    rings.textContent = '';
+    for (var i = n; i >= 0; i--) {
+      var r = el('ellipse', { 'class': 'ring' + (i === 0 ? ' first' : ''), cx: CX, cy: CY, rx: RX, ry: RY });
+      var from = (animateNewest && i === n && n > 0) ? i - 1 : i;
+      r.style.transform = scaleOf(from);
+      rings.appendChild(r);
+      if (from !== i) (function (node, target) {
+        requestAnimationFrame(function () { requestAnimationFrame(function () { node.style.transform = scaleOf(target); }); });
+      })(r, i);
+    }
+    dots.textContent = '';
+    for (var j = 0; j <= n; j++) {
+      var p = gpos(j);
+      if (j < n) {
+        dots.appendChild(el('circle', { 'class': 'dot-old', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 3.5 }));
+      } else {
+        dots.appendChild(el('circle', { 'class': 'dot-now', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 6.5 }));
+        var label = el('text', { 'class': 't-serif it', x: (p.x + 20 * p.c).toFixed(1), y: (p.y + 20 * p.s + 8).toFixed(1), 'font-size': 24, 'text-anchor': 'middle' });
+        label.textContent = 'G' + sub(j);
+        dots.appendChild(label);
+      }
+    }
+    if (n >= MAXN) {
+      addBtn.disabled = true;
+      addBtn.textContent = 'And so on, without end';
+    } else {
+      addBtn.disabled = false;
+      addBtn.textContent = 'Add G' + sub(n) + ' as a new rule';
+    }
+    status.textContent = n === 0
+      ? 'Rules added: 0. True statements still out of reach: at least one.'
+      : 'Rules added: ' + n + '. The rulebook grew, and G' + sub(n) + ' is already waiting outside it.';
+  }
+
+  addBtn.addEventListener('click', function () { if (n < MAXN) { n++; drawRings(true); } });
+  document.getElementById('resetRules').addEventListener('click', function () { n = 0; drawRings(false); });
+  drawRings(false);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

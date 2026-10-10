@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DuckDB in Pictures | Explainers</title>
+<meta name="description" content="A database that reads by the column and lives inside your program.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/duckdb-in-pictures/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="DuckDB in Pictures">
+<meta property="og:description" content="A database that reads by the column and lives inside your program.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/duckdb-in-pictures/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/duckdb-in-pictures/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one accountant's ledger page. A single ruled column with a red margin line;
+   every picture is a table or strip, and a yellow highlighter marks what gets read. */
+:root{
+  --paper:#EDF2E3; --paper-2:#DFE8D1; --card:#F6F9EE;
+  --ink:#16261C; --ink-2:#4A5D4F; --rule:#B5C6AB; --margin:#BF6A58;
+  --hi:#FFD63D; --hi-ink:#1C1B06; --waste:#B9C8AC; --pen:#1F4FA3;
+  --display:"Zilla Slab",Rockwell,"Roboto Slab",Georgia,serif;
+  --body:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1D16; --paper-2:#1B3025; --card:#14261D;
+    --ink:#E4EDDA; --ink-2:#9BB09F; --rule:#2F4A3B; --margin:#B0685A;
+    --hi:#F4CB2F; --hi-ink:#1C1B06; --waste:#35523F; --pen:#93B5F2;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1D16; --paper-2:#1B3025; --card:#14261D;
+  --ink:#E4EDDA; --ink-2:#9BB09F; --rule:#2F4A3B; --margin:#B0685A;
+  --hi:#F4CB2F; --hi-ink:#1C1B06; --waste:#35523F; --pen:#93B5F2;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.55 var(--body);padding-inline:16px}
+.page{max-width:58rem;margin-inline:auto;padding-block:2.5rem 4rem;display:flex;flex-direction:column;gap:4.5rem}
+@media (min-width:760px){.page{border-left:3px double var(--margin);padding-left:2.75rem}}
+
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.1rem,6.2vw,3.7rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,4.2vw,2.4rem)}
+h3{font-size:1.25rem;line-height:1.2}
+p{margin:0;max-width:38rem}
+.lede{font-size:1.2rem;line-height:1.45;color:var(--ink-2)}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0}
+mark{background:var(--hi);color:var(--hi-ink);padding:0 .2em}
+section{display:flex;flex-direction:column;gap:1.25rem}
+.sec-head{display:flex;flex-direction:column;gap:.9rem;border-top:1px solid var(--rule);padding-top:1.1rem}
+figure{margin:0}
+figcaption{font-size:.9rem;color:var(--ink-2);margin-top:.75rem;max-width:38rem}
+svg{display:block;max-width:100%;height:auto}
+
+/* ---------- hero ---------- */
+.hero{display:grid;gap:2rem;align-items:center}
+@media (min-width:760px){.hero{grid-template-columns:1.15fr .85fr;gap:3rem}}
+.hero-text{display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.hero-art{max-width:24rem;width:100%;justify-self:center}
+.hl{fill:var(--hi)}
+.rules line{stroke:var(--rule);stroke-width:1}
+.bar{stroke:var(--ink-2);stroke-width:6;stroke-linecap:round}
+.bar-h{stroke:var(--ink);stroke-width:7;stroke-linecap:round}
+.bar-hi{stroke:var(--hi-ink);stroke-width:6;stroke-linecap:round}
+.tot{stroke:var(--hi-ink);stroke-width:1.5}
+
+/* ---------- row vs column figure ---------- */
+.lab{background:var(--card);border:1px solid var(--rule);padding:clamp(12px,3vw,24px);display:flex;flex-direction:column;gap:1.1rem}
+.ask{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
+.ask-label{font:500 .75rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.seg{display:flex;flex-wrap:wrap;gap:.5rem}
+.seg button{font:500 .95rem/1.2 var(--body);color:var(--ink);background:transparent;border:1.5px solid var(--ink);padding:.55rem .9rem;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.answer{font:500 .95rem/1.4 var(--mono);margin:0;max-width:none}
+.answer b{font-weight:500;border-bottom:3px double var(--ink);padding-bottom:1px}
+.pair{display:grid;gap:1.5rem}
+@media (min-width:760px){.pair{grid-template-columns:1fr 1fr}}
+.side{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.side-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+.side-head small{display:block;font:400 .78rem/1.3 var(--mono);color:var(--ink-2);margin-top:.2rem}
+.stamp{font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);padding:.35rem .5rem;transform:rotate(-3deg);visibility:hidden;white-space:nowrap}
+.side.is-win .stamp{visibility:visible}
+.led{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));font:400 .75rem/1.2 var(--mono);font-variant-numeric:tabular-nums;transition:gap .35s ease}
+.led[data-store="row"]{row-gap:5px;column-gap:0}
+.led[data-store="col"]{row-gap:0;column-gap:6px}
+.led>div{padding:.42rem .3rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.led .h{font-weight:500;color:var(--paper);background:var(--ink);letter-spacing:.02em}
+.led .c{background:var(--paper-2);color:var(--ink-2);transition:background-color .25s ease,color .25s ease}
+.led .c.need{background:var(--hi);color:var(--hi-ink)}
+.led .c.waste{background:repeating-linear-gradient(135deg,var(--waste) 0 3px,var(--paper-2) 3px 7px);color:var(--ink)}
+.led>div:nth-child(5n){text-align:right}
+.read{display:flex;flex-direction:column;gap:.15rem}
+.read strong{font:700 1.7rem/1.1 var(--display)}
+.read span{font-size:.92rem;color:var(--ink-2)}
+.key{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;font-size:.82rem;color:var(--ink-2);margin:0;padding:0;list-style:none}
+.key li{display:flex;align-items:center;gap:.45rem}
+.sw{width:1rem;height:1rem;flex:none;background:var(--paper-2)}
+.sw.need{background:var(--hi)}
+.sw.waste{background:repeating-linear-gradient(135deg,var(--waste) 0 3px,var(--paper-2) 3px 7px)}
+
+/* ---------- where it lives ---------- */
+.where{display:grid;gap:1.5rem}
+@media (min-width:760px){.where{grid-template-columns:1fr 1fr;gap:2.5rem}}
+.setup{display:flex;flex-direction:column;min-width:0}
+.setup h3{margin-bottom:.9rem}
+.box{border:1.5px solid var(--ink);padding:.8rem 1rem;font-weight:600}
+.box small{display:block;font-weight:400;font-size:.85rem;color:var(--ink-2);margin-top:.15rem}
+.box.host{padding-bottom:1rem;display:flex;flex-direction:column;gap:.7rem}
+.box.duck{background:var(--hi);color:var(--hi-ink);border-color:var(--hi-ink)}
+.box.duck small{color:var(--hi-ink)}
+.box.far{border-style:solid;background:var(--paper-2)}
+.wire{margin-left:1.6rem;padding:.9rem 0 .9rem 1rem;font:400 .8rem/1.4 var(--mono);color:var(--ink-2)}
+.wire.net{border-left:2px dashed var(--ink-2)}
+.wire.direct{border-left:2px solid var(--ink)}
+.files{display:flex;flex-wrap:wrap;gap:.5rem}
+.file{font:400 .8rem/1 var(--mono);border:1px solid var(--rule);background:var(--card);padding:.5rem .6rem}
+
+/* ---------- map ---------- */
+.map{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.map-col{font:500 .75rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-bottom:.3rem}
+.map-row{grid-column:1/-1;font:500 .75rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-top:.6rem}
+.map-cell{background:var(--paper-2);padding:1rem;font:700 clamp(1.05rem,3.4vw,1.5rem)/1.2 var(--display);min-height:5.5rem;display:flex;align-items:center;min-width:0}
+.map-cell.me{background:var(--hi);color:var(--hi-ink);font-size:clamp(1.5rem,5.5vw,2.4rem)}
+
+/* ---------- speed ---------- */
+.three{display:grid;gap:2rem}
+@media (min-width:760px){.three{grid-template-columns:repeat(3,1fr)}}
+.why{display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.why svg{width:100%;max-width:17rem}
+.why p{font-size:.98rem;color:var(--ink-2)}
+.s-out{fill:var(--paper-2);stroke:var(--rule);stroke-width:1}
+.s-hi{fill:var(--hi)}
+.s-line{stroke:var(--ink);stroke-width:1.5;fill:none}
+.s-tick{stroke:var(--hi-ink);stroke-width:1;opacity:.35}
+.s-t{font:400 11px var(--mono);fill:var(--ink-2)}
+
+/* ---------- code + files ---------- */
+.code{background:var(--card);border:1px solid var(--rule);overflow-x:auto;max-width:38rem}
+.code pre{margin:0;padding:1rem 1.1rem;font:400 .9rem/1.6 var(--mono);color:var(--ink)}
+.code .k{color:var(--pen);font-weight:500}
+.code .s{background:var(--hi);color:var(--hi-ink);padding:0 .15em}
+
+/* ---------- compare table ---------- */
+.scroll{overflow-x:auto}
+.cmp{border-collapse:collapse;width:100%;min-width:36rem;font-size:.95rem}
+.cmp th{font:500 .72rem/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:.6rem .7rem;border-bottom:1.5px solid var(--ink)}
+.cmp td{padding:.7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.cmp td:first-child{font:700 1.05rem/1.2 var(--display);white-space:nowrap}
+.cmp tr.me td{background:var(--hi);color:var(--hi-ink);border-bottom-color:var(--hi-ink)}
+
+/* ---------- fit ---------- */
+.fit{display:grid;gap:1.75rem}
+@media (min-width:760px){.fit{grid-template-columns:1fr 1fr;gap:2.5rem}}
+.fit ul{margin:.7rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.fit li{display:grid;grid-template-columns:1.4rem 1fr;gap:.2rem;font-size:1rem}
+.fit li::before{font:500 1rem/1.5 var(--mono);color:var(--ink-2)}
+.fit .yes li::before{content:"+"}
+.fit .no li::before{content:"\2212"}
+
+.close{border-top:3px double var(--ink);padding-top:1.5rem;gap:1rem}
+.close .big{font:700 clamp(1.5rem,4.4vw,2.3rem)/1.15 var(--display);max-width:34rem;text-wrap:balance}
+.note{font-size:.88rem;color:var(--ink-2)}
+
+@media (prefers-reduced-motion: reduce){.led,.led .c{transition:none}}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">DuckDB, in pictures</p>
+      <h1>A database that reads by the <mark>column</mark> and lives inside your program.</h1>
+      <p class="lede">No server to run. Nothing to set up. You point it at your data and ask questions about the whole table.</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 360 290" role="img" aria-label="A ledger table with one column marked in yellow highlighter. Only that column is read.">
+      <defs>
+        <g id="rowA">
+          <line class="bar" x1="32" x2="70" y1="73" y2="73"/>
+          <line class="bar" x1="112" x2="166" y1="73" y2="73"/>
+          <line class="bar" x1="202" x2="244" y1="73" y2="73"/>
+          <line class="bar-hi" x1="288" x2="328" y1="73" y2="73"/>
+        </g>
+        <g id="rowB">
+          <line class="bar" x1="32" x2="70" y1="73" y2="73"/>
+          <line class="bar" x1="112" x2="150" y1="73" y2="73"/>
+          <line class="bar" x1="202" x2="254" y1="73" y2="73"/>
+          <line class="bar-hi" x1="298" x2="328" y1="73" y2="73"/>
+        </g>
+      </defs>
+      <rect class="hl" x="266" y="12" width="78" height="268" rx="5" transform="rotate(-1.2 305 146)"/>
+      <g class="rules">
+        <line x1="20" x2="340" y1="56" y2="56"/><line x1="20" x2="340" y1="90" y2="90"/>
+        <line x1="20" x2="340" y1="124" y2="124"/><line x1="20" x2="340" y1="158" y2="158"/>
+        <line x1="20" x2="340" y1="192" y2="192"/><line x1="20" x2="340" y1="226" y2="226"/>
+        <line x1="20" x2="340" y1="260" y2="260"/>
+        <line x1="100" x2="100" y1="20" y2="260"/><line x1="190" x2="190" y1="20" y2="260"/>
+      </g>
+      <line class="bar-h" x1="32" x2="78" y1="38" y2="38"/>
+      <line class="bar-h" x1="112" x2="158" y1="38" y2="38"/>
+      <line class="bar-h" x1="202" x2="240" y1="38" y2="38"/>
+      <line class="bar-hi" x1="284" x2="328" y1="38" y2="38"/>
+      <use href="#rowA"/><use href="#rowB" y="34"/><use href="#rowA" y="68"/>
+      <use href="#rowB" y="102"/><use href="#rowA" y="136"/><use href="#rowB" y="170"/>
+      <line class="tot" x1="282" x2="330" y1="266" y2="266"/>
+      <line class="tot" x1="282" x2="330" y1="270" y2="270"/>
+    </svg>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">The problem</p>
+      <h2>Databases get asked two kinds of questions.</h2>
+      <p>Fetch one record. Or add up a whole table. How the data is laid out on disk decides which one is fast.</p>
+    </div>
+
+    <figure>
+      <div class="lab">
+        <div class="ask">
+          <span class="ask-label" id="ask-label">Ask</span>
+          <div class="seg" role="group" aria-labelledby="ask-label">
+            <button type="button" id="q-avg" data-q="avg" aria-pressed="true">Average price of all orders</button>
+            <button type="button" id="q-find" data-q="find" aria-pressed="false">Find order 1005</button>
+          </div>
+        </div>
+        <p class="answer" id="answer" aria-live="polite"></p>
+
+        <div class="pair">
+          <div class="side" id="side-row">
+            <div class="side-head">
+              <div><h3>Kept by row</h3><small>SQLite, Postgres, MySQL</small></div>
+              <span class="stamp">Better here</span>
+            </div>
+            <div class="led" data-store="row" role="img" id="led-row"></div>
+            <div class="read"><strong id="read-row-n"></strong><span id="read-row-t"></span></div>
+          </div>
+          <div class="side" id="side-col">
+            <div class="side-head">
+              <div><h3>Kept by column</h3><small>DuckDB, Snowflake, BigQuery</small></div>
+              <span class="stamp">Better here</span>
+            </div>
+            <div class="led" data-store="col" role="img" id="led-col"></div>
+            <div class="read"><strong id="read-col-n"></strong><span id="read-col-t"></span></div>
+          </div>
+        </div>
+
+        <ul class="key">
+          <li><span class="sw need"></span>read and needed</li>
+          <li><span class="sw waste"></span>read, not needed</li>
+          <li><span class="sw"></span>skipped</li>
+        </ul>
+      </div>
+      <figcaption>Each strip is one piece of the disk. Things in the same strip are cheap to read together. Switch the question and watch the winner change.</figcaption>
+    </figure>
+
+    <p>Most databases keep rows together, because apps fetch one record at a time. DuckDB keeps columns together, because analysis reads a few columns across every row.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Where it lives</p>
+      <h2>It has no server.</h2>
+      <p>Most databases are a separate program you install, start, secure and connect to. DuckDB is a library. Your program loads it and calls it directly.</p>
+    </div>
+    <figure>
+      <div class="where">
+        <div class="setup">
+          <h3>Most databases</h3>
+          <div class="box">Your program</div>
+          <div class="wire net">question goes down<br>over the network<br>answer comes back</div>
+          <div class="box far">Database server<small>A separate program, always running, with logins and ports</small></div>
+        </div>
+        <div class="setup">
+          <h3>DuckDB</h3>
+          <div class="box host">Your program
+            <div class="box duck">DuckDB<small>A library you import</small></div>
+          </div>
+          <div class="wire direct">reads straight from disk</div>
+          <div class="files">
+            <span class="file">orders.parquet</span>
+            <span class="file">sales.csv</span>
+            <span class="file">shop.duckdb</span>
+          </div>
+        </div>
+      </div>
+      <figcaption>The dashed line is what DuckDB removes. No network hop, no second program to keep alive.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">The map</p>
+      <h2>Two ideas, four corners.</h2>
+      <p>Where it runs, and which kind of question it is built for. DuckDB was made for the bottom-right corner.</p>
+    </div>
+    <figure>
+      <div class="map">
+        <div class="map-col">One record at a time<br>(apps)</div>
+        <div class="map-col">Whole tables at once<br>(analysis)</div>
+        <div class="map-row">Runs as a separate server</div>
+        <div class="map-cell">Postgres, MySQL</div>
+        <div class="map-cell">Snowflake, BigQuery, ClickHouse</div>
+        <div class="map-row">Runs inside your program</div>
+        <div class="map-cell">SQLite</div>
+        <div class="map-cell me">DuckDB</div>
+      </div>
+      <figcaption>SQLite is the closest relative in shape. Snowflake and BigQuery are the closest in how they read data.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Why it is fast</p>
+      <h2>Three habits.</h2>
+    </div>
+    <div class="three">
+      <div class="why">
+        <svg viewBox="0 0 200 110" role="img" aria-label="Five column strips, one highlighted">
+          <rect class="s-out" x="18" y="15" width="26" height="80"/>
+          <rect class="s-out" x="54" y="15" width="26" height="80"/>
+          <rect class="s-out" x="90" y="15" width="26" height="80"/>
+          <rect class="s-hi" x="126" y="15" width="26" height="80"/>
+          <rect class="s-out" x="162" y="15" width="26" height="80"/>
+        </svg>
+        <h3>Skips what it doesn't need</h3>
+        <p>A question about price opens the price strip only.</p>
+      </div>
+      <div class="why">
+        <svg viewBox="0 0 200 110" role="img" aria-label="Small single squares above, one long block below">
+          <rect class="s-out" x="18" y="14" width="10" height="10"/><rect class="s-out" x="38" y="14" width="10" height="10"/>
+          <rect class="s-out" x="58" y="14" width="10" height="10"/><rect class="s-out" x="78" y="14" width="10" height="10"/>
+          <rect class="s-out" x="98" y="14" width="10" height="10"/><rect class="s-out" x="118" y="14" width="10" height="10"/>
+          <rect class="s-out" x="138" y="14" width="10" height="10"/><rect class="s-out" x="158" y="14" width="10" height="10"/>
+          <rect class="s-out" x="178" y="14" width="10" height="10"/>
+          <text class="s-t" x="18" y="42">one value per step</text>
+          <rect class="s-hi" x="18" y="60" width="170" height="20"/>
+          <line class="s-tick" x1="52" x2="52" y1="60" y2="80"/><line class="s-tick" x1="86" x2="86" y1="60" y2="80"/>
+          <line class="s-tick" x1="120" x2="120" y1="60" y2="80"/><line class="s-tick" x1="154" x2="154" y1="60" y2="80"/>
+          <text class="s-t" x="18" y="98">2,048 values per step</text>
+        </svg>
+        <h3>Works in batches</h3>
+        <p>It handles a couple of thousand values per step, which modern chips do very quickly.</p>
+      </div>
+      <div class="why">
+        <svg viewBox="0 0 200 110" role="img" aria-label="A processor chip with all eight cores lit">
+          <rect class="s-line" x="50" y="15" width="100" height="80" rx="5"/>
+          <rect class="s-hi" x="59" y="24" width="17" height="27"/><rect class="s-hi" x="81" y="24" width="17" height="27"/>
+          <rect class="s-hi" x="103" y="24" width="17" height="27"/><rect class="s-hi" x="125" y="24" width="17" height="27"/>
+          <rect class="s-hi" x="59" y="59" width="17" height="27"/><rect class="s-hi" x="81" y="59" width="17" height="27"/>
+          <rect class="s-hi" x="103" y="59" width="17" height="27"/><rect class="s-hi" x="125" y="59" width="17" height="27"/>
+          <line class="s-line" x1="38" x2="50" y1="32" y2="32"/><line class="s-line" x1="38" x2="50" y1="55" y2="55"/><line class="s-line" x1="38" x2="50" y1="78" y2="78"/>
+          <line class="s-line" x1="150" x2="162" y1="32" y2="32"/><line class="s-line" x1="150" x2="162" y1="55" y2="55"/><line class="s-line" x1="150" x2="162" y1="78" y2="78"/>
+        </svg>
+        <h3>Uses every core</h3>
+        <p>One query is split across all the processor cores in your machine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Files</p>
+      <h2>Your files are already tables.</h2>
+      <p>Point a query at a file. There is no import step.</p>
+    </div>
+    <div class="code" tabindex="0" aria-label="Example SQL query"><pre><span class="k">SELECT</span> city, avg(price)
+<span class="k">FROM</span> <span class="s">'orders.parquet'</span>
+<span class="k">GROUP BY</span> city;</pre></div>
+    <div class="files">
+      <span class="file">Parquet</span><span class="file">CSV</span><span class="file">JSON</span>
+      <span class="file">pandas DataFrames</span><span class="file">files in cloud storage</span>
+      <span class="file">Postgres and SQLite tables</span>
+    </div>
+    <p>It speaks ordinary SQL. Installing it in Python is one line: <code style="font-family:var(--mono);font-size:.92em;white-space:nowrap">pip install duckdb</code>.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Side by side</p>
+      <h2>Next to the tools you may know.</h2>
+    </div>
+    <div class="scroll" tabindex="0" role="region" aria-label="Comparison of DuckDB with other tools">
+      <table class="cmp">
+        <thead><tr><th>Tool</th><th>Where it runs</th><th>Keeps data by</th><th>Reach for it when</th></tr></thead>
+        <tbody>
+          <tr class="me"><td>DuckDB</td><td>Inside your program</td><td>Column</td><td>You are analysing data on one machine</td></tr>
+          <tr><td>SQLite</td><td>Inside your program</td><td>Row</td><td>An app needs to store its own records</td></tr>
+          <tr><td>Postgres, MySQL</td><td>Separate server</td><td>Row</td><td>Many users are writing to an app at once</td></tr>
+          <tr><td>Snowflake, BigQuery</td><td>Rented cloud clusters</td><td>Column</td><td>A whole company shares data too big for one machine</td></tr>
+          <tr><td>pandas</td><td>Inside your program</td><td>Column, all in memory</td><td>You are reshaping data by hand in Python</td></tr>
+          <tr><td>Spark</td><td>Many machines</td><td>Files, often Parquet</td><td>The job truly cannot fit on one machine</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Limits</p>
+      <h2>Where it fits, and where it stops.</h2>
+    </div>
+    <div class="fit">
+      <div class="yes">
+        <h3>Good fit</h3>
+        <ul>
+          <li>Exploring big files on a laptop</li>
+          <li>Data larger than memory, since it can spill to disk</li>
+          <li>Notebooks, scripts and data pipelines</li>
+          <li>Analytics built into another app</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>Look elsewhere</h3>
+        <ul>
+          <li>Many people writing at once. One process writes to a database file at a time.</li>
+          <li>The back end of an app with constant small updates</li>
+          <li>Data that needs a cluster. DuckDB runs on one machine.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <p class="big">Small like SQLite. Reads like a data warehouse.</p>
+    <p>People call it "SQLite for analytics", and that phrase is the whole idea.</p>
+    <p class="note">DuckDB is free and open source. Mark Raasveldt and Hannes Mühleisen created it at CWI, the Dutch national research institute for mathematics and computer science, and first released it in 2019. It is named after Wilbur, Hannes's pet duck.</p>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var DATA = [
+    [1001, 'Asha', 'Lamp', 'Pune', 900], [1002, 'Ravi', 'Chair', 'Delhi', 2400],
+    [1003, 'Meera', 'Kettle', 'Kochi', 1100], [1004, 'Imran', 'Desk', 'Agra', 2000],
+    [1005, 'Tara', 'Rug', 'Surat', 1800], [1006, 'Dev', 'Shelf', 'Goa', 3200],
+    [1007, 'Lila', 'Clock', 'Patna', 700], [1008, 'Sam', 'Stool', 'Pune', 1500]
+  ];
+  var HEAD = ['order', 'buyer', 'item', 'city', 'price'];
+  var PRICE = 4, TARGET = 4; // price column; row index of order 1005
+
+  var TXT = {
+    avg: {
+      answer: 'Average price = <b>₹1,700</b>',
+      win: 'col',
+      row: ['40 cells read', 'to collect 8 prices. Every row gets opened.'],
+      col: ['8 cells read', 'One strip holds every price. The rest is skipped.'],
+      aria: { row: 'All 40 cells are read to get 8 prices.', col: 'Only the 8 price cells are read.' }
+    },
+    find: {
+      answer: 'Order 1005 = <b>Tara, Rug, Surat, ₹1,800</b>',
+      win: 'row',
+      row: ['1 grab', 'The whole order sits together in one strip.'],
+      col: ['5 grabs', 'The order is split across five strips.'],
+      aria: { row: 'The order is read from one strip.', col: 'The order is read from five separate strips.' }
+    }
+  };
+
+  var leds = { row: document.getElementById('led-row'), col: document.getElementById('led-col') };
+  Object.keys(leds).forEach(function (k) {
+    var el = leds[k];
+    HEAD.forEach(function (h) {
+      var d = document.createElement('div'); d.className = 'h'; d.textContent = h; el.appendChild(d);
+    });
+    DATA.forEach(function (row, r) {
+      row.forEach(function (v, c) {
+        var d = document.createElement('div');
+        d.className = 'c'; d.dataset.r = r; d.dataset.c = c;
+        d.textContent = c === PRICE ? v.toLocaleString('en-IN') : v;
+        el.appendChild(d);
+      });
+    });
+  });
+
+  function paint(q) {
+    var t = TXT[q];
+    document.getElementById('answer').innerHTML = t.answer;
+    ['row', 'col'].forEach(function (store) {
+      leds[store].querySelectorAll('.c').forEach(function (cell) {
+        var r = +cell.dataset.r, c = +cell.dataset.c, cls = 'c';
+        if (q === 'avg') {
+          if (c === PRICE) cls += ' need';
+          else if (store === 'row') cls += ' waste';
+        } else if (r === TARGET) {
+          cls += ' need';
+        }
+        cell.className = cls;
+      });
+      leds[store].setAttribute('aria-label', t.aria[store]);
+      document.getElementById('read-' + store + '-n').textContent = t[store][0];
+      document.getElementById('read-' + store + '-t').textContent = t[store][1];
+      document.getElementById('side-' + store).classList.toggle('is-win', t.win === store);
+    });
+    document.querySelectorAll('.seg button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.q === q));
+    });
+  }
+
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () { paint(b.dataset.q); });
+  });
+  paint('avg');
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

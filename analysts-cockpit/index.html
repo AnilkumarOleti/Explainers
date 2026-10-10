@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Analyst&#x27;s Cockpit | Explainers</title>
+<meta name="description" content="AI now writes the SQL and builds the charts. The judgment is still the analyst&#x27;s job.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/analysts-cockpit/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Analyst&#x27;s Cockpit">
+<meta property="og:description" content="AI now writes the SQL and builds the charts. The judgment is still the analyst&#x27;s job.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/analysts-cockpit/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/analysts-cockpit/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#F3F5F2; --panel:#FBFCFA; --ink:#132030; --ink2:#4A5967; --ink3:#7A8791;
+  --rule:#D2D9D3; --rule2:#E3E8E3; --code:#E8ECE8;
+  --mag:#A1236C; --cyan:#1B64A6; --amber:#9C6700; --green:#27744A;
+  /* instrument display: same in both themes */
+  --display:#0A1117; --d-edge:#26323D; --d-white:#E6ECF0; --d-dim:#7C8B97;
+  --d-green:#5AD68E; --d-cyan:#5EC6F2; --d-amber:#F2B233; --d-mag:#F07AC2;
+  --serif-fallback: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C131B; --panel:#111B25; --ink:#E2E8EE; --ink2:#9CAAB7; --ink3:#6E7D8B;
+    --rule:#26343F; --rule2:#1A2631; --code:#0F1821;
+    --mag:#E870B8; --cyan:#65B8F2; --amber:#E6A63A; --green:#55C985;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C131B; --panel:#111B25; --ink:#E2E8EE; --ink2:#9CAAB7; --ink3:#6E7D8B;
+  --rule:#26343F; --rule2:#1A2631; --code:#0F1821;
+  --mag:#E870B8; --cyan:#65B8F2; --amber:#E6A63A; --green:#55C985;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:17px; line-height:1.62;
+  padding-inline:20px; padding-block:0 80px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px; margin-inline:auto}
+.col{max-width:680px}
+h1,h2,h3{font-family:"Archivo", var(--serif-fallback); text-wrap:balance; margin:0; color:var(--ink)}
+h1{font-variation-settings:"wdth" 118; font-weight:800; font-size:clamp(38px,6.4vw,72px); line-height:1.0; letter-spacing:-0.01em}
+h2{font-variation-settings:"wdth" 112; font-weight:750; font-size:clamp(28px,3.6vw,40px); line-height:1.08}
+h3{font-variation-settings:"wdth" 100; font-weight:700; font-size:21px; line-height:1.25}
+p{margin:0}
+.mono, .eyebrow, .chip, code, pre{font-family:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace}
+.eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); font-weight:500}
+.lede{font-size:clamp(18px,2vw,21px); line-height:1.55; color:var(--ink2)}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--mag); outline-offset:2px}
+em{font-style:italic}
+strong{font-weight:600}
+
+section{padding-block:72px 8px; display:grid; gap:24px}
+section, header.hero, .closing, .card, .stack, .detail, .hours{grid-template-columns:minmax(0,1fr)}
+.figure{min-width:0}
+.sec-head{display:grid; gap:12px; border-top:1px solid var(--rule); padding-top:20px}
+.stack{display:grid; gap:16px}
+.stack p{max-width:66ch}
+
+/* ---------- hero ---------- */
+header.hero{padding-block:48px 8px; display:grid; gap:28px}
+.hero .meta{display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:12px}
+
+.fma{background:var(--display); border:1px solid var(--d-edge); border-radius:6px; padding:10px; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:0; box-shadow:inset 0 0 0 1px #000, 0 1px 0 rgba(0,0,0,.08)}
+.fma > div{display:grid; gap:6px; justify-items:center; padding:8px 4px; border-left:1px solid var(--d-edge); text-align:center; min-width:0}
+.fma > div:first-child{border-left:0}
+.fma .m{font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:clamp(12px,1.6vw,17px); letter-spacing:.08em; padding:2px 8px; border:1.5px solid transparent; border-radius:2px}
+.fma .t{font-family:"IBM Plex Mono", monospace; font-size:clamp(9.5px,1.1vw,12px); letter-spacing:.1em; color:var(--d-white); text-transform:uppercase; overflow-wrap:anywhere}
+.m.auto{color:var(--d-green)} .m.supv{color:var(--d-cyan)} .m.copl{color:var(--d-amber)} .m.hum{color:var(--d-mag)}
+.fma .boxed{border-color:currentColor; animation:fmabox 1.1s steps(2,start) 3}
+@keyframes fmabox{50%{border-color:transparent}}
+.fma-cap{font-size:13px; color:var(--ink3); display:flex; flex-wrap:wrap; gap:6px 16px}
+.fma-cap span{display:inline-flex; gap:6px; align-items:center}
+.sw{width:10px; height:10px; border-radius:2px; display:inline-block}
+
+/* ---------- short answer ---------- */
+.answer{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border:1px solid var(--rule); background:var(--panel); border-radius:4px}
+.answer > div{padding:22px 22px 24px; display:grid; gap:12px; align-content:start; border-left:1px solid var(--rule)}
+.answer > div:first-child{border-left:0}
+.answer h3{font-size:19px}
+.answer ul{margin:0; padding-left:18px; display:grid; gap:8px; color:var(--ink2); font-size:15.5px; line-height:1.5}
+.answer li::marker{color:var(--ink3)}
+.chip{display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:.1em; padding:2px 7px; border:1.5px solid currentColor; border-radius:2px; line-height:1.5; text-transform:uppercase; white-space:nowrap}
+.c-auto{color:var(--green)} .c-supv{color:var(--cyan)} .c-copl{color:var(--amber)} .c-hum{color:var(--mag)}
+.chips{display:flex; gap:6px; flex-wrap:wrap}
+
+/* ---------- flight profile ---------- */
+.figure{background:var(--panel); border:1px solid var(--rule); border-radius:4px; padding:20px}
+.scroll{overflow-x:auto}
+.scroll svg{display:block; min-width:660px; width:100%; height:auto}
+.caption{font-size:13.5px; color:var(--ink3); line-height:1.5; max-width:72ch}
+svg text{font-family:"IBM Plex Mono", monospace}
+
+/* ---------- hours chart ---------- */
+.hours{display:grid; gap:14px}
+.hrow{display:grid; grid-template-columns:minmax(120px,210px) 1fr; gap:6px 16px; align-items:center}
+.hrow .lab{font-size:15px; line-height:1.3}
+.hrow .lab small{display:block; color:var(--ink3); font-size:12px; font-family:"IBM Plex Mono", monospace; letter-spacing:.04em}
+.bars{display:grid; gap:4px}
+.bar{height:14px; display:flex; align-items:center; gap:8px}
+.bar i{display:block; height:100%; border-radius:1px; min-width:2px}
+.bar b{font-family:"IBM Plex Mono", monospace; font-weight:500; font-size:12px; color:var(--ink2); font-variant-numeric:tabular-nums}
+.bar.before i{background:var(--ink3); opacity:.45}
+.legend{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--ink2)}
+.legend span{display:inline-flex; gap:6px; align-items:center}
+
+/* ---------- asymmetries ---------- */
+.asym{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+.card{background:var(--panel); border:1px solid var(--rule); border-radius:4px; padding:22px; display:grid; gap:14px; align-content:start}
+.card .num{font-family:"IBM Plex Mono", monospace; font-size:12px; color:var(--ink3); letter-spacing:.12em}
+.card p{color:var(--ink2); font-size:16px}
+pre{background:var(--code); border:1px solid var(--rule2); border-radius:3px; padding:14px 16px; margin:0; font-size:13px; line-height:1.55; overflow-x:auto; color:var(--ink)}
+pre .k{color:var(--cyan); font-weight:500}
+pre .bad{background:color-mix(in srgb, var(--amber) 22%, transparent); border-radius:2px; outline:1px dashed var(--amber)}
+pre .cm{color:var(--ink3)}
+.ctx{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+.ctx li{font-size:15px; color:var(--ink2); padding:8px 12px; border-left:3px solid var(--amber); background:color-mix(in srgb, var(--amber) 8%, transparent)}
+
+.fork{display:grid; gap:14px}
+.fork label{font-size:14px; color:var(--ink2); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.fork input[type=range]{width:100%; accent-color:var(--mag)}
+.readout{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.readout div{border:1px solid var(--rule); border-radius:3px; padding:10px 12px; display:grid; gap:2px}
+.readout .v{font-family:"Archivo", var(--serif-fallback); font-variation-settings:"wdth" 110; font-weight:750; font-size:30px; line-height:1.1; font-variant-numeric:tabular-nums}
+.readout .k{font-size:12.5px; color:var(--ink3); line-height:1.35}
+.dots{display:flex; flex-wrap:wrap; gap:3px}
+.dots i{width:9px; height:9px; border-radius:1px; background:var(--rule)}
+.dots i.hit{background:var(--amber)}
+
+/* ---------- control map ---------- */
+.mapwrap{display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:20px; align-items:start}
+.map{display:grid; grid-template-columns:28px 1fr; grid-template-rows:1fr 28px; gap:8px}
+.yaxis{writing-mode:vertical-rl; transform:rotate(180deg); display:flex; justify-content:space-between; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.08em; color:var(--ink3); text-transform:uppercase}
+.xaxis{grid-column:2; display:flex; justify-content:space-between; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.08em; color:var(--ink3); text-transform:uppercase; gap:10px}
+.axis-mid{color:var(--ink2); font-weight:600}
+.quads{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; border:1px solid var(--rule); background:var(--panel); border-radius:4px}
+.quad{padding:16px; display:grid; gap:10px; align-content:start; min-height:210px}
+.quad:nth-child(1){border-right:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.quad:nth-child(2){border-bottom:1px solid var(--rule)}
+.quad:nth-child(3){border-right:1px solid var(--rule)}
+.quad .qh{display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px; align-items:center}
+.quad .qd{font-size:13.5px; color:var(--ink2); line-height:1.45}
+.q-hum{background:color-mix(in srgb, var(--mag) 5%, transparent)}
+.q-supv{background:color-mix(in srgb, var(--cyan) 5%, transparent)}
+.q-copl{background:color-mix(in srgb, var(--amber) 5%, transparent)}
+.q-auto{background:color-mix(in srgb, var(--green) 5%, transparent)}
+.tasks{display:flex; flex-wrap:wrap; gap:6px}
+.task{font:inherit; font-size:13px; line-height:1.3; padding:6px 9px; border-radius:3px; border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; text-align:left}
+.task:hover{border-color:var(--ink3)}
+.task[aria-pressed="true"]{color:var(--paper); background:var(--ink); border-color:var(--ink)}
+.detail{position:sticky; top:calc(env(safe-area-inset-top, 0px) + 16px); background:var(--panel); border:1px solid var(--rule); border-radius:4px; padding:20px; display:grid; gap:14px}
+.detail dl{margin:0; display:grid; gap:12px}
+.detail dt{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3)}
+.detail dd{margin:4px 0 0; font-size:15px; color:var(--ink2); line-height:1.5}
+.rule-line{font-family:"Archivo", var(--serif-fallback); font-variation-settings:"wdth" 104; font-weight:650; font-size:clamp(20px,2.4vw,26px); line-height:1.3; border-left:4px solid var(--mag); padding:4px 0 4px 18px; max-width:40ch}
+.push{display:flex; gap:10px; align-items:center; font-size:14px; color:var(--ink2); flex-wrap:wrap}
+.push .arrow{flex:1 1 120px; height:2px; background:linear-gradient(90deg, var(--rule), var(--green)); position:relative; min-width:80px}
+.push .arrow::after{content:""; position:absolute; right:-1px; top:-5px; border-left:9px solid var(--green); border-top:6px solid transparent; border-bottom:6px solid transparent}
+
+/* ---------- timeline ---------- */
+.incident-head{background:var(--display); color:var(--d-white); border-radius:4px; padding:16px 18px; display:grid; gap:4px; font-family:"IBM Plex Mono", monospace}
+.incident-head .a{color:var(--d-amber); font-size:12px; letter-spacing:.14em}
+.incident-head .b{font-size:clamp(15px,1.8vw,18px); font-weight:500}
+.tl{display:grid; gap:0; border:1px solid var(--rule); border-radius:4px; background:var(--panel)}
+.tl-h, .step{display:grid; grid-template-columns:70px 92px 1fr 1fr; gap:0}
+.tl-h > div{padding:10px 14px; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); border-bottom:1px solid var(--rule)}
+.step > div{padding:14px; border-bottom:1px solid var(--rule2); font-size:15px; line-height:1.5; color:var(--ink2)}
+.step:last-child > div{border-bottom:0}
+.step .time{font-family:"IBM Plex Mono", monospace; font-size:13px; color:var(--ink3); font-variant-numeric:tabular-nums}
+.step .lane-empty{background:repeating-linear-gradient(135deg, transparent 0 6px, var(--rule2) 6px 7px)}
+.step .who{display:none; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.1em; color:var(--ink3); text-transform:uppercase; margin-bottom:2px}
+.step strong{color:var(--ink)}
+.tl-foot{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.tl-foot div{border-top:2px solid var(--ink); padding-top:10px; display:grid; gap:4px}
+.tl-foot .v{font-family:"Archivo", var(--serif-fallback); font-variation-settings:"wdth" 110; font-weight:750; font-size:26px; line-height:1.1}
+.tl-foot .k{font-size:14px; color:var(--ink2); line-height:1.45}
+
+/* ---------- stack diagram ---------- */
+.layers{display:grid; gap:0; border:1px solid var(--rule); border-radius:4px; background:var(--panel)}
+.layer{display:grid; grid-template-columns:minmax(150px,230px) 1fr; gap:6px 20px; padding:16px 20px; border-top:1px solid var(--rule2); align-items:start}
+.layer:first-child{border-top:0}
+.layer .n{font-family:"Archivo", var(--serif-fallback); font-variation-settings:"wdth" 104; font-weight:700; font-size:17px}
+.layer .n small{display:block; font-family:"IBM Plex Mono", monospace; font-weight:500; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-top:2px}
+.layer p{font-size:15px; color:var(--ink2); line-height:1.5}
+.layer.top{background:color-mix(in srgb, var(--green) 7%, transparent)}
+.layer.own{border-left:4px solid var(--mag)}
+.layer.bottom{background:color-mix(in srgb, var(--ink3) 8%, transparent)}
+.layer.hum{background:color-mix(in srgb, var(--mag) 7%, transparent)}
+
+/* ---------- from/to ---------- */
+.shift{display:grid; gap:0; border-top:1px solid var(--rule)}
+.shift .r{display:grid; grid-template-columns:1fr 28px 1.4fr; gap:12px; padding:14px 0; border-bottom:1px solid var(--rule2); align-items:baseline}
+.shift .from{color:var(--ink3); text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--ink3) 60%, transparent); font-size:15.5px}
+.shift .to{color:var(--ink); font-size:16px}
+.shift .ar{color:var(--mag); font-family:"IBM Plex Mono", monospace; text-align:center}
+
+/* ---------- risks ---------- */
+.risks{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.risk{border-top:2px solid var(--amber); padding-top:12px; display:grid; gap:8px; align-content:start}
+.risk h3{font-size:18px}
+.risk p{font-size:15px; color:var(--ink2); line-height:1.5}
+.risk .fix{font-size:14.5px; color:var(--ink)}
+.risk .fix b{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.1em; color:var(--green); font-weight:600; margin-right:4px}
+
+/* ---------- checklist ---------- */
+.qrh{background:var(--panel); border:1px solid var(--rule); border-radius:4px; padding:0; overflow:hidden}
+.qrh-h{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:12px 18px; background:var(--ink); color:var(--paper); font-family:"IBM Plex Mono", monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase}
+.qrh ol{list-style:none; margin:0; padding:10px 18px 16px; counter-reset:q}
+.qrh li{counter-increment:q; display:grid; grid-template-columns:28px 1fr; gap:10px; padding:9px 0; border-bottom:1px dashed var(--rule)}
+.qrh li:last-child{border-bottom:0}
+.qrh li::before{content:counter(q, decimal-leading-zero); font-family:"IBM Plex Mono", monospace; font-size:12px; color:var(--ink3); padding-top:2px}
+.cr{display:flex; align-items:baseline; gap:8px; font-family:"IBM Plex Mono", monospace; font-size:13.5px; letter-spacing:.03em; flex-wrap:wrap}
+.cr .c{font-weight:600; color:var(--ink); text-transform:uppercase}
+.cr .d{flex:1 1 40px; border-bottom:2px dotted var(--ink3); transform:translateY(-4px); min-width:30px; opacity:.6}
+.cr .rsp{color:var(--mag); font-weight:600; text-transform:uppercase}
+.qrh li p{grid-column:2; font-size:14px; color:var(--ink2); line-height:1.45; margin-top:2px}
+
+.closing{padding-block:80px 0; display:grid; gap:18px}
+.closing .big{font-family:"Archivo", var(--serif-fallback); font-variation-settings:"wdth" 116; font-weight:800; font-size:clamp(30px,4.6vw,52px); line-height:1.05; max-width:20ch; text-wrap:balance}
+.foot{margin-top:40px; border-top:1px solid var(--rule); padding-top:14px; font-size:13px; color:var(--ink3)}
+
+@media (max-width:860px){
+  .mapwrap{grid-template-columns:1fr}
+  .detail{position:static}
+  .risks{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  body{font-size:16px; padding-inline:16px}
+  .answer{grid-template-columns:1fr}
+  .answer > div{border-left:0; border-top:1px solid var(--rule)}
+  .answer > div:first-child{border-top:0}
+  .asym{grid-template-columns:1fr}
+  .risks{grid-template-columns:1fr}
+  .tl-foot{grid-template-columns:1fr}
+  .fma{grid-template-columns:repeat(5,minmax(0,1fr)); padding:6px}
+  .fma .m{padding:2px 4px; letter-spacing:.02em}
+  .tl-h{display:none}
+  .step{grid-template-columns:1fr; border-bottom:1px solid var(--rule)}
+  .step > div{border-bottom:0; padding:6px 14px}
+  .step > div:first-child{padding-top:14px}
+  .step > div:last-child{padding-bottom:14px}
+  .step .lane-empty{display:none}
+  .step .who{display:block}
+  .step .time{display:flex; gap:10px; align-items:center}
+  .quads{grid-template-columns:1fr}
+  .quad{min-height:0; border-right:0 !important; border-bottom:1px solid var(--rule)}
+  .quad:last-child{border-bottom:0}
+  .map{grid-template-columns:1fr; grid-template-rows:auto}
+  .yaxis,.xaxis{display:none}
+  .layer{grid-template-columns:1fr}
+  .shift .r{grid-template-columns:1fr; gap:4px}
+  .shift .ar{display:none}
+  .shift .to::before{content:"→ "; color:var(--mag); font-family:"IBM Plex Mono", monospace}
+  .hrow{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  .fma .boxed{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="meta">
+    <span class="eyebrow">Analytics after LLMs · a field manual</span>
+    <span class="eyebrow">Rev. Sep 2026</span>
+  </div>
+
+  <div class="fma" role="img" aria-label="Mode display. Write code: auto. Build charts: auto. Verify: supervised. Explain: co-pilot. Decide: human.">
+    <div><span class="m auto">AUTO</span><span class="t">Write code</span></div>
+    <div><span class="m auto">AUTO</span><span class="t">Build charts</span></div>
+    <div><span class="m supv">SUPV</span><span class="t">Verify</span></div>
+    <div><span class="m copl">CO-PLT</span><span class="t">Explain</span></div>
+    <div><span class="m hum boxed">HUMAN</span><span class="t">Decide</span></div>
+  </div>
+
+  <h1>The code got cheap.<br>The judgment didn't.</h1>
+  <div class="col stack">
+    <p class="lede">LLMs now write the SQL, build the dashboard and draft the readout faster than any analyst. That removes the slowest part of analytics and exposes the part that was always the real job: choosing the question, checking the answer, and owning the decision.</p>
+    <p class="lede">This manual covers how to split that work between people and models, and why the split falls where it does.</p>
+  </div>
+  <div class="fma-cap mono" aria-hidden="true">
+    <span><i class="sw" style="background:var(--green)"></i>AUTO · model runs it</span>
+    <span><i class="sw" style="background:var(--cyan)"></i>SUPV · model runs it, checks and a named human sign off</span>
+    <span><i class="sw" style="background:var(--amber)"></i>CO-PLT · work it together</span>
+    <span><i class="sw" style="background:var(--mag)"></i>HUMAN · your judgment, model as staff</span>
+  </div>
+</header>
+
+<!-- SHORT ANSWER -->
+<section aria-labelledby="s-answer">
+  <div class="sec-head">
+    <span class="eyebrow">The short answer</span>
+    <h2 id="s-answer">Three piles of work</h2>
+  </div>
+  <div class="answer">
+    <div>
+      <div class="chips"><span class="chip c-auto">Auto</span><span class="chip c-supv">Supv</span></div>
+      <h3>Hand over control</h3>
+      <ul>
+        <li>Writing and refactoring SQL, Python and pipeline code</li>
+        <li>Exploratory charts and throwaway dashboards</li>
+        <li>Data profiling, QA checks, documentation</li>
+        <li>Recurring reports, once each run reconciles to a source of truth</li>
+      </ul>
+    </div>
+    <div>
+      <div class="chips"><span class="chip c-copl">Co-pilot</span></div>
+      <h3>Collaborate</h3>
+      <ul>
+        <li>Generating hypotheses and root-cause trees</li>
+        <li>Investigating anomalies: you steer, it runs the cuts</li>
+        <li>Designing experiments: power, guardrails, duration</li>
+        <li>Drafting the narrative, with a source on every number</li>
+      </ul>
+    </div>
+    <div>
+      <div class="chips"><span class="chip c-hum">Human</span></div>
+      <h3>Keep your judgment</h3>
+      <ul>
+        <li>Which question matters, and which decision it serves</li>
+        <li>What to measure, and what that metric will make people optimise</li>
+        <li>Causal claims behind big bets</li>
+        <li>Trade-offs between buyers, sellers and the business</li>
+        <li>Putting your name on a number</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MENTAL MODEL -->
+<section aria-labelledby="s-model">
+  <div class="sec-head">
+    <span class="eyebrow">The one picture to keep</span>
+    <h2 id="s-model">Autopilot flies the cruise</h2>
+  </div>
+  <div class="stack col">
+    <p>Autopilot didn't remove pilots from the cockpit. It moved them. The automation holds altitude and heading through the long, predictable middle of the flight. Pilots own takeoff and landing, watch the automation during cruise, and take the controls back the moment something abnormal happens.</p>
+    <p>An analysis has the same shape. Framing the question is the takeoff. Querying, coding and charting is the cruise. Interpreting, deciding and explaining is the landing. And a surprising number is the abnormal event, where you take the controls back.</p>
+  </div>
+  <div class="figure">
+    <div class="scroll">
+      <svg viewBox="0 0 860 250" role="img" aria-labelledby="fp-t">
+        <title id="fp-t">Flight profile of an analysis. Takeoff (frame the question) and landing (interpret and decide) are human. Cruise (query, code, chart) is autopilot, with the human monitoring. An abnormal event mid-cruise hands control back to the human.</title>
+        <line x1="30" y1="206" x2="830" y2="206" stroke="var(--rule)" stroke-width="1.5"/>
+        <!-- climb -->
+        <path d="M40 206 C 120 206, 170 90, 250 78" fill="none" stroke="var(--mag)" stroke-width="4" stroke-linecap="round"/>
+        <!-- cruise -->
+        <path d="M250 78 L 610 78" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>
+        <!-- descent -->
+        <path d="M610 78 C 690 90, 740 206, 820 206" fill="none" stroke="var(--mag)" stroke-width="4" stroke-linecap="round"/>
+        <!-- monitoring dashes -->
+        <path d="M250 104 L 610 104" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <text x="470" y="124" text-anchor="middle" font-size="12" fill="var(--cyan)">HUMAN MONITORS · VERIFIES</text>
+        <!-- abnormal -->
+        <circle cx="470" cy="78" r="9" fill="var(--paper)" stroke="var(--amber)" stroke-width="2.5"/>
+        <text x="470" y="82.5" text-anchor="middle" font-size="12" font-weight="600" fill="var(--amber)">!</text>
+        <text x="470" y="46" text-anchor="middle" font-size="12" fill="var(--amber)" font-weight="600">ABNORMAL → HAND BACK</text>
+        <text x="470" y="62" text-anchor="middle" font-size="11" fill="var(--ink3)">surprising result · odd data</text>
+        <!-- labels -->
+        <text x="118" y="54" text-anchor="middle" font-size="13" font-weight="600" fill="var(--mag)">TAKEOFF · HUMAN</text>
+        <text x="118" y="70" text-anchor="middle" font-size="11.5" fill="var(--ink2)">frame the question</text>
+        <text x="300" y="62" text-anchor="middle" font-size="13" font-weight="600" fill="var(--green)">CRUISE · AUTO</text>
+        <text x="300" y="148" text-anchor="middle" font-size="11.5" fill="var(--ink2)">query · code · chart</text>
+        <text x="742" y="54" text-anchor="middle" font-size="13" font-weight="600" fill="var(--mag)">LANDING · HUMAN</text>
+        <text x="742" y="70" text-anchor="middle" font-size="11.5" fill="var(--ink2)">interpret · decide · explain</text>
+        <text x="40" y="230" font-size="11" fill="var(--ink3)">QUESTION</text>
+        <text x="820" y="230" text-anchor="end" font-size="11" fill="var(--ink3)">DECISION</text>
+      </svg>
+    </div>
+    <p class="caption">The model is fastest exactly where the work is most predictable. The human's time concentrates at the two ends, and on watching the middle.</p>
+  </div>
+  <div class="stack col">
+    <p>This has happened before. When VisiCalc arrived in 1979, recalculating a financial model went from days of hand work to seconds. Bookkeeping clerk jobs shrank. Jobs for accountants and financial analysts grew, because cheap calculation raised demand for people who could decide what to model and whether the model made sense.</p>
+  </div>
+</section>
+
+<!-- WHAT CHANGED -->
+<section aria-labelledby="s-changed">
+  <div class="sec-head">
+    <span class="eyebrow">What changed</span>
+    <h2 id="s-changed">The middle of the week collapses</h2>
+  </div>
+  <div class="stack col">
+    <p>Most analysts spent most of their week in the middle: finding tables, writing and debugging SQL, formatting charts. That middle is now minutes. The ends don't shrink. They grow, because every cheap answer still needs a question in front of it and a check behind it.</p>
+  </div>
+  <div class="figure hours" id="hours">
+    <div class="legend">
+      <span><i class="sw" style="background:var(--ink3);opacity:.45"></i>Before LLMs</span>
+      <span><i class="sw" style="background:var(--green)"></i>With LLMs · machine-heavy</span>
+      <span><i class="sw" style="background:var(--cyan)"></i>With LLMs · checking</span>
+      <span><i class="sw" style="background:var(--mag)"></i>With LLMs · judgment</span>
+    </div>
+  </div>
+  <p class="caption">Illustrative split of an analyst's week, as a share of hours. Your team's numbers will differ; the direction is what matters. "Understand the data" stays large because it is mostly context: which table is the source of truth, what a field really means, which weeks are broken.</p>
+  <div class="stack col">
+    <p>Expect more analysis, not less. When coal engines got more efficient, total coal use went up (economists call this the Jevons paradox). Cheap analysis works the same way: product managers and leaders will ask ten times as many questions, most of them directly to a model. What becomes scarce is attention, trust in the numbers, and people who can tell a real finding from a plausible one.</p>
+  </div>
+</section>
+
+<!-- WHY NOT EVERYTHING -->
+<section aria-labelledby="s-why">
+  <div class="sec-head">
+    <span class="eyebrow">Why not hand over everything</span>
+    <h2 id="s-why">Four things that don't get cheaper</h2>
+  </div>
+  <div class="asym">
+    <div class="card">
+      <span class="num">01 · PLAUSIBLE IS NOT CORRECT</span>
+      <h3>Wrong answers now look finished</h3>
+      <p>A bad query used to fail loudly. Now it returns a clean chart with a confident title. This one runs fine and overstates GMV:</p>
+<pre><span class="k">SELECT</span> o.category, <span class="k">SUM</span>(o.order_value) <span class="k">AS</span> gmv
+<span class="k">FROM</span> orders o
+<span class="bad"><span class="k">JOIN</span> shipments s <span class="k">ON</span> s.order_id = o.order_id</span>
+<span class="k">WHERE</span> o.order_date &gt;= <span>'2026-07-01'</span>
+<span class="k">GROUP BY</span> o.category;
+<span class="cm">-- one order, three parcels → counted three times
+-- cancelled orders and test accounts included</span></pre>
+      <p>Someone who knows the grain of the shipments table spots this in seconds. A model spots it only if the grain is written down somewhere it can read. Analysts have an old rule for this, Twyman's law: any figure that looks interesting or different is usually wrong.</p>
+    </div>
+
+    <div class="card fork">
+      <span class="num">02 · CHEAP CUTS MANUFACTURE FINDINGS</span>
+      <h3>Slice enough and noise looks like signal</h3>
+      <p>A model can slice a metric forty ways before you finish your coffee. At the usual 5% significance level, some of those slices will look "significant" by chance alone.</p>
+      <label for="cuts"><span>Cuts tried, with no real effect present</span><b class="mono" id="cuts-v">40</b></label>
+      <input type="range" id="cuts" min="1" max="100" value="40" aria-describedby="fork-note">
+      <div class="readout">
+        <div><span class="v" id="exp">2.0</span><span class="k">false "findings" expected</span></div>
+        <div><span class="v" id="atl">87%</span><span class="k">chance of at least one</span></div>
+      </div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <p id="fork-note" class="caption">Assumes independent tests at p&nbsp;&lt;&nbsp;0.05. The fix is procedural: state the hypothesis first, count the cuts, and confirm on a holdout period.</p>
+    </div>
+
+    <div class="card">
+      <span class="num">03 · CONTEXT LIVES IN PEOPLE</span>
+      <h3>The table doesn't know what happened</h3>
+      <p>The facts that decide whether a number means anything are rarely in the warehouse:</p>
+      <ul class="ctx">
+        <li>The 14 Aug spike was a logging change, not demand.</li>
+        <li>The Germany dip is a public holiday.</li>
+        <li>"Active seller" excludes accounts under fraud review.</li>
+        <li>Categories were remapped in March, so year-over-year is broken.</li>
+      </ul>
+      <p>Until someone writes these down where the model can read them, the model will confidently explain a logging bug as a change in user behaviour.</p>
+    </div>
+
+    <div class="card">
+      <span class="num">04 · ACCOUNTABILITY DOESN'T TRANSFER</span>
+      <h3>Someone has to own the number</h3>
+      <p>When a number drives a fee change, a launch or a headcount plan, someone must be able to say: "I checked this, here is how, and I'll answer for it next quarter." A model can produce an explanation. It can't carry the consequence.</p>
+      <p>Organisations run on that ownership. Take it away and you get numbers nobody fully trusts and decisions nobody fully owns.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROL MAP -->
+<section aria-labelledby="s-map">
+  <div class="sec-head">
+    <span class="eyebrow">The control map</span>
+    <h2 id="s-map">Hand over control in proportion to how cheaply you can check</h2>
+  </div>
+  <p class="rule-line">How much control to give the model depends on two things: how cheaply a wrong output gets caught, and how much a wrong output costs.</p>
+  <div class="stack col">
+    <p>Place every task on those two axes and the mode follows. Select a task to see why it sits where it does and what guardrail it needs.</p>
+  </div>
+  <div class="mapwrap">
+    <div class="map">
+      <div class="yaxis"><span>Low cost of error</span><span class="axis-mid">Cost of a wrong answer →</span><span>High</span></div>
+      <div class="quads" id="quads">
+        <div class="quad q-hum" data-mode="hum">
+          <div class="qh"><span class="chip c-hum">Human</span><span class="mono" style="font-size:11px;color:var(--ink3)">HARD TO CHECK · HIGH STAKES</span></div>
+          <p class="qd">Your judgment. The model works as staff: it gathers evidence, argues both sides, drafts.</p>
+          <div class="tasks"></div>
+        </div>
+        <div class="quad q-supv" data-mode="supv">
+          <div class="qh"><span class="chip c-supv">Supervised</span><span class="mono" style="font-size:11px;color:var(--ink3)">EASY TO CHECK · HIGH STAKES</span></div>
+          <p class="qd">The model does the work. Automated checks run every time, and a named human signs off.</p>
+          <div class="tasks"></div>
+        </div>
+        <div class="quad q-copl" data-mode="copl">
+          <div class="qh"><span class="chip c-copl">Co-pilot</span><span class="mono" style="font-size:11px;color:var(--ink3)">HARD TO CHECK · LOW STAKES</span></div>
+          <p class="qd">Explore together. Label the output exploratory so it can't slip into a decision unnoticed.</p>
+          <div class="tasks"></div>
+        </div>
+        <div class="quad q-auto" data-mode="auto">
+          <div class="qh"><span class="chip c-auto">Auto</span><span class="mono" style="font-size:11px;color:var(--ink3)">EASY TO CHECK · LOW STAKES</span></div>
+          <p class="qd">Hand it over. Review the system occasionally, not every output.</p>
+          <div class="tasks"></div>
+        </div>
+      </div>
+      <div class="xaxis"><span>Hard to check</span><span class="axis-mid">How cheaply a wrong output is caught →</span><span>Easy</span></div>
+    </div>
+    <aside class="detail" id="detail" aria-live="polite">
+      <div class="chips"><span class="chip" id="d-chip">Human</span></div>
+      <h3 id="d-name">Choosing what to measure</h3>
+      <dl>
+        <div><dt>Why here</dt><dd id="d-why"></dd></div>
+        <div><dt>Guardrail</dt><dd id="d-guard"></dd></div>
+      </dl>
+    </aside>
+  </div>
+  <div class="push">
+    <span class="mono" style="font-size:12px;letter-spacing:.08em;color:var(--ink3)">HARD TO CHECK</span>
+    <span class="arrow" aria-hidden="true"></span>
+    <span class="mono" style="font-size:12px;letter-spacing:.08em;color:var(--green)">EASY TO CHECK</span>
+  </div>
+  <div class="stack col">
+    <p><strong>Checkability can be built.</strong> The map isn't fixed. Certified metric definitions, reconciliation tests and a set of questions with known answers each make a class of work cheaper to verify, which moves it to the right. Much of an analytics team's work now is to move tasks rightward on purpose, so more of the work can safely run on autopilot. The top-left corner never empties, and it shouldn't.</p>
+  </div>
+</section>
+
+<!-- WORKED INCIDENT -->
+<section aria-labelledby="s-inc">
+  <div class="sec-head">
+    <span class="eyebrow">A worked example</span>
+    <h2 id="s-inc">One Monday morning, two lanes</h2>
+  </div>
+  <div class="stack col">
+    <p>A C2C marketplace, a routine alert, and how the work passes between the model and the analyst. Watch where control changes hands.</p>
+  </div>
+  <div class="incident-head">
+    <span class="a">▲ ALERT · MON 09:40</span>
+    <span class="b">New-seller listings down 9% week over week</span>
+  </div>
+  <div class="tl" role="table" aria-label="Incident timeline">
+    <div class="tl-h" role="row"><div role="columnheader">Time</div><div role="columnheader">Mode</div><div role="columnheader">Model</div><div role="columnheader">Analyst</div></div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">09:40</div>
+      <div role="cell"><span class="chip c-auto">Auto</span></div>
+      <div role="cell"><span class="who">Model</span>Anomaly monitor flags a 9% drop in listings from sellers in their first 30 days.</div>
+      <div role="cell" class="lane-empty"></div>
+    </div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">09:45</div>
+      <div role="cell"><span class="chip c-hum">Human</span></div>
+      <div role="cell" class="lane-empty"></div>
+      <div role="cell"><span class="who">Analyst</span><strong>Frames it before anyone digs.</strong> Is it real? Is it bad? What decision could it change? Here, whether to roll back app release 8.3, which reached all Android users on Friday.</div>
+    </div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">09:50</div>
+      <div role="cell"><span class="chip c-auto">Auto</span></div>
+      <div role="cell"><span class="who">Model</span>Runs 26 cuts in four minutes: platform, country, category, seller tenure, app version. The drop sits almost entirely in Android 8.3.</div>
+      <div role="cell" class="lane-empty"></div>
+    </div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">10:05</div>
+      <div role="cell"><span class="chip c-supv">Supv</span></div>
+      <div role="cell"><span class="who">Model</span>Reconciles the event stream against the listings table, the system of record. The real drop is 3%, not 9%.</div>
+      <div role="cell"><span class="who">Analyst</span><strong>Asks the question the model couldn't:</strong> did 8.3 change how listing events are logged? Engineering confirms a renamed event. Six of the nine points were tracking.</div>
+    </div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">10:30</div>
+      <div role="cell"><span class="chip c-copl">Co-plt</span></div>
+      <div role="cell"><span class="who">Model</span>Proposes eight hypotheses for the remaining 3% and builds the listing funnel for each app version.</div>
+      <div role="cell"><span class="who">Analyst</span>Picks the plausible one: 8.3 added a mandatory photo-crop step. Drop-off at that screen has doubled.</div>
+    </div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">11:15</div>
+      <div role="cell"><span class="chip c-hum">Human</span></div>
+      <div role="cell" class="lane-empty"></div>
+      <div role="cell"><span class="who">Analyst</span><strong>Makes the causal call and the decision.</strong> Sellers still on 8.2 show no drop over the same days, so the staged rollout works as a natural comparison. Recommendation: keep 8.3, since it carries a security fix, and ship a hotfix that makes cropping optional.</div>
+    </div>
+
+    <div class="step" role="row">
+      <div class="time" role="cell">11:30</div>
+      <div role="cell"><span class="chip c-auto">Auto</span></div>
+      <div role="cell"><span class="who">Model</span>Drafts the readout with a source on every number, adds a data test for the renamed event, and writes a known-issue note into the context store.</div>
+      <div role="cell"><span class="who">Analyst</span>Edits the readout and signs it.</div>
+    </div>
+  </div>
+  <div class="tl-foot">
+    <div><span class="v">~20 min</span><span class="k">of model time. The 26 cuts alone would have taken an analyst most of a day.</span></div>
+    <div><span class="v">~50 min</span><span class="k">of analyst time, almost all of it framing, context and the call.</span></div>
+    <div><span class="v">6 of 9 pts</span><span class="k">were a logging change. Without the analyst, leadership hears "listings down 9%" and rolls back a security fix.</span></div>
+  </div>
+</section>
+
+<!-- DURABLE ASSETS -->
+<section aria-labelledby="s-assets">
+  <div class="sec-head">
+    <span class="eyebrow">What the team owns now</span>
+    <h2 id="s-assets">Dashboards become disposable. Definitions become durable.</h2>
+  </div>
+  <div class="stack col">
+    <p>If a model can build any dashboard in two minutes, the dashboard stops being the product. What lasts is the layer the model stands on. In the incident above, the analyst's most valuable output wasn't the readout. It was the known-issue note and the data test, which make next Monday's answer right without anyone involved.</p>
+  </div>
+  <div class="layers">
+    <div class="layer hum">
+      <div class="n">Decisions<small>human-owned</small></div>
+      <p>Framing, trade-offs, the call, and a name on it.</p>
+    </div>
+    <div class="layer top">
+      <div class="n">The model as analyst<small>queries · charts · drafts</small></div>
+      <p>Fast, tireless, disposable output. Only as good as what sits below it.</p>
+    </div>
+    <div class="layer own">
+      <div class="n">Semantic layer<small>team owns</small></div>
+      <p>Certified metric definitions: what counts as an active seller, GMV net of cancellations, the grain of each table, the right join paths. The model queries this, never raw tables, for anything that leaves the team.</p>
+    </div>
+    <div class="layer own">
+      <div class="n">Context store<small>team owns</small></div>
+      <p>Known data issues, launches, promotions, holidays, a glossary of house terms. It turns tacit knowledge into text the model can read. Every investigation should add to it.</p>
+    </div>
+    <div class="layer own">
+      <div class="n">Golden questions<small>team owns</small></div>
+      <p>A hundred or so business questions with verified answers. Rerun them on every model, prompt or schema change. These are unit tests for your AI analyst.</p>
+    </div>
+    <div class="layer own">
+      <div class="n">Decision log<small>team owns</small></div>
+      <p>What was decided, on which numbers, and what happened afterwards. It lets you judge whether the analysis was any good, which dashboards never could.</p>
+    </div>
+    <div class="layer bottom">
+      <div class="n">Raw data<small>warehouse</small></div>
+      <p>Events, tables, logs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE SHIFT -->
+<section aria-labelledby="s-role">
+  <div class="sec-head">
+    <span class="eyebrow">How the analyst's job changes</span>
+    <h2 id="s-role">From answering questions to making answers safe</h2>
+  </div>
+  <div class="stack col">
+    <p>Your stakeholders will ask the model directly. That's a good thing: self-serve analytics finally works for people who know what to ask. The analytics team's job shifts from answering those questions to making sure the model they ask stands on certified definitions and says so when it's unsure.</p>
+  </div>
+  <div class="shift">
+    <div class="r"><span class="from">Writes the queries</span><span class="ar">→</span><span class="to">Writes the question, and names the decision it serves</span></div>
+    <div class="r"><span class="from">Builds dashboards</span><span class="ar">→</span><span class="to">Owns the definitions every dashboard and model stands on</span></div>
+    <div class="r"><span class="from">Works the ad-hoc request queue</span><span class="ar">→</span><span class="to">Designs the system that answers requests safely</span></div>
+    <div class="r"><span class="from">Reviews a junior's SQL</span><span class="ar">→</span><span class="to">Audits machine output: reconciliation, golden questions, spot checks</span></div>
+    <div class="r"><span class="from">Delivers the report</span><span class="ar">→</span><span class="to">Sits in the decision, argues the trade-offs, says when evidence is enough</span></div>
+    <div class="r"><span class="from">Measured by dashboards shipped</span><span class="ar">→</span><span class="to">Measured by decisions changed and errors caught before they travelled</span></div>
+  </div>
+  <div class="stack col">
+    <p>Hiring follows. Fluency in SQL matters less. Domain knowledge, statistical and causal reasoning, scepticism, and the ability to hold a room during a disagreement matter more.</p>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section aria-labelledby="s-risk">
+  <div class="sec-head">
+    <span class="eyebrow">The automation paradox</span>
+    <h2 id="s-risk">The better the autopilot, the rustier the pilot</h2>
+  </div>
+  <div class="stack col">
+    <p>Aviation learned this the hard way. Automation hands control back at the worst moments, in unusual conditions with little time, and crews who rarely fly by hand are least ready. After Air France 447 was lost in 2009, investigators pointed to how the crew handled a stall after the autopilot disconnected. Regulators now push airlines to give pilots regular manual-flying practice. Analytics teams face the same trap, along with a few of their own.</p>
+  </div>
+  <div class="risks">
+    <div class="risk">
+      <h3>Deskilling</h3>
+      <p>Juniors built judgment by writing queries and hitting bugs. If the model writes every query, where does that judgment come from?</p>
+      <p class="fix"><b>COUNTER</b>Schedule hand-flying: some analyses done end to end without the model, and model output reconciled by hand.</p>
+    </div>
+    <div class="risk">
+      <h3>Complacency</h3>
+      <p>After fifty correct answers, nobody checks the fifty-first. That's the one with the fan-out join.</p>
+      <p class="fix"><b>COUNTER</b>Random audits, plus golden questions rerun on every model or schema change.</p>
+    </div>
+    <div class="risk">
+      <h3>Metric drift</h3>
+      <p>Each generated query defines "active seller" slightly differently. Three decks, three numbers, one argument.</p>
+      <p class="fix"><b>COUNTER</b>Certified metrics only, served through the semantic layer.</p>
+    </div>
+    <div class="risk">
+      <h3>Dashboard sprawl</h3>
+      <p>A tenfold rise in dashboards, most viewed once. The one that matters gets lost among them.</p>
+      <p class="fix"><b>COUNTER</b>Exploratory by default and auto-expiring. Promote to certified deliberately.</p>
+    </div>
+    <div class="risk">
+      <h3>Forking paths</h3>
+      <p>Machine-speed slicing finds something every time, whether or not anything is there.</p>
+      <p class="fix"><b>COUNTER</b>Hypothesis first, report the number of cuts, confirm on a holdout.</p>
+    </div>
+    <div class="risk">
+      <h3>Narrative laundering</h3>
+      <p>Fluent prose turns noise into a story. Well-written readouts get more trust than they've earned.</p>
+      <p class="fix"><b>COUNTER</b>Every claim links to its number and query. Uncertainty is stated, not smoothed over.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section aria-labelledby="s-orders">
+  <div class="sec-head">
+    <span class="eyebrow">Standing orders</span>
+    <h2 id="s-orders">The checklist</h2>
+  </div>
+  <div class="stack col">
+    <p>Pilots don't rely on memory for the things that matter; they run a challenge-and-response checklist. Here is one for any analysis that will inform a decision.</p>
+  </div>
+  <div class="qrh">
+    <div class="qrh-h"><span>Decision-grade analysis</span><span>Challenge · Response</span></div>
+    <ol>
+      <li><div class="cr"><span class="c">Decision at stake</span><span class="d"></span><span class="rsp">Stated before any query</span></div><p>If no decision would change, it's curiosity. That's fine, but label it that way.</p></li>
+      <li><div class="cr"><span class="c">Metrics</span><span class="d"></span><span class="rsp">Certified definitions only</span></div><p>For anything that leaves the team.</p></li>
+      <li><div class="cr"><span class="c">Every number</span><span class="d"></span><span class="rsp">Carries its receipt</span></div><p>Query, metric version, filters, date range, one click away.</p></li>
+      <li><div class="cr"><span class="c">Cuts tried</span><span class="d"></span><span class="rsp">Counted and reported</span></div><p>"We looked at 26 slices; one stood out" reads very differently from "Android is down."</p></li>
+      <li><div class="cr"><span class="c">Surprising result</span><span class="d"></span><span class="rsp">Treated as a bug until proven real</span></div><p>Check logging, grain and joins before you check the world.</p></li>
+      <li><div class="cr"><span class="c">Headline number</span><span class="d"></span><span class="rsp">Reconciled or derived twice</span></div><p>Against the system of record, or by a second independent path.</p></li>
+      <li><div class="cr"><span class="c">Causal claim</span><span class="d"></span><span class="rsp">Experiment or named confounders</span></div><p>Say what else could explain it and why you ruled it out.</p></li>
+      <li><div class="cr"><span class="c">Owner</span><span class="d"></span><span class="rsp">One named human</span></div><p>Per decision, written into the decision log.</p></li>
+      <li><div class="cr"><span class="c">Learnings</span><span class="d"></span><span class="rsp">Written to the context store</span></div><p>So the next question, from anyone, starts smarter.</p></li>
+      <li><div class="cr"><span class="c">Hand-flying</span><span class="d"></span><span class="rsp">Scheduled for every analyst</span></div><p>Keep the skill you'll need when the automation hands back control.</p></li>
+    </ol>
+  </div>
+</section>
+
+<div class="closing">
+  <span class="eyebrow">Last word</span>
+  <p class="big">Let the model fly the cruise. Own the takeoff, the landing and anything abnormal.</p>
+  <div class="stack col">
+    <p class="lede">When answers get cheap, the value moves to the question, the check and the call. Teams that treat LLMs as faster dashboard builders will drown in plausible charts. Teams that build the layer underneath (definitions, context, tests) and keep people at the decision will make better calls, more often.</p>
+  </div>
+  <p class="foot">An explainer in the Explainers series. Illustrative figures are marked as such; the incident is a composite, not a real event.</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  /* hours chart */
+  var stages = [
+    ["Frame the question","judgment",5,15],
+    ["Understand the data","judgment",20,15],
+    ["Write code / SQL","machine",30,5],
+    ["Build charts & dashboards","machine",20,5],
+    ["Verify","check",5,20],
+    ["Interpret","judgment",10,20],
+    ["Decide & communicate","judgment",10,20]
+  ];
+  var col = {judgment:"var(--mag)", machine:"var(--green)", check:"var(--cyan)"};
+  var tag = {judgment:"judgment", machine:"machine-heavy", check:"checking"};
+  var host = document.getElementById("hours");
+  var max = 30;
+  stages.forEach(function(s){
+    var row = document.createElement("div");
+    row.className = "hrow";
+    row.innerHTML =
+      '<div class="lab">'+s[0]+'<small>'+tag[s[1]]+'</small></div>'+
+      '<div class="bars">'+
+        '<div class="bar before" aria-label="Before: '+s[2]+'%"><i style="width:'+(s[2]/max*85)+'%"></i><b>'+s[2]+'%</b></div>'+
+        '<div class="bar after" aria-label="With LLMs: '+s[3]+'%"><i style="width:'+(s[3]/max*85)+'%;background:'+col[s[1]]+'"></i><b>'+s[3]+'%</b></div>'+
+      '</div>';
+    host.appendChild(row);
+  });
+
+  /* forking paths */
+  var r = document.getElementById("cuts"), dots = document.getElementById("dots");
+  function fork(){
+    var n = +r.value;
+    document.getElementById("cuts-v").textContent = n;
+    document.getElementById("exp").textContent = (0.05*n).toFixed(1);
+    document.getElementById("atl").textContent = Math.round((1-Math.pow(0.95,n))*100) + "%";
+    var hits = Math.round(0.05*n), step = hits ? n/hits : 0, html = "";
+    var marks = {};
+    for (var j=0;j<hits;j++){ marks[Math.floor(step*j + step/2)] = 1; }
+    for (var i=0;i<n;i++){ html += '<i'+(marks[i]?' class="hit"':'')+'></i>'; }
+    dots.innerHTML = html;
+  }
+  r.addEventListener("input", fork); fork();
+
+  /* control map */
+  var T = {
+    auto:[
+      ["Write and refactor SQL / Python","Output can be run, tested and diffed. Errors surface quickly when queries sit on certified tables.","Query the semantic layer, not raw tables. Show the SQL with every result."],
+      ["Exploratory charts and dashboards","Cheap to make and cheap to throw away. Nobody bets the quarter on an exploratory chart.","Watermark as exploratory; auto-expire after 30 days unless someone promotes it."],
+      ["Data profiling and QA checks","Nulls, ranges, freshness and row counts are mechanical, and the checks are themselves checkable.","Humans review which checks exist, not every run."],
+      ["Documentation and query explanations","Low stakes, and easy for a reader to spot and correct.","The metric owner reviews docs for certified metrics."],
+      ["Anomaly flagging","A false alarm costs a few minutes. Flagging is triage, not diagnosis.","Tune thresholds. Anything that will be acted on goes to a human."]
+    ],
+    supv:[
+      ["Recurring KPI reports","Wrong numbers travel far, but each run can be reconciled against a source of truth.","Automated reconciliation to finance or the system of record; a named owner signs off on any change."],
+      ["Experiment readout calculations","The statistics are standard and testable. The stakes come from the ship decision that follows.","Pre-registered metrics and plan, a sample-ratio-mismatch check, and a human read before anyone ships."],
+      ["Revenue and GMV for leadership","High visibility. Small definition slips become large arguments.","Two independent derivations must match. Certified definitions only."],
+      ["Changes to metric pipelines","A silent change rewrites history for every dashboard downstream.","Human code review by the metric owner, plus a backfill diff showing what moved and by how much."]
+    ],
+    copl:[
+      ["Hypothesis generation","Models are good at breadth: thirty plausible causes in a minute. Nobody can check a list of hypotheses for completeness.","Treat it as a menu, not a finding. A human prunes by plausibility and cost to test."],
+      ["Root-cause investigation","Each step is checkable, but choosing which path to follow needs context the model lacks.","The human steers and the model runs the cuts. Count the cuts."],
+      ["Segment discovery","Clustering and slicing always find 'interesting' groups, and some of them are noise.","Validate on a holdout period before anyone names the segment or builds a strategy on it."],
+      ["Forecast drafts","Easy to build, hard to know if it's right until the future arrives.","Backtest, show intervals, and never let a forecast become a target without a human deciding so."],
+      ["Drafting the narrative","Good first drafts, but fluent prose can make noise sound like signal.","Every claim in the draft links to a number and its query."]
+    ],
+    hum:[
+      ["Choosing what to measure","Metrics shape behaviour. Reward 'listings created' and you may get more junk listings. What the business should want is a values call.","The model lists second-order effects and ways the metric could be gamed. Humans choose."],
+      ["Causal claims behind big bets","Correlations are cheap. Knowing what caused what takes design, domain knowledge and scepticism.","Prefer experiments or natural experiments. Name the confounders you ruled out."],
+      ["Ship / no-ship decisions","Weighs evidence against strategy, risk and timing, and someone must be accountable.","The model summarises the evidence for and against; the decision owner writes the rationale into the decision log."],
+      ["Buyer–seller trade-offs","In a two-sided marketplace most changes help one side at some cost to the other. Which side to favour is strategy.","The model quantifies the impact on each side. Humans set the weights."],
+      ["Privacy, fairness and data access","Legal and ethical judgment, and mistakes are hard to undo.","Humans own access policy. Models work only inside the scopes they're granted."],
+      ["Setting targets","A target is a commitment people will be judged against.","The model proposes ranges from history. Leaders pick the number and own it."]
+    ]
+  };
+  var names = {auto:"Auto", supv:"Supervised", copl:"Co-pilot", hum:"Human"};
+  var buttons = [];
+  function show(mode, t, btn){
+    buttons.forEach(function(b){ b.setAttribute("aria-pressed", b===btn ? "true" : "false"); });
+    var chip = document.getElementById("d-chip");
+    chip.className = "chip c-" + mode; chip.textContent = names[mode];
+    document.getElementById("d-name").textContent = t[0];
+    document.getElementById("d-why").textContent = t[1];
+    document.getElementById("d-guard").textContent = t[2];
+  }
+  document.querySelectorAll(".quad").forEach(function(q){
+    var mode = q.getAttribute("data-mode"), box = q.querySelector(".tasks");
+    T[mode].forEach(function(t){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "task"; b.textContent = t[0];
+      b.setAttribute("aria-pressed","false");
+      b.addEventListener("click", function(){ show(mode, t, b); });
+      box.appendChild(b); buttons.push(b);
+    });
+  });
+  var first = document.querySelector('.quad[data-mode="hum"] .task');
+  show("hum", T.hum[0], first);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

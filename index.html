@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Explainers</title>
+<meta name="description" content="Each page explains one idea with a picture you can play with. 49 pages on the body, the brain, big ideas, AI and data, the world, and a few favourite shows.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Explainers">
+<meta property="og:description" content="Each page explains one idea with a picture you can play with. 49 pages on the body, the brain, big ideas, AI and data, the world, and a few favourite shows.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap">
+<style>
+:root{--ground:#EEF0F3;--surface:#fff;--ink:#101828;--muted:#536079;--line:#C9D0DB;--accent:#1F3FD6;--on-accent:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--ground:#0E1220;--surface:#171C2C;--ink:#E8ECF4;--muted:#9AA6BD;--line:#2B3349;--accent:#A9B8FF;--on-accent:#0E1220;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5;font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:8px 32px;flex-wrap:wrap;padding-block:22px 0}
+.mark{margin:0;font-size:1.5rem;font-weight:800;font-stretch:75%;letter-spacing:-.01em;line-height:1}
+.mark a{text-decoration:none}
+.top nav{display:flex;flex-wrap:wrap;gap:0 22px;font-size:.94rem}
+.top nav a{color:var(--muted);text-decoration:none;padding-block:8px}
+.top nav a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding-block:clamp(32px,6vw,80px) clamp(40px,6vw,80px);border-bottom:1px solid var(--line)}
+.ask{margin:0;font-size:clamp(2.5rem,6.1vw,5.25rem);line-height:.98;font-weight:800;font-stretch:75%;letter-spacing:-.02em;text-wrap:balance;min-height:2.94em;display:flex;align-items:flex-end}
+.ask a{text-decoration:none}
+.ask a:hover{text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.1em}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(20px,3vw,32px)}
+.btn{font:inherit;font-size:1rem;font-weight:600;line-height:1.2;padding:13px 22px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.go{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.intro{margin:clamp(20px,3vw,32px) 0 0;color:var(--muted);max-width:38ch;font-size:1.06rem}
+.pic{display:block;text-decoration:none}
+.pic img{display:block;width:100%;height:auto;aspect-ratio:1200/630;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.pic span{display:block;margin-top:10px;color:var(--muted);font-size:.94rem}
+.pic:hover img{border-color:var(--ink)}
+.sec{padding-top:clamp(40px,5vw,72px);scroll-margin-top:8px}
+.sec h2{margin:0 0 22px;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.05;font-weight:800;font-stretch:75%;letter-spacing:-.01em}
+.sec h2 small{font-size:.48em;font-weight:500;font-stretch:100%;letter-spacing:0;color:var(--muted);margin-left:.6em}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:36px 28px}
+.card{display:block;text-decoration:none}
+.card img{display:block;width:100%;height:auto;aspect-ratio:640/336;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.card b{display:block;margin-top:14px;font-size:1.2rem;line-height:1.2;font-weight:700;text-wrap:balance}
+.card span{display:block;margin-top:6px;color:var(--muted);font-size:.97rem;line-height:1.45}
+.card i{display:inline-block;margin-top:9px;font-style:normal;font-size:.82rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.card:hover img{border-color:var(--ink)}
+.card:hover b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.foot{margin-top:clamp(56px,8vw,104px);padding-block:28px 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.97rem}
+.foot p{margin:0 0 8px;max-width:68ch}
+.foot a{color:var(--ink);text-underline-offset:3px}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .ask{min-height:0}
+  .top nav{gap:0 18px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<h1 class="mark"><a href="./">Explainers</a></h1>
+<nav aria-label="Sections"><a href="#body">Body and health</a><a href="#brain">Brain and mind</a><a href="#ideas">Big ideas</a><a href="#ai">AI and data</a><a href="#world">World and history</a><a href="#screen">Screen and sport</a></nav>
+</header>
+<main>
+<section class="hero" aria-label="A question to start with">
+<div>
+<p class="ask" aria-live="polite"><a id="ask-q" href="protein-has-no-storeroom/">Can you eat a week&#x27;s protein in one day?</a></p>
+<div class="acts"><a class="btn go" id="ask-go" href="protein-has-no-storeroom/">Read the answer</a><button class="btn" id="ask-next" type="button">Ask another</button></div>
+<p class="intro">Each page explains one idea with a picture you can play with. 49 so far.</p>
+</div>
+<a class="pic" id="ask-pic" href="protein-has-no-storeroom/" tabindex="-1"><img src="protein-has-no-storeroom/card.jpg" width="1200" height="630" alt=""><span>Protein Has No Storeroom</span></a>
+</section>
+<script type="application/json" id="asks">[{"ask": "Can you eat a week's protein in one day?", "slug": "protein-has-no-storeroom", "title": "Protein Has No Storeroom"}, {"ask": "Can you build muscle on carbs alone?", "slug": "can-carbs-build-muscle", "title": "Can Carbs Build Muscle?"}, {"ask": "How does a bison build muscle when all it eats is grass?", "slug": "how-bison-build-muscle", "title": "How Bison Build Muscle"}, {"ask": "Why does lifting weights lower blood sugar?", "slug": "sugar-sink", "title": "The Sugar Sink"}, {"ask": "How do Ozempic-style drugs turn hunger down?", "slug": "glp-1-hunger-dial", "title": "GLP-1 Hunger Dial"}, {"ask": "Why do you get faster by running slower?", "slug": "half-marathon-build", "title": "Half-Marathon Build"}, {"ask": "How did the brain get so powerful?", "slug": "how-the-brain-got-so-powerful", "title": "How the Brain Got So Powerful"}, {"ask": "How do you switch a brain cell on with light?", "slug": "light-switch-for-neurons", "title": "A Light Switch for Neurons"}, {"ask": "Why can't you tickle yourself?", "slug": "why-cant-you-tickle-yourself", "title": "Why can't you tickle yourself?"}, {"ask": "Why is fear built to overreact?", "slug": "fear-alarm", "title": "The Fear Alarm"}, {"ask": "Who really decided, you or your brain?", "slug": "who-really-decided", "title": "Who Really Decided?"}, {"ask": "Is evil a brain disorder?", "slug": "is-evil-a-brain-disorder", "title": "Is Evil a Brain Disorder?"}, {"ask": "Why does good news stop feeling good?", "slug": "happiness-thermostat", "title": "The Happiness Thermostat"}, {"ask": "Why does scrolling feel good and effort feel bad?", "slug": "wanting-the-hard-thing", "title": "Wanting the Hard Thing"}, {"ask": "What happens when we die?", "slug": "long-dusk", "title": "The Long Dusk"}, {"ask": "How can a sentence be true and impossible to prove?", "slug": "godels-incompleteness-theorem", "title": "Gödel's Incompleteness Theorem"}, {"ask": "It glitters. How sure are you that it's gold?", "slug": "bayes-rule", "title": "Bayes' Rule"}, {"ask": "What are zombies?", "slug": "what-are-zombies", "title": "What Are Zombies?"}, {"ask": "Why does AI say wrong things so confidently?", "slug": "missing-gauge", "title": "The Missing Gauge"}, {"ask": "Why save a table column by column?", "slug": "parquet-files", "title": "Parquet Files"}, {"ask": "Why do A/B test winners shrink after launch?", "slug": "why-ab-winners-shrink", "title": "Why A/B Winners Shrink"}, {"ask": "How does your phone stay online at 200 km/h?", "slug": "internet-at-200-kmh", "title": "Internet at 200 km/h"}, {"ask": "What does a city lose when one old tree comes down?", "slug": "felled-canopy", "title": "The Felled Canopy"}, {"ask": "What shape did the Second World War have?", "slug": "key-events-of-ww-ii", "title": "Key Events of WW-II"}, {"ask": "Why did America's serial killers fall by 85%?", "slug": "serial-killers-golden-age", "title": "Serial Killers' Golden Age"}, {"ask": "What are you really buying when you buy a flat?", "slug": "reading-a-property", "title": "Reading a Property"}, {"ask": "How do twenty people change four tyres in two seconds?", "slug": "inside-the-pit-box", "title": "Inside the Pit Box"}, {"ask": "Why is The Office filmed like a documentary?", "slug": "office-filmed", "title": "The Office, Filmed"}]</script>
+<script>
+(function(){
+  var asks=JSON.parse(document.getElementById('asks').textContent);
+  var q=document.getElementById('ask-q'),go=document.getElementById('ask-go'),pic=document.getElementById('ask-pic'),
+      img=pic.querySelector('img'),cap=pic.querySelector('span'),next=document.getElementById('ask-next');
+  var i=Math.floor(Math.random()*asks.length);
+  function show(){
+    var a=asks[i],href=a.slug+'/';
+    q.textContent=a.ask;q.href=href;go.href=href;pic.href=href;
+    img.src=a.slug+'/card.jpg';cap.textContent=a.title;
+  }
+  show();
+  next.addEventListener('click',function(){
+    i=(i+1+Math.floor(Math.random()*(asks.length-1)))%asks.length;show();
+  });
+})();
+</script>
+<section class="sec" id="body" aria-labelledby="h-body">
+<h2 id="h-body">Body and health<small>8 pages</small></h2>
+<ul class="grid">
+<li><a class="card" href="protein-has-no-storeroom/"><img src="protein-has-no-storeroom/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Protein Has No Storeroom</b><span>Can you eat a week&#x27;s protein in one day? No. The body banks fat and carbohydrate, but not protein.</span></a></li>
+<li><a class="card" href="can-carbs-build-muscle/"><img src="can-carbs-build-muscle/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Can Carbs Build Muscle?</b><span>Training gives the order to build and carbs pay the energy bill. Only protein supplies the material.</span></a></li>
+<li><a class="card" href="how-bison-build-muscle/"><img src="how-bison-build-muscle/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>How Bison Build Muscle</b><span>A bison eats only grass and still builds muscle. The grass feeds microbes, and the microbes feed the bison.</span></a></li>
+<li><a class="card" href="sugar-sink/"><img src="sugar-sink/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Sugar Sink</b><span>Muscle is where blood sugar is meant to go. How lifting weights brings HbA1c down.</span></a></li>
+<li><a class="card" href="sugar-coated-body/"><img src="sugar-coated-body/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Sugar-Coated Body</b><span>Type 2 diabetes, from sugar that can&#x27;t get into your cells to the damage it does over years.</span></a></li>
+<li><a class="card" href="glp-1-hunger-dial/"><img src="glp-1-hunger-dial/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>GLP-1 Hunger Dial</b><span>How Ozempic-style drugs copy a gut hormone and turn down the volume on hunger.</span></a></li>
+<li><a class="card" href="fuel-for-21-1/"><img src="fuel-for-21-1/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Fuel for 21.1</b><span>Your legs carry about 90 minutes of fast fuel. How to eat and drink for a half marathon.</span></a></li>
+<li><a class="card" href="half-marathon-build/"><img src="half-marathon-build/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Half-Marathon Build</b><span>Twelve weeks of training, and why you get faster by running slower than you think you should.</span></a></li>
+</ul>
+</section>
+<section class="sec" id="brain" aria-labelledby="h-brain">
+<h2 id="h-brain">Brain and mind<small>11 pages</small></h2>
+<ul class="grid">
+<li><a class="card" href="brain-field-guide/"><img src="brain-field-guide/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Brain Field Guide</b><span>Twelve parts of the brain: where each one sits, what it does, and one thing about it you will not forget.</span></a></li>
+<li><a class="card" href="how-the-brain-got-so-powerful/"><img src="how-the-brain-got-so-powerful/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>How the Brain Got So Powerful</b><span>Thirteen chapters, from the first neurons to you.</span><i>Narrated, 3 minutes</i></a></li>
+<li><a class="card" href="light-switch-for-neurons/"><img src="light-switch-for-neurons/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>A Light Switch for Neurons</b><span>Optogenetics, the 2026 Nobel Prize in medicine: a light sensor from a pond alga that switches brain cells on.</span></a></li>
+<li><a class="card" href="why-cant-you-tickle-yourself/"><img src="why-cant-you-tickle-yourself/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Why can&#x27;t you tickle yourself?</b><span>Your brain knows your own touch is coming, so it turns the feeling down before it arrives.</span></a></li>
+<li><a class="card" href="fear-alarm/"><img src="fear-alarm/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Fear Alarm</b><span>Fear is a smoke detector, built to scream at burnt toast, because missing one real fire costs everything.</span></a></li>
+<li><a class="card" href="who-really-decided/"><img src="who-really-decided/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Who Really Decided?</b><span>The voice in your head that says “I chose” may be a press secretary, announcing a decision already made.</span></a></li>
+<li><a class="card" href="is-evil-a-brain-disorder/"><img src="is-evil-a-brain-disorder/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Is Evil a Brain Disorder?</b><span>If a tumour caused the crime, who is responsible? Nine exhibits on crime, the brain and free will.</span></a></li>
+<li><a class="card" href="happiness-thermostat/"><img src="happiness-thermostat/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Happiness Thermostat</b><span>Good news fades, and so does bad. What moves your home setting instead.</span></a></li>
+<li><a class="card" href="what-happy-people-say/"><img src="what-happy-people-say/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>What Happy People Say</b><span>Seventy statements people made about themselves, ranked by how closely each one travels with life satisfaction.</span></a></li>
+<li><a class="card" href="wanting-the-hard-thing/"><img src="wanting-the-hard-thing/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Wanting the Hard Thing</b><span>Why a feed feels so good and effort feels bad, and how a brain can learn to prefer the long game.</span><i>40-minute read</i></a></li>
+<li><a class="card" href="long-dusk/"><img src="long-dusk/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Long Dusk</b><span>Death in pictures: what happens in the body, the stories every culture tells, and why we fear it.</span></a></li>
+</ul>
+</section>
+<section class="sec" id="ideas" aria-labelledby="h-ideas">
+<h2 id="h-ideas">Big ideas<small>6 pages</small></h2>
+<ul class="grid">
+<li><a class="card" href="godels-incompleteness-theorem/"><img src="godels-incompleteness-theorem/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Gödel&#x27;s Incompleteness Theorem</b><span>A true sentence that no rulebook can prove, explained with an office and one rubber stamp.</span></a></li>
+<li><a class="card" href="bayes-rule/"><img src="bayes-rule/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Bayes&#x27; Rule</b><span>Something in your pan glitters. How sure can you be that it is gold?</span></a></li>
+<li><a class="card" href="mungers-latticework/"><img src="mungers-latticework/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Munger&#x27;s Latticework</b><span>How Charlie Munger thought: a frame built from the big ideas of every discipline, with facts hung on it.</span></a></li>
+<li><a class="card" href="selfish-gene/"><img src="selfish-gene/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Selfish Gene</b><span>Richard Dawkins&#x27;s idea in pictures: you are a vehicle, and your genes are the drivers.</span></a></li>
+<li><a class="card" href="what-are-zombies/"><img src="what-are-zombies/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>What Are Zombies?</b><span>A body that keeps moving with nobody home: Haitian folklore, zombie ants, zombie cells and zombie companies.</span></a></li>
+<li><a class="card" href="one-pass/"><img src="one-pass/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>One Pass</b><span>A reader can reread. A listener gets one pass. Nearly every good presentation habit fixes that one fact.</span></a></li>
+</ul>
+</section>
+<section class="sec" id="ai" aria-labelledby="h-ai">
+<h2 id="h-ai">AI and data<small>10 pages</small></h2>
+<ul class="grid">
+<li><a class="card" href="missing-gauge/"><img src="missing-gauge/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Missing Gauge</b><span>Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.</span></a></li>
+<li><a class="card" href="open-weights-vs-closed/"><img src="open-weights-vs-closed/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Open Weights vs Closed</b><span>AI you can download and keep, against AI you can only rent.</span><i>As of September 2026</i></a></li>
+<li><a class="card" href="opus-5-5-vs-gpt-6-astra/"><img src="opus-5-5-vs-gpt-6-astra/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Opus 5.5 vs GPT-6 Astra</b><span>Which model for which work: benchmarks, prices and the caveats behind them.</span><i>As of September 2026</i></a></li>
+<li><a class="card" href="genrec-at-netflix/"><img src="genrec-at-netflix/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>GenRec at Netflix</b><span>A paper walkthrough: Netflix tests a language model as the ranker for its whole catalog.</span></a></li>
+<li><a class="card" href="cosine-adapter/"><img src="cosine-adapter/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Cosine Adapter</b><span>A small network that turns similarity scores into probabilities, so one cutoff works for every search query.</span></a></li>
+<li><a class="card" href="duckdb-in-pictures/"><img src="duckdb-in-pictures/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>DuckDB in Pictures</b><span>A database that reads by the column and lives inside your program.</span></a></li>
+<li><a class="card" href="parquet-files/"><img src="parquet-files/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Parquet Files</b><span>A table saved column by column instead of row by row, and why that makes it smaller and quicker.</span></a></li>
+<li><a class="card" href="why-ab-winners-shrink/"><img src="why-ab-winners-shrink/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Why A/B Winners Shrink</b><span>The test said +4%. After launch you got +1%. Nothing broke.</span></a></li>
+<li><a class="card" href="analysts-cockpit/"><img src="analysts-cockpit/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Analyst&#x27;s Cockpit</b><span>AI now writes the SQL and builds the charts. The judgment is still the analyst&#x27;s job.</span></a></li>
+<li><a class="card" href="internet-at-200-kmh/"><img src="internet-at-200-kmh/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Internet at 200 km/h</b><span>On a fast train your phone changes towers every minute. The internet never finds out.</span></a></li>
+</ul>
+</section>
+<section class="sec" id="world" aria-labelledby="h-world">
+<h2 id="h-world">World and history<small>6 pages</small></h2>
+<ul class="grid">
+<li><a class="card" href="bengalurus-lost-canopy/"><img src="bengalurus-lost-canopy/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Bengaluru&#x27;s Lost Canopy</b><span>Bengaluru lived under a roof of leaves. In fifty years it lost most of that roof.</span><i>Long read</i></a></li>
+<li><a class="card" href="felled-canopy/"><img src="felled-canopy/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Felled Canopy</b><span>A sixty-year-old tree comes down in an afternoon. What goes with it is harder to see.</span></a></li>
+<li><a class="card" href="downstream-of-the-saw/"><img src="downstream-of-the-saw/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Downstream of the Saw</b><span>A forest works like infrastructure. Clear it, and the jobs it did move downhill.</span></a></li>
+<li><a class="card" href="key-events-of-ww-ii/"><img src="key-events-of-ww-ii/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Key Events of WW-II</b><span>The war had one shape: Axis power rose for nearly three years, turned in eight months, then drained away.</span></a></li>
+<li><a class="card" href="serial-killers-golden-age/"><img src="serial-killers-golden-age/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Serial Killers&#x27; Golden Age</b><span>For three decades America produced serial killers at a record rate. Then the numbers fell by about 85%.</span></a></li>
+<li><a class="card" href="reading-a-property/"><img src="reading-a-property/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Reading a Property</b><span>You aren&#x27;t buying a flat. You&#x27;re buying six things stacked up, and a site visit shows only the top two.</span></a></li>
+</ul>
+</section>
+<section class="sec" id="screen" aria-labelledby="h-screen">
+<h2 id="h-screen">Screen and sport<small>8 pages</small></h2>
+<ul class="grid">
+<li><a class="card" href="federer-and-nadal/"><img src="federer-and-nadal/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Federer and Nadal</b><span>Federer took away your time. Nadal took away your space. Forty meetings, compared.</span></a></li>
+<li><a class="card" href="inside-the-pit-box/"><img src="inside-the-pit-box/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Inside the Pit Box</b><span>Two seconds, four tyres, twenty people: a Formula 1 pit stop you can play in slow motion.</span></a></li>
+<li><a class="card" href="chemistry-of-breaking-bad/"><img src="chemistry-of-breaking-bad/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Chemistry of Breaking Bad</b><span>Walter White called chemistry the study of change. The whole show, read that way.</span><i>Full spoilers</i></a></li>
+<li><a class="card" href="diagnosing-dr-house/"><img src="diagnosing-dr-house/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Diagnosing Dr. House</b><span>House never states a philosophy. He runs one. A differential diagnosis of what he believes.</span></a></li>
+<li><a class="card" href="house-differential/"><img src="house-differential/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The House Differential</b><span>A fan&#x27;s case file on House, M.D.: eight seasons, 177 episodes and one very grumpy genius.</span></a></li>
+<li><a class="card" href="office-filmed/"><img src="office-filmed/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>The Office, Filmed</b><span>A pretend documentary about a very boring paper company, and why the camera is in on the joke.</span></a></li>
+<li><a class="card" href="case-file-99/"><img src="case-file-99/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Case File #99</b><span>A fan&#x27;s evidence board for Brooklyn Nine-Nine. Drag anything on the board.</span></a></li>
+<li><a class="card" href="dexters-slide-box/"><img src="dexters-slide-box/thumb.webp" width="640" height="336" loading="lazy" decoding="async" alt=""><b>Dexter&#x27;s Slide Box</b><span>A fan&#x27;s evidence table for Dexter.</span><i>Spoilers</i></a></li>
+</ul>
+</section>
+</main>
+<footer class="foot">
+<p>A collection by <a href="https://github.com/AnilkumarOleti">Anil Kumar Oleti</a>.</p>
+<p>For data science and machine learning, there is also the <a href="https://anilkumaroleti.github.io/ds-ml-handbook/">DS/ML Learning Handbook</a>.</p>
+<p>These pages are for understanding. The health pages are not medical advice.</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dexter&#x27;s Slide Box | Explainers</title>
+<meta name="description" content="A fan&#x27;s evidence table for Dexter.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/dexters-slide-box/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Dexter&#x27;s Slide Box">
+<meta property="og:description" content="A fan&#x27;s evidence table for Dexter.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/dexters-slide-box/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/dexters-slide-box/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Public+Sans:ital,wght@0,400;0,600;0,800;1,400&display=swap">
+<style>
+:root{
+  --plastic:#dde5e7;
+  --plastic-2:#c9d4d7;
+  --glow:#fbfdff;
+  --grid:#d7e3ea;
+  --blood:#8e0b0b;
+  --blood-2:#b3140f;
+  --blood-dry:#5e0a08;
+  --rose:#5b2a1e;
+  --rose-2:#7a3a28;
+  --teal:#0f8f87;
+  --flamingo:#ff6f9f;
+  --ink:#16191f;
+  --ink-2:#4b5563;
+  --tape:#f4efe1;
+  --display:"Instrument Serif","Didot","Bodoni 72",Georgia,serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{
+  background-color:var(--plastic);
+  background-image:
+    linear-gradient(100deg, transparent 0 18%, rgba(255,255,255,.55) 22%, transparent 27%, transparent 55%, rgba(255,255,255,.4) 60%, transparent 64%),
+    linear-gradient(80deg, transparent 0 38%, rgba(120,140,150,.12) 41%, transparent 45%, transparent 78%, rgba(120,140,150,.14) 82%, transparent 86%),
+    linear-gradient(180deg, rgba(255,255,255,.35), transparent 40%, rgba(160,180,188,.25));
+  background-attachment:fixed;
+  color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-inline:16px;padding-block:0 64px;overflow-x:hidden;
+}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+
+/* masthead */
+.mast{display:grid;grid-template-columns:1fr auto;align-items:end;gap:14px 28px;padding-block:30px 20px}
+.mast h1{font-family:var(--display);font-size:clamp(76px,15vw,184px);line-height:.82;letter-spacing:-.02em}
+.mast h1 i{font-style:italic;color:var(--blood)}
+.drop-i{position:relative;display:inline-block}
+.drop-i::after{content:"";position:absolute;left:50%;top:.02em;width:.16em;height:.22em;margin-left:-.08em;background:var(--blood);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(0);animation:drip 4s ease-in 1.2s infinite}
+@keyframes drip{0%,55%{transform:translateY(0) scale(1);opacity:1}80%{transform:translateY(.9em) scaleY(1.3);opacity:1}81%,100%{transform:translateY(1em);opacity:0}}
+.mast .voice{font-family:var(--display);font-style:italic;font-size:clamp(20px,2.4vw,28px);line-height:1.25;max-width:34ch;color:var(--ink);margin-top:10px}
+.mast .meta{font-family:var(--mono);font-size:12px;line-height:1.8;text-align:right;color:var(--ink-2);letter-spacing:.06em}
+.mast .meta b{color:var(--blood);font-weight:600}
+@media (max-width:720px){.mast{grid-template-columns:1fr}.mast .meta{text-align:left}}
+
+/* lightbox board */
+.table{background:#2b2f35;padding:12px;border-radius:14px;box-shadow:0 30px 60px rgba(30,40,50,.35), inset 0 0 0 2px #3c424a}
+.board{position:relative;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:6px;overflow:hidden;touch-action:pan-y;
+  background-color:var(--glow);
+  background-image:
+    radial-gradient(ellipse at 50% 45%, rgba(255,255,255,1), rgba(236,244,250,.6) 70%, rgba(214,226,236,.9)),
+    linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:100% 100%,24px 24px,24px 24px;
+  box-shadow:inset 0 0 40px rgba(170,200,220,.6)}
+#spatterBg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.strings{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+.strings line{stroke:var(--blood-2);stroke-width:1.6;stroke-dasharray:1 0}
+.strings circle{fill:none;stroke:var(--blood-2);stroke-width:1.2;stroke-dasharray:3 3}
+.item{position:absolute;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;transform:rotate(var(--r,0deg));transition:transform .15s}
+.item:hover{transform:rotate(var(--r,0deg)) scale(1.03)}
+.item.dragging{cursor:grabbing;transform:rotate(var(--r,0deg)) scale(1.07);z-index:999!important;filter:drop-shadow(0 18px 18px rgba(0,0,0,.25))}
+.shadow{box-shadow:0 8px 18px rgba(20,30,40,.25)}
+.polaroid{width:clamp(96px,13%,168px);background:#fff;padding:8px 8px 6px}
+.polaroid .shot{aspect-ratio:1/1;background:#eef3f5;display:grid;place-items:center;overflow:hidden}
+.polaroid .shot svg{width:84%;height:84%}
+.polaroid .cap{font-family:var(--mono);font-size:clamp(9px,.95vw,11.5px);line-height:1.3;text-align:center;padding-top:6px;min-height:2.6em;color:var(--ink-2);letter-spacing:.02em}
+.tape{position:absolute;top:-9px;left:50%;width:54px;height:18px;margin-left:-27px;background:rgba(244,239,225,.85);box-shadow:0 1px 2px rgba(0,0,0,.1);transform:rotate(-3deg)}
+.box{width:clamp(200px,27%,330px);background:linear-gradient(160deg,var(--rose-2),var(--rose));border-radius:6px;padding:12px;
+  box-shadow:0 14px 26px rgba(40,15,8,.35), inset 0 0 0 2px #3f1a11}
+.box .lid{font-family:var(--mono);font-size:clamp(9px,1vw,11px);letter-spacing:.14em;color:#e8c9b6;text-transform:uppercase;display:flex;justify-content:space-between;margin-bottom:8px}
+.box .rows{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;background:#2c120b;padding:6px;border-radius:3px}
+.mini{aspect-ratio:1/3.2;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(220,235,240,.85));border-radius:1px;position:relative}
+.mini::after{content:"";position:absolute;left:50%;top:50%;width:62%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 40% 35%,var(--blood-2),var(--blood) 60%,var(--blood-dry))}
+.code{width:clamp(210px,28%,360px);background:#fffdf6;padding:16px 18px 18px;border-top:4px solid var(--teal);
+  background-image:linear-gradient(#fffdf6 0 44px, transparent 44px),repeating-linear-gradient(180deg,transparent 0 23px,#cfe0ea 23px 24px)}
+.code .t{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);display:flex;justify-content:space-between}
+.code h2{font-family:var(--display);font-size:clamp(28px,3.4vw,44px);line-height:1;margin:10px 0 6px}
+.code ol{margin:0;padding-left:1.3em;font-size:clamp(11.5px,1.15vw,14px);line-height:24px}
+.evtag{width:clamp(110px,13%,160px);background:var(--tape);padding:10px 12px;font-family:var(--mono);font-size:clamp(9px,.95vw,11px);line-height:1.4;text-transform:uppercase;letter-spacing:.04em;border:1px solid #d8cfb4}
+.evtag .h{display:block;background:var(--blood);color:#fff;text-align:center;margin:-10px -12px 8px;padding:4px;letter-spacing:.2em;font-weight:600}
+.evtag .ln{border-bottom:1px solid #cbbf9f;padding:3px 0}
+.ruler{width:clamp(180px,22%,280px);height:34px;background:#fff;border:1px solid #9aa7b0;display:flex;align-items:flex-end;padding:0 4px 3px;
+  background-image:repeating-linear-gradient(90deg,#16191f 0 1px,transparent 1px 6px),repeating-linear-gradient(90deg,#16191f 0 1px,transparent 1px 30px);
+  background-size:100% 8px,100% 14px;background-repeat:no-repeat;background-position:0 0,0 0;font-family:var(--mono);font-size:9px;color:var(--ink-2);letter-spacing:.08em}
+.label{padding:6px 12px;background:rgba(244,239,225,.92);font-family:var(--display);font-style:italic;font-size:clamp(15px,1.8vw,22px);line-height:1.1;box-shadow:0 3px 8px rgba(0,0,0,.12);white-space:nowrap}
+.label.red{background:var(--blood);color:#fff}
+.label.teal{background:var(--teal);color:#fff}
+.drop{width:clamp(26px,3vw,40px);height:clamp(26px,3vw,40px);transition:none}
+.drop:hover{transform:rotate(var(--r,0deg))}
+.drop svg{width:100%;height:100%;overflow:visible}
+.origin{padding:5px 9px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;white-space:nowrap}
+.origin::before{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--blood-2);box-shadow:0 0 0 3px #fff, 0 0 0 4px var(--ink);z-index:-1}
+.boardhint{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ink-2);padding-top:12px}
+.boardhint button{background:#fff;border:1px solid #aab6bd;padding:5px 12px;border-radius:3px;font-family:var(--mono);font-size:12px}
+
+/* sections */
+section{padding-block:80px 0}
+.sec-head{display:grid;gap:6px;margin-bottom:28px}
+.sec-head h2{font-family:var(--display);font-size:clamp(44px,6.5vw,80px);line-height:.95;letter-spacing:-.01em}
+.sec-head h2 i{color:var(--blood)}
+.sec-head p{margin:4px 0 0;color:var(--ink-2);max-width:60ch}
+
+/* microscope */
+.scope{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:center}
+.lensWrap{position:relative;aspect-ratio:1/1;max-width:460px;width:100%;margin-inline:auto;border-radius:50%;background:#101216;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.35), inset 0 0 0 6px #2b3036}
+#lens{width:100%;height:100%;border-radius:50%;display:block;background:#f3e6e0}
+.lensWrap::after{content:"";position:absolute;inset:18px;border-radius:50%;box-shadow:inset 0 0 50px 18px rgba(0,0,0,.55);pointer-events:none}
+.xhair{position:absolute;left:50%;top:18px;bottom:18px;width:1px;background:rgba(0,0,0,.18);z-index:2}
+.xhair.h{left:18px;right:18px;top:50%;bottom:auto;width:auto;height:1px}
+.notes{background:#fff;padding:24px;box-shadow:0 10px 26px rgba(20,30,40,.15);border-left:6px solid var(--blood)}
+.notes .sid{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+.notes h3{font-family:var(--display);font-size:clamp(34px,4.2vw,52px);line-height:1;margin:10px 0 4px}
+.notes .bad{font-family:var(--mono);font-size:13px;color:var(--blood);letter-spacing:.04em;margin-bottom:12px}
+.notes p{margin:0 0 10px}
+.notes .lab{font-size:14px;color:var(--ink-2);background:#f1f5f6;padding:10px 12px;border-radius:3px;margin:0}
+.notes .lab b{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--teal);display:block;margin-bottom:2px}
+.tray{grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;padding:14px;background:linear-gradient(160deg,var(--rose-2),var(--rose));border-radius:6px;box-shadow:inset 0 0 0 2px #3f1a11}
+.tray button{flex:0 0 auto;width:62px;height:150px;border:0;border-radius:2px;background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(214,232,238,.9));position:relative;
+  display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:8px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ink);transition:transform .15s}
+.tray button::before{content:"";position:absolute;top:22px;left:50%;width:30px;height:30px;margin-left:-15px;border-radius:50%;background:radial-gradient(circle at 40% 35%,var(--blood-2),var(--blood) 60%,var(--blood-dry))}
+.tray button::after{content:"";position:absolute;left:6px;right:6px;top:66px;height:26px;background:var(--tape)}
+.tray button[aria-pressed="true"]{transform:translateY(-10px);box-shadow:0 0 0 3px var(--teal)}
+.tray button:hover{transform:translateY(-6px)}
+.tray button span{position:relative;z-index:1}
+@media (max-width:820px){.scope{grid-template-columns:1fr}}
+
+/* lab results */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filters button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.6);border:1px solid #aab6bd;border-radius:3px;padding:6px 12px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.bags{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.bag{position:relative;background:rgba(255,255,255,.72);border:1px solid rgba(150,170,180,.6);border-radius:4px;padding:0 0 18px;
+  box-shadow:0 8px 20px rgba(20,30,40,.12), inset 0 0 0 6px rgba(255,255,255,.5);backdrop-filter:blur(2px)}
+.bag .seal{height:14px;border-bottom:3px double #b8c6cc;background:linear-gradient(90deg,rgba(255,255,255,.9),rgba(230,238,242,.9))}
+.bag .strip{display:flex;justify-content:space-between;background:var(--blood);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;font-variant-numeric:tabular-nums}
+.bag h3{font-family:var(--display);font-size:28px;line-height:1.02;margin:14px 16px 6px}
+.bag p{margin:0 16px;font-size:15px}
+.bag .big{float:right;font-family:var(--display);font-style:italic;font-size:52px;line-height:.9;color:var(--blood);margin:10px 14px 0 8px}
+
+/* timeline */
+.chain{position:relative;display:grid;grid-template-columns:repeat(8,1fr);gap:12px}
+.chain::before{content:"";position:absolute;left:0;right:0;top:20px;height:2px;background:var(--blood)}
+.ev{position:relative;padding-top:46px}
+.ev::before{content:"";position:absolute;top:10px;left:0;width:16px;height:20px;background:var(--blood);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(180deg)}
+.ev.big::before{width:22px;height:28px;top:6px;background:var(--blood-dry)}
+.ev .d{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--blood);text-transform:uppercase;font-variant-numeric:tabular-nums}
+.ev h3{font-family:var(--display);font-size:24px;line-height:1.02;margin:4px 0}
+.ev p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+@media (max-width:900px){
+  .chain{grid-template-columns:1fr;gap:22px;padding-left:34px}
+  .chain::before{left:7px;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .ev{padding-top:0}.ev::before{left:-34px;top:2px}.ev.big::before{left:-37px;top:0}
+}
+
+/* quiz */
+.room{background:var(--ink);color:#eef2f4;border-radius:6px;padding:clamp(20px,4vw,42px);position:relative;overflow:hidden}
+.room::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(115deg,transparent 0 30%,rgba(255,255,255,.05) 34%,transparent 40%),
+  linear-gradient(70deg,transparent 0 62%,rgba(255,255,255,.04) 66%,transparent 72%);pointer-events:none}
+.room>*{position:relative}
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#9aa6b0;font-variant-numeric:tabular-nums}
+.qbar{display:flex;gap:6px;margin:12px 0 24px}
+.qbar i{flex:1;height:8px;background:#2c3239;border-radius:4px}
+.qbar i.ok{background:var(--teal)}.qbar i.no{background:var(--blood-2)}.qbar i.now{background:#6b7680}
+.qtext{font-family:var(--display);font-size:clamp(30px,4.2vw,50px);line-height:1.05;max-width:22ch}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:24px}
+.opts button{background:#fff;color:var(--ink);border:0;border-radius:3px;padding:14px;text-align:left;font-size:16px;font-weight:600;transition:transform .08s}
+.opts button:hover:not(:disabled){transform:translateY(-2px)}
+.opts button.right{background:#9fe3d8}
+.opts button.wrong{background:#f3a9a5;text-decoration:line-through}
+.opts button:disabled{cursor:default}
+.verdict{margin-top:18px;min-height:3em;max-width:62ch;color:#dfe5e9}
+.verdict b{font-family:var(--display);font-style:italic;font-weight:400;font-size:24px;color:var(--flamingo);margin-right:6px}
+.qnext{margin-top:12px;background:var(--blood-2);color:#fff;border:0;border-radius:3px;padding:10px 18px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.final .score{font-family:var(--display);font-size:clamp(90px,16vw,170px);line-height:.85;color:#fff}
+.final .score i{color:var(--flamingo)}
+.final h3{font-family:var(--display);font-style:italic;font-size:clamp(30px,4vw,46px);margin:8px 0}
+.final p{color:#b9c3ca;max-width:56ch;margin:0}
+
+/* toys */
+.toys{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px}
+@media (max-width:860px){.toys{grid-template-columns:1fr}}
+.toy{background:#fff;padding:22px;box-shadow:0 10px 26px rgba(20,30,40,.14);border-top:4px solid var(--teal)}
+.toy h3{font-family:var(--display);font-size:34px;line-height:1}
+.toy .sub{font-size:14px;color:var(--ink-2);margin:6px 0 14px}
+#spatter{width:100%;aspect-ratio:16/10;display:block;background:#fbf9f5;border:1px solid #d6dde0;touch-action:none;cursor:crosshair;border-radius:2px}
+.readout{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.readout div{background:#f1f5f6;padding:8px 10px;border-radius:2px}
+.readout span{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.readout b{font-size:17px;font-weight:600}
+@media (max-width:480px){.readout{grid-template-columns:repeat(2,1fr)}}
+.formula{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin-top:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btn{background:var(--ink);color:#fff;border:0;border-radius:3px;padding:9px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid #aab6bd}
+.alibi{margin-top:4px;background:var(--plastic);padding:18px;min-height:150px;border-radius:2px}
+.alibi .msg{font-family:var(--display);font-size:clamp(24px,2.8vw,32px);line-height:1.15}
+.alibi .deb{margin-top:14px;padding-top:12px;border-top:1px dashed #9aabb2;font-size:15px}
+.alibi .deb b{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blood);display:block}
+
+footer{padding-block:80px 0;text-align:center}
+footer .sig{font-family:var(--display);font-style:italic;font-size:clamp(34px,5vw,60px);line-height:1.05}
+footer p{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-2)}
+
+@media (max-width:640px){
+  .board{aspect-ratio:auto;height:1560px}
+  .polaroid{width:124px}.box{width:260px}.code{width:280px}.evtag{width:140px}.ruler{width:220px}.drop{width:32px;height:32px}
+  .polaroid .cap{font-size:10.5px}.code h2{font-size:34px}.code ol{font-size:13px}.label{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <span class="eyebrow">Miami Metro PD · Forensics · Blood spatter division</span>
+      <h1>Dext<span class="drop-i">e</span>r<i>.</i></h1>
+      <p class="voice">A fan's evidence table for the world's most polite serial killer. Handle with gloves. Spoilers on every slide.</p>
+    </div>
+    <div class="meta">
+      Showtime · 2006–2013<br>
+      8 seasons · <b>96</b> episodes<br>
+      + New Blood · Original Sin · Resurrection<br>
+      Status: <b>still not caught</b>
+    </div>
+  </header>
+
+  <div class="table">
+    <div class="board" id="board" aria-label="Evidence lightbox collage. Items can be dragged.">
+      <canvas id="spatterBg" aria-hidden="true"></canvas>
+      <svg class="strings" id="strings" aria-hidden="true"></svg>
+
+      <div class="item box" data-id="box" style="--r:-2deg">
+        <div class="lid"><span>Rosewood · private</span><span>Keep behind A/C</span></div>
+        <div class="rows" id="miniRows"></div>
+      </div>
+
+      <div class="item code shadow" data-id="code" style="--r:1.5deg">
+        <span class="tape"></span>
+        <div class="t"><span>H. Morgan</span><span>Rules to live by</span></div>
+        <h2>The Code of Harry</h2>
+        <ol>
+          <li>Never get caught.</li>
+          <li>Be sure. Evidence, always.</li>
+          <li>Only those who deserve it.</li>
+          <li>Blend in. Bring donuts.</li>
+          <li>Emotions are a disguise. Practise them.</li>
+        </ol>
+      </div>
+
+      <div class="item polaroid shadow" data-id="donuts" style="--r:-5deg">
+        <span class="tape"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M10 44 L90 44 L84 84 L16 84 Z" fill="#ff8fb1"/>
+          <path d="M10 44 L90 44 L80 22 L20 22 Z" fill="#ffc2d4"/>
+          <circle cx="34" cy="48" r="13" fill="#d9a066"/><circle cx="34" cy="48" r="10" fill="#ff6f9f"/><circle cx="34" cy="48" r="4" fill="#ffc2d4"/>
+          <circle cx="62" cy="48" r="13" fill="#d9a066"/><circle cx="62" cy="48" r="10" fill="#5b2a1e"/><circle cx="62" cy="48" r="4" fill="#ffc2d4"/>
+          <rect x="29" y="42" width="3" height="1.5" fill="#fff" transform="rotate(30 30 43)"/><rect x="38" y="52" width="3" height="1.5" fill="#1fb5ad"/><rect x="58" y="44" width="3" height="1.5" fill="#fff"/>
+          <text x="50" y="74" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#fff" font-weight="600">FOR THE SQUAD</text>
+        </svg></div>
+        <div class="cap">A dozen donuts. The perfect camouflage.</div>
+      </div>
+
+      <div class="item polaroid shadow" data-id="syringe" style="--r:4deg">
+        <span class="tape"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <g transform="rotate(-35 50 50)">
+            <rect x="20" y="42" width="48" height="16" rx="2" fill="#e8f3f6" stroke="#8aa3ad" stroke-width="2"/>
+            <rect x="22" y="44" width="26" height="12" fill="#0f8f87" opacity=".55"/>
+            <rect x="8" y="46" width="12" height="8" fill="#8aa3ad"/><rect x="2" y="40" width="6" height="20" rx="1" fill="#16191f"/>
+            <rect x="68" y="47" width="8" height="6" fill="#8aa3ad"/><rect x="76" y="49.2" width="20" height="1.6" fill="#16191f"/>
+            <path d="M28 42 L28 48 M34 42 L34 46 M40 42 L40 48 M46 42 L46 46 M52 42 L52 48 M58 42 L58 46" stroke="#16191f" stroke-width="1"/>
+          </g>
+        </svg></div>
+        <div class="cap">M99. Lights out in seconds.</div>
+      </div>
+
+      <div class="item polaroid shadow" data-id="boat" style="--r:-3deg">
+        <span class="tape"></span>
+        <div class="shot" style="background:linear-gradient(#bfe8ea 0 55%,#0f8f87 55%)"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="78" cy="22" r="9" fill="#ffd36e"/>
+          <path d="M12 58 L86 58 L76 72 L22 72 Z" fill="#fff" stroke="#16191f" stroke-width="1.5"/>
+          <rect x="34" y="46" width="30" height="12" fill="#fff" stroke="#16191f" stroke-width="1.5"/>
+          <rect x="38" y="49" width="8" height="5" fill="#8fd2e0"/><rect x="50" y="49" width="10" height="5" fill="#8fd2e0"/>
+          <rect x="47" y="30" width="2" height="16" fill="#16191f"/>
+          <text x="50" y="68" text-anchor="middle" font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="8" fill="#8e0b0b">Slice of Life</text>
+          <path d="M8 80 Q18 76 28 80 T48 80 T68 80 T88 80" stroke="#bfe8ea" stroke-width="2" fill="none"/>
+        </svg></div>
+        <div class="cap">Night fishing. Heavy bags.</div>
+      </div>
+
+      <div class="item polaroid shadow" data-id="plastic" style="--r:3deg">
+        <span class="tape"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="14" y="30" width="60" height="40" rx="3" fill="#dfeaee" stroke="#9fb3bb" stroke-width="2"/>
+          <ellipse cx="74" cy="50" rx="10" ry="20" fill="#eef5f7" stroke="#9fb3bb" stroke-width="2"/>
+          <ellipse cx="74" cy="50" rx="4" ry="8" fill="#b9c9cf"/>
+          <path d="M74 70 L96 86 L78 94 L60 70 Z" fill="#e6eff2" opacity=".85" stroke="#b9c9cf"/>
+          <path d="M22 36 L22 64 M34 36 L34 64 M46 36 L46 64" stroke="#fff" stroke-width="3" opacity=".7"/>
+        </svg></div>
+        <div class="cap">Industrial plastic wrap. Buys it in bulk.</div>
+      </div>
+
+      <div class="item polaroid shadow" data-id="kit" style="--r:-4deg">
+        <span class="tape"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="8" y="30" width="84" height="44" rx="4" fill="#2a2d33"/>
+          <rect x="12" y="34" width="76" height="36" rx="2" fill="#3a3f47"/>
+          <g fill="#cfd8dc"><rect x="18" y="38" width="4" height="28" rx="2"/><rect x="28" y="38" width="4" height="28" rx="2"/><rect x="38" y="38" width="4" height="28" rx="2"/><rect x="48" y="38" width="4" height="28" rx="2"/><rect x="58" y="38" width="4" height="28" rx="2"/></g>
+          <path d="M70 40 L82 40 L82 64 L74 64 Z" fill="#cfd8dc"/>
+          <rect x="70" y="58" width="12" height="8" fill="#16191f"/>
+        </svg></div>
+        <div class="cap">The kit. Always cleaned. Always sharp.</div>
+      </div>
+
+      <div class="item polaroid shadow" data-id="luminol" style="--r:5deg">
+        <span class="tape"></span>
+        <div class="shot" style="background:#1a1f2b"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="68" cy="66" r="8" fill="#6fe3ff" opacity=".7"/><circle cx="82" cy="54" r="4" fill="#6fe3ff" opacity=".6"/><circle cx="60" cy="82" r="3" fill="#6fe3ff" opacity=".5"/><circle cx="78" cy="78" r="5" fill="#6fe3ff" opacity=".45"/>
+          <rect x="18" y="34" width="24" height="50" rx="4" fill="#e8f3f6"/>
+          <rect x="22" y="24" width="16" height="12" fill="#8aa3ad"/><rect x="36" y="26" width="12" height="5" fill="#8aa3ad"/>
+          <rect x="18" y="48" width="24" height="16" fill="#0f8f87"/>
+          <text x="30" y="58.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="5.5" fill="#fff" font-weight="600">LUMINOL</text>
+        </svg></div>
+        <div class="cap">Lights up what you tried to wipe away.</div>
+      </div>
+
+      <div class="item evtag shadow" data-id="evtag" style="--r:7deg">
+        <span class="h">Evidence</span>
+        <div class="ln">Case: Bay Harbor Butcher</div>
+        <div class="ln">Victims found: in the bay</div>
+        <div class="ln">Status: officially closed</div>
+        <div class="ln">Actually: lol</div>
+      </div>
+
+      <div class="item ruler" data-id="ruler" style="--r:-6deg">ABFO scale · cm</div>
+
+      <div class="item label" data-id="l1" style="--r:-4deg">Tonight's the night.</div>
+      <div class="item label red" data-id="l2" style="--r:3deg">Surprise, m*****f*****!</div>
+      <div class="item label teal" data-id="l3" style="--r:-2deg">Dark Passenger</div>
+      <div class="item label" data-id="l4" style="--r:5deg">Dearly beloved…</div>
+
+      <div class="item origin" data-id="origin">Point of origin</div>
+      <div class="item drop" data-id="d1"></div>
+      <div class="item drop" data-id="d2"></div>
+      <div class="item drop" data-id="d3"></div>
+      <div class="item drop" data-id="d4"></div>
+      <div class="item drop" data-id="d5"></div>
+    </div>
+  </div>
+  <div class="boardhint">
+    <span>Drag anything. Move the drops or the point of origin: the strings re-aim like a real spatter reconstruction.</span>
+    <button type="button" id="reset">Clean the scene</button>
+  </div>
+
+  <!-- MICROSCOPE -->
+  <section id="slides">
+    <div class="sec-head">
+      <span class="eyebrow">The collection · one slide per chapter</span>
+      <h2>Under the <i>microscope</i></h2>
+      <p>Pick a slide from the rosewood tray. Every season, spin-off and big bad, examined. Full spoilers.</p>
+    </div>
+    <div class="scope">
+      <div class="lensWrap"><canvas id="lens" width="600" height="600" aria-hidden="true"></canvas><span class="xhair"></span><span class="xhair h"></span></div>
+      <div class="notes" id="notes" aria-live="polite"></div>
+      <div class="tray" id="tray" role="group" aria-label="Choose a slide"></div>
+    </div>
+  </section>
+
+  <!-- LAB RESULTS -->
+  <section id="lab">
+    <div class="sec-head">
+      <span class="eyebrow">Evidence bags · sealed and logged</span>
+      <h2>Lab results</h2>
+      <p>Fun facts from the show, the cast and the books it came from.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter evidence">
+      <button type="button" data-f="all" aria-pressed="true">All evidence</button>
+      <button type="button" data-f="Production">Production</button>
+      <button type="button" data-f="Cast">Cast</button>
+      <button type="button" data-f="Lore">Lore</button>
+      <button type="button" data-f="Afterlife">Afterlife</button>
+    </div>
+    <div class="bags" id="bags"></div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="chain">
+    <div class="sec-head">
+      <span class="eyebrow">Chain of evidence</span>
+      <h2>He keeps coming back</h2>
+    </div>
+    <div class="chain">
+      <div class="ev"><div class="d">2004</div><h3>The book</h3><p>Jeff Lindsay publishes Darkly Dreaming Dexter.</p></div>
+      <div class="ev big"><div class="d">1 Oct 2006</div><h3>Showtime premiere</h3><p>Michael C. Hall moves from Six Feet Under to Miami Metro.</p></div>
+      <div class="ev big"><div class="d">Dec 2009</div><h3>The bathtub</h3><p>Season 4 ends with Trinity's last move. Fans still aren't over it.</p></div>
+      <div class="ev"><div class="d">Jan 2010</div><h3>Double Globes</h3><p>Hall and John Lithgow both win Golden Globes.</p></div>
+      <div class="ev big"><div class="d">22 Sep 2013</div><h3>The lumberjack</h3><p>The finale ends with Dexter in Oregon, in a flannel shirt.</p></div>
+      <div class="ev"><div class="d">Nov 2021</div><h3>New Blood</h3><p>Ten years on, "Jim Lindsay" in snowy Iron Lake, New York.</p></div>
+      <div class="ev"><div class="d">Dec 2024</div><h3>Original Sin</h3><p>A prequel set in 1991 Miami, with Hall voicing young Dexter's thoughts.</p></div>
+      <div class="ev big"><div class="d">11 Jul 2025</div><h3>Resurrection</h3><p>He survived the shot. Now he's in New York. Renewed for season 2.</p></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="sec-head">
+      <span class="eyebrow">Would Harry approve?</span>
+      <h2>The <i>fan</i> exam</h2>
+      <p>Eight questions. Harry is watching. So is Doakes.</p>
+    </div>
+    <div class="room" id="room" aria-live="polite"></div>
+  </section>
+
+  <!-- TOYS -->
+  <section id="toys">
+    <div class="sec-head">
+      <span class="eyebrow">Off-the-clock hobbies</span>
+      <h2>Do Dexter's day job</h2>
+    </div>
+    <div class="toys">
+      <div class="toy">
+        <h3>Spatter lab</h3>
+        <p class="sub">Press, drag the way the drop is flying, and let go. A short drag hits nearly straight down. A long drag hits at a shallow angle and leaves a long stain. The lab works the angle back out of the stain's shape, just like Dexter.</p>
+        <canvas id="spatter" width="800" height="500" aria-label="Blood spatter drawing surface"></canvas>
+        <div class="readout">
+          <div><span>Width</span><b id="rW">–</b></div>
+          <div><span>Length</span><b id="rL">–</b></div>
+          <div><span>Impact angle</span><b id="rA">–</b></div>
+          <div><span>Heading</span><b id="rD">–</b></div>
+        </div>
+        <div class="formula">impact angle = sin⁻¹(width ÷ length)</div>
+        <div class="row"><button type="button" class="btn ghost" id="wipe">Wipe the wall</button></div>
+      </div>
+      <div class="toy">
+        <h3>Alibi generator</h3>
+        <p class="sub">For when you need to leave the office party early, for completely normal reasons.</p>
+        <div class="alibi" id="alibi"></div>
+        <div class="row"><button type="button" class="btn" id="newAlibi">New alibi</button><button type="button" class="btn ghost" id="copyAlibi">Copy</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sig">Tonight's the night.</div>
+    <p>Made by a fan, for fans. Unofficial and unaffiliated.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* mini slides in the box */
+  var mr=document.getElementById('miniRows');mr.innerHTML=Array(18).fill('<span class="mini"></span>').join('');
+
+  /* background spatter on lightbox */
+  var board=document.getElementById('board'),bg=document.getElementById('spatterBg');
+  function paintBg(){
+    var r=board.getBoundingClientRect(),d=window.devicePixelRatio||1;bg.width=r.width*d;bg.height=r.height*d;
+    var g=bg.getContext('2d');g.scale(d,d);var seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+    for(var k=0;k<5;k++){var cx=rnd()*r.width,cy=rnd()*r.height,n=30+rnd()*40;
+      for(var i=0;i<n;i++){var a=rnd()*6.28,dist=Math.pow(rnd(),1.6)*140,s=Math.max(.6,(1-dist/140)*6*rnd()+.4);
+        g.fillStyle='rgba(142,11,11,'+(.12+rnd()*.22)+')';g.beginPath();g.ellipse(cx+Math.cos(a)*dist,cy+Math.sin(a)*dist,s*1.6,s,a,0,7);g.fill();}}
+  }
+
+  /* layout */
+  var svg=document.getElementById('strings');
+  var wide={box:[2,4],code:[36,26],donuts:[32,2],syringe:[48,3],boat:[83,5],plastic:[2,58],kit:[18,62],luminol:[70,60],evtag:[84,40],ruler:[38,86],
+    l1:[64,32],l2:[3,45],l3:[86,90],l4:[48,72],origin:[70,24],d1:[62,12],d2:[80,30],d3:[76,44],d4:[64,48],d5:[88,20]};
+  var narrow={box:[4,1],code:[8,13.5],l4:[30,31],donuts:[3,34],syringe:[58,34],l1:[4,46],origin:[36,52],d1:[10,50],d2:[84,49],d3:[22,57],d4:[72,56],d5:[56,47],
+    boat:[3,60],plastic:[58,60],kit:[3,72],luminol:[58,72],evtag:[4,84.5],l2:[44,85],l3:[50,90],ruler:[8,95.5]};
+  var items={};document.querySelectorAll('.item').forEach(function(el,i){items[el.dataset.id]=el;el.style.zIndex=10+i;});
+  var drops=['d1','d2','d3','d4','d5'];
+  var dropSVG='<svg viewBox="-20 -20 40 40"><path d="M-7 0 A7 7 0 1 1 5 5 L16 2 L5 -5 A7 7 0 0 1 -7 0 Z" fill="#8e0b0b"/><circle cx="-3" cy="-3" r="2.2" fill="#c7302a" opacity=".6"/><circle cx="20" cy="1" r="1.5" fill="#8e0b0b"/></svg>';
+  drops.forEach(function(k){items[k].innerHTML=dropSVG;});
+  var mq=window.matchMedia('(max-width:640px)');
+  function layout(){var p=mq.matches?narrow:wide;for(var k in p){if(items[k]){items[k].style.left=p[k][0]+'%';items[k].style.top=p[k][1]+'%';}}requestAnimationFrame(function(){paintBg();draw();});}
+  function center(el){var b=board.getBoundingClientRect(),r=el.getBoundingClientRect();return [r.left+r.width/2-b.left,r.top+r.height/2-b.top];}
+  function draw(){
+    var b=board.getBoundingClientRect();svg.setAttribute('viewBox','0 0 '+b.width+' '+b.height);
+    var o=center(items.origin),h='<circle cx="'+o[0]+'" cy="'+o[1]+'" r="22"/>';
+    drops.forEach(function(k){var el=items[k],c=center(el),dx=c[0]-o[0],dy=c[1]-o[1];
+      var ang=Math.atan2(dy,dx)*180/Math.PI;el.style.setProperty('--r',ang+'deg');
+      /* string runs from the drop back toward the origin, past it slightly */
+      var len=Math.hypot(dx,dy)||1;var ex=o[0]-dx/len*18,ey=o[1]-dy/len*18;
+      h+='<line x1="'+c[0]+'" y1="'+c[1]+'" x2="'+ex+'" y2="'+ey+'"/>';});
+    svg.innerHTML=h;
+  }
+  layout();
+  if(mq.addEventListener)mq.addEventListener('change',layout);
+  window.addEventListener('resize',function(){requestAnimationFrame(function(){paintBg();draw();})});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+  document.getElementById('reset').addEventListener('click',layout);
+  var topZ=100,drag=null;
+  Object.keys(items).forEach(function(k){var el=items[k];
+    el.addEventListener('pointerdown',function(e){if(e.button!==undefined&&e.button!==0)return;var b=board.getBoundingClientRect();
+      drag={el:el,sx:e.clientX,sy:e.clientY,ox:el.offsetLeft,oy:el.offsetTop,bw:b.width,bh:b.height};el.setPointerCapture(e.pointerId);el.classList.add('dragging');el.style.zIndex=++topZ;});
+    el.addEventListener('pointermove',function(e){if(!drag||drag.el!==el)return;
+      var x=drag.ox+e.clientX-drag.sx,y=drag.oy+e.clientY-drag.sy;
+      x=Math.max(-el.offsetWidth*.3,Math.min(drag.bw-el.offsetWidth*.7,x));y=Math.max(0,Math.min(drag.bh-el.offsetHeight*.5,y));
+      el.style.left=(x/drag.bw*100)+'%';el.style.top=(y/drag.bh*100)+'%';draw();});
+    function end(){if(drag&&drag.el===el){el.classList.remove('dragging');drag=null;setTimeout(draw,160);}}
+    el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+  });
+
+  /* microscope */
+  var S=[
+    {id:'S1',y:'2006',t:'The Ice Truck Killer',bad:'Brian Moser, a.k.a. Rudy Cooper',p:'Bloodless, neatly cut-up bodies turn up all over Miami, and the killer seems to be leaving messages just for Dexter. The truth: he is Dexter\'s long-lost biological brother, and he\'s dating Deb.',lab:'Loosely follows the first Jeff Lindsay novel. After this the show and the books go separate ways.'},
+    {id:'S2',y:'2007',t:'The Bay Harbor Butcher',bad:'Dexter himself (plus Lila, and Doakes on his tail)',p:'Divers find Dexter\'s bagged victims at the bottom of the bay, and Miami Metro starts hunting a serial killer. Dexter works on the task force hunting himself.',lab:'Doakes ends up caged in a cabin in the Everglades. It does not go well for him.'},
+    {id:'S3',y:'2008',t:'The friend',bad:'Miguel Prado, plus The Skinner',p:'Assistant DA Miguel Prado finds out Dexter\'s secret and wants in. For once Dexter tries having a friend. Rita gets pregnant. Dexter marries her.',lab:'Jimmy Smits plays Miguel. It turns out friendship is harder for Dexter than murder.'},
+    {id:'S4',y:'2009',t:'Trinity',bad:'Arthur Mitchell, the Trinity Killer',p:'A church deacon and family man who has been killing in a three-death cycle for 30 years. Dexter studies him for tips on living a double life. Then comes the bathtub.',lab:'John Lithgow won an Emmy and a Golden Globe. Many fans call this the best season TV crime has ever had.'},
+    {id:'S5',y:'2010',t:'Lumen',bad:'Jordan Chase and his group',p:'Grieving and single father to baby Harrison, Dexter rescues Lumen from a group of abusers and helps her take revenge on each of them, one by one.',lab:'Julia Stiles plays Lumen, the first person Dexter lets all the way into his world.'},
+    {id:'S6',y:'2011',t:'Doomsday',bad:'Travis Marshall and "Professor Gellar"',p:'A killer staging scenes from the Book of Revelation. The twist is that Gellar has been dead the whole time. The last scene: Deb walks in on Dexter mid-kill.',lab:'Colin Hanks plays Travis, and Edward James Olmos plays the professor.'},
+    {id:'S7',y:'2012',t:'Deb knows',bad:'Isaak Sirko, and Hannah McKay',p:'Deb tries to "fix" her brother. A Ukrainian mob boss wants revenge. Dexter falls for Hannah, a poisoner. And LaGuerta starts piecing the case together.',lab:'Yvonne Strahovski\'s Hannah becomes one of the fandom\'s favourite characters.'},
+    {id:'S8',y:'2013',t:'The Brain Surgeon',bad:'Oliver Saxon, son of Dr. Evelyn Vogel',p:'Dr. Vogel says she helped Harry design the Code. Her own son is a psychopath with no code at all. It ends with Deb, a hurricane, and a lumberjack in Oregon.',lab:'Charlotte Rampling plays Vogel. The finale split the fandom for close to a decade.'},
+    {id:'NB',y:'2021',t:'New Blood',bad:'Kurt Caldwell',p:'"Jim Lindsay" sells hunting gear in Iron Lake, New York, and has kept the Passenger quiet for years. Then Harrison shows up, and so does a local big shot with a lot of bodies hidden.',lab:'Clancy Brown plays Kurt. The ending (Harrison pulls the trigger) looked like the end of Dexter.'},
+    {id:'OS',y:'2024',t:'Original Sin',bad:'The young Dexter\'s first hunts',p:'Miami in 1991. Patrick Gibson plays a teenage Dexter learning the Code from Harry. Michael C. Hall voices Dexter\'s inner monologue.',lab:'Christian Slater plays Harry. It was cancelled in August 2025 even though a second season had been announced.'},
+    {id:'R1',y:'2025',t:'Resurrection',bad:'Leon Prater\'s club of killers',p:'Dexter survived. He follows Harrison to New York and finds a billionaire who runs a secret society of serial killers.',lab:'Peter Dinklage plays Prater and Uma Thurman plays his security chief. A second season was confirmed in October 2025.'}
+  ];
+  var tray=document.getElementById('tray'),notes=document.getElementById('notes'),lens=document.getElementById('lens'),lg=lens.getContext('2d');
+  tray.innerHTML=S.map(function(s,i){return '<button type="button" data-i="'+i+'" aria-pressed="false" aria-label="'+s.id+' '+s.t+'"><span>'+s.id+'</span></button>'}).join('');
+  function paintLens(i){
+    var seed=(i+3)*9301;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+    var W=600;lg.clearRect(0,0,W,W);
+    var grd=lg.createRadialGradient(300,300,20,300,300,300);grd.addColorStop(0,'#fbeee8');grd.addColorStop(1,'#ecd2c8');lg.fillStyle=grd;lg.fillRect(0,0,W,W);
+    var n=26+Math.floor(rnd()*18);
+    for(var k=0;k<n;k++){var x=rnd()*W,y=rnd()*W,r=26+rnd()*20,rot=rnd()*3,sq=.75+rnd()*.25;
+      lg.save();lg.translate(x,y);lg.rotate(rot);lg.scale(1,sq);
+      var cg=lg.createRadialGradient(0,0,r*.15,0,0,r);cg.addColorStop(0,'rgba(215,70,60,.55)');cg.addColorStop(.55,'rgba(190,30,25,.85)');cg.addColorStop(1,'rgba(120,8,8,.9)');
+      lg.fillStyle=cg;lg.beginPath();lg.arc(0,0,r,0,7);lg.fill();lg.restore();}
+    for(var j=0;j<6;j++){lg.fillStyle='rgba(120,90,160,.35)';lg.beginPath();lg.arc(rnd()*W,rnd()*W,14+rnd()*10,0,7);lg.fill();}
+    lg.fillStyle='rgba(20,20,20,.55)';lg.font='600 22px JetBrains Mono, monospace';lg.fillText(S[i].id+' · '+S[i].y,230,560);
+  }
+  function pick(i){
+    tray.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    var s=S[i];paintLens(i);
+    notes.innerHTML='<div class="sid"><span>Slide '+s.id+'</span><span>'+s.y+'</span></div><h3>'+s.t+'</h3><div class="bad">Big bad: '+s.bad+'</div><p>'+s.p+'</p><p class="lab"><b>Lab note</b>'+s.lab+'</p>';
+  }
+  tray.addEventListener('click',function(e){var b=e.target.closest('button');if(b)pick(+b.dataset.i);});
+  pick(3);
+
+  /* lab results */
+  var F=[
+    {c:'Production',t:'Born in a book',p:'The show adapts Jeff Lindsay\'s 2004 novel Darkly Dreaming Dexter. Season 1 roughly follows it, and then TV Dexter and book Dexter go very different ways.'},
+    {c:'Production',t:'Not really Miami',p:'Most of the show was filmed in Southern California, largely around Long Beach. Real Miami mostly shows up in establishing shots.'},
+    {c:'Production',t:'Breakfast of killers',p:'The opening titles show Dexter shaving, frying eggs and squeezing blood oranges, all shot to look violent. The sequence won an Emmy for main title design.'},
+    {c:'Production',t:'2.8 million',big:'2.8M',p:'About that many people watched the 2013 series finale live, a record for Showtime at the time, even as the lumberjack ending split fans.'},
+    {c:'Cast',t:'Siblings, then spouses',p:'Michael C. Hall and Jennifer Carpenter (Deb) married in real life at the end of 2008 and divorced in 2011. They went on playing brother and sister the whole time.'},
+    {c:'Cast',t:'The beanie at the Globes',p:'Hall was treated for Hodgkin\'s lymphoma around season 4. In January 2010 he went to the Golden Globes in a knit cap and won Best Actor in a drama.'},
+    {c:'Cast',t:'Trinity\'s trophies',big:'2',p:'John Lithgow won both an Emmy and a Golden Globe for Arthur Mitchell. It remains one of TV\'s most-praised villain performances.'},
+    {c:'Cast',t:'From one body business to another',p:'Before Dexter, Hall played David Fisher on Six Feet Under, whose family ran a funeral home. Death seems to be his natural beat.'},
+    {c:'Lore',t:'A real tranquilizer',p:'M99 is etorphine, a real and extremely powerful opioid vets use to sedate animals as big as elephants. That\'s how Dexter knocks out his targets.'},
+    {c:'Lore',t:'Born in blood',p:'Harry found three-year-old Dexter sitting in a pool of blood in a shipping container, where his mother had been murdered. Harry built the Code on top of that trauma.'},
+    {c:'Lore',t:'Slides in the A/C',p:'Dexter keeps one glass slide with a drop of blood from each victim, in a rosewood box hidden inside his air conditioner. Keeping trophies is a very un-Code-like risk.'},
+    {c:'Lore',t:'Surprise!',p:'Sergeant Doakes (Erik King) never trusted Dexter, and his "Surprise, m***********" line became one of the show\'s most-quoted moments.'},
+    {c:'Afterlife',t:'Jim Lindsay',p:'In New Blood, Dexter hides out as "Jim Lindsay". The alias is a nod to Jeff Lindsay, the author who created him.'},
+    {c:'Afterlife',t:'He hears himself',p:'In Original Sin, Michael C. Hall voices the teenage Dexter\'s inner monologue, so the voice fans know stays the same even with a new face.'},
+    {c:'Afterlife',t:'A club of killers',p:'Resurrection puts Dexter up against Peter Dinklage\'s Leon Prater, a billionaire who hosts a secret society of serial killers.'},
+    {c:'Afterlife',t:'Survived the shot',big:'1',p:'New Blood ended with Harrison shooting his father. Resurrection brought Dexter back from that single gunshot, and the fans who hated the ending got a second chance.'}
+  ];
+  var bags=document.getElementById('bags');
+  bags.innerHTML=F.map(function(f,i){return '<article class="bag" data-c="'+f.c+'"><div class="seal"></div><div class="strip"><span>Exhibit '+String(i+1).padStart(2,'0')+'</span><span>'+f.c+'</span></div>'+(f.big?'<span class="big">'+f.big+'</span>':'')+'<h3>'+f.t+'</h3><p>'+f.p+'</p></article>'}).join('');
+  document.getElementById('filters').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    bags.querySelectorAll('.bag').forEach(function(a){a.hidden=!(b.dataset.f==='all'||a.dataset.c===b.dataset.f)});});
+
+  /* quiz */
+  var Q=[
+    {q:'What does Dexter keep from each victim?',o:['A lock of hair','A blood slide','A photograph','A button'],a:1,w:'A single drop of blood on a glass slide, filed in the rosewood box.'},
+    {q:'What is the name of Dexter\'s boat?',o:['Dark Passenger','Slice of Life','Miami Vice','The Code'],a:1,w:'Slice of Life. The name is a joke the whole show is in on.'},
+    {q:'Who is the Ice Truck Killer?',o:['Rudy, Dexter\'s brother','Sergeant Doakes','Miguel Prado','Arthur Mitchell'],a:0,w:'Brian Moser, dating Deb as Rudy Cooper, and Dexter\'s biological brother.'},
+    {q:'What is Dexter\'s day job at Miami Metro?',o:['Medical examiner','Homicide detective','Blood spatter analyst','Crime scene photographer'],a:2,w:'Blood spatter analyst. He loves the work. Of course he does.'},
+    {q:'Who played the Trinity Killer?',o:['Jimmy Smits','John Lithgow','Colin Hanks','Clancy Brown'],a:1,w:'John Lithgow, who won an Emmy and a Golden Globe for it.'},
+    {q:'Where is Dexter hiding at the start of New Blood?',o:['Oregon','Argentina','Iron Lake, New York','Los Angeles'],a:2,w:'Iron Lake, a small snowy town in upstate New York, living as Jim Lindsay.'},
+    {q:'What does Dexter bring to the office to seem normal?',o:['Cuban coffee','Donuts','Bagels','Birthday cake'],a:1,w:'A box of donuts: the oldest camouflage in the Miami Metro break room.'},
+    {q:'What is the first rule of the Code of Harry?',o:['Always be kind','Don\'t get caught','Never trust Deb','Work alone'],a:1,w:'Don\'t get caught. Everything else in the Code follows from it.'}
+  ];
+  var room=document.getElementById('room'),qi=0,score=0,hist=[];
+  function bar(){return '<div class="qbar">'+Q.map(function(_,i){return '<i class="'+(i<hist.length?(hist[i]?'ok':'no'):(i===qi?'now':''))+'"></i>'}).join('')+'</div>'}
+  function renderQ(){var it=Q[qi];
+    room.innerHTML='<div class="qmeta"><span>Question '+(qi+1)+' of '+Q.length+'</span><span>Score '+score+'</span></div>'+bar()+'<div class="qtext">'+it.q+'</div>'+
+      '<div class="opts">'+it.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+o+'</button>'}).join('')+'</div><div class="verdict" id="verdict"></div>';
+    room.querySelectorAll('.opts button').forEach(function(b){b.addEventListener('click',answer)});}
+  function answer(e){var i=+e.currentTarget.dataset.i,it=Q[qi],ok=i===it.a;if(ok)score++;hist.push(ok);
+    room.querySelectorAll('.opts button').forEach(function(b,j){b.disabled=true;if(j===it.a)b.classList.add('right');else if(j===i)b.classList.add('wrong');});
+    var v=document.getElementById('verdict');
+    v.innerHTML='<b>'+(ok?['Clean kill.','Harry nods.','Textbook.','Tonight\'s the night.'][qi%4]:['Sloppy.','Doakes saw that.','You\'d get caught.','Deb is swearing.'][qi%4])+'</b>'+it.w;
+    var n=document.createElement('button');n.type='button';n.className='qnext';n.textContent=qi<Q.length-1?'Next':'Read the verdict';
+    n.addEventListener('click',function(){qi++;qi<Q.length?renderQ():renderEnd();});v.after(n);n.focus();
+    room.querySelector('.qmeta span:last-child').textContent='Score '+score;room.querySelector('.qbar').outerHTML=bar();}
+  function renderEnd(){var t,d;
+    if(score===8){t='The Dark Defender';d='Perfect. Harry would be proud, and slightly worried.';}
+    else if(score>=6){t='Blood spatter analyst';d='Sharp eye, steady hands. Masuka would try to high-five you.';}
+    else if(score>=3){t='Miami Metro rookie';d='You know the basics. Batista would still offer you a mojito.';}
+    else{t='LaGuerta-level oblivious';d='The killer was in the lab the whole time. Time to rewatch from the pilot.';}
+    room.innerHTML='<div class="final"><div class="qmeta"><span>Case closed</span><span>'+Q.length+' of '+Q.length+'</span></div>'+bar()+'<div class="score">'+score+'<i>/</i>'+Q.length+'</div><h3>'+t+'</h3><p>'+d+'</p><button type="button" class="qnext" id="again">Retake the exam</button></div>';
+    document.getElementById('again').addEventListener('click',function(){qi=0;score=0;hist=[];renderQ();});}
+  renderQ();
+
+  /* spatter lab */
+  var cv=document.getElementById('spatter'),cg=cv.getContext('2d'),st=null,marks=[];
+  function toC(e){var r=cv.getBoundingClientRect();return [(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height];}
+  function wall(){cg.fillStyle='#fbf9f5';cg.fillRect(0,0,cv.width,cv.height);cg.strokeStyle='rgba(0,0,0,.05)';cg.lineWidth=1;
+    for(var x=0;x<cv.width;x+=40){cg.beginPath();cg.moveTo(x,0);cg.lineTo(x,cv.height);cg.stroke();}
+    for(var y=0;y<cv.height;y+=40){cg.beginPath();cg.moveTo(0,y);cg.lineTo(cv.width,y);cg.stroke();}}
+  var seed2=42;function r2(){seed2=(seed2*16807)%2147483647;return seed2/2147483647;}
+  function stain(x,y,dirRad,angleDeg,w){
+    var L=w/Math.sin(angleDeg*Math.PI/180);
+    cg.save();cg.translate(x,y);cg.rotate(dirRad);
+    cg.fillStyle='#8e0b0b';cg.beginPath();cg.ellipse(0,0,L/2,w/2,0,0,7);cg.fill();
+    if(angleDeg<70){cg.beginPath();cg.moveTo(L/2-2,-w*.18);cg.quadraticCurveTo(L/2+L*.35,0,L/2-2,w*.18);cg.fill();
+      var sat=Math.round((90-angleDeg)/12);for(var i=0;i<sat;i++){var dx=L/2+L*.4+r2()*L*.9,dy=(r2()-.5)*w*.9,s=1+r2()*w*.12;cg.beginPath();cg.ellipse(dx,dy,s*1.8,s,0,0,7);cg.fill();}}
+    else{for(var j=0;j<8;j++){var a=r2()*6.28,d=w/2+2+r2()*w*.5,s2=1+r2()*2;cg.beginPath();cg.arc(Math.cos(a)*d,Math.sin(a)*d,s2,0,7);cg.fill();}}
+    cg.fillStyle='rgba(255,255,255,.25)';cg.beginPath();cg.ellipse(-L*.12,-w*.12,L*.14,w*.12,0,0,7);cg.fill();
+    cg.restore();return L;
+  }
+  function compass(rad){var d=['E','SE','S','SW','W','NW','N','NE'];return d[((Math.round(rad/(Math.PI/4))%8)+8)%8];}
+  function throwDrop(x,y,dx,dy){
+    var len=Math.hypot(dx,dy),dir=Math.atan2(dy,dx),ang=Math.max(12,Math.min(90,90-len*.35)),w=14+r2()*8;
+    var L=stain(x,y,len<4?0:dir,ang,w);var px=10/w;
+    document.getElementById('rW').textContent=(w*px*.6).toFixed(1)+' mm';
+    document.getElementById('rL').textContent=(L*px*.6).toFixed(1)+' mm';
+    document.getElementById('rA').textContent=Math.round(ang)+'°';
+    document.getElementById('rD').textContent=len<4?'straight down':compass(dir);
+  }
+  function seedWall(){wall();throwDrop(170,170,0,0);throwDrop(380,260,120,40);throwDrop(560,150,190,-60);}
+  seedWall();
+  cv.addEventListener('pointerdown',function(e){st=toC(e);cv.setPointerCapture(e.pointerId);});
+  cv.addEventListener('pointerup',function(e){if(!st)return;var p=toC(e);throwDrop(p[0],p[1],p[0]-st[0],p[1]-st[1]);st=null;});
+  document.getElementById('wipe').addEventListener('click',function(){wall();['rW','rL','rA','rD'].forEach(function(id){document.getElementById(id).textContent='–'});});
+
+  /* alibi */
+  var A1=['Can\'t make it tonight,','So sorry, I have to leave early,','Rain check?','I\'d love to, but'],
+      A2=['I\'m working late on a spatter report.','my bowling league has a big match.','I promised Harrison a boat trip.','I\'m picking up donuts for tomorrow\'s briefing.','Astor has a school thing. I think.','I\'m going night fishing. Alone. Big fish.','I have a lot of paperwork. And plastic sheeting. For the paperwork.'],
+      D=['What the f***, Dex? Again?','Are you s***ting me right now?','Motherf***ing bowling. Every f***ing week.','You are such a weird little f***ing robot, you know that?','F***! Fine. Bring me a donut.'];
+  var al=document.getElementById('alibi');
+  function pickR(a){return a[Math.floor(Math.random()*a.length)]}
+  function newAlibi(){al.innerHTML='<div class="msg">"'+pickR(A1)+' '+pickR(A2)+'"</div><div class="deb"><b>Deb\'s reply</b>'+pickR(D)+'</div>';}
+  al.innerHTML='<div class="msg">"Can\'t make it tonight, I\'m going night fishing. Alone. Big fish."</div><div class="deb"><b>Deb\'s reply</b>Motherf***ing fishing. Every f***ing week.</div>';
+  document.getElementById('newAlibi').addEventListener('click',newAlibi);
+  document.getElementById('copyAlibi').addEventListener('click',function(e){var b=e.currentTarget,t=al.querySelector('.msg').textContent;
+    try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1400)},function(){sel()});}catch(err){sel()}
+    function sel(){var r=document.createRange();r.selectNodeContents(al.querySelector('.msg'));var s=getSelection();s.removeAllRanges();s.addRange(r);}});
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Munger&#x27;s Latticework | Explainers</title>
+<meta name="description" content="How Charlie Munger thought: a frame built from the big ideas of every discipline, with facts hung on it.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/mungers-latticework/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Munger&#x27;s Latticework">
+<meta property="og:description" content="How Charlie Munger thought: a frame built from the big ideas of every discipline, with facts hung on it.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/mungers-latticework/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/mungers-latticework/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Barlow+Condensed:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+/* Layout: a set of drafting sheets. One narrow reading column; every figure is a
+   bordered sheet with a title strip, like a page in an architect's drawing set.
+   Light theme is a blueline print, dark theme is a cyanotype blueprint. */
+:root{
+  --paper:#F2F5FA; --sheet:#E6EBF5; --ink:#22357A; --ink-soft:#56659C; --text:#18213F;
+  --grid:rgba(34,53,122,.075); --lattice:rgba(34,53,122,.24);
+  --red:#C0362C; --hi:#FFE06B; --hi-ink:#18213F;
+  --f-display:"Barlow Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+  --f-body:"Literata",Georgia,"Times New Roman",serif;
+  --f-hand:"Architects Daughter","Segoe Print","Bradley Hand",cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F2E59; --sheet:#163A6C; --ink:#DDE9F8; --ink-soft:#A6BDDD; --text:#EDF3FB;
+    --grid:rgba(221,233,248,.08); --lattice:rgba(221,233,248,.26);
+    --red:#FF8F78; --hi:#FFD95A; --hi-ink:#0F2E59; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F2E59; --sheet:#163A6C; --ink:#DDE9F8; --ink-soft:#A6BDDD; --text:#EDF3FB;
+  --grid:rgba(221,233,248,.08); --lattice:rgba(221,233,248,.26);
+  --red:#FF8F78; --hi:#FFD95A; --hi-ink:#0F2E59; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper); color:var(--text);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--f-body); font-size:1.0625rem; line-height:1.62;
+}
+.wrap{max-width:1040px; margin-inline:auto; padding-inline:clamp(16px,4vw,40px); padding-block:clamp(28px,6vw,64px)}
+main{display:grid; gap:clamp(64px,10vw,116px); margin-top:clamp(56px,9vw,104px)}
+section{display:grid; gap:28px}
+.prose{display:grid; gap:1.05em; max-width:62ch}
+p,h1,h2,h3,ul,ol,figure,dl,dd{margin:0}
+h1,h2,h3{font-family:var(--f-display); font-weight:600; color:var(--ink); text-wrap:balance}
+h1{font-size:clamp(2.7rem,8vw,5rem); line-height:.92; text-transform:uppercase; letter-spacing:.005em}
+h2{font-size:clamp(1.9rem,4.6vw,2.9rem); line-height:1.02}
+h3{font-size:1.3rem; line-height:1.1; text-transform:uppercase; letter-spacing:.06em}
+.eyebrow{font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.14em; font-size:.95rem; color:var(--ink-soft)}
+.lede{font-size:1.16rem; line-height:1.55}
+strong{font-weight:600}
+.say{font-style:italic; font-size:1.2rem; line-height:1.45; color:var(--ink); padding-left:1.1em; border-left:1.5px dashed var(--ink-soft)}
+.say small{display:block; font-style:normal; font-family:var(--f-display); font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; color:var(--ink-soft); margin-bottom:.3em}
+.note{font-family:var(--f-hand); color:var(--red); font-size:1.02rem; line-height:1.35; transform:rotate(-1.2deg); transform-origin:left center; max-width:44ch}
+
+/* sheets */
+.sheet{border:1.5px solid var(--ink); background:var(--sheet)}
+.sheet-body{padding:clamp(16px,3vw,28px); display:grid; gap:20px}
+.sheet figcaption{display:grid; grid-template-columns:auto 1fr auto; border-top:1.5px solid var(--ink); font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.1em; font-size:.86rem; color:var(--ink)}
+.sheet figcaption span{padding:.5em .9em; min-width:0}
+.sheet figcaption span+span{border-left:1.5px solid var(--ink)}
+.fig-hint{color:var(--ink-soft)}
+@media (max-width:560px){
+  .sheet figcaption{grid-template-columns:auto 1fr}
+  .sheet figcaption .fig-hint{grid-column:1/-1; border-left:0; border-top:1.5px solid var(--ink)}
+}
+
+/* controls */
+button{font:inherit; color:inherit; cursor:pointer}
+.tag{font-family:var(--f-display); font-weight:600; font-size:1rem; letter-spacing:.05em; text-transform:uppercase; line-height:1.15;
+  background:var(--paper); color:var(--ink); border:1.5px solid var(--ink); border-radius:2px; padding:.5em .8em; text-align:left; min-width:0}
+.tag:hover{background:var(--sheet)}
+.tag[aria-pressed="true"]{background:var(--hi); color:var(--hi-ink)}
+:focus-visible{outline:2.5px solid var(--red); outline-offset:2px}
+.row{display:flex; flex-wrap:wrap; gap:8px}
+.detail{background:var(--paper); border:1.5px solid var(--ink); padding:16px 18px; display:grid; gap:.55em; align-content:start}
+.detail h3{font-size:1.2rem}
+.detail .k{font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.12em; font-size:.78rem; color:var(--ink-soft)}
+.detail .q{font-family:var(--f-hand); color:var(--red); font-size:1.08rem; line-height:1.35}
+.sticky{position:sticky; top:calc(8px + env(safe-area-inset-top,0px)); z-index:2}
+@media (max-width:760px){.two>.detail{order:-1}}
+
+/* hero */
+.hero{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(24px,4vw,48px); align-items:start}
+.hero-text{display:grid; gap:22px; min-width:0}
+.hero svg{display:block; width:100%; height:auto}
+.ln{stroke:var(--ink); fill:none}
+.hand{font-family:var(--f-hand); font-size:13px; fill:var(--ink)}
+.hand.red{fill:var(--red)}
+.tagbox{fill:var(--paper); stroke:var(--ink); stroke-width:1.5}
+.sway{transform-box:fill-box; transform-origin:50% 0; animation:sway 5s ease-in-out infinite alternate}
+.sway:nth-of-type(2n){animation-duration:6.4s; animation-delay:-2s}
+.sway:nth-of-type(3n){animation-duration:7.3s; animation-delay:-4s}
+@keyframes sway{from{transform:rotate(-2.4deg)}to{transform:rotate(2.4deg)}}
+.titleblock{display:grid; grid-template-columns:auto 1fr; border-top:1.5px solid var(--ink); font-size:.92rem; line-height:1.35}
+.titleblock dt{font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.12em; font-size:.76rem; color:var(--ink-soft); padding:.55em .9em; border-bottom:1px solid var(--ink)}
+.titleblock dd{padding:.45em .9em; border-left:1.5px solid var(--ink); border-bottom:1px solid var(--ink); min-width:0}
+.titleblock dt:last-of-type,.titleblock dd:last-of-type{border-bottom:0}
+@media (max-width:820px){.hero{grid-template-columns:1fr}}
+
+/* fig 1 */
+.two{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:20px; align-items:start}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.clues{list-style:none; padding:0; display:grid; gap:8px}
+.clues li{border:1.5px dashed var(--ink-soft); color:var(--ink-soft); background:var(--paper); padding:.5em .8em; font-size:.98rem; line-height:1.4; transition:background .2s,color .2s}
+.clues li.seen{border-style:solid; border-color:var(--ink); background:var(--hi); color:var(--hi-ink)}
+.count{font-family:var(--f-display); font-weight:700; font-size:2.4rem; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums}
+.count small{font-size:1rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft)}
+
+/* fig 2 */
+.rails{display:grid; gap:10px; padding:14px; border:1.5px solid var(--ink);
+  background-color:var(--paper);
+  background-image:repeating-linear-gradient(45deg,var(--lattice) 0 1.5px,transparent 1.5px 30px),repeating-linear-gradient(-45deg,var(--lattice) 0 1.5px,transparent 1.5px 30px)}
+.rail{display:grid; grid-template-columns:7.2em 1fr 1fr; gap:8px; align-items:stretch}
+.rail-label{font-family:var(--f-display); font-weight:700; text-transform:uppercase; letter-spacing:.1em; font-size:.84rem; color:var(--ink); background:var(--paper); align-self:center; justify-self:start; padding:.1em .35em}
+@media (max-width:520px){.rail{grid-template-columns:1fr 1fr}.rail-label{grid-column:1/-1}}
+
+/* fig 3 */
+.flip{background:var(--paper); border:1.5px solid var(--ink); padding:18px 20px; display:grid; gap:14px; transition:transform .2s ease-in}
+.flip.turn{transform:perspective(900px) rotateX(88deg)}
+.flip .qline{font-family:var(--f-display); font-weight:600; font-size:clamp(1.5rem,4vw,2.1rem); line-height:1.05; color:var(--ink)}
+.flip.inv .qline{color:var(--red)}
+.flip ul{list-style:none; padding:0; display:grid; gap:.45em}
+.flip li{display:grid; grid-template-columns:1.5em 1fr; align-items:baseline}
+.flip li::before{content:"?"; font-family:var(--f-hand); color:var(--ink-soft)}
+.flip.inv li::before{content:"\2715"; color:var(--red)}
+.flip .after{font-size:.96rem; color:var(--ink-soft)}
+.invert-btn{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.invert-btn:hover{background:var(--ink-soft)}
+
+/* fig 4 */
+.circle-fig{display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:24px; align-items:center}
+@media (max-width:680px){.circle-fig{grid-template-columns:1fr; justify-items:center}}
+.circle-fig svg{width:100%; max-width:300px; height:auto; display:block}
+.sliders{display:grid; gap:16px; width:100%; min-width:0}
+.sliders label{display:grid; gap:4px; font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.1em; font-size:.86rem; color:var(--ink)}
+input[type=range]{width:100%; accent-color:var(--red)}
+.trays{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px}
+.tray{border:1.5px solid var(--ink); border-top-width:0; background:var(--paper); padding:.6em .7em .7em; display:grid; gap:.2em; font-size:.92rem; line-height:1.35}
+.tray b{font-family:var(--f-display); font-weight:700; text-transform:uppercase; letter-spacing:.1em; font-size:.9rem; color:var(--ink)}
+.tray.big{background:var(--hi); color:var(--hi-ink)} .tray.big b{color:var(--hi-ink)}
+@media (max-width:520px){.trays{grid-template-columns:1fr}.tray{border-top-width:1.5px}}
+
+/* fig 5 */
+.tend{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px}
+.tend .tag{display:grid; gap:.15em; font-size:.9rem; letter-spacing:.03em; padding:.45em .55em; overflow-wrap:anywhere}
+.tend .tag i{font-style:normal; font-size:.76rem; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+.tend .tag[aria-pressed="true"] i{color:var(--hi-ink)}
+@media (max-width:760px){.tend{grid-template-columns:repeat(2,minmax(0,1fr))}.tend .tag:last-child{grid-column:1/-1}}
+
+/* fig 6 */
+.forces{display:grid; gap:8px; align-content:start}
+.forces .tag{display:grid; gap:.2em}
+.forces .tag small{font-family:var(--f-body); font-weight:400; text-transform:none; letter-spacing:0; font-size:.9rem; line-height:1.35}
+.bars{display:grid; gap:16px; align-content:start; min-width:0}
+.bar{display:grid; gap:4px}
+.bar-label{display:flex; justify-content:space-between; gap:12px; font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.08em; font-size:.86rem; color:var(--ink)}
+.bar-label output{font-variant-numeric:tabular-nums; font-size:1.05rem}
+.track{height:22px; border:1.5px solid var(--ink); background:var(--paper)}
+.fill{height:100%; background:var(--ink); width:10%; transition:width .35s ease}
+.fill.hot{background:var(--red)}
+.axis{position:relative; height:1.4em; font-family:var(--f-display); font-size:.8rem; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+.axis span{position:absolute; left:calc(var(--v) / 10.5 * 100%); transform:translateX(-50%)}
+.fine{font-size:.9rem; color:var(--ink-soft); line-height:1.45}
+
+/* fig 7 */
+.years{display:grid; grid-template-columns:repeat(20,minmax(0,1fr)); padding-block:26px 24px}
+.yr{position:relative; height:44px; border-bottom:1.5px solid var(--ink)}
+.yr::after{content:""; position:absolute; left:0; bottom:0; width:1.5px; height:8px; background:var(--ink)}
+.yr b{position:absolute; left:50%; bottom:0; width:var(--s); height:var(--s); transform:translate(-50%,50%); border-radius:50%; background:var(--red); border:1.5px solid var(--ink)}
+.ends{display:flex; justify-content:space-between; font-family:var(--f-display); font-weight:600; text-transform:uppercase; letter-spacing:.1em; font-size:.8rem; color:var(--ink-soft)}
+.cols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(24px,4vw,48px)}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.cols>div{display:grid; gap:14px; align-content:start}
+.plain{list-style:none; padding:0; display:grid; gap:.8em}
+.plain li{padding-top:.8em; border-top:1px solid var(--ink-soft)}
+
+/* checklist */
+.check{list-style:none; padding:0; display:grid}
+.check li+li{border-top:1px solid var(--ink-soft)}
+.check label{display:grid; grid-template-columns:1.9em 1fr; gap:.2em; padding:.7em 0; cursor:pointer; align-items:start}
+.check input{width:1.15em; height:1.15em; margin:.3em 0 0; accent-color:var(--red)}
+.check input:checked+span{text-decoration:line-through; text-decoration-color:var(--red); color:var(--ink-soft)}
+.check em{font-style:normal; font-family:var(--f-display); font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:.8rem; color:var(--ink-soft); display:block}
+footer{margin-top:clamp(56px,9vw,96px); padding-top:20px; border-top:1.5px solid var(--ink); font-size:.92rem; color:var(--ink-soft); display:grid; gap:.6em; max-width:70ch}
+@media (prefers-reduced-motion:reduce){.sway{animation:none}.flip,.fill,.clues li{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Charlie Munger &middot; how he thought</p>
+    <h1>Facts need something to hang on</h1>
+    <p class="lede">Charlie Munger was Warren Buffett's partner at Berkshire Hathaway for 45 years. He did not credit his results to brilliance. He credited a frame he had built in his head from the big ideas of every major discipline, and a habit of hanging everything he learned on it.</p>
+    <p class="lede">He called the frame a <strong>latticework of mental models</strong>. The rest of his philosophy is instructions for building it and for keeping your own mind from wrecking it.</p>
+    <p class="note">Start at the problem it solves. The lattice comes second.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body" style="padding-bottom:8px">
+      <svg viewBox="0 0 480 380" role="img" aria-label="A garden lattice with labelled tags hanging from its joints: compounding, incentives, inversion, evolution, margin of safety, opportunity cost. Three unlabelled loose facts lie on the ground beneath it.">
+        <defs>
+          <pattern id="lat" width="80" height="80" patternUnits="userSpaceOnUse" patternTransform="translate(40,44)">
+            <path d="M0 0L80 80M80 0L0 80" stroke="var(--ink)" stroke-width="2" fill="none"/>
+            <circle cx="40" cy="40" r="3.6" fill="var(--ink)"/>
+            <circle cx="0" cy="0" r="3.6" fill="var(--ink)"/><circle cx="80" cy="0" r="3.6" fill="var(--ink)"/>
+            <circle cx="0" cy="80" r="3.6" fill="var(--ink)"/><circle cx="80" cy="80" r="3.6" fill="var(--ink)"/>
+          </pattern>
+        </defs>
+        <!-- dimensions -->
+        <path class="ln" stroke-width="1" d="M40 22H440M36 26l8-8M436 26l8-8M20 44V284M16 48l8-8M16 288l8-8"/>
+        <text class="hand" x="240" y="15" text-anchor="middle">a lifetime of reading</text>
+        <text class="hand" text-anchor="middle" transform="translate(13,164) rotate(-90)">many disciplines</text>
+        <!-- lattice + posts + ground -->
+        <rect x="40" y="44" width="400" height="240" fill="url(#lat)" stroke="var(--ink)" stroke-width="2.5"/>
+        <path class="ln" stroke-width="2.5" d="M40 284V344M440 284V344"/>
+        <path class="ln" stroke-width="1.5" d="M14 344H466"/>
+        <path class="ln" stroke-width="1" d="M30 344l-8 8M70 344l-8 8M110 344l-8 8M150 344l-8 8M190 344l-8 8M230 344l-8 8M270 344l-8 8M310 344l-8 8M350 344l-8 8M390 344l-8 8M430 344l-8 8"/>
+        <!-- hanging tags -->
+        <g class="sway"><path class="ln" stroke-width="1.5" d="M80 84V106"/><rect class="tagbox" x="32" y="106" width="96" height="22"/><text class="hand" x="80" y="122" text-anchor="middle">compounding</text></g>
+        <g class="sway"><path class="ln" stroke-width="1.5" d="M240 84V106"/><rect class="tagbox" x="196" y="106" width="88" height="22"/><text class="hand" x="240" y="122" text-anchor="middle">incentives</text></g>
+        <g class="sway"><path class="ln" stroke-width="1.5" d="M400 84V106"/><rect class="tagbox" x="360" y="106" width="80" height="22"/><text class="hand" x="400" y="122" text-anchor="middle">inversion</text></g>
+        <g class="sway"><path class="ln" stroke-width="1.5" d="M160 164V186"/><rect class="tagbox" x="120" y="186" width="80" height="22"/><text class="hand" x="160" y="202" text-anchor="middle">evolution</text></g>
+        <g class="sway"><path class="ln" stroke-width="1.5" d="M320 164V186"/><rect class="tagbox" x="256" y="186" width="128" height="22"/><text class="hand" x="320" y="202" text-anchor="middle">margin of safety</text></g>
+        <g class="sway"><path class="ln" stroke-width="1.5" d="M240 244V266"/><rect class="tagbox" x="176" y="266" width="128" height="22"/><text class="hand" x="240" y="282" text-anchor="middle">opportunity cost</text></g>
+        <!-- fallen facts -->
+        <g transform="translate(100,332) rotate(-7)"><rect class="tagbox" x="-34" y="-10" width="68" height="20" stroke-dasharray="4 3"/><text class="hand" x="0" y="5" text-anchor="middle">a date</text></g>
+        <g transform="translate(206,333) rotate(4)"><rect class="tagbox" x="-44" y="-10" width="88" height="20" stroke-dasharray="4 3"/><text class="hand" x="0" y="5" text-anchor="middle">a statistic</text></g>
+        <g transform="translate(372,332) rotate(-3)"><rect class="tagbox" x="-44" y="-10" width="88" height="20" stroke-dasharray="4 3"/><text class="hand" x="0" y="5" text-anchor="middle">a headline</text></g>
+        <text class="hand red" x="240" y="372" text-anchor="middle">loose facts: nothing to hang on, so they fall</text>
+      </svg>
+    </div>
+    <dl class="titleblock">
+      <dt>Subject</dt><dd>Charles T. Munger, 1924&ndash;2023. Born in Omaha, Nebraska. Died aged 99.</dd>
+      <dt>Trades</dt><dd>Wartime meteorologist, lawyer, investor, amateur architect.</dd>
+      <dt>Post</dt><dd>Vice chairman, Berkshire Hathaway, 1978&ndash;2023.</dd>
+      <dt>Drawn from</dt><dd>&ldquo;Elementary Worldly Wisdom&rdquo; (1994), &ldquo;The Psychology of Human Misjudgment&rdquo; (1995, revised 2005), <i>Poor Charlie's Almanack</i> (2005).</dd>
+    </dl>
+  </figure>
+</header>
+
+<main>
+
+<!-- 1 PROBLEM -->
+<section aria-labelledby="h-problem">
+  <div class="prose">
+    <p class="eyebrow">The problem</p>
+    <h2 id="h-problem">A person with one tool sees one kind of problem</h2>
+    <p>Munger's favourite warning was an old proverb: to someone who owns only a hammer, every problem looks like a nail.</p>
+    <p>Most capable people are trained in one discipline. They get good at it, get paid for it, and start seeing its pattern everywhere. Each of their answers is partly right, which is why the habit is so hard to notice from the inside.</p>
+    <p>Try it. A neighbourhood bakery's sales have fallen 20% in three months. There are six clues. Ask an expert.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div class="row" role="group" aria-label="Choose who looks at the bakery" id="lensRow">
+        <button type="button" class="tag" data-lens="econ" aria-pressed="true">Economist</button>
+        <button type="button" class="tag" data-lens="psych" aria-pressed="false">Psychologist</button>
+        <button type="button" class="tag" data-lens="stat" aria-pressed="false">Statistician</button>
+        <button type="button" class="tag" data-lens="eng" aria-pressed="false">Engineer</button>
+        <button type="button" class="tag" data-lens="all" aria-pressed="false">All four at once</button>
+      </div>
+      <div class="two">
+        <ul class="clues" id="clues">
+          <li>A supermarket with an in-store bakery opened 400 metres away.</li>
+          <li>The bakery raised its prices 8% in the same quarter.</li>
+          <li>The morning queue no longer spills onto the pavement.</li>
+          <li>The same quarter last year included a street festival that lifted sales.</li>
+          <li>The single oven breaks down about once a week.</li>
+          <li>Counter staff earn a flat wage however much they sell.</li>
+        </ul>
+        <div class="detail sticky" aria-live="polite">
+          <p class="count"><span id="lensCount">2</span> <small>of 6 clues noticed</small></p>
+          <h3 id="lensName">The economist</h3>
+          <p id="lensSays"></p>
+        </div>
+      </div>
+    </div>
+    <figcaption><span>Fig. 1</span><span>One bakery, four experts</span><span class="fig-hint">Pick who looks</span></figcaption>
+  </figure>
+</section>
+
+<!-- 2 IDEA -->
+<section aria-labelledby="h-idea">
+  <div class="prose">
+    <p class="eyebrow">The idea</p>
+    <h2 id="h-idea">Learn the big ideas from every field, and keep them joined up</h2>
+    <p>Munger's fix was to carry the whole toolbox. Learn the few central ideas of each major discipline, well enough to use them without looking anything up. He guessed that 80 or 90 models do about 90% of the work, and that a handful do most of that.</p>
+    <p>The joining matters as much as the collecting. A fact you memorise on its own fades. A fact that attaches to a model you already own stays put and turns up when you need it. That is the lattice: models are the slats, and experience hangs on them.</p>
+    <p>He set two conditions. The models must come from many disciplines, because real problems ignore the way universities divide knowledge. And you have to use them routinely, or they go.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div class="two">
+        <div class="rails" id="rails"></div>
+        <div class="detail sticky" id="modelDetail" aria-live="polite"></div>
+      </div>
+      <p class="fine">Twelve of the eighty or ninety. Each one earns its place by putting a question in your head that you would not otherwise ask.</p>
+    </div>
+    <figcaption><span>Fig. 2</span><span>A corner of the lattice</span><span class="fig-hint">Pick a model</span></figcaption>
+  </figure>
+</section>
+
+<!-- 3 INVERT -->
+<section aria-labelledby="h-invert">
+  <div class="prose">
+    <p class="eyebrow">Habit one</p>
+    <h2 id="h-invert">Turn the question upside down</h2>
+    <p>The mathematician Carl Jacobi told his students to invert hard problems. Munger took the advice out of algebra and applied it to everything.</p>
+    <p>Ask how to succeed and you get slogans. Ask what would guarantee failure and you get a list specific enough to act on. Then you avoid the list.</p>
+    <p class="say"><small>Munger, paraphrased</small>All I want to know is where I'm going to die, so that I never go there.</p>
+    <p>He once gave a graduating class a speech made entirely of prescriptions for a miserable life: be unreliable, learn only from your own experience, stay down when you are knocked down. The students were meant to do the opposite.</p>
+    <p>Behind the joke is his most practical claim. Over a long stretch, steadily avoiding stupid mistakes pays better than chasing brilliant moves.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div class="row" role="group" aria-label="Choose a goal" id="goalRow">
+        <button type="button" class="tag" data-goal="career" aria-pressed="true">A career</button>
+        <button type="button" class="tag" data-goal="invest" aria-pressed="false">An investment</button>
+        <button type="button" class="tag" data-goal="launch" aria-pressed="false">A product launch</button>
+      </div>
+      <div class="flip" id="flip" aria-live="polite">
+        <p class="qline" id="flipQ"></p>
+        <ul id="flipA"></ul>
+        <p class="after" id="flipAfter"></p>
+      </div>
+      <div class="row"><button type="button" class="tag invert-btn" id="invertBtn" aria-pressed="false">&#8645; Invert the question</button></div>
+    </div>
+    <figcaption><span>Fig. 3</span><span>Forwards and backwards</span><span class="fig-hint">Press invert</span></figcaption>
+  </figure>
+</section>
+
+<!-- 4 CIRCLE -->
+<section aria-labelledby="h-circle">
+  <div class="prose">
+    <p class="eyebrow">Habit two</p>
+    <h2 id="h-circle">Know exactly where your knowledge stops</h2>
+    <p>Everyone has a patch of the world they really understand. Munger and Buffett called it the circle of competence. Its size hardly matters. Knowing where its edge runs matters a great deal.</p>
+    <p>The damage is done in the band between what you know and what you believe you know. Inside the circle you have an edge. Far outside it you are cautious. In the band you feel like an expert and are not one.</p>
+    <p>His test for whether an opinion was inside the circle: he should be able to state the case against it better than the people who hold the opposite view.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div class="circle-fig">
+        <svg viewBox="0 0 320 320" role="img" aria-label="Two concentric circles. The inner is what you know. The outer is what you believe you know. The band between them is hatched as a hazard.">
+          <defs><pattern id="hz" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="9" height="9" fill="var(--paper)"/><path d="M0 0V9" stroke="var(--red)" stroke-width="3"/></pattern></defs>
+          <circle id="cHaz" cx="160" cy="160" r="108" fill="url(#hz)" stroke="none"/>
+          <circle id="cKnow" cx="160" cy="160" r="72" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/>
+          <circle id="cThink" cx="160" cy="160" r="108" fill="none" stroke="var(--red)" stroke-width="2" stroke-dasharray="7 5"/>
+          <path class="ln" stroke-width="1" d="M154 160h12M160 154v12"/>
+        </svg>
+        <div class="sliders">
+          <label for="rKnow">What you actually know (solid line)
+            <input type="range" id="rKnow" min="5" max="100" value="45"></label>
+          <label for="rThink">What you believe you know (dashed line)
+            <input type="range" id="rThink" min="5" max="100" value="75"></label>
+          <p id="circleOut" aria-live="polite"></p>
+        </div>
+      </div>
+      <div>
+        <div class="trays">
+          <div class="tray"><b>In</b>Inside the circle, and the odds look good.</div>
+          <div class="tray"><b>Out</b>Understood, and not good enough.</div>
+          <div class="tray big"><b>Too hard</b>Outside the circle. Most things land here, and that is fine.</div>
+        </div>
+      </div>
+      <p class="fine">The three trays are how Munger and Buffett described sorting ideas. The fullest tray was always the third.</p>
+    </div>
+    <figcaption><span>Fig. 4</span><span>The circle and its edge</span><span class="fig-hint">Move the sliders</span></figcaption>
+  </figure>
+</section>
+
+<!-- 5 MISJUDGMENT -->
+<section aria-labelledby="h-psych">
+  <div class="prose">
+    <p class="eyebrow">The enemy inside</p>
+    <h2 id="h-psych">Your own mind is the largest source of error</h2>
+    <p>Models describe how the world works. They are no help if your brain misreads the situation before you reach for them. So Munger built a second list: 25 standard ways human judgment goes wrong. He ran through it the way a pilot runs a pre-flight checklist.</p>
+    <p>Incentives come first on the list. His favourite case was a parcel company whose night shift kept finishing late. Appeals and threats did nothing. Then someone noticed the crew was paid by the hour. Pay them by the shift and let them leave when the planes were loaded, and the delays vanished.</p>
+    <p>From this he took a two-pass routine for any decision. First pass: what are the real factors, weighed rationally? Second pass: which of these 25 pulls is working on me, or on the person advising me?</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div class="detail sticky" id="tendDetail" aria-live="polite"></div>
+      <div class="tend" id="tend"></div>
+    </div>
+    <figcaption><span>Fig. 5</span><span>Twenty-five ways to be wrong</span><span class="fig-hint">Pick a tendency</span></figcaption>
+  </figure>
+</section>
+
+<!-- 6 LOLLAPALOOZA -->
+<section aria-labelledby="h-lolla">
+  <div class="prose">
+    <p class="eyebrow">When forces stack</p>
+    <h2 id="h-lolla">Extreme outcomes come from several forces pushing one way</h2>
+    <p>Number 25 is different from the other 24. It says the tendencies do not politely add up. When three or four point in the same direction they feed each other, and the result is out of all proportion. Munger borrowed a word for it: a lollapalooza.</p>
+    <p>His standard example was an open auction, a setting that could have been designed to make people overpay. Switch the forces on and compare simple addition with what stacking does.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div class="two">
+        <div class="forces" role="group" aria-label="Forces acting on a bidder" id="forces">
+          <button type="button" class="tag" aria-pressed="true">Social proof <small>Others are bidding, so it must be worth it.</small></button>
+          <button type="button" class="tag" aria-pressed="true">Consistency <small>You already bid. Stopping now means admitting you were wrong.</small></button>
+          <button type="button" class="tag" aria-pressed="true">Fear of loss <small>It was nearly yours and someone is taking it.</small></button>
+          <button type="button" class="tag" aria-pressed="false">Contrast <small>One more raise looks tiny next to what you have bid already.</small></button>
+          <button type="button" class="tag" aria-pressed="false">Stress <small>Seconds to decide, in front of a room.</small></button>
+        </div>
+        <div class="bars">
+          <div class="bar">
+            <div class="bar-label"><span>If forces only added</span><output id="oAdd">&times;2.8</output></div>
+            <div class="track"><div class="fill" id="fAdd"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-label"><span>When they feed each other</span><output id="oMul">&times;4.1</output></div>
+            <div class="track"><div class="fill hot" id="fMul"></div></div>
+            <div class="axis" aria-hidden="true"><span style="--v:1">&times;1</span><span style="--v:5">&times;5</span><span style="--v:10">&times;10</span></div>
+          </div>
+          <p id="lollaOut" aria-live="polite"></p>
+          <p class="fine">An illustration, not a measurement. Each force is given the same invented strength of +60%, and &times;1 means a bidder reasoning calmly.</p>
+        </div>
+      </div>
+    </div>
+    <figcaption><span>Fig. 6</span><span>The auction room</span><span class="fig-hint">Switch forces on and off</span></figcaption>
+  </figure>
+  <div class="prose">
+    <p>The effect runs both ways. The best businesses and the best habits are lollapaloozas too: several advantages reinforcing each other. Munger looked for those on purpose, and looked just as hard for the stacked pressures working on his own judgment.</p>
+  </div>
+</section>
+
+<!-- 7 PRACTICE -->
+<section aria-labelledby="h-practice">
+  <div class="prose">
+    <p class="eyebrow">What it looks like</p>
+    <h2 id="h-practice">In practice, it is mostly waiting</h2>
+    <p>Put the pieces together and the behaviour that results is unusual. If you stay inside your circle, demand a margin of safety and refuse anything you cannot explain, very few ideas pass. So you do almost nothing for long stretches, and act in size when something clears every test.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="years" role="img" aria-label="Twenty years on a line. Three years carry a large dot marking a big decision. Seventeen are empty.">
+          <div class="yr"></div><div class="yr"></div><div class="yr"></div><div class="yr"><b style="--s:26px"></b></div><div class="yr"></div>
+          <div class="yr"></div><div class="yr"></div><div class="yr"></div><div class="yr"></div><div class="yr"></div>
+          <div class="yr"><b style="--s:36px"></b></div><div class="yr"></div><div class="yr"></div><div class="yr"></div><div class="yr"></div>
+          <div class="yr"></div><div class="yr"><b style="--s:22px"></b></div><div class="yr"></div><div class="yr"></div><div class="yr"></div>
+        </div>
+        <div class="ends"><span>Year 1</span><span>Year 20</span></div>
+      </div>
+      <p class="note">Three decisions in twenty years. The other seventeen: read, think, wait.</p>
+      <p class="fine">A schematic, not a record. The real pattern was similar: at the Daily Journal, the newspaper company he chaired, cash sat idle for years and then went into a few bank shares near the bottom of the 2008&ndash;09 crash.</p>
+    </div>
+    <figcaption><span>Fig. 7</span><span>A patient twenty years</span><span class="fig-hint">Schematic</span></figcaption>
+  </figure>
+  <div class="cols">
+    <div>
+      <h3>In investing</h3>
+      <ul class="plain">
+        <li><strong>Pay for quality.</strong> In 1972 he pushed Buffett to buy See's Candies for $25 million, a full price by their old standards. It turned Berkshire from buying mediocre businesses cheaply to buying excellent ones at fair prices.</li>
+        <li><strong>Make few bets.</strong> Good ideas are rare. When one arrives, a small position wastes it.</li>
+        <li><strong>Leave compounding alone.</strong> Selling, switching and paying tax each time all interrupt it.</li>
+        <li><strong>Keep a margin of safety.</strong> Buy only when you would still be fine if your estimate turned out badly wrong.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>In living</h3>
+      <ul class="plain">
+        <li><strong>Deserve what you want.</strong> The reliable way to get a good job, partner or reputation is to be the person who merits it.</li>
+        <li><strong>Be reliable.</strong> Do what you said you would. He ranked it above talent.</li>
+        <li><strong>Go to bed a little wiser.</strong> He read for hours every day and treated learning as a duty that never finishes.</li>
+        <li><strong>Drop envy, resentment and self-pity.</strong> He called them the sure routes to misery, and noted that envy is the one sin with no pleasure in it.</li>
+        <li><strong>Kill a favourite idea.</strong> A year in which you did not discard one of your best-loved beliefs was, to him, a wasted year.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8 LIMITS -->
+<section aria-labelledby="h-limits">
+  <div class="prose">
+    <p class="eyebrow">Where it creaks</p>
+    <h2 id="h-limits">The method has limits, and he showed some of them himself</h2>
+    <p><strong>Naming a model is different from owning it.</strong> A list of eighty labels gives a feeling of mastery without the substance. Munger's own models came from decades of reading the source material.</p>
+    <p><strong>Knowing the biases does not switch them off.</strong> He said plainly that he still fell for them. The checklist lowers the error rate. It does not make anyone immune.</p>
+    <p><strong>The circle's edge is hard to see from inside.</strong> Late in life he bought Alibaba shares and afterwards called it a mistake. His design for a mostly windowless university dormitory was widely criticised and never built.</p>
+  </div>
+</section>
+
+<!-- 9 CHECKLIST -->
+<section aria-labelledby="h-check">
+  <div class="prose">
+    <p class="eyebrow">To carry with you</p>
+    <h2 id="h-check">Seven questions before a decision that matters</h2>
+    <p>This is the whole philosophy folded into one sheet. Tick them off against a decision you are facing now.</p>
+  </div>
+  <figure class="sheet">
+    <div class="sheet-body">
+      <ol class="check">
+        <li><label for="ck1"><input type="checkbox" id="ck1"><span><em>Invert</em>What would guarantee this fails, and am I doing any of it?</span></label></li>
+        <li><label for="ck2"><input type="checkbox" id="ck2"><span><em>Circle</em>Is this inside what I really understand, or does it belong in the too-hard tray?</span></label></li>
+        <li><label for="ck3"><input type="checkbox" id="ck3"><span><em>Lattice</em>What do at least three different disciplines say about it?</span></label></li>
+        <li><label for="ck4"><input type="checkbox" id="ck4"><span><em>Incentives</em>Who gets paid for what, including the person advising me?</span></label></li>
+        <li><label for="ck5"><input type="checkbox" id="ck5"><span><em>Misjudgment</em>Which tendencies are pulling on me, and are several pulling the same way?</span></label></li>
+        <li><label for="ck6"><input type="checkbox" id="ck6"><span><em>Margin of safety</em>If my estimate is wrong by half, am I still all right?</span></label></li>
+        <li><label for="ck7"><input type="checkbox" id="ck7"><span><em>Other side</em>Can I argue the opposite case better than the people who believe it?</span></label></li>
+      </ol>
+    </div>
+    <figcaption><span>Fig. 8</span><span>The pocket sheet</span><span class="fig-hint" id="ckCount">0 of 7 answered</span></figcaption>
+  </figure>
+</section>
+
+</main>
+
+<footer>
+  <p>Munger's lines are paraphrased throughout, not quoted. The ideas come from his talks &ldquo;A Lesson on Elementary Worldly Wisdom&rdquo; (University of Southern California, 1994) and &ldquo;The Psychology of Human Misjudgment&rdquo; (1995, revised 2005), his 1986 school graduation speech, and <i>Poor Charlie's Almanack</i>, edited by Peter Kaufman (2005).</p>
+  <p>The bakery, the auction multipliers and the twenty-year timeline are teaching examples made for this page.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function press(group,btn){group.forEach(function(b){b.setAttribute('aria-pressed',b===btn?'true':'false')})}
+
+  /* Fig 1 */
+  var LENS={
+    econ:{n:'The economist',s:[0,1],t:'A cheaper rival arrived and you put prices up. Customers did the sums. Cut prices. A sound answer to two clues out of six.'},
+    psych:{n:'The psychologist',s:[2,5],t:'The queue was your advertisement: people trust a shop others wait for. And nobody behind the counter has a reason to win it back. Change the pay.'},
+    stat:{n:'The statistician',s:[3],t:'You are comparing against a quarter inflated by a festival. Part of this drop is last year being unusually good. Measure against a normal quarter first.'},
+    eng:{n:'The engineer',s:[4],t:'One oven and no backup. Every breakdown empties the shelves at the morning peak. Add a second oven before touching anything else.'},
+    all:{n:'All four together',s:[0,1,2,3,4,5],t:'Part of the drop is not real: the festival. The rest is four small causes that feed each other. A broken oven means empty shelves, empty shelves shorten the queue, and a short queue tells passers-by the bread is not worth waiting for. No single fix covers it.'}
+  };
+  var lensBtns=$$('#lensRow .tag'), clues=$$('#clues li');
+  function setLens(k,btn){var L=LENS[k]; press(lensBtns,btn);
+    clues.forEach(function(li,i){li.classList.toggle('seen',L.s.indexOf(i)>-1)});
+    $('#lensCount').textContent=L.s.length; $('#lensName').textContent=L.n; $('#lensSays').textContent=L.t;}
+  lensBtns.forEach(function(b){b.addEventListener('click',function(){setLens(b.dataset.lens,b)})});
+  setLens('econ',lensBtns[0]);
+
+  /* Fig 2 */
+  var DISC=[
+   ['Mathematics',[
+    ['Compound interest','Growth earns its own growth. A modest rate left alone for decades beats a high rate that keeps being interrupted.','What does this become in twenty years if I leave it alone?'],
+    ['Probability','The arithmetic of chance worked out by Fermat and Pascal. Most real decisions are bets, and a bet is judged by its odds and its payoff together.','What are the odds, and what do I win or lose at those odds?']]],
+   ['Engineering',[
+    ['Margin of safety','An engineer builds a bridge to carry far more than the heaviest truck expected. The slack covers the errors in your own estimate.','If I am wrong by half, am I still fine?'],
+    ['Breakpoints','Systems often change suddenly at a threshold, like critical mass in physics. Behaviour below the line says little about behaviour above it.','Is there a point here where everything flips?']]],
+   ['Biology',[
+    ['Evolution','What survives is whatever fits current conditions. Businesses, products and ideas are selected the same way, and conditions change.','What is this environment rewarding right now?'],
+    ['Niches','A species thrives by being the best adapted in one narrow place. A small company can own a corner a giant ignores.','Where exactly is this the best-adapted thing?']]],
+   ['Psychology',[
+    ['Incentives','People do what they are rewarded for. Munger said he had understood this better than almost anyone his age, and had still underestimated it all his life.','Who gets paid for what here?'],
+    ['Social proof','When unsure, people copy what others are doing. Usually a sensible shortcut, occasionally a stampede.','Would I believe this if nobody else did?']]],
+   ['Economics',[
+    ['Opportunity cost','The true cost of a choice is the best alternative you gave up. Every use of money or time competes with your next best use.','Compared with what?'],
+    ['Economies of scale','Larger operations spread their costs and often learn faster. They also grow bureaucracy, which is where the model stops working.','Does getting bigger make this cheaper, or only slower?']]],
+   ['Accounting',[
+    ['Double-entry books','The language of business. Every transaction is recorded twice, so the books must balance and can be checked.','Where did the money come from, and where did it go?'],
+    ['Limits of the numbers','Reported figures rest on estimates, such as how long a machine will last. They look exact and are approximations.','Which of these figures is somebody\'s guess?']]]
+  ];
+  var rails=$('#rails'), md=$('#modelDetail'), mBtns=[];
+  function showModel(d,m,btn){press(mBtns,btn);
+    md.innerHTML='<p class="k"></p><h3></h3><p></p><p class="k">The question it makes you ask</p><p class="q"></p>';
+    var c=md.children; c[0].textContent=d; c[1].textContent=m[0]; c[2].textContent=m[1]; c[4].textContent=m[2];}
+  DISC.forEach(function(row,di){
+    var r=document.createElement('div'); r.className='rail';
+    var l=document.createElement('span'); l.className='rail-label'; l.textContent=row[0]; r.appendChild(l);
+    row[1].forEach(function(m,mi){var b=document.createElement('button'); b.type='button'; b.className='tag'; b.textContent=m[0]; b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){showModel(row[0],m,b)}); mBtns.push(b); r.appendChild(b);});
+    rails.appendChild(r);});
+  showModel(DISC[0][0],DISC[0][1][0],mBtns[0]);
+
+  /* Fig 3 */
+  var GOALS={
+    career:{f:'How do I build a good career?',fa:['Work hard','Follow your passion','Network more'],
+            i:'How would I guarantee a miserable one?',ia:['Be unreliable: miss what I promised','Learn only from my own mistakes, never anyone else\'s','Stay down after the first setback','Work for people I do not respect']},
+    invest:{f:'How do I pick a great investment?',fa:['Find the next big thing','Get in early','Trust the story'],
+            i:'How would I reliably lose money?',ia:['Buy what I cannot explain','Pay any price because everyone else is','Borrow heavily to do it','Trade in and out constantly']},
+    launch:{f:'How do I make this launch succeed?',fa:['Build something people love','Move fast','Stay focused'],
+            i:'What would be certain to sink it?',ia:['Ship before one outsider has tried it','Depend on a single person or supplier with no backup','Reward the team for the date, not for whether it works','Assume the first week\'s numbers will hold']}
+  };
+  var goal='career', inv=false, flip=$('#flip'), goalBtns=$$('#goalRow .tag'), invBtn=$('#invertBtn');
+  function paint(){var g=GOALS[goal]; flip.classList.toggle('inv',inv);
+    $('#flipQ').textContent=inv?g.i:g.f;
+    var ul=$('#flipA'); ul.innerHTML=''; (inv?g.ia:g.fa).forEach(function(t){var li=document.createElement('li'); var s=document.createElement('span'); s.textContent=t; li.appendChild(s); ul.appendChild(li)});
+    $('#flipAfter').textContent=inv?'Each item is specific enough to check. Avoid all four and most of the job is done.':'All true. None of it tells you what to do on Monday.';
+    invBtn.setAttribute('aria-pressed',inv?'true':'false'); invBtn.textContent=inv?'⇅ Turn it back':'⇅ Invert the question';}
+  function swap(fn){ if(calm){fn();paint();return} flip.classList.add('turn'); setTimeout(function(){fn();paint();flip.classList.remove('turn')},200); }
+  goalBtns.forEach(function(b){b.addEventListener('click',function(){press(goalBtns,b); swap(function(){goal=b.dataset.goal})})});
+  invBtn.addEventListener('click',function(){swap(function(){inv=!inv})});
+  paint();
+
+  /* Fig 4 */
+  var rk=$('#rKnow'), rt=$('#rThink');
+  function circ(){var k=+rk.value,t=+rt.value, R=function(v){return 18+v*1.2};
+    $('#cKnow').setAttribute('r',R(k)); $('#cThink').setAttribute('r',R(t)); $('#cHaz').setAttribute('r',R(t));
+    $('#cHaz').setAttribute('visibility',t>k?'visible':'hidden');
+    $('#cThink').setAttribute('stroke',t>k?'var(--red)':'var(--ink-soft)');
+    var out=$('#circleOut');
+    if(t>k+3){var p=Math.round((R(t)*R(t)-R(k)*R(k))/(R(t)*R(t))*100);
+      out.textContent='You act on more than you know. About '+p+'% of the ground you are standing on lies beyond your edge. The hatched band is where the large mistakes are made.';}
+    else if(t<k-3){out.textContent='You know more than you give yourself credit for. That costs some missed chances, which is the cheaper kind of mistake.';}
+    else{out.textContent='The two edges match. A small circle with an accurate edge is safer than a large one with a blurred edge.';}}
+  rk.addEventListener('input',circ); rt.addEventListener('input',circ); circ();
+
+  /* Fig 5 */
+  var T=[
+   ['Reward and punishment','People do what they are paid or punished to do, far more than anyone admits.'],
+   ['Liking and loving','We overlook the faults of people and things we like, and believe what they tell us.'],
+   ['Disliking and hating','We dismiss the virtues of whatever we dislike and bend the facts about it.'],
+   ['Doubt avoidance','Uncertainty is uncomfortable, so we grab a quick decision to end it.'],
+   ['Inconsistency avoidance','Once we hold a belief or habit we resist changing it, and defend what we already said.'],
+   ['Curiosity','The one on the list that mostly helps. It keeps the others in check.'],
+   ['Fairness','We expect fair treatment and react fiercely when it is missing, sometimes against our own interest.'],
+   ['Envy and jealousy','Seeing someone else get more drives more behaviour than plain greed does.'],
+   ['Reciprocation','We feel bound to repay favours and concessions. Injuries too.'],
+   ['Mere association','We judge a thing by what sits next to it: the messenger blamed for the news, a high price taken for quality.'],
+   ['Pain-avoiding denial','When the truth hurts too much, we decline to see it.'],
+   ['Excessive self-regard','We overrate ourselves, our choices and whatever we happen to own.'],
+   ['Over-optimism','We believe what we wish were true.'],
+   ['Reaction to loss','Losing something, or almost having it, hurts far more than an equal gain pleases.'],
+   ['Social proof','We do and think what we see others doing, most of all when unsure or under pressure.'],
+   ['Contrast','We judge by comparison with what came just before, so small steps slip past unnoticed.'],
+   ['Stress','Heavy stress makes every other tendency stronger and every reaction faster.'],
+   ['Availability','Whatever comes to mind easily gets too much weight. Vivid beats representative.'],
+   ['Drugs','Chemical dependence wrecks judgment and feeds denial.'],
+   ['Ageing','Skills decay with age. Steady practice slows the loss.'],
+   ['Authority','We follow leaders and experts even when they are plainly wrong.'],
+   ['Twaddle','People produce a great deal of confident chatter, and it crowds out serious work.'],
+   ['Respect for reasons','We comply more readily when given a reason, even a meaningless one.'],
+   ['Use it or lose it','Skills fade without practice, and a skill never fully mastered fades fastest.'],
+   ['Lollapalooza','Several tendencies acting together in one direction produce extreme results. See the next section.']
+  ];
+  var tend=$('#tend'), td=$('#tendDetail'), tBtns=[];
+  function showT(i,btn){press(tBtns,btn); td.innerHTML='<p class="k"></p><h3></h3><p></p>';
+    td.children[0].textContent='Tendency '+(i+1)+' of 25'; td.children[1].textContent=T[i][0]; td.children[2].textContent=T[i][1];}
+  T.forEach(function(t,i){var b=document.createElement('button'); b.type='button'; b.className='tag'; b.setAttribute('aria-pressed','false');
+    var n=document.createElement('i'); n.textContent=(i<9?'0':'')+(i+1); var s=document.createElement('span'); s.textContent=t[0];
+    b.appendChild(n); b.appendChild(s); b.addEventListener('click',function(){showT(i,b)}); tBtns.push(b); tend.appendChild(b);});
+  showT(0,tBtns[0]);
+
+  /* Fig 6 */
+  var fBtns=$$('#forces .tag');
+  function lolla(){var n=fBtns.filter(function(b){return b.getAttribute('aria-pressed')==='true'}).length;
+    var a=1+0.6*n, m=Math.pow(1.6,n), max=10.5;
+    $('#fAdd').style.width=(a/max*100)+'%'; $('#fMul').style.width=Math.min(100,m/max*100)+'%';
+    $('#oAdd').textContent='×'+a.toFixed(1); $('#oMul').textContent='×'+m.toFixed(1);
+    var o=$('#lollaOut');
+    if(n===0) o.textContent='No forces switched on. The bidder pays what the thing is worth to them.';
+    else if(n===1) o.textContent='One force alone. Adding and stacking give the same answer, and a careful person can resist it.';
+    else o.textContent=n+' forces. Stacking gives '+(m/a).toFixed(1)+' times the pull that simple addition predicts, and the gap widens with every force added.';}
+  fBtns.forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true'); lolla()})});
+  lolla();
+
+  /* Fig 8 */
+  var cks=$$('.check input');
+  function ck(){$('#ckCount').textContent=cks.filter(function(c){return c.checked}).length+' of 7 answered'}
+  cks.forEach(function(c){c.addEventListener('change',ck)}); ck();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

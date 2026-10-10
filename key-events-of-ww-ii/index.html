@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Key Events of WW-II | Explainers</title>
+<meta name="description" content="The war had one shape: Axis power rose for nearly three years, turned in eight months, then drained away.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/key-events-of-ww-ii/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Key Events of WW-II">
+<meta property="og:description" content="The war had one shape: Axis power rose for nearly three years, turned in eight months, then drained away.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/key-events-of-ww-ii/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/key-events-of-ww-ii/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;1,400&family=Stardos+Stencil:wght@400;700&display=swap">
+<style>
+/* Layout: a staff situation map. One time-scaled chart at the top carries the whole war as a rising and falling tide;
+   below it, three acts each open with a big arrow diagram (attacks out, attacks stopped, attacks in) and a short ruled log. */
+:root{
+  --paper:#DCE3D9; --sheet:#EBF0E8; --ink:#17272A; --ink-soft:#4B5F60; --rule:#B2C0B5;
+  --grid:rgba(23,39,42,.06);
+  --axis:#B0382B; --allied:#1D5E93; --turn:#A9781A;
+  --axis-tint:rgba(176,56,43,.17); --allied-tint:rgba(29,94,147,.15); --turn-tint:rgba(201,150,43,.22);
+  --on-mark:#F3F6F0;
+  --f-display:"Stardos Stencil","Rockwell","Georgia",serif;
+  --f-body:"Libre Franklin","Franklin Gothic Medium","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Courier Prime","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10191C; --sheet:#18252A; --ink:#DDE6DF; --ink-soft:#9AADA9; --rule:#30444A;
+    --grid:rgba(221,230,223,.045);
+    --axis:#E36E5E; --allied:#6DB4EC; --turn:#E0B44C;
+    --axis-tint:rgba(227,110,94,.2); --allied-tint:rgba(109,180,236,.16); --turn-tint:rgba(224,180,76,.15);
+    --on-mark:#10191C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10191C; --sheet:#18252A; --ink:#DDE6DF; --ink-soft:#9AADA9; --rule:#30444A;
+  --grid:rgba(221,230,223,.045);
+  --axis:#E36E5E; --allied:#6DB4EC; --turn:#E0B44C;
+  --axis-tint:rgba(227,110,94,.2); --allied-tint:rgba(109,180,236,.16); --turn-tint:rgba(224,180,76,.15);
+  --on-mark:#10191C; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background-color:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:1.0625rem;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:56px 56px;
+}
+.wrap{max-width:1060px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--allied);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:clamp(1.75rem,5vw,3.25rem) 1.25rem;display:grid;gap:.9rem}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(2.5rem,9vw,5.75rem);line-height:.95;letter-spacing:.01em;text-wrap:balance}
+.lede{font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.35;max-width:34ch;text-wrap:balance}
+.lede b{font-weight:700}
+
+/* sheet = the one framed object type: the map panels */
+.sheet{background:var(--sheet);border:1px solid var(--rule)}
+.chart{padding:clamp(.75rem,2vw,1.25rem)}
+.scroll{overflow-x:auto}
+#tide{display:block;width:100%;min-width:860px;height:auto}
+.swipe{display:none;margin-top:.5rem}
+@media (max-width:920px){.swipe{display:block}}
+.grid-l{stroke:var(--rule);stroke-width:1;fill:none}
+.yr{font:700 11px var(--f-mono);letter-spacing:.06em;fill:var(--ink-soft)}
+.ph{stroke-width:1.5}
+.ph-flood{fill:var(--axis-tint);stroke:var(--axis)}
+.ph-turn{fill:var(--turn-tint);stroke:var(--turn)}
+.ph-ebb{fill:var(--allied-tint);stroke:var(--allied)}
+.ph-t{font:700 10.5px var(--f-mono);letter-spacing:.1em;fill:var(--ink)}
+.turn-col{fill:var(--turn-tint)}
+.lane-t{font:700 11px var(--f-mono);letter-spacing:.1em;fill:var(--ink-soft);stroke:var(--sheet);stroke-width:5;paint-order:stroke;stroke-linejoin:round}
+.base{stroke:var(--ink);stroke-width:1.5;fill:none}
+.tide-a{fill:var(--axis-tint)}
+.tide-l{stroke:var(--axis);stroke-width:2;fill:none;stroke-linejoin:round}
+.cursor{stroke:var(--ink);stroke-width:1;stroke-dasharray:3 4;fill:none}
+.stem{stroke:var(--ink-soft);stroke-width:1;fill:none}
+.pin{cursor:pointer;outline:none}
+.pin .hit{fill:transparent}
+.pin .ring{fill:none;stroke:var(--ink);stroke-width:2;opacity:0}
+.pin.on .ring,.pin:focus-visible .ring{opacity:1}
+.pin:focus-visible .ring{stroke-dasharray:3 3}
+.pin-axis .shape{fill:var(--axis)}
+.pin-allied .shape{fill:var(--allied)}
+.pin-mark .shape{fill:var(--ink)}
+.pin-n{font:700 11px var(--f-mono);fill:var(--on-mark);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+  .tide-a{animation:rise 1.3s ease-out both}
+  @keyframes rise{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+}
+
+.readout{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem 1rem;align-items:start;
+  border-top:1px solid var(--rule);margin-top:.9rem;padding-top:.9rem}
+.ro-meta{display:flex;flex-wrap:wrap;gap:.15rem 1rem}
+.ro-title{font-weight:700;font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.2;margin-top:.2rem}
+.ro-text{max-width:60ch;margin-top:.3rem}
+.ro-nav{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.5rem}
+.btn{font-family:var(--f-mono);font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink);background:transparent;border:1.5px solid var(--ink);padding:.5rem .85rem;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--ink);color:var(--sheet)}
+.btn[disabled]{opacity:.35;cursor:default}
+.btn[disabled]:hover{background:transparent;color:var(--ink)}
+.key{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:.9rem;align-items:center}
+.key span.k{display:inline-flex;align-items:center;gap:.5rem}
+.swatch{inline-size:26px;block-size:14px;background:var(--axis-tint);border-top:2px solid var(--axis);flex:none}
+
+/* glyphs: shape + colour + number */
+.g{inline-size:28px;block-size:28px;display:grid;place-items:center;flex:none;
+  font:700 .78rem var(--f-mono);color:var(--on-mark)}
+.g-allied{border-radius:50%;background:var(--allied)}
+.g-mark{background:var(--ink)}
+.g-axis{inline-size:21px;block-size:21px;margin:3.5px;background:var(--axis);transform:rotate(45deg)}
+.g-axis>span{transform:rotate(-45deg)}
+
+/* section nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);
+  border-block:1px solid var(--rule);margin-top:1.5rem}
+.nav-in{display:flex;gap:.25rem;overflow-x:auto;padding-block:.45rem}
+.nav a{font-family:var(--f-mono);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;padding:.3rem .65rem;white-space:nowrap;color:var(--ink-soft)}
+.nav a.here{background:var(--ink);color:var(--paper)}
+
+/* sections */
+section{scroll-margin-top:3.5rem}
+.sec{padding-block:clamp(2.5rem,7vw,4.5rem) 0}
+.sec-h{display:grid;gap:.5rem;margin-bottom:1.5rem;padding-top:.9rem;border-top:6px solid var(--ink)}
+.sec-h h2{margin:0;font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(2.1rem,6.5vw,4rem);line-height:1;text-wrap:balance}
+.sec-h .sum{font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.4;max-width:46ch}
+.act-1 .sec-h{border-top-color:var(--axis)}
+.act-2 .sec-h{border-top-color:var(--turn)}
+.act-3 .sec-h{border-top-color:var(--allied)}
+
+/* why: sides */
+.sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.side{padding:1rem 1.1rem 1.2rem;border-top:6px solid var(--ink)}
+.side-ax{border-top-color:var(--axis)}
+.side-al{border-top-color:var(--allied)}
+.side h3{margin:0 0 .6rem;font-family:var(--f-display);font-size:1.7rem;text-transform:uppercase;line-height:1}
+.side ul{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+.side li{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
+  font-weight:700;font-size:1.2rem;border-bottom:1px solid var(--rule);padding-block:.35rem}
+.side li span{font-family:var(--f-mono);font-size:.8rem;font-weight:400;letter-spacing:.06em;color:var(--ink-soft);text-align:right}
+.why-p{max-width:60ch;margin-top:1.5rem;font-size:1.1rem}
+
+/* act pictures */
+.pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem;margin:0}
+.pic{margin:0;padding:.5rem}
+.pic svg{display:block;width:100%;height:auto}
+.cap{margin-top:.6rem}
+.hub{fill:var(--axis-tint);stroke:var(--ink);stroke-width:2}
+.hub-t{font:700 14px var(--f-mono);letter-spacing:.06em;fill:var(--ink)}
+.ar-ax{fill:var(--axis)}
+.ar-al{fill:var(--allied)}
+.bar-al{stroke:var(--allied);stroke-width:10;fill:none}
+.d-t{font:700 14px var(--f-mono);letter-spacing:.04em;fill:var(--ink)}
+.d-t.al{fill:var(--allied)}
+.d-t.ax{fill:var(--axis)}
+.d-t.sm{font-size:12px;font-weight:400;fill:var(--ink-soft)}
+.hint{stroke:var(--ink-soft);stroke-width:1.5;fill:none}
+
+/* event log */
+.log{margin-top:1.75rem}
+.ev{display:grid;grid-template-columns:11.5rem minmax(0,1fr);gap:.5rem 1.5rem;
+  padding-block:1.15rem;border-top:1px solid var(--rule);scroll-margin-top:3.75rem}
+.ev-tag{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .6rem;align-content:start}
+.ev-date{font-family:var(--f-mono);font-weight:700;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase}
+.ev-where{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);flex-basis:100%}
+.ev h3{margin:0;font-size:1.3rem;line-height:1.2;font-weight:700}
+.ev-p{margin-top:.3rem;max-width:58ch}
+.ev.flash{background:var(--sheet)}
+@media (max-width:640px){
+  .ev{grid-template-columns:minmax(0,1fr)}
+  .ev-where{flex-basis:auto}
+}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
+.ev.tile{display:flex;flex-direction:column;gap:.6rem;padding:1rem;border:1px solid var(--rule);background:var(--sheet)}
+.ev.tile svg{display:block;width:100%;height:auto}
+
+/* cost */
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.bars li{display:grid;grid-template-columns:10rem minmax(0,1fr) 5.5rem;gap:.25rem 1rem;align-items:center}
+.b-name{font-weight:700}
+.b-val{font-family:var(--f-mono);font-size:.9rem;text-align:right;font-variant-numeric:tabular-nums}
+.b-track{position:relative;block-size:16px;
+  background-image:linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:calc(100% * 5 / 27) 100%}
+.b-lo,.b-hi{position:absolute;inset-block:0}
+.b-lo{left:0;width:calc(var(--lo) / 27 * 100%);background:var(--ink)}
+.b-hi{left:calc(var(--lo) / 27 * 100%);width:calc((var(--hi) - var(--lo)) / 27 * 100%);
+  background:repeating-linear-gradient(135deg,var(--ink) 0 2px,transparent 2px 5px);border:1px solid var(--ink);border-left:0}
+.b-axis .b-track{block-size:1.2rem;background-image:none}
+.b-axis .b-track span{position:absolute;top:0;transform:translateX(-50%);
+  font-family:var(--f-mono);font-size:.75rem;color:var(--ink-soft)}
+.b-axis .b-track span:first-child{transform:none}
+@media (max-width:640px){
+  .bars li{grid-template-columns:minmax(0,1fr) auto}
+  .b-track{grid-column:1/-1;grid-row:2}
+  .b-axis .b-name,.b-axis .b-val{display:none}
+  .b-axis .b-track{grid-row:1}
+}
+.cost-notes{display:grid;gap:.6rem;margin-top:1.5rem;max-width:62ch}
+
+/* after */
+.after{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem 2.5rem}
+.after li{border-top:1px solid var(--rule);padding-top:.7rem}
+.after h3{margin:.2rem 0 .25rem;font-size:1.25rem;line-height:1.2}
+
+/* closing */
+.spanbar{display:flex;block-size:52px;margin-top:1.5rem}
+.spanbar div{display:grid;place-items:center;font:700 .85rem var(--f-mono);color:var(--on-mark);min-width:0}
+.spanbar .s1{flex:33;background:var(--axis)}
+.spanbar .s2{flex:8;background:var(--turn)}
+.spanbar .s3{flex:31;background:var(--allied)}
+.shape-k{list-style:none;margin:.7rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.5rem}
+.foot{padding-block:2.5rem 3.5rem;display:grid;gap:.5rem;max-width:70ch}
+.foot p{font-size:.9rem;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<header class="hero wrap">
+  <p class="mono">Situation map · all fronts · 1 Sep 1939 to 2 Sep 1945</p>
+  <h1>Key events of WW-II</h1>
+  <p class="lede">The war had one shape. Axis power <b>rose</b> for nearly three years, <b>turned</b> in eight months, and <b>drained away</b> over the next two and a half.</p>
+</header>
+
+<div class="wrap">
+  <figure class="sheet chart" style="margin:0">
+    <div class="scroll">
+      <svg id="tide" viewBox="0 0 1000 394" role="group" aria-label="Timeline of the war from 1939 to 1945. Nineteen numbered events sit on two lines that sketch how much ground the Axis held in Europe and in Asia."></svg>
+    </div>
+    <p class="mono swipe">Swipe the chart sideways to see all six years</p>
+    <div class="readout" aria-live="polite">
+      <span id="ro-g" class="g g-axis"><span>1</span></span>
+      <div>
+        <p class="mono ro-meta"><span id="ro-date">1 Sep 1939</span><span id="ro-where">Europe</span><span id="ro-side">Favours the Axis</span></p>
+        <p class="ro-title" id="ro-title">Germany invades Poland</p>
+        <p class="ro-text" id="ro-text">Britain and France declare war two days later. Poland is overrun in five weeks.</p>
+      </div>
+      <div class="ro-nav">
+        <button class="btn" id="prev" type="button" disabled>← Earlier</button>
+        <button class="btn" id="next" type="button">Later →</button>
+        <a class="btn" id="ro-link" href="#ev-poland">Go to this event ↓</a>
+      </div>
+    </div>
+    <figcaption class="key mono">
+      <span class="k"><span class="g g-axis"><span></span></span>Favours the Axis</span>
+      <span class="k"><span class="g g-allied"></span>Favours the Allies</span>
+      <span class="k"><span class="g g-mark"></span>The Holocaust</span>
+      <span class="k"><span class="swatch"></span>Ground the Axis held. A sketch of the shape, not measured data.</span>
+    </figcaption>
+  </figure>
+</div>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap nav-in">
+    <a href="#why">Why</a>
+    <a href="#act-1">I · Flood</a>
+    <a href="#act-2">II · Turn</a>
+    <a href="#act-3">III · Ebb</a>
+    <a href="#cost">Cost</a>
+    <a href="#after">After</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="sec" id="why">
+  <header class="sec-h">
+    <p class="mono">Before the map · 1931 to 1939</p>
+    <h2>Three empires in a hurry</h2>
+    <p class="sum">Germany, Italy and Japan each wanted more land and were willing to fight for it. Together they were called the Axis. The countries that fought them were the Allies.</p>
+  </header>
+  <div class="sides">
+    <div class="sheet side side-ax">
+      <h3>Axis</h3>
+      <ul>
+        <li>Germany <span>led by Hitler</span></li>
+        <li>Italy <span>until 1943</span></li>
+        <li>Japan <span>in China since 1937</span></li>
+      </ul>
+    </div>
+    <div class="sheet side side-al">
+      <h3>Allies</h3>
+      <ul>
+        <li>Britain and its empire <span>from 1939</span></li>
+        <li>France <span>from 1939</span></li>
+        <li>China <span>fighting Japan since 1937</span></li>
+        <li>Soviet Union <span>from 1941</span></li>
+        <li>United States <span>from 1941</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="why-p">Germany wanted to undo its defeat in the First World War and take land in the east. Japan wanted the resources of China and south-east Asia. Through the 1930s Britain and France gave way to avoid another war. When Germany invaded Poland in September 1939, they stopped giving way.</p>
+</section>
+
+<section class="sec act-1" id="act-1">
+  <header class="sec-h">
+    <p class="mono">Act I · Sep 1939 to May 1942 · 33 months</p>
+    <h2>The Flood</h2>
+    <p class="sum">The Axis attacks outward in every direction and almost nothing stops it.</p>
+  </header>
+  <div class="pics">
+    <figure class="sheet pic"><svg id="pic-ger-out" viewBox="0 0 500 400" role="img" aria-label="Germany attacks outward: France in 1940, Norway in 1940, Poland in 1939 and the Soviet Union in 1941, the Balkans and North Africa in 1941. Only Britain holds out."></svg></figure>
+    <figure class="sheet pic"><svg id="pic-jap-out" viewBox="0 50 500 400" role="img" aria-label="Japan attacks outward: China from 1937, Pearl Harbor in 1941, Malaya and Singapore in 1942, the Philippines and East Indies in 1942."></svg></figure>
+  </div>
+  <p class="mono cap">Arrows show the direction of each attack. They are not drawn to geographic scale.</p>
+
+  <div class="log">
+    <article class="ev" id="ev-poland" data-t="1939-09-01" data-lane="eu" data-side="axis">
+      <div class="ev-tag"><span class="g g-axis"><span>1</span></span><span class="ev-date">1 Sep 1939</span><span class="ev-where">Europe</span></div>
+      <div><h3>Germany invades Poland</h3><p class="ev-p">Britain and France declare war two days later. Poland is overrun in five weeks.</p></div>
+    </article>
+    <article class="ev" id="ev-france" data-t="1940-05-10" data-lane="eu" data-side="axis">
+      <div class="ev-tag"><span class="g g-axis"><span>2</span></span><span class="ev-date">May–Jun 1940</span><span class="ev-where">Europe</span></div>
+      <div><h3>France falls</h3><p class="ev-p">German tanks reach the Channel in ten days. About 338,000 Allied troops escape by sea from Dunkirk, and France surrenders on 22 June.</p></div>
+    </article>
+    <article class="ev" id="ev-britain" data-t="1940-07-10" data-lane="eu" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>3</span></span><span class="ev-date">Jul–Oct 1940</span><span class="ev-where">Europe</span></div>
+      <div><h3>Battle of Britain</h3><p class="ev-p">The Royal Air Force beats off the German air force, and Hitler shelves his invasion of Britain. It is his first defeat.</p></div>
+    </article>
+    <article class="ev" id="ev-barbarossa" data-t="1941-06-22" data-lane="eu" data-side="axis">
+      <div class="ev-tag"><span class="g g-axis"><span>4</span></span><span class="ev-date">22 Jun 1941</span><span class="ev-where">Eastern Front</span></div>
+      <div><h3>Germany invades the Soviet Union</h3><p class="ev-p">Three million troops attack along a 3,000 km front and are stopped outside Moscow in December. The deadliest front of the war opens.</p></div>
+    </article>
+    <article class="ev" id="ev-pearl" data-t="1941-12-07" data-lane="pa" data-side="axis">
+      <div class="ev-tag"><span class="g g-axis"><span>5</span></span><span class="ev-date">7 Dec 1941</span><span class="ev-where">Pacific</span></div>
+      <div><h3>Pearl Harbor</h3><p class="ev-p">Japan bombs the US fleet in Hawaii. The United States joins the war, and two separate wars become one.</p></div>
+    </article>
+    <article class="ev" id="ev-holocaust" data-t="1942-01-20" data-lane="eu" data-side="mark">
+      <div class="ev-tag"><span class="g g-mark"><span>6</span></span><span class="ev-date">20 Jan 1942</span><span class="ev-where">Occupied Europe</span></div>
+      <div><h3>The Holocaust</h3><p class="ev-p">Mass shootings began in 1941. At Wannsee, Nazi officials now coordinate the murder of all of Europe's Jews. Six million are killed by 1945.</p></div>
+    </article>
+    <article class="ev" id="ev-singapore" data-t="1942-02-15" data-lane="pa" data-side="axis">
+      <div class="ev-tag"><span class="g g-axis"><span>7</span></span><span class="ev-date">15 Feb 1942</span><span class="ev-where">South-east Asia</span></div>
+      <div><h3>Singapore falls</h3><p class="ev-p">About 80,000 British, Indian and Australian troops surrender. By May, Japan holds south-east Asia from Burma to the Philippines.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec act-2" id="act-2">
+  <header class="sec-h">
+    <p class="mono">Act II · Jun 1942 to Feb 1943 · 8 months</p>
+    <h2>The Turn</h2>
+    <p class="sum">Three battles, on sea, sand and snow, stop the Axis for good.</p>
+  </header>
+  <div class="tiles">
+    <article class="ev tile" id="ev-midway" data-t="1942-06-04" data-lane="pa" data-side="allied">
+      <svg viewBox="0 0 320 196" role="img" aria-label="A Japanese advance stopped by US carriers at sea.">
+        <path class="hint" d="M24 30q12-10 24 0t24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0"/>
+        <path class="hint" d="M36 52q12-10 24 0t24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0"/>
+        <polygon class="ar-ax" points="24,103 166,103 166,90 196,112 166,134 166,121 24,121"/>
+        <rect x="206" y="72" width="12" height="80" fill="var(--allied)"/>
+        <text class="d-t ax" x="24" y="182">JAPANESE FLEET</text>
+        <text class="d-t al" x="296" y="182" text-anchor="end">US CARRIERS</text>
+      </svg>
+      <div class="ev-tag"><span class="g g-allied"><span>8</span></span><span class="ev-date">4–7 Jun 1942</span><span class="ev-where">Pacific</span></div>
+      <div><h3>Midway</h3><p class="ev-p">US codebreakers set a trap. Japan loses four aircraft carriers in one battle and goes on the defensive.</p></div>
+    </article>
+    <article class="ev tile" id="ev-alamein" data-t="1942-10-23" data-lane="eu" data-side="allied">
+      <svg viewBox="0 0 320 196" role="img" aria-label="A German and Italian advance stopped by the British Eighth Army in the desert.">
+        <path class="hint" d="M24 56q48-34 96 0q42-26 84 0q46-30 92 0"/>
+        <polygon class="ar-ax" points="24,103 166,103 166,90 196,112 166,134 166,121 24,121"/>
+        <rect x="206" y="72" width="12" height="80" fill="var(--allied)"/>
+        <text class="d-t ax" x="24" y="182">ROMMEL</text>
+        <text class="d-t al" x="296" y="182" text-anchor="end">BRITISH 8TH ARMY</text>
+      </svg>
+      <div class="ev-tag"><span class="g g-allied"><span>9</span></span><span class="ev-date">Oct–Nov 1942</span><span class="ev-where">North Africa</span></div>
+      <div><h3>El Alamein</h3><p class="ev-p">Britain's Eighth Army breaks the German and Italian army in the Egyptian desert. The Axis is out of Africa by May 1943.</p></div>
+    </article>
+    <article class="ev tile" id="ev-stalingrad" data-t="1943-02-02" data-lane="eu" data-side="allied">
+      <svg viewBox="0 0 320 196" role="img" aria-label="A German advance stopped by the Red Army in a city.">
+        <path class="hint" d="M24 60h272M34 60v-30h20v30M62 60v-18h14v18M86 60v-42h22v42M118 60v-24h16v24M146 60v-34h18v34M176 60v-16h20v16M206 60v-38h16v38M232 60v-22h22v22M264 60v-30h18v30"/>
+        <polygon class="ar-ax" points="24,103 166,103 166,90 196,112 166,134 166,121 24,121"/>
+        <rect x="206" y="72" width="12" height="80" fill="var(--allied)"/>
+        <text class="d-t ax" x="24" y="182">GERMAN 6TH ARMY</text>
+        <text class="d-t al" x="296" y="182" text-anchor="end">RED ARMY</text>
+      </svg>
+      <div class="ev-tag"><span class="g g-allied"><span>10</span></span><span class="ev-date">Aug 1942–Feb 1943</span><span class="ev-where">Eastern Front</span></div>
+      <div><h3>Stalingrad</h3><p class="ev-p">Soviet armies surround an entire German army in the city. Its 91,000 survivors surrender, and Germany never regains the upper hand in the east.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec act-3" id="act-3">
+  <header class="sec-h">
+    <p class="mono">Act III · Feb 1943 to Sep 1945 · 31 months</p>
+    <h2>The Ebb</h2>
+    <p class="sum">The arrows reverse. The Allies close in on Germany and Japan from every side.</p>
+  </header>
+  <div class="pics">
+    <figure class="sheet pic"><svg id="pic-ger-in" viewBox="0 44 500 400" role="img" aria-label="The Allies close in on Germany: from Normandy in the west in 1944, from the Soviet front in the east from 1943 to 1945, and from Italy in the south in 1943."></svg></figure>
+    <figure class="sheet pic"><svg id="pic-jap-in" viewBox="0 0 500 400" role="img" aria-label="The Allies close in on Japan: across the Pacific islands from 1943 to 1945, through Burma in 1944 and 1945, a Soviet attack in August 1945 and two atomic bombs in August 1945."></svg></figure>
+  </div>
+  <p class="mono cap">Arrows show which side each attack came from. They are not drawn to geographic scale.</p>
+
+  <div class="log">
+    <article class="ev" id="ev-kursk" data-t="1943-07-05" data-lane="eu" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>11</span></span><span class="ev-date">Jul 1943</span><span class="ev-where">Eastern Front · Italy</span></div>
+      <div><h3>Kursk and Sicily</h3><p class="ev-p">Germany's last big attack in the east fails at Kursk. The same week the Allies land in Sicily, and Italy surrenders in September.</p></div>
+    </article>
+    <article class="ev" id="ev-imphal" data-t="1944-03-08" data-lane="pa" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>12</span></span><span class="ev-date">Mar–Jul 1944</span><span class="ev-where">India–Burma border</span></div>
+      <div><h3>Imphal and Kohima</h3><p class="ev-p">Japan invades north-east India. A largely Indian army holds both towns and hands Japan its worst land defeat so far.</p></div>
+    </article>
+    <article class="ev" id="ev-dday" data-t="1944-06-06" data-lane="eu" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>13</span></span><span class="ev-date">6 Jun 1944</span><span class="ev-where">France</span></div>
+      <div><h3>D-Day</h3><p class="ev-p">About 156,000 Allied troops land in Normandy, the largest invasion by sea in history. Paris is free by August.</p></div>
+    </article>
+    <article class="ev" id="ev-bagration" data-t="1944-06-22" data-lane="eu" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>14</span></span><span class="ev-date">22 Jun 1944</span><span class="ev-where">Eastern Front</span></div>
+      <div><h3>Operation Bagration</h3><p class="ev-p">The Red Army destroys Germany's central army group in Belarus and advances about 500 km in five weeks.</p></div>
+    </article>
+    <article class="ev" id="ev-leyte" data-t="1944-10-23" data-lane="pa" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>15</span></span><span class="ev-date">23–26 Oct 1944</span><span class="ev-where">Philippines</span></div>
+      <div><h3>Leyte Gulf</h3><p class="ev-p">The largest naval battle of the war. Japan's navy is finished as a fighting force.</p></div>
+    </article>
+    <article class="ev" id="ev-bulge" data-t="1944-12-16" data-lane="eu" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>16</span></span><span class="ev-date">Dec 1944–Jan 1945</span><span class="ev-where">Belgium</span></div>
+      <div><h3>Battle of the Bulge</h3><p class="ev-p">Germany's last attack in the west runs out of fuel in the Ardennes forest. Its final reserves are spent.</p></div>
+    </article>
+    <article class="ev" id="ev-ve" data-t="1945-05-08" data-lane="eu" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>17</span></span><span class="ev-date">8 May 1945</span><span class="ev-where">Europe</span></div>
+      <div><h3>Germany surrenders</h3><p class="ev-p">Soviet troops take Berlin. Hitler kills himself on 30 April, and Germany surrenders a week later.</p></div>
+    </article>
+    <article class="ev" id="ev-hiroshima" data-t="1945-08-06" data-lane="pa" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>18</span></span><span class="ev-date">6 and 9 Aug 1945</span><span class="ev-where">Japan</span></div>
+      <div><h3>Hiroshima and Nagasaki</h3><p class="ev-p">The United States drops two atomic bombs, killing an estimated 150,000 to 250,000 people. Between the two, the Soviet Union attacks Japan in Manchuria.</p></div>
+    </article>
+    <article class="ev" id="ev-surrender" data-t="1945-09-02" data-lane="pa" data-side="allied">
+      <div class="ev-tag"><span class="g g-allied"><span>19</span></span><span class="ev-date">2 Sep 1945</span><span class="ev-where">Tokyo Bay</span></div>
+      <div><h3>Japan surrenders</h3><p class="ev-p">The emperor announces the surrender on 15 August. It is signed six years and one day after the war began.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="cost">
+  <header class="sec-h">
+    <p class="mono">The cost · deaths in millions</p>
+    <h2>70 to 85 million dead</h2>
+    <p class="sum">About 3 of every 100 people alive in 1940. Most of them were civilians.</p>
+  </header>
+  <ol class="bars">
+    <li class="b-axis" aria-hidden="true"><span class="b-name"></span><span class="b-track"><span style="left:0">0</span><span style="left:calc(5 / 27 * 100%)">5</span><span style="left:calc(10 / 27 * 100%)">10</span><span style="left:calc(15 / 27 * 100%)">15</span><span style="left:calc(20 / 27 * 100%)">20</span><span style="left:calc(25 / 27 * 100%)">25 m</span></span><span class="b-val"></span></li>
+    <li><span class="b-name">Soviet Union</span><span class="b-track" style="--lo:20;--hi:27"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">20–27 m</span></li>
+    <li><span class="b-name">China</span><span class="b-track" style="--lo:15;--hi:20"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">15–20 m</span></li>
+    <li><span class="b-name">Germany</span><span class="b-track" style="--lo:6.9;--hi:7.4"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">6.9–7.4 m</span></li>
+    <li><span class="b-name">Poland</span><span class="b-track" style="--lo:5.9;--hi:6"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">5.9–6 m</span></li>
+    <li><span class="b-name">Dutch East Indies</span><span class="b-track" style="--lo:3;--hi:4"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">3–4 m</span></li>
+    <li><span class="b-name">Japan</span><span class="b-track" style="--lo:2.5;--hi:3.1"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">2.5–3.1 m</span></li>
+    <li><span class="b-name">India</span><span class="b-track" style="--lo:2.2;--hi:3"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">2.2–3 m</span></li>
+    <li><span class="b-name">Yugoslavia</span><span class="b-track" style="--lo:1;--hi:1.7"><span class="b-lo"></span><span class="b-hi"></span></span><span class="b-val">1–1.7 m</span></li>
+    <li><span class="b-name">France</span><span class="b-track" style="--lo:.6;--hi:.6"><span class="b-lo"></span></span><span class="b-val">0.6 m</span></li>
+    <li><span class="b-name">Britain</span><span class="b-track" style="--lo:.45;--hi:.45"><span class="b-lo"></span></span><span class="b-val">0.45 m</span></li>
+    <li><span class="b-name">United States</span><span class="b-track" style="--lo:.42;--hi:.42"><span class="b-lo"></span></span><span class="b-val">0.42 m</span></li>
+  </ol>
+  <div class="cost-notes">
+    <p class="mono">Solid bar: lowest estimate. Hatched: up to the highest.</p>
+    <p>Soldiers and civilians together, including deaths from war-caused famine and disease. Most of India's toll is the Bengal famine of 1943.</p>
+    <p>Inside these numbers is the Holocaust: about six million Jews, two of every three in Europe, murdered by Nazi Germany.</p>
+  </div>
+</section>
+
+<section class="sec" id="after">
+  <header class="sec-h">
+    <p class="mono">After the tide · 1945 onward</p>
+    <h2>What it left behind</h2>
+    <p class="sum">Most of the world we live in was arranged in the five years after the surrender.</p>
+  </header>
+  <ul class="after">
+    <li><p class="mono">1945</p><h3>The United Nations</h3><p>Fifty countries sign a charter meant to stop a third world war.</p></li>
+    <li><p class="mono">1945–1991</p><h3>Two superpowers</h3><p>The United States and the Soviet Union divide Europe and begin the Cold War.</p></li>
+    <li><p class="mono">1945</p><h3>The nuclear age</h3><p>One bomb can now destroy a city. Every later war is fought under that shadow.</p></li>
+    <li><p class="mono">1947 onward</p><h3>The end of empires</h3><p>Exhausted European powers let go. India and Pakistan become independent in 1947, and most of Asia and Africa follow.</p></li>
+    <li><p class="mono">1945–1948</p><h3>Law for war crimes</h3><p>Nazi leaders are tried at Nuremberg. Genocide becomes a crime in international law.</p></li>
+    <li><p class="mono">1944</p><h3>A new money system</h3><p>The World Bank and the IMF are set up at Bretton Woods to rebuild trade.</p></li>
+  </ul>
+</section>
+
+<section class="sec" id="shape">
+  <header class="sec-h">
+    <p class="mono">The whole war in one line</p>
+    <h2>Flood, turn, ebb</h2>
+  </header>
+  <div class="spanbar" role="img" aria-label="A bar divided to scale: 33 months of flood, 8 months of turn, 31 months of ebb.">
+    <div class="s1">33</div><div class="s2">8</div><div class="s3">31</div>
+  </div>
+  <ul class="shape-k mono">
+    <li>33 months of Axis advance</li>
+    <li>8 months when it stopped</li>
+    <li>31 months of retreat</li>
+  </ul>
+</section>
+
+<footer class="foot">
+  <p>Dates follow the usual Western convention that the war began on 1 September 1939. In China it is dated from July 1937.</p>
+  <p>Casualty figures are estimates and differ between historians. The ranges shown are the commonly cited ones.</p>
+</footer>
+
+</main>
+
+<script>
+(function(){
+'use strict';
+var NS='http://www.w3.org/2000/svg';
+function el(n,a,t){var e=document.createElementNS(NS,n);if(a){for(var k in a){e.setAttribute(k,a[k]);}}if(t!=null){e.textContent=t;}return e;}
+var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+function go(t){if(t){t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}}
+function r1(v){return Math.round(v*10)/10;}
+
+/* ---------- tide chart ---------- */
+var svg=document.getElementById('tide');
+var evs=[].slice.call(document.querySelectorAll('.ev'));
+var X0=56,X1=984,SPAN=84,H=96;
+function mx(m){return X0+m/SPAN*(X1-X0);}
+function months(iso){var p=iso.split('-');return (+p[0]-1939)*12+(+p[1]-1)+(+p[2]-1)/30.44;}
+/* [months since Jan 1939, height 0..1]. Shape only: a hand sketch of Axis-held ground, not a data series. */
+var lanes={
+  eu:{base:204,ly:66,name:'EUROPE & AFRICA',pts:[[8,0],[9.2,.14],[15,.15],[18,.45],[27,.5],[29.7,.55],[35.2,.92],[38,.85],[46,1],[49,.86],[55,.72],[65.2,.58],[68.5,.34],[72.5,.22],[76.25,0]]},
+  pa:{base:360,ly:242,name:'ASIA & PACIFIC',pts:[[0,.3],[35.2,.32],[41,1],[49,.93],[59,.84],[66,.7],[69.7,.58],[75,.45],[79.2,.38],[80.03,0]]}
+};
+function sample(L){
+  var out=[],i,s;
+  for(i=0;i<L.pts.length-1;i++){
+    var a=L.pts[i],b=L.pts[i+1],x0=mx(a[0]),x1=mx(b[0]),y0=L.base-a[1]*H,y1=L.base-b[1]*H,xm=(x0+x1)/2;
+    for(s=(i?1:0);s<=16;s++){
+      var t=s/16,u=1-t;
+      out.push([u*u*u*x0+3*u*u*t*xm+3*u*t*t*xm+t*t*t*x1, u*u*u*y0+3*u*u*t*y0+3*u*t*t*y1+t*t*t*y1]);
+    }
+  }
+  return out;
+}
+function yAt(S,x,base){
+  if(x<S[0][0]){return base;}
+  for(var i=1;i<S.length;i++){
+    if(x<=S[i][0]){var a=S[i-1],b=S[i],f=(x-a[0])/((b[0]-a[0])||1);return a[1]+f*(b[1]-a[1]);}
+  }
+  return base;
+}
+if(svg){
+  var TURN0=months('1942-06-04'),TURN1=months('1943-02-02'),START=months('1939-09-01'),END=months('1945-09-02');
+  svg.appendChild(el('rect',{x:r1(mx(TURN0)),y:38,width:r1(mx(TURN1)-mx(TURN0)),height:326,class:'turn-col'}));
+  for(var y=0;y<=7;y++){
+    svg.appendChild(el('line',{x1:r1(mx(12*y)),y1:44,x2:r1(mx(12*y)),y2:366,class:'grid-l'}));
+    if(y<7){svg.appendChild(el('text',{x:r1(mx(12*y+6)),y:384,'text-anchor':'middle',class:'yr'},String(1939+y)));}
+  }
+  [[START,TURN0,'ph-flood','ACT I · THE FLOOD'],[TURN0,TURN1,'ph-turn','II · TURN'],[TURN1,END,'ph-ebb','ACT III · THE EBB']].forEach(function(p){
+    var xa=mx(p[0]),xb=mx(p[1]);
+    svg.appendChild(el('rect',{x:r1(xa),y:14,width:r1(xb-xa),height:24,class:'ph '+p[2]}));
+    svg.appendChild(el('text',{x:r1((xa+xb)/2),y:30,'text-anchor':'middle',class:'ph-t'},p[3]));
+  });
+  Object.keys(lanes).forEach(function(k){
+    var L=lanes[k];L.s=sample(L);
+    var d='M'+r1(L.s[0][0])+' '+L.base;
+    L.s.forEach(function(p){d+=' L'+r1(p[0])+' '+r1(p[1]);});
+    var line='M'+L.s.map(function(p){return r1(p[0])+' '+r1(p[1]);}).join(' L');
+    svg.appendChild(el('path',{d:d+' L'+r1(L.s[L.s.length-1][0])+' '+L.base+' Z',class:'tide-a'}));
+    svg.appendChild(el('path',{d:line,class:'tide-l'}));
+    svg.appendChild(el('line',{x1:X0,y1:L.base,x2:X1,y2:L.base,class:'base'}));
+  });
+  var cursor=el('line',{x1:0,y1:44,x2:0,y2:366,class:'cursor'});
+  svg.appendChild(cursor);
+  Object.keys(lanes).forEach(function(k){svg.appendChild(el('text',{x:X0+8,y:lanes[k].ly,class:'lane-t'},lanes[k].name));});
+
+  var SIDE={axis:'Favours the Axis',allied:'Favours the Allies',mark:'The Holocaust'};
+  var last={};
+  var pins=evs.map(function(ev,i){
+    var lane=ev.getAttribute('data-lane'),side=ev.getAttribute('data-side'),L=lanes[lane];
+    var x=mx(months(ev.getAttribute('data-t'))),cy=yAt(L.s,x,L.base),yy=cy,p=last[lane];
+    if(p&&x-p.x<26&&Math.abs(yy-p.y)<24){yy=p.y-26;}
+    last[lane]={x:x,y:yy};
+    if(yy!==cy){svg.appendChild(el('line',{x1:r1(x),y1:r1(cy),x2:r1(x),y2:r1(yy),class:'stem'}));}
+    var title=ev.querySelector('h3').textContent,date=ev.querySelector('.ev-date').textContent;
+    var g=el('g',{class:'pin pin-'+side,tabindex:'0',role:'button','aria-label':(i+1)+'. '+title+', '+date,transform:'translate('+r1(x)+','+r1(yy)+')'});
+    g.appendChild(el('circle',{r:17,class:'hit'}));
+    g.appendChild(el('circle',{r:16,class:'ring'}));
+    if(side==='allied'){g.appendChild(el('circle',{r:11,class:'shape'}));}
+    else if(side==='axis'){g.appendChild(el('rect',{x:-9.5,y:-9.5,width:19,height:19,transform:'rotate(45)',class:'shape'}));}
+    else{g.appendChild(el('rect',{x:-10,y:-10,width:20,height:20,class:'shape'}));}
+    g.appendChild(el('text',{y:4,'text-anchor':'middle',class:'pin-n'},String(i+1)));
+    g.addEventListener('click',function(){select(i,false);});
+    g.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();select(i,false);}
+      else if(e.key==='ArrowRight'){e.preventDefault();select(i+1,true);}
+      else if(e.key==='ArrowLeft'){e.preventDefault();select(i-1,true);}
+    });
+    return {g:g,x:x,ev:ev,side:side,title:title,date:date};
+  });
+  pins.forEach(function(p){svg.appendChild(p.g);});
+
+  var cur=0,prev=document.getElementById('prev'),next=document.getElementById('next'),link=document.getElementById('ro-link'),rog=document.getElementById('ro-g');
+  var select=function(i,focus){
+    if(i<0||i>=pins.length){return;}
+    cur=i;var p=pins[i];
+    pins.forEach(function(q,j){q.g.classList.toggle('on',j===i);});
+    cursor.setAttribute('x1',r1(p.x));cursor.setAttribute('x2',r1(p.x));
+    rog.className='g g-'+p.side;rog.firstElementChild.textContent=String(i+1);
+    document.getElementById('ro-date').textContent=p.date;
+    document.getElementById('ro-where').textContent=p.ev.querySelector('.ev-where').textContent;
+    document.getElementById('ro-side').textContent=SIDE[p.side];
+    document.getElementById('ro-title').textContent=p.title;
+    document.getElementById('ro-text').textContent=p.ev.querySelector('.ev-p').textContent;
+    link.setAttribute('href','#'+p.ev.id);
+    prev.disabled=i===0;next.disabled=i===pins.length-1;
+    if(focus){p.g.focus();}
+  };
+  prev.addEventListener('click',function(){select(cur-1,false);});
+  next.addEventListener('click',function(){select(cur+1,false);});
+  link.addEventListener('click',function(e){
+    e.preventDefault();var t=pins[cur].ev;go(t);
+    t.classList.add('flash');setTimeout(function(){t.classList.remove('flash');},1800);
+  });
+  select(0,false);
+}
+
+/* ---------- act pictures: staff-map arrows ---------- */
+function arrow(s,x1,y1,x2,y2,cls,blocked){
+  var dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy),ux=dx/len,uy=dy/len,px=-uy,py=ux,w=7,hw=17,hl=26,bx=x2-ux*hl,by=y2-uy*hl;
+  var pts=[[x1+px*w,y1+py*w],[bx+px*w,by+py*w],[bx+px*hw,by+py*hw],[x2,y2],[bx-px*hw,by-py*hw],[bx-px*w,by-py*w],[x1-px*w,y1-py*w]];
+  s.appendChild(el('polygon',{points:pts.map(function(p){return r1(p[0])+','+r1(p[1]);}).join(' '),class:cls}));
+  if(blocked){
+    var cx=x2+ux*10,cy=y2+uy*10;
+    s.appendChild(el('line',{x1:r1(cx+px*30),y1:r1(cy+py*30),x2:r1(cx-px*30),y2:r1(cy-py*30),class:'bar-al'}));
+  }
+}
+function txt(s,x,y,t,anchor,cls){s.appendChild(el('text',{x:x,y:y,'text-anchor':anchor||'start',class:'d-t'+(cls?' '+cls:'')},t));}
+function hub(s,x,y,name){
+  s.appendChild(el('circle',{cx:x,cy:y,r:46,class:'hub'}));
+  s.appendChild(el('text',{x:x,y:y+5,'text-anchor':'middle',class:'hub-t'},name));
+}
+var pics={
+  'pic-ger-out':function(s){
+    arrow(s,282,200,470,200,'ar-ax');txt(s,292,180,'POLAND 1939');txt(s,476,236,'SOVIET UNION 1941','end');
+    arrow(s,178,206,40,226,'ar-ax');txt(s,24,264,'FRANCE 1940');
+    arrow(s,230,148,230,48,'ar-ax');txt(s,256,62,'NORWAY 1940');
+    arrow(s,230,252,230,356,'ar-ax');txt(s,256,358,'NORTH AFRICA 1941');
+    arrow(s,266,238,356,312,'ar-ax');txt(s,366,300,'BALKANS 1941');
+    arrow(s,194,164,122,98,'ar-ax',true);txt(s,20,40,'BRITAIN 1940');txt(s,20,58,'HOLDS OUT','start','al');
+    hub(s,230,200,'GERMANY');
+  },
+  'pic-jap-out':function(s){
+    arrow(s,198,190,44,190,'ar-ax');txt(s,24,164,'CHINA FROM 1937');
+    arrow(s,214,226,112,316,'ar-ax');txt(s,20,356,'MALAYA, SINGAPORE 1942');
+    arrow(s,256,242,290,330,'ar-ax');txt(s,316,318,'PHILIPPINES,');txt(s,316,336,'EAST INDIES 1942');
+    arrow(s,302,190,456,190,'ar-ax');txt(s,312,164,'PEARL HARBOR 1941');txt(s,312,226,'RAID ON THE US FLEET','start','sm');
+    hub(s,250,190,'JAPAN');
+  },
+  'pic-ger-in':function(s){
+    arrow(s,30,214,196,204,'ar-al');txt(s,24,250,'NORMANDY 1944','start','al');
+    arrow(s,476,200,304,200,'ar-al');txt(s,476,176,'SOVIET FRONT 1943–45','end','al');
+    arrow(s,250,372,250,254,'ar-al');txt(s,276,364,'ITALY 1943','start','al');
+    hub(s,250,200,'GERMANY');
+    txt(s,250,124,'SURRENDERS 8 MAY 1945','middle','sm');
+  },
+  'pic-jap-in':function(s){
+    arrow(s,452,300,294,216,'ar-al');txt(s,476,336,'PACIFIC ISLANDS 1943–45','end','al');
+    arrow(s,60,292,206,218,'ar-al');txt(s,24,326,'BURMA 1944–45','start','al');
+    arrow(s,70,96,204,166,'ar-al');txt(s,24,58,'SOVIET ATTACK','start','al');txt(s,24,76,'AUG 1945','start','al');
+    arrow(s,250,46,250,140,'ar-al');txt(s,274,58,'ATOMIC BOMBS','start','al');txt(s,274,76,'AUG 1945','start','al');
+    hub(s,250,190,'JAPAN');
+    txt(s,250,272,'SURRENDERS 2 SEP 1945','middle','sm');
+  }
+};
+Object.keys(pics).forEach(function(id){var s=document.getElementById(id);if(s){pics[id](s);}});
+
+/* ---------- section nav ---------- */
+var links=[].slice.call(document.querySelectorAll('.nav a'));
+links.forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.getElementById(a.getAttribute('href').slice(1));
+    if(t){e.preventDefault();go(t);}
+  });
+});
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(a){a.classList.toggle('here',a.getAttribute('href')==='#'+en.target.id);});
+      }
+    });
+  },{rootMargin:'-35% 0px -60% 0px'});
+  links.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));if(t){io.observe(t);}});
+}
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

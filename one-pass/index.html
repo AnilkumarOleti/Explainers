@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>One Pass | Explainers</title>
+<meta name="description" content="A reader can reread. A listener gets one pass. Nearly every good presentation habit fixes that one fact.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/one-pass/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="One Pass">
+<meta property="og:description" content="A reader can reread. A listener gets one pass. Nearly every good presentation habit fixes that one fact.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/one-pass/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/one-pass/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<meta name="description" content="How to give a good presentation, built on one idea: listeners can't scroll back.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&display=swap">
+<style>
+:root{
+  --paper:#F3F5F1; --paper-2:#E7EBE5; --card:#FFFFFF; --ink:#1B211F; --muted:#56605B; --faint:#8A938E;
+  --rule:#CDD3CD; --pencil:#2F57A8; --pencil-soft:rgba(47,87,168,.10);
+  --gel:#C9860F; --gel-bright:#E9A92A; --gel-soft:rgba(233,169,42,.20); --standby:#B23A2F;
+  --stage:#141816; --stage-ink:#EDEFEA;
+  --display:"Gloock", "Georgia", "Times New Roman", serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --script:"Courier Prime", "Courier New", Courier, monospace;
+  --hand:"Caveat", "Segoe Print", "Bradley Hand", cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#101312; --paper-2:#171B19; --card:#1A1F1C; --ink:#E5E9E5; --muted:#A1AAA5; --faint:#6E7772;
+    --rule:#2C3330; --pencil:#93B2F2; --pencil-soft:rgba(147,178,242,.12);
+    --gel:#F0B54A; --gel-bright:#F4C160; --gel-soft:rgba(240,181,74,.16); --standby:#EF8173;
+    --stage:#0A0C0B; --stage-ink:#EDEFEA;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#101312; --paper-2:#171B19; --card:#1A1F1C; --ink:#E5E9E5; --muted:#A1AAA5; --faint:#6E7772;
+  --rule:#2C3330; --pencil:#93B2F2; --pencil-soft:rgba(147,178,242,.12);
+  --gel:#F0B54A; --gel-bright:#F4C160; --gel-soft:rgba(240,181,74,.16); --standby:#EF8173;
+  --stage:#0A0C0B; --stage-ink:#EDEFEA;
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+a{color:var(--pencil)}
+:focus-visible{outline:2px solid var(--pencil); outline-offset:3px; border-radius:3px}
+
+/* ---------- hero: the stage ---------- */
+.stage{background:var(--stage); color:var(--stage-ink); position:relative; overflow:hidden; padding-inline:16px}
+.stage::before{content:""; position:absolute; left:50%; top:-40%; width:900px; height:900px; transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(244,193,96,.30), rgba(244,193,96,.08) 55%, transparent 72%); pointer-events:none}
+.stage-inner{position:relative; max-width:1040px; margin:0 auto; padding-block:72px 56px; display:grid; gap:28px}
+.slate{font-family:var(--script); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#B9C0BA; display:flex; flex-wrap:wrap; gap:8px 22px}
+.slate b{color:#F4C160; font-weight:700}
+h1{font-family:var(--display); font-weight:400; font-size:clamp(46px, 9vw, 104px); line-height:.98; letter-spacing:-.01em; margin:0; text-wrap:balance; max-width:11ch}
+.thesis{font-size:clamp(18px, 2.2vw, 22px); line-height:1.5; max-width:40ch; color:#D6DBD6; margin:0}
+.thesis em{font-style:normal; color:#F4C160}
+.floor{position:relative; height:10px; max-width:1040px; margin:0 auto; border-top:1px dashed rgba(237,239,234,.22)}
+
+/* ---------- prompt book layout ---------- */
+main{padding-inline:16px}
+.book{max-width:1040px; margin:0 auto; padding-block:24px 80px}
+.cue{display:grid; grid-template-columns:150px minmax(0,1fr); gap:0 40px; padding-block:56px 8px; border-bottom:1px solid var(--rule)}
+.cue:last-of-type{border-bottom:0}
+.margin{position:relative}
+.margin .cueno{font-family:var(--script); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); display:block}
+.margin .circ{display:inline-grid; place-items:center; width:54px; height:54px; margin-top:8px; border:2px solid var(--pencil); border-radius:50%;
+  font-family:var(--hand); font-size:30px; font-weight:700; color:var(--pencil); transform:rotate(-6deg)}
+.margin .go{display:block; font-family:var(--hand); font-size:22px; color:var(--standby); margin-top:6px; transform:rotate(-3deg)}
+.col{max-width:700px; min-width:0}
+h2{font-family:var(--display); font-weight:400; font-size:clamp(32px, 4.6vw, 46px); line-height:1.08; margin:0 0 18px; text-wrap:balance}
+h3{font-family:var(--body); font-weight:700; font-size:18px; margin:0 0 6px}
+p{margin:0 0 16px}
+.lede{font-size:19px; color:var(--ink)}
+.muted{color:var(--muted)}
+.note{font-family:var(--hand); color:var(--pencil); font-size:21px; line-height:1.25}
+.small{font-size:14px; color:var(--muted)}
+.label{font-family:var(--script); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+
+.btn{font:600 15px/1 var(--body); padding:11px 16px; border-radius:999px; border:1.5px solid var(--ink); background:transparent; color:var(--ink); cursor:pointer; display:inline-flex; align-items:center; gap:8px}
+.btn:hover{background:var(--ink); color:var(--paper)}
+.btn.primary{background:var(--gel-bright); border-color:var(--gel-bright); color:#1B1405}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
+.row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+
+/* ---------- read vs listen ---------- */
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0}
+.panel{background:var(--card); border:1px solid var(--rule); border-radius:6px; padding:18px 20px; display:flex; flex-direction:column; gap:12px; min-width:0}
+.panel .words{font-size:18px; line-height:1.55; min-height:7.5em}
+.listen .words span{transition:opacity .35s, color .2s; opacity:.28}
+.listen .words span.now{opacity:1; color:var(--ink); background:var(--gel-soft); border-radius:3px}
+.listen .words span.gone{opacity:.05}
+.listen.done .words span{opacity:.05}
+.verdict{font-family:var(--hand); font-size:22px; color:var(--standby); min-height:1.3em; line-height:1.2}
+.fixes{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:10px}
+.fixes li{display:grid; grid-template-columns:150px 1fr; gap:14px; padding-block:10px; border-top:1px dashed var(--rule)}
+.fixes li b{font-family:var(--script); font-weight:700; font-size:14px; letter-spacing:.04em; color:var(--pencil); padding-top:2px}
+
+/* ---------- one sentence ---------- */
+.index-card{background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:22px 22px 18px; margin:22px 0;
+  background-image:repeating-linear-gradient(to bottom, transparent 0 35px, var(--pencil-soft) 35px 36px); background-position:0 52px; background-repeat:no-repeat; background-size:100% calc(100% - 52px)}
+.index-card::before{content:""; display:block; height:2px; background:var(--standby); opacity:.55; margin:-2px 0 14px}
+.index-card label{display:block}
+textarea{width:100%; resize:vertical; min-height:92px; border:0; background:transparent; color:var(--ink); font:400 22px/36px var(--hand); padding:0; margin-top:8px}
+textarea:focus{outline:none}
+.meter{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.chip{font:600 13px/1 var(--body); padding:7px 10px; border-radius:999px; border:1px solid var(--rule); color:var(--muted); display:inline-flex; gap:6px; align-items:center}
+.chip.ok{border-color:transparent; background:var(--pencil-soft); color:var(--pencil)}
+.chip.warn{border-color:transparent; background:var(--gel-soft); color:var(--ink)}
+.chip i{font-style:normal; font-weight:700}
+.qs{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin-top:22px}
+.qs div{border-top:2px solid var(--ink); padding-top:10px}
+.qs p{font-size:15px; color:var(--muted); margin:0}
+
+/* ---------- script page ---------- */
+.script{background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:28px 0 20px; margin:24px 0; font-family:var(--script); font-size:15.5px; line-height:1.55; overflow-x:auto}
+.act{font-weight:700; letter-spacing:.2em; text-align:center; padding:6px 0 14px; color:var(--muted); font-size:13px}
+.line{display:grid; grid-template-columns:minmax(0,1fr) 190px; gap:18px; padding:7px 24px; align-items:start}
+.line q{quotes:none; display:block}
+.line .ann{font-family:var(--hand); font-size:20px; line-height:1.15; color:var(--pencil); border-left:2px solid var(--pencil); padding-left:10px}
+.line .ann.red{color:var(--standby); border-color:var(--standby)}
+.pyramid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px}
+.pyr{border:1px solid var(--rule); border-radius:6px; padding:16px 18px; background:var(--paper-2)}
+.pyr ol{margin:8px 0 0; padding-left:20px; font-size:15px}
+.pyr ol li{margin-bottom:4px}
+.pyr .hl{background:var(--gel-soft); border-radius:3px; padding:0 3px}
+
+/* ---------- attention curve ---------- */
+.figure{background:var(--card); border:1px solid var(--rule); border-radius:6px; padding:18px 18px 12px; margin:22px 0}
+.figure .scroll{overflow-x:auto}
+#curve{display:block; width:100%; min-width:520px; height:auto}
+#curve .axis{stroke:var(--rule); stroke-width:1}
+#curve .grid{stroke:var(--rule); stroke-width:1; stroke-dasharray:2 4}
+#curve .tick{fill:var(--muted); font:12px var(--script)}
+#curve .base{fill:none; stroke:var(--faint); stroke-width:1.5; stroke-dasharray:4 4}
+#curve .line{fill:none; stroke:var(--gel); stroke-width:3; stroke-linejoin:round; stroke-linecap:round}
+#curve .area{fill:var(--gel-soft)}
+#curve .ann{fill:var(--pencil); font:19px var(--hand)}
+#curve .reset{stroke:var(--standby); stroke-width:1.2; stroke-dasharray:3 3}
+#curve .resetlbl{fill:var(--standby); font:17px var(--hand)}
+#curve path, #curve g{transition:opacity .35s}
+.resets{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px; margin-top:18px}
+.resets div{font-size:15px}
+.resets b{display:block; font-family:var(--script); font-size:13px; letter-spacing:.06em; color:var(--standby)}
+
+/* ---------- slides ---------- */
+.slide-wrap{margin:22px 0}
+.slide{aspect-ratio:16/9; max-width:100%; width:100%; background:#FFFFFF; color:#1B211F; border-radius:6px; border:1px solid var(--rule); box-shadow:0 18px 40px -24px rgba(0,0,0,.45); padding:4.2% 5%; position:relative; overflow:hidden; container-type:inline-size}
+.slide .doc h4{font:700 4.4cqw/1.1 var(--body); margin:0 0 3cqw; color:#223}
+.slide .doc ul{margin:0; padding-left:3.6cqw; font:400 2.25cqw/1.45 var(--body); color:#334}
+.slide .doc li{margin-bottom:.6cqw}
+.slide .bill h4{font:400 4.7cqw/1.12 var(--display); margin:0 0 2cqw; color:#141816; max-width:30ch}
+.slide .bill svg{width:100%; height:auto; display:block}
+.slide .src{position:absolute; right:5%; bottom:3.5%; font:1.5cqw var(--script); color:#8A938E}
+.slide .stamp{position:absolute; right:4%; top:5%; font:700 2cqw var(--script); letter-spacing:.12em; padding:.6cqw 1.2cqw; border:2px solid; border-radius:4px; transform:rotate(4deg)}
+.stamp.bad{color:#B23A2F}
+.stamp.good{color:#2F57A8}
+.rules{display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; margin-top:24px}
+.rules div{border-top:1px solid var(--rule); padding-top:10px}
+.rules p{font-size:15.5px; color:var(--muted); margin:0}
+
+/* ---------- delivery ---------- */
+.moves{display:grid; gap:0; margin-top:10px}
+.move{display:grid; grid-template-columns:170px minmax(0,1fr); gap:20px; padding-block:18px; border-top:1px dashed var(--rule)}
+.move .k{font-family:var(--display); font-size:24px; line-height:1.1}
+.move .k small{display:block; font-family:var(--script); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:6px}
+.move p{margin:0 0 8px}
+.pause-demo{font-size:19px; margin-top:6px}
+.pause-demo .gap{display:inline-block; width:3.2em; border-bottom:2px dotted var(--gel); transform:translateY(-4px)}
+
+.budget{display:grid; grid-template-columns:220px minmax(0,1fr); gap:24px; background:var(--card); border:1px solid var(--rule); border-radius:6px; padding:20px; margin:24px 0; align-items:center}
+.budget input[type=range]{width:100%; accent-color:var(--gel)}
+.budget .mins{font-family:var(--display); font-size:52px; line-height:1}
+.budget .mins span{font-family:var(--body); font-size:16px; color:var(--muted); margin-left:6px}
+.out{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px}
+.out div{border-left:2px solid var(--gel); padding-left:12px}
+.out b{display:block; font-family:var(--display); font-weight:400; font-size:28px; line-height:1.1; font-variant-numeric:tabular-nums}
+.out span{font-size:13.5px; color:var(--muted); line-height:1.35; display:block}
+
+/* ---------- Q&A ---------- */
+.qa{display:grid; gap:12px; margin-top:16px}
+.qa > div{display:grid; grid-template-columns:130px minmax(0,1fr); gap:16px; align-items:baseline}
+.qa b{font-family:var(--script); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--pencil)}
+.qa q{quotes:none; font-family:var(--script); font-size:15.5px; display:block; background:var(--paper-2); padding:8px 12px; border-radius:4px}
+.qa p{margin:6px 0 0; font-size:15px; color:var(--muted)}
+
+/* ---------- checklist ---------- */
+.checks{list-style:none; padding:0; margin:18px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:8px 28px}
+.checks label{display:grid; grid-template-columns:24px 1fr; gap:10px; padding:10px 0; border-bottom:1px dashed var(--rule); cursor:pointer; font-size:16px; line-height:1.4}
+.checks input{appearance:none; width:20px; height:20px; border:1.5px solid var(--ink); border-radius:3px; margin:1px 0 0; display:grid; place-items:center; cursor:pointer; background:transparent}
+.checks input:checked{background:var(--pencil); border-color:var(--pencil)}
+.checks input:checked::after{content:"✓"; color:var(--card); font-size:14px; font-weight:700; line-height:1}
+.checks input:checked + span{color:var(--muted); text-decoration:line-through; text-decoration-color:var(--pencil)}
+.tally{font-family:var(--hand); font-size:24px; color:var(--pencil); margin-top:14px}
+
+.curtain{max-width:1040px; margin:0 auto; padding-block:40px 60px; border-top:1px solid var(--rule)}
+.curtain p{max-width:62ch; font-size:15px; color:var(--muted)}
+.curtain .big{font-family:var(--display); font-size:clamp(28px,4vw,40px); color:var(--ink); line-height:1.15; margin-bottom:20px; max-width:24ch}
+
+@media (max-width:780px){
+  .cue{grid-template-columns:1fr; padding-block:44px 8px}
+  .margin{display:flex; align-items:center; gap:14px; margin-bottom:14px}
+  .margin .circ{margin-top:0; width:46px; height:46px; font-size:26px}
+  .margin .go{margin-top:0}
+  .duo,.pyramid,.rules,.checks{grid-template-columns:1fr}
+  .qs,.resets{grid-template-columns:1fr 1fr}
+  .fixes li,.move,.qa > div{grid-template-columns:1fr; gap:4px}
+  .line{grid-template-columns:1fr; gap:4px; padding:6px 18px}
+  .line .ann{margin-bottom:6px}
+  .budget{grid-template-columns:1fr}
+  .out{grid-template-columns:1fr}
+}
+@media (max-width:460px){ .qs,.resets{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important} }
+</style>
+</head>
+<body>
+<header class="stage">
+  <div class="stage-inner">
+    <div class="slate"><span><b>Prompt book</b></span><span>Act: any talk</span><span>Running time: yours</span></div>
+    <h1>They can’t scroll back.</h1>
+    <p class="thesis">A reader can skim, pause and reread. A listener gets <em>one pass, at your speed</em>, and every sentence you say pushes the last one out of reach. Nearly every good presentation habit is a fix for that one fact.</p>
+  </div>
+  <div class="floor" aria-hidden="true"></div>
+</header>
+
+<main>
+<div class="book">
+
+<!-- CUE 1 -->
+<section class="cue" id="one-pass" aria-labelledby="h1a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 1</span><span class="circ">1</span><span class="go">standby…</span></div>
+  <div class="col">
+    <h2 id="h1a">Hear the problem before you fix it</h2>
+    <p class="lede">Here is the same sentence twice. On the left you can read it however you like. On the right it plays at a normal speaking pace, about 150 words a minute, and each word is gone once it’s spoken.</p>
+
+    <div class="duo">
+      <div class="panel">
+        <span class="label">On paper</span>
+        <div class="words" id="paperText"></div>
+        <span class="small">Reread it as many times as you want.</span>
+      </div>
+      <div class="panel listen" id="listenPanel">
+        <span class="label">Out loud</span>
+        <div class="words" id="listenText" aria-live="off"></div>
+        <div class="row">
+          <button class="btn primary" id="playLong" type="button">▶ Play the written version</button>
+          <button class="btn" id="playShort" type="button">▶ Play the spoken version</button>
+        </div>
+        <div class="verdict" id="verdict" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <p>The written sentence holds its main point until the last clause and stacks two qualifications before it. On paper that’s fine. Out loud, by the time the point arrives, the listener has already dropped the start. The spoken version says the same thing in three short sentences, with the conclusion first.</p>
+
+    <p>Once you see talks as one-pass, the standard advice stops being a list of rules and becomes a set of consequences:</p>
+    <ul class="fixes">
+      <li><b>Fewer ideas</b><span>Working memory holds a handful of things. Pick one idea and a few supports, and cut the rest.</span></li>
+      <li><b>Say the point first</b><span>Listeners can’t jump ahead to find out why a story matters. Tell them up front, then explain.</span></li>
+      <li><b>Signpost</b><span>A reader sees headings and page length. A listener only knows the structure if you say it out loud: “Second of three…”</span></li>
+      <li><b>Repeat on purpose</b><span>In writing, repetition is padding. In a talk it lets people who drifted for ten seconds catch up.</span></li>
+      <li><b>Short sentences</b><span>Subject, verb, point. Save the nested clauses for the handout.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CUE 2 -->
+<section class="cue" id="one-thing" aria-labelledby="h2a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 2</span><span class="circ">2</span><span class="go">decide first</span></div>
+  <div class="col">
+    <h2 id="h2a">Write the one sentence they’ll repeat tomorrow</h2>
+    <p class="lede">Before you open a slide tool, finish this sentence: <em>“If they remember one thing, it’s that…”</em> If you can’t, the talk isn’t ready to build, because everything else gets chosen by whether it supports that line.</p>
+
+    <div class="index-card">
+      <label for="oneLine" class="label">Your one sentence (the example is editable)</label>
+      <textarea id="oneLine" spellcheck="true">Moving the ID check to after the first purchase will stop half our new users from quitting during setup.</textarea>
+      <div class="meter" id="meter" aria-live="polite"></div>
+    </div>
+
+    <p>A good one sentence is a claim, not a topic. “An update on onboarding” is a topic. “Onboarding loses half our new users at one step, and we can fix it” is a claim. A claim gives the audience something to agree or disagree with, and it gives you a test for every slide: does this help prove the sentence?</p>
+
+    <div class="qs">
+      <div><h3>Who is in the room?</h3><p>What do they already know? Skip that. What words do they use? Use those.</p></div>
+      <div><h3>What do they need?</h3><p>A decision, a skill, a warning, a reason to care. Name it. It shapes the ending.</p></div>
+      <div><h3>What will they doubt?</h3><p>Their first objection is the evidence you need. Answer it before they raise it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 3 -->
+<section class="cue" id="shape" aria-labelledby="h3a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 3</span><span class="circ">3</span><span class="go">build</span></div>
+  <div class="col">
+    <h2 id="h3a">Give it a shape they can hear</h2>
+    <p class="lede">A reader sees the structure of a document at a glance. A listener only gets structure if you speak it. So a talk has three parts, and each one does a specific job. Here is a short example, marked up the way a stage manager marks a script.</p>
+
+    <div class="script" role="figure" aria-label="An annotated example talk script">
+      <div class="act">OPEN</div>
+      <div class="line"><q>“Last quarter, nearly half of our new users quit before they finished setting up.”</q><span class="ann">hook: a fact about <u>their</u> problem, not about you</span></div>
+      <div class="line"><q>“I’ll show you where they quit and why, and I’ll ask you to approve one fix.”</q><span class="ann red">destination + the ask, in the first minute</span></div>
+      <div class="line"><q>“Three parts: where they drop, why they drop, what we change.”</q><span class="ann">the map</span></div>
+      <div class="act">BODY</div>
+      <div class="line"><q>“First: where they drop. It’s one step, the ID check.”</q><span class="ann">signpost + the point, then the proof</span></div>
+      <div class="line"><q>“So that’s where. Now, why.”</q><span class="ann">close one door before opening the next</span></div>
+      <div class="line"><q>“One user told us: ‘I just wanted to look around first.’”</q><span class="ann">one real voice beats three charts</span></div>
+      <div class="act">CLOSE</div>
+      <div class="line"><q>“So: they quit at the ID check because we ask too early. Moving it after the first purchase fixes that.”</q><span class="ann">recap = your one sentence, word for word</span></div>
+      <div class="line"><q>“I’m asking for two sprints to ship it.”</q><span class="ann red">end on the ask, not on “any questions?”</span></div>
+    </div>
+
+    <p>This is the old rule, <em>tell them what you’ll tell them, tell them, tell them what you told them</em>, and it works for the reason in Cue 1: every listener drifts at some point, and each repetition is a place to rejoin.</p>
+
+    <h3 style="margin-top:26px">Talking to people who have to decide</h3>
+    <p>If your audience is senior, or busy, or both, lead with the answer and then give the reasons. This is Barbara Minto’s “pyramid principle.” Researchers and analysts are trained to do the opposite: tell the story in the order they discovered it and reveal the finding at the end. That suits a paper. In a meeting, it means the decision-maker spends ten minutes wondering where this is going.</p>
+    <div class="pyramid">
+      <div class="pyr"><span class="label">Order you found it</span>
+        <ol><li>Background</li><li>Data and method</li><li>What we tried</li><li>What we found</li><li class="muted">Recommendation (if time is left)</li></ol></div>
+      <div class="pyr"><span class="label">Order they need it</span>
+        <ol><li><span class="hl">Recommendation</span></li><li>Three reasons, strongest first</li><li>Evidence for each</li><li>Risks and what you ruled out</li><li class="muted">Method, in the appendix</li></ol></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 4 -->
+<section class="cue" id="attention" aria-labelledby="h4a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 4</span><span class="circ">4</span><span class="go">watch the house</span></div>
+  <div class="col">
+    <h2 id="h4a">Attention sags in the middle, so plan for it</h2>
+    <p class="lede">People remember beginnings and endings best. Psychologists call these the primacy and recency effects. The middle of a talk is where attention drifts, and where most of the content usually sits.</p>
+
+    <div class="figure">
+      <div class="row" style="justify-content:space-between; margin-bottom:8px">
+        <span class="label">A 30-minute talk · schematic</span>
+        <button class="btn" id="resetToggle" type="button" aria-pressed="false">Add resets</button>
+      </div>
+      <div class="scroll"><svg id="curve" viewBox="0 0 640 280" role="img" aria-label="Schematic attention curve: high at the start, sagging through the middle, rising at the end. With resets, attention recovers in bumps through the middle."></svg></div>
+      <p class="small" style="margin:8px 0 0">This shows the general shape, not measured values. The popular claim that people can only focus for 10 minutes has weak evidence behind it. The strong start, the sag and the strong finish are well supported.</p>
+    </div>
+
+    <p>You can’t remove the sag, but you can break it up. A <strong>reset</strong> is any change that signals “something new is starting”:</p>
+    <div class="resets">
+      <div><b>A story</b>One specific person, one specific moment.</div>
+      <div><b>A question</b>Ask it, then wait three full seconds.</div>
+      <div><b>A demo or object</b>Show it rather than describing it.</div>
+      <div><b>A change of voice</b>“Here’s the part that surprised us.”</div>
+    </div>
+    <p style="margin-top:18px">And spend the strong moments on purpose. Don’t open with an agenda slide or thanks to the organizers. Open with your hook. Don’t close with a “Questions?” slide. Take questions, then close again with your one sentence, so the last words people hear are yours.</p>
+  </div>
+</section>
+
+<!-- CUE 5 -->
+<section class="cue" id="slides" aria-labelledby="h5a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 5</span><span class="circ">5</span><span class="go">slides = scenery</span></div>
+  <div class="col">
+    <h2 id="h5a">Slides are billboards, not documents</h2>
+    <p class="lede">People can’t read and listen at the same time. If the slide is full of text, they read it and stop listening to you. Richard Mayer’s research on multimedia learning found that spoken words with a simple visual beat spoken words plus the same text on screen. So a slide should be readable in about three seconds while you keep talking.</p>
+
+    <div class="row" role="group" aria-label="Choose slide version">
+      <button class="btn" id="showDoc" type="button" aria-pressed="false">Document slide</button>
+      <button class="btn" id="showBill" type="button" aria-pressed="true">Billboard slide</button>
+    </div>
+    <div class="slide-wrap">
+      <div class="slide" id="slide" aria-live="polite"></div>
+      <p class="small" style="margin-top:8px">Example slide with illustrative data.</p>
+    </div>
+
+    <div class="rules">
+      <div><h3>The headline is a sentence</h3><p>“Q3 retention” is a label. “The Q3 dip is seasonal” is a point. Michael Alley calls this the assertion–evidence slide: a claim on top, visual proof below.</p></div>
+      <div><h3>One slide, one point</h3><p>If a slide makes two points, split it. More slides that each take less time beats fewer slides that are crowded.</p></div>
+      <div><h3>Highlight what matters</h3><p>On a chart, color the one line you’re talking about and grey out everything else. Tell them where to look.</p></div>
+      <div><h3>Notes go in the notes</h3><p>If a slide is there to remind you what to say, it’s your script. Put it in the speaker notes or on a card.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 6 -->
+<section class="cue" id="delivery" aria-labelledby="h6a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 6</span><span class="circ">6</span><span class="go">GO</span></div>
+  <div class="col">
+    <h2 id="h6a">Delivery: slower, with pauses, to one person at a time</h2>
+    <p class="lede">Most delivery advice is really about giving listeners time to take in each sentence before the next one arrives.</p>
+
+    <div class="moves">
+      <div class="move"><div class="k">Pause<small>the highlighter</small></div><div>
+        <p>After your key sentence, stop. Two seconds of silence tells people the last line mattered. It feels long to you and normal to them.</p>
+        <p class="pause-demo">“Half of new users quit at one step.<span class="gap" aria-label="pause"></span>One.”</p></div></div>
+      <div class="move"><div class="k">Pace<small>slower than feels right</small></div><div>
+        <p>Nerves speed you up. A comfortable pace for a talk is roughly 130–150 words a minute. Slow down most for numbers, names and your main point.</p></div></div>
+      <div class="move"><div class="k">Eyes<small>one person per thought</small></div><div>
+        <p>Say a full sentence to one person, then move to someone else. Sweeping your eyes across the room connects with nobody. Talking to one person at a time feels like conversation to everyone.</p></div></div>
+      <div class="move"><div class="k">Nerves<small>call it excitement</small></div><div>
+        <p>Trying to calm down rarely works, because a racing heart doesn’t slow on command. In Alison Wood Brooks’s 2014 experiments, people who told themselves “I am excited” before a speech were rated as more persuasive and confident than people who told themselves “I am calm.” The physical feeling is the same. What changes is what you call it.</p></div></div>
+      <div class="move"><div class="k">Rehearse<small>out loud, standing</small></div><div>
+        <p>Going over it in your head doesn’t count. Silent run-throughs skip the hard sentences and come out short. Rehearse aloud with a timer at least three times. Memorize your first 60 seconds, because that’s when nerves are worst. Don’t memorize the rest word for word; know the order of your points.</p></div></div>
+    </div>
+
+    <div class="budget">
+      <div>
+        <label for="mins" class="label">Your slot</label>
+        <div class="mins"><output id="minsOut" for="mins">15</output><span>minutes</span></div>
+        <input type="range" id="mins" min="3" max="60" step="1" value="15" aria-describedby="budgetHint">
+      </div>
+      <div class="out" id="budgetOut">
+        <div><b id="bWords">1,950–2,250</b><span>words, max, at 130–150 a minute. Less if you pause well.</span></div>
+        <div><b id="bPoints">3</b><span>main points, max. Fewer is fine.</span></div>
+        <div><b id="bRehearse">45 min</b><span>of out-loud rehearsal (three full run-throughs).</span></div>
+      </div>
+      <p class="small" id="budgetHint" style="grid-column:1/-1; margin:0">If your draft script runs over the word count, cut a point rather than talking faster.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 7 -->
+<section class="cue" id="qa" aria-labelledby="h7a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 7</span><span class="circ">7</span><span class="go">house lights up</span></div>
+  <div class="col">
+    <h2 id="h7a">Questions: repeat, answer short, bridge back</h2>
+    <p class="lede">Q&amp;A is still part of the talk, and it’s usually where people decide whether they trust you.</p>
+    <div class="qa">
+      <div><b>Repeat it</b><div><q>“The question is whether this holds for returning users too.”</q><p>So the room hears it, and so you get a few seconds to think.</p></div></div>
+      <div><b>Answer first</b><div><q>“Short answer: mostly, yes. Here’s why…”</q><p>Same rule as the talk. Lead with the answer and give reasons after.</p></div></div>
+      <div><b>Say “I don’t know”</b><div><q>“I don’t know. I’ll check and send it to everyone by Friday.”</q><p>Then actually send it. Guessing costs more trust than admitting a gap.</p></div></div>
+      <div><b>Bridge back</b><div><q>“Which comes back to the main point: the fix is small and it’s early.”</q><p>End the Q&amp;A with your one sentence again.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 8 -->
+<section class="cue" id="check" aria-labelledby="h8a">
+  <div class="margin" aria-hidden="true"><span class="cueno">Cue 8</span><span class="circ">8</span><span class="go">places, please</span></div>
+  <div class="col">
+    <h2 id="h8a">The night-before check</h2>
+    <p class="muted">Tick them off as you go. Your ticks are saved in this browser only.</p>
+    <ul class="checks" id="checks">
+      <li><label><input type="checkbox" id="c1"><span>I can say my one sentence without looking.</span></label></li>
+      <li><label><input type="checkbox" id="c2"><span>The first minute includes my hook, where we’re going and what I’m asking for.</span></label></li>
+      <li><label><input type="checkbox" id="c3"><span>Three points or fewer, each introduced out loud.</span></label></li>
+      <li><label><input type="checkbox" id="c4"><span>Every slide headline is a full sentence making a claim.</span></label></li>
+      <li><label><input type="checkbox" id="c5"><span>There’s a reset in the middle: a story, a question or a demo.</span></label></li>
+      <li><label><input type="checkbox" id="c6"><span>Rehearsed out loud with a timer, and it runs under time.</span></label></li>
+      <li><label><input type="checkbox" id="c7"><span>I’ve written down the three questions I least want to be asked, with answers.</span></label></li>
+      <li><label><input type="checkbox" id="c8"><span>The last slide shows my one sentence or my ask, not “Questions?”</span></label></li>
+    </ul>
+    <div class="tally" id="tally" aria-live="polite">0 of 8 · keep going</div>
+  </div>
+</section>
+
+</div>
+
+<footer class="curtain">
+  <p class="big">A document is something people read. A talk is something you walk them through, once, in order.</p>
+  <p>Further reading: Barbara Minto, <em>The Pyramid Principle</em> (lead with the answer). Michael Alley, <em>The Craft of Scientific Presentations</em> (assertion–evidence slides). Richard E. Mayer, <em>Multimedia Learning</em> (the redundancy principle). Alison Wood Brooks, “Get Excited: Reappraising Pre-Performance Anxiety as Excitement,” <em>Journal of Experimental Psychology: General</em>, 2014.</p>
+</footer>
+</main>
+
+<script>
+(function(){
+  /* ---------- Cue 1: read vs listen ---------- */
+  const LONG = "Although the Q3 retention dip, which we initially attributed to the pricing change, turned out, once we controlled for the shift in cohort mix during July, to be mostly seasonal, pricing still explains roughly a third of it.";
+  const SHORT = "The Q3 retention dip was mostly seasonal. Not pricing. Pricing explains about a third of it. The rest happens every summer.";
+  const paper = document.getElementById('paperText');
+  const listen = document.getElementById('listenText');
+  const panel = document.getElementById('listenPanel');
+  const verdict = document.getElementById('verdict');
+  paper.textContent = LONG;
+  let timer = null;
+  function setWords(text){
+    listen.innerHTML = '';
+    text.split(' ').forEach((w,i)=>{ const s=document.createElement('span'); s.textContent=w+' '; listen.appendChild(s); });
+  }
+  setWords(LONG);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function play(text, which){
+    clearTimeout(timer); panel.classList.remove('done'); setWords(text); verdict.textContent='';
+    const spans=[...listen.children]; let i=0;
+    const ms = 400; // 150 words per minute
+    function step(){
+      if(i>0){ spans[i-1].classList.remove('now'); spans[i-1].classList.add('gone'); }
+      if(i<spans.length){ spans[i].classList.add('now'); i++; timer=setTimeout(step, ms); }
+      else{
+        panel.classList.add('done');
+        verdict.textContent = which==='long'
+          ? "Quick: was pricing the cause or not? Hard to say without rereading."
+          : "Same facts. You probably caught the point on the first pass.";
+      }
+    }
+    step();
+  }
+  document.getElementById('playLong').addEventListener('click',()=>play(LONG,'long'));
+  document.getElementById('playShort').addEventListener('click',()=>play(SHORT,'short'));
+
+  /* ---------- Cue 2: one sentence meter ---------- */
+  const ta=document.getElementById('oneLine'), meter=document.getElementById('meter');
+  const topicStarts=/^(an?\s+)?(update|overview|introduction|intro|review|summary|discussion|thoughts)\b/i;
+  function rate(){
+    const t=ta.value.trim(); const words=t?t.split(/\s+/).length:0;
+    const chips=[];
+    if(!words){ meter.innerHTML='<span class="chip">Write one sentence</span>'; return; }
+    chips.push(words<=25 ? `<span class="chip ok"><i>${words}</i> words · sayable in one breath</span>` : `<span class="chip warn"><i>${words}</i> words · too long to repeat, so cut it</span>`);
+    const sentences=t.split(/[.!?]+\s/).filter(Boolean).length;
+    chips.push(sentences<=1 ? '<span class="chip ok">One sentence</span>' : `<span class="chip warn">${sentences} sentences · choose one</span>`);
+    chips.push(topicStarts.test(t) ? '<span class="chip warn">Reads like a topic. What’s the claim?</span>' : '<span class="chip ok">Reads like a claim</span>');
+    meter.innerHTML=chips.join('');
+  }
+  ta.addEventListener('input',rate); rate();
+
+  /* ---------- Cue 4: attention curve ---------- */
+  const svg=document.getElementById('curve'); const NS='http://www.w3.org/2000/svg';
+  const W=640,H=280,L=40,R=20,T=34,B=40; const pw=W-L-R, ph=H-T-B;
+  const X=t=>L+t/30*pw, Y=a=>T+(1-a)*ph;
+  const RESETS=[{t:9,l:'story'},{t:16,l:'question'},{t:23,l:'demo'}];
+  function base(t){ return 0.30 + 0.58*Math.exp(-t/5.5) + 0.52*Math.exp((t-30)/2.6); }
+  function withResets(t){
+    let a=base(t);
+    RESETS.forEach(r=>{ const d=t-r.t; a += d>=0 ? 0.36*Math.exp(-d/3.2) : 0.36*Math.exp(-(d*d)/0.35); });
+    return Math.min(a,0.97);
+  }
+  function pathFor(f){ let d=''; for(let i=0;i<=300;i++){ const t=i/10; d+=(i?'L':'M')+X(t).toFixed(1)+' '+Y(Math.min(f(t),0.97)).toFixed(1); } return d; }
+  function el(tag,attrs,text){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(text!=null) e.textContent=text; svg.appendChild(e); return e; }
+  [0,10,20,30].forEach(t=>{ el('line',{x1:X(t),x2:X(t),y1:T,y2:T+ph,class:'grid'}); el('text',{x:X(t),y:H-16,class:'tick','text-anchor':'middle'}, t+' min'); });
+  el('line',{x1:L,x2:L+pw,y1:T+ph,y2:T+ph,class:'axis'});
+  el('text',{x:L-10,y:T+10,class:'tick','text-anchor':'end'},'high');
+  el('text',{x:L-10,y:T+ph,class:'tick','text-anchor':'end'},'low');
+  const area=el('path',{class:'area'}); const baseLine=el('path',{class:'base',d:pathFor(base),opacity:0});
+  const line=el('path',{class:'line'});
+  const g=document.createElementNS(NS,'g'); svg.appendChild(g);
+  RESETS.forEach(r=>{ const a=withResets(r.t+0.2);
+    const l=document.createElementNS(NS,'line'); l.setAttribute('x1',X(r.t)); l.setAttribute('x2',X(r.t)); l.setAttribute('y1',Y(a)-6); l.setAttribute('y2',T+ph); l.setAttribute('class','reset'); g.appendChild(l);
+    const tx=document.createElementNS(NS,'text'); tx.setAttribute('x',X(r.t)); tx.setAttribute('y',Y(a)-12); tx.setAttribute('text-anchor','middle'); tx.setAttribute('class','resetlbl'); tx.textContent=r.l; g.appendChild(tx); });
+  el('text',{x:X(1.2),y:Y(0.93)-2,class:'ann'},'fresh');
+  const sag=el('text',{x:X(15),y:Y(0.30)-12,class:'ann','text-anchor':'middle'},'the sag');
+  el('text',{x:X(29.6),y:Y(0.93)-6,class:'ann','text-anchor':'end'},'“in closing…”');
+  let on=false;
+  function draw(){
+    const f=on?withResets:base; const d=pathFor(f);
+    line.setAttribute('d',d); area.setAttribute('d',d+` L${X(30)} ${T+ph} L${X(0)} ${T+ph} Z`);
+    g.setAttribute('opacity',on?1:0); baseLine.setAttribute('opacity',on?1:0); sag.setAttribute('opacity',on?0:1);
+  }
+  draw();
+  const rt=document.getElementById('resetToggle');
+  rt.addEventListener('click',()=>{ on=!on; rt.setAttribute('aria-pressed',on); rt.textContent=on?'Remove resets':'Add resets'; draw(); });
+
+  /* ---------- Cue 5: slide toggle ---------- */
+  const slide=document.getElementById('slide');
+  function chart(){
+    const months=['J','F','M','A','M','J','J','A','S','O','N','D'];
+    const y23=[78,77,78,79,78,75,70,69,72,76,78,79], y24=[79,78,79,79,77,74,69,68,71,76,78,80], y25=[80,79,80,79,77,73,67,66,70,75,77,78];
+    const w=600,h=180,l=34,r=74,t=8,b=24; const px=i=>l+i*(w-l-r)/11, py=v=>t+(84-v)/(84-62)*(h-t-b);
+    const p=a=>a.map((v,i)=>(i?'L':'M')+px(i).toFixed(1)+' '+py(v).toFixed(1)).join('');
+    let s=`<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">`;
+    s+=`<rect x="${px(6)-10}" y="${t}" width="${px(8)-px(6)+20}" height="${h-t-b}" fill="#E9A92A" opacity=".14"/>`;
+    [65,75].forEach(v=>{ s+=`<line x1="${l}" x2="${w-r}" y1="${py(v)}" y2="${py(v)}" stroke="#D5DAD5" stroke-dasharray="2 4"/><text x="${l-6}" y="${py(v)+4}" font-size="11" fill="#6E7772" text-anchor="end" font-family="Courier Prime, monospace">${v}%</text>`; });
+    months.forEach((m,i)=>{ s+=`<text x="${px(i)}" y="${h-6}" font-size="11" fill="#6E7772" text-anchor="middle" font-family="Courier Prime, monospace">${m}</text>`; });
+    s+=`<path d="${p(y23)}" fill="none" stroke="#B8BFBA" stroke-width="2"/><path d="${p(y24)}" fill="none" stroke="#B8BFBA" stroke-width="2"/>`;
+    s+=`<path d="${p(y25)}" fill="none" stroke="#C9860F" stroke-width="3.5" stroke-linejoin="round"/>`;
+    s+=`<text x="${px(11)+8}" y="${py(y25[11])+4}" font-size="13" font-weight="700" fill="#C9860F" font-family="Figtree, sans-serif">2025</text>`;
+    s+=`<text x="${px(11)+8}" y="${py(y24[11])-6}" font-size="12" fill="#8A938E" font-family="Figtree, sans-serif">’23, ’24</text>`;
+    s+=`</svg>`; return s;
+  }
+  const DOC=`<div class="doc"><span class="stamp bad">READ, DON’T LISTEN</span><h4>Q3 Retention Update</h4><ul>
+    <li>Monthly retention declined from 79% (Apr) to 66% (Aug), a 13-point drop</li>
+    <li>Initial hypothesis: pricing change on 1 July impacted renewals</li>
+    <li>Controlled for cohort mix shift (July acquisition skewed to paid social)</li>
+    <li>Similar Jul–Sep pattern observed in 2023 and 2024 (seasonality)</li>
+    <li>Residual effect attributable to pricing estimated at ~⅓ of decline</li>
+    <li>Next steps: monitor Oct–Nov, revisit pricing tiers, align with Finance</li></ul></div>`;
+  const BILL=`<div class="bill"><span class="stamp good">3-SECOND READ</span><h4>The Q3 dip happens every summer. Pricing explains only about a third of it.</h4>${chart()}</div><span class="src">Monthly retention, illustrative</span>`;
+  const bDoc=document.getElementById('showDoc'), bBill=document.getElementById('showBill');
+  function show(which){ slide.innerHTML = which==='doc'?DOC:BILL; bDoc.setAttribute('aria-pressed',which==='doc'); bBill.setAttribute('aria-pressed',which!=='doc'); }
+  bDoc.addEventListener('click',()=>show('doc')); bBill.addEventListener('click',()=>show('bill'));
+  show('bill');
+
+  /* ---------- Cue 6: budget ---------- */
+  const mins=document.getElementById('mins'), mo=document.getElementById('minsOut');
+  const fmt=n=>n.toLocaleString('en-US');
+  function budget(){
+    const m=+mins.value; mo.textContent=m;
+    document.getElementById('bWords').textContent=fmt(Math.round(m*130/10)*10)+'–'+fmt(Math.round(m*150/10)*10);
+    document.getElementById('bPoints').textContent = m<=7 ? '1' : m<=12 ? '2' : '3';
+    const r=m*3; document.getElementById('bRehearse').textContent = r>=60 ? (Math.floor(r/60)+' h'+(r%60?' '+(r%60)+' min':'')) : r+' min';
+  }
+  mins.addEventListener('input',budget); budget();
+
+  /* ---------- Cue 8: checklist ---------- */
+  const KEY='onepass-checks'; let saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+  const boxes=[...document.querySelectorAll('#checks input')]; const tally=document.getElementById('tally');
+  function upd(){
+    const n=boxes.filter(b=>b.checked).length;
+    tally.textContent = n+' of 8 · ' + (n===8 ? 'you’re ready. Get some sleep.' : n>=5 ? 'nearly there' : 'keep going');
+  }
+  boxes.forEach(b=>{ b.checked=!!saved[b.id]; b.addEventListener('change',()=>{ saved[b.id]=b.checked; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} upd(); }); });
+  upd();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

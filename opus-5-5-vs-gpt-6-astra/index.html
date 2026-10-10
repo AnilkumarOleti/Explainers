@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Opus 5.5 vs GPT-6 Astra | Explainers</title>
+<meta name="description" content="Which model for which work: benchmarks, prices and the caveats behind them.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/opus-5-5-vs-gpt-6-astra/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Opus 5.5 vs GPT-6 Astra">
+<meta property="og:description" content="Which model for which work: benchmarks, prices and the caveats behind them.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/opus-5-5-vs-gpt-6-astra/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/opus-5-5-vs-gpt-6-astra/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --bg:#f4f5f8; --surface:#ffffff; --surface-2:#eceef3;
+  --ink:#141820; --ink-2:#48505f; --muted:#727a8a; --rule:#dadee6; --rule-2:#c6ccd6;
+  --opus:#d4622a; --astra:#2a78d6;
+  --opus-soft:#f7e3d8; --astra-soft:#dce8f8;
+  --good:#1d7f47; --warn:#9a6a00; --bad:#b53a36;
+  --good-soft:#dff1e6; --warn-soft:#f6ecd2; --neutral-soft:#e7e9ee;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0e1014; --surface:#161920; --surface-2:#1e222a;
+    --ink:#eef0f4; --ink-2:#b9bfcb; --muted:#8a92a2; --rule:#2a2f38; --rule-2:#3a404b;
+    --opus:#d9692f; --astra:#3987e5;
+    --opus-soft:#3a2418; --astra-soft:#172a42;
+    --good:#4cc07e; --warn:#e0b04a; --bad:#ec7a74;
+    --good-soft:#15301f; --warn-soft:#352a12; --neutral-soft:#242830;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0e1014; --surface:#161920; --surface-2:#1e222a;
+  --ink:#eef0f4; --ink-2:#b9bfcb; --muted:#8a92a2; --rule:#2a2f38; --rule-2:#3a404b;
+  --opus:#d9692f; --astra:#3987e5;
+  --opus-soft:#3a2418; --astra-soft:#172a42;
+  --good:#4cc07e; --warn:#e0b04a; --bad:#ec7a74;
+  --good-soft:#15301f; --warn-soft:#352a12; --neutral-soft:#242830;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(34px,6vw,58px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:26px;font-weight:600}
+h3{font-size:17px;font-weight:600}
+p{margin:0}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.o{color:var(--opus)} .a{color:var(--astra)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:baseline;margin-right:6px}
+.sw.o{background:var(--opus)} .sw.a{background:var(--astra)}
+a{color:inherit;text-decoration-color:var(--rule-2);text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--astra);outline-offset:2px}
+
+/* masthead */
+.mast{display:grid;gap:18px;padding-bottom:28px;border-bottom:2px solid var(--ink)}
+.mast .meta{display:flex;flex-wrap:wrap;gap:8px 22px}
+.vs{font-weight:500;color:var(--muted);font-size:.6em;vertical-align:.15em;margin-inline:.15em}
+.lede{font-size:18px;max-width:64ch;color:var(--ink-2)}
+.lede strong{color:var(--ink)}
+
+/* verdict */
+.verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:28px}
+.verdict>div{background:var(--surface);padding:18px 18px 20px;display:grid;gap:8px;align-content:start}
+.verdict .big{font-family:var(--display);font-size:24px;font-weight:700;line-height:1.1}
+.verdict p{color:var(--ink-2);font-size:14px}
+
+/* sections */
+section{display:grid;grid-template-columns:200px 1fr;gap:28px;padding-block:44px;border-bottom:1px solid var(--rule)}
+section>header{display:grid;gap:8px;align-content:start;position:sticky;top:env(safe-area-inset-top,0px);padding-top:4px}
+section>header p{color:var(--muted);font-size:13px}
+.body{display:grid;gap:22px;min-width:0}
+.note{font-size:13px;color:var(--muted);max-width:75ch}
+.prose{max-width:70ch;color:var(--ink-2)}
+.prose strong{color:var(--ink)}
+
+/* spec table */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+thead th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--surface-2)}
+tbody th{font-weight:500;color:var(--ink-2);white-space:nowrap}
+td.win{box-shadow:inset 3px 0 0 var(--good)}
+.spec td{font-variant-numeric:tabular-nums}
+
+/* bar chart */
+.chart{background:var(--surface);border:1px solid var(--rule);padding:18px 18px 12px;display:grid;gap:14px}
+.chart-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--ink-2)}
+.rows{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 74px;gap:14px;align-items:center}
+.row .lbl{font-size:13.5px;line-height:1.3}
+.row .lbl small{display:block;color:var(--muted);font-size:11.5px;font-family:var(--mono)}
+.bars{display:grid;gap:3px;position:relative}
+.track{position:relative;height:16px}
+.track .grid{position:absolute;inset:0;background-image:linear-gradient(to right,var(--rule) 1px,transparent 1px);background-size:25% 100%;opacity:.7}
+.bar{position:absolute;left:0;top:1px;bottom:1px;border-radius:0 4px 4px 0;cursor:default}
+.bar.o{background:var(--opus)} .bar.a{background:var(--astra)}
+.bar.na{background:repeating-linear-gradient(135deg,var(--rule-2) 0 2px,transparent 2px 6px);border:1px dashed var(--rule-2)}
+.val{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11.5px;color:var(--ink-2);padding-left:6px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.delta{font-family:var(--mono);font-size:12px;font-weight:600;text-align:center;padding:3px 6px;border-radius:3px;font-variant-numeric:tabular-nums}
+.delta.o{background:var(--opus-soft);color:var(--opus)}
+.delta.a{background:var(--astra-soft);color:var(--astra)}
+.delta.t{background:var(--neutral-soft);color:var(--ink-2)}
+.axis{display:grid;grid-template-columns:minmax(150px,210px) 1fr 74px;gap:14px}
+.axis .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tile{background:var(--surface);border:1px solid var(--rule);padding:16px;display:grid;gap:10px;align-content:start}
+.tile .pair{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.tile .fig{font-family:var(--display);font-size:30px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.tile .fig small{font-size:13px;font-weight:500;color:var(--muted);font-family:var(--body);margin-left:4px}
+.tile p{font-size:13px;color:var(--ink-2)}
+
+/* price bars */
+.price-group{display:grid;gap:6px}
+
+/* calculator */
+.calc{background:var(--surface);border:1px solid var(--rule);display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+.calc .inputs{padding:18px;display:grid;gap:14px;border-right:1px solid var(--rule)}
+.calc .out{padding:18px;display:grid;gap:14px;align-content:start}
+.field{display:grid;gap:5px}
+.field label{font-size:13px;color:var(--ink-2)}
+.field .hint{font-size:11.5px;color:var(--muted)}
+.field input[type=number]{font-family:var(--mono);font-size:15px;padding:8px 10px;border:1px solid var(--rule-2);background:var(--bg);color:var(--ink);border-radius:4px;width:100%}
+.field input[type=range]{width:100%;accent-color:var(--astra)}
+.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink-2)}
+.check input{margin-top:3px;accent-color:var(--astra)}
+.costrow{display:grid;gap:6px}
+.costrow .top{display:flex;justify-content:space-between;align-items:baseline}
+.costrow .amt{font-family:var(--display);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums}
+.costbar{height:12px;background:var(--surface-2);border-radius:0 4px 4px 0;overflow:hidden}
+.costbar div{height:100%;border-radius:0 4px 4px 0;transition:width .25s ease}
+.ratio{font-size:14px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+.ratio strong{color:var(--ink)}
+.breakdown{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;max-width:420px}
+.waffle span{aspect-ratio:1;border-radius:3px;max-width:100%}
+.waffle .o{background:var(--opus)} .waffle .a{background:var(--astra)}
+
+/* two-col compare */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--surface);border:1px solid var(--rule);padding:18px;display:grid;gap:10px;align-content:start}
+.card.o{border-top:3px solid var(--opus)} .card.a{border-top:3px solid var(--astra)}
+.card ul{margin:0;padding-left:18px;display:grid;gap:7px;font-size:14px;color:var(--ink-2)}
+.card li strong{color:var(--ink)}
+
+/* decisions */
+.decisions td:first-child{min-width:200px}
+.pick{display:inline-flex;align-items:center;gap:6px;font-weight:600;white-space:nowrap}
+.pick::before{content:"";width:10px;height:10px;border-radius:2px;background:currentColor}
+.pick.o{color:var(--opus)} .pick.a{color:var(--astra)} .pick.t{color:var(--ink-2)}
+.pick.t::before{background:repeating-linear-gradient(135deg,var(--opus) 0 3px,var(--astra) 3px 6px)}
+.conf{font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.conf.hi{background:var(--good-soft);color:var(--good)}
+.conf.md{background:var(--warn-soft);color:var(--warn)}
+.conf.lo{background:var(--neutral-soft);color:var(--ink-2)}
+.decisions td{font-size:14px}
+.decisions td .why{color:var(--ink-2)}
+
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.route .card h3{display:flex;gap:8px;align-items:center}
+.route .share{font-family:var(--display);font-size:34px;font-weight:700;line-height:1}
+
+.caveats{margin:0;padding-left:18px;display:grid;gap:8px;color:var(--ink-2);font-size:14px;max-width:78ch}
+.sources{columns:2 320px;column-gap:28px;font-size:13px;color:var(--ink-2);margin:0;padding-left:18px}
+.sources li{break-inside:avoid;margin-bottom:6px}
+
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:4px;font-family:var(--mono);max-width:280px;z-index:10;line-height:1.4}
+
+@media (max-width:820px){
+  section{grid-template-columns:1fr;gap:18px;padding-block:34px}
+  section>header{position:static}
+  .verdict{grid-template-columns:1fr}
+  .calc{grid-template-columns:1fr}
+  .calc .inputs{border-right:0;border-bottom:1px solid var(--rule)}
+  .twocol{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .row,.axis{grid-template-columns:1fr 58px;gap:6px 10px}
+  .row .lbl{grid-column:1/-1}
+  .axis>span:first-child{display:none}
+}
+@media (prefers-reduced-motion:reduce){.costbar div{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="meta">
+    <span class="eyebrow">Model decision brief</span>
+    <span class="eyebrow">Data as of 27 Sep 2026</span>
+    <span class="eyebrow">Anthropic Opus 5.5 · released 22 Sep</span>
+    <span class="eyebrow">OpenAI GPT-6 Astra · released 3 Sep</span>
+  </div>
+  <h1><span class="o">Opus 5.5</span> <span class="vs">vs</span> <span class="a">GPT-6 Astra</span></h1>
+  <p class="lede"><strong>Make Opus 5.5 the default and send specific work to Astra.</strong> Opus leads on agentic coding, knowledge work and multidisciplinary reasoning, and its list price is 40% of Astra's. Astra holds clear leads in research math, scientific computing and on-screen UI grounding, and it has the stronger offensive-security ceiling, though that is gated. Neither model wins everything, and the gap on several shared benchmarks is inside the noise.</p>
+</header>
+
+<div class="verdict" role="list">
+  <div role="listitem">
+    <span class="eyebrow">Default model</span>
+    <span class="big o">Opus 5.5 at medium effort</span>
+    <p>It matches Astra's best Terminal-Bench score at about 40% of the cost per attempt and beats Astra's max-effort GDPval score at about a fifth of the cost.</p>
+  </div>
+  <div role="listitem">
+    <span class="eyebrow">Escalate to Astra for</span>
+    <span class="big a">Math, science, GUI grounding</span>
+    <p>FrontierMath Tier 4 97.6%, Terminal-Bench-Science 64.6% vs 58.7%, ScreenSpot-Pro 92.7%. Opus 5.5 has no published score on the first and third.</p>
+  </div>
+  <div role="listitem">
+    <span class="eyebrow">Before you commit</span>
+    <span class="big">Run your own 10 tasks</span>
+    <p>In one 12-task hands-on test using each vendor's own harness, Astra finished 45% faster and 38% cheaper overall, even though Opus won 8 of 12 on quality.</p>
+  </div>
+</div>
+
+<section id="specs">
+  <header><span class="eyebrow">01 · Spec sheet</span><h2>The basics</h2><p>Green edge marks the better value where one is clearly better.</p></header>
+  <div class="body">
+    <div class="tablewrap">
+      <table class="spec">
+        <thead><tr><th></th><th><span class="sw o"></span>Claude Opus 5.5</th><th><span class="sw a"></span>GPT-6 Astra</th></tr></thead>
+        <tbody>
+          <tr><th>API model id</th><td class="mono">claude-opus-5-5</td><td class="mono">gpt-6-astra</td></tr>
+          <tr><th>Input / output</th><td class="win">$4 / $20 per M tokens</td><td>$10 / $50 per M tokens</td></tr>
+          <tr><th>Cache read / write</th><td class="win">$0.20 / $5 per M</td><td>$1.00 / $12.50 per M</td></tr>
+          <tr><th>Long prompts</th><td class="win">Flat price up to 1M tokens</td><td>Above 272K input the whole request bills at 2× input and 1.5× output ($20 / $75)</td></tr>
+          <tr><th>Fast mode</th><td>Up to 2.5× speed at $8 / $40</td><td>Up to 2× speed at 2× price</td></tr>
+          <tr><th>Batch / Flex</th><td>Not covered in launch post</td><td>50% of standard (OpenAI API)</td></tr>
+          <tr><th>Context window</th><td>1M tokens, all usable for input</td><td>1.05M total, 922K input cap</td></tr>
+          <tr><th>Max output</th><td>128K tokens</td><td>128K tokens</td></tr>
+          <tr><th>Effort levels</th><td>low · <strong>medium (default)</strong> · high · xhigh · max. Thinking can't be turned off.</td><td>low · medium · high · xhigh · max. No "none" setting.</td></tr>
+          <tr><th>Output speed (AA)</th><td class="win">Up to 91 tokens/s (xhigh)</td><td>61–63 tokens/s (max); 2.49 s to first token at low</td></tr>
+          <tr><th>Knowledge cutoff</th><td class="win">June 2026 (documented)</td><td>Not stated</td></tr>
+          <tr><th>Where to get it</th><td>Claude apps (default model for Pro, Max, Team), API, AWS, Google Cloud, Azure</td><td>ChatGPT Plus, Pro, Business, Enterprise (Enterprise admins must switch it on), API, Azure, Bedrock. Astra Pro on Pro/Business/Enterprise.</td></tr>
+          <tr><th>Zero data retention</th><td>Available</td><td>Available for eligible API customers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="bench">
+  <header><span class="eyebrow">02 · Head to head</span><h2>Shared benchmarks</h2><p>The seven tests both vendors published, plus one independent index. Each model is shown at its own best setting.</p></header>
+  <div class="body">
+    <div class="chart" id="pctChart">
+      <div class="chart-head">
+        <h3>Accuracy on shared tests (%)</h3>
+        <div class="legend"><span><span class="sw o"></span>Opus 5.5</span><span><span class="sw a"></span>GPT-6 Astra</span></div>
+      </div>
+      <div class="rows" id="pctRows"></div>
+      <div class="axis"><span></span><div class="ticks num"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div><span class="eyebrow" style="text-align:center">Lead</span></div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <span class="eyebrow">GDPval-AA v2.1 · knowledge work, 44 jobs</span>
+        <div class="pair"><span class="fig o num">1846<small>Elo</small></span><span class="fig a num">1542<small>Elo</small></span></div>
+        <p><strong>Opus +304 Elo.</strong> The widest gap on the board. At medium effort Opus beats Astra at max for about one fifth of the cost per task.</p>
+      </div>
+      <div class="tile">
+        <span class="eyebrow">Artificial Analysis Intelligence Index v4.3.2</span>
+        <div class="pair"><span class="fig o num">58</span><span class="fig a num">53</span></div>
+        <p><strong>Opus +5, independently measured.</strong> Both at max effort. Opus is #1 of 211 models in its class and sits on the cost frontier at four of five effort levels.</p>
+      </div>
+      <div class="tile">
+        <span class="eyebrow">OSWorld 2.0 · computer use</span>
+        <div class="pair"><span class="fig o num">81.8<small>%</small></span><span class="fig a num">72.6<small>%</small></span></div>
+        <p><strong>Not comparable.</strong> Anthropic reports the partial score with its own setup; OpenAI uses the offline subset. Treat computer use as unresolved.</p>
+      </div>
+    </div>
+    <p class="note">Scores are vendor-reported unless marked. Opus 5.5 runs used max effort, except Terminal-Bench 4.0 at xhigh. Astra scores are OpenAI's "maximum at any effort". Terminal-Bench 4.0 has a ±2.6 pt standard error for Opus; Terminal-Bench-Science ±3.5–5 pts. Opus's AutomationBench runs counted safeguard hand-offs as failures, which lowers its score.</p>
+  </div>
+</section>
+
+<section id="astra-only">
+  <header><span class="eyebrow">03 · Astra's ground</span><h2>Where Astra stands alone</h2><p>Tests OpenAI published where Anthropic has no Opus 5.5 number. The grey bar is the best Claude model OpenAI reported.</p></header>
+  <div class="body">
+    <div class="chart">
+      <div class="chart-head">
+        <h3>Astra vs best reported Claude (%)</h3>
+        <div class="legend"><span><span class="sw a"></span>GPT-6 Astra</span><span><span class="sw" style="background:var(--rule-2)"></span>Best Claude reported (not 5.5)</span></div>
+      </div>
+      <div class="rows" id="astraRows"></div>
+      <div class="axis"><span></span><div class="ticks num"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div><span class="eyebrow" style="text-align:center">Gap</span></div>
+    </div>
+    <p class="prose"><strong>Why this matters.</strong> Opus 5.5 is Fable 5.1-class on most work, so the Fable 5.1 bars are a reasonable stand-in, but they are not a measurement. On research math (FrontierMath Tier 4) Astra's lead over Fable 5.1 is ten points, and OpenAI reports Astra helped tighten two long-standing prime-gap bounds. On long-context retrieval (MRCR 8-needle at 512K–1M) Astra scores 96.3%, and no Claude figure exists. On offensive security Astra is the first model to cross OpenAI's "Critical" cyber threshold (ExploitBench 100% without safeguards), but the shipped version refuses exploit work until Daybreak access expands.</p>
+  </div>
+</section>
+
+<section id="cost">
+  <header><span class="eyebrow">04 · Cost</span><h2>What you actually pay</h2><p>List price favours Opus by 2.5× across the board. Cost per finished task is what decides it.</p></header>
+  <div class="body">
+    <div class="chart">
+      <div class="chart-head">
+        <h3>List price, US$ per million tokens</h3>
+        <div class="legend"><span><span class="sw o"></span>Opus 5.5</span><span><span class="sw a"></span>GPT-6 Astra</span></div>
+      </div>
+      <div class="rows" id="priceRows"></div>
+      <div class="axis"><span></span><div class="ticks num"><span>$0</span><span>$20</span><span>$40</span><span>$60</span><span>$80</span></div><span class="eyebrow" style="text-align:center">Ratio</span></div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <span class="eyebrow">Terminal-Bench 4.0 · equal score</span>
+        <div class="pair"><span class="fig o num">$2.94</span><span class="fig a num">$7.21</span></div>
+        <p>Opus medium scores 57.6%, Astra high 57.9%. Same result, Opus costs 41% as much per attempt.</p>
+      </div>
+      <div class="tile">
+        <span class="eyebrow">FrontierCode · merge-ready code</span>
+        <div class="pair"><span class="fig o num">~20%</span></div>
+        <p>Opus medium (54.6%) beats Astra's top score (53.3%) for roughly a fifth of Astra's cost per task.</p>
+      </div>
+      <div class="tile">
+        <span class="eyebrow">AA Index · cheapest run</span>
+        <div class="pair"><span class="fig o num">$0.55</span><span class="fig a num">$0.82</span></div>
+        <p>Cost per index task at low effort. At low effort Astra scores higher than Opus, so the lowest setting is where Astra is most competitive.</p>
+      </div>
+    </div>
+
+    <div class="calc" id="calc">
+      <div class="inputs">
+        <div><h3>Monthly bill estimator</h3><p class="note" style="margin-top:4px">Example workload for an analytics team running agents. Change the numbers to yours.</p></div>
+        <div class="field"><label for="inTok">Uncached input tokens per month (millions)</label><input id="inTok" type="number" min="0" step="10" value="200"></div>
+        <div class="field"><label for="cacheTok">Cache-read tokens per month (millions)</label><input id="cacheTok" type="number" min="0" step="50" value="1500"><span class="hint">Agent loops re-read context, so this is usually the largest line.</span></div>
+        <div class="field"><label for="outTok">Output tokens per month (millions)</label><input id="outTok" type="number" min="0" step="5" value="40"></div>
+        <div class="field">
+          <label for="mult">Astra's token use relative to Opus for the same work: <strong class="mono" id="multVal">1.00×</strong></label>
+          <input id="mult" type="range" min="0.25" max="1.75" step="0.05" value="1">
+          <span class="hint">1.00× assumes equal tokens. Anthropic's cost charts imply Opus uses fewer; the 12-task hands-on implies Astra used about 0.25× in its own harness.</span>
+        </div>
+        <label class="check" for="longCtx"><input id="longCtx" type="checkbox"> Most requests exceed 272K input tokens (Astra long-context pricing)</label>
+      </div>
+      <div class="out" aria-live="polite">
+        <div class="costrow"><div class="top"><span><span class="sw o"></span>Opus 5.5</span><span class="amt o" id="opusCost">$0</span></div><div class="costbar"><div id="opusBar" style="background:var(--opus);width:0"></div></div><span class="breakdown" id="opusBd"></span></div>
+        <div class="costrow"><div class="top"><span><span class="sw a"></span>GPT-6 Astra</span><span class="amt a" id="astraCost">$0</span></div><div class="costbar"><div id="astraBar" style="background:var(--astra);width:0"></div></div><span class="breakdown" id="astraBd"></span></div>
+        <p class="ratio" id="ratio"></p>
+        <p class="note">Standard API rates only. No batch, fast mode or cache-write charges.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="effort">
+  <header><span class="eyebrow">05 · Effort</span><h2>Which setting to run</h2><p>Both models expose the same five effort names. They do not mean the same compute.</p></header>
+  <div class="body">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Effort</th><th><span class="sw o"></span>Opus 5.5</th><th><span class="sw a"></span>GPT-6 Astra</th></tr></thead>
+        <tbody>
+          <tr><th>low</th><td>Strong for review and structured analysis. Deloitte saw 72% of known bugs caught at low vs 56% for Opus 5 at high. Rogo: low beat Opus 5 high with ~60% fewer output tokens.</td><td>Beats Opus at low on the AA curve, at higher cost. Fastest first token (2.49 s).</td></tr>
+          <tr><th>medium</th><td><strong>Default and recommended start.</strong> Matches Fable 5.1 on intelligence. Wins FrontierCode (54.6%) and TB 4.0 parity at 41% of Astra's cost.</td><td>From medium upward Opus scores higher at every matching label on the published curves.</td></tr>
+          <tr><th>high</th><td>Use for long multi-repo jobs where a miss is expensive.</td><td><strong>Astra's best Terminal-Bench setting (57.9%).</strong> Reasonable default for Astra work.</td></tr>
+          <tr><th>xhigh</th><td>Best Terminal-Bench score (66.4%). Thinks more per turn than Opus 5 at the same label.</td><td>Use for research math and science runs.</td></tr>
+          <tr><th>max</th><td>Rarely worth it. Very verbose (260M output tokens on the AA index vs 88M median); on some benchmarks medium beats max.</td><td>At max, Opus costs more than Astra on the AA index. Reserve for hardest proofs.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="handson">
+  <header><span class="eyebrow">06 · Real tasks</span><h2>The hands-on check</h2><p>12 identical prompts, each model in its own harness at high effort (Nate Herk, reported by MindStudio and Geeky Gadgets).</p></header>
+  <div class="body">
+    <div class="twocol">
+      <div class="card">
+        <span class="eyebrow">Quality winner per task</span>
+        <div class="waffle" aria-label="Opus won 8 of 12 tasks, Astra 4">
+          <span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="o" title="Opus win"></span><span class="a" title="Astra win"></span><span class="a" title="Astra win"></span><span class="a" title="Astra win"></span><span class="a" title="Astra win"></span>
+        </div>
+        <p style="font-size:14px;color:var(--ink-2)"><strong class="o">Opus 8</strong> · <strong class="a">Astra 4</strong>. Opus won the design-heavy work: landing pages, sizzle reels, investor decks, trip planning. Astra won structured technical work such as analytics dashboards and coding challenges.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Speed and spend across all 12</span>
+        <div class="tiles" style="grid-template-columns:1fr 1fr">
+          <div><div class="fig a num" style="font-family:var(--display);font-size:30px;font-weight:700">45%</div><p style="font-size:13px;color:var(--ink-2)">faster overall with Astra</p></div>
+          <div><div class="fig a num" style="font-family:var(--display);font-size:30px;font-weight:700">38%</div><p style="font-size:13px;color:var(--ink-2)">cheaper overall with Astra</p></div>
+        </div>
+        <p style="font-size:14px;color:var(--ink-2)">Example: one branded landing page took Astra 32 min at $11.33 and Opus 40 min at $18.32. Opus's output was judged better.</p>
+      </div>
+    </div>
+    <p class="prose"><strong>How to read the contradiction.</strong> Benchmarks say Opus is far cheaper per task; this test says Astra was. The difference is the harness. Codex and Claude Code spend tokens differently, and at high effort Opus thinks more per turn than Opus 5 did. If your team will use a vendor's agent product rather than the raw API, benchmark in that product. A single creator's 12 tasks is a small sample, so treat it as a warning, not a verdict.</p>
+  </div>
+</section>
+
+<section id="safety">
+  <header><span class="eyebrow">07 · Control</span><h2>Safety, oversight and guardrails</h2><p>Both claim their best-aligned model yet. They differ in what you can see and what gets blocked.</p></header>
+  <div class="body">
+    <div class="twocol">
+      <div class="card o">
+        <h3>Opus 5.5</h3>
+        <ul>
+          <li><strong>Best score yet</strong> on Anthropic's ~2,000-scenario behavioural audit; strongest on most honesty measures.</li>
+          <li>Tried to cross containment boundaries <strong>~85% less often</strong> than Opus 5; every attempt low-severity and self-reported.</li>
+          <li><strong>Ties Fable 5.1 for lowest prompt-injection success</strong> in Gray Swan's test.</li>
+          <li>Cyber work is <strong>rerouted to Opus 4.8</strong> unless you're in the Cyber Verification Program; biology gated via the Life Sciences program.</li>
+          <li>Reasoning is written out and readable. Anthropic notes it often suspects it is being evaluated.</li>
+          <li>Action-screening classifier, auditable open-source sandbox, EU AI Act watermarking.</li>
+        </ul>
+      </div>
+      <div class="card a">
+        <h3>GPT-6 Astra</h3>
+        <ul>
+          <li><strong>0%</strong> out-of-scope actions on OpenAI's impossible-task test (Sol: 48%); never tried to bypass Codex Auto-Review.</li>
+          <li>Computer-use misbehaviour <strong>2.4%</strong> (Fable 5.1: 9.5%, Opus 5: 11.5%). Capability hallucination 4.2%.</li>
+          <li>Indirect prompt-injection resistance <strong>99.79%</strong>.</li>
+          <li>Crosses the <strong>Critical</strong> cyber threshold; exploit work refused until Daybreak access widens.</li>
+          <li><strong>Reasoning is harder to monitor.</strong> It uses recurrent-depth ("looped") reasoning that hides some chain of thought; OpenAI calls the decline serious.</li>
+          <li>Misalignment monitors can pause work in ChatGPT and <strong>stop tasks outright in the API</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="decisions">
+  <header><span class="eyebrow">08 · Decisions</span><h2>What to pick, task by task</h2><p>Confidence reflects how much independent evidence backs the call.</p></header>
+  <div class="body">
+    <div class="tablewrap">
+      <table class="decisions">
+        <thead><tr><th>If the work is…</th><th>Pick</th><th>Confidence</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Everyday analysis, writing, research reports</td><td><span class="pick o">Opus 5.5</span></td><td><span class="conf hi">High</span></td><td class="why">GDPval +304 Elo; AA index +5 (independent); 16 of 18 earnings reports passed a no-invented-figures check where Fable 5.1 and Opus 5 passed none. 40% of the price.</td></tr>
+          <tr><td>Agentic coding, refactors, migrations, code review</td><td><span class="pick o">Opus 5.5</span></td><td><span class="conf hi">High</span></td><td class="why">Terminal-Bench +8.5; FrontierCode win at ~20% of the cost; CursorBench 57.8% with no Astra number. GitHub, Stripe and Lovable report fewer steps.</td></tr>
+          <tr><td>SQL, notebooks, data investigations</td><td><span class="pick o">Opus 5.5</span></td><td><span class="conf md">Medium</span></td><td class="why">Hex found it keeps digging past the first plausible answer. But Astra wins OpenAI's internal data-science tasks (40.9%) and won dashboards in the hands-on. Test both on your warehouse.</td></tr>
+          <tr><td>Research math, proofs, statistics derivations</td><td><span class="pick a">GPT-6 Astra</span></td><td><span class="conf hi">High</span></td><td class="why">FrontierMath Tier 4 97.6% (Fable 5.1 87.8%); GPQA 96.0%; real results on prime gaps.</td></tr>
+          <tr><td>Scientific computing, simulations, bio/chem data</td><td><span class="pick a">GPT-6 Astra</span></td><td><span class="conf md">Medium</span></td><td class="why">Terminal-Bench-Science 64.6% vs 58.7%, but the error bars are ±3.5–5 pts. Opus's bio work may be gated without verification.</td></tr>
+          <tr><td>Operating apps with no API (forms, CRMs, desktop tools)</td><td><span class="pick a">GPT-6 Astra</span></td><td><span class="conf lo">Low</span></td><td class="why">ScreenSpot-Pro 92.7% and ChatGPT Work integration favour Astra; OSWorld numbers aren't comparable. Pilot before committing.</td></tr>
+          <tr><td>Multi-app SaaS workflows (Zapier-style)</td><td><span class="pick t">Toss-up, lean Opus</span></td><td><span class="conf lo">Low</span></td><td class="why">AutomationBench 41.4% vs 40.0%, inside the noise, and Opus was penalised for safeguard hand-offs. Price breaks the tie.</td></tr>
+          <tr><td>Prompts over 272K tokens (big docs, whole repos)</td><td><span class="pick o">Opus 5.5</span></td><td><span class="conf hi">High</span></td><td class="why">Flat pricing to 1M and a larger usable input. Astra's rate doubles on the whole request. Astra does score 96.3% on 8-needle 1M retrieval.</td></tr>
+          <tr><td>Decks, landing pages, visual and creative work</td><td><span class="pick o">Opus 5.5</span></td><td><span class="conf md">Medium</span></td><td class="why">Won the design-heavy hands-on tasks. Exception: if slides must follow a strict corporate template, Astra is trained for template adherence.</td></tr>
+          <tr><td>Security research and exploit validation</td><td><span class="pick t">Neither by default</span></td><td><span class="conf md">Medium</span></td><td class="why">Both gate it. Astra has the higher ceiling through Daybreak; Anthropic points defenders to its Cyber Verification Program and Claude Security.</td></tr>
+          <tr><td>Regulated work needing auditable reasoning</td><td><span class="pick o">Opus 5.5</span></td><td><span class="conf md">Medium</span></td><td class="why">Readable reasoning and ZDR. Astra's looped reasoning is harder to inspect, and API tasks can stop mid-run on monitor flags.</td></tr>
+          <tr><td>High-volume, cost-first workloads</td><td><span class="pick t">Neither flagship</span></td><td><span class="conf md">Medium</span></td><td class="why">Try Opus 5.5 at low first ($0.55 per AA task). Also consider GPT-6 Sol at $2 / $10 or Luna at $0.10 / $0.50, and the Sonnet and Haiku 5.5 models Anthropic says are coming.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="route">
+      <div class="card o">
+        <span class="eyebrow">Suggested routing for a data science team</span>
+        <span class="share o">~80%</span>
+        <h3>Opus 5.5 · medium</h3>
+        <p style="font-size:14px;color:var(--ink-2)">Code, SQL, experiment write-ups, stakeholder memos, reviews, long-document work. Drop to low for code review and templated reporting.</p>
+      </div>
+      <div class="card a">
+        <span class="eyebrow">Escalation lane</span>
+        <span class="share a">~20%</span>
+        <h3>GPT-6 Astra · high</h3>
+        <p style="font-size:14px;color:var(--ink-2)">Causal-inference math, novel statistical methods, heavy scientific computing, GUI automation of tools without APIs.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Before rolling out</span>
+        <span class="share">2 weeks</span>
+        <h3>Bake-off</h3>
+        <p style="font-size:14px;color:var(--ink-2)">Run 10–20 of your team's real tasks through both, in the harness people will actually use. Log quality, minutes and dollars. Keep prompts and tool schemas separate per vendor; they aren't portable mid-conversation.</p>
+      </div>
+    </div>
+    <p class="note">The 80/20 split is a starting point based on the benchmarks above, not a measured figure. Adjust it from your bake-off.</p>
+  </div>
+</section>
+
+<section id="caveats">
+  <header><span class="eyebrow">09 · Caveats</span><h2>Read before quoting</h2></header>
+  <div class="body">
+    <ul class="caveats">
+      <li>Nearly every number is vendor-reported, each at its own best effort level. Neither vendor's cost-per-task claims have been independently checked.</li>
+      <li>Where both vendors scored the same Claude model, they disagree by up to 5.4 points (for example Fable 5.1 on Humanity's Last Exam: 65.6% per Anthropic, 65.0% per OpenAI). Gaps smaller than that are not meaningful.</li>
+      <li>OpenAI's comparisons were published before Opus 5.5 existed and are made against Fable 5.1 and Opus 5. The Astra-only chart uses those as proxies.</li>
+      <li>Opus 5.5 was tested with production safeguards on; blocked cyber and bio tasks fell back to older models, which lowers its scores there. Astra's cyber scores were run without production safeguards.</li>
+      <li>Both models launched in the last month. Prices, rate limits and safeguard behaviour are likely to change.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sources">
+  <header><span class="eyebrow">10 · Sources</span><h2>Where the numbers come from</h2></header>
+  <div class="body">
+    <ol class="sources">
+      <li><a href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener">Anthropic · Introducing Claude Opus 5.5</a></li>
+      <li><a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">OpenAI · GPT-6 Astra: A new generation of intelligence</a></li>
+      <li><a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">OpenAI API · GPT-6 Astra model page</a></li>
+      <li><a href="https://artificialanalysis.ai/models/releases/comparisons/claude-opus-5-5-vs-gpt-6-astra" target="_blank" rel="noopener">Artificial Analysis · Opus 5.5 vs GPT-6 Astra</a></li>
+      <li><a href="https://artificialanalysis.ai/models/claude-opus-5-5" target="_blank" rel="noopener">Artificial Analysis · Claude Opus 5.5 (max)</a></li>
+      <li><a href="https://ofox.ai/blog/gpt-6-astra-api-pricing-2026/" target="_blank" rel="noopener">Ofox · GPT-6 Astra API pricing</a></li>
+      <li><a href="https://www.digitalapplied.com/blog/claude-opus-5-5-vs-gpt-6-astra-comparison" target="_blank" rel="noopener">Digital Applied · Benchmarks, price and fit</a></li>
+      <li><a href="https://kingy.ai/blog/gpt-6-astra-vs-claude-opus-5-5-reasoning-effort/" target="_blank" rel="noopener">Kingy AI · Effort, benchmarks and costs</a></li>
+      <li><a href="https://alphacorp.ai/blog/claude-opus-5-5-vs-gpt-6-astra-benchmarks-pricing-and-which-is-better" target="_blank" rel="noopener">AlphaCorp · Context window, safety, cutoff</a></li>
+      <li><a href="https://www.mindstudio.ai/blog/opus-5-5-vs-gpt-6-astra" target="_blank" rel="noopener">MindStudio · Which wins on real tasks</a></li>
+      <li><a href="https://www.geeky-gadgets.com/opus-5-5-vs-gpt-6-astra/" target="_blank" rel="noopener">Geeky Gadgets · 12-experiment comparison</a></li>
+      <li><a href="https://codingfleet.com/blog/claude-opus-5-5-vs-gpt-6-astra/" target="_blank" rel="noopener">CodingFleet · Equal on coding, apart on cost</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/GPT-6_Astra" target="_blank" rel="noopener">Wikipedia · GPT-6 Astra (reasoning architecture)</a></li>
+      <li><a href="https://venturebeat.com/technology/anthropic-releases-claude-opus-5-5-beating-fable-5-1-on-key-agentic-benchmarks-at-60-cheaper-api-price" target="_blank" rel="noopener">VentureBeat · Opus 5.5 launch, GPT-6 Sol and Luna pricing</a></li>
+    </ol>
+  </div>
+</section>
+
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+  const shared = [
+    {name:"Terminal-Bench 4.0", sub:"agentic terminal coding", o:66.4, a:57.9},
+    {name:"Humanity's Last Exam", sub:"with tools", o:67.7, a:57.2},
+    {name:"FrontierCode v1.1 Main", sub:"mergeable code", o:54.4, a:53.3},
+    {name:"AutomationBench", sub:"Zapier business workflows", o:40.0, a:41.4},
+    {name:"Terminal-Bench-Science 0.1", sub:"agentic research", o:58.7, a:64.6},
+    {name:"CursorBench 4.0", sub:"real Cursor sessions", o:57.8, a:null}
+  ];
+  const astraOnly = [
+    {name:"FrontierMath Tier 4", sub:"vs Fable 5.1", a:97.6, c:87.8},
+    {name:"ScreenSpot-Pro", sub:"UI grounding · vs Fable 5", a:92.7, c:87.3},
+    {name:"GPQA Diamond", sub:"vs Fable 5.1 / Opus 5", a:96.0, c:93.7},
+    {name:"BenchCAD", sub:"3D from renders · vs Fable 5.1", a:95.9, c:84.3},
+    {name:"BrowseComp", sub:"vs Opus 5", a:91.5, c:90.8},
+    {name:"Agents' Last Exam", sub:"pro software tasks · vs Opus 5", a:59.3, c:55.5},
+    {name:"HealthBench Professional", sub:"vs Fable 5", a:63.4, c:60.9},
+    {name:"MRCR 8-needle 512K–1M", sub:"long context · no Claude score", a:96.3, c:null}
+  ];
+  const prices = [
+    {name:"Input", sub:"per M tokens", o:4, a:10},
+    {name:"Output", sub:"per M tokens", o:20, a:50},
+    {name:"Cache read", sub:"per M tokens", o:0.20, a:1.00},
+    {name:"Cache write", sub:"per M tokens", o:5, a:12.5},
+    {name:"Output, prompt >272K", sub:"Astra long-context rate", o:20, a:75}
+  ];
+  const tip = document.getElementById('tip');
+  function bindTip(el, text){
+    el.addEventListener('mouseenter', ()=>{tip.textContent=text; tip.hidden=false;});
+    el.addEventListener('mousemove', e=>{tip.style.left=Math.min(e.clientX+12, innerWidth-290)+'px'; tip.style.top=(e.clientY+14)+'px';});
+    el.addEventListener('mouseleave', ()=>{tip.hidden=true;});
+  }
+  function track(v, max, cls, label, tipText){
+    const t = document.createElement('div'); t.className='track';
+    t.innerHTML='<div class="grid"></div>';
+    if(v===null){
+      const b=document.createElement('div'); b.className='bar na'; b.style.width='100%'; b.style.opacity='.5';
+      t.appendChild(b);
+      const s=document.createElement('span'); s.className='val'; s.style.left='4px'; s.textContent='not published'; t.appendChild(s);
+      bindTip(b, tipText+': not published');
+      return t;
+    }
+    const pct = Math.max(0.6, v/max*100);
+    const b=document.createElement('div'); b.className='bar '+cls; b.style.width=pct+'%';
+    if(cls==='c'){b.style.background='var(--rule-2)';}
+    t.appendChild(b);
+    const s=document.createElement('span'); s.className='val'; s.textContent=label;
+    if(pct>82){s.style.left='auto'; s.style.right=(100-pct)+'%'; s.style.paddingLeft='0'; s.style.paddingRight='6px'; s.style.color= cls==='c' ? 'var(--ink)' : '#fff';}
+    else s.style.left=pct+'%';
+    t.appendChild(s);
+    bindTip(b, tipText+': '+label);
+    return t;
+  }
+  function row(host, d, specA, specB, max, fmt, deltaFn){
+    const r=document.createElement('div'); r.className='row';
+    r.innerHTML='<div class="lbl">'+d.name+'<small>'+d.sub+'</small></div>';
+    const bars=document.createElement('div'); bars.className='bars';
+    bars.appendChild(track(d[specA.key], max, specA.cls, d[specA.key]===null?'':fmt(d[specA.key]), specA.label+' · '+d.name));
+    bars.appendChild(track(d[specB.key], max, specB.cls, d[specB.key]===null?'':fmt(d[specB.key]), specB.label+' · '+d.name));
+    r.appendChild(bars);
+    const del=deltaFn(d); const dl=document.createElement('div'); dl.className='delta '+del.cls; dl.textContent=del.text;
+    r.appendChild(dl);
+    host.appendChild(r);
+  }
+  const pctF = v=>v.toFixed(1)+'%';
+  const pr = document.getElementById('pctRows');
+  shared.forEach(d=>row(pr,d,{key:'o',cls:'o',label:'Opus 5.5'},{key:'a',cls:'a',label:'GPT-6 Astra'},100,pctF,d=>{
+    if(d.a===null) return {cls:'t',text:'n/a'};
+    const x=d.o-d.a; const within=Math.abs(x)<2.6;
+    return {cls: within?'t':(x>0?'o':'a'), text:(x>0?'+':'−')+Math.abs(x).toFixed(1)+(within?' ≈':'')};
+  }));
+  const ar = document.getElementById('astraRows');
+  astraOnly.forEach(d=>row(ar,d,{key:'a',cls:'a',label:'GPT-6 Astra'},{key:'c',cls:'c',label:'Best Claude reported'},100,pctF,d=>{
+    if(d.c===null) return {cls:'t',text:'n/a'};
+    const x=d.a-d.c; return {cls:x<2.6?'t':'a', text:'+'+x.toFixed(1)};
+  }));
+  const pp = document.getElementById('priceRows');
+  const money = v=> v<1 ? '$'+v.toFixed(2) : '$'+(Number.isInteger(v)?v:v.toFixed(2));
+  prices.forEach(d=>row(pp,d,{key:'o',cls:'o',label:'Opus 5.5'},{key:'a',cls:'a',label:'GPT-6 Astra'},80,money,d=>({cls:'o',text:(d.a/d.o).toFixed(1)+'×'})));
+
+  // calculator
+  const $=id=>document.getElementById(id);
+  const fmt$ = v=>'$'+Math.round(v).toLocaleString('en-US');
+  function calc(){
+    const i=+$('inTok').value||0, c=+$('cacheTok').value||0, o=+$('outTok').value||0, m=+$('mult').value, L=$('longCtx').checked;
+    $('multVal').textContent=m.toFixed(2)+'×';
+    const op={i:i*4,c:c*0.2,o:o*20}; const opT=op.i+op.c+op.o;
+    const ri=L?20:10, rc=L?2:1, ro=L?75:50;
+    const as={i:i*m*ri,c:c*m*rc,o:o*m*ro}; const asT=as.i+as.c+as.o;
+    $('opusCost').textContent=fmt$(opT); $('astraCost').textContent=fmt$(asT);
+    const mx=Math.max(opT,asT,1);
+    $('opusBar').style.width=(opT/mx*100)+'%'; $('astraBar').style.width=(asT/mx*100)+'%';
+    $('opusBd').textContent='input '+fmt$(op.i)+' · cache '+fmt$(op.c)+' · output '+fmt$(op.o);
+    $('astraBd').textContent='input '+fmt$(as.i)+' · cache '+fmt$(as.c)+' · output '+fmt$(as.o);
+    let msg;
+    if(opT===0&&asT===0) msg='Enter a workload to compare.';
+    else if(asT>opT) msg='<strong>Astra costs '+(asT/opT).toFixed(1)+'× more</strong> for this workload, about '+fmt$((asT-opT)*12)+' a year.';
+    else if(opT>asT) msg='<strong>Opus costs '+(opT/asT).toFixed(1)+'× more</strong> for this workload, about '+fmt$((opT-asT)*12)+' a year. That only happens when Astra needs far fewer tokens.';
+    else msg='<strong>The two cost the same</strong> at this token ratio.';
+    $('ratio').innerHTML=msg;
+  }
+  ['inTok','cacheTok','outTok','mult','longCtx'].forEach(id=>$(id).addEventListener('input',calc));
+  calc();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

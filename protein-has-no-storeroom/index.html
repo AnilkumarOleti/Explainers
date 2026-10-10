@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Protein Has No Storeroom | Explainers</title>
+<meta name="description" content="Can you eat a week&#x27;s protein in one day? No. The body banks fat and carbohydrate, but not protein.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/protein-has-no-storeroom/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Protein Has No Storeroom">
+<meta property="og:description" content="Can you eat a week&#x27;s protein in one day? No. The body banks fat and carbohydrate, but not protein.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/protein-has-no-storeroom/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/protein-has-no-storeroom/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Site board: one reading column; the week is always seven bays, Mon to Sun, left to right; figures sit on a paler slab. */
+:root{
+  --ground:#E3E7EB; --slab:#F2F4F6; --ink:#17202B; --ink-2:#4B5868; --line:#B7C0CA;
+  --brick:#B4472B; --ash:#7F8A97; --ember:#D98A14; --pit:#17202B;
+  --display:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --data:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --measure:40rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#12171D; --slab:#1A2129; --ink:#E8ECF0; --ink-2:#A3AFBC; --line:#36414D;
+    --brick:#DC6C4D; --ash:#74808D; --ember:#EDAE3C; --pit:#07090C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12171D; --slab:#1A2129; --ink:#E8ECF0; --ink-2:#A3AFBC; --line:#36414D;
+  --brick:#DC6C4D; --ash:#74808D; --ember:#EDAE3C; --pit:#07090C; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+.hazard{height:10px;background:repeating-linear-gradient(-45deg,var(--ember) 0 12px,var(--pit) 12px 24px)}
+.wrap{max-width:60rem;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:clamp(2rem,6vw,4rem) 5rem}
+p{margin:0;max-width:var(--measure)}
+a{color:inherit;text-decoration-color:var(--brick);text-decoration-thickness:2px;text-underline-offset:3px}
+a:focus-visible,input:focus-visible{outline:3px solid var(--ember);outline-offset:3px}
+
+.eyebrow{font-family:var(--data);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+h1{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(2.7rem,9vw,5.25rem);line-height:.92;letter-spacing:-.005em;margin:.6rem 0 0;max-width:13ch;text-wrap:balance}
+.verdict{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,5vw,2.4rem);line-height:1.05;margin-top:1.4rem}
+.verdict b{color:var(--brick);font-weight:700}
+.lead{margin-top:1rem;font-size:1.125rem}
+
+section{display:grid;gap:1.15rem;margin-top:clamp(3.5rem,9vw,5.5rem)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,5vw,2.5rem);line-height:1.02;margin:0;max-width:22ch;text-wrap:balance}
+
+figure{margin:.6rem 0 0}
+.slab{background:var(--slab);border:1px solid var(--line);padding:clamp(14px,3vw,28px);display:grid;gap:1.25rem}
+figcaption,.note{font-size:.875rem;line-height:1.55;color:var(--ink-2);max-width:var(--measure)}
+.mono{font-family:var(--data);font-size:.75rem;letter-spacing:.04em}
+
+/* ---------- week model ---------- */
+.controls{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:1.25rem 2rem;align-items:start}
+.field{display:grid;gap:.4rem;min-width:0}
+.field label{font-family:var(--data);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.field output{color:var(--ink);font-weight:500}
+.kg{display:flex;align-items:baseline;gap:.4rem}
+#weight{width:5.5rem;font:500 1.25rem var(--data);padding:.35rem .5rem;background:var(--ground);color:var(--ink);border:1px solid var(--ink-2);border-radius:2px}
+#days{width:100%;accent-color:var(--brick);margin:.55rem 0 0}
+.ticks{display:flex;justify-content:space-between;padding-inline:6px;font-family:var(--data);font-size:.75rem;color:var(--ink-2)}
+.unit{color:var(--ink-2);justify-self:end}
+
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.bay{min-width:0;padding-inline:clamp(2px,.7vw,8px);border-left:1px dashed var(--line)}
+.bay:first-child{border-left:0}
+.up,.down{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:8px;gap:2px;align-content:start}
+.up{height:198px;transform:scaleY(-1)}
+.down{height:20px}
+.groundline{height:3px;background:var(--ink);margin-block:3px;margin-inline:calc(-1 * clamp(2px,.7vw,8px) - 1px)}
+.brick{display:block;background:var(--brick);border-radius:1px}
+.brick.burn{background:repeating-linear-gradient(45deg,var(--ash) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--ash)}
+.brick.gone{background:transparent;border:1.5px dashed var(--brick)}
+.week.anim .brick{animation:set .28s both;animation-delay:calc(var(--i) * 5ms)}
+@keyframes set{from{opacity:0;transform:translateY(8px)}}
+.day,.amt{text-align:center;font-family:var(--data);white-space:nowrap;font-variant-numeric:tabular-nums}
+.day{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;margin-top:.15rem}
+.amt{font-size:.7rem;color:var(--ink-2)}
+
+.state{font-weight:500;font-size:1.0625rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1.25rem 2rem}
+.stat{display:grid;gap:.1rem;min-width:0}
+.stat .key{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--ink-2)}
+.stat .key .brick{width:22px;height:9px;flex:none}
+.stat .num{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,7vw,3.2rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat .num small{font-family:var(--data);font-weight:400;font-size:.8125rem;color:var(--ink-2);margin-left:.4rem}
+
+/* ---------- stores ---------- */
+.stores{--u:min(182px,38vw);display:grid;grid-template-columns:var(--u) minmax(0,1fr) minmax(0,1fr);gap:1.75rem}
+.store{display:grid;grid-template-rows:var(--u) auto;gap:.8rem;min-width:0}
+.sq{align-self:end;background:var(--ink-2)}
+.sq.fat{width:var(--u);height:var(--u)}
+.sq.gly{width:calc(var(--u) * .147);height:calc(var(--u) * .147)}
+.sq.aa{width:calc(var(--u) * .066);height:calc(var(--u) * .066);background:var(--brick)}
+.store h3{font-family:var(--display);font-weight:700;font-size:1.45rem;line-height:1.05;margin:0}
+.store .mono{color:var(--ink-2);margin-top:.2rem}
+.store p{font-size:.9375rem;line-height:1.5;margin-top:.35rem}
+@media (max-width:640px){
+  .stores{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  .store{grid-template-rows:auto;grid-template-columns:var(--u) minmax(0,1fr);gap:1rem;align-items:end}
+}
+
+/* ---------- diagrams ---------- */
+.split{display:grid;gap:1.5rem 2.5rem;align-items:start}
+.split .prose{display:grid;gap:1.15rem}
+@media (min-width:880px){.split{grid-template-columns:minmax(0,1fr) minmax(0,27rem)}.split figure{margin-top:0}}
+svg{display:block;max-width:100%;height:auto}
+.scroll{overflow-x:auto}
+.scroll svg{min-width:620px;width:100%}
+svg text{font-family:var(--data);font-size:11.5px;fill:var(--ink)}
+svg .t2{fill:var(--ink-2)}
+svg .tb{font-weight:500;font-size:12.5px}
+svg .td{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em}
+.f-ink{fill:var(--ink)} .f-ember{fill:var(--ember)} .f-brick{fill:var(--brick)} .f-slab{fill:var(--slab)} .f-ground{fill:var(--ground)} .f-track{fill:var(--line);opacity:.45}
+.f-hump{fill:var(--brick);fill-opacity:.2}
+.s-ink{stroke:var(--ink)} .s-ink2{stroke:var(--ink-2)} .s-ember{stroke:var(--ember)} .s-brick{stroke:var(--brick)} .s-line{stroke:var(--line)}
+
+/* ---------- evidence + ranking ---------- */
+.studies{display:grid;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.studies li{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);gap:.3rem 2rem;padding-block:1rem;border-bottom:1px solid var(--line)}
+.studies .who{font-family:var(--data);font-size:.8125rem;color:var(--ink-2);line-height:1.5}
+.studies .who b{display:block;color:var(--ink);font-weight:500;font-size:.875rem}
+.studies p{font-size:1rem;line-height:1.55}
+@media (max-width:640px){.studies li{grid-template-columns:minmax(0,1fr)}.controls{grid-template-columns:minmax(0,1fr)}}
+
+.rank{display:grid;gap:1.4rem;margin:.4rem 0 0;padding:0;list-style:none;counter-reset:r}
+.rank li{counter-increment:r;display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:0 .9rem;align-items:start}
+.rank li::before{content:counter(r);font-family:var(--display);font-weight:700;font-size:2.9rem;line-height:.85;color:var(--brick)}
+.rank h3{font-family:var(--body);font-weight:600;font-size:1.125rem;line-height:1.3;margin:0}
+.rank p{margin-top:.2rem}
+.rank .you{font-family:var(--data);font-size:.8125rem;color:var(--ink-2);margin-top:.35rem}
+.rank .you b{color:var(--ink);font-weight:500}
+
+.sources{display:grid;gap:.55rem;margin:0;padding:0;list-style:none;font-size:.9375rem;line-height:1.5;max-width:var(--measure)}
+.sources span{color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){.week.anim .brick{animation:none}}
+</style>
+</head>
+<body>
+<div class="hazard" aria-hidden="true"></div>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Protein and muscle building</p>
+  <h1>Can you eat a week's protein in one day?</h1>
+  <p class="verdict"><b>No.</b> Protein has no storeroom.</p>
+  <p class="lead">Your body banks fat for weeks and carbohydrate for about a day. It banks no protein at all. Whatever a day delivers beyond what the body can put to work is burned as fuel, and on a day with none it takes amino acids back out of its own tissue. For building muscle, eat your protein every day. Inside a single day you have far more freedom over when.</p>
+</header>
+
+<section aria-labelledby="h-model">
+  <h2 id="h-model">The same weekly total, split seven ways</h2>
+  <p>Picture muscle as a brick wall and protein as the bricks. The site has no storeroom, so bricks that are not laid the day they arrive go into the furnace. Move the slider to change how many days a week the truck comes.</p>
+
+  <figure class="slab">
+    <div class="controls">
+      <div class="field">
+        <label for="weight">Body weight</label>
+        <div class="kg"><input type="number" id="weight" min="40" max="150" step="1" value="70" inputmode="numeric"><span class="mono">kg</span></div>
+      </div>
+      <div class="field">
+        <label for="days">Days a week you eat protein: <output id="daysOut" for="days">1</output></label>
+        <input type="range" id="days" min="1" max="7" step="1" value="1">
+        <div class="ticks" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+      </div>
+    </div>
+
+    <p class="mono unit">1 brick ≈ <span id="unit">10</span> g of protein</p>
+    <div class="week" id="week" role="img" aria-label=""></div>
+
+    <p class="state" id="state" aria-live="polite"></p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="key"><i class="brick"></i>Put to work</span>
+        <span class="num"><span id="sLaid">154</span><small>g a week</small></span>
+      </div>
+      <div class="stat">
+        <span class="key"><i class="brick burn"></i>Burned as fuel</span>
+        <span class="num"><span id="sBurn">630</span><small>g a week</small></span>
+      </div>
+      <div class="stat">
+        <span class="key"><i class="brick gone"></i>Taken back out of the wall</span>
+        <span class="num"><span id="sGone">126</span><small>g a week</small></span>
+      </div>
+    </div>
+
+    <p class="note" id="food"></p>
+
+    <figcaption>A simple model for illustration, built on three published figures. Weekly total: 1.6 g per kg per day, the intake where extra protein stops adding lean mass on average in lifting trials. Most a body is assumed to put to work in one day: 2.2 g per kg, the top of that trial data's confidence range. Loss on a day with no protein: about 0.3 g per kg, the body's unavoidable daily loss. Real bodies are less tidy. A very large meal digests slowly and keeps feeding into the next morning, which softens the picture a little and does not change it.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="h-store">
+  <h2 id="h-store">Why there is no storeroom</h2>
+  <p>The body stores energy in two places. Fat tissue holds weeks of it. Glycogen in the liver and muscle holds about a day. Protein has nothing like either. The only loose supply is the free amino acids dissolved in blood and cells, roughly 100 g in a 70 kg adult, which is less than one day's target. Every other gram of protein in the body is busy being something: muscle fibre, enzyme, skin, antibody.</p>
+
+  <figure class="slab">
+    <div class="stores">
+      <div class="store">
+        <div class="sq fat" aria-hidden="true"></div>
+        <div>
+          <h3>Fat</h3>
+          <div class="mono">≈12 kg · ≈92,000 kcal</div>
+          <p>A purpose-built store. Weeks of energy.</p>
+        </div>
+      </div>
+      <div class="store">
+        <div class="sq gly" aria-hidden="true"></div>
+        <div>
+          <h3>Glycogen</h3>
+          <div class="mono">≈500 g · ≈2,000 kcal</div>
+          <p>A small tank for carbohydrate. About a day.</p>
+        </div>
+      </div>
+      <div class="store">
+        <div class="sq aa" aria-hidden="true"></div>
+        <div>
+          <h3>Free amino acids</h3>
+          <div class="mono">≈100 g · ≈400 kcal</div>
+          <p>A working float, turned over within hours. This is all the spare protein there is.</p>
+        </div>
+      </div>
+    </div>
+    <figcaption>What a lean 70 kg adult has in reserve, drawn to scale by area. The squares stand for stored energy, so the protein square is about 1/230th the size of the fat one.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="h-flux">
+  <h2 id="h-flux">What happens to a brick</h2>
+  <div class="split">
+    <div class="prose">
+      <p>The wall is never finished. Each day an adult breaks down and rebuilds roughly 300 g of body protein, several times what they eat. Most of those bricks are reused. Some are lost on every cycle, and food replaces them.</p>
+      <p>Amino acids that arrive with no building work waiting have one exit. The nitrogen is stripped off and leaves as urea. What remains is burned for energy or turned into glucose or fat.</p>
+      <p>New muscle takes very little. Muscle is about one-fifth protein and mostly water, so a beginner adding a kilogram of muscle in a month is adding about 7 g of protein a day to the wall. The rest of a day's intake pays for upkeep. There is no job big enough to absorb a week's delivery at once.</p>
+      <p>On a day with no delivery the repair work still runs. The body then draws on the biggest supply it has, which is muscle.</p>
+    </div>
+    <figure class="slab">
+      <svg viewBox="0 0 452 392" role="img" aria-label="Flow of protein in a 70 kg adult. About 112 grams a day is eaten and enters a small pool of about 100 grams of free amino acids. Body protein, about 11 kilograms, is built from the pool and broken back down into it at roughly 300 grams a day each way. A surplus in the pool cannot be stored. It is burned as fuel and its nitrogen leaves as urea.">
+        <defs>
+          <marker id="fa-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="f-ink"/></marker>
+          <marker id="fa-ember" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="f-ember"/></marker>
+        </defs>
+
+        <rect x="110" y="12" width="160" height="44" class="f-ground s-ink" stroke-width="1.5"/>
+        <text x="190" y="39" text-anchor="middle" class="tb">Food protein</text>
+        <line x1="190" y1="56" x2="190" y2="112" class="s-ink" stroke-width="1.5" fill="none" marker-end="url(#fa-ink)"/>
+        <text x="200" y="88">eat ≈112 g a day</text>
+
+        <rect x="8" y="116" width="80" height="60" fill="none" class="s-ink2" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="48" y="142" text-anchor="middle" class="t2">no</text>
+        <text x="48" y="158" text-anchor="middle" class="t2">storeroom</text>
+        <line x1="88" y1="146" x2="110" y2="146" fill="none" class="s-ink2" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <path d="M94 141 L104 151 M104 141 L94 151" fill="none" class="s-brick" stroke-width="2"/>
+
+        <rect x="110" y="116" width="160" height="60" class="f-ground s-ink" stroke-width="1.5"/>
+        <text x="190" y="142" text-anchor="middle" class="tb">Free amino acids</text>
+        <text x="190" y="160" text-anchor="middle" class="t2">≈100 g on hand</text>
+
+        <line x1="270" y1="146" x2="338" y2="146" fill="none" class="s-ember" stroke-width="2.5" marker-end="url(#fa-ember)"/>
+        <text x="302" y="137" text-anchor="middle">surplus</text>
+        <rect x="342" y="116" width="102" height="60" class="f-ground s-ember" stroke-width="2.5"/>
+        <text x="393" y="142" text-anchor="middle" class="tb">Burned</text>
+        <text x="393" y="160" text-anchor="middle" class="t2">as fuel</text>
+        <text x="393" y="196" text-anchor="middle" class="t2">nitrogen leaves</text>
+        <text x="393" y="212" text-anchor="middle" class="t2">as urea</text>
+
+        <line x1="160" y1="176" x2="160" y2="288" fill="none" class="s-ink" stroke-width="1.5" marker-end="url(#fa-ink)"/>
+        <line x1="220" y1="292" x2="220" y2="180" fill="none" class="s-ink" stroke-width="1.5" marker-end="url(#fa-ink)"/>
+        <text x="150" y="228" text-anchor="end" class="tb">build</text>
+        <text x="150" y="245" text-anchor="end" class="t2">≈300 g a day</text>
+        <text x="230" y="228" class="tb">break down</text>
+        <text x="230" y="245" class="t2">≈300 g a day</text>
+
+        <rect x="70" y="292" width="240" height="84" class="f-ground s-ink" stroke-width="1.5"/>
+        <g class="f-brick">
+          <rect x="75" y="297" width="27" height="8"/><rect x="104" y="297" width="27" height="8"/><rect x="133" y="297" width="27" height="8"/><rect x="162" y="297" width="27" height="8"/><rect x="191" y="297" width="27" height="8"/><rect x="220" y="297" width="27" height="8"/><rect x="249" y="297" width="27" height="8"/><rect x="278" y="297" width="27" height="8"/>
+        </g>
+        <text x="190" y="336" text-anchor="middle" class="tb">Body protein</text>
+        <text x="190" y="354" text-anchor="middle" class="t2">≈11 kg, all of it in use</text>
+      </svg>
+      <figcaption>Protein flow in a 70 kg adult. Turnover is several times intake, the loose pool is small, and a surplus has one way out.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section aria-labelledby="h-window">
+  <h2 id="h-window">Training opens a window about a day and a half long</h2>
+  <p>A hard session raises the rate of muscle building for a long time afterwards. In one classic measurement the rate was 50% above rest at 4 hours, 109% above at 24 hours, and close to normal again by 36 hours. Train three times a week and nearly every day falls inside a window. Each window needs bricks on hand while it is open, which includes rest days.</p>
+
+  <figure class="slab">
+    <div class="scroll">
+      <svg viewBox="0 0 720 306" role="img" aria-label="Muscle protein synthesis across one week with training sessions on Monday, Wednesday and Friday evening. After each session the rate climbs to 50 percent above rest at 4 hours and 109 percent above at 24 hours, then falls to 14 percent above at 36 hours. The raised periods cover Monday evening to Sunday evening. A single protein day on Monday supplies amino acids only until about Tuesday midday. Protein every day covers the whole week.">
+        <defs>
+          <pattern id="tail" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2.5" height="6" class="f-ink"/></pattern>
+        </defs>
+
+        <g class="s-line" stroke-width="1" fill="none">
+          <line x1="40" y1="20" x2="40" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="134.3" y1="20" x2="134.3" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="228.6" y1="20" x2="228.6" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="322.9" y1="20" x2="322.9" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="417.1" y1="20" x2="417.1" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="511.4" y1="20" x2="511.4" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="605.7" y1="20" x2="605.7" y2="296" stroke-dasharray="180 26 18 28 18"/><line x1="700" y1="20" x2="700" y2="296" stroke-dasharray="180 26 18 28 18"/>
+          <line x1="40" y1="70" x2="700" y2="70" stroke-dasharray="2 4"/><line x1="40" y1="120" x2="700" y2="120" stroke-dasharray="2 4"/>
+        </g>
+        <g text-anchor="middle" class="td">
+          <text x="87.1" y="34" class="td">MON</text><text x="181.4" y="34" class="td">TUE</text><text x="275.7" y="34" class="td">WED</text><text x="370" y="34" class="td">THU</text><text x="464.3" y="34" class="td">FRI</text><text x="558.6" y="34" class="td">SAT</text><text x="652.9" y="34" class="td">SUN</text>
+        </g>
+        <g text-anchor="end">
+          <text x="35" y="74" class="t2">+100%</text><text x="35" y="124" class="t2">+50%</text><text x="35" y="174" class="t2">rest</text>
+        </g>
+
+        <g class="f-hump s-brick" stroke-width="2" stroke-linejoin="round">
+          <polygon points="110.7,170 126.4,120 205,61 252.1,156 299.3,170"/>
+          <polygon points="299.3,170 315,120 393.6,61 440.7,156 487.9,170"/>
+          <polygon points="487.9,170 503.6,120 582.1,61 629.3,156 676.4,170"/>
+        </g>
+        <line x1="40" y1="170" x2="700" y2="170" class="s-ink" stroke-width="2" fill="none"/>
+        <g class="f-brick">
+          <circle cx="126.4" cy="120" r="3.5"/><circle cx="205" cy="61" r="3.5"/><circle cx="252.1" cy="156" r="3.5"/>
+          <circle cx="315" cy="120" r="3.5"/><circle cx="393.6" cy="61" r="3.5"/><circle cx="440.7" cy="156" r="3.5"/>
+          <circle cx="503.6" cy="120" r="3.5"/><circle cx="582.1" cy="61" r="3.5"/><circle cx="629.3" cy="156" r="3.5"/>
+        </g>
+        <text x="119" y="116" text-anchor="end">+50% at 4 h</text>
+        <text x="205" y="52" text-anchor="middle">+109% at 24 h</text>
+        <text x="275" y="104" text-anchor="middle">+14% at 36 h</text>
+        <line x1="266" y1="109" x2="255" y2="150" fill="none" class="s-ink2" stroke-width="1"/>
+
+        <g class="f-ink">
+          <polygon points="105.7,183 115.7,183 110.7,174"/><polygon points="294.3,183 304.3,183 299.3,174"/><polygon points="482.9,183 492.9,183 487.9,174"/>
+        </g>
+        <g text-anchor="middle"><text x="110.7" y="197" class="t2">lift</text><text x="299.3" y="197" class="t2">lift</text><text x="487.9" y="197" class="t2">lift</text></g>
+
+        <text x="44" y="222" class="tb">One protein day</text>
+        <rect x="40" y="228" width="660" height="14" class="f-track"/>
+        <rect x="71.4" y="228" width="55" height="14" class="f-ink"/>
+        <rect x="126.4" y="228" width="55" height="14" fill="url(#tail)"/>
+
+        <text x="44" y="268" class="tb">Protein every day</text>
+        <rect x="40" y="274" width="660" height="14" class="f-track"/>
+        <rect x="40" y="274" width="660" height="14" fill="url(#tail)"/>
+        <g class="f-ink">
+          <rect x="71.4" y="274" width="55" height="14"/><rect x="165.7" y="274" width="55" height="14"/><rect x="260" y="274" width="55" height="14"/><rect x="354.3" y="274" width="55" height="14"/><rect x="448.6" y="274" width="55" height="14"/><rect x="542.9" y="274" width="55" height="14"/><rect x="637.1" y="274" width="55" height="14"/>
+        </g>
+      </svg>
+    </div>
+    <figcaption>Muscle protein synthesis after evening sessions on Monday, Wednesday and Friday. The dots are the three time points measured by MacDougall and colleagues in 1995, joined by straight lines. In the two lower rows, solid blocks are the hours you are eating and hatching is the hours a meal is still being digested. One protein day runs out by Tuesday. Two of the three windows open with nothing to build from.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="h-day">
+  <h2 id="h-day">Inside a day, you have room</h2>
+  <p>The old rule that the body can only use 20 to 30 g of protein per meal has not held up. A large meal digests slowly, so it behaves like a slow delivery that lasts most of a day. That is the freedom you get. It covers hours, and it stops well short of a week.</p>
+
+  <ul class="studies">
+    <li>
+      <div class="who"><b>Trommelen et al., 2023</b>100 g vs 25 g of milk protein after one session</div>
+      <p>The 100 g meal produced a larger response and kept it going for more than 12 hours, with a negligible rise in amino acids burned. This trial used about one day's protein. It shows a day's worth can arrive in one sitting. It does not show seven days' worth can.</p>
+    </li>
+    <li>
+      <div class="who"><b>Time-restricted eating trials</b>All food in an 8-hour window, with lifting</div>
+      <p>When protein is matched at about 1.4 to 1.6 g per kg, lean mass holds up as well as it does with a normal eating pattern.</p>
+    </li>
+    <li>
+      <div class="who"><b>Yasuda et al., 2020</b>12 weeks of lifting at 1.3 g per kg a day</div>
+      <p>Young men who spread protein evenly over three meals gained 2.5 kg of lean mass. Those who ate little of it at breakfast gained 1.8 kg. The difference fell just short of statistical significance (p = 0.06).</p>
+    </li>
+    <li>
+      <div class="who"><b>Morton et al., 2018</b>49 trials, 1,863 people</div>
+      <p>Gains in lean mass level off at about 1.6 g per kg a day, with a confidence range of 1.0 to 2.2.</p>
+    </li>
+  </ul>
+  <p>Read together, the daily total does most of the work. An even split across meals may add a little, mostly when the total is on the low side.</p>
+</section>
+
+<section aria-labelledby="h-do">
+  <h2 id="h-do">What to do, in order of how much it matters</h2>
+  <ol class="rank">
+    <li>
+      <div>
+        <h3>Train hard and keep adding load.</h3>
+        <p>Protein builds nothing without the signal from training.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Hit a daily total of about 1.6 g per kg of body weight.</h3>
+        <p>Anywhere from 1.2 to 2.2 g per kg is a sensible working range for someone who lifts.</p>
+        <p class="you">At <b><span class="js-w">70</span> kg</b> that is about <b><span class="js-daily">112</span> g a day</b>.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Do it every day, rest days included.</h3>
+        <p>The window from yesterday's session is still open, and upkeep never stops.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>If it suits you, split the total over three or four meals.</h3>
+        <p>About 0.4 g per kg at each of four meals reaches the daily figure. One or two large meals also work if that is how you eat.</p>
+        <p class="you">At <b><span class="js-w">70</span> kg</b> that is about <b><span class="js-meal">28</span> g a meal</b>.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Leave a missed day behind.</h3>
+        <p>A shortfall cannot be banked or repaid in bulk. Go back to your usual amount the next day. One low day costs very little. Six a week costs a lot.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section aria-labelledby="h-sure">
+  <h2 id="h-sure">How sure is this</h2>
+  <p>Nobody has run a trial of one protein day a week, and nobody is likely to. For a 70 kg person it means about 11 g per kg in a single day, well over twice the highest estimates of what the liver can process in a day. Those estimates are themselves debated, and nausea would settle the matter before the chemistry did.</p>
+  <p>So the answer here is reasoned from how protein metabolism works, plus trials on meal patterns inside a day. The direction is not in doubt. The exact gram figures in the brick model are illustrative.</p>
+  <p>The 1.6 g per kg figure is for healthy adults who lift. Anyone with kidney disease should set their protein intake with their doctor.</p>
+</section>
+
+<section aria-labelledby="h-src">
+  <h2 id="h-src">Sources</h2>
+  <ul class="sources">
+    <li><a href="https://pubmed.ncbi.nlm.nih.gov/28698222/">Morton et al., 2018.</a> <span>Meta-analysis of protein supplementation and resistance training. British Journal of Sports Medicine.</span></li>
+    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10772463/">Trommelen et al., 2023.</a> <span>The anabolic response to protein ingestion during recovery from exercise has no upper limit in magnitude and duration. Cell Reports Medicine.</span></li>
+    <li><a href="https://pubmed.ncbi.nlm.nih.gov/8563679/">MacDougall et al., 1995.</a> <span>The time course for elevated muscle protein synthesis following heavy resistance exercise.</span></li>
+    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7330467/">Yasuda et al., 2020.</a> <span>Evenly distributed protein intake over 3 meals augments resistance exercise-induced muscle hypertrophy. Journal of Nutrition.</span></li>
+    <li><a href="https://jissn.biomedcentral.com/articles/10.1186/s12970-018-0215-1">Schoenfeld and Aragon, 2018.</a> <span>How much protein can the body use in a single meal for muscle-building? JISSN.</span></li>
+    <li><a href="https://www.fao.org/4/AA040E/AA040E05.htm">FAO/WHO/UNU, 1985.</a> <span>Energy and protein requirements: protein turnover and obligatory nitrogen loss.</span></li>
+    <li><a href="https://macrofactor.com/protein-distribution/">MacroFactor.</a> <span>Review of protein distribution and time-restricted eating evidence.</span></li>
+    <li><a href="https://pubmed.ncbi.nlm.nih.gov/16779921/">Bilsborough and Mann, 2006.</a> <span>A review of issues of dietary protein intake in humans, including urea synthesis limits.</span></li>
+  </ul>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var PATTERN={1:[0],2:[0,3],3:[0,2,4],4:[0,2,4,6],5:[0,1,3,4,6],6:[0,1,2,3,4,5],7:[0,1,2,3,4,5,6]};
+  var TARGET=1.6, CAP=2.2, LOSS=0.3;
+  var $=function(id){return document.getElementById(id)};
+  var week=$('week'), wIn=$('weight'), dIn=$('days');
+  var bays=[];
+
+  DAYS.forEach(function(d){
+    var bay=document.createElement('div'); bay.className='bay';
+    var up=document.createElement('div'); up.className='up';
+    var gl=document.createElement('div'); gl.className='groundline';
+    var down=document.createElement('div'); down.className='down';
+    var day=document.createElement('div'); day.className='day'; day.textContent=d;
+    var amt=document.createElement('div'); amt.className='amt';
+    bay.append(up,gl,down,day,amt); week.appendChild(bay);
+    bays.push({up:up,down:down,amt:amt});
+  });
+
+  function bricks(el,n,cls,start){
+    for(var i=0;i<n;i++){
+      var b=document.createElement('i'); b.className='brick'+(cls?' '+cls:'');
+      b.style.setProperty('--i',start+i); el.appendChild(b);
+    }
+  }
+  function mass(g){ return g>=1000 ? (g/1000).toFixed(1)+' kg' : (Math.round(g/10)*10)+' g'; }
+  function setAll(cls,v){ document.querySelectorAll('.'+cls).forEach(function(e){e.textContent=v}); }
+
+  function render(){
+    var w=parseFloat(wIn.value); if(!isFinite(w)) w=70; w=Math.min(150,Math.max(40,w));
+    var n=Math.min(7,Math.max(1,parseInt(dIn.value,10)||1));
+    var weekly=TARGET*7*w, perDay=weekly/n, cap=CAP*w, lossDay=LOSS*w;
+    var laidDay=Math.min(perDay,cap), burnDay=perDay-laidDay;
+    var laid=laidDay*n, burn=burnDay*n, gone=lossDay*(7-n);
+    var unit=w/7;
+    var laidB=Math.round(laidDay/unit), burnB=Math.round(burnDay/unit), goneB=Math.round(lossDay/unit);
+    var on=PATTERN[n];
+
+    bays.forEach(function(b,i){
+      b.up.textContent=''; b.down.textContent='';
+      if(on.indexOf(i)>-1){ bricks(b.up,laidB,'',0); bricks(b.up,burnB,'burn',laidB); b.amt.textContent=Math.round(perDay)+' g'; }
+      else { bricks(b.down,goneB,'gone',0); b.amt.textContent='0 g'; }
+    });
+
+    var pct=Math.round(100*burn/weekly);
+    $('daysOut').textContent=n;
+    $('unit').textContent=Math.round(unit);
+    $('sLaid').textContent=Math.round(laid);
+    $('sBurn').textContent=Math.round(burn);
+    $('sGone').textContent=Math.round(gone);
+
+    var s;
+    if(n===1) s='One delivery a week. About '+pct+'% of it is burned, and the wall gives bricks back on the other six days.';
+    else if(n===7) s='A delivery every day. All of it is put to work, and the wall never has to give any back.';
+    else s=n+' deliveries a week. '+(pct>=1?'About '+pct+'% is burned':'Almost nothing is burned')+', and the wall gives bricks back on '+(7-n)+(7-n===1?' day.':' days.');
+    $('state').textContent=s;
+    week.setAttribute('aria-label','Seven days, Monday to Sunday. '+Math.round(weekly)+' grams of protein a week eaten on '+n+(n===1?' day':' days')+', '+Math.round(perDay)+' grams on each. '+s);
+
+    $('food').textContent='Each eating day means '+Math.round(perDay)+' g of protein. From a single food that is about '+mass(perDay/0.31)+' of cooked chicken breast, or '+Math.round(perDay/6)+' eggs, or '+mass(perDay/0.18)+' of paneer.';
+
+    setAll('js-w',Math.round(w));
+    setAll('js-daily',Math.round(TARGET*w));
+    setAll('js-meal',Math.round(0.4*w));
+  }
+
+  function touched(){ week.classList.add('anim'); render(); }
+  dIn.addEventListener('input',touched);
+  wIn.addEventListener('input',touched);
+  wIn.addEventListener('change',function(){
+    var w=parseFloat(wIn.value); if(!isFinite(w)) w=70;
+    wIn.value=Math.min(150,Math.max(40,Math.round(w))); render();
+  });
+  render();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

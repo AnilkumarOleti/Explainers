@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Happiness Thermostat | Explainers</title>
+<meta name="description" content="Good news fades, and so does bad. What moves your home setting instead.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/happiness-thermostat/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Happiness Thermostat">
+<meta property="og:description" content="Good news fades, and so does bad. What moves your home setting instead.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/happiness-thermostat/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/happiness-thermostat/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#EEF1F5; --surface:#FFFFFF; --ink:#1B2230; --muted:#586277; --line:#CBD2DD;
+  --sun:#E0A100; --sun-soft:#FBE7A6; --teal:#1C7C7D; --teal-soft:#D3ECEA; --rose:#D0503A;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11151D; --surface:#1A2030; --ink:#E7EBF2; --muted:#9AA4B6; --line:#2E3648;
+    --sun:#F5C43A; --sun-soft:#3B3318; --teal:#56B8B4; --teal-soft:#16302F; --rose:#EF7A61;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11151D; --surface:#1A2030; --ink:#E7EBF2; --muted:#9AA4B6; --line:#2E3648;
+  --sun:#F5C43A; --sun-soft:#3B3318; --teal:#56B8B4; --teal-soft:#16302F; --rose:#EF7A61;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding:0 20px}
+.wrap{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:96px;padding-block:48px 72px}
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+h1{font-size:clamp(44px,8vw,88px);letter-spacing:-.01em}
+h2{font-size:clamp(32px,5vw,52px)}
+p{margin:0;max-width:60ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:clamp(19px,2.4vw,23px);color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:16px}
+svg text{font-family:var(--mono)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.hero svg{width:100%;height:auto;max-width:460px;justify-self:center}
+.needle-hero{transform-origin:160px 170px;animation:wobble 5s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(18deg)}50%{transform:rotate(26deg)}}
+
+/* snap back */
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;overflow-x:auto}
+.chart svg{width:100%;min-width:520px;height:auto;display:block}
+
+/* levers */
+.levers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lever{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.lever svg{width:72px;height:72px}
+.lever h3{font-family:var(--display);font-weight:400;font-size:28px;margin:0}
+.lever p{color:var(--muted);font-size:16px}
+.lever .proof{font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.02em;margin-top:auto}
+.lever.star{grid-column:span 2;background:var(--teal-soft);border-color:transparent}
+.lever.star h3{font-size:38px}
+
+/* lab */
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px}
+.lab svg{width:100%;height:auto;max-width:420px;justify-self:center}
+.toggles{display:flex;flex-direction:column;gap:10px}
+.toggle{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-weight:500}
+.toggle input{width:20px;height:20px;accent-color:var(--teal)}
+.toggle:has(input:checked){background:var(--teal-soft);border-color:var(--teal)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+button{font:inherit;font-weight:600;font-size:15px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+button:hover{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.readout{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+
+/* traps */
+.traps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.trap{display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--rose);padding-top:16px}
+.trap b{font-family:var(--display);font-weight:400;font-size:26px}
+.trap span{color:var(--muted);font-size:16px}
+
+/* close */
+.close{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.close h2{font-size:clamp(40px,7vw,76px)}
+.close h2 em{font-style:normal;color:var(--sun)}
+.care{font-size:15px;color:var(--muted);border:1px dashed var(--line);border-radius:12px;padding:14px 18px;max-width:640px}
+.sources{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:20px}
+.sources a{color:var(--teal)}
+
+@media (max-width:760px){
+  .hero,.lab{grid-template-columns:1fr}
+  .levers,.traps{grid-template-columns:1fr}
+  .lever.star{grid-column:auto}
+  .lab{padding:20px}
+  .wrap{gap:72px}
+}
+@media (prefers-reduced-motion:reduce){ .needle-hero{animation:none;transform:rotate(22deg)} }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="stack">
+      <span class="eyebrow">How to be happy</span>
+      <h1>You have a happiness thermostat.</h1>
+      <p class="lede">Life pushes the needle up and down. Then it drifts back to its home setting. The trick is to move <em>home</em>.</p>
+    </div>
+    <svg viewBox="0 0 320 210" role="img" aria-label="A dial like a thermostat, needle resting slightly right of centre">
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="var(--line)"/>
+          <stop offset="1" stop-color="var(--sun)"/>
+        </linearGradient>
+      </defs>
+      <path d="M30 170 A130 130 0 0 1 290 170" fill="none" stroke="url(#g1)" stroke-width="26" stroke-linecap="round"/>
+      <g id="heroTicks"></g>
+      <g class="needle-hero">
+        <line x1="160" y1="170" x2="160" y2="62" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <circle cx="160" cy="170" r="12" fill="var(--ink)"/>
+      <text x="22" y="202" font-size="12" fill="var(--muted)">LOW</text>
+      <text x="270" y="202" font-size="12" fill="var(--muted)">HIGH</text>
+    </svg>
+  </section>
+
+  <!-- SNAP BACK -->
+  <section class="stack">
+    <span class="eyebrow">Step 1 · The snap-back</span>
+    <h2>Big news fades. Good and bad.</h2>
+    <p class="lede">A raise, a new phone, a bad breakup. Each one moves you. Within months, most people drift back home. Scientists call it hedonic adaptation.</p>
+    <div class="chart">
+      <svg viewBox="0 0 640 210" role="img" aria-label="Illustration: mood spikes up after good news and dips after bad news, and both times returns to the same home line">
+        <line x1="0" y1="110" x2="640" y2="110" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="6 6"/>
+        <text x="8" y="100" font-size="12" fill="var(--muted)">HOME SETTING</text>
+        <path d="M0 110 L140 110 L152 36 C190 52 225 104 300 110 L380 110 L392 178 C430 162 462 116 540 110 L640 110" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="152" cy="36" r="7" fill="var(--sun)"/>
+        <text x="166" y="30" font-size="13" fill="var(--ink)">New phone!</text>
+        <circle cx="392" cy="178" r="7" fill="var(--rose)"/>
+        <text x="406" y="194" font-size="13" fill="var(--ink)">Bad news</text>
+        <text x="250" y="138" font-size="12" fill="var(--teal)">back home</text>
+        <text x="500" y="138" font-size="12" fill="var(--teal)">back home</text>
+        <text x="560" y="204" font-size="11" fill="var(--muted)">TIME →</text>
+      </svg>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">Illustration, not real data.</p>
+  </section>
+
+  <!-- LEVERS -->
+  <section class="stack">
+    <span class="eyebrow">Step 2 · What moves home</span>
+    <h2>Five things raise the floor.</h2>
+    <p class="lede">These don't spike and fade. Keep doing them and your home setting creeps up.</p>
+    <div class="levers" style="margin-top:12px">
+      <article class="lever star">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="26" cy="24" r="11" fill="var(--teal)"/><circle cx="48" cy="24" r="11" fill="var(--sun)"/><path d="M8 62c0-12 8-20 18-20s18 8 18 20z" fill="var(--teal)"/><path d="M30 62c0-12 8-20 18-20s18 8 18 20z" fill="var(--sun)" opacity=".9"/></svg>
+        <h3>People</h3>
+        <p>The biggest lever by far. Warm, close relationships predict a happy, healthy life better than money or fame.</p>
+        <span class="proof">Harvard Study of Adult Development · 85+ years</span>
+      </article>
+      <article class="lever">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="14" fill="var(--sun)"/><g stroke="var(--sun)" stroke-width="4" stroke-linecap="round"><path d="M36 8v8M36 56v8M8 36h8M56 36h8M16 16l6 6M50 50l6 6M16 56l6-6M50 22l6-6"/></g></svg>
+        <h3>Body</h3>
+        <p>Sleep, move, get daylight. Mood runs on hardware.</p>
+        <span class="proof">Exercise lifts mood in trials</span>
+      </article>
+      <article class="lever">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="12" y="30" width="48" height="32" rx="4" fill="var(--rose)"/><rect x="8" y="22" width="56" height="12" rx="3" fill="var(--rose)" opacity=".8"/><rect x="32" y="22" width="8" height="40" fill="var(--surface)"/><path d="M36 22c-8-14-20-8-14 0M36 22c8-14 20-8 14 0" fill="none" stroke="var(--rose)" stroke-width="4"/></svg>
+        <h3>Give</h3>
+        <p>Spending on others lifts you more than spending on yourself.</p>
+        <span class="proof">Dunn et al., Science 2008</span>
+      </article>
+      <article class="lever">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M6 36c10-16 50-16 60 0-10 16-50 16-60 0z" fill="none" stroke="var(--teal)" stroke-width="4"/><circle cx="36" cy="36" r="10" fill="var(--teal)"/></svg>
+        <h3>Notice</h3>
+        <p>A wandering mind is an unhappy mind. Be where you are.</p>
+        <span class="proof">Killingsworth &amp; Gilbert, 2010</span>
+      </article>
+      <article class="lever">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="26" fill="none" stroke="var(--ink)" stroke-width="4"/><path d="M36 14l7 22-7 22-7-22z" fill="var(--sun)"/><circle cx="36" cy="36" r="4" fill="var(--ink)"/></svg>
+        <h3>Meaning</h3>
+        <p>Work toward something bigger than your next treat.</p>
+        <span class="proof">Purpose tracks life satisfaction</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- LAB -->
+  <section class="stack">
+    <span class="eyebrow">Try it</span>
+    <h2>Spike the needle, or move home.</h2>
+    <div class="lab" style="margin-top:12px">
+      <div class="stack" style="align-items:center">
+        <svg viewBox="0 0 320 200" role="img" aria-label="Interactive thermostat dial">
+          <defs>
+            <linearGradient id="g2" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="var(--line)"/>
+              <stop offset="1" stop-color="var(--sun)"/>
+            </linearGradient>
+          </defs>
+          <path d="M30 170 A130 130 0 0 1 290 170" fill="none" stroke="url(#g2)" stroke-width="22" stroke-linecap="round"/>
+          <g id="labTicks"></g>
+          <polygon id="home" points="0,0 -9,-16 9,-16" fill="var(--teal)"/>
+          <g id="needle" style="transform-origin:160px 170px">
+            <line x1="160" y1="170" x2="160" y2="64" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <circle cx="160" cy="170" r="11" fill="var(--ink)"/>
+        </svg>
+        <div class="readout" id="readout" aria-live="polite">Home 3.0 · Needle 3.0</div>
+        <div class="readout"><span style="color:var(--teal)">▼</span> teal marker = home setting</div>
+      </div>
+      <div class="stack">
+        <p style="font-weight:600">Build the habits:</p>
+        <div class="toggles">
+          <label class="toggle"><input type="checkbox" id="l1" checked> See friends every week</label>
+          <label class="toggle"><input type="checkbox" id="l2"> Sleep 7+ hours, walk daily</label>
+          <label class="toggle"><input type="checkbox" id="l3"> Do something for someone</label>
+          <label class="toggle"><input type="checkbox" id="l4"> Put the phone down, notice</label>
+          <label class="toggle"><input type="checkbox" id="l5"> Work on something that matters</label>
+        </div>
+        <p style="font-weight:600;margin-top:10px">Or just life happening:</p>
+        <div class="btns">
+          <button id="buy" type="button">Buy a gadget</button>
+          <button id="bad" type="button">Have a bad day</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAPS -->
+  <section class="stack">
+    <span class="eyebrow">Step 3 · What doesn't work</span>
+    <h2>Three traps.</h2>
+    <div class="traps" style="margin-top:12px">
+      <div class="trap"><b>Chasing it</b><span>People who push hardest to feel happy often feel worse.</span></div>
+      <div class="trap"><b>Comparing</b><span>Someone always has more. The scroll never ends.</span></div>
+      <div class="trap"><b>More stuff</b><span>Things fade fastest. Money helps most when it ends a struggle.</span></div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close">
+    <span class="eyebrow">The whole idea</span>
+    <h2>Don't chase the spike.<br><em>Raise the floor.</em></h2>
+    <p class="care">If the needle has been stuck low for weeks and nothing helps, that can be depression, not a habit problem. Talking to a doctor or counsellor is a strong move.</p>
+  </section>
+
+  <footer class="sources">
+    <span class="eyebrow">Sources</span>
+    <a href="https://www.adultdevelopmentstudy.org/" target="_blank" rel="noopener">Harvard Study of Adult Development</a>
+    <a href="https://www.science.org/doi/10.1126/science.1150952" target="_blank" rel="noopener">Dunn, Aknin &amp; Norton (2008), Spending money on others promotes happiness</a>
+    <a href="https://www.science.org/doi/10.1126/science.1192439" target="_blank" rel="noopener">Killingsworth &amp; Gilbert (2010), A wandering mind is an unhappy mind</a>
+    <a href="https://www.pnas.org/doi/10.1073/pnas.2208661120" target="_blank" rel="noopener">Killingsworth, Kahneman &amp; Mellers (2023), Income and emotional well-being</a>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/21517159/" target="_blank" rel="noopener">Mauss et al. (2011), Can seeking happiness make people unhappy?</a>
+  </footer>
+</main>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg", cx=160, cy=170;
+  function ticks(id,r1,r2){
+    const g=document.getElementById(id); if(!g) return;
+    for(let i=0;i<=10;i++){
+      const a=Math.PI*(1-i/10);
+      const l=document.createElementNS(NS,"line");
+      l.setAttribute("x1",cx+r1*Math.cos(a)); l.setAttribute("y1",cy-r1*Math.sin(a));
+      l.setAttribute("x2",cx+r2*Math.cos(a)); l.setAttribute("y2",cy-r2*Math.sin(a));
+      l.setAttribute("stroke","var(--muted)"); l.setAttribute("stroke-width", i%5===0?3:1.5);
+      g.appendChild(l);
+    }
+  }
+  ticks("heroTicks",100,112); ticks("labTicks",102,112);
+
+  const needle=document.getElementById("needle"), home=document.getElementById("home"), readout=document.getElementById("readout");
+  const boxes=[1,2,3,4,5].map(i=>document.getElementById("l"+i));
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let base=0, value=0, raf=null;
+
+  function calcBase(){ return 0.25 + boxes.filter(b=>b.checked).length*0.12; }
+  function draw(){
+    needle.style.transform="rotate("+((value-0.5)*180)+"deg)";
+    const a=Math.PI*(1-base), r=146;
+    home.setAttribute("transform","translate("+(cx+r*Math.cos(a))+","+(cy-r*Math.sin(a))+") rotate("+(90-a*180/Math.PI)+")");
+    readout.textContent="Home "+(base*10).toFixed(1)+" · Needle "+(value*10).toFixed(1);
+  }
+  function tick(){
+    const k=reduce?0.25:0.018;
+    value+=(base-value)*k;
+    if(Math.abs(base-value)<0.002){ value=base; draw(); raf=null; return; }
+    draw(); raf=requestAnimationFrame(tick);
+  }
+  function run(){ if(!raf) raf=requestAnimationFrame(tick); }
+
+  base=calcBase(); value=base; draw();
+  boxes.forEach(b=>b.addEventListener("change",()=>{ base=calcBase(); run(); }));
+  document.getElementById("buy").addEventListener("click",()=>{ value=Math.min(1,value+0.35); draw(); setTimeout(run,500); });
+  document.getElementById("bad").addEventListener("click",()=>{ value=Math.max(0,value-0.35); draw(); setTimeout(run,500); });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

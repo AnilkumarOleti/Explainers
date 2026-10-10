@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Open Weights vs Closed | Explainers</title>
+<meta name="description" content="AI you can download and keep, against AI you can only rent.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/open-weights-vs-closed/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Open Weights vs Closed">
+<meta property="og:description" content="AI you can download and keep, against AI you can only rent.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/open-weights-vs-closed/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/open-weights-vs-closed/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#ECEEF3; --paper:#FFFFFF; --ink:#171A2C; --muted:#5B6078; --line:#D3D7E2; --tint:#E2E5EE;
+  --open:#C95F07; --open-soft:#FCE8D3; --open-ink:#8A3F00;
+  --closed:#3446D1; --closed-soft:#DFE3FB; --closed-ink:#1F2C99;
+  --win:#0E8A5F; --win-soft:#D5F2E6;
+  --shadow:0 1px 0 rgba(23,26,44,.06), 0 10px 24px -12px rgba(23,26,44,.28);
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11131D; --paper:#1B1E2C; --ink:#ECEEF6; --muted:#9AA0B8; --line:#2E3247; --tint:#23273A;
+    --open:#F28A2E; --open-soft:#3A2615; --open-ink:#FFB877;
+    --closed:#8190FF; --closed-soft:#1F2549; --closed-ink:#B7C0FF;
+    --win:#3CCB94; --win-soft:#133528;
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 12px 28px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11131D; --paper:#1B1E2C; --ink:#ECEEF6; --muted:#9AA0B8; --line:#2E3247; --tint:#23273A;
+  --open:#F28A2E; --open-soft:#3A2615; --open-ink:#FFB877;
+  --closed:#8190FF; --closed-soft:#1F2549; --closed-ink:#B7C0FF;
+  --win:#3CCB94; --win-soft:#133528;
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 12px 28px -12px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.5; padding-inline:20px; padding-block:0 64px}
+.wrap{max-width:1040px; margin:0 auto}
+h1,h2,h3{font-family:var(--display); font-weight:900; line-height:.95; letter-spacing:.005em; text-wrap:balance; margin:0}
+h2{font-size:clamp(34px,5.4vw,56px); text-transform:uppercase}
+h3{font-size:24px; text-transform:uppercase; font-weight:800}
+p{margin:0}
+.lede{color:var(--muted); max-width:58ch; font-size:18px}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.o{color:var(--open)} .c{color:var(--closed)}
+section{padding-block:72px 0; display:flex; flex-direction:column; gap:28px}
+.head{display:flex; flex-direction:column; gap:12px}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--win); outline-offset:3px}
+
+/* ---------- HERO ---------- */
+.hero{padding-block:48px 8px; display:grid; grid-template-columns:1.05fr 1fr; gap:32px; align-items:center}
+.hero h1{font-size:clamp(56px,10vw,118px); text-transform:uppercase}
+.hero h1 .vs{display:block; font-size:.38em; color:var(--muted); font-weight:700; letter-spacing:.12em; margin-block:8px}
+.hero-copy{display:flex; flex-direction:column; gap:18px}
+.teams{display:flex; flex-wrap:wrap; gap:10px}
+.chip{font-family:var(--mono); font-size:13px; padding:6px 10px; border-radius:999px; font-weight:600}
+.chip.o{background:var(--open-soft); color:var(--open-ink)}
+.chip.c{background:var(--closed-soft); color:var(--closed-ink)}
+.table{position:relative; height:340px; max-width:100%; overflow:hidden}
+.fan{position:absolute; width:140px; height:200px; border-radius:14px; box-shadow:var(--shadow)}
+.fan.back{display:flex; align-items:center; justify-content:flex-start; padding-left:6px; font-family:var(--display); font-weight:900; font-size:22px; color:#fff; letter-spacing:.06em}
+.fan.bo{background:repeating-linear-gradient(45deg, var(--open) 0 10px, color-mix(in srgb, var(--open) 82%, #000) 10px 20px); border:6px solid var(--paper)}
+.fan.bc{justify-content:flex-end; padding-right:6px; background:repeating-linear-gradient(-45deg, var(--closed) 0 10px, color-mix(in srgb, var(--closed) 82%, #000) 10px 20px); border:6px solid var(--paper)}
+.fan span{background:rgba(0,0,0,.35); padding:4px 10px; border-radius:6px}
+.fan.face{background:var(--paper); border:1px solid var(--line); padding:12px; display:flex; flex-direction:column; gap:6px}
+.fan.face b{font-family:var(--display); font-size:24px; line-height:1}
+.fan.face .bar{height:8px; border-radius:4px; background:var(--tint)}
+.fan.face .bar i{display:block; height:100%; border-radius:4px}
+@media (prefers-reduced-motion: no-preference){
+  .fan{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .table:hover .f1{transform:translate(-24px,-6px) rotate(-17deg)}
+  .table:hover .f6{transform:translate(24px,-6px) rotate(17deg)}
+}
+
+/* ---------- METAPHOR ---------- */
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+.side{background:var(--paper); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:16px; border-top:8px solid}
+.side.o{border-color:var(--open)} .side.c{border-color:var(--closed)}
+.side svg{width:100%; height:auto; max-height:200px}
+.side h3{font-size:30px}
+.ticks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px}
+.ticks li{display:grid; grid-template-columns:22px 1fr; gap:8px; align-items:start}
+.ticks .y{color:var(--win); font-weight:700}
+.ticks .n{color:var(--muted); font-weight:700}
+.note{display:flex; gap:14px; align-items:center; padding:16px 20px; border-radius:14px; background:var(--tint); font-size:16px}
+.note b{font-family:var(--display); font-size:22px; text-transform:uppercase; white-space:nowrap}
+
+/* ---------- DECK ---------- */
+.stats-bar{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.stats-bar .lbl{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-right:6px}
+.sbtn{font:inherit; font-weight:700; font-size:15px; padding:9px 14px; border-radius:10px; border:2px solid var(--line); background:var(--paper); color:var(--ink); cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+.sbtn[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.verdict{font-size:17px; min-height:1.5em}
+.verdict b{font-family:var(--display); font-size:22px; text-transform:uppercase}
+.deck{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.card{position:relative; background:var(--paper); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .25s, opacity .25s}
+.card .band{padding:12px 16px 10px; min-height:44px; color:#fff; display:flex; justify-content:space-between; align-items:baseline; gap:8px}
+.card.open .band{background:var(--open)} .card.closed .band{background:var(--closed)}
+.band .team{font-family:var(--mono); font-size:11px; letter-spacing:.14em; font-weight:600}
+.band .date{font-family:var(--mono); font-size:11px; opacity:.9}
+.card .top{padding:14px 16px 6px; display:flex; flex-direction:column; gap:2px}
+.card .name{font-family:var(--display); font-weight:900; font-size:32px; line-height:.95; text-transform:uppercase}
+.card .maker{font-size:13px; color:var(--muted)}
+.card .trait{font-size:14px; color:var(--muted); padding:4px 16px 12px; line-height:1.4}
+.card dl{margin:0; padding:0 8px 10px; display:flex; flex-direction:column; gap:2px; margin-top:auto}
+.card .row{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:7px 8px; border-radius:8px; font-size:14px}
+.card dt{color:var(--muted)}
+.card dd{margin:0; font-family:var(--mono); font-weight:600; font-variant-numeric:tabular-nums; text-align:right}
+.card .row.hot{background:var(--tint)}
+.card .row.hot dt{color:var(--ink); font-weight:700}
+.card.winner .row.hot{background:var(--win-soft)}
+.card.winner .row.hot dd{color:var(--win)}
+.card.loser{opacity:.55; transform:scale(.97)}
+.stamp{position:absolute; top:6px; right:10px; z-index:2; font-family:var(--display); font-weight:900; font-size:22px; letter-spacing:.08em; color:var(--win); border:3px solid var(--win); border-radius:8px; padding:2px 10px; transform:rotate(8deg); background:var(--paper)}
+.card:not(.winner) .stamp{display:none}
+.card.winner .band .date{visibility:hidden}
+.src-line{font-size:13px; color:var(--muted)}
+
+/* ---------- CHARTS ---------- */
+.chart{background:var(--paper); border-radius:18px; padding:22px 22px 18px; display:flex; flex-direction:column; gap:10px}
+.brow{display:grid; grid-template-columns:170px 1fr; gap:12px; align-items:center}
+.brow .who{font-weight:700; font-size:15px; text-align:right; line-height:1.15}
+.brow .who small{display:block; font-weight:400; color:var(--muted); font-size:12px}
+.track{position:relative; height:30px}
+.fill{position:absolute; left:0; top:3px; bottom:3px; border-radius:0 6px 6px 0; min-width:4px}
+.fill.o{background:var(--open)} .fill.c{background:var(--closed)}
+.val{position:absolute; top:50%; transform:translateY(-50%); font-family:var(--mono); font-weight:600; font-size:14px; padding-left:8px; white-space:nowrap}
+.axis{display:grid; grid-template-columns:170px 1fr; gap:12px}
+.axis .ticks-x{position:relative; height:18px; border-top:1px solid var(--line)}
+.axis .ticks-x span{position:absolute; top:4px; transform:translateX(-50%); font-family:var(--mono); font-size:11px; color:var(--muted)}
+.gap-band{position:absolute; top:-4px; bottom:-4px; background:repeating-linear-gradient(90deg, transparent 0 4px, color-mix(in srgb, var(--win) 22%, transparent) 4px 6px); border-inline:2px dashed var(--win); pointer-events:none}
+.legend{display:flex; gap:18px; flex-wrap:wrap; font-size:14px; color:var(--muted)}
+.legend i{display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px}
+.callout{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:center}
+.big{font-family:var(--display); font-weight:900; font-size:clamp(64px,10vw,104px); line-height:.85; color:var(--win)}
+.chart-wrap{display:grid; grid-template-columns:1fr; gap:14px}
+
+/* ---------- SIZE ---------- */
+.sizes{background:var(--paper); border-radius:18px; padding:20px; overflow-x:auto}
+.sizes svg{display:block; width:100%; min-width:560px; height:auto}
+.analogy{display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; background:var(--tint); border-radius:14px; padding:18px 20px}
+.docs{display:grid; grid-template-columns:repeat(28,10px); gap:3px}
+.docs i{width:10px; height:10px; border-radius:50%; background:color-mix(in srgb, var(--muted) 35%, transparent)}
+.docs i.on{background:var(--open)}
+
+/* ---------- HARDWARE ---------- */
+.hw{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.hwc{background:var(--paper); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px}
+.hwc svg{height:92px; width:100%}
+.hwc b{font-family:var(--display); font-size:22px; text-transform:uppercase; line-height:1}
+.hwc p{font-size:14px; color:var(--muted)}
+.hwc.no{background:transparent; border:2px dashed var(--line)}
+
+/* ---------- TUG OF WAR ---------- */
+.tug{background:var(--paper); border-radius:18px; padding:10px 22px 18px}
+.tug-head{display:grid; grid-template-columns:minmax(150px,1.1fr) 2fr; gap:18px; padding:10px 0; font-family:var(--display); font-weight:900; font-size:20px; text-transform:uppercase; border-bottom:1px solid var(--line)}
+.tug-head .ends{display:flex; justify-content:space-between}
+.trow{display:grid; grid-template-columns:minmax(150px,1.1fr) 2fr; gap:18px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line)}
+.trow:last-child{border-bottom:0}
+.trow .what{font-weight:700; line-height:1.2}
+.trow .what small{display:block; font-weight:400; color:var(--muted); font-size:13px; margin-top:3px}
+.rope{position:relative; height:26px}
+.rope::before{content:""; position:absolute; left:0; right:0; top:50%; height:4px; transform:translateY(-50%); border-radius:2px; background:linear-gradient(90deg, var(--open) 0%, var(--open) 42%, var(--line) 42%, var(--line) 58%, var(--closed) 58%, var(--closed) 100%); opacity:.35}
+.rope::after{content:""; position:absolute; left:50%; top:2px; bottom:2px; width:2px; background:var(--muted); opacity:.5}
+.knot{position:absolute; top:50%; width:26px; height:26px; border-radius:50%; transform:translate(-50%,-50%); border:4px solid var(--paper); box-shadow:0 0 0 2px var(--ink)}
+.knot.o{background:var(--open)} .knot.c{background:var(--closed)} .knot.t{background:var(--muted)}
+
+/* ---------- PICKER ---------- */
+.picker{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:20px; align-items:start}
+.qs{display:flex; flex-direction:column; gap:8px}
+.q{font:inherit; text-align:left; padding:14px 16px; border-radius:12px; border:2px solid var(--line); background:var(--paper); color:var(--ink); cursor:pointer; font-weight:700; display:flex; gap:10px; align-items:center}
+.q:hover{border-color:var(--ink)}
+.q[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.answer{background:var(--paper); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:14px; position:sticky; top:calc(env(safe-area-inset-top,0px) + 16px)}
+.answer .pick{font-family:var(--display); font-weight:900; font-size:clamp(32px,4.4vw,46px); line-height:.95; text-transform:uppercase}
+.answer .why{color:var(--muted)}
+.answer .alt{font-size:15px; padding-top:12px; border-top:1px solid var(--line)}
+.tag{display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; padding:4px 8px; border-radius:6px; width:max-content}
+.tag.o{background:var(--open-soft); color:var(--open-ink)} .tag.c{background:var(--closed-soft); color:var(--closed-ink)} .tag.b{background:var(--tint); color:var(--ink)}
+
+/* ---------- FINE PRINT ---------- */
+.fine{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+.fp{border-left:4px solid var(--ink); padding:4px 0 4px 16px; display:flex; flex-direction:column; gap:6px}
+.fp b{font-family:var(--display); font-size:22px; text-transform:uppercase; line-height:1}
+.fp p{color:var(--muted); font-size:15px}
+footer{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); display:flex; flex-direction:column; gap:8px}
+footer a{color:var(--muted)}
+footer ul{margin:0; padding-left:18px; columns:2; column-gap:28px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .table{height:300px}
+  .deck{grid-template-columns:repeat(2,1fr)}
+  .hw{grid-template-columns:repeat(2,1fr)}
+  .picker{grid-template-columns:1fr}
+  .answer{position:static}
+}
+@media (max-width:620px){
+  body{padding-inline:16px; font-size:16px}
+  .duo, .fine{grid-template-columns:1fr}
+  .deck{grid-template-columns:1fr}
+  .brow, .axis{grid-template-columns:110px 1fr}
+  .brow .who{font-size:13px}
+  .tug-head, .trow{grid-template-columns:1fr; gap:6px}
+  .tug-head > span:first-child{display:none}
+  .callout{grid-template-columns:1fr}
+  .analogy{grid-template-columns:1fr}
+  footer ul{columns:1}
+  .table{height:240px}
+  .fan{width:104px; height:150px}
+  .fan.face b{font-size:19px}
+}
+</style>
+<style>.docs{grid-template-columns:repeat(28,minmax(0,10px));max-width:100%}.docs i{width:auto;height:auto;aspect-ratio:1}</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">AI models · state of play, 28 Sep 2026</span>
+    <h1><span class="o">Open</span><span class="vs">versus</span><span class="c">Closed</span></h1>
+    <p class="lede">Two decks of AI. One you can download and keep. One you can only rent. Here is how they stack up.</p>
+    <div class="teams">
+      <span class="chip o">OPEN · Kimi, DeepSeek</span>
+      <span class="chip c">CLOSED · ChatGPT, Claude</span>
+    </div>
+  </div>
+  <div class="table" aria-hidden="true">
+    <div class="fan back bo f1" style="left:2%; top:40px; transform:rotate(-12deg)"><span>OPEN</span></div>
+    <div class="fan face f2" style="left:15%; top:22px; transform:rotate(-6deg)">
+      <span class="tag o">OPEN</span><b>Kimi K3</b>
+      <div class="bar"><i style="width:76%; background:var(--open)"></i></div>
+      <div class="bar"><i style="width:30%; background:var(--open)"></i></div>
+      <div class="bar"><i style="width:100%; background:var(--open)"></i></div>
+    </div>
+    <div class="fan face f3" style="left:29%; top:14px; transform:rotate(-1deg)">
+      <span class="tag o">OPEN</span><b>Deep<br>Seek</b>
+      <div class="bar"><i style="width:62%; background:var(--open)"></i></div>
+      <div class="bar"><i style="width:92%; background:var(--open)"></i></div>
+      <div class="bar"><i style="width:57%; background:var(--open)"></i></div>
+    </div>
+    <div class="fan face f4" style="left:43%; top:16px; transform:rotate(4deg)">
+      <span class="tag c">CLOSED</span><b>GPT-6</b>
+      <div class="bar"><i style="width:91%; background:var(--closed)"></i></div>
+      <div class="bar"><i style="width:10%; background:var(--closed)"></i></div>
+      <div class="bar"><i style="width:0%; background:var(--closed)"></i></div>
+    </div>
+    <div class="fan face f5" style="left:56%; top:26px; transform:rotate(9deg)">
+      <span class="tag c">CLOSED</span><b>Claude</b>
+      <div class="bar"><i style="width:100%; background:var(--closed)"></i></div>
+      <div class="bar"><i style="width:25%; background:var(--closed)"></i></div>
+      <div class="bar"><i style="width:0%; background:var(--closed)"></i></div>
+    </div>
+    <div class="fan back bc f6" style="left:66%; top:46px; transform:rotate(14deg)"><span>CLOSED</span></div>
+  </div>
+</header>
+
+<!-- ================= THE ONE IDEA ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">The one idea</span>
+    <h2>Own the car, or hail a cab</h2>
+    <p class="lede">An AI model is a giant file of numbers (its "weights"). The whole difference is who holds that file.</p>
+  </div>
+  <div class="duo">
+    <div class="side o">
+      <svg viewBox="0 0 320 170" role="img" aria-label="A car parked in your own garage, with a key">
+        <path d="M20 160 V70 L160 12 L300 70 V160" fill="none" stroke="var(--line)" stroke-width="6" stroke-linejoin="round"/>
+        <rect x="58" y="92" width="170" height="44" rx="14" fill="var(--open)"/>
+        <path d="M90 92 L112 64 H180 L204 92 Z" fill="var(--open)"/>
+        <path d="M100 90 L116 70 H144 V90 Z M152 90 V70 H176 L194 90 Z" fill="var(--paper)" opacity=".85"/>
+        <circle cx="96" cy="138" r="15" fill="var(--ink)"/><circle cx="96" cy="138" r="6" fill="var(--paper)"/>
+        <circle cx="192" cy="138" r="15" fill="var(--ink)"/><circle cx="192" cy="138" r="6" fill="var(--paper)"/>
+        <g transform="translate(248 104)">
+          <circle cx="0" cy="0" r="14" fill="none" stroke="var(--win)" stroke-width="6"/>
+          <path d="M14 0 H46 M34 0 V12 M44 0 V10" stroke="var(--win)" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <text x="160" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--muted)">YOUR GARAGE</text>
+      </svg>
+      <h3 class="o">Open weights</h3>
+      <p>Kimi, DeepSeek: you download the model and run it wherever you like.</p>
+      <ul class="ticks">
+        <li><span class="y">✓</span><span>Nobody can take it back</span></li>
+        <li><span class="y">✓</span><span>Your data stays on your machines</span></li>
+        <li><span class="y">✓</span><span>You can tune it and modify it</span></li>
+        <li><span class="n">✕</span><span>You need the garage and the fuel: big GPUs</span></li>
+      </ul>
+    </div>
+    <div class="side c">
+      <svg viewBox="0 0 320 170" role="img" aria-label="A taxi with a running fare meter">
+        <path d="M10 160 H310" stroke="var(--line)" stroke-width="6" stroke-linecap="round" stroke-dasharray="18 14"/>
+        <rect x="112" y="40" width="64" height="20" rx="4" fill="var(--ink)"/>
+        <text x="144" y="55" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="var(--paper)">API</text>
+        <rect x="52" y="96" width="186" height="44" rx="14" fill="var(--closed)"/>
+        <path d="M86 96 L110 64 H182 L208 96 Z" fill="var(--closed)"/>
+        <path d="M96 94 L114 70 H142 V94 Z M150 94 V70 H178 L198 94 Z" fill="var(--paper)" opacity=".85"/>
+        <circle cx="92" cy="142" r="15" fill="var(--ink)"/><circle cx="92" cy="142" r="6" fill="var(--paper)"/>
+        <circle cx="198" cy="142" r="15" fill="var(--ink)"/><circle cx="198" cy="142" r="6" fill="var(--paper)"/>
+        <rect x="244" y="36" width="64" height="52" rx="8" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+        <text x="276" y="58" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">FARE</text>
+        <text x="276" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="17" font-weight="600" fill="var(--ink)">$$$</text>
+      </svg>
+      <h3 class="c">Closed models</h3>
+      <p>ChatGPT, Claude: the model stays on their servers. You pay per trip.</p>
+      <ul class="ticks">
+        <li><span class="y">✓</span><span>The best drivers on the road today</span></li>
+        <li><span class="y">✓</span><span>Zero setup, polished apps</span></li>
+        <li><span class="n">✕</span><span>Your request travels through their system</span></li>
+        <li><span class="n">✕</span><span>They set the price and can retire a model</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><b>The catch</b><span>"Open weights" gives you the car, not the factory. The training data and recipe stay private, even for Kimi and DeepSeek.</span></div>
+</section>
+
+<!-- ================= THE DECK ================= -->
+<section id="deck">
+  <div class="head">
+    <span class="eyebrow">Top Trumps</span>
+    <h2>Meet the six cards</h2>
+    <p class="lede">The newest model from each camp. Pick a category and see who wins.</p>
+  </div>
+  <div class="stats-bar" role="group" aria-label="Pick a category">
+    <span class="lbl">Play</span>
+    <button class="sbtn" data-stat="brains" aria-pressed="true">Brains</button>
+    <button class="sbtn" data-stat="price" aria-pressed="false">Cheapest</button>
+    <button class="sbtn" data-stat="size" aria-pressed="false">Biggest</button>
+    <button class="sbtn" data-stat="ctx" aria-pressed="false">Memory</button>
+    <button class="sbtn" data-stat="dl" aria-pressed="false">Downloadable</button>
+  </div>
+  <p class="verdict" id="verdict" aria-live="polite"></p>
+  <div class="deck" id="deckEl"></div>
+  <p class="src-line">Brains = Artificial Analysis Intelligence Index (Sept 2026, max effort). Price = US$ per million tokens the model writes (a token is about ¾ of a word). Memory = how much text it can read at once.</p>
+</section>
+
+<!-- ================= BRAINS ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">Round 1 · Raw smarts</span>
+    <h2>Closed still leads</h2>
+    <p class="lede">The top open model sits about a dozen points behind the top closed one. A year ago the gap was most of a year of progress. Now it is weeks to a few months.</p>
+  </div>
+  <div class="chart" id="brainsChart" role="img" aria-label="Bar chart of Artificial Analysis Intelligence Index scores"></div>
+  <div class="legend"><span><i style="background:var(--closed)"></i>Closed</span><span><i style="background:var(--open)"></i>Open weights</span><span>Also shown: MiMo (Xiaomi) and GLM (Z.ai), the other top open models</span></div>
+</section>
+
+<!-- ================= PRICE ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">Round 2 · The bill</span>
+    <h2>Same job, 100× price spread</h2>
+    <p class="lede">The job: read 1 million tokens (about 7 novels) and write 200,000 tokens (about 1½ novels). List prices, no discounts.</p>
+  </div>
+  <div class="chart" id="priceChart" role="img" aria-label="Bar chart of cost in US dollars for the same job"></div>
+  <div class="callout">
+    <div class="big">≠</div>
+    <p class="lede" style="color:var(--ink)"><b>Open is no longer automatically cheap.</b> Kimi K3 costs more than GPT-6 Sol. And the cheapest card here is closed: GPT-6 Luna. DeepSeek is the one open player that is still dirt cheap.</p>
+  </div>
+</section>
+
+<!-- ================= SIZE ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">Round 3 · What's inside</span>
+    <h2>Huge brains, small shifts</h2>
+    <p class="lede">Open labs publish their sizes. Closed labs don't. Circle area = total parameters. The dark core = the part that actually works on each word.</p>
+  </div>
+  <div class="sizes">
+    <svg viewBox="0 0 900 290" role="img" aria-label="Circles comparing model sizes">
+      <!-- K3: r=110 total, 21 active -->
+      <circle cx="130" cy="130" r="110" fill="var(--open-soft)" stroke="var(--open)" stroke-width="3"/>
+      <circle cx="130" cy="130" r="21" fill="var(--open)"/>
+      <text x="130" y="268" text-anchor="middle" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="24" fill="var(--ink)">KIMI K3</text>
+      <text x="130" y="286" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--muted)">2.8T total · 104B active</text>
+      <!-- V4 Pro: r=83, 14.6 -->
+      <circle cx="355" cy="157" r="83" fill="var(--open-soft)" stroke="var(--open)" stroke-width="3"/>
+      <circle cx="355" cy="157" r="14.6" fill="var(--open)"/>
+      <text x="355" y="268" text-anchor="middle" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="24" fill="var(--ink)">DEEPSEEK V4 PRO</text>
+      <text x="355" y="286" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--muted)">1.6T total · 49B active</text>
+      <!-- V4.1 Flash: r=49 -->
+      <circle cx="540" cy="191" r="49" fill="var(--open-soft)" stroke="var(--open)" stroke-width="3"/>
+      <text x="540" y="268" text-anchor="middle" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="24" fill="var(--ink)">V4.1 FLASH</text>
+      <text x="540" y="286" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--muted)">552B total</text>
+      <!-- Closed unknown -->
+      <circle cx="760" cy="140" r="96" fill="none" stroke="var(--closed)" stroke-width="3" stroke-dasharray="10 8"/>
+      <text x="760" y="168" text-anchor="middle" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="88" fill="var(--closed)">?</text>
+      <text x="760" y="268" text-anchor="middle" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="24" fill="var(--ink)">GPT-6 · CLAUDE</text>
+      <text x="760" y="286" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--muted)">not disclosed</text>
+    </svg>
+  </div>
+  <div class="analogy">
+    <div class="docs" id="docs" aria-hidden="true"></div>
+    <p><b>Think of a hospital with 896 specialists.</b> For each word, Kimi K3 calls in just 16 of them. That trick (called "mixture of experts") is how a 2.8-trillion model stays affordable to run.</p>
+  </div>
+</section>
+
+<!-- ================= HARDWARE ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">Round 4 · Running it yourself</span>
+    <h2>"Download" means a data centre</h2>
+    <p class="lede">You can hold the file, but the flagship open models need serious hardware to run.</p>
+  </div>
+  <div class="hw">
+    <div class="hwc">
+      <svg viewBox="0 0 120 90" aria-hidden="true"><rect x="22" y="14" width="76" height="50" rx="5" fill="none" stroke="var(--open)" stroke-width="5"/><path d="M8 72 H112 L104 80 H16 Z" fill="var(--open)"/></svg>
+      <b>A good laptop</b>
+      <p>Small "distilled" open models, e.g. Qwen3.8 27B.</p>
+    </div>
+    <div class="hwc">
+      <svg viewBox="0 0 120 90" aria-hidden="true"><rect x="16" y="22" width="88" height="48" rx="5" fill="none" stroke="var(--open)" stroke-width="5"/><g fill="var(--open)"><rect x="26" y="32" width="8" height="28" rx="2"/><rect x="38" y="32" width="8" height="28" rx="2"/><rect x="50" y="32" width="8" height="28" rx="2"/><rect x="62" y="32" width="8" height="28" rx="2"/><rect x="74" y="32" width="8" height="28" rx="2"/><rect x="86" y="32" width="8" height="28" rx="2"/></g></svg>
+      <b>One 8-GPU server</b>
+      <p>DeepSeek V4 Pro (1.6T) on H100 or H200 cards.</p>
+    </div>
+    <div class="hwc">
+      <svg viewBox="0 0 120 90" aria-hidden="true"><g fill="none" stroke="var(--open)" stroke-width="4"><rect x="10" y="6" width="44" height="80" rx="4"/><rect x="66" y="6" width="44" height="80" rx="4"/></g><g fill="var(--open)"><rect x="16" y="14" width="32" height="8" rx="2"/><rect x="16" y="28" width="32" height="8" rx="2"/><rect x="16" y="42" width="32" height="8" rx="2"/><rect x="16" y="56" width="32" height="8" rx="2"/><rect x="16" y="70" width="32" height="8" rx="2"/><rect x="72" y="14" width="32" height="8" rx="2"/><rect x="72" y="28" width="32" height="8" rx="2"/><rect x="72" y="42" width="32" height="8" rx="2"/><rect x="72" y="56" width="32" height="8" rx="2"/><rect x="72" y="70" width="32" height="8" rx="2"/></g></svg>
+      <b>Racks of GPUs</b>
+      <p>Kimi K3 is a 1.56 TB file. Around 12 top GPUs just to hold it.</p>
+    </div>
+    <div class="hwc no">
+      <svg viewBox="0 0 120 90" aria-hidden="true"><rect x="30" y="34" width="60" height="46" rx="6" fill="none" stroke="var(--closed)" stroke-width="5"/><path d="M42 34 V22 a18 18 0 0 1 36 0 V34" fill="none" stroke="var(--closed)" stroke-width="5"/><circle cx="60" cy="56" r="6" fill="var(--closed)"/></svg>
+      <b>Not an option</b>
+      <p>GPT-6 and Claude only run on OpenAI's and Anthropic's servers (and their cloud partners).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCORECARD ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">Every other angle</span>
+    <h2>The tug of war</h2>
+    <p class="lede">Where each knot sits shows which side wins that category.</p>
+  </div>
+  <div class="tug" id="tug">
+    <div class="tug-head"><span>&nbsp;</span><span class="ends"><span class="o">← Open</span><span class="c">Closed →</span></span></div>
+  </div>
+</section>
+
+<!-- ================= PICKER ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">So which one?</span>
+    <h2>Pick your situation</h2>
+  </div>
+  <div class="picker">
+    <div class="qs" id="qs" role="group" aria-label="Situations"></div>
+    <div class="answer" id="answer" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= FINE PRINT ================= -->
+<section>
+  <div class="head">
+    <span class="eyebrow">Read before you pick</span>
+    <h2>The fine print</h2>
+  </div>
+  <div class="fine">
+    <div class="fp"><b>Scores are mostly self-reported</b><p>Launch numbers come from the labs themselves, on tests they choose. Independent boards like Artificial Analysis and Arena are the fairer referees.</p></div>
+    <div class="fp"><b>Licences differ</b><p>DeepSeek uses MIT: do almost anything. Kimi K3 has its own licence with a clause for large-revenue users. Read it before building a business on it.</p></div>
+    <div class="fp"><b>App vs weights</b><p>Using the Kimi or DeepSeek app or API means your data goes to Chinese servers, under Chinese law. Running the weights yourself avoids that.</p></div>
+    <div class="fp"><b>Guardrails travel differently</b><p>Closed labs can keep safety filters on and restrict risky topics. With open weights, anyone holding the file can strip those filters away.</p></div>
+    <div class="fp"><b>Borrowed brains?</b><p>In February 2026 Anthropic alleged that Moonshot used millions of Claude conversations to train Kimi ("distillation"). Moonshot's own K3 report still places it behind Fable 5 and GPT-5.6 Sol overall.</p></div>
+    <div class="fp"><b>Prices move monthly</b><p>Opus 5.5 and GPT-6 Sol both cut prices on 22 Sept. DeepSeek adds peak-hour surcharges. Check the live rate card before you budget.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>Figures as of 28 September 2026. Prices are standard API list prices in US$.</span>
+  <ul>
+    <li><a href="https://artificialanalysis.ai/models" target="_blank" rel="noopener">Artificial Analysis: model leaderboard</a></li>
+    <li><a href="https://artificialanalysis.ai/models/gpt-6-sol" target="_blank" rel="noopener">Artificial Analysis: GPT-6 Sol</a></li>
+    <li><a href="https://x.com/ArtificialAnlys/status/2098148674203488422" target="_blank" rel="noopener">Artificial Analysis: DeepSeek V4.1 Flash score</a></li>
+    <li><a href="https://247wallst.com/cards/xpost-01m1yj852p230gg5tksfn4q7bh" target="_blank" rel="noopener">24/7 Wall St: open vs closed gap</a></li>
+    <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/moonshot-releases-2-8-trillion-parameter-kimi-k3" target="_blank" rel="noopener">Tom's Hardware: Kimi K3</a></li>
+    <li><a href="https://www.yottalabs.ai/post/kimi-k3-specs-benchmarks-how-to-access-2026" target="_blank" rel="noopener">Yotta Labs: Kimi K3 hardware</a></li>
+    <li><a href="https://o-mega.ai/articles/kimi-k3-benchmarks-cost-open-weights-2026" target="_blank" rel="noopener">o-mega: Kimi K3 licence and gap</a></li>
+    <li><a href="https://tech.yahoo.com/ai/articles/deepseek-officially-launches-v4-pro-181255468.html" target="_blank" rel="noopener">Yahoo/Reuters: DeepSeek V4 Pro launch</a></li>
+    <li><a href="https://benchlm.ai/blog/posts/deepseek-v4-vs-claude-opus-4-7-vs-gpt-5-5" target="_blank" rel="noopener">BenchLM: DeepSeek V4 Pro pricing</a></li>
+    <li><a href="https://www.activepieces.com/blog/deepseek-v41-flash-launch-whats-new-in-2026" target="_blank" rel="noopener">Activepieces: DeepSeek V4.1 Flash</a></li>
+    <li><a href="https://venturebeat.com/technology/anthropic-releases-claude-opus-5-5-beating-fable-5-1-on-key-agentic-benchmarks-at-60-cheaper-api-price" target="_blank" rel="noopener">VentureBeat: Claude Opus 5.5</a></li>
+    <li><a href="https://www.anthropic.com/claude/fable" target="_blank" rel="noopener">Anthropic: Claude Fable 5.1</a></li>
+    <li><a href="https://openrouter.ai/openai/gpt-6-astra" target="_blank" rel="noopener">OpenRouter: GPT-6 Astra</a></li>
+    <li><a href="https://docs.litellm.ai/blog/gpt_6_sol_luna" target="_blank" rel="noopener">LiteLLM: GPT-6 Sol and Luna</a></li>
+    <li><a href="https://miraflow.ai/blog/kimi-k2-6-explained-moonshot-ai-open-source-model-ties-gpt-5-5-coding" target="_blank" rel="noopener">Miraflow: Kimi and vendor jurisdiction</a></li>
+  </ul>
+</footer>
+</div>
+
+<script>
+(function(){
+  /* ---------- DECK ---------- */
+  var cards = [
+    {team:'open', name:'Kimi K3', maker:'Moonshot AI · China', date:'JUL 2026', brains:44, price:15, size:2800, sizeTxt:'2.8T', ctx:1000, ctxTxt:'1M', dl:1, dlTxt:'Yes', trait:'Largest open model ever. Ranked #1 in Arena’s blind front-end coding test at launch.'},
+    {team:'open', name:'DeepSeek V4 Pro', maker:'DeepSeek · China', date:'AUG 2026', brains:36, price:0.87, size:1600, sizeTxt:'1.6T', ctx:1000, ctxTxt:'1M', dl:1, dlTxt:'Yes', trait:'MIT licence. Can write up to 384K tokens in one reply.'},
+    {team:'open', name:'DeepSeek V4.1 Flash', maker:'DeepSeek · China', date:'SEP 2026', brains:40, price:0.60, size:552, sizeTxt:'552B', ctx:1000, ctxTxt:'1M', dl:1, dlTxt:'Yes', trait:'A third the size of V4 Pro, yet scores higher. DeepSeek’s new flagship.'},
+    {team:'closed', name:'GPT-6 Astra', maker:'OpenAI · USA', date:'SEP 2026', brains:53, price:50, size:null, sizeTxt:'Secret', ctx:1050, ctxTxt:'1.05M', dl:0, dlTxt:'No', trait:'OpenAI’s top model. Strongest at using a computer and browsing the web.'},
+    {team:'closed', name:'GPT-6 Sol', maker:'OpenAI · USA', date:'SEP 2026', brains:48, price:10, size:null, sizeTxt:'Secret', ctx:1050, ctxTxt:'1.05M', dl:0, dlTxt:'No', trait:'OpenAI’s mid-tier workhorse. Smarter than every open model, at $2 in / $10 out.'},
+    {team:'closed', name:'Claude Opus 5.5', maker:'Anthropic · USA', date:'SEP 2026', brains:58, price:20, size:null, sizeTxt:'Secret', ctx:1000, ctxTxt:'1M', dl:0, dlTxt:'No', trait:'Top of the Artificial Analysis leaderboard right now. $4 in / $20 out.'}
+  ];
+  var statRows = [
+    {k:'brains', label:'Brains', fmt:function(c){return c.brains}},
+    {k:'price', label:'Price / M out', fmt:function(c){return '$'+(c.price<1?c.price.toFixed(2):c.price)}},
+    {k:'size', label:'Size', fmt:function(c){return c.sizeTxt}},
+    {k:'ctx', label:'Memory', fmt:function(c){return c.ctxTxt}},
+    {k:'dl', label:'Download it', fmt:function(c){return c.dlTxt}}
+  ];
+  var deck = document.getElementById('deckEl');
+  deck.innerHTML = cards.map(function(c,i){
+    return '<article class="card '+c.team+'" data-i="'+i+'">'+
+      '<div class="band"><span class="team">'+(c.team==='open'?'OPEN WEIGHTS':'CLOSED')+'</span><span class="date">'+c.date+'</span></div>'+
+      '<span class="stamp">WINS</span>'+
+      '<div class="top"><span class="name">'+c.name+'</span><span class="maker">'+c.maker+'</span></div>'+
+      '<p class="trait">'+c.trait+'</p>'+
+      '<dl>'+statRows.map(function(s){return '<div class="row" data-k="'+s.k+'"><dt>'+s.label+'</dt><dd>'+s.fmt(c)+'</dd></div>'}).join('')+'</dl>'+
+    '</article>';
+  }).join('');
+
+  var verdicts = {
+    brains:'<b>Claude Opus 5.5 wins.</b> Every closed card beats every open card on smarts.',
+    price:'<b>DeepSeek V4.1 Flash wins.</b> 80× cheaper output than GPT-6 Astra.',
+    size:'<b>Kimi K3 wins</b> among cards that show their size. Closed labs keep theirs secret.',
+    ctx:'<b>Near tie.</b> Every card can read about a million tokens (roughly 7 novels) at once.',
+    dl:'<b>Open team wins.</b> Only Kimi and DeepSeek let you download the model.'
+  };
+  function winners(k){
+    var idx=[];
+    if(k==='brains'){var m=Math.max.apply(null,cards.map(function(c){return c.brains})); cards.forEach(function(c,i){if(c.brains===m)idx.push(i)});}
+    if(k==='price'){var n=Math.min.apply(null,cards.map(function(c){return c.price})); cards.forEach(function(c,i){if(c.price===n)idx.push(i)});}
+    if(k==='size'){var s=Math.max.apply(null,cards.map(function(c){return c.size||0})); cards.forEach(function(c,i){if(c.size===s)idx.push(i)});}
+    if(k==='ctx'){cards.forEach(function(c,i){idx.push(i)});}
+    if(k==='dl'){cards.forEach(function(c,i){if(c.dl)idx.push(i)});}
+    return idx;
+  }
+  function play(k){
+    document.querySelectorAll('.sbtn').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.stat===k?'true':'false')});
+    var w = winners(k), tie = (k==='ctx');
+    deck.querySelectorAll('.card').forEach(function(el){
+      var i=+el.dataset.i, isW = w.indexOf(i)>-1 && !tie;
+      el.classList.toggle('winner', isW);
+      el.classList.toggle('loser', !tie && !isW);
+      el.querySelectorAll('.row').forEach(function(r){r.classList.toggle('hot', r.dataset.k===k)});
+    });
+    document.getElementById('verdict').innerHTML = verdicts[k];
+  }
+  document.querySelectorAll('.sbtn').forEach(function(b){b.addEventListener('click', function(){play(b.dataset.stat)})});
+  play('brains');
+
+  /* ---------- BAR CHARTS ---------- */
+  function bars(el, rows, max, fmt, ticks, extra){
+    var h = rows.map(function(r){
+      var pct = r.v/max*100;
+      return '<div class="brow"><div class="who">'+r.n+(r.s?'<small>'+r.s+'</small>':'')+'</div>'+
+        '<div class="track"><div class="fill '+r.t+'" style="width:'+pct+'%"></div><span class="val" style="left:'+pct+'%">'+fmt(r.v)+'</span></div></div>';
+    }).join('');
+    h += '<div class="axis"><span></span><div class="ticks-x">'+ticks.map(function(t){return '<span style="left:'+(t/max*100)+'%">'+t+'</span>'}).join('')+'</div></div>';
+    el.innerHTML = h;
+    if(extra) extra(el);
+  }
+  var brains = [
+    {n:'Claude Opus 5.5', s:'Anthropic', v:58, t:'c'},
+    {n:'Claude Fable 5.1', s:'Anthropic', v:53, t:'c'},
+    {n:'GPT-6 Astra', s:'OpenAI', v:53, t:'c'},
+    {n:'GPT-6 Sol', s:'OpenAI', v:48, t:'c'},
+    {n:'MiMo-V2.6-Pro', s:'Xiaomi', v:46, t:'o'},
+    {n:'GLM-5.3', s:'Z.ai', v:45, t:'o'},
+    {n:'Kimi K3', s:'Moonshot AI', v:44, t:'o'},
+    {n:'DeepSeek V4.1 Flash', s:'DeepSeek', v:40, t:'o'},
+    {n:'DeepSeek V4 Pro', s:'DeepSeek', v:36, t:'o'}
+  ];
+  bars(document.getElementById('brainsChart'), brains, 64, function(v){return v}, [0,20,40,60]);
+  var price = [
+    {n:'Claude Fable 5.1', v:20, t:'c'},
+    {n:'GPT-6 Astra', v:20, t:'c'},
+    {n:'Claude Opus 5.5', v:8, t:'c'},
+    {n:'Kimi K3', v:6, t:'o'},
+    {n:'GPT-6 Sol', v:4, t:'c'},
+    {n:'DeepSeek V4 Pro', s:'off-peak', v:0.61, t:'o'},
+    {n:'DeepSeek V4.1 Flash', s:'off-peak', v:0.27, t:'o'},
+    {n:'GPT-6 Luna', v:0.20, t:'c'}
+  ];
+  bars(document.getElementById('priceChart'), price, 22, function(v){return '$'+(v<1?v.toFixed(2):v.toFixed(2).replace('.00',''))}, [0,5,10,15,20]);
+
+  /* ---------- EXPERTS DOTS ---------- */
+  var d = document.getElementById('docs'), on=[3,17,30,44,58,61,79,90,105,118,131,142,156,170,183,190], h='';
+  for(var i=0;i<196;i++){h+='<i'+(on.indexOf(i)>-1?' class="on"':'')+'></i>'}
+  d.innerHTML = h;
+
+  /* ---------- TUG OF WAR ---------- */
+  var tug = [
+    {w:'Raw smarts', s:'Top closed scores 58, top open 46', p:82},
+    {w:'Price per job', s:'DeepSeek is cheapest, but GPT-6 Luna is cheaper still', p:36},
+    {w:'Keep data in-house', s:'Only if you run the weights yourself', p:10},
+    {w:'Customise it', s:'Fine-tune on your own data', p:12},
+    {w:'Can’t be taken away', s:'Closed models get retired on the vendor’s schedule', p:10},
+    {w:'Zero setup', s:'No GPUs, no engineers', p:88},
+    {w:'Polished apps', s:'Voice, images, computer use, coding agents', p:84},
+    {w:'Safety guardrails', s:'Filters can’t be stripped by users', p:80},
+    {w:'Reading length', s:'Both around 1M tokens', p:50}
+  ];
+  var t = document.getElementById('tug');
+  t.insertAdjacentHTML('beforeend', tug.map(function(r){
+    var cls = r.p<45?'o':(r.p>55?'c':'t');
+    return '<div class="trow"><div class="what">'+r.w+'<small>'+r.s+'</small></div><div class="rope"><span class="knot '+cls+'" style="left:'+r.p+'%"></span></div></div>';
+  }).join(''));
+
+  /* ---------- PICKER ---------- */
+  var qs = [
+    {q:'I want the smartest answer, cost no object', tag:'c', pick:'Claude Opus 5.5', why:'Highest independent score today, and cheaper than Fable 5.1 or GPT-6 Astra.', alt:'Also great: Claude Fable 5.1 for the hardest long jobs, GPT-6 Astra for computer use.'},
+    {q:'I’m running millions of small tasks', tag:'b', pick:'DeepSeek V4.1 Flash or GPT-6 Luna', why:'Both cost cents per job. Flash is smarter on the index. Luna has the lowest sticker price.', alt:'Test both on your own tasks: cheap models vary a lot by job.'},
+    {q:'Our data must never leave our building', tag:'o', pick:'Self-host DeepSeek or Kimi', why:'Only open weights can run fully on your own servers. DeepSeek’s MIT licence is the simplest.', alt:'Budget for the hardware: an 8-GPU server for V4 Pro, far more for K3.'},
+    {q:'I want to train it on our own style', tag:'o', pick:'Open weights (DeepSeek V4 Flash-class)', why:'You can fine-tune the file directly. Smaller models are far cheaper to tune.', alt:'Closed labs offer some tuning, but you never own the result.'},
+    {q:'I just want a great app on my phone', tag:'c', pick:'ChatGPT or Claude', why:'Voice, image tools, projects, memory, agents. Everything works out of the box.', alt:'Kimi and DeepSeek apps are free and capable, but data is stored in China.'},
+    {q:'I’m building a coding agent', tag:'b', pick:'Claude Opus 5.5, or Kimi K3 open', why:'Opus leads on agentic coding. K3 was #1 in Arena’s blind front-end coding at launch.', alt:'Best value closed pick: GPT-6 Sol at half of Opus’s price.'}
+  ];
+  var qsEl = document.getElementById('qs'), ans = document.getElementById('answer');
+  qsEl.innerHTML = qs.map(function(q,i){return '<button class="q" id="q'+i+'" data-i="'+i+'" aria-pressed="false">'+q.q+'</button>'}).join('');
+  function pick(i){
+    var q = qs[i];
+    qsEl.querySelectorAll('.q').forEach(function(b){b.setAttribute('aria-pressed', +b.dataset.i===i?'true':'false')});
+    var tagTxt = q.tag==='o'?'OPEN WEIGHTS':(q.tag==='c'?'CLOSED':'EITHER SIDE');
+    ans.innerHTML = '<span class="tag '+q.tag+'">'+tagTxt+'</span><div class="pick '+(q.tag==='o'?'o':(q.tag==='c'?'c':''))+'">'+q.pick+'</div><p class="why">'+q.why+'</p><p class="alt">'+q.alt+'</p>';
+  }
+  qsEl.querySelectorAll('.q').forEach(function(b){b.addEventListener('click', function(){pick(+b.dataset.i)})});
+  pick(0);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

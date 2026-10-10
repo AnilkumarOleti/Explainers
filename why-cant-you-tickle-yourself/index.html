@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Why can&#x27;t you tickle yourself? | Explainers</title>
+<meta name="description" content="Your brain knows your own touch is coming, so it turns the feeling down before it arrives.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/why-cant-you-tickle-yourself/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Why can&#x27;t you tickle yourself?">
+<meta property="og:description" content="Your brain knows your own touch is coming, so it turns the feeling down before it arrives.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/why-cant-you-tickle-yourself/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/why-cant-you-tickle-yourself/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a stack of picture plates. Each plate is one claim, one big drawing, one line of caption.
+   Three signal colours mean the same thing everywhere:
+   touch = what arrives at the skin, guess = what the brain expects, feel = what is left over. */
+:root{
+  --bg:#E4EDF0; --panel:#F5F9FA; --ink:#12222B; --muted:#496069; --line:#B4C6CD; --feather:#FFFFFF;
+  --touch:#E2452A; --touch-text:#B7321B; --guess:#1D5BD0; --feel:#F6B51E;
+  --display:"Bagel Fat One","Arial Rounded MT Bold","Arial Black",Impact,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --util:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A20; --panel:#172830; --ink:#E7F0F3; --muted:#9DB2BB; --line:#334953; --feather:#2B414C;
+    --touch:#FF6B4F; --touch-text:#FF8E78; --guess:#7BABFF; --feel:#FFC940; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A20; --panel:#172830; --ink:#E7F0F3; --muted:#9DB2BB; --line:#334953; --feather:#2B414C;
+  --touch:#FF6B4F; --touch-text:#FF8E78; --guess:#7BABFF; --feel:#FFC940; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.5;margin:0}
+.wrap{max-width:1040px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:clamp(28px,6vw,72px);
+  display:flex;flex-direction:column;gap:clamp(64px,10vw,120px)}
+svg{display:block;max-width:100%;height:auto}
+
+h1,h2,h3,p,figure{margin:0}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,9vw,6rem);line-height:.98;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(1.75rem,4.6vw,2.9rem);line-height:1.06;text-wrap:balance}
+.plate{display:flex;flex-direction:column;gap:clamp(20px,3.5vw,36px)}
+.say{display:flex;flex-direction:column;gap:.7rem;max-width:35rem}
+.say p,.lede{font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.4}
+.lede{max-width:33rem}
+figure{display:flex;flex-direction:column;gap:14px;min-width:0}
+figcaption,.cap{font-size:1rem;color:var(--muted);max-width:40rem}
+.fine{font-family:var(--util);font-size:.78rem;letter-spacing:.02em;color:var(--muted)}
+
+/* shared drawing styles */
+.s-ink{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.vane{fill:var(--feather);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.shaft{fill:none;stroke:var(--ink);stroke-width:3.5;stroke-linecap:round}
+.barb{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.palm{fill:var(--bg);stroke:var(--ink);stroke-width:3}
+.limb-you{fill:var(--ink);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.limb-them{fill:var(--feather);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.knuck-you{fill:none;stroke:var(--panel);stroke-width:2.5;stroke-linecap:round}
+.knuck-them{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round}
+.zig{fill:none;stroke:var(--touch);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.t-util{font-family:var(--util);font-size:15px;letter-spacing:.06em;fill:var(--muted)}
+.t-main{font-family:var(--body);font-size:22px;font-weight:600;fill:var(--ink)}
+.t-lab{font-family:var(--body);font-size:18px;font-weight:600;fill:var(--ink)}
+.t-lab.touch{fill:var(--touch-text)} .t-lab.guess{fill:var(--guess)}
+.t-read{font-family:var(--display);font-size:30px;fill:var(--ink)}
+.wiring .t-util{font-size:17px}
+.robot .t-util{font-size:18px}
+
+/* hero */
+.hero{display:flex;flex-direction:column;gap:clamp(16px,2.6vw,26px)}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.5vw,28px)}
+.duo figcaption{grid-column:1/-1}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:26px;padding:clamp(14px,2.4vw,24px);
+  display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel h3{font-family:var(--util);font-size:.82rem;font-weight:500;text-transform:uppercase;letter-spacing:.07em}
+.verdict{font-family:var(--display);font-size:clamp(1.5rem,3.6vw,2.2rem);line-height:1}
+@keyframes stroke{0%,100%{transform:translateX(-70px)}50%{transform:translateX(70px)}}
+.stroker{animation:stroke 2.6s ease-in-out infinite}
+@keyframes jitter{0%,100%{opacity:1}50%{opacity:.35}}
+.stroker .zig{animation:jitter .35s linear infinite}
+
+/* signal rows */
+.stack{display:flex;flex-direction:column;gap:6px;min-width:0}
+.row{display:grid;grid-template-columns:minmax(6.4rem,9.5rem) minmax(0,1fr);align-items:center;gap:12px}
+.lab{font-family:var(--util);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;line-height:1.3;min-width:0}
+.lab b{font-family:var(--display);font-weight:400;font-size:1.15rem;letter-spacing:0;margin-right:.3em}
+.row svg{width:100%;height:clamp(54px,8.5vw,84px);overflow:visible}
+.panel .row svg{height:clamp(50px,7vw,70px)}
+.base{stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 6;vector-effect:non-scaling-stroke}
+.w{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.w.touch{stroke:var(--touch)}
+.w.guess{stroke:var(--guess);stroke-dasharray:11 7}
+.w.feel{stroke:var(--ink);stroke-width:2.5;fill:var(--feel)}
+
+/* headphones */
+.cans{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(18px,4vw,48px);align-items:center}
+.cans figcaption{grid-column:1/-1}
+.band{fill:none;stroke:var(--ink);stroke-width:13;stroke-linecap:round}
+.face{fill:var(--feather);stroke:var(--ink);stroke-width:3}
+.cup{fill:var(--guess);stroke:var(--ink);stroke-width:3}
+
+/* brain wiring */
+.switch{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.switch .q{font-family:var(--util);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+.seg{display:inline-flex;border:3px solid var(--ink);border-radius:999px;overflow:hidden;background:var(--panel)}
+.seg button{font:600 1rem/1.2 var(--body);padding:.6rem 1.15rem;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:3px solid var(--guess);outline-offset:-5px;border-radius:999px}
+.wiring{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.wiring .side{display:flex;flex-direction:column;gap:18px;min-width:0}
+.box{fill:var(--panel);stroke:var(--ink);stroke-width:3}
+.ar{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+.ar.touch{stroke:var(--touch)} .ar.guess{stroke:var(--guess)}
+.mk-ink{fill:var(--ink)} .mk-touch{fill:var(--touch)} .mk-guess{fill:var(--guess)}
+.track{fill:var(--bg);stroke:var(--ink);stroke-width:3}
+.level{fill:var(--feel);stroke:var(--ink);stroke-width:3}
+.minus{fill:var(--ink)}
+.ghost,.dim{transition:opacity .3s}
+.wiring[data-who="self"] .s-other,.wiring[data-who="other"] .s-self{display:none}
+.wiring[data-who="other"] .ghost{opacity:.26;stroke-dasharray:8 7}
+.wiring[data-who="other"] .ghost text{stroke-dasharray:none}
+.wiring[data-who="other"] .dim{opacity:.6}
+#b-cap{font-size:clamp(1.05rem,2vw,1.2rem);line-height:1.4;color:var(--ink)}
+
+/* robot */
+.robot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.robot > div{display:flex;flex-direction:column;gap:18px;min-width:0}
+.robot figcaption{grid-column:1/-1}
+.dial{display:flex;flex-direction:column;gap:6px;background:var(--panel);border:3px solid var(--ink);border-radius:22px;padding:14px 18px}
+.dial label{font-family:var(--util);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.dial output{font-family:var(--display);font-size:1.5rem;letter-spacing:0;text-transform:none}
+.dial input{width:100%;accent-color:var(--touch);height:2rem;margin:0;cursor:pointer}
+.dial input:focus-visible{outline:3px solid var(--guess);outline-offset:3px;border-radius:8px}
+.ticks{display:flex;justify-content:space-between;font-family:var(--util);font-size:.75rem;color:var(--muted)}
+.meter{display:flex;flex-direction:column;gap:6px}
+.meter .bar{height:30px;border:3px solid var(--ink);border-radius:999px;background:var(--bg);overflow:hidden}
+.meter .fill{height:100%;width:15%;background:var(--feel);border-right:3px solid var(--ink)}
+.meter .ends{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.meter .ends strong{font-family:var(--display);font-weight:400;font-size:1.35rem}
+
+/* everyday examples */
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,36px)}
+.eg{display:flex;flex-direction:column;gap:10px;min-width:0}
+.eg svg{background:var(--panel);border:3px solid var(--ink);border-radius:22px;width:100%}
+.eg h3{font-family:var(--display);font-weight:400;font-size:1.4rem;line-height:1.1;margin-top:6px;text-wrap:balance}
+.eg p{font-size:1rem}
+.eye-white{fill:var(--feather);stroke:var(--ink);stroke-width:4;stroke-linejoin:round}
+.iris-c{fill:var(--guess);stroke:var(--ink);stroke-width:3}
+.f-ink{fill:var(--ink)} .f-light{fill:var(--feather)} .f-guess{fill:var(--guess);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.bar-a{fill:var(--ink);stroke:var(--ink);stroke-width:2.5}
+.bar-b{fill:var(--feather);stroke:var(--ink);stroke-width:2.5}
+.ground{stroke:var(--line);stroke-width:2;stroke-linecap:round}
+@keyframes dart{0%{transform:translate(-40px,2px)}26%{transform:translate(36px,4px)}52%{transform:translate(-6px,-5px)}76%{transform:translate(40px,-2px)}100%{transform:translate(-40px,2px)}}
+.iris{animation:dart 3.2s infinite;animation-timing-function:steps(1,end)}
+
+/* missing guess + close */
+.missing{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(20px,5vw,64px);align-items:center}
+.close{background:var(--ink);color:var(--bg);border-radius:32px;padding:clamp(28px,6vw,64px);display:flex;flex-direction:column;gap:18px}
+.close h2{font-size:clamp(2rem,6.4vw,4.2rem);line-height:1}
+.close p{font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.4;max-width:34rem}
+.sources{display:flex;flex-direction:column;gap:10px}
+.sources h3{font-family:var(--util);font-size:.82rem;font-weight:500;text-transform:uppercase;letter-spacing:.07em}
+.sources ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px;font-size:.92rem;color:var(--muted);max-width:46rem}
+.sources a{color:var(--ink);text-underline-offset:3px}
+.sources a:focus-visible{outline:3px solid var(--guess);outline-offset:2px}
+
+@media (max-width:720px){
+  .duo,.cans,.wiring,.robot,.missing,.trio{grid-template-columns:minmax(0,1fr)}
+  .cans > svg{max-width:210px}
+}
+@media (prefers-reduced-motion: reduce){
+  .stroker,.stroker .zig,.iris{animation:none}
+  .ghost,.dim{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 1. The puzzle -->
+  <section class="plate">
+    <header class="hero">
+      <h1>Why can't you tickle yourself?</h1>
+      <p class="lede">Your brain knows your own touch is coming, so it turns the feeling down before it arrives.</p>
+    </header>
+
+    <figure class="duo" id="fig-hero">
+      <div class="panel">
+        <h3>Someone else moves the feather</h3>
+        <svg viewBox="0 0 440 270" role="img" aria-label="Another person's hand strokes your palm with a feather. Sparks fly where it touches.">
+          <rect class="palm" x="40" y="204" width="360" height="30" rx="15"/>
+          <text class="t-util" x="220" y="260" text-anchor="middle">YOUR PALM</text>
+          <g class="stroker">
+            <g transform="translate(220,204) rotate(24)">
+              <rect class="limb-them" x="-10" y="-340" width="36" height="170"/>
+              <path class="vane" d="M0,0 C-30,-28 -34,-78 -8,-112 C4,-124 16,-120 22,-106 C36,-70 26,-28 0,0Z"/>
+              <path class="shaft" d="M0,0 C4,-40 6,-90 8,-140"/>
+              <path class="barb" d="M2,-30 L-18,-44 M4,-55 L-20,-72 M5,-80 L-12,-98 M3,-36 L20,-52 M5,-62 L24,-80 M6,-88 L20,-104"/>
+              <g transform="translate(8,-152)">
+                <rect class="limb-them" x="-26" y="-30" width="52" height="44" rx="15"/>
+                <rect class="limb-them" x="-37" y="-10" width="24" height="17" rx="8.5"/>
+                <path class="knuck-them" d="M-9,-27 v12 M5,-27 v12 M18,-26 v10"/>
+              </g>
+            </g>
+            <path class="zig" d="M196,194 l-11,-5 l7,-9 l-11,-5"/>
+            <path class="zig" d="M242,196 l11,-4 l-6,-10 l11,-4"/>
+            <path class="zig" d="M214,182 l-3,-11 l9,-3"/>
+          </g>
+        </svg>
+        <div class="row">
+          <span class="lab">What you feel</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w feel" id="h-other" d="M0,45 L600,45"/></svg>
+        </div>
+        <p class="verdict">You squirm.</p>
+      </div>
+
+      <div class="panel">
+        <h3>You move the feather</h3>
+        <svg viewBox="0 0 440 270" role="img" aria-label="Your own hand strokes your palm with the same feather. Nothing happens.">
+          <rect class="palm" x="40" y="204" width="360" height="30" rx="15"/>
+          <text class="t-util" x="220" y="260" text-anchor="middle">YOUR PALM</text>
+          <g class="stroker">
+            <g transform="translate(220,204) rotate(24)">
+              <rect class="limb-you" x="-10" y="-340" width="36" height="170"/>
+              <path class="vane" d="M0,0 C-30,-28 -34,-78 -8,-112 C4,-124 16,-120 22,-106 C36,-70 26,-28 0,0Z"/>
+              <path class="shaft" d="M0,0 C4,-40 6,-90 8,-140"/>
+              <path class="barb" d="M2,-30 L-18,-44 M4,-55 L-20,-72 M5,-80 L-12,-98 M3,-36 L20,-52 M5,-62 L24,-80 M6,-88 L20,-104"/>
+              <g transform="translate(8,-152)">
+                <rect class="limb-you" x="-26" y="-30" width="52" height="44" rx="15"/>
+                <rect class="limb-you" x="-37" y="-10" width="24" height="17" rx="8.5"/>
+                <path class="knuck-you" d="M-9,-27 v12 M5,-27 v12 M18,-26 v10"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div class="row">
+          <span class="lab">What you feel</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w feel" id="h-self" d="M0,45 L600,45"/></svg>
+        </div>
+        <p class="verdict">Barely a thing.</p>
+      </div>
+
+      <figcaption>Same feather, same palm, same stroke. Only the hand has changed. Try it now: stroke your palm lightly, then ask someone else to.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 2. The model -->
+  <section class="plate">
+    <div class="say">
+      <h2>Picture noise-cancelling headphones</h2>
+      <p>They listen to the noise, play its mirror image, and the two wipe each other out. You hear what is left.</p>
+    </div>
+    <figure class="cans" id="fig-cans">
+      <svg viewBox="0 0 300 250" role="img" aria-label="A calm face wearing headphones while noise arrives from both sides.">
+        <path class="band" d="M52,150 C52,20 248,20 248,150"/>
+        <circle class="face" cx="150" cy="150" r="78"/>
+        <path class="s-ink" d="M112,140 q12,10 24,0 M164,140 q12,10 24,0"/>
+        <path class="s-ink" d="M126,178 q24,20 48,0"/>
+        <rect class="cup" x="34" y="106" width="46" height="94" rx="20"/>
+        <rect class="cup" x="220" y="106" width="46" height="94" rx="20"/>
+        <path class="zig" d="M20,128 q-9,26 0,52 M7,116 q-13,38 0,76"/>
+        <path class="zig" d="M280,128 q9,26 0,52 M293,116 q13,38 0,76"/>
+      </svg>
+      <div class="stack">
+        <div class="row">
+          <span class="lab">Noise outside</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w touch" id="c-noise" d="M0,45 L600,45"/></svg>
+        </div>
+        <div class="row">
+          <span class="lab"><b>+</b>Its mirror image</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w guess" id="c-anti" d="M0,45 L600,45"/></svg>
+        </div>
+        <div class="row">
+          <span class="lab"><b>=</b>What you hear</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w feel" id="c-left" d="M0,45 L600,45"/></svg>
+        </div>
+      </div>
+      <figcaption>Headphones can only cancel what they can predict. A sudden shout still gets through.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 3. The mechanism -->
+  <section class="plate">
+    <div class="say">
+      <h2>Your brain does this to your own touch</h2>
+      <p>When it orders a movement, it keeps a copy of the order. From the copy it guesses the feeling, then takes the guess away from the real touch.</p>
+    </div>
+
+    <div class="switch">
+      <span class="q" id="who-q">Who moves the feather?</span>
+      <div class="seg" role="group" aria-labelledby="who-q">
+        <button type="button" id="who-self" data-who="self" aria-pressed="true">You</button>
+        <button type="button" id="who-other" data-who="other" aria-pressed="false">Someone else</button>
+      </div>
+    </div>
+
+    <figure class="wiring" id="fig-brain" data-who="self">
+      <svg viewBox="0 0 680 600" role="img" aria-label="Your brain sends an order to your hand and a copy to a guess-maker. The guessed touch is taken away from the real touch on your palm. What is left is what you feel.">
+        <defs>
+          <marker id="ah-ink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-ink" d="M0,0 L10,5 L0,10Z"/></marker>
+          <marker id="ah-touch" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-touch" d="M0,0 L10,5 L0,10Z"/></marker>
+          <marker id="ah-guess" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-guess" d="M0,0 L10,5 L0,10Z"/></marker>
+        </defs>
+
+        <g class="ghost">
+          <rect class="box" x="30" y="20" width="270" height="88" rx="18"/>
+          <text class="t-util" x="50" y="52">YOUR BRAIN</text>
+          <text class="t-main s-self" x="50" y="86">“Stroke my palm”</text>
+          <text class="t-main s-other" x="50" y="86">Sends no order</text>
+        </g>
+        <g class="ghost">
+          <line class="ar" x1="304" y1="64" x2="370" y2="64" marker-end="url(#ah-ink)"/>
+          <text class="t-lab" x="338" y="50" text-anchor="middle">copy</text>
+        </g>
+        <g class="dim">
+          <rect class="box" x="380" y="20" width="270" height="88" rx="18"/>
+          <text class="t-util" x="400" y="52">GUESS-MAKER</text>
+          <text class="t-main s-self" x="400" y="86">Predicts the feeling</text>
+          <text class="t-main s-other" x="400" y="86">Has nothing to go on</text>
+        </g>
+        <g class="ghost">
+          <line class="ar" x1="165" y1="112" x2="165" y2="190" marker-end="url(#ah-ink)"/>
+          <text class="t-lab" x="181" y="158">order</text>
+        </g>
+
+        <rect class="box" x="30" y="200" width="270" height="88" rx="18"/>
+        <text class="t-util s-self" x="50" y="232">YOUR HAND</text>
+        <text class="t-util s-other" x="50" y="232">THEIR HAND</text>
+        <text class="t-main" x="50" y="266">Moves the feather</text>
+
+        <line class="ar" x1="165" y1="292" x2="165" y2="370" marker-end="url(#ah-ink)"/>
+        <text class="t-lab" x="181" y="338">stroke</text>
+
+        <rect class="box" x="30" y="380" width="270" height="88" rx="18"/>
+        <text class="t-util" x="50" y="412">YOUR PALM</text>
+        <text class="t-main" x="50" y="446">Gets stroked</text>
+
+        <line class="ar touch" x1="304" y1="424" x2="462" y2="424" marker-end="url(#ah-touch)"/>
+        <text class="t-lab touch" x="382" y="408" text-anchor="middle">real touch</text>
+
+        <g class="ghost">
+          <line class="ar guess" x1="515" y1="112" x2="515" y2="372" marker-end="url(#ah-guess)"/>
+          <text class="t-lab guess s-self" x="501" y="250" text-anchor="end">guessed touch</text>
+          <text class="t-lab guess s-other" x="501" y="250" text-anchor="end">no guess</text>
+        </g>
+
+        <circle class="box" cx="515" cy="424" r="42"/>
+        <rect class="minus" x="494" y="419" width="42" height="10" rx="5"/>
+        <text class="t-util" x="568" y="420">TAKE</text>
+        <text class="t-util" x="568" y="440">AWAY</text>
+
+        <line class="ar" x1="515" y1="470" x2="515" y2="508" marker-end="url(#ah-ink)"/>
+        <text class="t-util" x="30" y="508">WHAT YOU FEEL</text>
+        <rect class="track" x="30" y="520" width="620" height="34" rx="17"/>
+        <rect class="level" id="b-meter" x="30" y="520" width="93" height="34" rx="17"/>
+        <text class="t-main s-self" x="650" y="586" text-anchor="end">A dull touch</text>
+        <text class="t-main s-other" x="650" y="586" text-anchor="end">The full tickle</text>
+      </svg>
+
+      <div class="side">
+        <div class="stack">
+          <div class="row">
+            <span class="lab">Real touch</span>
+            <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w touch" id="b-touch" d="M0,45 L600,45"/></svg>
+          </div>
+          <div class="row">
+            <span class="lab"><b>−</b>The guess</span>
+            <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w guess" id="b-guess" d="M0,45 L600,45"/></svg>
+          </div>
+          <div class="row">
+            <span class="lab"><b>=</b>What you feel</span>
+            <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w feel" id="b-feel" d="M0,45 L600,45"/></svg>
+          </div>
+        </div>
+        <p id="b-cap" aria-live="polite">The guess matches the touch, so little is left. You still feel it, only duller.</p>
+        <p class="cap">Brain scans point to the cerebellum, at the back of your head, as the guess-maker.</p>
+      </div>
+    </figure>
+  </section>
+
+  <!-- 4. The proof -->
+  <section class="plate">
+    <div class="say">
+      <h2>A robot proved it by being late</h2>
+      <p>Volunteers moved a lever with one hand, and a robot stroked their other palm in step. Then the robot began to wait before moving.</p>
+    </div>
+
+    <figure class="robot" id="fig-robot">
+      <div>
+        <svg viewBox="0 0 680 240" role="img" aria-label="Your left hand moves a lever. A robot waits, then moves a feather across your right palm.">
+          <defs>
+            <marker id="ah-ink2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-ink" d="M0,0 L10,5 L0,10Z"/></marker>
+          </defs>
+          <rect class="palm" x="50" y="176" width="130" height="24" rx="12"/>
+          <g id="r-lever" transform="rotate(-16 115 176)">
+            <line class="shaft" x1="115" y1="176" x2="115" y2="96" style="stroke-width:8"/>
+            <circle class="f-ink" cx="115" cy="86" r="18"/>
+          </g>
+          <text class="t-util" x="115" y="228" text-anchor="middle">LEFT HAND</text>
+
+          <line class="ar" x1="198" y1="138" x2="254" y2="138" marker-end="url(#ah-ink2)"/>
+          <rect class="box" x="266" y="84" width="150" height="108" rx="16"/>
+          <text class="t-util" x="341" y="116" text-anchor="middle">ROBOT WAITS</text>
+          <text class="t-read" id="r-read" x="341" y="166" text-anchor="middle">0 ms</text>
+          <line class="ar" x1="428" y1="138" x2="484" y2="138" marker-end="url(#ah-ink2)"/>
+
+          <rect class="palm" x="500" y="176" width="150" height="24" rx="12"/>
+          <g id="r-feather" transform="translate(545,176)">
+            <g transform="rotate(16) scale(.72)">
+              <path class="vane" d="M0,0 C-30,-28 -34,-78 -8,-112 C4,-124 16,-120 22,-106 C36,-70 26,-28 0,0Z"/>
+              <path class="shaft" d="M0,0 C4,-40 6,-90 8,-140"/>
+              <path class="barb" d="M2,-30 L-18,-44 M4,-55 L-20,-72 M5,-80 L-12,-98 M3,-36 L20,-52 M5,-62 L24,-80 M6,-88 L20,-104"/>
+            </g>
+          </g>
+          <text class="t-util" x="575" y="228" text-anchor="middle">RIGHT PALM</text>
+        </svg>
+
+        <div class="dial">
+          <label for="delay">The robot waits <output id="delay-out" for="delay">0 ms</output></label>
+          <input type="range" id="delay" min="0" max="300" step="10" value="0" aria-describedby="delay-hint">
+          <div class="ticks" aria-hidden="true"><span>0</span><span>100</span><span>200</span><span>300 ms</span></div>
+        </div>
+        <p class="fine" id="delay-hint">Drag the slider to make the robot late.</p>
+      </div>
+
+      <div>
+        <div class="stack">
+          <div class="row">
+            <span class="lab">Touch the brain expects</span>
+            <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="80" x2="600" y2="80"/><path class="w guess" id="r-guess" d="M0,80 L600,80"/></svg>
+          </div>
+          <div class="row">
+            <span class="lab">Touch that arrives</span>
+            <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="80" x2="600" y2="80"/><path class="w touch" id="r-touch" d="M0,80 L600,80"/></svg>
+          </div>
+          <div class="row">
+            <span class="lab"><b>=</b>What you feel</span>
+            <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="80" x2="600" y2="80"/><path class="w feel" id="r-feel" d="M0,80 L600,80"/></svg>
+          </div>
+        </div>
+        <div class="meter">
+          <div class="bar" role="img" aria-label="Tickle level"><div class="fill" id="r-fill"></div></div>
+          <div class="ends"><strong id="r-verdict" aria-live="polite">Barely tickles</strong><span class="fine">tickle level</span></div>
+        </div>
+      </div>
+
+      <figcaption>In step, it barely tickled. The longer the robot waited, up to about a fifth of a second, the more it tickled. Changing the direction of the stroke did the same. <span class="fine">This is a slowed-down sketch of the idea, not the study's measurements.</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- 5. Everywhere -->
+  <section class="plate">
+    <div class="say">
+      <h2>The same trick runs all day</h2>
+    </div>
+    <div class="trio">
+      <article class="eg">
+        <svg viewBox="0 0 320 200" role="img" aria-label="An eye whose pupil jumps from spot to spot.">
+          <defs><clipPath id="eyeclip"><path d="M22,100 Q160,-6 298,100 Q160,206 22,100Z"/></clipPath></defs>
+          <path class="eye-white" d="M22,100 Q160,-6 298,100 Q160,206 22,100Z"/>
+          <g clip-path="url(#eyeclip)">
+            <g class="iris">
+              <circle class="iris-c" cx="160" cy="100" r="48"/>
+              <circle class="f-ink" cx="160" cy="100" r="22"/>
+              <circle class="f-light" cx="172" cy="88" r="7"/>
+            </g>
+          </g>
+          <path class="eye-white" style="fill:none" d="M22,100 Q160,-6 298,100 Q160,206 22,100Z"/>
+        </svg>
+        <h3>Your eyes jump, the world holds still</h3>
+        <p>Your eyes dart about three times a second. The brain expects each jump, so the view stays steady. Nudge the corner of your eyelid and the world wobbles: no order was sent.</p>
+      </article>
+
+      <article class="eg">
+        <svg viewBox="0 0 320 200" role="img" aria-label="A cricket singing loudly.">
+          <line class="ground" x1="24" y1="176" x2="296" y2="176"/>
+          <path class="zig" d="M150,76 q16,-14 32,0 M136,58 q30,-26 60,0 M122,40 q44,-38 88,0"/>
+          <path class="s-ink" style="stroke-width:10" d="M150,126 L120,66"/>
+          <path class="s-ink" style="stroke-width:5" d="M120,66 L92,160 L78,164"/>
+          <path class="s-ink" style="stroke-width:4" d="M206,144 L200,168 L188,172 M230,142 L238,168 L250,172 M88,124 L60,112 M88,130 L58,136"/>
+          <ellipse class="f-ink" cx="165" cy="128" rx="78" ry="24"/>
+          <path class="f-guess" d="M98,120 Q160,84 234,112 Q170,132 98,120Z"/>
+          <circle class="f-ink" cx="246" cy="120" r="22"/>
+          <circle class="f-light" cx="254" cy="114" r="5"/>
+          <path class="s-ink" d="M256,102 Q280,52 304,46 M262,106 Q294,76 310,80"/>
+        </svg>
+        <h3>A cricket doesn't deafen itself</h3>
+        <p>Its song hits 100 decibels at its own ears. One nerve cell turns its hearing down during each chirp and lets go in the gaps, so it still hears rivals.</p>
+      </article>
+
+      <article class="eg">
+        <svg viewBox="0 0 320 200" role="img" aria-label="Eight bars, each 38 percent taller than the one before, showing force rising turn by turn.">
+          <line class="ground" x1="18" y1="170" x2="302" y2="170"/>
+          <rect class="bar-a" x="26" y="155.5" width="26" height="14.5"/>
+          <rect class="bar-b" x="60" y="150" width="26" height="20"/>
+          <rect class="bar-a" x="94" y="142.4" width="26" height="27.6"/>
+          <rect class="bar-b" x="128" y="131.9" width="26" height="38.1"/>
+          <rect class="bar-a" x="162" y="117.4" width="26" height="52.6"/>
+          <rect class="bar-b" x="196" y="97.4" width="26" height="72.6"/>
+          <rect class="bar-a" x="230" y="69.8" width="26" height="100.2"/>
+          <rect class="bar-b" x="264" y="31.8" width="26" height="138.2"/>
+          <text class="t-read" x="26" y="52">+38%</text>
+          <text class="t-util" x="26" y="74">EACH TURN</text>
+          <text class="t-util" x="26" y="191">TURN 1</text>
+          <text class="t-util" x="290" y="191" text-anchor="end">TURN 8</text>
+        </svg>
+        <h3>Shoving matches escalate</h3>
+        <p>Pairs were told to press back exactly as hard as they were pressed. Your own push feels weaker than it is, so the force climbed 38% a turn. Dark and light bars are the two people.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 6. When it fails -->
+  <section class="plate">
+    <figure class="missing" id="fig-missing">
+      <div class="say">
+        <h2>When the guess goes missing</h2>
+        <p>Some people hear voices, or feel an outside force moving their body. In one study, their own touch felt as strong as someone else's.</p>
+        <p>One idea: without the guess, your own actions feel like they came from outside.</p>
+      </div>
+      <div class="stack">
+        <div class="row">
+          <span class="lab">Their own touch</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w touch" id="m-touch" d="M0,45 L600,45"/></svg>
+        </div>
+        <div class="row">
+          <span class="lab"><b>−</b>No guess</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w guess" id="m-guess" d="M0,45 L600,45"/></svg>
+        </div>
+        <div class="row">
+          <span class="lab"><b>=</b>Feels like a stranger's</span>
+          <svg viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" y1="45" x2="600" y2="45"/><path class="w feel" id="m-feel" d="M0,45 L600,45"/></svg>
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  <!-- 7. The takeaway -->
+  <section class="plate">
+    <div class="close">
+      <h2>You only feel what your brain didn't see coming.</h2>
+      <p>The likely reason: your own movements are old news. Turning them down leaves room for the touch that matters, like a spider on your neck.</p>
+    </div>
+
+    <div class="sources">
+      <h3>Sources</h3>
+      <ul>
+        <li>Blakemore, Wolpert &amp; Frith (1998). <a href="https://doi.org/10.1038/2870">Central cancellation of self-produced tickle sensation</a>. Nature Neuroscience 1, 635–640.</li>
+        <li>Blakemore, Frith &amp; Wolpert (1999). <a href="https://doi.org/10.1162/089892999563607">Spatio-temporal prediction modulates the perception of self-produced stimuli</a>. Journal of Cognitive Neuroscience 11, 551–559. The robot and its delays.</li>
+        <li>Shergill, Bays, Frith &amp; Wolpert (2003). <a href="https://wolpertlab.neuroscience.columbia.edu/sites/default/files/content/papers/SheBayFri03.pdf">Two eyes for an eye: the neuroscience of force escalation</a>. Science 301, 187.</li>
+        <li>Poulet &amp; Hedwig (2003). <a href="https://edoc.mdc-berlin.de/id/eprint/11042/">Corollary discharge inhibition of ascending auditory neurons in the stridulating cricket</a>. Journal of Neuroscience. And (2006) <a href="https://doi.org/10.1126/science.1120847">The cellular basis of a corollary discharge</a>. Science 311, 518–522.</li>
+        <li>Blakemore, Smith, Steel, Johnstone &amp; Frith (2000). <a href="https://doi.org/10.1017/S0033291799002676">The perception of self-produced sensory stimuli in patients with auditory hallucinations and passivity experiences</a>. Psychological Medicine 30, 1131–1139.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  var RM = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 600, N = 90;
+  function $(id){ return document.getElementById(id); }
+  function frac(v){ return ((v % 1) + 1) % 1; }
+
+  // an irregular wiggle, standing in for a tickly stroke or a noisy sound
+  function wig(x, t){ return 0.62*Math.sin(x*0.045 - t*2.6) + 0.38*Math.sin(x*0.11 + t*1.7 + 1.3); }
+
+  function path(fn, base, amp, closed){
+    var d = '';
+    for (var i = 0; i <= N; i++){
+      var x = i * W / N;
+      d += (i ? 'L' : 'M') + x.toFixed(1) + ',' + (base - amp*fn(x)).toFixed(1);
+    }
+    if (closed) d += ' L' + W + ',' + base + ' L0,' + base + 'Z';
+    return d;
+  }
+  function set(id, d){ var el = $(id); if (el) el.setAttribute('d', d); }
+
+  var figs = [];
+  function add(id, draw){ var root = $(id); if (root) figs.push({root: root, draw: draw, vis: true}); }
+
+  // 1. hero
+  add('fig-hero', function(t){
+    set('h-other', path(function(x){ return wig(x,t); }, 45, 34, true));
+    set('h-self',  path(function(x){ return 0.15*wig(x,t); }, 45, 34, true));
+  });
+
+  // 2. headphones
+  add('fig-cans', function(t){
+    set('c-noise', path(function(x){ return wig(x,t); }, 45, 32, false));
+    set('c-anti',  path(function(x){ return -wig(x,t); }, 45, 32, false));
+    set('c-left',  path(function(x){ return 0.03*wig(x,t); }, 45, 32, true));
+  });
+
+  // 3. brain: g is how much of a guess the brain has (1 = you moved, 0 = someone else did)
+  var g = 1, gTarget = 1;
+  var CAP = {
+    self: 'The guess matches the touch, so little is left. You still feel it, only duller.',
+    other: 'Their hand, so no order, no copy and no guess. The whole touch gets through.'
+  };
+  add('fig-brain', function(t){
+    if (RM) g = gTarget; else g += (gTarget - g) * 0.12;
+    set('b-touch', path(function(x){ return wig(x,t); }, 45, 32, false));
+    set('b-guess', path(function(x){ return g*wig(x,t); }, 45, 32, false));
+    set('b-feel',  path(function(x){ return (1 - 0.85*g)*wig(x,t); }, 45, 32, true));
+    var m = $('b-meter'); if (m) m.setAttribute('width', (620*(1 - 0.85*g)).toFixed(1));
+  });
+  function setWho(who){
+    gTarget = who === 'self' ? 1 : 0;
+    $('fig-brain').setAttribute('data-who', who);
+    $('who-self').setAttribute('aria-pressed', String(who === 'self'));
+    $('who-other').setAttribute('aria-pressed', String(who === 'other'));
+    $('b-cap').textContent = CAP[who];
+    if (RM) redraw();
+  }
+  $('who-self').addEventListener('click', function(){ setWho('self'); });
+  $('who-other').addEventListener('click', function(){ setWho('other'); });
+
+  // 4. robot: one stroke per cycle; the touch lags the brain's guess by the robot's wait
+  var PV = 2.6;          // seconds on screen per stroke cycle (slow motion)
+  var REAL = 800;        // the cycle stands for this many real milliseconds
+  var SPAN = 2.4;        // cycles visible across a strip
+  var delay = 0;
+  function bump(u){ return (u >= 0.1 && u < 0.35) ? 0.5*(1 - Math.cos(2*Math.PI*(u - 0.1)/0.25)) : 0; }
+  function level(d){
+    var lag = d/REAL, a = 0, b = 0;
+    for (var i = 0; i < 400; i++){
+      var u = i/400, gu = bump(u), to = bump(frac(u - lag));
+      a += Math.max(0, to - 0.85*gu); b += to;
+    }
+    return b ? a/b : 0;
+  }
+  add('fig-robot', function(t){
+    var lag = delay/REAL;
+    function when(x){ return t/PV - (1 - x/W)*SPAN; }
+    set('r-guess', path(function(x){ return bump(frac(when(x))); }, 80, 62, false));
+    set('r-touch', path(function(x){ return bump(frac(when(x) - lag)); }, 80, 62, false));
+    set('r-feel',  path(function(x){ var c = when(x); return Math.max(0, bump(frac(c - lag)) - 0.85*bump(frac(c))); }, 80, 62, true));
+    var now = t/PV;
+    $('r-lever').setAttribute('transform', 'rotate(' + (-16 + 32*bump(frac(now))).toFixed(1) + ' 115 176)');
+    $('r-feather').setAttribute('transform', 'translate(' + (545 + 62*bump(frac(now - lag))).toFixed(1) + ',176)');
+  });
+  function setDelay(v){
+    delay = +v;
+    $('delay-out').textContent = delay + ' ms';
+    $('r-read').textContent = delay + ' ms';
+    var r = level(delay);
+    $('r-fill').style.width = Math.round(r*100) + '%';
+    $('r-verdict').textContent = delay < 50 ? 'Barely tickles' : (delay < 200 ? 'Tickles more' : 'Tickles most');
+    if (RM) redraw();
+  }
+  $('delay').addEventListener('input', function(e){ setDelay(e.target.value); });
+
+  // 6. missing guess
+  add('fig-missing', function(t){
+    set('m-touch', path(function(x){ return wig(x,t); }, 45, 32, false));
+    set('m-guess', path(function(){ return 0; }, 45, 32, false));
+    set('m-feel',  path(function(x){ return wig(x,t); }, 45, 32, true));
+  });
+
+  var STILL = 1.05;      // the moment shown when motion is off (mid-stroke)
+  function redraw(){ for (var i = 0; i < figs.length; i++) figs[i].draw(STILL); }
+
+  setDelay($('delay').value);
+  redraw();
+
+  if (!RM){
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          for (var i = 0; i < figs.length; i++) if (figs[i].root === en.target) figs[i].vis = en.isIntersecting;
+        });
+      }, {rootMargin: '120px'});
+      figs.forEach(function(f){ io.observe(f.root); });
+    }
+    var t0 = performance.now();
+    (function frame(now){
+      var t = STILL + (now - t0)/1000;
+      for (var i = 0; i < figs.length; i++) if (figs[i].vis) figs[i].draw(t);
+      requestAnimationFrame(frame);
+    })(t0);
+  }
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

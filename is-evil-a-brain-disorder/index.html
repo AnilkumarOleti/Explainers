@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Is Evil a Brain Disorder? | Explainers</title>
+<meta name="description" content="If a tumour caused the crime, who is responsible? Nine exhibits on crime, the brain and free will.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/is-evil-a-brain-disorder/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Is Evil a Brain Disorder?">
+<meta property="og:description" content="If a tumour caused the crime, who is responsible? Nine exhibits on crime, the brain and free will.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/is-evil-a-brain-disorder/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/is-evil-a-brain-disorder/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,500;0,700;0,800;1,500&family=Covered+By+Your+Grace&family=IBM+Plex+Mono:wght@400;500&family=Libre+Franklin:wght@400;500;600&display=swap">
+<style>
+/* Layout: a radiology lightbox. Each exhibit is one large dark film clipped to the lit glass, annotated in wax pencil, with a short caption on the glass beneath. */
+:root{
+  --glass:#E3EAED;        /* lit diffuser panel */
+  --glass-2:#F2F6F7;      /* brighter band over a tube */
+  --ink:#0F1E29;
+  --ink-soft:#4B5D69;
+  --rule:#B7C5CC;
+  --mark:#B03A20;         /* red wax, darkened for text on glass */
+  --clip:#8997A0;
+  --shadow:rgba(15,30,41,.42);
+  --film:#0A1924;         /* x-ray film base */
+  --film-2:#143047;
+  --film-edge:#0A1924;
+  --film-ink:#D2E6EE;     /* tissue line */
+  --film-dim:#7FA2B3;
+  --tissue:rgba(160,205,222,.15);
+  --wax:#F4C534;          /* yellow grease pencil */
+  --wax-red:#F26B50;      /* red grease pencil */
+  --tag-ink:#1B1602;
+  --font-display:"Besley","Clarendon","Rockwell",Georgia,serif;
+  --font-body:"Libre Franklin","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --font-hand:"Covered By Your Grace","Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --glass:#060C11; --glass-2:#0A141B; --ink:#E2ECF0; --ink-soft:#93A8B3; --rule:#1F303B;
+    --mark:#F27D64; --clip:#42545F; --shadow:rgba(0,0,0,.6);
+    --film:#0D1F2C; --film-2:#17364C; --film-edge:#2A4B5F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --glass:#060C11; --glass-2:#0A141B; --ink:#E2ECF0; --ink-soft:#93A8B3; --rule:#1F303B;
+  --mark:#F27D64; --clip:#42545F; --shadow:rgba(0,0,0,.6);
+  --film:#0D1F2C; --film-2:#17364C; --film-edge:#2A4B5F;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--glass);
+  background-image:linear-gradient(90deg,var(--glass) 0%,var(--glass-2) 50%,var(--glass) 100%);
+  background-size:420px 100%;
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:1.0625rem;
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+.defs{position:absolute}
+.wrap{
+  max-width:1060px;margin-inline:auto;
+  padding-inline:clamp(16px,4vw,40px);
+  padding-block:clamp(28px,5vw,60px) 72px;
+  display:flex;flex-direction:column;gap:clamp(64px,9vw,116px);
+}
+
+/* type */
+.kicker{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.7rem,9.4vw,6.2rem);line-height:.96;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.55rem,3.6vw,2.4rem);line-height:1.08;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--mark);outline-offset:3px}
+
+.hero{display:grid;gap:clamp(14px,2.4vw,22px)}
+.lede{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:clamp(1.25rem,2.8vw,1.8rem);line-height:1.25;max-width:26ch;text-wrap:balance}
+
+/* exhibit = film + caption */
+.exhibit{display:grid;gap:clamp(20px,3vw,30px)}
+.film{
+  position:relative;margin:0;
+  background:var(--film);
+  background-image:radial-gradient(120% 95% at 50% 38%,var(--film-2),var(--film) 72%);
+  border:1px solid var(--film-edge);border-radius:10px;
+  padding:clamp(22px,3vw,30px) clamp(10px,2vw,22px) clamp(12px,2vw,22px);
+  color:var(--film-ink);
+  box-shadow:0 18px 34px -24px var(--shadow);
+}
+.film::before,.film::after{content:"";position:absolute;top:-7px;width:46px;height:14px;border-radius:3px;background:var(--clip)}
+.film::before{right:24%}
+.film::after{right:7%}
+.tag{
+  position:absolute;top:-13px;left:clamp(12px,2vw,22px);
+  background:var(--wax);color:var(--tag-ink);
+  font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.12em;
+  padding:5px 10px;border-radius:2px;transform:rotate(-2deg);
+}
+.film-edge{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 18px;
+  font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--film-dim);
+  padding:0 4px 8px;
+}
+.film svg{display:block;width:100%;height:auto}
+
+.caption{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:14px clamp(20px,4vw,48px);align-items:start}
+.caption .body{display:grid;gap:14px;min-width:0}
+.caption .body p{max-width:54ch}
+.aside{font-size:.92rem;color:var(--ink-soft)}
+.punch{font-family:var(--font-display);font-weight:500;font-size:1.2rem;line-height:1.3}
+@media (max-width:720px){.caption{grid-template-columns:minmax(0,1fr)}}
+
+/* controls on the glass */
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sw{
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:10px 13px;border:1.5px solid var(--ink);border-radius:3px;
+  background:transparent;color:var(--ink);cursor:pointer;
+}
+.sw:hover{background:var(--rule)}
+.sw[aria-pressed="true"],.sw.solid{background:var(--ink);color:var(--glass)}
+.readout{font-family:var(--font-display);font-weight:500;font-size:1.2rem;line-height:1.3;min-height:2.6em}
+.panel{display:grid;gap:12px;border-top:1.5px solid var(--ink);padding-top:14px}
+
+/* drawing vocabulary on film */
+.skull{fill:none;stroke:var(--film-dim);stroke-width:2;opacity:.55}
+.tissue{fill:var(--tissue);stroke:var(--film-ink);stroke-width:2.2;stroke-linejoin:round}
+.fold{fill:none;stroke:var(--film-ink);stroke-width:1.6;stroke-linecap:round;opacity:.5}
+.mass{fill:var(--film-ink)}
+.hand{font-family:var(--font-hand);fill:var(--wax)}
+.hand.red{fill:var(--wax-red)}
+.hand.pale{fill:var(--film-ink)}
+.s-mono{font-family:var(--font-mono);fill:var(--film-dim)}
+.wax{fill:none;stroke:var(--wax);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.wax.thin{stroke-width:3.5}
+.wax.red{stroke:var(--wax-red)}
+.line{fill:none;stroke:var(--film-ink);stroke-width:3;stroke-linejoin:round}
+.dash{fill:none;stroke:var(--film-dim);stroke-width:2;stroke-dasharray:5 6}
+.rule{fill:none;stroke:var(--film-dim);stroke-width:2}
+.dim{opacity:.2}
+
+/* exhibit B */
+#b-tumour{transition:opacity .45s ease}
+/* exhibit C */
+.wire{fill:none;stroke:var(--wax);stroke-width:2;opacity:.85;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .9s ease}
+.loop{opacity:0;transition:opacity .5s .6s}
+.wired .wire{stroke-dashoffset:0}
+.wired .loop{opacity:1}
+.lesion{fill:var(--film-ink)}
+.lesion-ring{fill:none;stroke:var(--wax-red);stroke-width:2.5}
+
+/* exhibit D */
+.scans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,2vw,28px);padding-inline:clamp(0px,3vw,48px)}
+.scan{display:grid;gap:6px;justify-items:center;text-align:center;min-width:0}
+.scan .who{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--film-dim)}
+.scan .note{font-family:var(--font-hand);font-size:clamp(1.2rem,3.4vw,1.9rem);line-height:1;color:var(--wax)}
+.scan .note.red{color:var(--wax-red)}
+
+/* exhibit F */
+.cases{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.case{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 12px;align-items:center;border:1px solid var(--film-dim);border-radius:6px;padding:12px}
+.case svg{width:52px;height:52px;grid-row:span 2}
+.case b{font-family:var(--font-display);font-weight:700;font-size:1.02rem;line-height:1.15;align-self:end}
+.case .seen{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--film-dim);align-self:start}
+.stamp{grid-column:1 / -1;justify-self:start;margin-top:6px;font-family:var(--font-mono);font-weight:500;font-size:.8rem;letter-spacing:.16em;padding:3px 9px;border:2px solid var(--wax-red);color:var(--wax-red);border-radius:2px;transform:rotate(-2deg)}
+.case.excused{border-color:var(--wax)}
+.case.excused .stamp{border-color:var(--wax);color:var(--wax)}
+@media (max-width:640px){.cases{grid-template-columns:repeat(2,minmax(0,1fr))}.case{grid-template-columns:minmax(0,1fr)}.case svg{grid-row:auto}}
+.slider{display:grid;gap:6px}
+.slider input{width:100%;accent-color:var(--mark)}
+.slider .ends{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.slider label{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* exhibit H */
+.bars{display:grid;gap:12px;padding:6px clamp(4px,3vw,48px) 6px}
+.bar-row{display:grid;gap:5px}
+.bar-label{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--film-dim)}
+.bar-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 12px}
+.bar{height:22px;border-radius:2px;background:var(--film-ink)}
+.bar.cut{background:var(--wax)}
+.bar-val{font-family:var(--font-display);font-weight:700;font-size:1.1rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* exhibit I */
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,28px)}
+.answer{display:grid;gap:8px;align-content:start;min-width:0}
+.answer svg{max-width:260px}
+.answer p{font-size:.95rem;line-height:1.5}
+.answer .by{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--film-dim)}
+@media (max-width:760px){.answers{grid-template-columns:minmax(0,1fr)}}
+
+/* findings + sources */
+.findings{display:grid;gap:clamp(24px,4vw,40px);border-top:3px solid var(--ink);padding-top:clamp(20px,3vw,32px)}
+.qa{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:12px clamp(20px,4vw,48px)}
+.qa p{max-width:54ch}
+.qa .body{display:grid;gap:12px}
+@media (max-width:720px){.qa{grid-template-columns:minmax(0,1fr)}}
+.sources{display:grid;gap:10px;font-size:.86rem;color:var(--ink-soft)}
+.sources ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+
+@media (prefers-reduced-motion:no-preference){
+  .draw{stroke-dasharray:1;animation:draw 1.1s .35s ease-out backwards}
+  @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+}
+@media (prefers-reduced-motion:reduce){
+  #b-tumour,.wire,.loop{transition:none}
+}
+</style>
+</head>
+<body>
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="hot">
+      <stop offset="0" style="stop-color:var(--wax)"/>
+      <stop offset=".5" style="stop-color:var(--wax-red);stop-opacity:.8"/>
+      <stop offset="1" style="stop-color:var(--wax-red);stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="glow">
+      <stop offset="0" style="stop-color:var(--film-ink);stop-opacity:.55"/>
+      <stop offset="1" style="stop-color:var(--film-ink);stop-opacity:0"/>
+    </radialGradient>
+    <marker id="ah-y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" style="fill:none;stroke:var(--wax);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+    </marker>
+    <marker id="ah-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" style="fill:none;stroke:var(--wax-red);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+    </marker>
+    <pattern id="cellDim" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect x="2.5" y="2.5" width="19" height="19" rx="3" style="fill:var(--film-dim);opacity:.38"/>
+    </pattern>
+    <pattern id="cellHot" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect x="2.5" y="2.5" width="19" height="19" rx="3" style="fill:var(--wax)"/>
+    </pattern>
+    <symbol id="brainSide" viewBox="0 0 400 300">
+      <path class="skull" d="M52 196 C30 136 58 70 116 44 C162 20 234 12 282 26 C342 44 382 94 380 150 C379 204 362 250 334 274"/>
+      <path class="tissue" d="M232 222 C240 250 250 272 256 298 L286 294 C277 268 269 248 266 228 Z"/>
+      <path class="tissue" d="M272 200 C300 195 342 200 349 223 C352 247 316 259 288 251 C269 245 262 222 272 200 Z"/>
+      <path class="fold" d="M282 214 C300 210 326 214 340 224 M280 226 C300 222 324 228 340 236 M284 238 C300 236 318 240 330 246"/>
+      <path class="tissue" d="M78 172 C62 140 78 92 122 66 C160 42 222 34 268 46 C318 58 356 98 356 142 C356 168 342 190 318 196 C300 200 286 194 272 198 C262 214 236 228 204 228 C170 228 146 218 138 198 C128 200 110 198 98 192 C88 188 82 181 78 172 Z"/>
+      <path class="fold" d="M140 196 C175 181 220 172 262 158 M215 42 C205 80 216 120 200 166 M110 102 C130 92 142 112 162 97 M150 70 C165 85 180 66 196 80 M240 70 C255 90 275 76 290 96 M292 122 C306 136 320 122 336 140 M238 122 C254 136 270 124 286 142 M98 142 C120 132 136 152 160 140 M180 198 C200 207 222 197 246 206 M300 160 C312 170 326 164 338 174"/>
+    </symbol>
+    <symbol id="brainTop" viewBox="0 0 200 240">
+      <path class="skull" d="M100 4 C50 4 12 56 10 120 C8 186 48 236 100 236 C152 236 192 186 190 120 C188 56 150 4 100 4 Z"/>
+      <path class="tissue" d="M100 16 C62 16 28 62 26 120 C24 178 58 224 100 224 C142 224 176 178 174 120 C172 62 138 16 100 16 Z"/>
+      <path class="fold" d="M100 18 L100 222 M40 90 C56 84 62 100 80 92 M120 92 C138 100 144 84 160 90 M36 140 C54 134 64 150 82 142 M118 142 C136 150 146 134 164 140 M56 186 C68 180 76 192 88 186 M112 186 C124 192 132 180 144 186 M52 52 C64 60 72 48 86 56 M114 56 C128 48 136 60 148 52"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Crime · Neuroscience · Free will · Nine exhibits</p>
+    <h1>Is evil a brain disorder?</h1>
+    <p class="lede">If a tumour caused the crime, who is responsible?</p>
+  </header>
+
+  <!-- A -->
+  <section class="exhibit" id="a">
+    <figure class="film">
+      <span class="tag">EXHIBIT A</span>
+      <div class="film-edge"><span>Whitman, C. · Austin, Texas · 1 Aug 1966</span><span>Illustration, not a real scan</span></div>
+      <svg viewBox="0 0 800 430" role="img" aria-label="Side view of a brain. A small bright mass deep in the middle is circled in yellow wax pencil. A handwritten note asks: is this the killer?">
+        <use href="#brainSide" x="170" y="20" width="480" height="360"/>
+        <circle cx="405" cy="234" r="48" fill="url(#glow)"/>
+        <ellipse class="mass" cx="405" cy="234" rx="19" ry="14"/>
+        <path class="wax draw" pathLength="1" d="M360 240 C354 208 382 188 410 190 C442 192 458 214 454 240 C450 268 424 282 400 279 C376 276 362 262 359 236"/>
+        <path class="wax thin" d="M306 320 C332 312 356 300 374 282" marker-end="url(#ah-y)"/>
+        <text class="hand" x="36" y="364" font-size="46">is this the killer?</text>
+        <path class="rule" d="M608 398 h39 M608 392 v12 M647 392 v12"/>
+        <text class="s-mono" x="660" y="407" font-size="26">2 cm</text>
+      </svg>
+    </figure>
+    <div class="caption">
+      <h2>A killer asked doctors to look inside his head.</h2>
+      <div class="body">
+        <p>Charles Whitman killed his wife and mother, then shot strangers from a university tower. His note described &ldquo;many unusual and irrational thoughts&rdquo; and asked for an autopsy. Doctors found a tumour the size of a pecan.</p>
+        <p class="aside">The official inquiry said it could have played a part. Nobody could prove that it did.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="exhibit" id="b">
+    <figure class="film">
+      <span class="tag">EXHIBIT B</span>
+      <div class="film-edge"><span>Teacher, age 40 · Virginia · 2000</span><span>Illustration</span></div>
+      <svg id="b-svg" viewBox="0 0 800 440" role="img" aria-label="A brain with a large tumour under the front. A chart on the right shows the man's urges switching on and off in step with the tumour across four stages.">
+        <use href="#brainSide" x="20" y="30" width="440" height="330"/>
+        <g id="b-tumour">
+          <circle cx="148" cy="228" r="78" fill="url(#glow)"/>
+          <ellipse class="mass" cx="148" cy="228" rx="40" ry="28"/>
+          <path class="wax" d="M88 232 C84 196 116 178 150 180 C190 182 214 204 210 232 C206 262 178 280 144 278 C112 276 92 260 87 228"/>
+        </g>
+        <text id="b-urges" class="hand red" x="498" y="112" font-size="62">urges ON</text>
+        <text id="b-state" class="s-mono" x="500" y="152" font-size="25">TUMOUR PRESENT</text>
+        <rect id="b-band" x="500" y="186" width="65" height="226" rx="4" style="fill:var(--wax);opacity:.16"/>
+        <text class="hand pale" x="500" y="218" font-size="28">tumour</text>
+        <path class="line" d="M500 236 H565 V264 H630 V236 H695 V264 H760"/>
+        <text class="hand pale" x="500" y="316" font-size="28">urges</text>
+        <path class="line" style="stroke:var(--wax-red)" d="M500 334 H565 V362 H630 V334 H695 V362 H760"/>
+        <g class="s-mono" font-size="26" text-anchor="middle">
+          <text x="532" y="404">1</text><text x="597" y="404">2</text><text x="662" y="404">3</text><text x="727" y="404">4</text>
+        </g>
+      </svg>
+    </figure>
+    <div class="caption">
+      <h2>A tumour that worked like a switch.</h2>
+      <div class="body">
+        <p>A teacher with no record of offending developed sudden sexual urges towards children. A scan found an egg-sized tumour pressing on the front of his brain. Step through what happened next.</p>
+        <div class="panel">
+          <div class="controls" role="group" aria-label="Stages of the case">
+            <button class="sw" type="button" id="b-s1" data-stage="0" aria-pressed="true">1 Tumour grows</button>
+            <button class="sw" type="button" id="b-s2" data-stage="1" aria-pressed="false">2 Surgery</button>
+            <button class="sw" type="button" id="b-s3" data-stage="2" aria-pressed="false">3 It grows back</button>
+            <button class="sw" type="button" id="b-s4" data-stage="3" aria-pressed="false">4 Second surgery</button>
+          </div>
+          <p class="readout" id="b-note" aria-live="polite">He knew it was wrong. He told doctors the urges overrode his restraint.</p>
+        </div>
+        <p class="aside">Same man, same values. When the tumour went, the behaviour went with it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="exhibit" id="c">
+    <figure class="film">
+      <span class="tag">EXHIBIT C</span>
+      <div class="film-edge"><span>17 patients · crime began after brain injury</span><span>Schematic</span></div>
+      <svg id="c-svg" viewBox="0 0 800 470" role="img" aria-label="Side view of a brain. The underside of the front is labelled brake. A deep spot is labelled engine. Seventeen injury sites are scattered across the brain.">
+        <use href="#brainSide" x="140" y="20" width="520" height="390"/>
+        <ellipse cx="280" cy="252" rx="38" ry="20" transform="rotate(-8 280 252)" style="fill:var(--wax);fill-opacity:.28;stroke:var(--wax);stroke-width:3"/>
+        <circle cx="377" cy="283" r="17" style="fill:var(--wax-red);fill-opacity:.35;stroke:var(--wax-red);stroke-width:3"/>
+        <ellipse class="wax loop" cx="328" cy="267" rx="100" ry="46" transform="rotate(18 328 267)"/>
+        <g id="c-wires"></g>
+        <g id="c-dots"></g>
+        <text class="hand" x="48" y="336" font-size="48">brake</text>
+        <path class="wax thin" d="M150 312 C180 296 212 280 238 266" marker-end="url(#ah-y)"/>
+        <text class="hand red" x="424" y="446" font-size="48" text-anchor="end">engine</text>
+        <path class="wax thin red" d="M386 404 C388 370 384 336 380 308" marker-end="url(#ah-r)"/>
+      </svg>
+    </figure>
+    <div class="caption">
+      <h2>The front of the brain is the brake.</h2>
+      <div class="body">
+        <p>Deep inside sits an engine of fear, anger and desire. The front of the brain weighs consequences and says stop. The teacher&rsquo;s tumour sat on that brake.</p>
+        <p>In 2018, researchers mapped 17 people who turned to crime after a brain injury.</p>
+        <div class="panel">
+          <div class="controls">
+            <button class="sw solid" type="button" id="c-btn" aria-pressed="false">Trace the wiring</button>
+          </div>
+          <p class="readout" id="c-note" aria-live="polite">17 injuries, in 17 different places.</p>
+        </div>
+        <p class="aside">A second set of 23 cases showed the same pattern. An injury here raises the risk. It does not make crime certain.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="exhibit" id="d">
+    <figure class="film">
+      <span class="tag">EXHIBIT D</span>
+      <div class="film-edge"><span>Brain activity seen from above · front at top</span><span>Illustration of group averages</span></div>
+      <div class="scans">
+        <div class="scan">
+          <svg viewBox="0 0 200 250" role="img" aria-label="Scan of an average brain. The front is brightly active.">
+            <g transform="translate(0 5)">
+              <ellipse cx="70" cy="62" rx="36" ry="32" fill="url(#hot)"/><ellipse cx="130" cy="62" rx="36" ry="32" fill="url(#hot)"/>
+              <ellipse cx="48" cy="132" rx="22" ry="28" fill="url(#hot)"/><ellipse cx="152" cy="132" rx="22" ry="28" fill="url(#hot)"/>
+              <ellipse cx="100" cy="128" rx="24" ry="22" fill="url(#hot)"/>
+              <ellipse cx="74" cy="190" rx="28" ry="24" fill="url(#hot)"/><ellipse cx="126" cy="190" rx="28" ry="24" fill="url(#hot)"/>
+              <use href="#brainTop" width="200" height="240"/>
+            </g>
+          </svg>
+          <span class="who">41 other people</span>
+          <span class="note">brake busy</span>
+        </div>
+        <div class="scan">
+          <svg viewBox="0 0 200 250" role="img" aria-label="Scan of an average murderer's brain. The front is dim.">
+            <g transform="translate(0 5)">
+              <ellipse class="dim" cx="70" cy="62" rx="36" ry="32" fill="url(#hot)"/><ellipse class="dim" cx="130" cy="62" rx="36" ry="32" fill="url(#hot)"/>
+              <ellipse cx="48" cy="132" rx="22" ry="28" fill="url(#hot)"/><ellipse cx="152" cy="132" rx="22" ry="28" fill="url(#hot)"/>
+              <ellipse cx="100" cy="128" rx="24" ry="22" fill="url(#hot)"/>
+              <ellipse cx="74" cy="190" rx="28" ry="24" fill="url(#hot)"/><ellipse cx="126" cy="190" rx="28" ry="24" fill="url(#hot)"/>
+              <use href="#brainTop" width="200" height="240"/>
+            </g>
+          </svg>
+          <span class="who">41 murderers</span>
+          <span class="note red">brake quiet</span>
+        </div>
+        <div class="scan">
+          <svg viewBox="0 0 200 250" role="img" aria-label="A third scan. The front and the sides are dim.">
+            <g transform="translate(0 5)">
+              <ellipse class="dim" cx="70" cy="62" rx="36" ry="32" fill="url(#hot)"/><ellipse class="dim" cx="130" cy="62" rx="36" ry="32" fill="url(#hot)"/>
+              <ellipse class="dim" cx="48" cy="132" rx="22" ry="28" fill="url(#hot)"/><ellipse class="dim" cx="152" cy="132" rx="22" ry="28" fill="url(#hot)"/>
+              <ellipse cx="100" cy="128" rx="24" ry="22" fill="url(#hot)"/>
+              <ellipse cx="74" cy="190" rx="28" ry="24" fill="url(#hot)"/><ellipse cx="126" cy="190" rx="28" ry="24" fill="url(#hot)"/>
+              <use href="#brainTop" width="200" height="240"/>
+            </g>
+          </svg>
+          <span class="who" id="d-who">Whose brain?</span>
+          <span class="note red" id="d-hand">brake quiet</span>
+        </div>
+      </div>
+    </figure>
+    <div class="caption">
+      <h2>Do killers&rsquo; brains look different?</h2>
+      <div class="body">
+        <p>On average, yes. In 1997, scans of 41 murderers showed a quieter brake than scans of 41 other people. Studies of psychopathic prisoners, the profile that fits many serial killers, find the same thing.</p>
+        <div class="panel">
+          <div class="controls">
+            <button class="sw solid" type="button" id="d-btn">Reveal the third brain</button>
+          </div>
+          <p class="readout" id="d-note" aria-live="polite">The third scan has the same quiet front. Guess who it belongs to.</p>
+        </div>
+        <p class="punch">A scan can show risk. It cannot show guilt.</p>
+        <p class="aside">All 41 murderers had pleaded insanity, so they are not typical killers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- E -->
+  <section class="exhibit" id="e">
+    <figure class="film">
+      <span class="tag">EXHIBIT E</span>
+      <div class="film-edge"><span>442 boys · New Zealand · followed for 26 years</span><span>Each square = 1 in 100</span></div>
+      <svg viewBox="0 0 800 420" role="img" aria-label="Two grids of 100 squares. In the first, 12 squares are lit: the boys who had both the risk gene and an abusive childhood. In the second, 44 squares are lit: their share of the convictions for violence.">
+        <text class="hand pale" x="72" y="68" font-size="38">100 boys</text>
+        <rect x="72" y="96" width="240" height="240" fill="url(#cellDim)"/>
+        <rect x="72" y="96" width="240" height="24" fill="url(#cellHot)"/>
+        <rect x="72" y="120" width="48" height="24" fill="url(#cellHot)"/>
+        <text class="hand" x="72" y="386" font-size="36">12 had gene + abuse</text>
+
+        <path class="wax thin" d="M326 122 C376 96 424 104 466 140" marker-end="url(#ah-y)"/>
+
+        <text class="hand pale" x="480" y="68" font-size="38">100 convictions</text>
+        <rect x="480" y="96" width="240" height="240" fill="url(#cellDim)"/>
+        <rect x="480" y="96" width="240" height="96" fill="url(#cellHot)"/>
+        <rect x="480" y="192" width="96" height="24" fill="url(#cellHot)"/>
+        <text class="hand" x="480" y="386" font-size="36">44 were theirs</text>
+      </svg>
+    </figure>
+    <div class="caption">
+      <h2>Biology loads the dice. Childhood rolls them.</h2>
+      <div class="body">
+        <p>Twelve boys in every hundred had two things: a low-activity version of a gene called MAOA, and an abusive childhood. That small group collected 44 of every 100 convictions for violence.</p>
+        <p class="aside">Boys with the same gene and a safe childhood were no more violent than anyone else.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- F -->
+  <section class="exhibit" id="f">
+    <figure class="film">
+      <span class="tag">EXHIBIT F</span>
+      <div class="film-edge"><span>Six offenders · six causes</span><span>Thought experiment</span></div>
+      <ul class="cases" id="f-cases">
+        <li class="case excused">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse class="tissue" cx="32" cy="32" rx="25" ry="20"/><circle class="mass" cx="37" cy="33" r="7"/></svg>
+          <b>A tumour</b><span class="seen">Seen by the naked eye</span><span class="stamp">EXCUSED</span>
+        </li>
+        <li class="case">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse class="tissue" cx="32" cy="32" rx="25" ry="20"/><path class="wax thin red" d="M12 22 l10 6 l-6 7 l11 6"/></svg>
+          <b>An old head injury</b><span class="seen">Seen by CT scan</span><span class="stamp">BLAMED</span>
+        </li>
+        <li class="case">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse class="tissue" cx="32" cy="32" rx="25" ry="20"/><path class="dash" d="M9 38 C6 24 16 14 30 12"/></svg>
+          <b>A thin frontal lobe</b><span class="seen">Seen by MRI scan</span><span class="stamp">BLAMED</span>
+        </li>
+        <li class="case">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path class="line" d="M20 8 C46 20 18 40 44 56 M44 8 C18 20 46 40 20 56"/><path class="rule" d="M25 16 h14 M27 32 h10 M25 48 h14"/></svg>
+          <b>A risk gene plus abuse</b><span class="seen">Seen by DNA test</span><span class="stamp">BLAMED</span>
+        </li>
+        <li class="case">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path class="rule" d="M14 46 L32 14 L50 46"/><path class="dash" d="M14 46 H50"/><circle class="mass" cx="14" cy="46" r="5"/><circle class="mass" cx="32" cy="14" r="5"/><circle class="mass" cx="50" cy="46" r="5"/></svg>
+          <b>A miswired circuit</b><span class="seen">Seen by network maps</span><span class="stamp">BLAMED</span>
+        </li>
+        <li class="case">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse class="tissue" cx="32" cy="32" rx="25" ry="20"/><text class="hand" x="32" y="45" font-size="36" text-anchor="middle">?</text></svg>
+          <b>A cause nobody has found</b><span class="seen">Seen by tomorrow&rsquo;s machine</span><span class="stamp">BLAMED</span>
+        </li>
+      </ul>
+    </figure>
+    <div class="caption">
+      <h2>The tumour is only the cause we can see.</h2>
+      <div class="body">
+        <p>Six people did something terrible. Each had something in the brain that made it more likely. Improve the machine and watch who gets excused.</p>
+        <div class="panel">
+          <div class="slider">
+            <label for="f-range">How well can we see inside?</label>
+            <input type="range" id="f-range" min="1" max="6" step="1" value="1">
+            <div class="ends"><span>1966</span><span>Tomorrow</span></div>
+          </div>
+          <p class="readout" id="f-note" aria-live="polite">With the naked eye, 1 of 6 is excused.</p>
+        </div>
+        <p class="aside">The people never changed. The machine did. This is neuroscientist David Eagleman&rsquo;s argument: blame follows our instruments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- G -->
+  <section class="exhibit" id="g">
+    <figure class="film">
+      <span class="tag">EXHIBIT G</span>
+      <div class="film-edge"><span>Libet experiment · 1983 · time before a wrist flick</span><span>Drawn to scale</span></div>
+      <svg viewBox="0 0 800 400" role="img" aria-label="Timeline in milliseconds. Brain activity starts to rise 550 milliseconds before the hand moves. The person feels the decision only 200 milliseconds before. The brain has a 0.35 second head start.">
+        <path d="M90 250 L134 250 C300 246 480 215 621 130 C636 180 646 240 662 250 L710 250 L710 290 L90 290 Z" style="fill:var(--tissue)"/>
+        <path class="line" d="M90 250 L134 250 C300 246 480 215 621 130 C636 180 646 240 662 250 L710 250"/>
+        <path class="rule" d="M90 290 H710 M90 290 v10 M178.6 290 v10 M267.1 290 v10 M355.7 290 v10 M444.3 290 v10 M532.9 290 v10 M621.4 290 v10 M710 290 v10"/>
+        <path class="dash" d="M134.3 206 V290 M444.3 132 V290 M621.4 84 V290"/>
+        <text class="hand pale" x="118" y="196" font-size="34">brain starts</text>
+        <text class="hand" x="444" y="120" font-size="34" text-anchor="middle">you feel: now!</text>
+        <text class="hand red" x="621" y="72" font-size="34" text-anchor="middle">hand moves</text>
+        <g class="s-mono" font-size="26" text-anchor="middle">
+          <text x="134" y="330">&minus;550 ms</text><text x="444" y="330">&minus;200 ms</text><text x="621" y="330">0</text>
+        </g>
+        <path class="wax thin" d="M134 344 v10 H444 v-10"/>
+        <text class="hand" x="289" y="390" font-size="32" text-anchor="middle">0.35 s head start</text>
+      </svg>
+    </figure>
+    <div class="caption">
+      <h2>Who is driving?</h2>
+      <div class="body">
+        <p>Volunteers flicked a wrist whenever they chose. Their brains began ramping up about half a second before the movement. They reported deciding only 0.2 seconds before.</p>
+        <p class="aside">Some read this as proof that the feeling of choosing arrives late. Later studies suggest the early ramp may be background noise, so the experiment proves less than its fame suggests.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- H -->
+  <section class="exhibit" id="h">
+    <figure class="film">
+      <span class="tag">EXHIBIT H</span>
+      <div class="film-edge"><span>181 US judges · one imaginary violent psychopath</span><span>Bars drawn to scale</span></div>
+      <svg viewBox="0 0 800 240" role="img" aria-label="One brain scan with two arrows. The left arrow reads less to blame. The right arrow reads more dangerous.">
+        <g transform="translate(328 14) scale(.72)">
+          <ellipse class="dim" cx="70" cy="62" rx="36" ry="32" fill="url(#hot)"/><ellipse class="dim" cx="130" cy="62" rx="36" ry="32" fill="url(#hot)"/>
+          <ellipse cx="48" cy="132" rx="22" ry="28" fill="url(#hot)"/><ellipse cx="152" cy="132" rx="22" ry="28" fill="url(#hot)"/>
+          <ellipse cx="100" cy="128" rx="24" ry="22" fill="url(#hot)"/>
+          <ellipse cx="74" cy="190" rx="28" ry="24" fill="url(#hot)"/><ellipse cx="126" cy="190" rx="28" ry="24" fill="url(#hot)"/>
+          <use href="#brainTop" width="200" height="240"/>
+        </g>
+        <path class="wax" d="M306 112 C250 104 180 108 96 112" marker-end="url(#ah-y)"/>
+        <text class="hand" x="196" y="82" font-size="42" text-anchor="middle">less to blame</text>
+        <path class="wax red" d="M494 112 C550 104 620 108 704 112" marker-end="url(#ah-r)"/>
+        <text class="hand red" x="606" y="82" font-size="42" text-anchor="middle">more dangerous</text>
+        <text class="hand pale" x="400" y="226" font-size="30" text-anchor="middle">one scan, two readings</text>
+      </svg>
+      <div class="bars" role="img" aria-label="Average sentence: 13.9 years on the usual evidence, 12.8 years when judges also heard a biological explanation.">
+        <div class="bar-row">
+          <div class="bar-head"><span class="bar-label">Usual evidence</span><span class="bar-val">13.9 years</span></div>
+          <div class="bar" style="width:92.9%"></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span class="bar-label">Plus a biological explanation</span><span class="bar-val">12.8 years</span></div>
+          <div class="bar cut" style="width:85.5%"></div>
+        </div>
+      </div>
+    </figure>
+    <div class="caption">
+      <h2>In court, a brain scan cuts both ways.</h2>
+      <div class="body">
+        <p>The same picture says he is less to blame and more likely to do it again. When judges heard a biological explanation for a psychopath&rsquo;s violence, they took about a year off.</p>
+        <p class="aside">In Tennessee in 2009, a jury heard that a killer carried the MAOA variant and had been abused as a child. It convicted him of manslaughter instead of murder.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- I -->
+  <section class="exhibit" id="i">
+    <figure class="film">
+      <span class="tag">EXHIBIT I</span>
+      <div class="film-edge"><span>Three ways to answer</span><span>Still argued today</span></div>
+      <div class="answers">
+        <article class="answer">
+          <svg viewBox="0 0 260 150" aria-hidden="true">
+            <path class="rule" d="M20 126 H240"/>
+            <rect class="tissue" x="46" y="60" width="14" height="64" transform="rotate(52 60 124)"/>
+            <rect class="tissue" x="86" y="60" width="14" height="64" transform="rotate(40 100 124)"/>
+            <rect class="tissue" x="126" y="60" width="14" height="64" transform="rotate(27 140 124)"/>
+            <rect class="tissue" x="166" y="60" width="14" height="64" transform="rotate(14 180 124)"/>
+            <rect x="206" y="60" width="14" height="64" style="fill:var(--wax-red);stroke:var(--wax-red);stroke-width:2.2"/>
+          </svg>
+          <h3>Nobody is to blame.</h3>
+          <p>No one picks their genes, their childhood or their tumours. Every act is the last domino in a long row. Contain dangerous people as you would quarantine an infection, without hatred.</p>
+          <span class="by">Robert Sapolsky, neuroscientist</span>
+        </article>
+        <article class="answer">
+          <svg viewBox="0 0 260 150" aria-hidden="true">
+            <use href="#brainSide" x="40" y="0" width="200" height="150"/>
+            <ellipse cx="94" cy="89" rx="20" ry="11" style="fill:var(--wax);fill-opacity:.3;stroke:var(--wax);stroke-width:3"/>
+            <path class="wax" d="M14 112 l14 16 l30 -40"/>
+          </svg>
+          <h3>He is, if his brake worked.</h3>
+          <p>Every act has causes, so a cause alone excuses nobody. Courts ask a narrower question: could he understand what he was doing and stop himself? The tumour cut the brake. Most causes leave it working.</p>
+          <span class="by">Stephen Morse, law professor</span>
+        </article>
+        <article class="answer">
+          <svg viewBox="0 0 260 150" aria-hidden="true">
+            <path class="wax thin" d="M24 75 H110"/>
+            <path class="wax thin" d="M110 75 C150 75 170 34 226 30" marker-end="url(#ah-y)"/>
+            <path class="wax thin" d="M110 75 H226" marker-end="url(#ah-y)"/>
+            <path class="wax thin" d="M110 75 C150 75 170 116 226 120" marker-end="url(#ah-y)"/>
+          </svg>
+          <h3>Ask what happens next.</h3>
+          <p>Drop the blame question. Ask what will prevent the next crime, then choose between surgery, treatment, supervision and prison.</p>
+          <span class="by">David Eagleman, neuroscientist</span>
+        </article>
+      </div>
+    </figure>
+    <div class="caption">
+      <h2>So who is responsible? Three answers.</h2>
+      <div class="body">
+        <p>The science is shared. The disagreement is about what blame is for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- findings -->
+  <section class="findings" aria-label="Findings">
+    <p class="kicker">Findings</p>
+    <div class="qa">
+      <h2>Is evil a brain disorder?</h2>
+      <div class="body">
+        <p>Sometimes a damaged brain produces terrible acts. Most people with the same damage never hurt anyone, and plenty of people who do terrible things show nothing unusual on a scan.</p>
+        <p class="punch">Evil is a judgment about an act. A disorder is a fact about a brain. Scanners can find the second. They are silent on the first.</p>
+      </div>
+    </div>
+    <div class="qa">
+      <h2>If a tumour caused the crime, who is responsible?</h2>
+      <div class="body">
+        <p>Nearly everyone agrees the teacher needed a surgeon more than a prison. His brake was cut, and surgery fixed it.</p>
+        <p>The argument starts with everyone else. If a tumour excuses, why not a gene, or a childhood? Science can say what caused an act. How much blame to attach is still our decision.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sources">
+    <p class="kicker">Sources</p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Charles_Whitman">Charles Whitman: note, autopsy and inquiry findings</a></li>
+      <li><a href="https://jamanetwork.com/journals/jamaneurology/fullarticle/783830">Burns &amp; Swerdlow, Archives of Neurology, 2003</a> and <a href="https://www.abc.net.au/worldtoday/archive/articles/2002/10/22/s707992.htm">ABC report on the case</a></li>
+      <li><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1706587115">Darby et al., Lesion network localization of criminal behavior, PNAS, 2018</a></li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2555414/">Raine &amp; Yang, Neural foundations to moral reasoning and antisocial behavior</a> and <a href="https://en.wikipedia.org/wiki/James_H._Fallon">James Fallon</a></li>
+      <li><a href="https://www.eurekalert.org/news-releases/770613">Caspi et al., Science, 2002: MAOA and childhood maltreatment</a></li>
+      <li><a href="https://www.jneurosci.org/content/38/4/784">Journal of Neuroscience review of the Libet experiment</a></li>
+      <li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2135668">Aspinwall, Brown &amp; Tabery, Science, 2012: judges and sentencing</a></li>
+      <li><a href="https://www.npr.org/2010/07/01/128043329/can-your-genes-make-you-murder">NPR on the Waldroup trial</a></li>
+      <li><a href="https://www.theatlantic.com/magazine/archive/2011/07/the-brain-on-trial/308520/">David Eagleman, The Brain on Trial, The Atlantic, 2011</a>; Robert Sapolsky, Determined, 2023; Stephen Morse, Brain Overclaim Syndrome, 2006</li>
+    </ul>
+    <p>Every brain on this page is a drawing. None is a patient&rsquo;s scan.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* Exhibit B: the tumour as a switch */
+  var stages = [
+    {on:true,  text:"He knew it was wrong. He told doctors the urges overrode his restraint."},
+    {on:false, text:"Surgeons removed the tumour. The urges stopped."},
+    {on:true,  text:"Months later the urges came back. A new scan showed the tumour had regrown."},
+    {on:false, text:"Surgeons removed it again. The urges stopped again."}
+  ];
+  var bBtns = Array.prototype.slice.call(document.querySelectorAll("[data-stage]"));
+  function setStage(i){
+    var s = stages[i];
+    $("b-tumour").style.opacity = s.on ? 1 : 0;
+    $("b-urges").textContent = s.on ? "urges ON" : "urges OFF";
+    $("b-urges").setAttribute("class", s.on ? "hand red" : "hand pale");
+    $("b-state").textContent = s.on ? "TUMOUR PRESENT" : "TUMOUR REMOVED";
+    $("b-band").setAttribute("x", 500 + 65 * i);
+    $("b-note").textContent = s.text;
+    bBtns.forEach(function(b, j){ b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+  }
+  bBtns.forEach(function(b){
+    b.addEventListener("click", function(){ setStage(+b.getAttribute("data-stage")); });
+  });
+
+  /* Exhibit C: 17 injuries, one circuit */
+  var NS = "http://www.w3.org/2000/svg";
+  var pts = [[112,118],[140,86],[172,62],[206,56],[244,58],[284,72],[318,100],[338,138],[322,172],
+             [290,150],[258,112],[222,98],[184,118],[150,148],[212,150],[250,176],[196,214]];
+  var brake = [108,178], engine = [182,202];
+  var X = function(x){ return 140 + 1.3 * x; }, Y = function(y){ return 20 + 1.3 * y; };
+  pts.forEach(function(p){
+    var h = p[0] < 190 ? brake : engine;
+    var x1 = X(p[0]), y1 = Y(p[1]), x2 = X(h[0]), y2 = Y(h[1]);
+    var mx = (x1 + x2) / 2 + (y2 - y1) * 0.16, my = (y1 + y2) / 2 - (x2 - x1) * 0.16;
+    var w = document.createElementNS(NS, "path");
+    w.setAttribute("class", "wire");
+    w.setAttribute("pathLength", "1");
+    w.setAttribute("d", "M" + x1 + " " + y1 + " Q" + mx.toFixed(1) + " " + my.toFixed(1) + " " + x2 + " " + y2);
+    $("c-wires").appendChild(w);
+    var ring = document.createElementNS(NS, "circle");
+    ring.setAttribute("class", "lesion-ring"); ring.setAttribute("cx", x1); ring.setAttribute("cy", y1); ring.setAttribute("r", 11);
+    var dot = document.createElementNS(NS, "circle");
+    dot.setAttribute("class", "lesion"); dot.setAttribute("cx", x1); dot.setAttribute("cy", y1); dot.setAttribute("r", 5.5);
+    $("c-dots").appendChild(ring); $("c-dots").appendChild(dot);
+  });
+  $("c-btn").addEventListener("click", function(){
+    var on = !$("c-svg").classList.contains("wired");
+    $("c-svg").classList.toggle("wired", on);
+    this.setAttribute("aria-pressed", on ? "true" : "false");
+    this.textContent = on ? "Hide the wiring" : "Trace the wiring";
+    $("c-note").textContent = on
+      ? "All 17 plug into one circuit: the one we use to weigh right against wrong."
+      : "17 injuries, in 17 different places.";
+  });
+
+  /* Exhibit D: whose brain */
+  $("d-btn").addEventListener("click", function(){
+    $("d-who").textContent = "James Fallon, neuroscientist";
+    $("d-hand").textContent = "never violent";
+    $("d-hand").classList.remove("red");
+    $("d-note").textContent = "James Fallon studies killers' brains. He found the pattern in his own scan. He has no history of violence and credits a loving childhood.";
+    this.hidden = true;
+  });
+
+  /* Exhibit F: the line moves with the machine */
+  var machines = ["the naked eye","CT scans","MRI scans","DNA tests","network maps","tomorrow's machine"];
+  var cases = Array.prototype.slice.call(document.querySelectorAll("#f-cases .case"));
+  function setMachine(n){
+    cases.forEach(function(c, i){
+      var ex = i < n;
+      c.classList.toggle("excused", ex);
+      c.querySelector(".stamp").textContent = ex ? "EXCUSED" : "BLAMED";
+    });
+    $("f-note").textContent = n === 6
+      ? "With tomorrow's machine, all 6 are excused. Nobody is left to blame."
+      : "With " + machines[n - 1] + ", " + n + " of 6 " + (n === 1 ? "is" : "are") + " excused.";
+  }
+  $("f-range").addEventListener("input", function(){ setMachine(+this.value); });
+  setMachine(+$("f-range").value);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

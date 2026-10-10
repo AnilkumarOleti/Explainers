@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bayes&#x27; Rule | Explainers</title>
+<meta name="description" content="Something in your pan glitters. How sure can you be that it is gold?">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/bayes-rule/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Bayes&#x27; Rule">
+<meta property="og:description" content="Something in your pan glitters. How sure can you be that it is gold?">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/bayes-rule/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/bayes-rule/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=League+Gothic&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+/* Layout: a narrow column of short text running down the left edge, broken by wide
+   picture stages. The main stage is a riverbed of 1,000 pieces beside a round pan. */
+:root{
+  --bg:#E4EBE8; --surface:#F1F5F3; --ink:#12262B; --muted:#506568; --line:#BECCC8;
+  --gold:#AD7A00; --gold-ink:#7A5500; --on-gold:#FFFFFF;
+  --teal:#0082A0; --gravel:#93A6A3; --pan:#DCE5E2;
+  --display:"League Gothic","Oswald","Arial Narrow",Impact,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1C20; --surface:#14282D; --ink:#E3ECE9; --muted:#8FA6A7; --line:#2A444C;
+    --gold:#D4A017; --gold-ink:#E9BE4B; --on-gold:#0D1C20;
+    --teal:#22A3BC; --gravel:#3F5C65; --pan:#0F2226;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1C20; --surface:#14282D; --ink:#E3ECE9; --muted:#8FA6A7; --line:#2A444C;
+  --gold:#D4A017; --gold-ink:#E9BE4B; --on-gold:#0D1C20;
+  --teal:#22A3BC; --gravel:#3F5C65; --pan:#0F2226;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.55;margin:0}
+.wrap{max-width:1000px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:clamp(28px,6vw,64px) 72px;
+  display:flex;flex-direction:column;gap:clamp(60px,9vw,108px)}
+section,header,footer{display:flex;flex-direction:column;gap:22px;min-width:0}
+p{margin:0;max-width:60ch}
+h1,h2{font-family:var(--display);font-weight:400;text-transform:uppercase;margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(4rem,15vw,9rem);line-height:.86}
+h1 em{font-style:normal;color:var(--gold)}
+h2{font-size:clamp(2.4rem,7vw,3.8rem);line-height:.95}
+.eyebrow,.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.eyebrow{color:var(--gold-ink)}
+.lede{font-size:clamp(1.15rem,2.6vw,1.45rem);line-height:1.4;max-width:34ch}
+.small{font-size:.875rem;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.f-gold{fill:var(--gold)} .f-teal{fill:var(--teal)} .f-gravel{fill:var(--gravel)}
+.s-gold{fill:none;stroke:var(--gold);stroke-width:1.6}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* three facts */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,3vw,36px)}
+.fact{display:flex;flex-direction:column;gap:10px;min-width:0}
+.fact svg{width:100%;max-width:190px;height:auto;display:block}
+.fact b{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,5.5vw,3rem);line-height:1;letter-spacing:.01em}
+.fact span{font-size:.95rem;color:var(--muted);line-height:1.35}
+.fact > div{display:flex;flex-direction:column;gap:6px;min-width:0}
+@media (max-width:520px){
+  .facts{grid-template-columns:minmax(0,1fr);gap:20px}
+  .fact{flex-direction:row;align-items:center;gap:18px}
+  .fact svg{width:104px;flex:none}
+}
+
+/* guess */
+.ask{font-size:clamp(1.3rem,3.4vw,1.8rem);line-height:1.25;max-width:26ch}
+.guess{display:flex;flex-wrap:wrap;gap:12px}
+.guess button{font-family:var(--display);font-size:2.4rem;line-height:1;padding:.22em .6em .16em;min-width:2.6em;
+  background:transparent;color:var(--ink);border:1.5px solid var(--ink);border-radius:4px;cursor:pointer}
+.guess button:hover{background:var(--ink);color:var(--bg)}
+.guess button[data-state="right"]{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.guess button[data-state="wrong"]{opacity:.45;text-decoration:line-through}
+.guess button[data-state="wrong"]:hover{background:transparent;color:var(--ink)}
+#verdict{min-height:3.2em}
+
+/* the stage */
+.sim{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:clamp(14px,3vw,30px);
+  display:flex;flex-direction:column;gap:26px}
+.stage{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px 36px;align-items:start}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.pane{display:flex;flex-direction:column;gap:12px;min-width:0;margin:0}
+#riverBox{width:100%;height:300px}
+#panBox{width:100%;max-width:330px;aspect-ratio:1;margin-inline:auto}
+@media (max-width:720px){.stage{grid-template-columns:minmax(0,1fr)}}
+.legend{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;font-size:.875rem;line-height:1.3}
+.legend li{display:flex;gap:8px;align-items:baseline;min-width:0}
+.legend svg{flex:none;width:12px;height:12px;position:relative;top:1px}
+.legend b{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
+@media (max-width:420px){.legend{grid-template-columns:1fr}}
+.assay{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}
+.assay-num{font-family:var(--display);font-size:clamp(4rem,12vw,5.6rem);line-height:.9;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+.strip{display:flex;gap:2px;width:100%;max-width:330px;height:14px}
+.strip i{display:block;height:100%;border-radius:2px;transition:flex-basis .25s}
+.strip .g{background:var(--gold);flex:0 0 9.2%} .strip .t{background:var(--teal);flex:1 1 0}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px;border-top:1px solid var(--line);padding-top:22px}
+@media (max-width:720px){.controls{grid-template-columns:minmax(0,1fr)}}
+.ctl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ctl label{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:.95rem}
+.ctl output{font-family:var(--mono);font-size:.9rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctl input{width:100%;accent-color:var(--gold);margin:0;height:24px}
+.ctl.cool input{accent-color:var(--teal)}
+.simfoot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--ink);
+  border:1px solid var(--ink);border-radius:4px;padding:.55em 1em;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--bg)}
+
+/* the rule */
+.pull{font-family:var(--display);text-transform:uppercase;font-size:clamp(2rem,6.4vw,3.6rem);line-height:.98;max-width:16ch;letter-spacing:.01em}
+.pull em{font-style:normal;color:var(--gold)}
+.eq{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;font-size:1.05rem}
+.frac{display:inline-flex;flex-direction:column;align-items:center;gap:6px}
+.frac > span{display:flex;align-items:center;gap:8px;padding-inline:10px;white-space:nowrap}
+.frac > span + span{border-top:2px solid var(--ink);padding-top:8px}
+.frac svg{width:16px;height:16px;flex:none}
+.frac b,.eq > b{font-family:var(--display);font-weight:400;font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.eq > b{font-size:3rem;color:var(--gold-ink)}
+.sym{font-family:var(--body);font-style:italic;font-size:clamp(1.05rem,3.2vw,1.5rem);overflow-x:auto;white-space:nowrap;padding-block:4px}
+.sym .eq{flex-wrap:nowrap}
+.terms{width:100%;border-collapse:collapse;font-size:.95rem}
+.terms th,.terms td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-top:1px solid var(--line);font-weight:400}
+.terms th{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:9.5em}
+.terms td:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;padding-right:0;white-space:nowrap}
+.terms tr.hit th,.terms tr.hit td:last-child{color:var(--gold-ink)}
+.odds{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-start}
+.odds div{display:flex;flex-direction:column;gap:2px}
+.odds b{font-family:var(--display);font-weight:400;font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+.odds .op{color:var(--muted)}
+.odds small{font-size:.8rem;color:var(--muted);max-width:14ch;line-height:1.25}
+
+/* chart + chain */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(48px,7vw,72px) 48px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:minmax(0,1fr)}}
+.two > div{display:flex;flex-direction:column;gap:18px;min-width:0}
+figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+#chart{width:100%;display:block;touch-action:pan-y}
+#chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+#chart .grid{stroke:var(--line);stroke-width:1}
+#chart .curve{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#chart .mark{fill:var(--gold);stroke:var(--bg);stroke-width:2}
+#chart .here{fill:var(--ink);font-size:12px;font-weight:500}
+#chart .hair{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+#chart .hov{fill:var(--bg);stroke:var(--ink);stroke-width:1.5}
+#chart .tip{fill:var(--ink)}
+.chain{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 14px;align-items:center}
+.chain .label{white-space:nowrap}
+.chain .bar{display:flex;gap:2px;height:22px}
+.chain .bar i{display:block;border-radius:2px;height:100%;transition:flex-basis .25s}
+.chain .bar .g{background:var(--gold)} .chain .bar .t{background:var(--teal);flex:1 1 0;opacity:.55}
+.chain .v{font-family:var(--display);font-size:1.9rem;line-height:1;min-width:3.2ch;text-align:right;font-variant-numeric:tabular-nums}
+
+/* other rivers */
+.rivers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px 32px}
+.river{display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--ink);padding-top:14px;min-width:0}
+.river dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:.95rem}
+.river dt{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:.25em}
+.river dd{margin:0}
+.river .nums{font-family:var(--mono);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.river .out{display:flex;gap:12px;align-items:baseline}
+.river .out b{font-family:var(--display);font-weight:400;font-size:3.2rem;line-height:.9;color:var(--gold-ink)}
+.river .out span{font-size:.95rem;line-height:1.3}
+.river .strip{max-width:none;height:10px}
+footer{border-top:1px solid var(--line);padding-top:26px}
+@media (prefers-reduced-motion: reduce){.strip i,.chain .bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Bayes’ rule</div>
+  <h1>All that <em>glitters</em></h1>
+  <p class="lede">Something in your pan glitters. How sure can you be that it is gold?</p>
+</header>
+
+<section aria-labelledby="h-trap">
+  <h2 id="h-trap">Three facts, one trap</h2>
+  <div class="facts">
+    <div class="fact"><svg id="pic1" viewBox="0 0 120 120" role="img" aria-label="A grid of 100 pieces with one gold piece"></svg><div><b>1 in 100</b><span>pieces in the river is gold.</span></div></div>
+    <div class="fact"><svg id="pic2" viewBox="0 0 120 120" role="img" aria-label="Ten gold pieces, nine of them glittering"></svg><div><b>9 in 10</b><span>gold pieces glitter.</span></div></div>
+    <div class="fact"><svg id="pic3" viewBox="0 0 120 120" role="img" aria-label="A grid of 100 gravel pieces, nine of them glittering"></svg><div><b>9 in 100</b><span>gravel pieces glitter too. That is fool’s gold.</span></div></div>
+  </div>
+  <p class="ask">A piece glitters. What is the chance it is gold?</p>
+  <div class="guess" role="group" aria-label="Your guess">
+    <button type="button" id="g90" data-v="90">90%</button>
+    <button type="button" id="g50" data-v="50">50%</button>
+    <button type="button" id="g9" data-v="9">9%</button>
+  </div>
+  <p id="verdict" class="small" aria-live="polite">Pick one.</p>
+</section>
+
+<section aria-labelledby="h-count">
+  <h2 id="h-count">Count the river</h2>
+  <p>Forget the percentages. Tip 1,000 pieces into the pan and keep whatever glitters.</p>
+  <div class="sim">
+    <div class="stage" id="stage">
+      <canvas id="cv" aria-hidden="true"></canvas>
+      <div class="pane">
+        <div class="label">The river · 1,000 pieces</div>
+        <div id="riverBox"></div>
+        <ul class="legend">
+          <li><svg viewBox="0 0 12 12" aria-hidden="true"><circle class="f-gold" cx="6" cy="6" r="5"/></svg><b id="cTP">9</b><span>gold that glitters</span></li>
+          <li><svg viewBox="0 0 12 12" aria-hidden="true"><rect class="f-teal" x="1.5" y="1.5" width="9" height="9"/></svg><b id="cFP">89</b><span>fool’s gold</span></li>
+          <li><svg viewBox="0 0 12 12" aria-hidden="true"><circle class="s-gold" cx="6" cy="6" r="4.2"/></svg><b id="cFN">1</b><span>gold that stays dull</span></li>
+          <li><svg viewBox="0 0 12 12" aria-hidden="true"><circle class="f-gravel" cx="6" cy="6" r="2.4"/></svg><b id="cTN">901</b><span>plain gravel</span></li>
+        </ul>
+      </div>
+      <div class="pane">
+        <div class="label">Your pan · all that glitters</div>
+        <div id="panBox"></div>
+        <div class="assay">
+          <div class="assay-num" id="post">9.2%</div>
+          <p>of the glitter is gold</p>
+          <div class="strip" aria-hidden="true"><i class="g" id="stripG"></i><i class="t"></i></div>
+          <p class="small num" id="panCount">9 gold · 89 fool’s gold</p>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl">
+        <label for="sGold"><span>Gold in the river</span><output id="oGold" for="sGold">10 in 1,000</output></label>
+        <input type="range" id="sGold" min="0" max="1000" step="10" value="370">
+      </div>
+      <div class="ctl">
+        <label for="sSens"><span>Gold that glitters</span><output id="oSens" for="sSens">90%</output></label>
+        <input type="range" id="sSens" min="0" max="100" step="1" value="90">
+      </div>
+      <div class="ctl cool">
+        <label for="sFpr"><span>Gravel that glitters</span><output id="oFpr" for="sFpr">9%</output></label>
+        <input type="range" id="sFpr" min="0" max="50" step="1" value="9">
+      </div>
+    </div>
+    <div class="simfoot">
+      <p class="small">Drag a slider. The river changes, and so does the pan.</p>
+      <button type="button" class="btn" id="replay">Sift again</button>
+    </div>
+    <p class="sr" id="srSum" aria-live="polite"></p>
+  </div>
+</section>
+
+<section aria-labelledby="h-rule">
+  <h2 id="h-rule">The rule</h2>
+  <p class="pull">Of everything that glitters, <em>how much is gold?</em></p>
+  <div class="eq" aria-label="Gold that glitters, divided by everything that glitters">
+    <span class="frac">
+      <span><svg viewBox="0 0 12 12" aria-hidden="true"><circle class="f-gold" cx="6" cy="6" r="5"/></svg><b id="eTP">9</b></span>
+      <span><svg viewBox="0 0 12 12" aria-hidden="true"><circle class="f-gold" cx="6" cy="6" r="5"/></svg><b id="eTP2">9</b><span>+</span><svg viewBox="0 0 12 12" aria-hidden="true"><rect class="f-teal" x="1.5" y="1.5" width="9" height="9"/></svg><b id="eFP">89</b></span>
+    </span>
+    <span>=</span>
+    <b id="ePost">9.2%</b>
+  </div>
+  <p>That fraction is Bayes’ rule. Written in symbols:</p>
+  <div class="sym">
+    <span class="eq">
+      <span>P(gold | glitter)</span><span>=</span>
+      <span class="frac"><span>P(glitter | gold) × P(gold)</span><span>P(glitter)</span></span>
+    </span>
+  </div>
+  <table class="terms">
+    <tbody>
+      <tr><th scope="row">Prior</th><td>How much of the river is gold, before you look.</td><td id="tPrior">1.0%</td></tr>
+      <tr><th scope="row">Likelihood</th><td>How often gold glitters.</td><td id="tLik">90%</td></tr>
+      <tr><th scope="row">Evidence</th><td>How much of the river glitters at all.</td><td id="tEv">9.8%</td></tr>
+      <tr class="hit"><th scope="row">Posterior</th><td>How much of the glitter is gold. Your answer.</td><td id="tPost">9.2%</td></tr>
+    </tbody>
+  </table>
+  <p>The same sum as odds, which is quicker in your head:</p>
+  <div class="odds">
+    <div><b id="oPrior">1 : 99</b><small>gold to gravel, before</small></div>
+    <div><b><span class="op">× </span><span id="oLR">10</span></b><small>times likelier to glitter if gold</small></div>
+    <div><b><span class="op">≈ </span><span id="oPost">9 : 89</span></b><small>gold to fool’s gold, after</small></div>
+  </div>
+</section>
+
+<section aria-labelledby="h-means">
+  <h2 id="h-means">What it changes</h2>
+  <div class="two">
+    <div>
+      <div class="label">Rare stays rare</div>
+      <p>When gold is scarce, even a good clue leaves a pan that is mostly fool’s gold.</p>
+      <figure>
+        <figcaption class="small">Share of the glitter that is gold</figcaption>
+        <svg id="chart" height="250" role="img" aria-label="Line chart: the share of glitter that is gold rises as gold becomes more common in the river"></svg>
+        <figcaption class="small">How common gold is in the river</figcaption>
+      </figure>
+    </div>
+    <div>
+      <div class="label">Pan it again</div>
+      <p>Each answer is the starting point for the next clue. Belief moves in steps.</p>
+      <div class="chain" id="chain"></div>
+      <p class="small">Each pan here is a fresh, independent check.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-rivers">
+  <h2 id="h-rivers">Same pan, other rivers</h2>
+  <div class="rivers">
+    <div class="river">
+      <div class="label">Clinic</div>
+      <dl><dt>Gold</dt><dd>has the condition</dd><dt>Glitter</dt><dd>tests positive</dd></dl>
+      <div class="nums">1 in 100 · catches 90% · false alarm 9%</div>
+      <div class="strip" aria-hidden="true"><i class="g" style="flex-basis:9.2%"></i><i class="t"></i></div>
+      <div class="out"><b>9%</b><span>of positive tests are real cases.</span></div>
+    </div>
+    <div class="river">
+      <div class="label">Marketplace</div>
+      <dl><dt>Gold</dt><dd>listing is a scam</dd><dt>Glitter</dt><dd>the model flags it</dd></dl>
+      <div class="nums">1 in 200 · catches 95% · false alarm 2%</div>
+      <div class="strip" aria-hidden="true"><i class="g" style="flex-basis:19.3%"></i><i class="t"></i></div>
+      <div class="out"><b>19%</b><span>of flagged listings are scams.</span></div>
+    </div>
+    <div class="river">
+      <div class="label">Inbox</div>
+      <dl><dt>Gold</dt><dd>mail is spam</dd><dt>Glitter</dt><dd>it says “free”</dd></dl>
+      <div class="nums">1 in 2 · catches 30% · false alarm 2%</div>
+      <div class="strip" aria-hidden="true"><i class="g" style="flex-basis:93.8%"></i><i class="t"></i></div>
+      <div class="out"><b>94%</b><span>of mails saying “free” are spam.</span></div>
+    </div>
+  </div>
+  <p class="small">Numbers are made up to show the pattern. A weak clue about a common thing beats a strong clue about a rare one.</p>
+</section>
+
+<footer>
+  <p class="pull">Before you trust a clue, ask <em>how rare the thing is.</em></p>
+  <p class="small">Thomas Bayes worked this out in the 1700s. His essay was published in 1763, two years after his death.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var N = 1000, TAU = Math.PI * 2, NS = 'http://www.w3.org/2000/svg';
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- small pictographs ---------- */
+  function el(tag, attrs){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  (function(){
+    var p1 = $('pic1'), p2 = $('pic2'), p3 = $('pic3'), i, x, y;
+    var fools = {4:1,17:1,23:1,38:1,41:1,56:1,62:1,79:1,90:1};
+    for (i = 0; i < 100; i++){
+      x = (i % 10) * 12 + 6; y = Math.floor(i / 10) * 12 + 6;
+      p1.appendChild(i === 37 ? el('circle',{cx:x,cy:y,r:4.6,'class':'f-gold'}) : el('circle',{cx:x,cy:y,r:2,'class':'f-gravel'}));
+      p3.appendChild(fools[i] ? el('rect',{x:x-3.8,y:y-3.8,width:7.6,height:7.6,'class':'f-teal'}) : el('circle',{cx:x,cy:y,r:2,'class':'f-gravel'}));
+    }
+    for (i = 0; i < 10; i++){
+      x = (i % 5) * 24 + 12; y = Math.floor(i / 5) * 24 + 48;
+      p2.appendChild(el('circle',{cx:x,cy:y,r:i === 9 ? 8.2 : 9,'class':i === 9 ? 's-gold' : 'f-gold'}));
+    }
+  })();
+
+  /* ---------- the guess ---------- */
+  var verdicts = {
+    90: 'That is the trap. 90% is how often gold glitters. The question runs the other way.',
+    50: 'Closer, but still too hopeful. Count the gravel.',
+    9:  'Yes, about 9%.'
+  };
+  ['g90','g50','g9'].forEach(function(id){
+    $(id).addEventListener('click', function(){
+      var v = this.getAttribute('data-v');
+      ['g90','g50','g9'].forEach(function(o){ $(o).setAttribute('data-state', o === 'g9' ? 'right' : 'wrong'); });
+      $('verdict').textContent = verdicts[v] + ' Gold glitters more reliably, but there is far more gravel, so fool’s gold outnumbers real gold about ten to one.';
+    });
+  });
+
+  /* ---------- fixed riverbed ---------- */
+  function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  var rand = mulberry32(1763), goldRank = [], glitRank = [], jx = [], jy = [], perm = [], i, j, t;
+  for (i = 0; i < N; i++) perm.push(i);
+  for (i = N - 1; i > 0; i--){ j = Math.floor(rand() * (i + 1)); t = perm[i]; perm[i] = perm[j]; perm[j] = t; }
+  for (i = 0; i < N; i++) goldRank[perm[i]] = i;
+  for (i = 0; i < N; i++){ glitRank.push(rand()); jx.push((rand() - .5) * .3); jy.push((rand() - .5) * .3); }
+
+  var state = { gold: 10, sens: 90, fpr: 9 }, model = null;
+  function compute(){
+    var gI = [], vI = [], k;
+    for (k = 0; k < N; k++) (goldRank[k] < state.gold ? gI : vI).push(k);
+    var byGlit = function(a, b){ return glitRank[a] - glitRank[b]; };
+    gI.sort(byGlit); vI.sort(byGlit);
+    var tp = Math.round(gI.length * state.sens / 100), fp = Math.round(vI.length * state.fpr / 100);
+    var kind = new Uint8Array(N);              /* 0 gravel, 1 fool's gold, 2 dull gold, 3 glittering gold */
+    for (k = 0; k < vI.length; k++) kind[vI[k]] = k < fp ? 1 : 0;
+    for (k = 0; k < gI.length; k++) kind[gI[k]] = k < tp ? 3 : 2;
+    model = { g: gI.length, tp: tp, fp: fp, fn: gI.length - tp, tn: vI.length - fp,
+              post: tp + fp > 0 ? tp / (tp + fp) : null, pan: gI.slice(0, tp).concat(vI.slice(0, fp)), kind: kind };
+  }
+  function postF(p, s, f){ var d = s * p + f * (1 - p); return d > 0 ? s * p / d : 0; }
+  function pct(v){
+    if (v == null) return '–';
+    var x = v * 100;
+    if (x === 0) return '0%';
+    if (x < 10 || (x > 99 && x < 100)) return x.toFixed(1) + '%';
+    return Math.round(x) + '%';
+  }
+  function gcd(a, b){ return b ? gcd(b, a % b) : a; }
+  function ratio(a, b){ var d = gcd(a, b) || 1; return (a / d).toLocaleString('en-US') + ' : ' + (b / d).toLocaleString('en-US'); }
+
+  /* ---------- canvas stage ---------- */
+  var stage = $('stage'), cv = $('cv'), ctx = cv.getContext('2d'), riverBox = $('riverBox'), panBox = $('panBox');
+  var L = null, C = {}, raf = 0;
+  function colors(){
+    var cs = getComputedStyle(document.documentElement);
+    ['gold','teal','gravel','line','pan'].forEach(function(k){ C[k] = cs.getPropertyValue('--' + k).trim(); });
+  }
+  function layout(){
+    var w = riverBox.getBoundingClientRect().width;
+    if (!w) return false;
+    var cols = Math.max(20, Math.min(40, Math.floor(w / 11.5))), cell = w / cols, rows = Math.ceil(N / cols);
+    var h = Math.round(rows * cell) + 'px';
+    if (riverBox.style.height !== h) riverBox.style.height = h;
+    var sr = stage.getBoundingClientRect(), rr = riverBox.getBoundingClientRect(), pr = panBox.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var cw = Math.round(sr.width * dpr), ch = Math.round(sr.height * dpr);
+    if (cv.width !== cw || cv.height !== ch){ cv.width = cw; cv.height = ch; }
+    L = { W: sr.width, H: sr.height, dpr: dpr, cols: cols, cell: cell, rx: rr.left - sr.left, ry: rr.top - sr.top,
+          pcx: pr.left - sr.left + pr.width / 2, pcy: pr.top - sr.top + pr.height / 2, R: Math.min(pr.width, pr.height) / 2 - 3 };
+    return true;
+  }
+  function ease(x){ return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+  function draw(T){
+    if (!L || !model) return;
+    var c = L.cell, k, x, y, kd = model.kind;
+    ctx.setTransform(L.dpr, 0, 0, L.dpr, 0, 0);
+    ctx.clearRect(0, 0, L.W, L.H);
+    /* the pan */
+    ctx.beginPath(); ctx.arc(L.pcx, L.pcy, L.R, 0, TAU); ctx.fillStyle = C.pan; ctx.fill();
+    ctx.lineWidth = 1.5; ctx.strokeStyle = C.line; ctx.stroke();
+    ctx.beginPath(); ctx.arc(L.pcx, L.pcy, L.R * .92, 0, TAU); ctx.lineWidth = 1; ctx.stroke();
+    /* the river */
+    var px = function(n){ return L.rx + ((n % L.cols) + .5 + jx[n]) * c; };
+    var py = function(n){ return L.ry + (Math.floor(n / L.cols) + .5 + jy[n]) * c; };
+    ctx.fillStyle = C.gravel; ctx.beginPath();
+    for (k = 0; k < N; k++) if (kd[k] === 0){ x = px(k); y = py(k); ctx.moveTo(x + c * .17, y); ctx.arc(x, y, c * .17, 0, TAU); }
+    ctx.fill();
+    ctx.fillStyle = C.teal;
+    for (k = 0; k < N; k++) if (kd[k] === 1) ctx.fillRect(px(k) - c * .3, py(k) - c * .3, c * .6, c * .6);
+    ctx.strokeStyle = C.gold; ctx.lineWidth = 1.5; ctx.beginPath();
+    for (k = 0; k < N; k++) if (kd[k] === 2){ x = px(k); y = py(k); ctx.moveTo(x + c * .3, y); ctx.arc(x, y, c * .3, 0, TAU); }
+    ctx.stroke();
+    ctx.fillStyle = C.gold; ctx.beginPath();
+    for (k = 0; k < N; k++) if (kd[k] === 3){ x = px(k); y = py(k); ctx.moveTo(x + c * .4, y); ctx.arc(x, y, c * .4, 0, TAU); }
+    ctx.fill();
+    /* what lands in the pan: gold packs the middle, fool's gold spirals around it */
+    var pan = model.pan, n = pan.length;
+    if (!n) return;
+    var Rp = Math.min(L.R * .85, 11 * Math.sqrt(n)), sp = Rp * Math.sqrt(Math.PI / n), stag = .6;
+    for (var pass = 0; pass < 2; pass++){
+      ctx.fillStyle = pass ? C.gold : C.teal;
+      ctx.beginPath();
+      for (k = 0; k < n; k++){
+        var id = pan[k], isGold = kd[id] === 3;
+        if ((pass === 1) !== isGold) continue;
+        var rad = Rp * Math.sqrt((k + .5) / n), th = k * 2.399963;
+        var tk = T >= 1 ? 1 : ease(Math.max(0, Math.min(1, T * (1 + stag) - stag * k / n)));
+        if (tk <= 0) continue;
+        var dx = L.pcx + rad * Math.cos(th), dy = L.pcy + rad * Math.sin(th);
+        x = px(id) + (dx - px(id)) * tk; y = py(id) + (dy - py(id)) * tk;
+        if (isGold){ var r = c * .4 + (sp * .36 - c * .4) * tk; ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, TAU); }
+        else { var s = c * .6 + (sp * .58 - c * .6) * tk; ctx.rect(x - s / 2, y - s / 2, s, s); }
+      }
+      ctx.fill();
+    }
+  }
+  function play(){
+    cancelAnimationFrame(raf);
+    if (reduce){ draw(1); return; }
+    var start = performance.now(), dur = 1700;
+    (function frame(now){
+      var T = Math.min(1, (now - start) / dur);
+      draw(T);
+      if (T < 1) raf = requestAnimationFrame(frame);
+    })(start);
+  }
+
+  /* ---------- chart: share of glitter that is gold, against how common gold is ---------- */
+  var chart = $('chart'), LX0 = Math.log10(.001), LX1 = Math.log10(.5), CS = null;
+  function oneIn(p){ return '1 in ' + Math.max(2, Math.round(1 / p)).toLocaleString('en-US'); }
+  function renderChart(){
+    var w = Math.max(260, chart.getBoundingClientRect().width || 480), h = 250, m = { l: 42, r: 18, t: 18, b: 28 };
+    var s = state.sens / 100, f = state.fpr / 100, iw = w - m.l - m.r, ih = h - m.t - m.b;
+    var X = function(p){ return m.l + (Math.log10(p) - LX0) / (LX1 - LX0) * iw; };
+    var Y = function(v){ return m.t + (1 - v) * ih; };
+    CS = { m: m, iw: iw, w: w, X: X, Y: Y, s: s, f: f };
+    chart.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    var o = '', k;
+    [0, .25, .5, .75, 1].forEach(function(v){ o += '<line class="grid" x1="' + m.l + '" x2="' + (w - m.r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/>'; });
+    [0, .5, 1].forEach(function(v){ o += '<text x="' + (m.l - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + (v * 100) + '%</text>'; });
+    [[.001, '1 in 1,000', 'start'], [.01, '1 in 100', 'middle'], [.1, '1 in 10', 'middle'], [.5, '1 in 2', 'end']].forEach(function(a){
+      o += '<text x="' + X(a[0]) + '" y="' + (h - 8) + '" text-anchor="' + a[2] + '">' + a[1] + '</text>';
+    });
+    var d = '';
+    for (k = 0; k <= 80; k++){ var p = Math.pow(10, LX0 + (LX1 - LX0) * k / 80); d += (k ? 'L' : 'M') + X(p).toFixed(1) + ' ' + Y(postF(p, s, f)).toFixed(1); }
+    o += '<path class="curve" d="' + d + '"/>';
+    var p0 = state.gold / N, mx = X(p0), my = Y(postF(p0, s, f)), right = mx < m.l + 130;
+    o += '<circle class="mark" cx="' + mx + '" cy="' + my + '" r="6"/>';
+    o += '<text class="here" x="' + (mx + (right ? -4 : 4)) + '" y="' + (my < 40 ? my + 24 : my - 14) + '" text-anchor="' + (right ? 'start' : 'end') + '">your river: ' + pct(model.post) + '</text>';
+    o += '<g id="hv" visibility="hidden"><line class="hair" id="hvL" y1="' + m.t + '" y2="' + (h - m.b) + '"/><circle class="hov" id="hvC" r="4.5"/><text class="tip" id="hvT" y="' + (m.t - 5) + '"></text></g>';
+    chart.innerHTML = o;
+  }
+  function hover(e){
+    if (!CS) return;
+    var r = chart.getBoundingClientRect(), x = (e.clientX - r.left) * (CS.w / r.width);
+    x = Math.max(CS.m.l, Math.min(CS.m.l + CS.iw, x));
+    var p = Math.pow(10, LX0 + (x - CS.m.l) / CS.iw * (LX1 - LX0)), v = postF(p, CS.s, CS.f);
+    var g = $('hv'); if (!g) return;
+    g.setAttribute('visibility', 'visible');
+    $('hvL').setAttribute('x1', x); $('hvL').setAttribute('x2', x);
+    $('hvC').setAttribute('cx', x); $('hvC').setAttribute('cy', CS.Y(v));
+    var tx = $('hvT'), left = x > CS.w * .55;
+    tx.setAttribute('x', x); tx.setAttribute('text-anchor', left ? 'end' : 'start');
+    tx.textContent = oneIn(p) + ' → ' + pct(v);
+  }
+  chart.addEventListener('pointermove', hover);
+  chart.addEventListener('pointerdown', hover);
+  chart.addEventListener('pointerleave', function(){ var g = $('hv'); if (g) g.setAttribute('visibility', 'hidden'); });
+
+  /* ---------- everything that follows the sliders ---------- */
+  function renderChain(){
+    var s = state.sens / 100, f = state.fpr / 100, p = state.gold / N, names = ['River', '1 pan', '2 pans', '3 pans'], o = '', k;
+    for (k = 0; k < 4; k++){
+      if (k === 1 && model.post != null) p = model.post; else if (k > 0) p = postF(p, s, f);
+      o += '<span class="label">' + names[k] + '</span><span class="bar" aria-hidden="true"><i class="g" style="flex:0 0 ' + (p * 100).toFixed(2) + '%"></i><i class="t"></i></span><span class="v">' + pct(p) + '</span>';
+    }
+    $('chain').innerHTML = o;
+  }
+  function renderText(){
+    var m = model, n = m.tp + m.fp, lr = state.fpr > 0 ? state.sens / state.fpr : Infinity;
+    $('cTP').textContent = m.tp; $('cFP').textContent = m.fp; $('cFN').textContent = m.fn; $('cTN').textContent = m.tn;
+    $('post').textContent = pct(m.post);
+    $('stripG').style.flexBasis = (m.post == null ? 0 : m.post * 100).toFixed(2) + '%';
+    $('panCount').textContent = n ? m.tp + ' gold · ' + m.fp + ' fool’s gold' : 'Nothing glitters. The pan is empty.';
+    $('oGold').textContent = m.g + ' in 1,000'; $('oSens').textContent = state.sens + '%'; $('oFpr').textContent = state.fpr + '%';
+    $('eTP').textContent = m.tp; $('eTP2').textContent = m.tp; $('eFP').textContent = m.fp; $('ePost').textContent = pct(m.post);
+    $('tPrior').textContent = pct(m.g / N); $('tLik').textContent = state.sens + '%'; $('tEv').textContent = pct(n / N); $('tPost').textContent = pct(m.post);
+    $('oPrior').textContent = ratio(m.g, N - m.g);
+    $('oLR').textContent = lr === Infinity ? '∞' : (lr < 10 ? String(Math.round(lr * 10) / 10) : String(Math.round(lr)));
+    $('oPost').textContent = n ? ratio(m.tp, m.fp) : '–';
+    $('srSum').textContent = 'Of 1,000 pieces, ' + m.g + ' are gold. ' + n + ' glitter: ' + m.tp + ' gold and ' + m.fp + ' fool’s gold. ' + pct(m.post) + ' of the glitter is gold.';
+  }
+  function update(animate){
+    compute(); renderText(); renderChart(); renderChain();
+    if (layout()){ if (animate) play(); else { cancelAnimationFrame(raf); draw(1); } }
+  }
+  function readSliders(){
+    state.gold = Math.max(1, Math.min(500, Math.round(Math.pow(10, +$('sGold').value / 1000 * Math.log10(500)))));
+    state.sens = +$('sSens').value; state.fpr = +$('sFpr').value;
+  }
+  ['sGold','sSens','sFpr'].forEach(function(id){ $(id).addEventListener('input', function(){ readSliders(); update(false); }); });
+  $('replay').addEventListener('click', function(){ if (layout()) play(); });
+
+  function recolor(){ colors(); cancelAnimationFrame(raf); draw(1); }
+  if (window.matchMedia){ var mq = matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', recolor); }
+  new MutationObserver(recolor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  colors(); readSliders(); update(false);
+  if (window.ResizeObserver){
+    var lastW = 0;
+    new ResizeObserver(function(){
+      var w = stage.getBoundingClientRect().width;
+      if (layout()){ cancelAnimationFrame(raf); draw(1); }
+      if (Math.abs(w - lastW) > 1){ lastW = w; renderChart(); }
+    }).observe(stage);
+  }
+  if (window.IntersectionObserver && !reduce){
+    var io = new IntersectionObserver(function(en){
+      if (en[0].isIntersecting){ io.disconnect(); if (layout()) play(); }
+    }, { threshold: .4 });
+    io.observe(stage);
+  }
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

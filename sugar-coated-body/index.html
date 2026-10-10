@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Sugar-Coated Body | Explainers</title>
+<meta name="description" content="Type 2 diabetes, from sugar that can&#x27;t get into your cells to the damage it does over years.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/sugar-coated-body/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Sugar-Coated Body">
+<meta property="og:description" content="Type 2 diabetes, from sugar that can&#x27;t get into your cells to the damage it does over years.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/sugar-coated-body/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/sugar-coated-body/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#EDF1F2; --card:#F9FBFB; --ink:#13202A; --ink-2:#4A5A66; --ink-3:#6F7F8A;
+  --rule:#D2DADE; --sil:#D9E0E3; --sil-2:#C5CED3;
+  --b1:#2C5EA8; --b2:#4C8736; --b3:#B98D12; --b4:#CC6520; --b5:#9C3220;
+  --blood:#F5E6E2; --cell:#E4EDE3; --link:#2C5EA8;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0E1418; --card:#151F26; --ink:#E4EBEE; --ink-2:#A3B2BB; --ink-3:#7C8C96;
+    --rule:#27343C; --sil:#1D2930; --sil-2:#2B3943;
+    --b1:#6F9DE4; --b2:#84BD5F; --b3:#E4C04C; --b4:#F0924B; --b5:#E2694F;
+    --blood:#2A1C1A; --cell:#17241B; --link:#8FB3EE;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0E1418; --card:#151F26; --ink:#E4EBEE; --ink-2:#A3B2BB; --ink-3:#7C8C96;
+  --rule:#27343C; --sil:#1D2930; --sil-2:#2B3943;
+  --b1:#6F9DE4; --b2:#84BD5F; --b3:#E4C04C; --b4:#F0924B; --b5:#E2694F;
+  --blood:#2A1C1A; --cell:#17241B; --link:#8FB3EE;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.6rem,6.4vw,4.7rem);line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(1.85rem,3.8vw,2.7rem);line-height:1.1}
+h3{font-size:1.28rem;line-height:1.2}
+p{margin:0}
+.prose{max-width:64ch;display:grid;gap:1em}
+.prose p{color:var(--ink-2)}
+.prose strong{color:var(--ink);font-weight:600}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.lede{font-size:1.18rem;color:var(--ink-2);max-width:52ch}
+section{padding-block:76px;border-top:1px solid var(--rule)}
+.sec-head{display:grid;gap:14px;margin-bottom:34px}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+.caption{font-size:14px;color:var(--ink-3);line-height:1.5;max-width:70ch}
+
+/* HERO */
+header.hero{padding-block:64px 72px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
+.hero-copy{display:grid;gap:22px}
+.thesis{border-left:3px solid var(--b5);padding-left:16px;color:var(--ink);font-size:1.05rem;max-width:50ch}
+.instrument{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:22px;display:grid;gap:18px}
+.inst-top{display:flex;gap:18px;align-items:center}
+.strip{position:relative;flex:0 0 auto;width:74px;height:150px;border-radius:6px;background:var(--sil);border:1px solid var(--sil-2)}
+.strip .pad{position:absolute;left:10px;right:10px;top:12px;height:52px;border-radius:3px;background:var(--b3);transition:background .25s}
+.strip .pad2{position:absolute;left:10px;right:10px;top:74px;height:10px;border-radius:2px;background:var(--sil-2)}
+.strip .grip{position:absolute;left:10px;right:10px;bottom:10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-align:center;letter-spacing:.1em}
+.readouts{display:grid;gap:12px;flex:1;min-width:0}
+.ro-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.ro-val{font-family:var(--display);font-size:2.4rem;line-height:1}
+.ro-sub{font-size:14px;color:var(--ink-2)}
+.cat{display:inline-block;font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid currentColor;font-weight:500}
+.scale{position:relative;padding-top:22px}
+.scale-bar{height:14px;border-radius:3px;background:linear-gradient(90deg,var(--b1) 0%,var(--b2) 14.1%,var(--b3) 23.5%,var(--b4) 41.2%,var(--b5) 64.7%,var(--b5) 100%)}
+.thr{position:absolute;top:0;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--ink-3);white-space:nowrap}
+.thr::after{content:"";position:absolute;left:50%;top:15px;height:24px;border-left:1px dashed var(--ink-3)}
+.marker{position:absolute;top:16px;width:4px;height:26px;margin-left:-2px;background:var(--ink);border-radius:2px;transition:left .1s}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-top:6px}
+input[type=range]{width:100%;accent-color:var(--ink);margin:0}
+.inst-foot{font-size:13.5px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:14px}
+
+/* SIM */
+.sim{background:var(--card);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.sim-controls{display:flex;flex-wrap:wrap;gap:8px;padding:16px;border-bottom:1px solid var(--rule)}
+.seg{font:500 14px/1 var(--body);color:var(--ink-2);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:9px 14px;cursor:pointer}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.seg:hover{border-color:var(--ink-3)}
+canvas#sim{display:block;width:100%;height:280px}
+.sim-read{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:20px;padding:16px 18px;border-top:1px solid var(--rule);align-items:start}
+.meter{display:grid;gap:6px}
+.meter-track{height:8px;background:var(--sil);border-radius:4px;overflow:hidden}
+.meter-fill{height:100%;border-radius:4px;transition:width .6s}
+.meter .v{font-size:14px;color:var(--ink)}
+.sim-note{font-size:14.5px;color:var(--ink-2)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-3);padding:0 18px 16px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+.aside-box{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:20px;display:grid;gap:10px}
+.aside-box p{color:var(--ink-2);font-size:15.5px}
+.bigfig{font-family:var(--display);font-size:2.2rem;line-height:1;color:var(--ink)}
+
+/* DOORS */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
+.door-card{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:18px;display:grid;gap:12px;align-content:start}
+.door-card svg{width:100%;height:auto;display:block}
+.door-card h3{font-size:1.15rem}
+.door-card p{font-size:15px;color:var(--ink-2)}
+.who{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.pipes{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+.pipe{border-top:3px solid var(--ink);padding-top:14px;display:grid;gap:8px}
+.pipe.small{border-top-color:var(--b4)}
+.pipe.large{border-top-color:var(--b5)}
+.pipe p{font-size:15px;color:var(--ink-2)}
+.pipe .size{font-family:var(--mono);font-size:13px;color:var(--ink)}
+
+/* GLYCATION */
+.gly{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.gly-step{padding:18px;display:grid;gap:10px;align-content:start;border-right:1px solid var(--rule)}
+.gly-step:last-child{border-right:0}
+.gly-step svg{width:100%;height:auto;display:block}
+.gly-step h3{font-size:1.1rem}
+.gly-step p{font-size:14.5px;color:var(--ink-2)}
+.time{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.arrowlabel{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+/* BODY MAP */
+.map-row{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:40px;align-items:center;margin-bottom:34px}
+.bodymap{width:100%;height:auto;display:block;max-width:380px;margin-inline:auto}
+.bodymap .sil{fill:var(--sil)}
+.bodymap .sil-s{stroke:var(--sil);fill:none;stroke-linecap:round}
+.bodymap .lead{stroke:var(--ink-3);stroke-width:1;fill:none}
+.bodymap .lbl{font-family:var(--body);font-size:13px;fill:var(--ink);font-weight:500}
+.bodymap .dot{fill:var(--b5);stroke:var(--paper);stroke-width:2.5}
+.bodymap .spot{cursor:pointer}
+.bodymap .spot:hover .dot,.bodymap .spot.on .dot{fill:var(--ink)}
+.bodymap .spot.dim{opacity:.18}
+.bodymap .spot:focus-visible{outline:none}
+.bodymap .spot:focus-visible .dot{stroke:var(--link);stroke-width:3}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 13.5px/1 var(--body);color:var(--ink-2);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:8px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:hover{border-color:var(--ink-3)}
+.map-side{display:grid;gap:18px}
+.systems{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.sys{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:18px;display:grid;gap:12px;align-content:start;grid-template-rows:auto auto 1fr auto;transition:opacity .25s,border-color .25s;scroll-margin-top:24px}
+.sys.dim{opacity:.28}
+.sys.on{border-color:var(--ink)}
+.sys .stat{display:flex;gap:10px;align-items:baseline}
+.sys .stat b{font-family:var(--display);font-weight:400;font-size:1.9rem;line-height:1;color:var(--b5);white-space:nowrap}
+.sys .stat span{font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.sys p.body{font-size:15px;color:var(--ink-2)}
+.tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tags li{font-family:var(--mono);font-size:11px;color:var(--ink-2);border:1px solid var(--rule);border-radius:4px;padding:2px 6px}
+.check{font-size:13.5px;color:var(--ink);border-top:1px dashed var(--rule);padding-top:10px;line-height:1.45}
+.check span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:6px}
+
+/* GRADIENT */
+.bars{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:22px;display:grid;gap:14px}
+.bar-row{display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:14px;align-items:center}
+.bar-row .name{font-size:14.5px;color:var(--ink)}
+.bar-track{position:relative;height:26px;background:linear-gradient(90deg,var(--rule) 1px,transparent 1px) 0 0/20% 100%;border-right:1px solid var(--rule)}
+.bar{height:100%;background:var(--b2);border-radius:0 3px 3px 0;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-family:var(--mono);font-size:12.5px;color:var(--paper);font-weight:500;min-width:40px}
+.axis{display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:14px}
+.axis-ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+.levers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.lever{border-top:1px solid var(--ink);padding-top:14px;display:grid;gap:8px;align-content:start}
+.lever p{font-size:15px;color:var(--ink-2)}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--rule);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14.5px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;color:var(--ink)}
+td{color:var(--ink-2)}
+td.tgt{font-family:var(--mono);font-size:13px;color:var(--ink)}
+
+footer{border-top:1px solid var(--rule);padding-block:48px 64px}
+.sources{columns:2;column-gap:36px;font-size:13.5px;color:var(--ink-2);padding-left:18px;margin:14px 0 0}
+.sources li{margin-bottom:8px;break-inside:avoid}
+.disclaimer{margin-top:26px;font-size:13.5px;color:var(--ink-3);max-width:70ch}
+
+@media (max-width:900px){
+  .hero-grid,.map-row,.two-col{grid-template-columns:1fr}
+  .systems{grid-template-columns:1fr 1fr}
+  .systems .sys:last-child{grid-column:span 2}
+  .levers{grid-template-columns:1fr}
+  .sim-read{grid-template-columns:1fr 1fr}
+  .sim-note{grid-column:span 2}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  section{padding-block:56px}
+  .doors,.pipes{grid-template-columns:1fr}
+  .gly{grid-template-columns:1fr}
+  .gly-step{border-right:0;border-bottom:1px solid var(--rule)}
+  .gly-step:last-child{border-bottom:0}
+  .systems{grid-template-columns:1fr}
+  .systems .sys:last-child{grid-column:auto}
+  .sources{columns:1}
+  .bar-row,.axis{grid-template-columns:1fr}
+  .axis > span{display:none}
+  .bar-row{gap:6px}
+  .bodymap{max-width:340px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Explainer · Type 2 diabetes</div>
+      <h1>The sugar-coated body</h1>
+      <p class="lede">Type 2 diabetes begins as sugar that can't get into your cells. It becomes sugar that stays in your blood for years, sticking to proteins and wearing down every blood vessel it flows through.</p>
+      <p class="thesis">The one idea to hold: some cells can lock their doors against sugar and some can't. When the lockable ones lock, the ones that can't get flooded. Eyes, kidneys, nerves and artery linings are the ones that can't.</p>
+    </div>
+
+    <div class="instrument" aria-label="HbA1c explorer">
+      <div class="inst-top">
+        <div class="strip" aria-hidden="true">
+          <div class="pad" id="pad"></div>
+          <div class="pad2"></div>
+          <div class="grip">HbA1c</div>
+        </div>
+        <div class="readouts">
+          <div>
+            <div class="ro-label">HbA1c</div>
+            <div class="ro-val num"><span id="a1c">7.0</span><span style="font-size:1.3rem">%</span></div>
+          </div>
+          <div>
+            <div class="ro-label">Average blood sugar</div>
+            <div class="ro-sub num"><strong id="eag" style="color:var(--ink);font-size:1.1rem">154</strong> mg/dL · <span id="eagm">8.6</span> mmol/L</div>
+          </div>
+          <div><span class="cat" id="cat">Diabetes range</span></div>
+        </div>
+      </div>
+
+      <div class="scale" aria-hidden="true">
+        <span class="thr" style="left:14.1%">5.7</span>
+        <span class="thr" style="left:23.5%">6.5</span>
+        <div class="scale-bar"></div>
+        <div class="marker" id="marker"></div>
+        <div class="ticks num"><span>4.5</span><span>6</span><span>8</span><span>10</span><span>13%</span></div>
+      </div>
+
+      <label for="a1cRange" class="ro-label" style="display:block">Drag to change HbA1c</label>
+      <input type="range" id="a1cRange" min="4.5" max="13" step="0.1" value="7.0">
+
+      <p class="inst-foot" id="a1cText">About <strong class="num" id="per100">7</strong> of every 100 haemoglobin molecules in your red blood cells carry a glucose molecule stuck to them. That is what an HbA1c test counts: how sugar-coated your blood has been over the last 2–3 months. The colours come from Benedict's test, the old lab reagent that turns from blue to green, yellow, orange and brick-red as sugar rises.</p>
+    </div>
+  </div>
+</header>
+
+<!-- PART 1 -->
+<section id="doors">
+  <div class="sec-head">
+    <div class="eyebrow">Part 1 · How it starts</div>
+    <h2>The key that stops turning</h2>
+  </div>
+  <div class="prose">
+    <p>After a meal, glucose floods your blood. Your pancreas releases <strong>insulin</strong>, which works like a key: it unlocks doors on muscle, fat and liver cells so glucose can move inside and be burned or stored.</p>
+    <p>In Type 2 diabetes the locks get stiff. This is <strong>insulin resistance</strong>, and it builds quietly for a decade or more. The pancreas compensates by making more and more insulin, so blood sugar looks normal on tests for years. Diagnosis usually comes only when the insulin-making beta cells start to tire. By then, roughly half of their function is already gone.</p>
+  </div>
+
+  <div class="sim" style="margin-top:30px">
+    <div class="sim-controls" role="group" aria-label="Stage of the disease">
+      <button class="seg" data-state="healthy" aria-pressed="true">1 · Healthy</button>
+      <button class="seg" data-state="resistant" aria-pressed="false">2 · Insulin resistant</button>
+      <button class="seg" data-state="failing" aria-pressed="false">3 · Beta cells tiring</button>
+    </div>
+    <canvas id="sim" aria-label="Animation of glucose particles moving from the bloodstream into a muscle cell through an insulin-operated door"></canvas>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--b4)"></i>Glucose in blood</span>
+      <span><i class="sw" style="background:var(--b1)"></i>Insulin (the key)</span>
+      <span><i class="sw" style="background:var(--b2)"></i>Glucose used by the cell</span>
+    </div>
+    <div class="sim-read">
+      <div class="meter">
+        <div class="ro-label">Sugar in blood</div>
+        <div class="meter-track"><div class="meter-fill" id="mGlu" style="background:var(--b4);width:20%"></div></div>
+        <div class="v num" id="vGlu">Fasting ≈ 85 mg/dL</div>
+      </div>
+      <div class="meter">
+        <div class="ro-label">Insulin in blood</div>
+        <div class="meter-track"><div class="meter-fill" id="mIns" style="background:var(--b1);width:25%"></div></div>
+        <div class="v" id="vIns">Normal</div>
+      </div>
+      <p class="sim-note" id="simNote">The key turns easily. Glucose moves into the cell and blood sugar settles back within a couple of hours of eating.</p>
+    </div>
+  </div>
+  <p class="caption" style="margin-top:12px">A schematic, not a measurement. The glucose and insulin figures are typical values for each stage.</p>
+
+  <div class="two-col">
+    <div class="prose">
+      <h3>Where the fat sits matters more than how much</h3>
+      <p>The strongest driver of insulin resistance is fat stored in the wrong places. Fat under the skin is relatively harmless. Fat packed around the organs, inside the liver and inside the pancreas is not.</p>
+      <p>A fatty liver stops listening to insulin and keeps releasing glucose even when blood sugar is already high. Fat in the pancreas dulls the beta cells. Each makes the other worse, which is why losing that organ fat can reverse the disease in some people (Part 5).</p>
+    </div>
+    <div class="aside-box">
+      <div class="eyebrow">Why it arrives earlier in India</div>
+      <div class="bigfig num">101 million</div>
+      <p>Indian adults living with diabetes, plus about 136 million with prediabetes (ICMR-INDIAB, 2023).</p>
+      <p>At the same body weight, South Asians tend to carry more fat in the belly and liver and less muscle. The disease often appears about a decade earlier and at a lower BMI, which is why screening for Asian Indians often starts at a BMI of 23, not 25.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2 -->
+<section id="flooded">
+  <div class="sec-head">
+    <div class="eyebrow">Part 2 · Why these organs</div>
+    <h2>The cells that can't close the door</h2>
+  </div>
+  <div class="prose" style="margin-bottom:28px">
+    <p>Here is the twist. Muscle and fat cells use an insulin-operated door (a transporter called GLUT4). When insulin stops working, those doors stay shut and those cells are protected from the excess.</p>
+    <p>Other cells use doors that are always open (mainly GLUT1). They take in glucose in proportion to how much is in the blood. When blood sugar stays high, these cells fill with more sugar than they can handle. The lining of every blood vessel works this way, and so do the retina, the kidney's filters and the nerves. This is the main reason diabetes damages these tissues first.</p>
+  </div>
+
+  <div class="doors">
+    <div class="door-card">
+      <div class="who">Muscle · fat · liver</div>
+      <h3>Insulin-operated door</h3>
+      <svg viewBox="0 0 300 230" role="img" aria-label="A cell with a locked door; many glucose molecules crowd outside, few are inside">
+        <rect x="0" y="0" width="300" height="92" rx="8" fill="var(--blood)"/>
+        <text x="12" y="20" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--ink-3)">BLOOD · SUGAR RISING</text>
+        <rect x="10" y="104" width="280" height="118" rx="10" fill="var(--cell)"/>
+        <line x1="10" y1="104" x2="128" y2="104" stroke="var(--ink)" stroke-width="3"/>
+        <line x1="172" y1="104" x2="290" y2="104" stroke="var(--ink)" stroke-width="3"/>
+        <rect x="128" y="100" width="44" height="8" rx="2" fill="var(--ink-2)"/>
+        <rect x="143" y="112" width="14" height="11" rx="2" fill="var(--b1)"/>
+        <path d="M146 112 v-3 a4 4 0 0 1 8 0 v3" stroke="var(--b1)" stroke-width="2" fill="none"/>
+        <g id="d1out"></g><g id="d1in"></g>
+        <text x="22" y="212" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--ink-3)">INSIDE · STAYS LOW</text>
+      </svg>
+      <p>When insulin stops working, the door stays shut. Glucose backs up into the blood. The cell itself is spared.</p>
+    </div>
+    <div class="door-card">
+      <div class="who">Vessel lining · retina · kidney filter · nerve</div>
+      <h3>Always-open door</h3>
+      <svg viewBox="0 0 300 230" role="img" aria-label="A cell with an open door; glucose floods inside and turns into damaging by-products">
+        <rect x="0" y="0" width="300" height="92" rx="8" fill="var(--blood)"/>
+        <text x="12" y="20" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--ink-3)">BLOOD · SUGAR RISING</text>
+        <rect x="10" y="104" width="280" height="118" rx="10" fill="var(--cell)"/>
+        <line x1="10" y1="104" x2="128" y2="104" stroke="var(--ink)" stroke-width="3"/>
+        <line x1="172" y1="104" x2="290" y2="104" stroke="var(--ink)" stroke-width="3"/>
+        <path d="M150 84 L150 120" stroke="var(--b4)" stroke-width="2" stroke-dasharray="3 3"/>
+        <path d="M144 114 L150 122 L156 114" stroke="var(--b4)" stroke-width="2" fill="none"/>
+        <g id="d2out"></g><g id="d2in"></g>
+        <text x="22" y="212" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--b5)">INSIDE · FLOODED</text>
+      </svg>
+      <p>The cell can't refuse the extra sugar. Its mitochondria overload and throw off free radicals, which switch on damaging pathways: sorbitol build-up, glycation, inflammation and leaky, thickened vessel walls.</p>
+    </div>
+  </div>
+
+  <div class="pipes">
+    <div class="pipe small">
+      <div class="size">Capillaries · 5–10 µm wide, one cell thick</div>
+      <h3>Small-vessel damage</h3>
+      <p>Tiny vessels leak, thicken and close off. This is the damage that belongs to diabetes specifically: <strong style="color:var(--ink)">eyes, kidneys and nerves</strong>. It tracks blood sugar closely, so lowering sugar prevents it most directly.</p>
+    </div>
+    <div class="pipe large">
+      <div class="size">Arteries · up to 25 mm wide</div>
+      <h3>Large-vessel damage</h3>
+      <p>Plaque builds faster in the arteries of the <strong style="color:var(--ink)">heart, brain and legs</strong>. This is driven by the whole insulin-resistance package: high blood pressure, high triglycerides, low HDL, inflammation, and sugar. Sugar control alone helps less here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PART 3 -->
+<section id="glycation">
+  <div class="sec-head">
+    <div class="eyebrow">Part 3 · The slow browning</div>
+    <h2>Sugar that sticks</h2>
+  </div>
+  <div class="prose" style="margin-bottom:28px">
+    <p>Glucose is chemically sticky. Left in contact with proteins, it bonds to them without any enzyme involved. It is the same Maillard reaction that browns toast and caramelises onions, running at 37°C instead of 180°C. The higher the sugar and the longer it stays, the further the reaction goes.</p>
+  </div>
+  <div class="gly">
+    <div class="gly-step">
+      <div class="arrowlabel">Stage 1</div>
+      <svg viewBox="0 0 220 120" aria-hidden="true">
+        <path d="M10 88 Q37 72 64 88 T118 88 T172 88 T210 84" stroke="var(--ink-2)" stroke-width="3" fill="none"/>
+        <g fill="var(--ink-2)"><circle cx="37" cy="80" r="4"/><circle cx="91" cy="88" r="4"/><circle cx="145" cy="88" r="4"/><circle cx="190" cy="85" r="4"/></g>
+        <line x1="110" y1="52" x2="112" y2="84" stroke="var(--b3)" stroke-width="2" stroke-dasharray="3 3"/>
+        <polygon id="h1" fill="var(--b3)"/>
+      </svg>
+      <h3>A loose touch</h3>
+      <div class="time">Hours · reversible</div>
+      <p>Glucose latches loosely onto a protein. If sugar falls, it lets go.</p>
+    </div>
+    <div class="gly-step">
+      <div class="arrowlabel">Stage 2</div>
+      <svg viewBox="0 0 220 120" aria-hidden="true">
+        <path d="M10 88 Q37 72 64 88 T118 88 T172 88 T210 84" stroke="var(--ink-2)" stroke-width="3" fill="none"/>
+        <g fill="var(--ink-2)"><circle cx="37" cy="80" r="4"/><circle cx="91" cy="88" r="4"/><circle cx="145" cy="88" r="4"/><circle cx="190" cy="85" r="4"/></g>
+        <line x1="111" y1="70" x2="112" y2="86" stroke="var(--b4)" stroke-width="3"/>
+        <polygon id="h2" fill="var(--b4)"/>
+        <polygon id="h2b" fill="var(--b4)"/>
+        <line x1="60" y1="68" x2="62" y2="84" stroke="var(--b4)" stroke-width="3"/>
+      </svg>
+      <h3>A firm bond</h3>
+      <div class="time">Weeks · mostly stable</div>
+      <p>The bond rearranges into a sturdier form. <strong style="color:var(--ink)">HbA1c is this stage</strong>, measured on haemoglobin.</p>
+    </div>
+    <div class="gly-step">
+      <div class="arrowlabel">Stage 3</div>
+      <svg viewBox="0 0 220 120" aria-hidden="true">
+        <path d="M10 30 Q37 18 64 30 T118 30 T172 30 T210 28" stroke="var(--ink-2)" stroke-width="3" fill="none"/>
+        <path d="M10 94 Q37 82 64 94 T118 94 T172 94 T210 90" stroke="var(--ink-2)" stroke-width="3" fill="none"/>
+        <g stroke="var(--b5)" stroke-width="5" stroke-linecap="round"><line x1="52" y1="34" x2="52" y2="88"/><line x1="112" y1="34" x2="112" y2="90"/><line x1="170" y1="34" x2="170" y2="90"/></g>
+        <g fill="var(--b5)"><rect x="44" y="54" width="16" height="14" rx="3"/><rect x="104" y="55" width="16" height="14" rx="3"/><rect x="162" y="55" width="16" height="14" rx="3"/></g>
+      </svg>
+      <h3>Permanent cross-links</h3>
+      <div class="time">Months to years · irreversible</div>
+      <p>Advanced glycation end-products (AGEs) weld proteins together. Collagen in arteries, skin, tendons and the eye's lens stiffens, and AGEs trigger inflammation.</p>
+    </div>
+  </div>
+  <p class="caption" style="margin-top:12px">Long-lived proteins such as collagen collect AGEs for decades. This is one reason years of high sugar leave a "metabolic memory" that persists after control improves.</p>
+</section>
+
+<!-- PART 4 -->
+<section id="systems">
+  <div class="sec-head">
+    <div class="eyebrow">Part 4 · The damage, system by system</div>
+    <h2>Nine places it shows up</h2>
+  </div>
+
+  <div class="map-row">
+    <svg class="bodymap" viewBox="0 0 360 500" role="group" aria-label="Body map with nine affected systems">
+      <circle class="sil" cx="180" cy="52" r="31"/>
+      <rect class="sil" x="170" y="80" width="20" height="20"/>
+      <path class="sil" d="M136 98 Q180 88 224 98 L234 112 Q240 182 222 264 L138 264 Q120 182 126 112 Z"/>
+      <path class="sil-s" d="M133 110 Q108 180 104 272" stroke-width="22"/>
+      <path class="sil-s" d="M227 110 Q252 180 256 272" stroke-width="22"/>
+      <circle class="sil" cx="103" cy="284" r="13"/>
+      <circle class="sil" cx="257" cy="284" r="13"/>
+      <path class="sil-s" d="M160 256 L152 466" stroke-width="30"/>
+      <path class="sil-s" d="M200 256 L208 466" stroke-width="30"/>
+      <ellipse class="sil" cx="144" cy="478" rx="20" ry="9"/>
+      <ellipse class="sil" cx="216" cy="478" rx="20" ry="9"/>
+      <g id="spots"></g>
+    </svg>
+
+    <div class="map-side">
+      <div class="prose">
+        <p>Most of this damage is silent for years. Kidney disease, retinopathy and nerve damage usually cause no symptoms until they are advanced, and many people already have early signs when they are first diagnosed. Each card ends with the check that catches it early.</p>
+      </div>
+      <div>
+        <div class="ro-label" style="margin-bottom:8px">Filter by how the damage happens</div>
+        <div class="chips" role="group" aria-label="Filter systems by damage route">
+          <button class="chip" data-route="all" aria-pressed="true">All</button>
+          <button class="chip" data-route="small" aria-pressed="false">Small vessels</button>
+          <button class="chip" data-route="large" aria-pressed="false">Large vessels</button>
+          <button class="chip" data-route="nerve" aria-pressed="false">Nerves</button>
+          <button class="chip" data-route="glyc" aria-pressed="false">Glycation</button>
+          <button class="chip" data-route="fat" aria-pressed="false">Fat build-up</button>
+          <button class="chip" data-route="immune" aria-pressed="false">Immunity</button>
+        </div>
+      </div>
+      <p class="caption">Tap a point on the body to jump to its card.</p>
+    </div>
+  </div>
+
+  <div class="systems" id="sysGrid">
+    <article class="sys" id="sys-heart" data-routes="large fat">
+      <h3>Heart and arteries</h3>
+      <div class="stat"><b>~2×</b><span>risk of heart attack; heart disease is the leading cause of death in Type 2 diabetes</span></div>
+      <p class="body">Sugar, high insulin, high blood pressure and the blood-fat pattern of insulin resistance (high triglycerides, low HDL, small dense LDL) inflame artery walls and speed plaque growth. Nerve damage can blunt chest pain, so heart attacks may be silent. The heart muscle can also stiffen, leading to heart failure.</p>
+      <ul class="tags"><li>Large vessels</li><li>Fat build-up</li></ul>
+      <p class="check"><span>Check</span>Blood pressure at every visit; lipid profile yearly.</p>
+    </article>
+
+    <article class="sys" id="sys-brain" data-routes="large small">
+      <h3>Brain and mood</h3>
+      <div class="stat"><b>1.5–2×</b><span>risk of stroke and of dementia</span></div>
+      <p class="body">Blocked large arteries cause strokes. Damaged small vessels scar the brain's white matter, and the brain itself can become insulin resistant. Both are linked to faster memory decline. Depression is about twice as common, and it makes managing diabetes harder.</p>
+      <ul class="tags"><li>Large vessels</li><li>Small vessels</li></ul>
+      <p class="check"><span>Check</span>Raise memory or mood changes early; control blood pressure.</p>
+    </article>
+
+    <article class="sys" id="sys-eyes" data-routes="small glyc">
+      <h3>Eyes</h3>
+      <div class="stat"><b>1 in 3</b><span>people with diabetes have some retinopathy</span></div>
+      <p class="body">The retina's capillaries balloon, leak and close off. Starved of oxygen, the retina grows fragile new vessels that can bleed and scar. Fluid in the macula blurs central vision. Early stages cause no symptoms. Glycation also clouds the lens, so cataracts come earlier.</p>
+      <ul class="tags"><li>Small vessels</li><li>Glycation</li></ul>
+      <p class="check"><span>Check</span>Dilated eye exam or retinal photo at diagnosis, then every 1–2 years.</p>
+    </article>
+
+    <article class="sys" id="sys-kidneys" data-routes="small">
+      <h3>Kidneys</h3>
+      <div class="stat"><b>~40%</b><span>develop kidney disease; diabetes is the top cause of kidney failure</span></div>
+      <p class="body">Each kidney has about a million tiny filters (glomeruli). High sugar first makes them over-filter, then thicken and scar. The earliest sign is a protein called albumin leaking into urine. Filtering capacity then falls slowly, with no symptoms, until it is advanced.</p>
+      <ul class="tags"><li>Small vessels</li></ul>
+      <p class="check"><span>Check</span>Urine albumin-to-creatinine ratio (UACR) and eGFR, yearly.</p>
+    </article>
+
+    <article class="sys" id="sys-nerves" data-routes="nerve small">
+      <h3>Nerves</h3>
+      <div class="stat"><b>Up to 50%</b><span>eventually develop nerve damage</span></div>
+      <p class="body">The longest nerves fail first, so it starts in the toes and climbs in a "stocking and glove" pattern: numbness, burning, pins and needles. Nerves that run the organs are hit too: slow stomach emptying, dizziness on standing, bladder trouble, and erectile dysfunction in about half of men with diabetes.</p>
+      <ul class="tags"><li>Nerves</li><li>Small vessels</li></ul>
+      <p class="check"><span>Check</span>Monofilament and vibration test on the feet, yearly.</p>
+    </article>
+
+    <article class="sys" id="sys-feet" data-routes="nerve large immune">
+      <h3>Feet and legs</h3>
+      <div class="stat"><b>19–34%</b><span>lifetime chance of a foot ulcer</span></div>
+      <p class="body">Three problems meet in the feet. Numb skin doesn't feel a blister or a stone in the shoe. Narrowed leg arteries starve the wound of oxygen. High sugar weakens the immune response. A small cut can become an ulcer and then a deep infection. Diabetes is the leading cause of amputation not caused by injury.</p>
+      <ul class="tags"><li>Nerves</li><li>Large vessels</li><li>Immunity</li></ul>
+      <p class="check"><span>Check</span>Look at your own feet daily; clinician foot exam yearly.</p>
+    </article>
+
+    <article class="sys" id="sys-liver" data-routes="fat">
+      <h3>Liver and pancreas</h3>
+      <div class="stat"><b>Over half</b><span>of people with Type 2 diabetes have fatty liver disease</span></div>
+      <p class="body">Fat builds up in the liver (now called MASLD). A fatty liver resists insulin, releases extra glucose and pumps out triglycerides. It can progress to inflammation, scarring, cirrhosis and liver cancer. Fat in the pancreas further weakens the beta cells, closing the loop.</p>
+      <ul class="tags"><li>Fat build-up</li></ul>
+      <p class="check"><span>Check</span>Liver enzymes and a FIB-4 score; FibroScan if raised.</p>
+    </article>
+
+    <article class="sys" id="sys-immune" data-routes="immune">
+      <h3>Immunity, skin and gums</h3>
+      <div class="stat"><b>~3×</b><span>risk of tuberculosis</span></div>
+      <p class="body">High sugar slows white blood cells and feeds bacteria and fungi. Urinary, skin and fungal infections are more common and wounds heal slowly. Gum disease is more frequent and severe, and it pushes blood sugar up in return. Dark, velvety patches on the neck (acanthosis nigricans) are a visible sign of insulin resistance.</p>
+      <ul class="tags"><li>Immunity</li></ul>
+      <p class="check"><span>Check</span>Dental visit every 6 months; keep vaccinations current.</p>
+    </article>
+
+    <article class="sys" id="sys-joints" data-routes="glyc">
+      <h3>Muscles, bones and joints</h3>
+      <div class="stat"><b>~1 in 8</b><span>develop frozen shoulder, several times the usual rate</span></div>
+      <p class="body">Glycated collagen stiffens tendons and joint capsules: frozen shoulder, trigger finger, stiff hands that can't press flat together. Bones may look dense on scans but are more brittle, so fractures are more likely. Muscle is the body's biggest glucose sink, and losing it with age and inactivity worsens insulin resistance.</p>
+      <ul class="tags"><li>Glycation</li></ul>
+      <p class="check"><span>Check</span>Strength training; it clears glucose without needing insulin.</p>
+    </article>
+  </div>
+</section>
+
+<!-- PART 5 -->
+<section id="gradient">
+  <div class="sec-head">
+    <div class="eyebrow">Part 5 · What changes the course</div>
+    <h2>The gradient runs both ways</h2>
+  </div>
+  <div class="prose" style="margin-bottom:28px">
+    <p>Diabetes damage is not a switch that flips at diagnosis. It scales with how high sugar runs and for how long. That means every step down counts. In the UK Prospective Diabetes Study, which followed about 3,600 people with newly diagnosed Type 2 diabetes, each 1-point lower HbA1c was linked to these lower risks:</p>
+  </div>
+
+  <div class="bars" role="img" aria-label="Bar chart: each 1 percentage point lower HbA1c was associated with 43% fewer amputations or deaths from peripheral artery disease, 37% fewer small-vessel complications, 21% fewer diabetes-related deaths and 14% fewer heart attacks.">
+    <div class="bar-row"><div class="name">Amputation or death from leg artery disease</div><div class="bar-track"><div class="bar" style="width:86%">43%</div></div></div>
+    <div class="bar-row"><div class="name">Eye, kidney and nerve complications</div><div class="bar-track"><div class="bar" style="width:74%">37%</div></div></div>
+    <div class="bar-row"><div class="name">Diabetes-related deaths</div><div class="bar-track"><div class="bar" style="width:42%">21%</div></div></div>
+    <div class="bar-row"><div class="name">Heart attacks</div><div class="bar-track"><div class="bar" style="width:28%">14%</div></div></div>
+    <div class="axis"><span></span><div class="axis-ticks num"><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50%</span></div></div>
+    <p class="caption">Lower risk associated with each 1 percentage point lower HbA1c. UKPDS 35 (BMJ, 2000), an observational analysis. Heart attacks fall least because large-vessel disease depends heavily on blood pressure and cholesterol, as Part 2 explains.</p>
+  </div>
+
+  <div class="levers">
+    <div class="lever">
+      <div class="eyebrow">Remission is possible</div>
+      <h3>Lose the organ fat</h3>
+      <p>In the DiRECT trial, 46% of people in a structured weight-loss programme were in remission after a year, off all diabetes drugs. Among those who lost 15 kg or more, 86% were. It works best within the first few years after diagnosis, while beta cells can still recover.</p>
+    </div>
+    <div class="lever">
+      <div class="eyebrow">Protection beyond sugar</div>
+      <h3>Newer drugs guard organs</h3>
+      <p>Two drug families do more than lower glucose. SGLT2 inhibitors reduce heart-failure hospital stays and slow kidney decline. GLP-1 receptor agonists cut heart attacks and strokes and help with weight loss. Which one fits depends on the person, and is a decision for a doctor.</p>
+    </div>
+    <div class="lever">
+      <div class="eyebrow">The legacy effect</div>
+      <h3>Early control lasts</h3>
+      <p>When UKPDS participants were followed for 10 more years, those who had tighter control early still had fewer heart attacks and deaths, even after their HbA1c levels converged. The years just after diagnosis carry the most weight.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PART 6 -->
+<section id="checks">
+  <div class="sec-head">
+    <div class="eyebrow">Part 6 · Catching it early</div>
+    <h2>The yearly checklist</h2>
+  </div>
+  <div class="prose" style="margin-bottom:24px">
+    <p>Because most complications are silent, the tests do the noticing. These are the standard checks for adults with Type 2 diabetes. Targets vary from person to person and are set with a doctor.</p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Test</th><th>How often</th><th>What it watches</th><th>Common target</th></tr></thead>
+      <tbody>
+        <tr><td>HbA1c</td><td>Every 3–6 months</td><td>Average blood sugar over 2–3 months</td><td class="tgt">&lt; 7% for many adults</td></tr>
+        <tr><td>Blood pressure</td><td>Every visit</td><td>Heart, stroke and kidney risk</td><td class="tgt">&lt; 130/80 mmHg</td></tr>
+        <tr><td>Lipid profile</td><td>Yearly</td><td>Artery plaque risk</td><td class="tgt">LDL goal set by overall risk</td></tr>
+        <tr><td>UACR + eGFR</td><td>Yearly</td><td>Early kidney damage</td><td class="tgt">UACR &lt; 30 mg/g · eGFR ≥ 60</td></tr>
+        <tr><td>Dilated eye exam</td><td>At diagnosis, then every 1–2 years</td><td>Retinopathy, macular oedema</td><td class="tgt">No retinopathy</td></tr>
+        <tr><td>Foot exam</td><td>Yearly (self-check daily)</td><td>Lost sensation, poor pulses</td><td class="tgt">Feels 10 g monofilament</td></tr>
+        <tr><td>Liver enzymes + FIB-4</td><td>Yearly</td><td>Fatty liver and scarring</td><td class="tgt">FIB-4 &lt; 1.3</td></tr>
+        <tr><td>Dental check</td><td>Every 6 months</td><td>Gum disease</td><td class="tgt">Healthy gums</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="eyebrow">Sources</div>
+  <ol class="sources">
+    <li>Stratton IM et al. UKPDS 35: glycaemia and complications of type 2 diabetes. <a href="https://www.bmj.com/content/321/7258/405">BMJ 2000</a></li>
+    <li>Holman RR et al. 10-year follow-up of intensive glucose control in type 2 diabetes. <a href="https://doi.org/10.1056/NEJMoa0806470">NEJM 2008</a></li>
+    <li>Lean MEJ et al. Primary care-led weight management for remission of type 2 diabetes (DiRECT). <a href="https://doi.org/10.1016/S0140-6736(17)33102-1">Lancet 2018</a></li>
+    <li>Nathan DM et al. Translating the A1C assay into estimated average glucose values. <a href="https://doi.org/10.2337/dc08-0545">Diabetes Care 2008</a></li>
+    <li>Anjana RM et al. Metabolic non-communicable disease health report of India (ICMR-INDIAB-17). <a href="https://doi.org/10.1016/S2213-8587(23)00119-5">Lancet Diabetes Endocrinol 2023</a></li>
+    <li>Brownlee M. The pathobiology of diabetic complications: a unifying mechanism. <a href="https://doi.org/10.2337/diabetes.54.6.1615">Diabetes 2005</a></li>
+    <li>Yau JWY et al. Global prevalence of diabetic retinopathy. <a href="https://doi.org/10.2337/dc11-1909">Diabetes Care 2012</a></li>
+    <li>Armstrong DG et al. Diabetic foot ulcers and their recurrence. <a href="https://doi.org/10.1056/NEJMra1615439">NEJM 2017</a></li>
+    <li>Jeon CY, Murray MB. Diabetes mellitus increases the risk of active tuberculosis. <a href="https://doi.org/10.1371/journal.pmed.0050152">PLoS Med 2008</a></li>
+    <li>Younossi ZM et al. NAFLD and NASH in patients with type 2 diabetes: a meta-analysis. <a href="https://doi.org/10.1016/j.jhep.2019.06.021">J Hepatol 2019</a></li>
+    <li>Taylor R. Type 2 diabetes: etiology and reversibility (the twin-cycle hypothesis). <a href="https://doi.org/10.2337/dc12-1805">Diabetes Care 2013</a></li>
+    <li>American Diabetes Association. <a href="https://diabetesjournals.org/care/issue/48/Supplement_1">Standards of Care in Diabetes</a></li>
+  </ol>
+  <p class="disclaimer">This page explains how Type 2 diabetes works for general understanding. It is not medical advice. Decisions about testing, targets and treatment belong with a doctor who knows the person.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const css = () => getComputedStyle(document.documentElement);
+  const tok = n => css().getPropertyValue(n).trim();
+  const hexToRgb = h => { h=h.replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join(''); const n=parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255]; };
+  const mix = (a,b,t) => a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- HbA1c explorer ---------- */
+  const range = document.getElementById('a1cRange');
+  const MIN=4.5, MAX=13;
+  function benedict(v){
+    const stops=[[4.5,'--b1'],[5.7,'--b2'],[6.5,'--b3'],[8,'--b4'],[10,'--b5']];
+    if(v<=stops[0][0]) return tok(stops[0][1]);
+    for(let i=0;i<stops.length-1;i++){
+      const [a,ca]=stops[i],[b,cb]=stops[i+1];
+      if(v<=b){ const c=mix(hexToRgb(tok(ca)),hexToRgb(tok(cb)),(v-a)/(b-a)); return `rgb(${c.join(',')})`; }
+    }
+    return tok('--b5');
+  }
+  function updateA1c(){
+    const v=parseFloat(range.value);
+    const eag=28.7*v-46.7;
+    document.getElementById('a1c').textContent=v.toFixed(1);
+    document.getElementById('eag').textContent=Math.round(eag);
+    document.getElementById('eagm').textContent=(eag/18.016).toFixed(1);
+    document.getElementById('per100').textContent=(Math.round(v*2)/2).toString().replace(/\.0$/,'');
+    document.getElementById('pad').style.background=benedict(v);
+    document.getElementById('marker').style.left=((v-MIN)/(MAX-MIN)*100)+'%';
+    const cat=document.getElementById('cat');
+    let label, col;
+    if(v<5.7){label='Normal range';col='--b2';}
+    else if(v<6.5){label='Prediabetes range';col='--b3';}
+    else if(v<7.05){label='Diabetes range';col='--b4';}
+    else if(v<9){label='Diabetes · above the usual 7% target';col='--b4';}
+    else {label='Diabetes · high risk of complications';col='--b5';}
+    cat.textContent=label; cat.style.color=tok(col);
+    range.setAttribute('aria-valuetext', `HbA1c ${v.toFixed(1)} percent, average glucose ${Math.round(eag)} milligrams per decilitre, ${label}`);
+  }
+  range.addEventListener('input',updateA1c);
+
+  /* ---------- Door diagrams & glycation hexes ---------- */
+  function rng(seed){ let s=seed; return ()=>{ s=(s*16807)%2147483647; return (s-1)/2147483646; }; }
+  const NS='http://www.w3.org/2000/svg';
+  function hexPts(cx,cy,r){ let p=[]; for(let i=0;i<6;i++){const a=Math.PI/3*i+Math.PI/6; p.push((cx+r*Math.cos(a)).toFixed(1)+','+(cy+r*Math.sin(a)).toFixed(1));} return p.join(' '); }
+  function scatter(g,n,x0,x1,y0,y1,seed,colorFn){
+    const r=rng(seed); const pts=[];
+    let guard=0;
+    while(pts.length<n && guard<4000){ guard++;
+      const x=x0+r()*(x1-x0), y=y0+r()*(y1-y0);
+      if(pts.every(p=>Math.hypot(p[0]-x,p[1]-y)>15)) pts.push([x,y]);
+    }
+    pts.forEach((p,i)=>{ const h=document.createElementNS(NS,'polygon'); h.setAttribute('points',hexPts(p[0],p[1],5.5)); h.setAttribute('fill',colorFn(i)); g.appendChild(h); });
+  }
+  scatter(document.getElementById('d1out'),24,18,284,32,84,7,()=> 'var(--b4)');
+  scatter(document.getElementById('d1in'),3,40,270,126,190,11,()=> 'var(--b2)');
+  scatter(document.getElementById('d2out'),18,18,284,32,84,19,()=> 'var(--b4)');
+  scatter(document.getElementById('d2in'),20,24,280,124,194,23,i=> i%3===0?'var(--b5)':'var(--b4)');
+  document.getElementById('h1').setAttribute('points',hexPts(110,40,12));
+  document.getElementById('h2').setAttribute('points',hexPts(111,58,12));
+  document.getElementById('h2b').setAttribute('points',hexPts(60,56,12));
+
+  /* ---------- Body map ---------- */
+  const spots=[
+    {id:'brain', x:180,y:38, lx:86, ly:36, side:'L', name:'Brain'},
+    {id:'immune',x:180,y:70, lx:86, ly:80, side:'L', name:'Immunity'},
+    {id:'liver', x:160,y:168,lx:86, ly:168,side:'L', name:'Liver'},
+    {id:'nerves',x:103,y:284,lx:78, ly:318,side:'L', name:'Nerves'},
+    {id:'eyes',  x:192,y:52, lx:274,ly:50, side:'R', name:'Eyes'},
+    {id:'joints',x:228,y:108,lx:274,ly:100,side:'R', name:'Joints'},
+    {id:'heart', x:194,y:138,lx:274,ly:142,side:'R', name:'Heart'},
+    {id:'kidneys',x:204,y:198,lx:274,ly:198,side:'R',name:'Kidneys'},
+    {id:'feet',  x:216,y:476,lx:274,ly:450,side:'R', name:'Feet'}
+  ];
+  const sg=document.getElementById('spots');
+  spots.forEach(s=>{
+    const g=document.createElementNS(NS,'g'); g.setAttribute('class','spot'); g.setAttribute('tabindex','0'); g.setAttribute('role','link');
+    g.setAttribute('aria-label',`${s.name}: go to card`); g.dataset.id=s.id;
+    const ex = s.side==='L' ? s.lx+6 : s.lx-6;
+    const l=document.createElementNS(NS,'polyline'); l.setAttribute('class','lead');
+    l.setAttribute('points',`${ex},${s.ly-4} ${s.side==='L'?ex+12:ex-12},${s.ly-4} ${s.x},${s.y}`);
+    const c=document.createElementNS(NS,'circle'); c.setAttribute('class','dot'); c.setAttribute('cx',s.x); c.setAttribute('cy',s.y); c.setAttribute('r',7);
+    const t=document.createElementNS(NS,'text'); t.setAttribute('class','lbl'); t.setAttribute('x',s.lx); t.setAttribute('y',s.ly);
+    t.setAttribute('text-anchor',s.side==='L'?'end':'start'); t.textContent=s.name;
+    g.append(l,c,t); sg.appendChild(g);
+    const go=()=>{ activate(s.id,true); };
+    g.addEventListener('click',go);
+    g.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();go();} });
+  });
+  function activate(id,scroll){
+    document.querySelectorAll('.sys').forEach(c=>c.classList.toggle('on',c.id==='sys-'+id));
+    document.querySelectorAll('.spot').forEach(g=>g.classList.toggle('on',g.dataset.id===id));
+    const card=document.getElementById('sys-'+id);
+    if(scroll&&card) card.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
+  }
+  document.querySelectorAll('.sys').forEach(c=>c.addEventListener('mouseenter',()=>activate(c.id.replace('sys-',''),false)));
+  document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+    const r=b.dataset.route;
+    document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+    document.querySelectorAll('.sys').forEach(c=>{
+      const match = r==='all' || c.dataset.routes.split(' ').includes(r);
+      c.classList.toggle('dim',!match);
+      const spot=sg.querySelector(`[data-id="${c.id.replace('sys-','')}"]`);
+      if(spot) spot.classList.toggle('dim',!match);
+    });
+  }));
+
+  /* ---------- Insulin simulation ---------- */
+  const cv=document.getElementById('sim'); const ctx=cv.getContext('2d');
+  const STATES={
+    healthy:  {p:.85,keys:6, glu:'Fasting ≈ 85 mg/dL', ins:'Normal', mg:.2, mi:.25,
+      note:'The key turns easily. Glucose moves into the cell and blood sugar settles back within a couple of hours of eating.'},
+    resistant:{p:.5, keys:20,glu:'Fasting ≈ 95 mg/dL', ins:'2–4× normal', mg:.3, mi:.85,
+      note:'The locks have stiffened. The pancreas forces the doors with extra insulin, so blood sugar still looks almost normal. This stage can last 10 years or more, unnoticed.'},
+    failing:  {p:.1, keys:5, glu:'Fasting ≈ 160 mg/dL', ins:'Falling', mg:.85, mi:.2,
+      note:'Worn-out beta cells make less insulin while the locks are still stiff. Glucose piles up in the blood. This is usually when Type 2 diabetes is diagnosed.'}
+  };
+  let state='healthy', W=0, H=280, dpr=1, parts=[], keys=[], spawnAcc=0, running=false, last=0, colors={};
+  function readColors(){ colors={blood:tok('--blood'),cell:tok('--cell'),ink:tok('--ink'),ink3:tok('--ink-3'),glu:tok('--b4'),ins:tok('--b1'),used:tok('--b2'),card:tok('--card')}; }
+  function geo(){ const bR=W*0.64; return {bR, cL:bR+14, doorY:H/2, half:34, top:34, bot:H-16}; }
+  function resize(){ dpr=window.devicePixelRatio||1; W=cv.clientWidth; H=cv.clientHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function speed(){ return Math.max(55, W/9); }
+  function spawn(g){ parts.push({x:16,y:g.top+Math.random()*(g.bot-g.top),vx:speed()*(0.8+Math.random()*0.4),vy:(Math.random()-0.5)*40,inside:false,life:0}); }
+  function step(dt){
+    const g=geo(), S=STATES[state], sp=speed();
+    spawnAcc+=dt*5;
+    while(spawnAcc>=1){ spawnAcc--; if(parts.filter(p=>!p.inside).length<160) spawn(g); }
+    for(const p of parts){
+      if(!p.inside){
+        if(p.x>g.bR*0.45) p.vy+=(g.doorY-p.y)*1.4*dt;
+        p.vy*=0.985; p.vy+=(Math.random()-0.5)*60*dt;
+        p.vx+=(sp-p.vx)*0.8*dt;
+        p.x+=p.vx*dt; p.y+=p.vy*dt;
+        if(p.y<g.top){p.y=g.top;p.vy=Math.abs(p.vy);} if(p.y>g.bot){p.y=g.bot;p.vy=-Math.abs(p.vy);}
+        if(p.x<12){p.x=12;p.vx=Math.abs(p.vx);}
+        if(p.x>=g.bR-6){
+          if(Math.abs(p.y-g.doorY)<g.half && Math.random()<S.p){ p.inside=true; p.x=g.cL+8; p.vx=sp*0.5; p.life=2.4; }
+          else { p.x=g.bR-8; p.vx=-sp*(0.9+Math.random()*0.6); p.vy+=(Math.random()-0.5)*80; }
+        }
+      } else {
+        p.x+=p.vx*dt; p.y+=(Math.random()-0.5)*30*dt; p.vx*=0.98; p.life-=dt;
+        if(p.x>W-18){p.x=W-18;p.vx=-Math.abs(p.vx);}
+      }
+    }
+    parts=parts.filter(p=>!p.inside||p.life>0);
+    // keys
+    while(keys.length<S.keys) keys.push({x:20+Math.random()*(g.bR-40),y:g.top+Math.random()*(g.bot-g.top),a:Math.random()*6.28});
+    if(keys.length>S.keys && Math.random()<0.2) keys.pop();
+    for(const k of keys){ k.a+=(Math.random()-0.5)*2*dt; k.x+=Math.cos(k.a)*25*dt; k.y+=Math.sin(k.a)*25*dt;
+      if(k.x<20||k.x>g.bR-20) k.a=Math.PI-k.a; if(k.y<g.top||k.y>g.bot) k.a=-k.a;
+      k.x=Math.min(Math.max(k.x,20),g.bR-20); k.y=Math.min(Math.max(k.y,g.top),g.bot); }
+  }
+  function hexPath(x,y,r){ ctx.beginPath(); for(let i=0;i<6;i++){const a=Math.PI/3*i+Math.PI/6; const px=x+r*Math.cos(a), py=y+r*Math.sin(a); i?ctx.lineTo(px,py):ctx.moveTo(px,py);} ctx.closePath(); }
+  function rr(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+  function draw(){
+    const g=geo(), S=STATES[state];
+    ctx.fillStyle=colors.card; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle=colors.blood; rr(6,8,g.bR-6,H-16,10); ctx.fill();
+    ctx.fillStyle=colors.cell; rr(g.cL,8,W-g.cL-6,H-16,14); ctx.fill();
+    ctx.font='500 11px "JetBrains Mono", monospace'; ctx.fillStyle=colors.ink3;
+    ctx.fillText('BLOODSTREAM',16,26); ctx.textAlign='right'; ctx.fillText('MUSCLE CELL',W-16,26); ctx.textAlign='left';
+    // wall with door
+    ctx.strokeStyle=colors.ink; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(g.cL,14); ctx.lineTo(g.cL,g.doorY-g.half); ctx.moveTo(g.cL,g.doorY+g.half); ctx.lineTo(g.cL,H-14); ctx.stroke();
+    // door leaf: opening angle ~ p
+    const ang=(Math.PI/2.2)*S.p;
+    ctx.strokeStyle=colors.ins; ctx.lineWidth=4; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(g.cL,g.doorY-g.half); ctx.lineTo(g.cL+Math.sin(ang)*g.half*1.6, g.doorY-g.half+Math.cos(ang)*g.half*1.6*0.62); ctx.stroke();
+    ctx.lineCap='butt';
+    // particles
+    for(const p of parts){
+      if(p.inside){ ctx.globalAlpha=Math.max(0,p.life/2.4); ctx.fillStyle=colors.used; }
+      else { ctx.globalAlpha=1; ctx.fillStyle=colors.glu; }
+      hexPath(p.x,p.y,4.5); ctx.fill();
+    }
+    ctx.globalAlpha=1;
+    // keys
+    ctx.strokeStyle=colors.ins; ctx.fillStyle=colors.ins; ctx.lineWidth=2;
+    for(const k of keys){ ctx.beginPath(); ctx.arc(k.x-5,k.y,3.5,0,Math.PI*2); ctx.stroke(); ctx.beginPath(); ctx.moveTo(k.x-1.5,k.y); ctx.lineTo(k.x+7,k.y); ctx.moveTo(k.x+4,k.y); ctx.lineTo(k.x+4,k.y+3.5); ctx.moveTo(k.x+7,k.y); ctx.lineTo(k.x+7,k.y+3.5); ctx.stroke(); }
+  }
+  function loop(t){ if(!running) return; const dt=Math.min(0.05,(t-last)/1000||0.016); last=t; step(dt); draw(); requestAnimationFrame(loop); }
+  function settle(){ for(let i=0;i<900;i++) step(1/30); draw(); }
+  function setState(s){
+    state=s; const S=STATES[s];
+    document.querySelectorAll('.seg').forEach(b=>b.setAttribute('aria-pressed',b.dataset.state===s?'true':'false'));
+    document.getElementById('mGlu').style.width=(S.mg*100)+'%';
+    document.getElementById('mIns').style.width=(S.mi*100)+'%';
+    document.getElementById('vGlu').textContent=S.glu;
+    document.getElementById('vIns').textContent=S.ins;
+    document.getElementById('simNote').textContent=S.note;
+    if(reduced) settle();
+  }
+  document.querySelectorAll('.seg').forEach(b=>b.addEventListener('click',()=>setState(b.dataset.state)));
+
+  function refreshTheme(){ readColors(); updateA1c(); if(reduced||!running) draw(); }
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',refreshTheme);
+  new MutationObserver(refreshTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  window.addEventListener('resize',()=>{ resize(); if(reduced||!running) draw(); });
+
+  resize(); readColors(); updateA1c(); setState('healthy'); settle();
+  if(!reduced && 'IntersectionObserver' in window){
+    new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting && !running){ running=true; last=performance.now(); requestAnimationFrame(loop);} else if(!e.isIntersecting){ running=false; } }); },{threshold:0.05}).observe(cv);
+  } else if(!reduced){ running=true; requestAnimationFrame(loop); }
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

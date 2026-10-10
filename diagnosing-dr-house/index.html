@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Diagnosing Dr. House | Explainers</title>
+<meta name="description" content="House never states a philosophy. He runs one. A differential diagnosis of what he believes.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/diagnosing-dr-house/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Diagnosing Dr. House">
+<meta property="og:description" content="House never states a philosophy. He runs one. A differential diagnosis of what he believes.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/diagnosing-dr-house/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/diagnosing-dr-house/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400&family=IBM+Plex+Mono:wght@400;500&family=Kalam:wght@400;700&display=swap">
+<style>
+:root{
+  --wall:#D9DFDD; --board:#F7F9F8; --board-2:#EDF1F0; --frame:#AAB3B5; --frame-hi:#D3D9DA;
+  --ink:#1B2225; --ink-2:#4B575B; --ghost:#DDE4E2;
+  --blue:#1D4FA6; --red:#C22F28; --green:#2B7A4B; --amber:#9A6A12;
+  --blue-wash:rgba(29,79,166,.08); --green-wash:rgba(43,122,75,.10); --red-wash:rgba(194,47,40,.09);
+  --marker:"Kalam","Comic Neue","Segoe Print","Bradley Hand",cursive;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --wall:#0B0F10; --board:#141A1C; --board-2:#1A2225; --frame:#3A4447; --frame-hi:#56626550;
+    --ink:#E4EAE8; --ink-2:#A6B2B0; --ghost:#243033;
+    --blue:#8AAAF2; --red:#F2837A; --green:#74C99A; --amber:#E0B35A;
+    --blue-wash:rgba(138,170,242,.10); --green-wash:rgba(116,201,154,.10); --red-wash:rgba(242,131,122,.10);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --wall:#0B0F10; --board:#141A1C; --board-2:#1A2225; --frame:#3A4447; --frame-hi:#56626550;
+  --ink:#E4EAE8; --ink-2:#A6B2B0; --ghost:#243033;
+  --blue:#8AAAF2; --red:#F2837A; --green:#74C99A; --amber:#E0B35A;
+  --blue-wash:rgba(138,170,242,.10); --green-wash:rgba(116,201,154,.10); --red-wash:rgba(242,131,122,.10);
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  background:var(--wall); color:var(--ink);
+  font-family:var(--sans); font-size:16.5px; line-height:1.62;
+  padding-inline:16px; padding-block:24px 48px;
+  -webkit-font-smoothing:antialiased;
+}
+.board{
+  max-width:1060px; margin-inline:auto;
+  background:var(--board);
+  border:10px solid var(--frame);
+  border-top-color:var(--frame-hi);
+  border-radius:6px;
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset, 0 18px 40px -24px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+@media (max-width:560px){ .board{border-width:5px} }
+.inner{padding-inline:clamp(18px,5vw,64px)}
+section{padding-block:clamp(40px,6vw,72px); border-top:2px dashed var(--ghost)}
+section:first-of-type{border-top:0}
+
+.mono{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2)}
+.marker{font-family:var(--marker); font-weight:700}
+h2{
+  font-family:var(--sans); font-stretch:72%; font-weight:800;
+  font-size:clamp(30px,4.4vw,44px); line-height:1.02; letter-spacing:-.01em;
+  margin:6px 0 14px; text-wrap:balance; text-transform:uppercase;
+}
+h3{font-family:var(--sans); font-stretch:85%; font-weight:750; font-size:20px; line-height:1.2; margin:0; text-wrap:balance}
+p{margin:0}
+.lede{max-width:64ch; color:var(--ink-2); font-size:17.5px}
+.prose{max-width:66ch; display:grid; gap:14px}
+.b{color:var(--blue)} .r{color:var(--red)} .g{color:var(--green)}
+em{font-style:italic}
+
+/* ---------- case strip ---------- */
+.case{
+  display:flex; flex-wrap:wrap; gap:6px 22px;
+  padding:12px clamp(18px,5vw,64px);
+  background:var(--board-2); border-bottom:1px solid var(--ghost);
+}
+.case span b{color:var(--ink); font-weight:500}
+
+/* ---------- hero ---------- */
+.hero{display:grid; grid-template-columns:1.25fr 1fr; gap:clamp(24px,5vw,56px); align-items:start; padding-block:clamp(36px,6vw,64px) 28px}
+@media (max-width:820px){ .hero{grid-template-columns:1fr} }
+.hero h1{
+  font-family:var(--marker); font-weight:700;
+  font-size:clamp(40px,7vw,76px); line-height:.98; margin:0 0 18px;
+  letter-spacing:-.01em; text-wrap:balance;
+}
+.hero h1 .dx{color:var(--blue); display:block; font-size:.5em; line-height:1.1}
+.thesis{font-size:18px; max-width:52ch; display:grid; gap:12px}
+.thesis strong{font-weight:700}
+
+.scribble{font-family:var(--marker); font-size:22px; line-height:1.35; padding-top:6px}
+.scribble .label{font-size:15px; color:var(--ink-2); font-weight:400; margin-bottom:6px}
+.scribble ol{list-style:none; margin:0; padding:0; display:grid; gap:4px}
+.scribble li{position:relative; width:fit-content}
+.strike{position:relative; color:var(--ink-2)}
+.strike::after{
+  content:""; position:absolute; left:-4px; right:-6px; top:54%; height:3px; border-radius:3px;
+  background:var(--red); transform:rotate(-2deg); transform-origin:left;
+  animation:draw .5s cubic-bezier(.6,.1,.3,1) both;
+}
+.strike:nth-child(1)::after{animation-delay:.35s}
+.strike:nth-child(2)::after{animation-delay:.75s}
+.strike:nth-child(3)::after{animation-delay:1.15s}
+.strike:nth-child(4)::after{animation-delay:1.55s}
+@keyframes draw{from{transform:rotate(-2deg) scaleX(0)}to{transform:rotate(-2deg) scaleX(1)}}
+.circled{color:var(--blue); padding:2px 14px; margin-top:8px}
+.circled svg{position:absolute; inset:-8px -10px -6px -14px; width:calc(100% + 24px); height:calc(100% + 14px); overflow:visible; pointer-events:none}
+.circled svg path{fill:none; stroke:var(--blue); stroke-width:2.4; stroke-linecap:round}
+.arrow-note{font-family:var(--marker); color:var(--green); font-size:18px; margin-top:14px}
+
+/* ---------- tray ---------- */
+.tray{
+  display:flex; flex-wrap:wrap; gap:10px 26px; align-items:center;
+  margin-top:28px; padding:12px 16px;
+  background:linear-gradient(var(--board-2),var(--board-2)); border:1px solid var(--ghost); border-radius:4px;
+}
+.tray .mono{margin-right:4px}
+.pen{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink-2)}
+.pen i{
+  display:inline-block; width:46px; height:11px; border-radius:6px 3px 3px 6px;
+  background:linear-gradient(90deg,var(--c) 0 26%, var(--frame-hi) 26% 30%, #e9ecec 30%);
+  box-shadow:0 1px 0 rgba(0,0,0,.18);
+}
+:root[data-theme="dark"] .pen i{background:linear-gradient(90deg,var(--c) 0 26%, #2c3639 26% 30%, #cfd6d5 30%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pen i{background:linear-gradient(90deg,var(--c) 0 26%, #2c3639 26% 30%, #cfd6d5 30%)}}
+
+/* ---------- symptoms ---------- */
+.sx{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:28px 40px; margin-top:28px}
+.sx article{display:grid; gap:6px; align-content:start}
+.sx .tag{font-family:var(--mono); font-size:11.5px; color:var(--ink-2); letter-spacing:.06em}
+.sx h3{font-family:var(--marker); font-weight:700; font-size:25px; font-stretch:normal; line-height:1.15}
+.sx q{display:block; font-style:italic; color:var(--blue); quotes:"“" "”"; font-size:15.5px}
+.sx p{color:var(--ink-2); font-size:15.5px}
+
+/* ---------- method ---------- */
+.method{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(24px,5vw,56px); margin-top:26px; align-items:start}
+@media (max-width:860px){ .method{grid-template-columns:1fr} }
+.loop-wrap{overflow-x:auto}
+.loop{width:100%; max-width:520px; height:auto; display:block}
+.loop .node{fill:var(--board); stroke:var(--ink); stroke-width:2}
+.loop .nlabel{font-family:var(--marker); font-weight:700; font-size:19px; fill:var(--ink)}
+.loop .nsub{font-family:var(--mono); font-size:10.5px; fill:var(--ink-2); letter-spacing:.04em}
+.loop .arc{fill:none; stroke:var(--blue); stroke-width:2.4; stroke-linecap:round}
+.loop .head{fill:var(--blue)}
+.loop .center{font-family:var(--marker); font-size:17px; fill:var(--green); font-weight:700}
+.loop .x{stroke:var(--red); stroke-width:3; stroke-linecap:round}
+.caption{font-size:14.5px; color:var(--ink-2); margin-top:12px; max-width:56ch}
+
+.ladder{display:grid; gap:0; margin-top:4px}
+.rung{display:grid; grid-template-columns:56px 1fr; gap:14px; padding:14px 0; border-top:1px solid var(--ghost)}
+.rung:last-child{border-bottom:1px solid var(--ghost)}
+.trust{display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:4px}
+.trust span{display:block; height:7px; border-radius:4px; background:var(--green)}
+.rung.low .trust span{background:var(--red)}
+.rung .pn{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--blue)}
+.rung h3{font-size:18px}
+.rung p{font-size:15px; color:var(--ink-2)}
+
+/* ---------- differential ---------- */
+.ddx-head{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:end}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+.chip{
+  font:inherit; font-size:14px; line-height:1.2; cursor:pointer;
+  padding:8px 12px 8px 30px; border-radius:999px; position:relative;
+  border:1.5px solid var(--ink-2); background:transparent; color:var(--ink-2);
+  transition:background .15s, color .15s, border-color .15s;
+}
+.chip::before{
+  content:""; position:absolute; left:11px; top:50%; width:11px; height:11px; margin-top:-6px;
+  border:1.5px solid currentColor; border-radius:3px;
+}
+.chip[aria-pressed="true"]{border-color:var(--ink); color:var(--ink); background:var(--board-2)}
+.chip[aria-pressed="true"]::before{background:var(--ink); box-shadow:inset 0 0 0 2px var(--board-2)}
+.chip:hover{border-color:var(--ink)}
+.tools{display:flex; gap:8px}
+.tbtn{font:inherit; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; background:none; border:0; color:var(--blue); cursor:pointer; padding:6px 4px; text-decoration:underline; text-underline-offset:3px}
+:focus-visible{outline:2.5px solid var(--blue); outline-offset:2px}
+
+.legend{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:16px; font-size:13px; color:var(--ink-2)}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+
+.dlist{list-style:none; margin:18px 0 0; padding:0; border-top:2px solid var(--ink)}
+.drow{border-bottom:1px solid var(--ghost); position:relative; background:var(--board)}
+.dtop{
+  display:grid; grid-template-columns:34px minmax(0,1.3fr) minmax(0,1fr) auto; gap:8px 18px; align-items:center;
+  width:100%; padding:14px 4px; font:inherit; color:inherit; text-align:left; background:none; border:0; cursor:pointer;
+}
+.dtop:hover{background:var(--board-2)}
+.rank{font-family:var(--marker); font-weight:700; font-size:24px; color:var(--ink-2); text-align:center}
+.drow:first-child .rank{color:var(--green)}
+.dname{display:grid; gap:1px; min-width:0}
+.dname .dn{font-family:var(--sans); font-stretch:85%; font-weight:750; font-size:19px; line-height:1.2}
+.dname .mono{font-size:11px; text-transform:none; letter-spacing:.02em}
+.meter{display:grid; gap:6px; min-width:0}
+.track{position:relative; height:12px; background:var(--board-2); border-radius:3px; overflow:hidden}
+.track::before{content:""; position:absolute; left:50%; top:-2px; bottom:-2px; width:1.5px; background:var(--ink-2); opacity:.55}
+.bar{position:absolute; top:2px; bottom:2px; border-radius:2px; transition:left .45s ease, width .45s ease, background .3s}
+.marks{display:flex; gap:3px; flex-wrap:nowrap}
+.mk{width:18px; height:18px; display:grid; place-items:center; font-size:12px; line-height:1; font-weight:700; border-radius:3px; font-family:var(--sans)}
+.mk.m2{color:var(--green); background:var(--green-wash)}
+.mk.m1{color:var(--blue); background:var(--blue-wash)}
+.mk.mx{color:var(--red); background:var(--red-wash)}
+.mk.m0{color:var(--ink-2); opacity:.55}
+.mk.off{opacity:.18}
+.score{font-family:var(--mono); font-size:12px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap; display:flex; align-items:center; gap:10px}
+.score b{font-weight:500; color:var(--ink); font-size:15px}
+.chev{width:12px; height:12px; border-right:2px solid var(--ink-2); border-bottom:2px solid var(--ink-2); transform:rotate(45deg) translateY(-3px); transition:transform .2s}
+.drow.open .chev{transform:rotate(-135deg) translateY(-2px)}
+.dbody{padding:2px 4px 22px 56px; display:grid; gap:14px}
+.dbody .core{max-width:68ch}
+.dbody blockquote{margin:0; padding-left:14px; border-left:3px solid var(--blue); color:var(--blue); font-style:italic; max-width:64ch; font-size:15.5px}
+.fitgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px 28px}
+.fitgrid h4{margin:0 0 4px; font-family:var(--marker); font-size:18px; font-weight:700}
+.fitgrid ul{margin:0; padding-left:18px; display:grid; gap:4px; font-size:15px; color:var(--ink-2)}
+@media (max-width:700px){
+  .dtop{grid-template-columns:28px minmax(0,1fr) auto; }
+  .meter{grid-column:2 / 4; grid-row:2}
+  .dbody{padding-left:4px}
+  .fitgrid{grid-template-columns:1fr}
+}
+
+/* ---------- tensions ---------- */
+.tens{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:34px 44px; margin-top:28px}
+@media (max-width:760px){ .tens{grid-template-columns:1fr} }
+.tens article{display:grid; gap:8px; align-content:start}
+.tens .num{font-family:var(--marker); font-weight:700; color:var(--red); font-size:18px}
+.tens h3{font-size:22px}
+.tens p{color:var(--ink-2); font-size:15.5px}
+details.spoil{border:1.5px dashed var(--ink-2); border-radius:4px; padding:10px 14px; font-size:15px; color:var(--ink-2)}
+details.spoil summary{cursor:pointer; font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--amber)}
+details.spoil p{margin-top:8px}
+
+/* ---------- final dx ---------- */
+.final{
+  margin-top:22px; padding:clamp(20px,4vw,36px); border:3px solid var(--ink); border-radius:10px 16px 8px 14px;
+  display:grid; gap:18px; position:relative;
+}
+.final .rx{font-family:var(--marker); font-size:clamp(22px,3vw,30px); line-height:1.3; font-weight:700}
+.final .rows{display:grid; gap:8px; font-family:var(--marker); font-size:clamp(18px,2.3vw,22px); line-height:1.3}
+.final .rows div{display:grid; grid-template-columns:minmax(120px,190px) 1fr; gap:4px 16px}
+@media (max-width:560px){ .final .rows div{grid-template-columns:1fr} }
+.final .rows span:first-child{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); padding-top:6px}
+.model{border-top:2px dashed var(--ghost); padding-top:16px; font-size:18.5px; max-width:62ch}
+.model strong{color:var(--green)}
+footer{padding-block:22px 30px; border-top:2px dashed var(--ghost); font-size:13.5px; color:var(--ink-2); display:grid; gap:6px}
+
+@media (prefers-reduced-motion: reduce){
+  .strike::after{animation:none}
+  .bar{transition:none}
+  .drow{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="case mono" aria-label="Case file header">
+    <span>PPTH · Dept. of Diagnostic Medicine</span>
+    <span>Patient: <b>House, Gregory, MD</b></span>
+    <span>Chief complaint: <b>a worldview</b></span>
+    <span>Status: <b>refuses history</b></span>
+  </div>
+
+  <div class="inner">
+    <section class="hero" aria-labelledby="h-hero">
+      <div>
+        <h1 id="h-hero"><span class="dx">DDx:</span>What does House actually believe?</h1>
+        <div class="thesis">
+          <p>Gregory House never states a philosophy. He runs one. Every episode he treats a question the same way: list the explanations, distrust what people tell you, test until only one survives.</p>
+          <p><strong>The mental model for this page:</strong> House applies the differential diagnosis to everything, including ethics, religion and people. So we will do the same to him. Below are his presenting symptoms, his method, and a live differential that tests him against eleven philosophies we already know.</p>
+        </div>
+      </div>
+      <div class="scribble" aria-label="Whiteboard: rejected diagnoses">
+        <div class="label">Initial differential, per the other departments</div>
+        <ol>
+          <li class="strike">just a jerk</li>
+          <li class="strike">sociopath</li>
+          <li class="strike">nihilist</li>
+          <li class="strike">cares about nothing</li>
+          <li class="circled" style="position:relative">
+            a philosopher who never wrote it down
+            <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M8,22 C6,6 40,2 70,4 C96,6 99,20 92,30 C82,40 30,40 12,33 C4,30 3,22 12,14"/></svg>
+          </li>
+        </ol>
+        <div class="arrow-note">↓ run the full workup</div>
+      </div>
+    </section>
+
+    <div class="tray" aria-label="Colour key used on this board">
+      <span class="mono">Marker key</span>
+      <span class="pen"><i style="--c:var(--ink)"></i>House's own tenets</span>
+      <span class="pen"><i style="--c:var(--blue)"></i>Quotes &amp; method</span>
+      <span class="pen"><i style="--c:var(--green)"></i>Fits the pattern</span>
+      <span class="pen"><i style="--c:var(--red)"></i>Contradicts it</span>
+    </div>
+
+    <!-- SYMPTOMS -->
+    <section aria-labelledby="h-sx">
+      <div class="mono">Part 1 · Presenting symptoms</div>
+      <h2 id="h-sx">Nine things House keeps doing</h2>
+      <p class="lede">A philosophy shows up in behaviour before it shows up in words. Across eight seasons, these nine patterns recur so often that they amount to a creed.</p>
+      <div class="sx" id="sx"></div>
+    </section>
+
+    <!-- METHOD -->
+    <section aria-labelledby="h-method">
+      <div class="mono">Part 2 · Mechanism</div>
+      <h2 id="h-method">How House knows anything</h2>
+      <p class="lede">Before asking what House values, look at how he decides what is true. His theory of knowledge is the engine; the rudeness is exhaust.</p>
+      <div class="method">
+        <div>
+          <div class="loop-wrap">
+          <svg class="loop" viewBox="0 0 520 330" role="img" aria-label="The differential loop: collect signs, guess the best explanation, try to kill the guess, cross it off, and repeat.">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker>
+            </defs>
+            <path class="arc" d="M200,62 Q260,30 318,62" marker-end="url(#ah)"/>
+            <path class="arc" d="M430,112 Q470,165 430,214" marker-end="url(#ah)"/>
+            <path class="arc" d="M318,268 Q260,300 200,268" marker-end="url(#ah)"/>
+            <path class="arc" d="M90,214 Q50,165 90,112" marker-end="url(#ah)"/>
+            <rect class="node" x="30" y="40" width="170" height="70" rx="10"/>
+            <text class="nlabel" x="115" y="72" text-anchor="middle">1 · Collect signs</text>
+            <text class="nsub" x="115" y="94" text-anchor="middle">the body, not the story</text>
+            <rect class="node" x="320" y="40" width="170" height="70" rx="10"/>
+            <text class="nlabel" x="405" y="72" text-anchor="middle">2 · Best guess</text>
+            <text class="nsub" x="405" y="94" text-anchor="middle">abduction · Peirce</text>
+            <rect class="node" x="320" y="216" width="170" height="70" rx="10"/>
+            <text class="nlabel" x="405" y="248" text-anchor="middle">3 · Try to kill it</text>
+            <text class="nsub" x="405" y="270" text-anchor="middle">falsify · Popper</text>
+            <rect class="node" x="30" y="216" width="170" height="70" rx="10"/>
+            <text class="nlabel" x="115" y="248" text-anchor="middle">4 · Cross it off</text>
+            <text class="nsub" x="115" y="270" text-anchor="middle">the whiteboard eraser</text>
+            <text class="center" x="260" y="160" text-anchor="middle">survivor =</text>
+            <text class="center" x="260" y="184" text-anchor="middle">diagnosis (for now)</text>
+            <line class="x" x1="96" y1="236" x2="108" y2="248"/><line class="x" x1="108" y1="236" x2="96" y2="248"/>
+          </svg>
+          </div>
+          <p class="caption">A differential is a list of hypotheses kept alive only until evidence kills them. That is Karl Popper's picture of science, played out in a hospital corridor. Step 2 is what C.S. Peirce called <em>abduction</em>: guessing the explanation that would make the surprising facts unsurprising. When House orders a treatment "to see what happens," he is running an experiment on a hypothesis.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom:6px">His ranking of evidence</h3>
+          <p class="caption" style="margin:0 0 10px">Indian logic (Nyāya) names four valid means of knowledge, the <em>pramāṇas</em>. House uses all four, but ranks them in almost the reverse order that ordinary life does.</p>
+          <div class="ladder" id="ladder">
+            <div class="rung"><div class="trust" aria-label="Trust: highest"><span style="width:52px"></span></div><div><div class="pn">Pratyakṣa · perception</div><h3>What the body shows</h3><p>Biopsy, MRI, the rash that appears at 3 a.m. Trusted most, because tissue cannot lie.</p></div></div>
+            <div class="rung"><div class="trust" aria-label="Trust: high"><span style="width:40px"></span></div><div><div class="pn">Anumāna · inference</div><h3>Reasoning from signs to causes</h3><p>Fever plus this, minus that, means this. His core skill.</p></div></div>
+            <div class="rung"><div class="trust" aria-label="Trust: medium"><span style="width:28px"></span></div><div><div class="pn">Upamāna · comparison</div><h3>"This is like that"</h3><p>His famous epiphanies. Wilson says something unrelated, House sees the analogy, and the case breaks open.</p></div></div>
+            <div class="rung low"><div class="trust" aria-label="Trust: lowest"><span style="width:12px"></span></div><div><div class="pn">Śabda · testimony</div><h3>What the patient says</h3><p>Trusted least. Hence "Everybody lies," and hence the fellows breaking into patients' homes to read the fridge instead of the patient.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFFERENTIAL -->
+    <section aria-labelledby="h-ddx" id="ddx">
+      <div class="ddx-head">
+        <div>
+          <div class="mono">Part 3 · The differential</div>
+          <h2 id="h-ddx">Which philosophy is he?</h2>
+        </div>
+      </div>
+      <p class="lede">Each candidate is scored against House's symptoms: a clear match counts +2, a partial match +1, a direct contradiction −1. Toggle symptoms to see how the ranking shifts. Open any row for the case notes.</p>
+      <div class="chips" id="chips" role="group" aria-label="Symptoms included in the scoring"></div>
+      <div class="tools"><button class="tbtn" id="all" type="button">Include all</button><button class="tbtn" id="none" type="button">Clear</button></div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="mk m2">✓</i> strong match</span>
+        <span><i class="mk m1">~</i> partial</span>
+        <span><i class="mk mx">✗</i> contradicts</span>
+        <span><i class="mk m0">·</i> no bearing</span>
+      </div>
+      <ol class="dlist" id="dlist" aria-live="polite"></ol>
+    </section>
+
+    <!-- TENSIONS -->
+    <section aria-labelledby="h-ten">
+      <div class="mono">Part 4 · Complications</div>
+      <h2 id="h-ten">Where the method stops working</h2>
+      <p class="lede">The show is not an advertisement for House's philosophy. It is eight seasons of stress-testing it. Four fault lines keep opening.</p>
+      <div class="tens">
+        <article>
+          <div class="num">Complication 1</div>
+          <h3>The liar who says everybody lies</h3>
+          <p>His rule has no exception clause, so it covers him too. "I'm fine." "I need the Vicodin for the pain, not because I'm addicted." The one testimony House never sends for a biopsy is his own. Sartre had a name for this: <em>bad faith</em>, lying to yourself so you don't have to face a choice.</p>
+        </article>
+        <article>
+          <div class="num">Complication 2</div>
+          <h3>You can't get an "ought" from an "is"</h3>
+          <p>David Hume's point: facts alone never tell you what to value. In the hospital the goal is handed to House (keep the patient alive), so a pure fact-finding method is enough. Outside the hospital nobody hands him the goal. His method can tell him what is true about his life. It cannot tell him what to want from it.</p>
+        </article>
+        <article>
+          <div class="num">Complication 3</div>
+          <h3>Skill is not wisdom</h3>
+          <p>Aristotle separated <em>technē</em>, mastery of a craft, from <em>phronēsis</em>, the practical wisdom of living well. House has world-class technē. The drama comes from how little of the second he has, and how clearly everyone around him can see it.</p>
+        </article>
+        <article>
+          <div class="num">Complication 4</div>
+          <h3>Wilson is the counter-argument</h3>
+          <p>House is built on Sherlock Holmes: House/Homes, Wilson/Watson, apartment 221B, Vicodin for Holmes's cocaine. Wilson plays the other school, closest to <em>care ethics</em>: morality starts in relationships, not in rules or outcomes. House mocks it for eight seasons. Then the ending takes a side.</p>
+          <details class="spoil"><summary>Series finale spoiler</summary><p>In the last episode, House fakes his own death, ending his medical career, so he can spend Wilson's final months with him. The rationalist's last move is an act of care, and it disproves his own favourite line: "People don't change."</p></details>
+        </article>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section aria-labelledby="h-final">
+      <div class="mono">Part 5 · Discharge summary</div>
+      <h2 id="h-final">Final diagnosis</h2>
+      <div class="final">
+        <div class="rows">
+          <div><span>Method</span><span class="b">Hume's empiricism, run as Peirce + Popper</span></div>
+          <div><span>Mouth</span><span class="b">Diogenes the Cynic, lamp in hand</span></div>
+          <div><span>Values</span><span class="b">Nietzsche: no pity, no herd, no God</span></div>
+          <div><span>Mood</span><span class="b">Schopenhauer: pain, then boredom, then a case</span></div>
+          <div><span>Appetite</span><span class="b">Chārvāka: this life only, enjoy it</span></div>
+          <div><span>Contraindicated</span><span class="r">Kant · the Stoics · the Buddha's prescription</span></div>
+        </div>
+        <p class="model"><strong>One line to remember:</strong> House runs the scientific method on everything. It works wherever the goal is given, as in a sick patient who needs to live. It fails wherever the goal has to be chosen: meaning, love, and himself.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>Quoted lines are from the series <em>House, M.D.</em> (2004–2012), lightly trimmed. Scores are an interpretive reading, not a verdict; toggle the symptoms and argue with them.</span>
+      <span class="mono">Case closed · for now</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+  const SX = [
+    {id:"lies", chip:"Everybody lies", title:"Everybody lies.", tag:"EPISTEMIC",
+      quote:"Everybody lies.",
+      body:"Testimony is the weakest evidence there is. Patients hide drugs, affairs, trips abroad. So he trusts what bodies and homes reveal over what people say."},
+    {id:"evidence", chip:"Evidence over rank", title:"Evidence outranks authority.", tag:"EPISTEMIC",
+      body:"Credentials, seniority, feelings and consensus count for nothing. A lab value or the patient's response to treatment counts for everything, whoever produced it."},
+    {id:"blunt", chip:"Truth over comfort", title:"Truth outranks comfort.", tag:"SOCIAL",
+      quote:"Would you rather have a doctor who holds your hand while you die, or one who ignores you while you get better?",
+      body:"Politeness is treated as a form of lying. Bluntness is his idea of respect."},
+    {id:"ends", chip:"Ends over rules", title:"The outcome justifies the method.", tag:"ETHICAL",
+      body:"He lies to patients, overrides consent, forges signatures and breaks protocol if it gets the right diagnosis. Rules are guesses about what usually works."},
+    {id:"atheism", chip:"No God", title:"No God, no afterlife.", tag:"METAPHYSICAL",
+      quote:"If you could reason with religious people, there would be no religious people.",
+      body:"Faith is testimony without evidence, so it fails his first test. Comforting stories about death get the same treatment."},
+    {id:"pain", chip:"Pain & boredom", title:"Pain and boredom are the baseline.", tag:"EXISTENTIAL",
+      body:"A thigh-muscle infarction, diagnosed late, left him with chronic pain. When the pain eases, boredom arrives. The next case is the escape from both."},
+    {id:"pity", chip:"No pity", title:"No pity, no herd.", tag:"ETHICAL",
+      quote:"Humanity is overrated.",
+      body:"Sympathy, bedside manner and fitting in are treated as weaknesses or as noise that distorts judgment."},
+    {id:"puzzle", chip:"Puzzle over person", title:"The puzzle, not the person.", tag:"MOTIVATIONAL",
+      quote:"Treating illnesses is why we became doctors. Treating patients is what makes most doctors miserable.",
+      body:"He takes cases because they are interesting, not because the patient is sympathetic. Saving a life is almost a side effect of solving it."},
+    {id:"pleasure", chip:"Pleasure as medicine", title:"Pleasure as self-prescription.", tag:"PERSONAL",
+      body:"Vicodin, monster trucks, soap operas, the piano, the motorcycle. No virtue in suffering quietly; he medicates, loudly."}
+  ];
+
+  // 2 = strong, 1 = partial, -1 = contradicts, 0 = no bearing
+  const PH = [
+    {id:"nietzsche", name:"Friedrich Nietzsche", meta:"Germany · 1844–1900 · beyond good and evil",
+      s:{lies:1,evidence:1,blunt:2,ends:1,atheism:2,pain:1,pity:2,puzzle:1,pleasure:0},
+      core:"Morality built on pity and humility is a 'slave morality' invented by the weak. The higher type creates his own values. God is dead, and pretending otherwise is cowardice.",
+      quote:"What does not kill me makes me stronger. — Twilight of the Idols (1889)",
+      fits:["Contempt for pity, bedside manner and herd rules","Unmasking the hidden motive behind every nice act is House's favourite game, and Nietzsche's method","Atheism with no consolation offered"],
+      against:["Nietzsche demands you affirm your whole life, pain included (amor fati). House resents his","Nietzsche's ideal creates new values; House mostly tears down old ones"]},
+    {id:"hume", name:"David Hume", meta:"Scotland · 1711–1776 · empiricism and skepticism",
+      s:{lies:2,evidence:2,blunt:0,ends:0,atheism:2,pain:0,pity:-1,puzzle:1,pleasure:1},
+      core:"All knowledge comes from experience. Belief should be proportioned to evidence, and testimony weighed against how often such claims turn out true.",
+      quote:"No testimony is sufficient to establish a miracle, unless the testimony be of such a kind, that its falsehood would be more miraculous than the fact. — Of Miracles (1748)",
+      fits:["'Everybody lies' is Hume's rule for testimony, applied to patient histories","Religious skepticism argued from evidence, not anger","Reason serves the passions: House is driven by curiosity, not duty"],
+      against:["Hume grounded morality in sympathy between people, the thing House dismisses","Hume was famously good company; the Paris salons called him 'le bon David'"]},
+    {id:"charvaka", name:"Chārvāka (Lokāyata)", meta:"India · from c. 6th century BCE · materialism",
+      s:{lies:2,evidence:2,blunt:0,ends:0,atheism:2,pain:0,pity:0,puzzle:-1,pleasure:2},
+      core:"India's materialist school. Only perception (pratyakṣa) is a reliable source of knowledge. The Vedas carry no authority, no soul survives the body, and there is no next life to save up for.",
+      quote:"While life is yours, live joyously; no one escapes death's searching eye. — attributed Chārvāka verse",
+      fits:["Trusts what can be observed over scripture or anyone's word","No afterlife, no karma ledger","Unapologetic about pleasure in this life"],
+      against:["Chārvāka distrusted inference itself. House's genius is inference: he reasons far past what he can see"]},
+    {id:"cynic", name:"Diogenes & the Cynics", meta:"Greece · c. 412–323 BCE · live by nature, mock convention",
+      s:{lies:2,evidence:1,blunt:2,ends:0,atheism:1,pain:0,pity:1,puzzle:0,pleasure:-1},
+      core:"Convention is mostly pretence. The good life is lived by nature, and the philosopher's duty is parrhēsia: frank speech, especially to the powerful.",
+      quote:"Stand out of my sunlight. — Diogenes to Alexander the Great, as told by Plutarch",
+      fits:["Diogenes walked Athens in daylight with a lamp, looking for an honest man. That is 'Everybody lies' as performance art","Frank speech to authority, whatever the cost","Contempt for manners and status"],
+      against:["The Cynics were ascetics who owned almost nothing. House owns a piano, a motorcycle and a prescription habit"]},
+    {id:"schopenhauer", name:"Arthur Schopenhauer", meta:"Germany · 1788–1860 · pessimism",
+      s:{lies:1,evidence:0,blunt:1,ends:0,atheism:2,pain:2,pity:-1,puzzle:2,pleasure:-1},
+      core:"Life is driven by a blind, never-satisfied will. Satisfy one want and boredom moves in. Only intellect and art give brief escape.",
+      quote:"Life swings like a pendulum backwards and forwards between pain and boredom. — The World as Will and Representation (1818)",
+      fits:["His pendulum is House's week: leg pain, then boredom, then a case","Pure puzzle-solving as a brief escape from the will","A misanthrope's view of people"],
+      against:["Schopenhauer built his whole ethics on compassion (Mitleid). House refuses it","He recommended denying desire; House indulges it"]},
+    {id:"exist", name:"Existentialism", meta:"Sartre, Camus · 20th century · meaning is made, not given",
+      s:{lies:1,evidence:0,blunt:1,ends:0,atheism:2,pain:1,pity:0,puzzle:1,pleasure:0},
+      core:"There is no given meaning. We are free, and we invent reasons to pretend we are not (Sartre's bad faith). Camus: the world is absurd, and we must live anyway.",
+      quote:"One must imagine Sisyphus happy. — Camus, The Myth of Sisyphus (1942)",
+      fits:["Every case solved, the boulder rolls back down: a new patient arrives","He spots other people's bad faith instantly","Sartre's 'Hell is other people' could hang in his office"],
+      against:["Camus asks you to imagine Sisyphus happy. House is the unhappy Sisyphus","His own bad faith, the addiction he calls pain management, goes unexamined"]},
+    {id:"science", name:"Peirce & Popper", meta:"USA 1839–1914 · Austria/UK 1902–1994 · scientific reasoning",
+      s:{lies:1,evidence:2,blunt:0,ends:0,atheism:0,pain:0,pity:0,puzzle:2,pleasure:0},
+      core:"Peirce: abduction, the inference to the explanation that would make surprising facts unsurprising. Popper: a theory earns trust only by surviving serious attempts to refute it.",
+      fits:["The differential diagnosis is abduction plus falsification, on a whiteboard","'Treat and see' is an experiment","He respects the hypothesis that survives, not the person who proposed it"],
+      against:["This is a method, not a philosophy of life. It tells him what is true, never what to care about"]},
+    {id:"buddhism", name:"The Buddha", meta:"India · c. 5th century BCE · the Four Noble Truths",
+      s:{lies:1,evidence:2,blunt:0,ends:0,atheism:1,pain:2,pity:-1,puzzle:0,pleasure:-1},
+      core:"The Four Noble Truths follow the physician's pattern: the illness (suffering), its cause (craving), its cure (letting go) and the treatment (the Eightfold Path).",
+      quote:"Do not go by reports, by tradition, by scripture... when you know for yourselves, then accept. — paraphrased from the Kālāma Sutta",
+      fits:["Starts from the fact of suffering, which House lives with daily","Test claims yourself instead of trusting authority","A non-theistic outlook"],
+      against:["The prescription. Buddhism treats craving; House feeds it","Compassion (karuṇā) is central; he rejects it. The diagnostician who won't take his own medicine"]},
+    {id:"mill", name:"John Stuart Mill", meta:"England · 1806–1873 · utilitarianism",
+      s:{lies:0,evidence:1,blunt:0,ends:2,atheism:0,pain:0,pity:-1,puzzle:-1,pleasure:0},
+      core:"The right act is whichever produces the most happiness overall. Rules are useful only as shortcuts to good outcomes.",
+      fits:["Judges acts by their outcome, and will break any rule if the patient lives"],
+      against:["Mill counts everyone's happiness equally. House counts this puzzle, and dodges clinic duty that would help many","Mill ranked 'higher pleasures' above appetites; House's pleasures would disappoint him"]},
+    {id:"stoic", name:"The Stoics", meta:"Epictetus, Marcus Aurelius · 1st–2nd century CE",
+      s:{lies:0,evidence:1,blunt:1,ends:0,atheism:-1,pain:-1,pity:1,puzzle:0,pleasure:-1},
+      core:"Separate what you control from what you don't. Master your judgments, accept the rest with calm, and treat pleasure and pain as neither good nor bad.",
+      fits:["Indifference to what others think of him","Pity counts as a disturbing passion to avoid"],
+      against:["Pain is the test case. A Stoic endures it; House medicates it and makes everyone share it","Stoics saw a rational divine order in nature; House sees none"]},
+    {id:"kant", name:"Immanuel Kant", meta:"Prussia · 1724–1804 · duty ethics",
+      s:{lies:0,evidence:2,blunt:1,ends:-1,atheism:-1,pain:0,pity:1,puzzle:-1,pleasure:-1},
+      core:"Act only on rules you could will everyone to follow. Never lie. Treat people always as ends in themselves, never merely as means.",
+      quote:"Sapere aude! Have the courage to use your own understanding. — What Is Enlightenment? (1784)",
+      fits:["'Dare to know' against authority is pure House","Kant held that kindness done from feeling has no special moral worth; House would agree"],
+      against:["House lies constantly and uses fellows and patients as means to the answer","Kant needed God as a postulate of morality"]}
+  ];
+
+  const state = new Set(SX.map(s=>s.id));
+  let openId = null;
+
+  // symptoms section
+  const sxEl = document.getElementById('sx');
+  sxEl.innerHTML = SX.map(s=>`
+    <article>
+      <div class="tag">${s.tag}</div>
+      <h3>${s.title}</h3>
+      ${s.quote ? `<q>${s.quote}</q>` : ''}
+      <p>${s.body}</p>
+    </article>`).join('');
+
+  // chips
+  const chipsEl = document.getElementById('chips');
+  chipsEl.innerHTML = SX.map(s=>`<button type="button" class="chip" id="chip-${s.id}" data-id="${s.id}" aria-pressed="true">${s.chip}</button>`).join('');
+  chipsEl.addEventListener('click', e=>{
+    const b = e.target.closest('.chip'); if(!b) return;
+    const id = b.dataset.id;
+    if(state.has(id)) state.delete(id); else state.add(id);
+    b.setAttribute('aria-pressed', state.has(id));
+    render(true);
+  });
+  document.getElementById('all').onclick = ()=>{ SX.forEach(s=>state.add(s.id)); syncChips(); render(true); };
+  document.getElementById('none').onclick = ()=>{ state.clear(); syncChips(); render(true); };
+  function syncChips(){ SX.forEach(s=>document.getElementById('chip-'+s.id).setAttribute('aria-pressed', state.has(s.id))); }
+
+  // rows
+  const list = document.getElementById('dlist');
+  const glyph = v => v===2?'✓':v===1?'~':v===-1?'✗':'·';
+  const cls = v => v===2?'m2':v===1?'m1':v===-1?'mx':'m0';
+  const rows = {};
+  PH.forEach(p=>{
+    const li = document.createElement('li');
+    li.className='drow'; li.dataset.id=p.id;
+    li.innerHTML = `
+      <button type="button" class="dtop" aria-expanded="false" aria-controls="body-${p.id}" id="btn-${p.id}">
+        <span class="rank">–</span>
+        <span class="dname"><span class="dn">${p.name}</span><span class="mono">${p.meta}</span></span>
+        <span class="meter">
+          <span class="track"><span class="bar"></span></span>
+          <span class="marks">${SX.map(s=>`<i class="mk ${cls(p.s[s.id])}" title="${s.chip}: ${['contradicts','no bearing','partial','strong match'][p.s[s.id]+1]}">${glyph(p.s[s.id])}</i>`).join('')}</span>
+        </span>
+        <span class="score"><b class="pts">0</b><span class="chev" aria-hidden="true"></span></span>
+      </button>
+      <div class="dbody" id="body-${p.id}" hidden>
+        <p class="core">${p.core}</p>
+        ${p.quote?`<blockquote>${p.quote}</blockquote>`:''}
+        <div class="fitgrid">
+          <div><h4 class="g">Fits</h4><ul>${p.fits.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+          <div><h4 class="r">Doesn't fit</h4><ul>${p.against.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+        </div>
+      </div>`;
+    li.querySelector('.dtop').addEventListener('click', ()=>toggle(p.id));
+    rows[p.id]=li;
+    list.appendChild(li);
+  });
+
+  function toggle(id){
+    const li = rows[id], open = !li.classList.contains('open');
+    li.classList.toggle('open', open);
+    li.querySelector('.dtop').setAttribute('aria-expanded', open);
+    li.querySelector('.dbody').hidden = !open;
+  }
+
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function render(animate){
+    const n = state.size, max = Math.max(1, n*2);
+    const scored = PH.map(p=>{
+      let sc=0; SX.forEach(s=>{ if(state.has(s.id)) sc += p.s[s.id]; });
+      return {p, sc};
+    }).sort((a,b)=> b.sc-a.sc || PH.indexOf(a.p)-PH.indexOf(b.p));
+
+    // FLIP: first
+    const first = {};
+    if(animate && !reduce) PH.forEach(p=>first[p.id]=rows[p.id].getBoundingClientRect().top);
+
+    scored.forEach(({p,sc},i)=>{
+      const li = rows[p.id];
+      list.appendChild(li);
+      li.querySelector('.rank').textContent = n? (i+1) : '–';
+      li.querySelector('.pts').textContent = (sc>0?'+':'')+sc;
+      li.querySelector('.dtop').setAttribute('aria-label', `${p.name}, rank ${i+1}, score ${sc} out of ${n*2}`);
+      const bar = li.querySelector('.bar');
+      const w = Math.min(50, Math.abs(sc)/max*50);
+      if(sc>=0){ bar.style.left='50%'; bar.style.width=w+'%'; bar.style.background='var(--green)'; }
+      else { bar.style.left=(50-w)+'%'; bar.style.width=w+'%'; bar.style.background='var(--red)'; }
+      li.querySelectorAll('.mk').forEach((m,k)=>m.classList.toggle('off', !state.has(SX[k].id)));
+    });
+
+    if(animate && !reduce){
+      PH.forEach(p=>{
+        const li = rows[p.id], dy = first[p.id]-li.getBoundingClientRect().top;
+        if(!dy) return;
+        li.style.transition='none'; li.style.transform=`translateY(${dy}px)`;
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{ li.style.transition='transform .45s cubic-bezier(.2,.7,.2,1)'; li.style.transform=''; }));
+      });
+    }
+  }
+
+  render(false);
+  toggle(PH[0].id); // open the leading diagnosis at rest
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

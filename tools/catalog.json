@@ -1,0 +1,380 @@
+{
+  "site": {
+    "title": "Explainers",
+    "url": "https://anilkumaroleti.github.io/Explainers/",
+    "author": "Anil Kumar Oleti",
+    "github": "https://github.com/AnilkumarOleti",
+    "intro": "Each page explains one idea with a picture you can play with.",
+    "handbook": "https://anilkumaroleti.github.io/ds-ml-handbook/"
+  },
+  "sections": [
+    {
+      "id": "body",
+      "name": "Body and health",
+      "pages": [
+        {
+          "slug": "protein-has-no-storeroom",
+          "title": "Protein Has No Storeroom",
+          "blurb": "Can you eat a week's protein in one day? No. The body banks fat and carbohydrate, but not protein.",
+          "artifact": "95b22c4d-6a67-4da2-b779-e423a36d1c42",
+          "ask": "Can you eat a week's protein in one day?"
+        },
+        {
+          "slug": "can-carbs-build-muscle",
+          "title": "Can Carbs Build Muscle?",
+          "blurb": "Training gives the order to build and carbs pay the energy bill. Only protein supplies the material.",
+          "artifact": "20e0a3d9-1e6a-4e08-b42b-921251a92e16",
+          "ask": "Can you build muscle on carbs alone?"
+        },
+        {
+          "slug": "how-bison-build-muscle",
+          "title": "How Bison Build Muscle",
+          "blurb": "A bison eats only grass and still builds muscle. The grass feeds microbes, and the microbes feed the bison.",
+          "artifact": "8a7cb493-cf4a-42ac-883d-f291d83ca94c",
+          "ask": "How does a bison build muscle when all it eats is grass?"
+        },
+        {
+          "slug": "sugar-sink",
+          "title": "The Sugar Sink",
+          "blurb": "Muscle is where blood sugar is meant to go. How lifting weights brings HbA1c down.",
+          "artifact": "ba02e61d-5ac7-49f6-9922-5a9b6b5264aa",
+          "ask": "Why does lifting weights lower blood sugar?"
+        },
+        {
+          "slug": "sugar-coated-body",
+          "title": "The Sugar-Coated Body",
+          "blurb": "Type 2 diabetes, from sugar that can't get into your cells to the damage it does over years.",
+          "artifact": "9af30996-0839-468c-8337-2bcee1b16ca0"
+        },
+        {
+          "slug": "glp-1-hunger-dial",
+          "title": "GLP-1 Hunger Dial",
+          "blurb": "How Ozempic-style drugs copy a gut hormone and turn down the volume on hunger.",
+          "artifact": "0768a0e3-2a9d-493b-aa45-c822471943c7",
+          "ask": "How do Ozempic-style drugs turn hunger down?"
+        },
+        {
+          "slug": "fuel-for-21-1",
+          "title": "Fuel for 21.1",
+          "blurb": "Your legs carry about 90 minutes of fast fuel. How to eat and drink for a half marathon.",
+          "artifact": "5dd2b15a-6a09-4d23-b0d1-3d60861bc79d"
+        },
+        {
+          "slug": "half-marathon-build",
+          "title": "Half-Marathon Build",
+          "blurb": "Twelve weeks of training, and why you get faster by running slower than you think you should.",
+          "artifact": "7532dbd3-e8d2-4c82-aabd-d2173ee91c5c",
+          "ask": "Why do you get faster by running slower?"
+        }
+      ]
+    },
+    {
+      "id": "brain",
+      "name": "Brain and mind",
+      "pages": [
+        {
+          "slug": "brain-field-guide",
+          "title": "Brain Field Guide",
+          "blurb": "Twelve parts of the brain: where each one sits, what it does, and one thing about it you will not forget.",
+          "artifact": "7f720202-6fab-470c-ae10-b532409e230c"
+        },
+        {
+          "slug": "how-the-brain-got-so-powerful",
+          "title": "How the Brain Got So Powerful",
+          "blurb": "Thirteen chapters, from the first neurons to you.",
+          "artifact": "0c449e97-bfcd-4c93-b390-88d7e59cf843",
+          "note": "Narrated, 3 minutes",
+          "ask": "How did the brain get so powerful?"
+        },
+        {
+          "slug": "light-switch-for-neurons",
+          "title": "A Light Switch for Neurons",
+          "blurb": "Optogenetics, the 2026 Nobel Prize in medicine: a light sensor from a pond alga that switches brain cells on.",
+          "artifact": "df944b98-c093-415a-9c30-8247e7fc1af7",
+          "ask": "How do you switch a brain cell on with light?"
+        },
+        {
+          "slug": "why-cant-you-tickle-yourself",
+          "title": "Why can't you tickle yourself?",
+          "blurb": "Your brain knows your own touch is coming, so it turns the feeling down before it arrives.",
+          "artifact": "3af91671-6433-47a4-bb81-f0c706d026fa",
+          "ask": "Why can't you tickle yourself?"
+        },
+        {
+          "slug": "fear-alarm",
+          "title": "The Fear Alarm",
+          "blurb": "Fear is a smoke detector, built to scream at burnt toast, because missing one real fire costs everything.",
+          "artifact": "7966065f-4b24-461e-bfa1-f7a1bf9d720e",
+          "ask": "Why is fear built to overreact?"
+        },
+        {
+          "slug": "who-really-decided",
+          "title": "Who Really Decided?",
+          "blurb": "The voice in your head that says “I chose” may be a press secretary, announcing a decision already made.",
+          "artifact": "312f129a-2bec-4786-8a80-add86e87468d",
+          "ask": "Who really decided, you or your brain?"
+        },
+        {
+          "slug": "is-evil-a-brain-disorder",
+          "title": "Is Evil a Brain Disorder?",
+          "blurb": "If a tumour caused the crime, who is responsible? Nine exhibits on crime, the brain and free will.",
+          "artifact": "f4c89fe2-f462-4d0a-8bdd-28af77af50cd",
+          "ask": "Is evil a brain disorder?"
+        },
+        {
+          "slug": "happiness-thermostat",
+          "title": "The Happiness Thermostat",
+          "blurb": "Good news fades, and so does bad. What moves your home setting instead.",
+          "artifact": "13a34c17-843a-47d8-84ac-92115a35763f",
+          "ask": "Why does good news stop feeling good?"
+        },
+        {
+          "slug": "what-happy-people-say",
+          "title": "What Happy People Say",
+          "blurb": "Seventy statements people made about themselves, ranked by how closely each one travels with life satisfaction.",
+          "artifact": "f5babb26-df67-4344-8be6-dafb13fc9c4c"
+        },
+        {
+          "slug": "wanting-the-hard-thing",
+          "title": "Wanting the Hard Thing",
+          "blurb": "Why a feed feels so good and effort feels bad, and how a brain can learn to prefer the long game.",
+          "artifact": "229c2201-7ef5-48ed-b918-e3267ec43d44",
+          "source_title": "Wanting the Hard Thing: the neuroscience of effort, short-form video and the long game",
+          "note": "40-minute read",
+          "ask": "Why does scrolling feel good and effort feel bad?"
+        },
+        {
+          "slug": "long-dusk",
+          "title": "The Long Dusk",
+          "blurb": "Death in pictures: what happens in the body, the stories every culture tells, and why we fear it.",
+          "artifact": "e75643e5-9b61-4b1a-b106-343f45a1d6f2",
+          "ask": "What happens when we die?"
+        }
+      ]
+    },
+    {
+      "id": "ideas",
+      "name": "Big ideas",
+      "pages": [
+        {
+          "slug": "godels-incompleteness-theorem",
+          "title": "Gödel's Incompleteness Theorem",
+          "blurb": "A true sentence that no rulebook can prove, explained with an office and one rubber stamp.",
+          "artifact": "6653ef2f-b542-49c2-a4cf-bcb62919246f",
+          "ask": "How can a sentence be true and impossible to prove?"
+        },
+        {
+          "slug": "bayes-rule",
+          "title": "Bayes' Rule",
+          "blurb": "Something in your pan glitters. How sure can you be that it is gold?",
+          "artifact": "fbfd6c99-8169-495a-bc99-f8c39b0500ca",
+          "ask": "It glitters. How sure are you that it's gold?"
+        },
+        {
+          "slug": "mungers-latticework",
+          "title": "Munger's Latticework",
+          "blurb": "How Charlie Munger thought: a frame built from the big ideas of every discipline, with facts hung on it.",
+          "artifact": "59bf967f-846e-4be8-8252-67029eceaecf"
+        },
+        {
+          "slug": "selfish-gene",
+          "title": "The Selfish Gene",
+          "blurb": "Richard Dawkins's idea in pictures: you are a vehicle, and your genes are the drivers.",
+          "artifact": "0f084641-ca45-44ff-9cd9-f094504eb822"
+        },
+        {
+          "slug": "what-are-zombies",
+          "title": "What Are Zombies?",
+          "blurb": "A body that keeps moving with nobody home: Haitian folklore, zombie ants, zombie cells and zombie companies.",
+          "artifact": "e6ed88ec-9389-4a9c-b82e-867f6d3aaee7",
+          "ask": "What are zombies?"
+        },
+        {
+          "slug": "one-pass",
+          "title": "One Pass",
+          "blurb": "A reader can reread. A listener gets one pass. Nearly every good presentation habit fixes that one fact.",
+          "artifact": "e402ecd9-3ce7-4ccb-96e6-d9701fc2ba58"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "AI and data",
+      "pages": [
+        {
+          "slug": "missing-gauge",
+          "title": "The Missing Gauge",
+          "blurb": "Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.",
+          "artifact": "d55a87e1-91a8-40a3-a6a9-747bfb76946b",
+          "ask": "Why does AI say wrong things so confidently?"
+        },
+        {
+          "slug": "open-weights-vs-closed",
+          "title": "Open Weights vs Closed",
+          "blurb": "AI you can download and keep, against AI you can only rent.",
+          "artifact": "7354daaf-a773-4a53-bfc2-871a65d73cae",
+          "note": "As of September 2026",
+          "css": ".docs{grid-template-columns:repeat(28,minmax(0,10px));max-width:100%}.docs i{width:auto;height:auto;aspect-ratio:1}"
+        },
+        {
+          "slug": "opus-5-5-vs-gpt-6-astra",
+          "title": "Opus 5.5 vs GPT-6 Astra",
+          "blurb": "Which model for which work: benchmarks, prices and the caveats behind them.",
+          "artifact": "525e0c50-f6c9-467c-acaf-da25f118c8da",
+          "note": "As of September 2026"
+        },
+        {
+          "slug": "genrec-at-netflix",
+          "title": "GenRec at Netflix",
+          "blurb": "A paper walkthrough: Netflix tests a language model as the ranker for its whole catalog.",
+          "artifact": "a2f5f617-2e3c-45cb-93e1-f9aa55681cc7"
+        },
+        {
+          "slug": "cosine-adapter",
+          "title": "The Cosine Adapter",
+          "blurb": "A small network that turns similarity scores into probabilities, so one cutoff works for every search query.",
+          "artifact": "0dc881b6-a0f6-4290-82e1-e1647e0ba49c"
+        },
+        {
+          "slug": "duckdb-in-pictures",
+          "title": "DuckDB in Pictures",
+          "blurb": "A database that reads by the column and lives inside your program.",
+          "artifact": "b0822442-04dc-4189-ba6f-8a3315443180"
+        },
+        {
+          "slug": "parquet-files",
+          "title": "Parquet Files",
+          "blurb": "A table saved column by column instead of row by row, and why that makes it smaller and quicker.",
+          "artifact": "65e0d2c9-609a-4e89-9917-eee42b92a1d4",
+          "ask": "Why save a table column by column?"
+        },
+        {
+          "slug": "why-ab-winners-shrink",
+          "title": "Why A/B Winners Shrink",
+          "blurb": "The test said +4%. After launch you got +1%. Nothing broke.",
+          "artifact": "2d7b5948-503e-448c-bbed-9b21fb28294e",
+          "ask": "Why do A/B test winners shrink after launch?"
+        },
+        {
+          "slug": "analysts-cockpit",
+          "title": "The Analyst's Cockpit",
+          "blurb": "AI now writes the SQL and builds the charts. The judgment is still the analyst's job.",
+          "artifact": "3906ff79-888f-4bff-8fef-8684a71d7f65"
+        },
+        {
+          "slug": "internet-at-200-kmh",
+          "title": "Internet at 200 km/h",
+          "blurb": "On a fast train your phone changes towers every minute. The internet never finds out.",
+          "artifact": "a121a789-855b-420e-ac6c-13ef41055b1a",
+          "ask": "How does your phone stay online at 200 km/h?"
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "name": "World and history",
+      "pages": [
+        {
+          "slug": "bengalurus-lost-canopy",
+          "title": "Bengaluru's Lost Canopy",
+          "blurb": "Bengaluru lived under a roof of leaves. In fifty years it lost most of that roof.",
+          "artifact": "9e0812f4-83ec-40b2-b7f4-58d814522fa4",
+          "note": "Long read"
+        },
+        {
+          "slug": "felled-canopy",
+          "title": "The Felled Canopy",
+          "blurb": "A sixty-year-old tree comes down in an afternoon. What goes with it is harder to see.",
+          "artifact": "3bd64300-8114-47dc-b3e4-1243802045e2",
+          "ask": "What does a city lose when one old tree comes down?"
+        },
+        {
+          "slug": "downstream-of-the-saw",
+          "title": "Downstream of the Saw",
+          "blurb": "A forest works like infrastructure. Clear it, and the jobs it did move downhill.",
+          "artifact": "6dde1b17-edef-4077-ab47-4d208c5100f2"
+        },
+        {
+          "slug": "key-events-of-ww-ii",
+          "title": "Key Events of WW-II",
+          "blurb": "The war had one shape: Axis power rose for nearly three years, turned in eight months, then drained away.",
+          "artifact": "43dd75d5-bae8-44f4-b064-eec329fbd023",
+          "ask": "What shape did the Second World War have?"
+        },
+        {
+          "slug": "serial-killers-golden-age",
+          "title": "Serial Killers' Golden Age",
+          "blurb": "For three decades America produced serial killers at a record rate. Then the numbers fell by about 85%.",
+          "artifact": "f5b23b29-ff8f-477c-9b91-2e3af5fe943c",
+          "ask": "Why did America's serial killers fall by 85%?",
+          "css": ".hero>*,.factor>*,.factor .body>*{min-width:0}"
+        },
+        {
+          "slug": "reading-a-property",
+          "title": "Reading a Property",
+          "blurb": "You aren't buying a flat. You're buying six things stacked up, and a site visit shows only the top two.",
+          "artifact": "0c0a6e50-8be2-4e66-8dcd-a5c1db2a1c43",
+          "ask": "What are you really buying when you buy a flat?"
+        }
+      ]
+    },
+    {
+      "id": "screen",
+      "name": "Screen and sport",
+      "pages": [
+        {
+          "slug": "federer-and-nadal",
+          "title": "Federer and Nadal",
+          "blurb": "Federer took away your time. Nadal took away your space. Forty meetings, compared.",
+          "artifact": "070829a7-6314-47a7-95b7-70312751435e"
+        },
+        {
+          "slug": "inside-the-pit-box",
+          "title": "Inside the Pit Box",
+          "blurb": "Two seconds, four tyres, twenty people: a Formula 1 pit stop you can play in slow motion.",
+          "artifact": "263698d7-03ad-4405-8221-8f273ea2c853",
+          "ask": "How do twenty people change four tyres in two seconds?"
+        },
+        {
+          "slug": "chemistry-of-breaking-bad",
+          "title": "The Chemistry of Breaking Bad",
+          "blurb": "Walter White called chemistry the study of change. The whole show, read that way.",
+          "artifact": "1d3d30f1-1d45-4e4e-a311-f17ba4c69a8b",
+          "note": "Full spoilers"
+        },
+        {
+          "slug": "diagnosing-dr-house",
+          "title": "Diagnosing Dr. House",
+          "blurb": "House never states a philosophy. He runs one. A differential diagnosis of what he believes.",
+          "artifact": "b5a9401a-07b2-47b9-b780-bb4b7333c0d5"
+        },
+        {
+          "slug": "house-differential",
+          "title": "The House Differential",
+          "blurb": "A fan's case file on House, M.D.: eight seasons, 177 episodes and one very grumpy genius.",
+          "artifact": "ab5fabb8-a85e-48d4-bcee-e697d0062825"
+        },
+        {
+          "slug": "office-filmed",
+          "title": "The Office, Filmed",
+          "blurb": "A pretend documentary about a very boring paper company, and why the camera is in on the joke.",
+          "artifact": "10e83a40-6152-4bd9-b749-df0e55bbd2c9",
+          "ask": "Why is The Office filmed like a documentary?"
+        },
+        {
+          "slug": "case-file-99",
+          "title": "Case File #99",
+          "blurb": "A fan's evidence board for Brooklyn Nine-Nine. Drag anything on the board.",
+          "artifact": "8e381983-02d0-49ba-8ccf-974319f1227e"
+        },
+        {
+          "slug": "dexters-slide-box",
+          "title": "Dexter's Slide Box",
+          "blurb": "A fan's evidence table for Dexter.",
+          "artifact": "f32bea70-946c-4eae-a5a7-3e633d633f29",
+          "note": "Spoilers"
+        }
+      ]
+    }
+  ]
+}

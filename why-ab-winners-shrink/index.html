@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Why A/B Winners Shrink | Explainers</title>
+<meta name="description" content="The test said +4%. After launch you got +1%. Nothing broke.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/why-ab-winners-shrink/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Why A/B Winners Shrink">
+<meta property="og:description" content="The test said +4%. After launch you got +1%. Nothing broke.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/why-ab-winners-shrink/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/why-ab-winners-shrink/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Unbounded:wght@500;700&display=swap">
+<style>
+/* Layout: one centred column. Each section is one big pin-board picture with a short headline and a line or two of text. Blue always means what an idea is really worth; orange always means luck. */
+:root{
+  --bg:#EEF1F6; --panel:#F9FBFD; --ink:#0F1B2D; --ink-2:#44546B; --ink-3:#5E6D84;
+  --rule:#CFD7E3; --peg:#B7C2D2; --ball:#7F8DA3;
+  --idea:#2458D6; --bounce:#E2600F; --on-idea:#FFFFFF; --on-bounce:#1B0D03;
+  --display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'DM Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1420; --panel:#121A27; --ink:#E7EDF6; --ink-2:#A9B6C9; --ink-3:#8493A8;
+    --rule:#263245; --peg:#36445A; --ball:#66758C;
+    --idea:#5A8CF0; --bounce:#E07026; --on-idea:#0D1420; --on-bounce:#1B0D03;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1420; --panel:#121A27; --ink:#E7EDF6; --ink-2:#A9B6C9; --ink-3:#8493A8;
+  --rule:#263245; --peg:#36445A; --ball:#66758C;
+  --idea:#5A8CF0; --bounce:#E07026; --on-idea:#0D1420; --on-bounce:#1B0D03;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px);padding-block:clamp(36px,7vw,76px) 64px;display:flex;flex-direction:column;gap:clamp(68px,11vw,116px)}
+section,header.hero,footer{display:flex;flex-direction:column;gap:22px;min-width:0}
+h1,h2,h3,p,figure,ol,ul{margin:0}
+h1,h2,.big{font-family:var(--display);text-wrap:balance;letter-spacing:-0.01em}
+h1{font-weight:700;font-size:clamp(2.3rem,8.4vw,4.5rem);line-height:1.02}
+h2{font-weight:700;font-size:clamp(1.35rem,3.6vw,2rem);line-height:1.15}
+h3{font-family:var(--body);font-weight:600;font-size:1.0625rem;line-height:1.3}
+p{max-width:62ch;color:var(--ink-2)}
+.lede{font-size:clamp(1.1rem,2.3vw,1.3rem);line-height:1.45;color:var(--ink);max-width:34ch}
+.lede b{font-weight:600}
+.big{font-weight:500;font-size:clamp(1.15rem,3vw,1.6rem);line-height:1.4;color:var(--ink);max-width:26ch}
+.chip{padding:.08em .38em;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;white-space:nowrap}
+.chip.idea,.seg.idea,.sw.idea{background:var(--idea);color:var(--on-idea)}
+.chip.bounce,.seg.bounce,.sw.bounce{background:var(--bounce);color:var(--on-bounce)}
+.label{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.num{font-variant-numeric:tabular-nums}
+
+/* hero */
+.hero{position:relative;gap:26px;padding-top:clamp(8px,3vw,28px)}
+.hero::before{content:"";position:absolute;inset:-76px calc(-1 * clamp(16px,4vw,32px)) auto;height:300px;z-index:0;pointer-events:none;
+  background-image:radial-gradient(var(--peg) 1.7px,transparent 2.2px),radial-gradient(var(--peg) 1.7px,transparent 2.2px);
+  background-size:30px 30px;background-position:0 0,15px 15px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 88%);mask-image:linear-gradient(180deg,#000 0%,transparent 88%);opacity:.75}
+.hero > *{position:relative;z-index:1}
+.split{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.split-row{display:grid;grid-template-columns:7.6rem minmax(0,1fr) 4.6rem;align-items:center;gap:14px}
+.split-lab{font-weight:600;color:var(--ink)}
+.split-bar{display:flex;gap:2px;height:clamp(52px,9vw,72px);min-width:0}
+.seg{display:flex;align-items:center;justify-content:center;min-width:0;font-family:var(--display);font-weight:700;font-size:clamp(.85rem,2.4vw,1.2rem);border-radius:4px;overflow:hidden;white-space:nowrap}
+.split-bar .seg:first-child{border-radius:8px 4px 4px 8px}
+.split-bar .seg:last-child{border-radius:4px 8px 8px 4px}
+.seg.ghost{background:transparent;border:2px dashed var(--peg);color:var(--ink-3);font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.04em}
+.split-val{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,4vw,2rem);text-align:right;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:.9rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;flex:none}
+.sw.dot{border-radius:50%}
+.sw.grey{background:var(--ball)} .sw.dark{background:var(--ink)}
+
+/* boards */
+.board{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.board canvas{display:block;width:100%;touch-action:pan-y}
+.tip{position:absolute;left:0;top:0;transform:translate(-50%,-100%);background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:.75rem;line-height:1.45;padding:6px 9px;border-radius:7px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s;z-index:3}
+.tip.show{opacity:1}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px}
+button{font:600 .95rem var(--body);border-radius:999px;padding:.62em 1.15em;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);transition:transform .12s}
+button.quiet{background:transparent;color:var(--ink)}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+button:focus-visible,input:focus-visible,.curve:focus-visible{outline:3px solid var(--idea);outline-offset:3px}
+.eq{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 10px;font-family:var(--display);font-weight:500;font-size:clamp(1rem,2.8vw,1.35rem);color:var(--ink);max-width:none}
+.eq small{font-family:var(--body);font-weight:400;font-size:.95rem;color:var(--ink-2)}
+.sub{font-size:.95rem;color:var(--ink-2)}
+
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 26px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:start;font-size:.97rem;color:var(--ink-2)}
+.steps li::before{content:counter(s);grid-row:1 / span 2;font-family:var(--mono);font-weight:500;font-size:.8rem;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.steps b{color:var(--ink);font-weight:600}
+.steps span{grid-column:2}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 22px;border-top:1px solid var(--rule);padding-top:20px}
+.stat{display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat .v{font-family:var(--display);font-weight:700;font-size:clamp(1.35rem,3.6vw,1.9rem);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .v small{font-family:var(--body);font-weight:500;font-size:.85rem;color:var(--ink-3);letter-spacing:0}
+.stat .k{display:inline-flex;align-items:center;gap:7px}
+
+.slider{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px 14px}
+.slider label{font-weight:600}
+.slider output{font-family:var(--mono);font-weight:500;font-size:.95rem;min-width:5.2ch;text-align:right;font-variant-numeric:tabular-nums}
+.slider .ends{grid-column:2;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+input[type=range]{width:100%;accent-color:var(--idea);height:28px;margin:0}
+
+/* two names */
+.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 40px}
+.name{display:flex;flex-direction:column;gap:12px;min-width:0}
+.name svg{width:100%;height:auto;display:block;background:var(--panel);border:1px solid var(--rule);border-radius:16px}
+.name p{font-size:.97rem}
+.s-rule{stroke:var(--rule)} .s-peg{stroke:var(--peg)} .s-ink{fill:var(--ink)} .s-grey{fill:var(--ball)}
+.s-line{stroke:var(--ball);stroke-width:1.5;fill:none}
+.s-idea{stroke:var(--idea);stroke-width:2.5;fill:none} .s-ideaf{fill:var(--idea)}
+.s-bounce{stroke:var(--bounce);stroke-width:3;stroke-linecap:round;fill:none}
+.s-ring{fill:none;stroke:var(--ink);stroke-width:1.5}
+.s-t{fill:var(--ink-2);font:500 11px var(--mono)} .s-tb{fill:var(--ink);font:500 11px var(--mono)}
+
+/* curve */
+.curve-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 28px}
+.hero-num{display:flex;flex-direction:column;gap:2px}
+.hero-num .v{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,9vw,4.2rem);line-height:1;font-variant-numeric:tabular-nums}
+.curve{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:16px;touch-action:pan-y;cursor:ew-resize;min-height:230px}
+.curve svg{display:block;width:100%}
+.cv-grid{stroke:var(--rule);stroke-width:1}
+.cv-t{fill:var(--ink-3);font:500 11px var(--mono)}
+.cv-area{fill:var(--bounce);opacity:.2}
+.cv-line{stroke:var(--bounce);stroke-width:2;fill:none;stroke-linejoin:round}
+.cv-base{stroke:var(--idea);stroke-width:2}
+.cv-dot{fill:var(--bounce);stroke:var(--panel);stroke-width:2}
+.cv-lab{fill:var(--ink);font:500 13px var(--mono)}
+.cv-cross{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:3 3}
+.cv-hd{fill:var(--panel);stroke:var(--ink);stroke-width:1.5}
+
+/* what to do */
+.todo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 30px}
+.todo > div{display:flex;flex-direction:column;gap:8px;min-width:0;border-top:2px solid var(--ink);padding-top:14px}
+.todo > div.wide{grid-column:1 / -1}
+.todo p{font-size:.97rem}
+.trio{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.trio-row{display:grid;grid-template-columns:9.2rem minmax(0,1fr) 4.2rem;gap:12px;align-items:center;font-size:.93rem;color:var(--ink-2)}
+.trio-track{display:flex;gap:2px;height:22px;min-width:0}
+.trio-track i{display:block;height:100%;border-radius:4px;min-width:0}
+.trio-track .idea{background:var(--idea)} .trio-track .bounce{background:var(--bounce)}
+.trio-track .fore{background:transparent;border:2px solid var(--idea)}
+.trio-row .num{font-family:var(--mono);font-weight:500;color:var(--ink);text-align:right}
+
+footer{gap:14px;border-top:1px solid var(--rule);padding-top:26px}
+footer p{font-size:.86rem;line-height:1.55;color:var(--ink-2);max-width:74ch}
+footer b{color:var(--ink);font-weight:600}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .split-row{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}
+  .split-lab{grid-column:1 / -1}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .names{grid-template-columns:minmax(0,1fr)}
+  .todo{grid-template-columns:minmax(0,1fr)}
+  .trio-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
+  .trio-row > span:first-child{grid-column:1 / -1}
+  .slider{grid-template-columns:minmax(0,1fr) auto}
+  .slider label{grid-row:1;grid-column:1}
+  .slider output{grid-row:1;grid-column:2}
+  .slider input{grid-row:2;grid-column:1 / -1}
+  .slider .ends{grid-row:3;grid-column:1 / -1}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <span class="label">A/B tests, explained on a pin board</span>
+    <h1>Why winners shrink</h1>
+    <p class="lede">The test said <b>+4%</b>. After launch you got <b>+1%</b>. Nothing broke. Most of that 4% was luck, and luck doesn't launch.</p>
+    <figure class="split" role="img" aria-label="A plus 4 percent test result is made of plus 1 percent from the idea and plus 3 percent from a lucky bounce. After launch only the plus 1 percent remains.">
+      <div class="split-row">
+        <span class="split-lab">The test said</span>
+        <div class="split-bar"><span class="seg idea" style="flex:1 1 0">+1%</span><span class="seg bounce" style="flex:3 1 0">+3%</span></div>
+        <span class="split-val">+4%</span>
+      </div>
+      <div class="split-row">
+        <span class="split-lab">After launch</span>
+        <div class="split-bar"><span class="seg idea" style="flex:1 1 0">+1%</span><span class="seg ghost" style="flex:3 1 0">never there</span></div>
+        <span class="split-val">+1%</span>
+      </div>
+      <figcaption class="legend"><span><i class="sw idea"></i>the idea</span><span><i class="sw bounce"></i>a lucky bounce</span></figcaption>
+    </figure>
+  </header>
+
+  <section aria-labelledby="h-demo">
+    <h2 id="h-demo">A test is a wobbly measurement</h2>
+    <p>An A/B test shows the old page to half your visitors and a new idea to the other half, then compares what they buy. The two halves are never the same people, so the answer wobbles.</p>
+    <div class="board">
+      <canvas id="demo" style="height:266px" role="img" aria-label="A pin board. One ball starts at plus 1 percent, bounces off the pins, and lands somewhere else."></canvas>
+    </div>
+    <p class="eq" aria-live="polite"><small>This test says</small><span class="num" id="d-obs">+0.0%</span><small>=</small><span class="chip idea num">+1.0% idea</span><span class="chip bounce num" id="d-bounce">+0.0% bounce</span></p>
+    <div class="controls">
+      <button type="button" id="d-one">Test it again</button>
+      <button type="button" id="d-many" class="quiet">Test it 20 more times</button>
+      <span class="sub num" id="d-avg"></span>
+    </div>
+    <p>The blue ball is an idea that is really worth +1%. Each drop is one test of it. The pins are luck: who happened to show up that week.</p>
+    <p class="big">Every result is <span class="chip idea">the idea</span> plus <span class="chip bounce">a bounce</span>.</p>
+  </section>
+
+  <section aria-labelledby="h-board">
+    <h2 id="h-board">Now test 400 ideas and launch the best</h2>
+    <p>Most new ideas do very little. Test them all once, and launch only the ones that land past the ship line.</p>
+    <div class="board" id="board-wrap">
+      <canvas id="board" style="height:452px" role="img" aria-label="Pin board with 400 tests."></canvas>
+      <div class="tip" id="board-tip"></div>
+    </div>
+    <div class="legend">
+      <span><i class="sw dot idea"></i>what an idea is really worth</span>
+      <span><i class="sw dot grey"></i>a test result</span>
+      <span><i class="sw dot dark"></i>a result that got launched</span>
+      <span><i class="sw bounce" style="height:4px;width:18px;border-radius:2px"></i>bounce left behind</span>
+    </div>
+    <ol class="steps">
+      <li><b>Real worth</b><span>Where each idea starts. Most sit close to zero.</span></li>
+      <li><b>Test result</b><span>Where it lands after the pins. Past the ship line, it launches.</span></li>
+      <li><b>After launch</b><span>The launched ideas slide back to what they are really worth.</span></li>
+    </ol>
+    <div class="stats">
+      <div class="stat"><span class="label">Launched</span><span class="v num"><span id="s-n">0</span> <small>of 400</small></span></div>
+      <div class="stat"><span class="label k">Tests said</span><span class="v num" id="s-obs">+0.0%</span></div>
+      <div class="stat"><span class="label k">Really worth</span><span class="v num" id="s-true">+0.0%</span></div>
+      <div class="stat"><span class="label">Looked too big by</span><span class="v num" id="s-ratio">0×</span></div>
+    </div>
+    <p id="s-harm"></p>
+    <div class="controls">
+      <button type="button" id="b-new">Run 400 new tests</button>
+      <button type="button" id="b-replay" class="quiet">Replay the drop</button>
+    </div>
+    <div class="slider">
+      <label for="size-a">Test size</label>
+      <input type="range" id="size-a" class="size" min="-1" max="4" step="0.25" value="0">
+      <output for="size-a" class="size-out">×1</output>
+      <div class="ends"><span>fewer visitors</span><span>more visitors</span></div>
+    </div>
+    <p class="big">To clear the line an idea must be good, lucky, or both. So the winners are a lucky crowd.</p>
+  </section>
+
+  <section aria-labelledby="h-names">
+    <h2 id="h-names">Two names for that picture</h2>
+    <div class="names">
+      <div class="name">
+        <svg viewBox="0 0 340 150" role="img" aria-label="Nine bids scattered around the true value. The highest bid sits far above it.">
+          <line x1="24" y1="92" x2="316" y2="92" class="s-rule" stroke-width="1.5"/>
+          <g class="s-grey"><circle cx="62" cy="92" r="6"/><circle cx="96" cy="92" r="6"/><circle cx="118" cy="92" r="6"/><circle cx="134" cy="92" r="6"/><circle cx="158" cy="92" r="6"/><circle cx="174" cy="92" r="6"/><circle cx="198" cy="92" r="6"/><circle cx="222" cy="92" r="6"/></g>
+          <line x1="150" y1="70" x2="150" y2="114" class="s-idea"/>
+          <text x="150" y="130" text-anchor="middle" class="s-t">what it is really worth</text>
+          <circle cx="284" cy="92" r="6" class="s-ink"/><circle cx="284" cy="92" r="11" class="s-ring"/>
+          <text x="284" y="68" text-anchor="middle" class="s-tb">highest bid wins</text>
+          <line x1="153" y1="48" x2="281" y2="48" class="s-bounce"/>
+          <text x="217" y="38" text-anchor="middle" class="s-t">overpaid by this much</text>
+        </svg>
+        <h3>The winner's curse</h3>
+        <p>Pick the best of many wobbly numbers and you pick the one luck pushed highest. The name comes from 1971 oil-field auctions, where the company that bid most was usually the one that had guessed too high.</p>
+      </div>
+      <div class="name">
+        <svg viewBox="0 0 340 150" role="img" aria-label="Lines from parents' heights to their children's heights. The children sit closer to average.">
+          <line x1="24" y1="68" x2="316" y2="68" class="s-peg" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <g class="s-line"><line x1="80" y1="14" x2="260" y2="32"/><line x1="80" y1="41" x2="260" y2="50"/><line x1="80" y1="68" x2="260" y2="68"/><line x1="80" y1="95" x2="260" y2="86"/><line x1="80" y1="122" x2="260" y2="104"/></g>
+          <g class="s-ink"><circle cx="80" cy="14" r="5.5"/><circle cx="80" cy="41" r="5.5"/><circle cx="80" cy="68" r="5.5"/><circle cx="80" cy="95" r="5.5"/><circle cx="80" cy="122" r="5.5"/></g>
+          <g class="s-ideaf"><circle cx="260" cy="32" r="5.5"/><circle cx="260" cy="50" r="5.5"/><circle cx="260" cy="68" r="5.5"/><circle cx="260" cy="86" r="5.5"/><circle cx="260" cy="104" r="5.5"/></g>
+          <text x="80" y="143" text-anchor="middle" class="s-tb">parents</text>
+          <text x="260" y="143" text-anchor="middle" class="s-tb">their children</text>
+          <text x="316" y="62" text-anchor="end" class="s-t">average</text>
+          <text x="20" y="18" class="s-t">tall</text><text x="20" y="126" class="s-t">short</text>
+        </svg>
+        <h3>Regression to the mean</h3>
+        <p>Measure again and the luck is fresh. Extreme results drift back toward ordinary. In 1886 Francis Galton found that very tall parents had tall children, though about a third closer to average than they were.</p>
+      </div>
+    </div>
+    <p class="big">The curse is what picking does. Regression is what you see on the second look.</p>
+  </section>
+
+  <section aria-labelledby="h-size">
+    <h2 id="h-size">Bigger tests bounce less</h2>
+    <p>More visitors make the pins smaller. Drag the slider, or the chart, and watch the gap between test and truth close. The pin board above follows along.</p>
+    <div class="curve-head">
+      <div class="hero-num"><span class="label">Winners look too big by</span><span class="v num" id="c-ratio">0×</span></div>
+      <p class="sub" id="c-people" style="max-width:30ch"></p>
+    </div>
+    <div class="curve" id="curve" tabindex="0" role="img" aria-label="Curve showing that winners look less inflated as tests get bigger."></div>
+    <div class="legend">
+      <span><i class="sw idea" style="height:4px;width:18px;border-radius:2px"></i>1× means the test told the truth</span>
+      <span><i class="sw bounce" style="opacity:.55"></i>bounce</span>
+    </div>
+    <div class="slider">
+      <label for="size-b">Test size</label>
+      <input type="range" id="size-b" class="size" min="-1" max="4" step="0.25" value="0">
+      <output for="size-b" class="size-out">×1</output>
+      <div class="ends"><span>fewer visitors</span><span>more visitors</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-todo">
+    <h2 id="h-todo">What to do about it</h2>
+    <div class="todo">
+      <div class="wide">
+        <h3>Trim the number before you promise it</h3>
+        <p>The wobblier the test, the deeper the cut. For the winners on the pin board right now, dividing by <span class="num" id="t-div">0</span> lands close to the truth.</p>
+        <div class="trio" role="img" id="trio" aria-label="">
+          <div class="trio-row"><span>Tests said</span><div class="trio-track"><i class="idea" id="t-a1"></i><i class="bounce" id="t-a2"></i></div><span class="num" id="t-a">+0.0%</span></div>
+          <div class="trio-row"><span>Trimmed forecast</span><div class="trio-track"><i class="fore" id="t-b1"></i></div><span class="num" id="t-b">+0.0%</span></div>
+          <div class="trio-row"><span>Really worth</span><div class="trio-track"><i class="idea" id="t-c1"></i></div><span class="num" id="t-c">+0.0%</span></div>
+        </div>
+      </div>
+      <div>
+        <h3>Look twice</h3>
+        <p>After launch, keep a few visitors on the old page. That second measurement gets fresh luck, so it runs true.</p>
+      </div>
+      <div>
+        <h3>Test bigger</h3>
+        <p>More visitors, smaller pins, less to trim.</p>
+      </div>
+      <div>
+        <h3>Don't add up your wins</h3>
+        <p>Ten launches that each tested at +4% did not grow the business by 40%.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Sometimes the shrink is real.</b> Novelty wears off. Seasons change. Launch reaches people the test never saw. The bounce needs none of that. It vanishes without anything changing, because it was never there.</p>
+    <p><b>How the pin board is set up.</b> A typical idea is really worth about ±1%. An idea launches when its result beats 1.96 times the test's wobble, the usual "p &lt; 0.05" bar. Test size ×1 gives a wobble of ±1.5%, which is roughly 170,000 visitors per version on a page where 5% of them buy. The trim uses the classic shrinkage rule: real spread² ÷ (real spread² + wobble²). In a world with bigger ideas, the bounce matters less.</p>
+    <p><b>Where this comes from.</b> Capen, Clapp and Campbell, "Competitive Bidding in High-Risk Situations" (1971). Galton, "Regression towards Mediocrity in Hereditary Stature" (1886). Gelman and Carlin, "Beyond Power Calculations" (2014). Lee and Shen, "Winner's Curse: Bias Estimation for Total Effects of Features in Online Controlled Experiments" (2018).</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+var TAU=1, S0=1.5, N=400, DOM=[-6,8], SEED0=923;
+var $=function(s){return document.querySelector(s);};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+var clamp=function(v,a,b){return Math.max(a,Math.min(b,v));};
+var lerp=function(a,b,p){return a+(b-a)*p;};
+var reduced = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+var MONO='"DM Mono", ui-monospace, Menlo, Consolas, monospace';
+
+function mulberry(seed){ var a=seed>>>0; return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function gauss(r){ var u=0,v=0; while(u===0) u=r(); v=r(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function fmt(v,dp){ if(dp==null) dp=1; var s=Math.abs(v).toFixed(dp); return (v<0 && +s!==0 ? '−':'+')+s+'%'; }
+function mult(m){ var x=Math.pow(2,m); return '×'+(x>=10?x.toFixed(0):x.toFixed(x<1?2:1).replace(/\.?0+$/,'')); }
+function people(v){ var p=Math.pow(10,Math.floor(Math.log10(v))-1); var r=Math.round(v/p)*p; return r>=1e6 ? (r/1e6).toFixed(1).replace(/\.0$/,'')+' million' : Math.round(r).toLocaleString('en-US'); }
+function tokens(){ var c=getComputedStyle(document.documentElement), g=function(n){return c.getPropertyValue(n).trim();};
+  return {bg:g('--bg'),panel:g('--panel'),ink:g('--ink'),ink2:g('--ink-2'),ink3:g('--ink-3'),rule:g('--rule'),peg:g('--peg'),ball:g('--ball'),idea:g('--idea'),bounce:g('--bounce')}; }
+function fit(cv,H){ var dpr=Math.min(window.devicePixelRatio||1,2.5), W=cv.clientWidth, pw=Math.round(W*dpr), ph=Math.round(H*dpr);
+  if(cv.width!==pw||cv.height!==ph){ cv.width=pw; cv.height=ph; cv.style.height=H+'px'; }
+  var ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); return ctx; }
+function dot(ctx,x,y,r){ ctx.moveTo(x+r,y); ctx.arc(x,y,r,0,6.2832); }
+function stack(xs,base,area,d,r){ var bins={}, idx=[], max=0, i, b, c;
+  for(i=0;i<xs.length;i++){ b=Math.round(xs[i]/d); c=bins[b]||0; bins[b]=c+1; if(c+1>max) max=c+1; idx.push([b,c]); }
+  var step=Math.min(d,(area-r)/Math.max(1,max)), out=[];
+  for(i=0;i<xs.length;i++) out.push({x:idx[i][0]*d, y:base-r-idx[i][1]*step});
+  return out; }
+function pegs(ctx,c,W,top,bot,padL,padR){ ctx.fillStyle=c.peg; ctx.beginPath(); var row=0;
+  for(var y=top+8;y<bot-3;y+=17,row++){ for(var x=padL+(row%2?10:0);x<=W-padR;x+=20) dot(ctx,x,y,1.35); }
+  ctx.fill(); }
+function label(ctx,c,n,txt,x,y){ ctx.textAlign='left'; ctx.textBaseline='middle'; ctx.font='500 10.5px '+MONO;
+  ctx.fillStyle=c.ink; ctx.beginPath(); dot(ctx,x+7,y,7.5); ctx.fill();
+  ctx.fillStyle=c.panel; ctx.textAlign='center'; ctx.fillText(n,x+7,y+0.5);
+  ctx.fillStyle=c.ink3; ctx.textAlign='left'; ctx.fillText(txt,x+20,y+0.5); }
+function axis(ctx,c,X,y,lo,hi){ ctx.font='500 10.5px '+MONO; ctx.textAlign='center'; ctx.textBaseline='top'; ctx.fillStyle=c.ink3;
+  for(var v=lo;v<=hi;v+=2){ ctx.fillText(v===0?'0':(v<0?'−':'+')+Math.abs(v)+'%',X(v),y); } }
+
+/* ---------- one idea, many answers ---------- */
+var demo=$('#demo'), DD=[-5,7], IDEA=1, dres=[], drng=mulberry(2031), danim=null, DG=null;
+(function(){ for(var i=0;i<14;i++) dres.push(gauss(drng)); dres.push(1.13); })();
+function dLayout(){ var W=demo.clientWidth, padL=16, padR=16, r=clamp(W/150,3,4.4), d=2*r+0.8;
+  var X=function(v){return padL+(clamp(v,DD[0],DD[1])-DD[0])/(DD[1]-DD[0])*(W-padL-padR);};
+  var yTop=30, pegTop=48, pegBot=160, yB=222, H=266;
+  var pos=stack(dres.map(function(z){return X(IDEA+S0*z);}),yB,54,d,r);
+  var last=pos[pos.length-1], x0=X(IDEA), pts=[], R=7, sg=dres.length%2;
+  for(var k=0;k<=R;k++){ var p=k/R, off=(k>0&&k<R)?(((k+sg)%2)?1:-1)*9*(1-p*0.5):0; pts.push({x:lerp(x0,last.x,p)+off, y:lerp(yTop+9,last.y,p)}); }
+  DG={W:W,H:H,r:r,X:X,yTop:yTop,pegTop:pegTop,pegBot:pegBot,yB:yB,pos:pos,pts:pts,x0:x0}; }
+function along(pts,p){ var n=pts.length-1, f=clamp(p,0,1)*n, i=Math.min(n-1,Math.floor(f)), q=f-i; return {x:lerp(pts[i].x,pts[i+1].x,q), y:lerp(pts[i].y,pts[i+1].y,q)}; }
+function dDraw(p){ if(!DG) dLayout(); var g=DG, ctx=fit(demo,g.H), c=tokens(), i, done=(p==null||p>=1);
+  ctx.clearRect(0,0,g.W,g.H);
+  pegs(ctx,c,g.W,g.pegTop,g.pegBot,16,16);
+  ctx.strokeStyle=c.rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(16,g.yB+0.5); ctx.lineTo(g.W-16,g.yB+0.5); ctx.stroke();
+  ctx.strokeStyle=c.idea; ctx.globalAlpha=.5; ctx.setLineDash([3,4]); ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(g.x0,g.yTop+10); ctx.lineTo(g.x0,g.yB); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha=1;
+  ctx.fillStyle=c.ball; ctx.beginPath(); for(i=0;i<g.pos.length-1;i++) dot(ctx,g.pos[i].x,g.pos[i].y,g.r); ctx.fill();
+  var last=g.pos[g.pos.length-1], cur=done?last:along(g.pts,p*p*(0.35+0.65*p));
+  ctx.strokeStyle=c.bounce; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.lineCap='round'; ctx.globalAlpha=.85; ctx.beginPath();
+  var n=g.pts.length-1, f=(done?1:p*p*(0.35+0.65*p))*n;
+  ctx.moveTo(g.pts[0].x,g.pts[0].y); for(i=1;i<=Math.floor(f);i++) ctx.lineTo(g.pts[i].x,g.pts[i].y); ctx.lineTo(cur.x,cur.y); ctx.stroke(); ctx.globalAlpha=1;
+  ctx.fillStyle=c.ink; ctx.beginPath(); dot(ctx,cur.x,cur.y,g.r+0.6); ctx.fill();
+  ctx.strokeStyle=c.panel; ctx.lineWidth=2; ctx.stroke();
+  ctx.fillStyle=c.idea; ctx.beginPath(); dot(ctx,g.x0,g.yTop,8); ctx.fill(); ctx.strokeStyle=c.panel; ctx.lineWidth=2; ctx.stroke();
+  ctx.font='500 11px '+MONO; ctx.textBaseline='middle'; ctx.fillStyle=c.ink2;
+  var t='really worth +1%'; if(g.x0+16+ctx.measureText(t).width<g.W-8){ ctx.textAlign='left'; ctx.fillText(t,g.x0+15,g.yTop+0.5);} else { ctx.textAlign='right'; ctx.fillText(t,g.x0-15,g.yTop+0.5); }
+  if(done){ ctx.strokeStyle=c.bounce; ctx.lineWidth=4; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(g.x0,g.yB+10); ctx.lineTo(last.x,g.yB+10); ctx.stroke(); }
+  axis(ctx,c,g.X,g.yB+24,-4,6);
+}
+function dText(){ var z=dres[dres.length-1], b=S0*z, o=IDEA+b, sum=0; dres.forEach(function(v){sum+=IDEA+S0*v;});
+  $('#d-obs').textContent=fmt(o); $('#d-bounce').textContent=fmt(b)+' bounce';
+  $('#d-avg').textContent='Average of all '+dres.length+' tests: '+fmt(sum/dres.length); }
+function dPlay(){ if(danim) cancelAnimationFrame(danim); dLayout(); if(reduced){ dDraw(null); dText(); return; }
+  var t0=performance.now(); (function tick(now){ var p=(now-t0)/850; if(p>=1){ danim=null; dDraw(null); dText(); return; } dDraw(Math.max(0,p)); danim=requestAnimationFrame(tick); })(t0); }
+$('#d-one').addEventListener('click',function(){ if(dres.length>=220) dres=dres.slice(-14); dres.push(gauss(drng)); dPlay(); });
+$('#d-many').addEventListener('click',function(){ if(dres.length>=220) dres=dres.slice(-14); for(var i=0;i<20;i++) dres.push(gauss(drng)); if(danim){cancelAnimationFrame(danim);danim=null;} dLayout(); dDraw(null); dText(); });
+
+/* ---------- 400 ideas ---------- */
+var board=$('#board'), tip=$('#board-tip'), seed=SEED0, m=0, tests=[], S=null, G=null, hover=-1, anim=null;
+function generate(){ var r=mulberry(seed); tests=[]; for(var i=0;i<N;i++){ var t=TAU*gauss(r), z=gauss(r), ph=r()*6.2832; tests.push({t:t,z:z,ph:ph}); } }
+function sigma(){ return S0/Math.sqrt(Math.pow(2,m)); }
+function derive(){ var s=sigma(), thr=1.96*s, n=0, so=0, st=0, harm=0;
+  tests.forEach(function(k){ k.obs=k.t+s*k.z; k.win=k.obs>thr; if(k.win){ n++; so+=k.obs; st+=k.t; if(k.t<0) harm++; } });
+  S={s:s,thr:thr,n:n,mo:n?so/n:0,mt:n?st/n:0,harm:harm,B:TAU*TAU/(TAU*TAU+s*s)}; }
+function layout(){ var W=board.clientWidth, padL=14, padR=14, r=clamp(W/270,2.1,3.1), d=2*r+0.7;
+  var X=function(v){return padL+(clamp(v,DOM[0],DOM[1])-DOM[0])/(DOM[1]-DOM[0])*(W-padL-padR);};
+  var yA=80, pegTop=94, pegBot=204, yB=304, yC=404, H=452;
+  var A=stack(tests.map(function(k){return X(k.t);}),yA,54,d,r);
+  var Bp=stack(tests.map(function(k){return X(k.obs);}),yB,88,d,r);
+  var wi=[]; tests.forEach(function(k,i){ if(k.win) wi.push(i); }); wi.sort(function(a,b){return tests[a].obs-tests[b].obs;});
+  var Cw=stack(wi.map(function(i){return X(tests[i].t);}),yC,40,d,r), C=[]; wi.forEach(function(i,j){ C[i]=Cw[j]; });
+  G={W:W,H:H,r:r,X:X,padL:padL,padR:padR,yA:yA,pegTop:pegTop,pegBot:pegBot,yB:yB,yC:yC,A:A,B:Bp,C:C,wi:wi}; }
+var REL0=.15, SPREAD=1.5, FALL=.95, T2=REL0+SPREAD+FALL+.2, T3=T2+.45, WD=.9;
+function endTime(){ return T3+Math.min(1,.05*S.n)+WD+.15; }
+function draw(T){ if(!G) layout(); var g=G, ctx=fit(board,g.H), c=tokens(), rest=(T==null), i, k, p, q, e, a, b;
+  ctx.clearRect(0,0,g.W,g.H);
+  var xs=g.X(S.thr), x0=g.X(0);
+  ctx.fillStyle=c.ink; ctx.globalAlpha=.055; ctx.fillRect(xs,g.pegTop,g.W-xs,g.yB-g.pegTop); ctx.globalAlpha=1;
+  ctx.strokeStyle=c.rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x0+0.5,26); ctx.lineTo(x0+0.5,g.yC);
+  ctx.moveTo(g.padL,g.yA+0.5); ctx.lineTo(g.W-g.padR,g.yA+0.5); ctx.moveTo(g.padL,g.yB+0.5); ctx.lineTo(g.W-g.padR,g.yB+0.5); ctx.moveTo(g.padL,g.yC+0.5); ctx.lineTo(g.W-g.padR,g.yC+0.5); ctx.stroke();
+  pegs(ctx,c,g.W,g.pegTop,g.pegBot,g.padL,g.padR);
+  // 1: real worth
+  ctx.fillStyle=c.idea; ctx.globalAlpha=.42; ctx.beginPath(); for(i=0;i<N;i++) dot(ctx,g.A[i].x,g.A[i].y,g.r); ctx.fill(); ctx.globalAlpha=1;
+  // ship line
+  ctx.strokeStyle=c.ink; ctx.lineWidth=1.5; ctx.setLineDash([5,4]); ctx.beginPath(); ctx.moveTo(xs,g.pegTop); ctx.lineTo(xs,g.yB); ctx.stroke(); ctx.setLineDash([]);
+  ctx.font='500 10.5px '+MONO; ctx.textBaseline='middle'; ctx.fillStyle=c.ink; var sl='SHIP LINE';
+  if(xs+8+ctx.measureText(sl).width<g.W-4){ ctx.textAlign='left'; ctx.fillText(sl,xs+7,g.pegTop+9); } else { ctx.textAlign='right'; ctx.fillText(sl,xs-7,g.pegTop+9); }
+  // 2: test results
+  var showWin=rest||T>=T2, cur=[];
+  ctx.fillStyle=c.ball; ctx.beginPath();
+  for(i=0;i<N;i++){ k=tests[i]; p=rest?1:clamp((T-(REL0+SPREAD*i/N))/FALL,0,1); if(p<=0){ cur[i]=null; continue; }
+    if(p>=1){ cur[i]=g.B[i]; } else { a=g.A[i]; b=g.B[i]; e=p*p*(3-2*p); cur[i]={x:lerp(a.x,b.x,e)+Math.sin(p*7*Math.PI+k.ph)*3.5*(1-p)*Math.min(1,p*4), y:lerp(a.y,b.y,Math.pow(p,1.7))}; }
+    if(!(k.win&&showWin)) dot(ctx,cur[i].x,cur[i].y,g.r); }
+  ctx.fill();
+  if(showWin){ ctx.fillStyle=c.ink; ctx.beginPath(); g.wi.forEach(function(i){ if(cur[i]) dot(ctx,cur[i].x,cur[i].y,g.r); }); ctx.fill(); }
+  // 3: after launch
+  var nW=g.wi.length, wsp=Math.min(1,.05*nW), pts=[];
+  ctx.strokeStyle=c.bounce; ctx.lineWidth=1.2; ctx.globalAlpha=.6; ctx.beginPath();
+  g.wi.forEach(function(i,j){ q=rest?1:clamp((T-T3-wsp*j/Math.max(1,nW))/WD,0,1); if(q<=0) return; e=q*q*(3-2*q); a=g.B[i]; b=g.C[i]; var pt={x:lerp(a.x,b.x,e),y:lerp(a.y,b.y,e)}; pts.push(pt); ctx.moveTo(a.x,a.y); ctx.lineTo(pt.x,pt.y); });
+  ctx.stroke(); ctx.globalAlpha=1;
+  ctx.fillStyle=c.idea; ctx.beginPath(); pts.forEach(function(pt){ dot(ctx,pt.x,pt.y,g.r); }); ctx.fill();
+  // band labels
+  label(ctx,c,'1','REAL WORTH',g.padL,14);
+  label(ctx,c,'2','TEST RESULT',g.padL,g.pegBot+20);
+  label(ctx,c,'3','AFTER LAUNCH',g.padL,g.yB+24);
+  // mean markers
+  if((rest||T>=endTime()-.15) && nW>0){ var top=g.yB; g.wi.forEach(function(i){ if(g.B[i].y<top) top=g.B[i].y; });
+    var narrow=g.W<480, t1=(narrow?'said ':'tests said ')+fmt(S.mo), t2=(narrow?'worth ':'really worth ')+fmt(S.mt);
+    ctx.font='500 11px '+MONO; ctx.fillStyle=c.ink; ctx.textBaseline='middle'; ctx.textAlign='center';
+    var xo=g.X(S.mo), xt=g.X(S.mt), w1=ctx.measureText(t1).width/2+4, w2=ctx.measureText(t2).width/2+4, y1=top-22;
+    ctx.fillText(t1,clamp(xo,Math.min(xs+w1,g.W-w1),g.W-w1),y1);
+    ctx.beginPath(); ctx.moveTo(xo-4.5,y1+9); ctx.lineTo(xo+4.5,y1+9); ctx.lineTo(xo,y1+15); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(xt-4.5,g.yC+11); ctx.lineTo(xt+4.5,g.yC+11); ctx.lineTo(xt,g.yC+5); ctx.closePath(); ctx.fill();
+    ctx.fillText(t2,clamp(xt,w2,g.W-w2),g.yC+21); }
+  axis(ctx,c,g.X,g.yC+33,-6,8);
+  // hover
+  if(rest&&hover>=0){ a=g.A[hover]; b=g.B[hover]; k=tests[hover];
+    ctx.strokeStyle=c.bounce; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    ctx.fillStyle=c.idea; ctx.beginPath(); dot(ctx,a.x,a.y,g.r+1.5); ctx.fill();
+    ctx.fillStyle=k.win?c.ink:c.ball; ctx.beginPath(); dot(ctx,b.x,b.y,g.r+1.5); ctx.fill();
+    ctx.strokeStyle=c.ink; ctx.lineWidth=1.5; ctx.beginPath(); dot(ctx,a.x,a.y,g.r+4); dot(ctx,b.x,b.y,g.r+4); if(k.win) dot(ctx,g.C[hover].x,g.C[hover].y,g.r+4); ctx.stroke(); }
+}
+function play(){ if(anim) cancelAnimationFrame(anim); hover=-1; tip.classList.remove('show'); if(reduced){ anim=null; draw(null); return; }
+  var t0=performance.now(), end=endTime(); (function tick(now){ var T=(now-t0)/1000; if(T>=end){ anim=null; draw(null); return; } draw(T); anim=requestAnimationFrame(tick); })(t0); }
+function stop(){ if(anim){ cancelAnimationFrame(anim); anim=null; } }
+function pick(ev){ if(anim||!G) return; var rc=board.getBoundingClientRect(), x=ev.clientX-rc.left, y=ev.clientY-rc.top, best=-1, bd=18*18;
+  for(var i=0;i<N;i++){ var dx=G.B[i].x-x, dy=G.B[i].y-y, dd=dx*dx+dy*dy; if(dd<bd){ bd=dd; best=i; } }
+  if(best!==hover){ hover=best; draw(null); }
+  if(best>=0){ var k=tests[best]; tip.innerHTML='<div>test said '+fmt(k.obs)+'</div><div>really worth '+fmt(k.t)+'</div><div>'+(k.win?'launched':'not launched')+'</div>';
+    tip.style.left=clamp(G.B[best].x,78,G.W-78)+'px'; tip.style.top=(G.B[best].y-12)+'px'; tip.classList.add('show'); } else tip.classList.remove('show'); }
+board.addEventListener('pointermove',pick); board.addEventListener('pointerdown',pick);
+board.addEventListener('pointerleave',function(){ if(hover>=0){ hover=-1; draw(null); } tip.classList.remove('show'); });
+$('#b-new').addEventListener('click',function(){ seed=(Math.imul(seed,1664525)+1013904223)>>>0; generate(); derive(); layout(); paint(); play(); });
+$('#b-replay').addEventListener('click',function(){ layout(); play(); });
+
+/* ---------- curve ---------- */
+var curve=$('#curve'), dragging=false, crossV=null;
+function over(v){ return 1+(S0*S0)/(TAU*TAU*Math.pow(2,v)); }
+function renderCurve(){ var W=curve.clientWidth||600, H=W<480?236:280, mg={l:40,r:16,t:18,b:40};
+  var sx=function(v){return mg.l+(v+1)/5*(W-mg.l-mg.r);}, sy=function(f){return mg.t+(6-f)/5*(H-mg.t-mg.b);};
+  var s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" aria-hidden="true">', f, v, d='', ar='';
+  for(f=2;f<=6;f++) s+='<line class="cv-grid" x1="'+mg.l+'" x2="'+(W-mg.r)+'" y1="'+(sy(f)+.5)+'" y2="'+(sy(f)+.5)+'"/>';
+  for(f=1;f<=6;f++) s+='<text class="cv-t" x="'+(mg.l-8)+'" y="'+(sy(f)+4)+'" text-anchor="end">'+f+'×</text>';
+  for(v=-1;v<=4;v++) s+='<text class="cv-t" x="'+sx(v)+'" y="'+(H-mg.b+17)+'" text-anchor="middle">'+mult(v)+'</text>';
+  s+='<text class="cv-t" x="'+(W-mg.r)+'" y="'+(H-7)+'" text-anchor="end">test size →</text>';
+  for(v=-1;v<=4.0001;v+=.05){ d+=(d?'L':'M')+sx(v).toFixed(1)+' '+sy(over(v)).toFixed(1); }
+  ar=d+'L'+sx(4)+' '+sy(1)+'L'+sx(-1)+' '+sy(1)+'Z';
+  s+='<path class="cv-area" d="'+ar+'"/><path class="cv-line" d="'+d+'"/>';
+  s+='<line class="cv-base" x1="'+mg.l+'" x2="'+(W-mg.r)+'" y1="'+sy(1)+'" y2="'+sy(1)+'"/>';
+  if(crossV!=null && Math.abs(crossV-m)>.1){ s+='<line class="cv-cross" x1="'+sx(crossV)+'" x2="'+sx(crossV)+'" y1="'+mg.t+'" y2="'+sy(1)+'"/><circle class="cv-hd" cx="'+sx(crossV)+'" cy="'+sy(over(crossV))+'" r="4.5"/>';
+    var lx=sx(crossV), an=lx>W-120?'end':'start'; s+='<text class="cv-t" x="'+(lx+(an==='end'?-9:9))+'" y="'+(sy(over(crossV))-9)+'" text-anchor="'+an+'">'+mult(crossV)+' size: '+over(crossV).toFixed(1)+'×</text>'; }
+  var cx=sx(m), cy=sy(over(m)), end=cx>W-90;
+  s+='<circle class="cv-dot" cx="'+cx+'" cy="'+cy+'" r="6.5"/><text class="cv-lab" x="'+(cx+(end?-11:11))+'" y="'+(cy-11)+'" text-anchor="'+(end?'end':'start')+'">'+over(m).toFixed(1)+'×</text>';
+  curve.innerHTML=s+'</svg>'; }
+function vAt(ev){ var rc=curve.getBoundingClientRect(), W=rc.width; return clamp((ev.clientX-rc.left-40)/(W-56)*5-1,-1,4); }
+curve.addEventListener('pointerdown',function(ev){ dragging=true; try{curve.setPointerCapture(ev.pointerId);}catch(e){} setM(Math.round(vAt(ev)*4)/4); });
+curve.addEventListener('pointermove',function(ev){ var v=vAt(ev); if(dragging){ crossV=null; setM(Math.round(v*4)/4); } else { crossV=Math.round(v*20)/20; renderCurve(); } });
+['pointerup','pointercancel'].forEach(function(n){ curve.addEventListener(n,function(){ dragging=false; }); });
+curve.addEventListener('pointerleave',function(){ if(!dragging){ crossV=null; renderCurve(); } });
+curve.addEventListener('keydown',function(ev){ if(ev.key==='ArrowRight'||ev.key==='ArrowUp'){ setM(Math.min(4,m+.25)); ev.preventDefault(); } if(ev.key==='ArrowLeft'||ev.key==='ArrowDown'){ setM(Math.max(-1,m-.25)); ev.preventDefault(); } });
+
+/* ---------- shared state ---------- */
+function paint(){ var ok=S.n>0&&S.mt>0.05, ratio=ok?S.mo/S.mt:null;
+  $('#s-n').textContent=S.n; $('#s-obs').textContent=fmt(S.mo); $('#s-true').textContent=fmt(S.mt); $('#s-ratio').textContent=ok?ratio.toFixed(1)+'×':'—';
+  $('#s-harm').textContent=S.harm===0?'None of these winners is actually harmful, but every one of them looked better than it is on average.':(S.harm===1?'One of these winners is really worth less than nothing. It launched anyway.':S.harm+' of these winners are really worth less than nothing. They launched anyway.');
+  $$('.size').forEach(function(el){ if(+el.value!==m) el.value=m; el.setAttribute('aria-valuetext',mult(m)+' test size'); });
+  $$('.size-out').forEach(function(el){ el.textContent=mult(m); });
+  $('#c-ratio').textContent=over(m).toFixed(1)+'×';
+  $('#c-people').textContent='About '+people(169000*Math.pow(2,m))+' visitors per version, on a page where 5% buy.';
+  board.setAttribute('aria-label','Pin board with 400 tests. '+S.n+' land past the ship line and launch. Their tests said '+fmt(S.mo)+' on average. They are really worth '+fmt(S.mt)+' on average.');
+  var fore=S.B*S.mo, tr=clamp(S.mt/Math.max(S.mo,.001),0,1);
+  $('#t-div').textContent=(1/S.B).toFixed(1); $('#t-a').textContent=fmt(S.mo); $('#t-b').textContent=fmt(fore); $('#t-c').textContent=fmt(S.mt);
+  $('#t-a1').style.width=(tr*100)+'%'; $('#t-a2').style.width=((1-tr)*100)+'%'; $('#t-b1').style.width=(clamp(S.B,0,1)*100)+'%'; $('#t-c1').style.width=(tr*100)+'%';
+  $('#trio').setAttribute('aria-label','Tests said '+fmt(S.mo)+'. Trimmed forecast '+fmt(fore)+'. Really worth '+fmt(S.mt)+'.');
+  renderCurve(); }
+function setM(v){ v=clamp(v,-1,4); if(v===m){ return; } m=v; stop(); hover=-1; tip.classList.remove('show'); derive(); layout(); paint(); draw(null); }
+$$('.size').forEach(function(el){ el.addEventListener('input',function(){ setM(+el.value); }); });
+
+function redrawAll(){ dLayout(); dDraw(null); layout(); if(!anim) draw(null); renderCurve(); }
+generate(); derive(); dLayout(); dDraw(null); dText(); layout(); paint(); draw(null);
+var rz=null; function onResize(){ if(rz) return; rz=requestAnimationFrame(function(){ rz=null; redrawAll(); }); }
+if(window.ResizeObserver){ new ResizeObserver(onResize).observe(board.parentNode); } window.addEventListener('resize',onResize);
+if(window.matchMedia){ var mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',redrawAll); else if(mq.addListener) mq.addListener(redrawAll); }
+if(window.MutationObserver){ new MutationObserver(redrawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class','style']}); }
+if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(redrawAll); }
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

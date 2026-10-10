@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How Bison Build Muscle | Explainers</title>
+<meta name="description" content="A bison eats only grass and still builds muscle. The grass feeds microbes, and the microbes feed the bison.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/how-bison-build-muscle/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="How Bison Build Muscle">
+<meta property="og:description" content="A bison eats only grass and still builds muscle. The grass feeds microbes, and the microbes feed the bison.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/how-bison-build-muscle/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/how-bison-build-muscle/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Zilla+Slab:wght@600;700&display=swap">
+<style>
+/* Layout: follow one mouthful of grass down a single wide column under a big prairie sky;
+   each stop is one large picture with a slab headline and a sentence. Violet marks the microbes everywhere. */
+:root{
+  --sky:#DEE7EC; --paper:#F4F7F8; --ink:#231C1A; --ink-2:#5A5350; --line:#B5C0C7;
+  --grass:#4C7526; --grass-2:#A8C27C; --on-grass:#FFFFFF;
+  --bug:#6B2FA0; --on-bug:#FFFFFF;
+  --bison:#3A2A22;
+  --f-display:"Zilla Slab",Rockwell,"Roboto Slab",Georgia,serif;
+  --f-body:"Karla",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --sky:#11161C; --paper:#1A212A; --ink:#ECE8E3; --ink-2:#A9A39D; --line:#36414C;
+    --grass:#8DB85A; --grass-2:#49632B; --on-grass:#10200A;
+    --bug:#BA8CF2; --on-bug:#1A0B2B;
+    --bison:#8C7767; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --sky:#11161C; --paper:#1A212A; --ink:#ECE8E3; --ink-2:#A9A39D; --line:#36414C;
+  --grass:#8DB85A; --grass-2:#49632B; --on-grass:#10200A;
+  --bug:#BA8CF2; --on-bug:#1A0B2B;
+  --bison:#8C7767; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--sky);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.5}
+.page{max-width:1000px;margin-inline:auto;padding-inline:20px;padding-block:48px 72px;display:flex;flex-direction:column;gap:76px}
+p{margin:0}
+h1,h2{margin:0;font-family:var(--f-display);font-weight:700;line-height:1.04;text-wrap:balance}
+
+.hero{display:flex;flex-direction:column;gap:18px}
+.hero h1{font-size:clamp(1.15rem,2.6vw,1.5rem);font-weight:600;color:var(--ink-2)}
+.answer{font-family:var(--f-display);font-weight:700;font-size:clamp(2.3rem,7.4vw,4.8rem);line-height:1}
+.answer em{font-style:normal;color:var(--bug)}
+.hero figure{padding:0;background:none}
+
+section{display:flex;flex-direction:column;gap:16px}
+section h2{font-size:clamp(1.9rem,5vw,3rem)}
+.say{max-width:56ch;color:var(--ink-2);font-size:1.12rem}
+.say b{color:var(--ink);font-weight:700}
+figure{margin:0;background:var(--paper);padding:24px}
+figcaption{margin-top:16px;font-size:1rem;color:var(--ink-2);max-width:62ch}
+.scroll{overflow-x:auto}
+.scroll svg{min-width:640px}
+svg{display:block;max-width:100%;height:auto}
+
+/* svg tokens */
+.f-bison{fill:var(--bison)} .f-paper{fill:var(--paper)} .f-sky{fill:var(--sky)} .f-ink{fill:var(--ink)}
+.f-grass{fill:var(--grass)} .f-grass2{fill:var(--grass-2)} .f-bug{fill:var(--bug)}
+.s-ink{stroke:var(--ink);stroke-width:2.5;fill:none} .s-line{stroke:var(--line);stroke-width:2;fill:none}
+.s-bug{stroke:var(--bug);stroke-width:4;fill:none} .s-bison{stroke:var(--bison);stroke-width:7;fill:none;stroke-linecap:round}
+.s-fleck{stroke:var(--grass);stroke-width:3;stroke-linecap:round}
+.o-ink{stroke:var(--ink);stroke-width:2.5}
+.t-d{font-family:var(--f-display);font-weight:700;font-size:21px;fill:var(--ink)}
+.t-b{font-family:var(--f-body);font-size:17px;fill:var(--ink-2)}
+.t-on-bug{font-family:var(--f-display);font-weight:700;font-size:21px;fill:var(--on-bug)}
+.t-on-bug-b{font-family:var(--f-body);font-size:17px;fill:var(--on-bug)}
+.t-on-grass{font-family:var(--f-display);font-weight:700;font-size:21px;fill:var(--on-grass)}
+.t-on-grass-b{font-family:var(--f-body);font-size:17px;fill:var(--on-grass)}
+.t-hero{font-family:var(--f-display);font-weight:700;font-size:34px;fill:var(--ink)}
+.t-hero-b{font-family:var(--f-body);font-size:26px;fill:var(--ink-2)}
+.t-st{font-family:var(--f-body);font-weight:500;font-size:17px;fill:var(--ink)}
+.t-st-bug{font-family:var(--f-display);font-weight:700;font-size:17px;fill:var(--on-bug)}
+
+@keyframes drift{from{transform:translate(-3px,2px)}to{transform:translate(3px,-2px)}}
+.swim-a{animation:drift 5s ease-in-out infinite alternate}
+.swim-b{animation:drift 7s ease-in-out infinite alternate-reverse}
+@media (prefers-reduced-motion:reduce){.swim-a,.swim-b{animation:none}}
+
+/* the daily haul */
+.haul{display:flex;flex-direction:column;gap:14px}
+.haul-bar{display:flex;gap:2px;height:44px}
+.haul-rest{flex:92 1 0;background:var(--grass-2)}
+.haul-p{flex:8 1 0;background:var(--grass)}
+.haul-nums{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px}
+.num{display:flex;flex-direction:column;gap:2px}
+.num b{font:700 clamp(2rem,6vw,3.2rem)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.num span{color:var(--ink-2);font-size:1rem}
+.num.right{text-align:right;align-items:flex-end}
+
+.close{gap:14px;padding-top:40px;border-top:10px solid var(--grass)}
+.close .big{font-size:clamp(2.4rem,8vw,5rem)}
+.sources{font-size:.95rem;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.sources h2{font-size:1.05rem}
+.sources ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.sources a{color:var(--ink);text-underline-offset:3px;overflow-wrap:anywhere}
+a:focus-visible{outline:3px solid var(--bug);outline-offset:3px}
+
+@media (max-width:680px){
+  body{font-size:17px}
+  .page{gap:56px;padding-block:32px 56px}
+  figure{padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <h1>How does a bison build muscle when all it eats is grass?</h1>
+  <p class="answer">The grass feeds <em>microbes</em>. The microbes feed the bison.</p>
+  <figure>
+    <svg viewBox="0 0 960 470" role="img" aria-label="A bison standing in grass. A window in its side shows the rumen, a large chamber crowded with microbes and bits of grass.">
+      <path class="f-bison" opacity=".55" d="M352 350L388 350L384 440L356 440zM684 340L724 340L718 440L690 440z"/>
+      <path class="s-bison" d="M803 232Q842 268 828 332"/>
+      <path class="f-bison" d="M150 330Q150 290 185 262Q215 160 330 112Q420 96 520 160Q640 185 760 205Q815 225 808 320L800 440L758 440L752 350Q600 385 470 360L452 440L410 440L402 372Q340 420 268 398Q200 388 150 330Z"/>
+      <path class="f-bison" d="M206 252Q186 214 224 200Q208 226 228 248Z"/>
+      <circle class="f-paper" cx="194" cy="292" r="5"/>
+      <ellipse class="f-paper" cx="612" cy="284" rx="128" ry="82"/>
+      <g class="swim-a"><line class="s-fleck" x1="571" y1="228" x2="574" y2="245"/><rect class="f-bug" x="612" y="262" width="16" height="7" rx="3.5" transform="rotate(118 620 266)"/><rect class="f-bug" x="587" y="325" width="16" height="7" rx="3.5" transform="rotate(122 595 328)"/><line class="s-fleck" x1="639" y1="336" x2="642" y2="354"/><circle class="f-bug" cx="569" cy="327" r="3.5"/><rect class="f-bug" x="635" y="263" width="16" height="7" rx="3.5" transform="rotate(58 643 267)"/><line class="s-fleck" x1="562" y1="293" x2="579" y2="298"/><circle class="f-bug" cx="678" cy="311" r="4.5"/><circle class="f-bug" cx="663" cy="255" r="5.5"/><line class="s-fleck" x1="679" y1="289" x2="664" y2="299"/><rect class="f-bug" x="578" y="303" width="16" height="7" rx="3.5" transform="rotate(173 586 307)"/><circle class="f-bug" cx="562" cy="272" r="4.5"/><line class="s-fleck" x1="706" y1="305" x2="721" y2="314"/><circle class="f-bug" cx="588" cy="270" r="3.5"/><circle class="f-bug" cx="523" cy="265" r="5.5"/><line class="s-fleck" x1="684" y1="229" x2="687" y2="247"/><circle class="f-bug" cx="580" cy="220" r="5.5"/><circle class="f-bug" cx="714" cy="277" r="5.5"/><line class="s-fleck" x1="649" y1="316" x2="643" y2="333"/><rect class="f-bug" x="548" y="252" width="16" height="7" rx="3.5" transform="rotate(169 556 256)"/><circle class="f-bug" cx="637" cy="285" r="4.5"/><line class="s-fleck" x1="653" y1="331" x2="668" y2="340"/><rect class="f-bug" x="544" y="335" width="16" height="7" rx="3.5" transform="rotate(36 552 338)"/><circle class="f-bug" cx="587" cy="246" r="3.5"/><line class="s-fleck" x1="713" y1="294" x2="731" y2="295"/><circle class="f-bug" cx="538" cy="276" r="5.5"/><circle class="f-bug" cx="503" cy="269" r="3.5"/><line class="s-fleck" x1="641" y1="241" x2="658" y2="248"/><circle class="f-bug" cx="621" cy="352" r="5.5"/><circle class="f-bug" cx="604" cy="218" r="3.5"/><line class="s-fleck" x1="529" y1="320" x2="511" y2="323"/><circle class="f-bug" cx="679" cy="266" r="4.5"/></g>
+      <g class="swim-b"><circle class="f-bug" cx="646" cy="226" r="5.5"/><rect class="f-bug" x="505" y="282" width="16" height="7" rx="3.5" transform="rotate(2 513 285)"/><rect class="f-bug" x="520" y="243" width="16" height="7" rx="3.5" transform="rotate(137 528 246)"/><circle class="f-bug" cx="692" cy="255" r="4.5"/><circle class="f-bug" cx="540" cy="295" r="5.5"/><rect class="f-bug" x="615" y="221" width="16" height="7" rx="3.5" transform="rotate(137 623 225)"/><circle class="f-bug" cx="602" cy="257" r="3.5"/><circle class="f-bug" cx="618" cy="335" r="5.5"/><rect class="f-bug" x="501" y="303" width="16" height="7" rx="3.5" transform="rotate(156 509 307)"/><rect class="f-bug" x="598" y="303" width="16" height="7" rx="3.5" transform="rotate(97 606 306)"/><rect class="f-bug" x="676" y="330" width="16" height="7" rx="3.5" transform="rotate(103 684 334)"/><circle class="f-bug" cx="632" cy="252" r="3.5"/><circle class="f-bug" cx="701" cy="322" r="4.5"/><circle class="f-bug" cx="547" cy="238" r="4.5"/><rect class="f-bug" x="596" y="278" width="16" height="7" rx="3.5" transform="rotate(122 604 282)"/><rect class="f-bug" x="529" y="317" width="16" height="7" rx="3.5" transform="rotate(17 537 321)"/><rect class="f-bug" x="550" y="307" width="16" height="7" rx="3.5" transform="rotate(175 558 310)"/><circle class="f-bug" cx="688" cy="281" r="4.5"/><rect class="f-bug" x="582" y="341" width="16" height="7" rx="3.5" transform="rotate(65 590 345)"/><circle class="f-bug" cx="626" cy="319" r="3.5"/><circle class="f-bug" cx="612" cy="240" r="4.5"/><rect class="f-bug" x="617" y="298" width="16" height="7" rx="3.5" transform="rotate(171 625 301)"/><rect class="f-bug" x="656" y="274" width="16" height="7" rx="3.5" transform="rotate(96 664 277)"/><circle class="f-bug" cx="569" cy="346" r="4.5"/><circle class="f-bug" cx="655" cy="302" r="4.5"/><rect class="f-bug" x="566" y="256" width="16" height="7" rx="3.5" transform="rotate(163 574 259)"/><rect class="f-bug" x="655" y="224" width="16" height="7" rx="3.5" transform="rotate(160 663 227)"/><circle class="f-bug" cx="713" cy="255" r="4.5"/><rect class="f-bug" x="694" y="292" width="16" height="7" rx="3.5" transform="rotate(136 702 296)"/><circle class="f-bug" cx="559" cy="225" r="5.5"/><circle class="f-bug" cx="586" cy="287" r="3.5"/><circle class="f-bug" cx="526" cy="303" r="4.5"/></g>
+      <line class="s-ink" x1="700" y1="128" x2="660" y2="206"/>
+      <text class="t-hero" x="720" y="72" text-anchor="middle">Rumen</text>
+      <text class="t-hero-b" x="720" y="106" text-anchor="middle">a vat of microbes</text>
+      <polygon class="f-grass" points="0,441 6,441 9,409"/><polygon class="f-grass2" points="7,441 13,441 5,424"/><polygon class="f-grass" points="16,441 22,441 20,414"/><polygon class="f-grass" points="24,441 30,441 22,402"/><polygon class="f-grass" points="32,441 38,441 31,425"/><polygon class="f-grass" points="39,441 45,441 36,427"/><polygon class="f-grass" points="47,441 53,441 56,410"/><polygon class="f-grass" points="54,441 60,441 51,418"/><polygon class="f-grass" points="61,441 67,441 69,404"/><polygon class="f-grass" points="71,441 77,441 68,418"/><polygon class="f-grass" points="78,441 84,441 79,409"/><polygon class="f-grass" points="84,441 90,441 84,402"/><polygon class="f-grass2" points="93,441 99,441 91,400"/><polygon class="f-grass" points="103,441 109,441 111,424"/><polygon class="f-grass2" points="111,441 117,441 109,409"/><polygon class="f-grass" points="118,441 124,441 121,421"/><polygon class="f-grass2" points="124,441 130,441 124,422"/><polygon class="f-grass" points="133,441 139,441 136,420"/><polygon class="f-grass" points="140,441 146,441 139,411"/><polygon class="f-grass" points="148,441 154,441 149,414"/><polygon class="f-grass2" points="155,441 161,441 153,418"/><polygon class="f-grass2" points="163,441 169,441 162,402"/><polygon class="f-grass" points="172,441 178,441 171,418"/><polygon class="f-grass" points="178,441 184,441 181,397"/><polygon class="f-grass" points="185,441 191,441 183,416"/><polygon class="f-grass2" points="194,441 200,441 198,425"/><polygon class="f-grass2" points="202,441 208,441 211,411"/><polygon class="f-grass2" points="212,441 218,441 219,412"/><polygon class="f-grass2" points="218,441 224,441 219,404"/><polygon class="f-grass2" points="228,441 234,441 225,406"/><polygon class="f-grass" points="237,441 243,441 237,407"/><polygon class="f-grass" points="247,441 253,441 251,426"/><polygon class="f-grass2" points="256,441 262,441 262,401"/><polygon class="f-grass" points="266,441 272,441 270,420"/><polygon class="f-grass" points="274,441 280,441 270,427"/><polygon class="f-grass" points="283,441 289,441 293,407"/><polygon class="f-grass" points="292,441 298,441 289,420"/><polygon class="f-grass2" points="298,441 304,441 298,411"/><polygon class="f-grass" points="307,441 313,441 304,423"/><polygon class="f-grass" points="314,441 320,441 313,399"/><polygon class="f-grass" points="322,441 328,441 325,407"/><polygon class="f-grass2" points="331,441 337,441 327,423"/><polygon class="f-grass" points="338,441 344,441 342,411"/><polygon class="f-grass2" points="346,441 352,441 352,418"/><polygon class="f-grass" points="357,441 363,441 366,422"/><polygon class="f-grass" points="367,441 373,441 372,409"/><polygon class="f-grass" points="376,441 382,441 378,427"/><polygon class="f-grass2" points="383,441 389,441 382,417"/><polygon class="f-grass2" points="390,441 396,441 391,410"/><polygon class="f-grass" points="398,441 404,441 399,403"/><polygon class="f-grass" points="408,441 414,441 414,412"/><polygon class="f-grass2" points="419,441 425,441 417,396"/><polygon class="f-grass" points="427,441 433,441 425,411"/><polygon class="f-grass" points="433,441 439,441 437,406"/><polygon class="f-grass2" points="443,441 449,441 443,419"/><polygon class="f-grass2" points="450,441 456,441 459,416"/><polygon class="f-grass" points="458,441 464,441 465,403"/><polygon class="f-grass2" points="466,441 472,441 472,421"/><polygon class="f-grass2" points="474,441 480,441 481,407"/><polygon class="f-grass2" points="484,441 490,441 481,426"/><polygon class="f-grass" points="491,441 497,441 497,425"/><polygon class="f-grass2" points="498,441 504,441 507,422"/><polygon class="f-grass2" points="506,441 512,441 510,423"/><polygon class="f-grass" points="513,441 519,441 513,420"/><polygon class="f-grass" points="522,441 528,441 527,413"/><polygon class="f-grass" points="532,441 538,441 539,407"/><polygon class="f-grass2" points="538,441 544,441 541,405"/><polygon class="f-grass" points="549,441 555,441 547,422"/><polygon class="f-grass2" points="559,441 565,441 563,425"/><polygon class="f-grass" points="567,441 573,441 574,410"/><polygon class="f-grass" points="578,441 584,441 584,415"/><polygon class="f-grass" points="588,441 594,441 594,397"/><polygon class="f-grass2" points="599,441 605,441 599,410"/><polygon class="f-grass2" points="610,441 616,441 610,408"/><polygon class="f-grass" points="620,441 626,441 629,427"/><polygon class="f-grass" points="628,441 634,441 638,407"/><polygon class="f-grass" points="638,441 644,441 646,411"/><polygon class="f-grass" points="644,441 650,441 641,402"/><polygon class="f-grass2" points="652,441 658,441 656,398"/><polygon class="f-grass2" points="661,441 667,441 670,419"/><polygon class="f-grass" points="672,441 678,441 669,413"/><polygon class="f-grass2" points="683,441 689,441 680,413"/><polygon class="f-grass2" points="689,441 695,441 693,404"/><polygon class="f-grass2" points="697,441 703,441 706,412"/><polygon class="f-grass2" points="706,441 712,441 706,420"/><polygon class="f-grass" points="712,441 718,441 720,409"/><polygon class="f-grass" points="719,441 725,441 720,416"/><polygon class="f-grass2" points="728,441 734,441 732,423"/><polygon class="f-grass" points="738,441 744,441 738,423"/><polygon class="f-grass" points="744,441 750,441 754,398"/><polygon class="f-grass2" points="752,441 758,441 762,408"/><polygon class="f-grass" points="759,441 765,441 758,406"/><polygon class="f-grass2" points="768,441 774,441 774,415"/><polygon class="f-grass" points="776,441 782,441 780,410"/><polygon class="f-grass" points="784,441 790,441 783,427"/><polygon class="f-grass" points="794,441 800,441 794,422"/><polygon class="f-grass" points="801,441 807,441 803,424"/><polygon class="f-grass" points="810,441 816,441 808,412"/><polygon class="f-grass" points="816,441 822,441 817,408"/><polygon class="f-grass" points="824,441 830,441 830,403"/><polygon class="f-grass2" points="835,441 841,441 839,424"/><polygon class="f-grass" points="846,441 852,441 851,414"/><polygon class="f-grass2" points="853,441 859,441 849,404"/><polygon class="f-grass" points="864,441 870,441 865,401"/><polygon class="f-grass2" points="874,441 880,441 871,412"/><polygon class="f-grass" points="882,441 888,441 891,416"/><polygon class="f-grass" points="889,441 895,441 893,400"/><polygon class="f-grass2" points="900,441 906,441 906,423"/><polygon class="f-grass2" points="909,441 915,441 913,419"/><polygon class="f-grass2" points="919,441 925,441 925,412"/><polygon class="f-grass" points="927,441 933,441 924,399"/><polygon class="f-grass2" points="936,441 942,441 935,403"/><polygon class="f-grass2" points="945,441 951,441 943,419"/><polygon class="f-grass" points="955,441 961,441 954,415"/>
+      <rect class="f-grass" x="0" y="440" width="960" height="30"/>
+    </svg>
+  </figure>
+</header>
+
+<section aria-labelledby="h-grass">
+  <h2 id="h-grass">Grass is not protein-free</h2>
+  <p class="say">Roughly a tenth of dried grass is protein. A 500 kg bison eats 10 kg or more of it every day.</p>
+  <figure>
+    <div class="haul">
+      <div class="haul-nums">
+        <div class="num"><b>10 kg+</b><span>dry grass a day</span></div>
+        <div class="num right"><b>≈ 1 kg</b><span>of that is protein</span></div>
+      </div>
+      <div class="haul-bar" role="img" aria-label="Bar showing about 8 percent of dry grass is protein"><span class="haul-rest"></span><span class="haul-p"></span></div>
+    </div>
+    <figcaption>The dark slice is drawn at 8%, typical for grass hay. Spring grass is richer, winter grass poorer.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="h-rumen">
+  <h2 id="h-rumen">The first stomach is a microbe farm</h2>
+  <p class="say">The rumen is a warm vat holding trillions of microbes. They digest the fibre a bison can't, <b>and they multiply</b>.</p>
+  <figure>
+    <div class="scroll">
+      <svg viewBox="0 0 960 400" role="img" aria-label="Grass fibre, grass protein and recycled urea enter the rumen. Fatty acids come out as fuel. The microbes themselves are flushed onward and digested as protein for muscle.">
+        <defs>
+          <marker id="mI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="f-ink" d="M0 0L10 5L0 10z"/></marker>
+          <marker id="mB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="f-bug" d="M0 0L10 5L0 10z"/></marker>
+        </defs>
+        <rect class="f-grass" x="20" y="45" width="220" height="70"/>
+        <text class="t-on-grass" x="130" y="76" text-anchor="middle">Grass fibre</text>
+        <text class="t-on-grass-b" x="130" y="99" text-anchor="middle">cellulose</text>
+        <rect class="f-grass" x="20" y="165" width="220" height="70"/>
+        <text class="t-on-grass" x="130" y="196" text-anchor="middle">Grass protein</text>
+        <text class="t-on-grass-b" x="130" y="219" text-anchor="middle">about a tenth</text>
+        <rect class="s-ink" x="20" y="285" width="220" height="70"/>
+        <text class="t-d" x="130" y="316" text-anchor="middle">Urea</text>
+        <text class="t-b" x="130" y="339" text-anchor="middle">recycled nitrogen</text>
+        <line class="s-ink" x1="244" y1="80" x2="332" y2="80" marker-end="url(#mI)"/>
+        <line class="s-ink" x1="244" y1="200" x2="332" y2="200" marker-end="url(#mI)"/>
+        <line class="s-ink" x1="244" y1="320" x2="332" y2="320" marker-end="url(#mI)"/>
+
+        <rect class="f-sky o-ink" x="340" y="30" width="260" height="340" rx="28"/>
+        <text class="t-d" x="470" y="68" text-anchor="middle">Rumen</text>
+        <text class="t-b" x="470" y="92" text-anchor="middle">microbes multiply</text>
+        <line class="s-fleck" x1="503" y1="132" x2="512" y2="148"/><circle class="f-bug" cx="520" cy="246" r="5.5"/><circle class="f-bug" cx="488" cy="341" r="3.5"/><rect class="f-bug" x="390" y="291" width="16" height="7" rx="3.5" transform="rotate(86 398 294)"/><circle class="f-bug" cx="369" cy="175" r="3.5"/><circle class="f-bug" cx="521" cy="197" r="5.5"/><rect class="f-bug" x="566" y="293" width="16" height="7" rx="3.5" transform="rotate(130 574 297)"/><line class="s-fleck" x1="426" y1="227" x2="430" y2="244"/><rect class="f-bug" x="391" y="244" width="16" height="7" rx="3.5" transform="rotate(1 399 247)"/><rect class="f-bug" x="564" y="179" width="16" height="7" rx="3.5" transform="rotate(145 572 183)"/><rect class="f-bug" x="504" y="265" width="16" height="7" rx="3.5" transform="rotate(169 512 269)"/><circle class="f-bug" cx="395" cy="149" r="3.5"/><rect class="f-bug" x="406" y="341" width="16" height="7" rx="3.5" transform="rotate(7 414 345)"/><rect class="f-bug" x="546" y="274" width="16" height="7" rx="3.5" transform="rotate(129 554 277)"/><line class="s-fleck" x1="397" y1="325" x2="415" y2="327"/><circle class="f-bug" cx="460" cy="307" r="4.5"/><circle class="f-bug" cx="380" cy="210" r="5.5"/><rect class="f-bug" x="548" y="207" width="16" height="7" rx="3.5" transform="rotate(163 556 210)"/><circle class="f-bug" cx="555" cy="256" r="4.5"/><circle class="f-bug" cx="448" cy="187" r="3.5"/><circle class="f-bug" cx="476" cy="249" r="3.5"/><line class="s-fleck" x1="469" y1="285" x2="486" y2="291"/><circle class="f-bug" cx="459" cy="137" r="4.5"/><circle class="f-bug" cx="563" cy="126" r="3.5"/><rect class="f-bug" x="444" y="344" width="16" height="7" rx="3.5" transform="rotate(68 452 347)"/><circle class="f-bug" cx="407" cy="123" r="3.5"/><rect class="f-bug" x="428" y="297" width="16" height="7" rx="3.5" transform="rotate(116 436 301)"/><rect class="f-bug" x="443" y="264" width="16" height="7" rx="3.5" transform="rotate(83 451 267)"/><line class="s-fleck" x1="421" y1="189" x2="417" y2="207"/><rect class="f-bug" x="538" y="149" width="16" height="7" rx="3.5" transform="rotate(74 546 152)"/><circle class="f-bug" cx="371" cy="267" r="4.5"/><rect class="f-bug" x="427" y="124" width="16" height="7" rx="3.5" transform="rotate(30 435 128)"/><rect class="f-bug" x="466" y="195" width="16" height="7" rx="3.5" transform="rotate(5 474 199)"/><circle class="f-bug" cx="364" cy="132" r="3.5"/><rect class="f-bug" x="449" y="162" width="16" height="7" rx="3.5" transform="rotate(159 457 166)"/><line class="s-fleck" x1="474" y1="226" x2="491" y2="228"/><rect class="f-bug" x="357" y="227" width="16" height="7" rx="3.5" transform="rotate(39 365 231)"/><rect class="f-bug" x="361" y="344" width="16" height="7" rx="3.5" transform="rotate(79 369 348)"/><circle class="f-bug" cx="388" cy="188" r="5.5"/><rect class="f-bug" x="407" y="302" width="16" height="7" rx="3.5" transform="rotate(71 415 305)"/><circle class="f-bug" cx="543" cy="301" r="5.5"/><rect class="f-bug" x="491" y="284" width="16" height="7" rx="3.5" transform="rotate(62 499 288)"/><line class="s-fleck" x1="533" y1="119" x2="549" y2="126"/><circle class="f-bug" cx="531" cy="337" r="3.5"/><circle class="f-bug" cx="492" cy="168" r="3.5"/><rect class="f-bug" x="567" y="255" width="16" height="7" rx="3.5" transform="rotate(107 575 259)"/><rect class="f-bug" x="556" y="327" width="16" height="7" rx="3.5" transform="rotate(57 564 331)"/><rect class="f-bug" x="420" y="263" width="16" height="7" rx="3.5" transform="rotate(10 428 267)"/><circle class="f-bug" cx="519" cy="303" r="3.5"/><line class="s-fleck" x1="518" y1="318" x2="509" y2="333"/><circle class="f-bug" cx="565" cy="234" r="3.5"/><circle class="f-bug" cx="531" cy="168" r="4.5"/><circle class="f-bug" cx="401" cy="210" r="5.5"/><rect class="f-bug" x="436" y="212" width="16" height="7" rx="3.5" transform="rotate(92 444 215)"/><circle class="f-bug" cx="515" cy="226" r="4.5"/><rect class="f-bug" x="369" y="287" width="16" height="7" rx="3.5" transform="rotate(152 377 291)"/><line class="s-fleck" x1="436" y1="322" x2="445" y2="338"/><circle class="f-bug" cx="496" cy="202" r="4.5"/><rect class="f-bug" x="471" y="149" width="16" height="7" rx="3.5" transform="rotate(23 479 152)"/><rect class="f-bug" x="377" y="123" width="16" height="7" rx="3.5" transform="rotate(74 385 127)"/><rect class="f-bug" x="393" y="270" width="16" height="7" rx="3.5" transform="rotate(172 401 273)"/><circle class="f-bug" cx="455" cy="288" r="4.5"/><rect class="f-bug" x="469" y="119" width="16" height="7" rx="3.5" transform="rotate(148 477 123)"/><line class="s-fleck" x1="526" y1="215" x2="543" y2="216"/><rect class="f-bug" x="544" y="184" width="16" height="7" rx="3.5" transform="rotate(158 552 188)"/><circle class="f-bug" cx="481" cy="316" r="5.5"/><circle class="f-bug" cx="497" cy="251" r="4.5"/><circle class="f-bug" cx="383" cy="313" r="3.5"/><rect class="f-bug" x="502" y="344" width="16" height="7" rx="3.5" transform="rotate(103 510 347)"/><circle class="f-bug" cx="422" cy="171" r="3.5"/><line class="s-fleck" x1="524" y1="273" x2="534" y2="288"/><circle class="f-bug" cx="517" cy="119" r="4.5"/>
+
+        <line class="s-ink" x1="604" y1="120" x2="712" y2="120" marker-end="url(#mI)"/>
+        <text class="t-b" x="658" y="106" text-anchor="middle">absorbed</text>
+        <rect class="s-ink" x="720" y="85" width="220" height="70"/>
+        <text class="t-d" x="830" y="116" text-anchor="middle">Fatty acids</text>
+        <text class="t-b" x="830" y="139" text-anchor="middle">the bison's fuel</text>
+
+        <line class="s-bug" x1="604" y1="270" x2="712" y2="270" marker-end="url(#mB)"/>
+        <text class="t-b" x="658" y="256" text-anchor="middle">flushed on</text>
+        <rect class="f-bug" x="720" y="235" width="220" height="70"/>
+        <text class="t-on-bug" x="830" y="266" text-anchor="middle">Microbes</text>
+        <text class="t-on-bug-b" x="830" y="289" text-anchor="middle">digested as protein</text>
+        <line class="s-bug" x1="830" y1="309" x2="830" y2="340" marker-end="url(#mB)"/>
+        <text class="t-d" x="830" y="368" text-anchor="middle">Amino acids for muscle</text>
+      </svg>
+    </div>
+    <figcaption>The microbes are the meal. Further down the gut they are digested like any other protein, and they usually supply more than half of what the animal absorbs.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="h-loop">
+  <h2 id="h-loop">Microbes do what no mammal can</h2>
+  <p class="say">Hand them plain nitrogen and plant sugars and they build <b>all 20 amino acids</b>, including the nine a mammal has to eat. So the bison sends its waste nitrogen back to them.</p>
+  <figure>
+    <div class="scroll">
+      <svg viewBox="0 0 960 380" role="img" aria-label="A loop. Rumen microbes are digested as protein by the bison's body. Worn-out protein becomes urea. Most urea is sent back to the rumen in saliva and blood, where microbes turn it into protein again. A little is lost in urine.">
+        <defs>
+          <marker id="nI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="f-ink" d="M0 0L10 5L0 10z"/></marker>
+          <marker id="nB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="f-bug" d="M0 0L10 5L0 10z"/></marker>
+        </defs>
+        <rect class="f-bug" x="40" y="50" width="260" height="80"/>
+        <text class="t-on-bug" x="170" y="86" text-anchor="middle">Rumen microbes</text>
+        <text class="t-on-bug-b" x="170" y="110" text-anchor="middle">build all 20 amino acids</text>
+        <line class="s-bug" x1="304" y1="90" x2="652" y2="90" marker-end="url(#nB)"/>
+        <text class="t-b" x="478" y="74" text-anchor="middle">digested as protein</text>
+        <rect class="s-ink" x="660" y="50" width="260" height="80"/>
+        <text class="t-d" x="790" y="86" text-anchor="middle">Bison's body</text>
+        <text class="t-b" x="790" y="110" text-anchor="middle">muscle, milk, repair</text>
+        <line class="s-ink" x1="790" y1="134" x2="790" y2="232" marker-end="url(#nI)"/>
+        <text class="t-b" x="774" y="190" text-anchor="end">worn-out protein</text>
+        <rect class="s-ink" x="660" y="240" width="260" height="80"/>
+        <text class="t-d" x="790" y="276" text-anchor="middle">Urea</text>
+        <text class="t-b" x="790" y="300" text-anchor="middle">plain nitrogen, no protein</text>
+        <polyline class="s-bug" points="656,280 170,280 170,140" marker-end="url(#nB)"/>
+        <text class="t-b" x="413" y="264" text-anchor="middle">sent back in saliva and blood</text>
+        <line class="s-ink" x1="790" y1="324" x2="790" y2="360" marker-end="url(#nI)"/>
+        <text class="t-b" x="774" y="352" text-anchor="end">a little lost in urine</text>
+      </svg>
+    </div>
+    <figcaption>In 1966, Finnish cows were fed no protein at all, only urea and ammonium salts for nitrogen. Their microbes made enough protein for the cows to keep producing milk.</figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="h-you">
+  <h2 id="h-you">Why you can't live on grass</h2>
+  <p class="say">You have a microbe vat too. Yours sits <b>after</b> the stretch of gut that absorbs amino acids, so what your microbes make is flushed away.</p>
+  <figure>
+    <div class="scroll">
+      <svg viewBox="0 0 960 310" role="img" aria-label="Two gut layouts. In the bison the microbe vat comes before the small intestine, so microbes are digested and absorbed. In a human the microbe vat comes after the small intestine, so microbes leave the body.">
+        <defs>
+          <marker id="gI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="f-ink" d="M0 0L10 5L0 10z"/></marker>
+        </defs>
+        <text class="t-d" x="20" y="92">Bison</text>
+        <rect class="s-ink" x="130" y="58" width="140" height="56" rx="28"/><text class="t-st" x="200" y="92" text-anchor="middle">mouth</text><line class="s-ink" x1="273" y1="86" x2="296" y2="86" marker-end="url(#gI)"/><rect class="f-bug" x="300" y="58" width="140" height="56" rx="28"/><text class="t-st-bug" x="370" y="92" text-anchor="middle">MICROBE VAT</text><line class="s-ink" x1="443" y1="86" x2="466" y2="86" marker-end="url(#gI)"/><rect class="s-ink" x="470" y="58" width="140" height="56" rx="28"/><text class="t-st" x="540" y="92" text-anchor="middle">true stomach</text><line class="s-ink" x1="613" y1="86" x2="636" y2="86" marker-end="url(#gI)"/><rect class="s-ink" x="640" y="58" width="140" height="56" rx="28"/><text class="t-st" x="710" y="92" text-anchor="middle">small intestine</text><line class="s-ink" x1="783" y1="86" x2="806" y2="86" marker-end="url(#gI)"/><rect class="s-ink" x="810" y="58" width="140" height="56" rx="28"/><text class="t-st" x="880" y="92" text-anchor="middle">out</text>
+        <text class="t-b" x="370" y="146" text-anchor="middle">rumen</text>
+        <text class="t-b" x="710" y="146" text-anchor="middle">absorbs the microbes</text>
+        <line class="s-line" x1="20" y1="170" x2="940" y2="170"/>
+        <text class="t-d" x="20" y="232">You</text>
+        <rect class="s-ink" x="130" y="198" width="140" height="56" rx="28"/><text class="t-st" x="200" y="232" text-anchor="middle">mouth</text><line class="s-ink" x1="273" y1="226" x2="296" y2="226" marker-end="url(#gI)"/><rect class="s-ink" x="300" y="198" width="140" height="56" rx="28"/><text class="t-st" x="370" y="232" text-anchor="middle">stomach</text><line class="s-ink" x1="443" y1="226" x2="466" y2="226" marker-end="url(#gI)"/><rect class="s-ink" x="470" y="198" width="140" height="56" rx="28"/><text class="t-st" x="540" y="232" text-anchor="middle">small intestine</text><line class="s-ink" x1="613" y1="226" x2="636" y2="226" marker-end="url(#gI)"/><rect class="f-bug" x="640" y="198" width="140" height="56" rx="28"/><text class="t-st-bug" x="710" y="232" text-anchor="middle">MICROBE VAT</text><line class="s-ink" x1="783" y1="226" x2="806" y2="226" marker-end="url(#gI)"/><rect class="s-ink" x="810" y="198" width="140" height="56" rx="28"/><text class="t-st" x="880" y="232" text-anchor="middle">out</text>
+        <text class="t-b" x="540" y="286" text-anchor="middle">absorbs amino acids</text>
+        <text class="t-b" x="710" y="286" text-anchor="middle">colon</text>
+        <text class="t-b" x="880" y="286" text-anchor="middle">microbes lost</text>
+      </svg>
+    </div>
+  </figure>
+</section>
+
+<section class="close" aria-labelledby="h-close">
+  <h2 id="h-close" class="big">Protein is still compulsory. The bison grows its own.</h2>
+  <p class="say">A bison needs the same amino acids you do. It gets them by farming microbes on grass, then digesting the microbes.</p>
+  <div class="sources">
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://nationalbison.org/wp-content/uploads/2025/01/basic-nutrition-of-bison.pdf">Basic Nutrition of Bison (National Bison Association)</a></li>
+      <li><a href="https://www.dairynz.co.nz/media/efwotqbf/technote-6_web.pdf">Protein digestion and urea recycling in the rumen (DairyNZ technote 6)</a></li>
+      <li><a href="https://doi.org/10.1126/science.153.3744.1603">Virtanen 1966, Milk production of cows on protein-free feed (Science)</a></li>
+    </ul>
+  </div>
+</section>
+
+</div>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

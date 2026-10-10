@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Who Really Decided? | Explainers</title>
+<meta name="description" content="The voice in your head that says “I chose” may be a press secretary, announcing a decision already made.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/who-really-decided/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Who Really Decided?">
+<meta property="og:description" content="The voice in your head that says “I chose” may be a press secretary, announcing a decision already made.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/who-really-decided/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/who-really-decided/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a press-briefing file — the brain is the back room, "you" are the press secretary at the podium; each exhibit is one big picture with a short caption */
+:root{
+  --paper:#EDF0F4; --panel:#FFFFFF; --ink:#16213A; --muted:#5B6782; --line:#C6CEDA;
+  --red:#C7362E; --gold:#D39A12; --goldsoft:rgba(211,154,18,.28);
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1422; --panel:#172036; --ink:#E4E9F3; --muted:#98A3BB; --line:#2B3654;
+  --red:#F0594E; --gold:#F2BC3C; --goldsoft:rgba(242,188,60,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1422; --panel:#172036; --ink:#E4E9F3; --muted:#98A3BB; --line:#2B3654;
+  --red:#F0594E; --gold:#F2BC3C; --goldsoft:rgba(242,188,60,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:.005em;text-wrap:balance;margin:0;text-transform:uppercase}
+h1{font-size:clamp(3.2rem,11vw,6.6rem)}
+h2{font-size:clamp(2.1rem,6vw,3.4rem)}
+p{margin:0;max-width:60ch}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.2rem;color:var(--muted);max-width:40ch}
+.lede b,.cap b{color:var(--ink);font-weight:600}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--body)}
+.fig{background:var(--panel);border:2px solid var(--ink);border-radius:6px;padding:14px;overflow:hidden}
+
+/* svg paint */
+.ink-f{fill:var(--ink)} .ink-s{stroke:var(--ink)}
+.panel-f{fill:var(--panel)} .paper-f{fill:var(--paper)}
+.gold-f{fill:var(--gold)} .gold-s{stroke:var(--gold)}
+.red-f{fill:var(--red)} .red-s{stroke:var(--red)}
+.muted-f{fill:var(--muted)} .muted-s{stroke:var(--muted)}
+.line-s{stroke:var(--line)} .none{fill:none}
+.disp{font-family:var(--display)!important;font-weight:800}
+.mono{font-family:var(--mono)!important}
+
+/* hero */
+.hero{display:grid;gap:22px;padding-block:18px 8px}
+.stamp{display:inline-block;font-family:var(--mono);font-size:.8rem;letter-spacing:.16em;color:var(--red);border:2px solid var(--red);padding:4px 10px;transform:rotate(-3deg);width:max-content}
+.neuron{animation:fire 2.4s ease-in-out infinite}
+@keyframes fire{0%,100%{opacity:.45}50%{opacity:1}}
+.envelope{animation:carry 3.2s ease-in-out infinite}
+@keyframes carry{0%{transform:translateX(0);opacity:0}15%{opacity:1}75%{opacity:1}100%{transform:translateX(118px);opacity:0}}
+
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.legend div{display:flex;gap:12px;align-items:flex-start}
+.chip{flex:none;width:16px;height:16px;border-radius:50%;margin-top:5px}
+.legend p{font-size:1rem}
+
+/* exhibits */
+section{padding-block:56px 0;display:grid;gap:18px}
+.cap{font-size:1.08rem;color:var(--muted)}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,3rem);line-height:1;color:var(--red)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+button{font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:0;border-radius:4px;padding:11px 16px;cursor:pointer}
+button:hover{background:var(--red)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.lit{transition:opacity .25s}
+.dim{opacity:.18}
+
+/* dominoes */
+.dominoes{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:flex-end;padding:22px 14px 16px}
+.dom{width:64px;height:150px;background:var(--ink);color:var(--paper);border-radius:6px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform-origin:100% 100%;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:.04em;text-transform:uppercase;transition:transform .35s cubic-bezier(.5,0,.8,.4)}
+.dom.fall{transform:rotate(22deg)}
+.dom.last{background:var(--red)}
+
+/* pushback */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:10px;align-content:start}
+.card svg{width:84px}
+.card h3{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1;margin:0;text-transform:uppercase}
+.card p{font-size:.98rem;color:var(--muted)}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.verdict > div{border-top:6px solid var(--ink);padding-top:12px;display:grid;gap:8px}
+.verdict > div.open{border-color:var(--gold)}
+.verdict ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+.closing{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(1.8rem,5.4vw,2.8rem);line-height:1.02;text-wrap:balance;max-width:22ch}
+.sources{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-top:40px}
+.sources ul{margin:6px 0 0;padding-left:1.1em;display:grid;gap:3px}
+
+@media (prefers-reduced-motion: reduce){
+  .neuron,.envelope{animation:none}
+  .envelope{opacity:1;transform:translateX(60px)}
+  .dom{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <span class="stamp">Announced after the fact</span>
+  <h1>Who really decided?</h1>
+  <p class="lede">Brain science suggests the voice in your head that says <b>“I chose”</b> works like a press secretary. It announces decisions made in a back room, a moment later, and believes it made them.</p>
+
+  <div class="fig" role="img" aria-label="Illustration: a back room full of firing neurons sends an envelope marked decision to a figure at a podium, labelled you, who announces I have decided.">
+  <svg viewBox="0 0 800 440" aria-hidden="true">
+    <rect x="18" y="40" width="404" height="360" rx="10" class="paper-f ink-s" stroke-width="3"/>
+    <text x="40" y="80" class="mono ink-f" font-size="20" letter-spacing="3">THE BACK ROOM</text>
+    <text x="40" y="106" class="muted-f" font-size="17">86 billion neurons. No windows.</text>
+    <g class="gold-s" stroke-width="3" opacity=".55" fill="none">
+      <path d="M90 180 L160 150 L230 200 L300 160 L370 210"/>
+      <path d="M110 270 L190 250 L270 290 L350 280"/>
+      <path d="M140 345 L240 350 L330 345"/>
+      <path d="M90 180 L110 270 L140 345"/><path d="M160 150 L190 250 L240 350"/>
+      <path d="M230 200 L270 290 L330 345"/><path d="M300 160 L350 280"/><path d="M370 210 L350 280"/>
+      <path d="M160 150 L230 200 L190 250"/><path d="M270 290 L300 160"/>
+    </g>
+    <g class="gold-f">
+      <circle class="neuron" cx="90" cy="180" r="10"/>
+      <circle class="neuron" cx="160" cy="150" r="10" style="animation-delay:.3s"/>
+      <circle class="neuron" cx="230" cy="200" r="10" style="animation-delay:.6s"/>
+      <circle class="neuron" cx="300" cy="160" r="10" style="animation-delay:.9s"/>
+      <circle class="neuron" cx="370" cy="210" r="10" style="animation-delay:1.2s"/>
+      <circle class="neuron" cx="110" cy="270" r="10" style="animation-delay:.2s"/>
+      <circle class="neuron" cx="190" cy="250" r="10" style="animation-delay:.5s"/>
+      <circle class="neuron" cx="270" cy="290" r="10" style="animation-delay:.8s"/>
+      <circle class="neuron" cx="350" cy="280" r="10" style="animation-delay:1.1s"/>
+      <circle class="neuron" cx="140" cy="345" r="10" style="animation-delay:1.4s"/>
+      <circle class="neuron" cx="240" cy="350" r="10" style="animation-delay:1.7s"/>
+      <circle class="neuron" cx="330" cy="345" r="10" style="animation-delay:2s"/>
+    </g>
+    <!-- slot -->
+    <rect x="422" y="224" width="120" height="44" class="panel-f ink-s" stroke-width="3"/>
+    <g class="envelope">
+      <rect x="400" y="230" width="70" height="32" rx="3" class="red-f"/>
+      <path d="M400 230 L435 250 L470 230" class="panel-f" fill="none" stroke-width="2.5" style="stroke:var(--panel)"/>
+    </g>
+    <!-- podium figure -->
+    <circle cx="650" cy="190" r="32" class="ink-f"/>
+    <path d="M592 330 Q650 222 708 330 Z" class="ink-f"/>
+    <line x1="650" y1="300" x2="650" y2="262" class="ink-s" stroke-width="4"/>
+    <circle cx="650" cy="258" r="7" class="ink-f"/>
+    <path d="M575 305 L725 305 L708 405 L592 405 Z" class="panel-f ink-s" stroke-width="3"/>
+    <circle cx="650" cy="352" r="20" class="none red-s" stroke-width="3"/>
+    <text x="650" y="360" text-anchor="middle" class="disp red-f" font-size="22">ME</text>
+    <!-- bubble -->
+    <rect x="528" y="36" width="256" height="84" rx="18" class="panel-f ink-s" stroke-width="3"/>
+    <path d="M620 118 L636 150 L650 118" class="panel-f ink-s" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="618" y="115" width="34" height="6" class="panel-f"/>
+    <text x="656" y="90" text-anchor="middle" class="disp ink-f" font-size="34">“I HAVE DECIDED!”</text>
+    <text x="650" y="432" text-anchor="middle" class="mono ink-f" font-size="18" letter-spacing="3">YOU</text>
+  </svg>
+  </div>
+
+  <div class="legend">
+    <div><span class="chip" style="background:var(--gold)"></span><p><b>The back room</b> is the brain doing the actual work, out of sight.</p></div>
+    <div><span class="chip" style="background:var(--red)"></span><p><b>The envelope</b> is the decision, already made.</p></div>
+    <div><span class="chip" style="background:var(--ink)"></span><p><b>You</b> are the part that reads it out and feels like its author.</p></div>
+  </div>
+</header>
+
+<!-- EXHIBIT 1: LIBET -->
+<section aria-labelledby="h-libet">
+  <span class="eyebrow">Exhibit A · 1983 · Benjamin Libet</span>
+  <h2 id="h-libet">The brain moves first</h2>
+  <p class="cap">Volunteers flicked a finger whenever they felt like it, and noted on a fast clock the moment they felt the urge. Electrodes on the scalp watched the brain.</p>
+  <div class="fig">
+  <svg viewBox="0 0 800 310" role="img" aria-labelledby="libet-t">
+    <title id="libet-t">Timeline: brain activity starts rising about 0.55 seconds before the movement; people feel the urge only about 0.2 seconds before; the finger moves at zero.</title>
+    <line x1="60" y1="200" x2="740" y2="200" class="ink-s" stroke-width="3"/>
+    <g class="muted-f mono" font-size="16" text-anchor="middle">
+      <text x="60" y="226">−1 s</text><text x="343" y="226" class="mono">−½ s</text><text x="627" y="226" class="mono">0</text>
+    </g>
+    <g class="line-s" stroke-width="2"><line x1="60" y1="194" x2="60" y2="206"/><line x1="343" y1="194" x2="343" y2="206"/><line x1="740" y1="194" x2="740" y2="206"/></g>
+    <!-- readiness ramp -->
+    <path id="ramp" d="M60 130 L315 130 C 420 128 530 100 627 40" class="none gold-s" stroke-width="6" stroke-linecap="round"/>
+    <text x="80" y="118" class="muted-f" font-size="16">brain activity</text>
+    <!-- head-start bracket -->
+    <path d="M315 172 L315 182 L513 182 L513 172" class="none red-s" stroke-width="3"/>
+    <text x="414" y="170" text-anchor="middle" class="disp red-f" font-size="24">⅓ SECOND HEAD START</text>
+    <!-- events -->
+    <g class="lit ev" data-x="315"><circle cx="315" cy="200" r="11" class="gold-f"/><text x="315" y="258" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">Brain starts</text></g>
+    <g class="lit ev" data-x="513"><circle cx="513" cy="200" r="11" class="red-f"/><text x="513" y="292" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">You feel “now!”</text><line x1="513" y1="212" x2="513" y2="272" class="red-s" stroke-width="2" stroke-dasharray="4 4"/></g>
+    <g class="lit ev" data-x="627"><circle cx="627" cy="200" r="11" class="ink-f"/><text x="640" y="258" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">Finger moves</text></g>
+    <line id="playhead" x1="740" y1="30" x2="740" y2="210" class="muted-s" stroke-width="2" stroke-dasharray="6 5" opacity="0"/>
+  </svg>
+  </div>
+  <div class="row"><button id="replay" type="button">▶ Replay the experiment</button><span class="cap">The press secretary gets the envelope after the brain has started moving.</span></div>
+</section>
+
+<!-- EXHIBIT 2: SCANNER -->
+<section aria-labelledby="h-scan">
+  <span class="eyebrow">Exhibit B · 2008 · Haynes lab, Berlin</span>
+  <h2 id="h-scan">A scanner guessed your choice before you did</h2>
+  <div class="fig">
+  <svg viewBox="0 0 800 300" role="img" aria-labelledby="scan-t">
+    <title id="scan-t">A brain scanner shows a prediction of left; an hourglass marks up to seven to ten seconds; later the person presses the left button believing they just chose.</title>
+    <rect x="24" y="30" width="250" height="180" rx="10" class="paper-f ink-s" stroke-width="3"/>
+    <g transform="translate(50 30) scale(.62)">
+      <path d="M60 120 C60 60 140 30 200 45 C260 30 320 70 315 120 C330 160 290 200 240 195 C220 215 180 215 170 200 C120 210 60 180 60 120 Z" class="panel-f ink-s" stroke-width="5"/>
+      <ellipse cx="250" cy="90" rx="42" ry="30" class="gold-f" opacity=".85"/>
+      <ellipse cx="120" cy="110" rx="26" ry="20" class="gold-f" opacity=".45"/>
+    </g>
+    <text x="149" y="192" text-anchor="middle" class="mono red-f" font-size="18" letter-spacing="2">PREDICTS: LEFT</text>
+    <rect x="130" y="210" width="38" height="30" class="ink-f"/><rect x="100" y="240" width="98" height="10" rx="3" class="ink-f"/>
+    <!-- hourglass -->
+    <path d="M360 60 L440 60 L400 130 Z M360 200 L440 200 L400 130 Z" class="panel-f ink-s" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M378 190 L422 190 L400 160 Z" class="gold-f"/>
+    <line x1="296" y1="130" x2="340" y2="130" class="ink-s" stroke-width="3"/><path d="M340 122 L352 130 L340 138 Z" class="ink-f"/>
+    <line x1="456" y1="130" x2="520" y2="130" class="ink-s" stroke-width="3"/><path d="M520 122 L532 130 L520 138 Z" class="ink-f"/>
+    <text x="400" y="244" text-anchor="middle" class="disp ink-f" font-size="34">UP TO 7–10 SECONDS</text>
+    <!-- buttons -->
+    <rect x="560" y="120" width="96" height="70" rx="12" class="red-f"/>
+    <rect x="680" y="112" width="96" height="78" rx="12" class="panel-f ink-s" stroke-width="3"/>
+    <text x="608" y="167" text-anchor="middle" class="disp" font-size="36" style="fill:var(--panel)">LEFT</text>
+    <text x="728" y="163" text-anchor="middle" class="disp ink-f" font-size="36">RIGHT</text>
+    <text x="668" y="80" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">“I just decided.”</text>
+  </svg>
+  </div>
+  <p class="cap">People pressed left or right, whenever they liked. Brain activity predicted which button, long before they felt they had picked. <b>Catch: the guess was right about 60% of the time.</b> A coin gets 50%.</p>
+</section>
+
+<!-- EXHIBIT 3: ZAP -->
+<section aria-labelledby="h-zap">
+  <span class="eyebrow">Exhibit C · 2009 · Desmurget, Lyon</span>
+  <h2 id="h-zap">Poke the brain, and a “want” appears</h2>
+  <div class="fig">
+  <svg viewBox="0 0 800 375" role="img" aria-labelledby="zap-t">
+    <title id="zap-t">Two brains. Stimulating the back-top area makes people say they want to move. Stimulating the front area makes their hand move while they say they did not move.</title>
+    <line x1="400" y1="20" x2="400" y2="330" class="line-s" stroke-width="2" stroke-dasharray="6 6"/>
+    <!-- panel 1 -->
+    <g transform="translate(20 110)">
+      <path d="M60 120 C60 60 140 30 200 45 C260 30 320 70 315 120 C330 160 290 200 240 195 C220 215 180 215 170 200 C120 210 60 180 60 120 Z" class="panel-f ink-s" stroke-width="4"/>
+      <circle cx="120" cy="58" r="18" class="gold-f"/>
+    </g>
+    <line x1="140" y1="36" x2="140" y2="152" class="ink-s" stroke-width="5"/>
+    <path d="M128 36 L152 36 L152 20 L128 20 Z" class="ink-f"/>
+    <path d="M150 150 L165 140 L160 152 L175 146" class="none red-s" stroke-width="3"/>
+    <ellipse cx="290" cy="60" rx="100" ry="44" class="panel-f ink-s" stroke-width="3"/>
+    <circle cx="196" cy="108" r="7" class="panel-f ink-s" stroke-width="3"/>
+    <text x="290" y="56" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">“I want to</text>
+    <text x="290" y="80" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">move my hand.”</text>
+    <text x="200" y="362" text-anchor="middle" class="disp ink-f" font-size="26">ZAP THE BACK → AN URGE</text>
+    <!-- panel 2 -->
+    <g transform="translate(430 110)">
+      <path d="M60 120 C60 60 140 30 200 45 C260 30 320 70 315 120 C330 160 290 200 240 195 C220 215 180 215 170 200 C120 210 60 180 60 120 Z" class="panel-f ink-s" stroke-width="4"/>
+      <circle cx="262" cy="62" r="18" class="gold-f"/>
+    </g>
+    <line x1="692" y1="36" x2="692" y2="156" class="ink-s" stroke-width="5"/>
+    <path d="M680 36 L704 36 L704 20 L680 20 Z" class="ink-f"/>
+    <path d="M702 154 L717 144 L712 156 L727 150" class="none red-s" stroke-width="3"/>
+    <ellipse cx="535" cy="60" rx="95" ry="40" class="panel-f ink-s" stroke-width="3"/>
+    <circle cx="600" cy="104" r="7" class="panel-f ink-s" stroke-width="3"/>
+    <text x="535" y="67" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">“I didn’t move.”</text>
+    <text x="600" y="362" text-anchor="middle" class="disp red-f" font-size="26">ZAP THE FRONT → HAND MOVES</text>
+  </svg>
+  </div>
+  <p class="cap">During brain surgery, a mild current in one spot made patients feel a desire to move. Turn it up, and they <b>believed they had moved</b> when they hadn’t. A different spot moved their hand, and they denied it. The feeling of willing and the act can be pulled apart with a wire.</p>
+</section>
+
+<!-- EXHIBIT 4: SPLIT BRAIN -->
+<section aria-labelledby="h-split">
+  <span class="eyebrow">Exhibit D · 1970s onward · Gazzaniga, split-brain patients</span>
+  <h2 id="h-split">The narrator makes up reasons</h2>
+  <div class="fig">
+  <svg viewBox="0 0 800 430" role="img" aria-labelledby="split-t">
+    <title id="split-t">A split-brain patient. The silent half of the brain sees a snowy house and the hand picks a shovel. The talking half saw only a chicken foot, and explains the shovel is for cleaning the chicken shed.</title>
+    <rect x="150" y="18" width="500" height="150" rx="8" class="paper-f ink-s" stroke-width="3"/>
+    <line x1="400" y1="18" x2="400" y2="168" class="ink-s" stroke-width="3" stroke-dasharray="7 6"/>
+    <!-- snow house -->
+    <path d="M225 92 L275 54 L325 92 Z" class="ink-f"/><rect x="238" y="92" width="74" height="56" class="panel-f ink-s" stroke-width="3"/>
+    <rect x="265" y="116" width="20" height="32" class="ink-f"/>
+    <g class="muted-f"><circle cx="190" cy="50" r="4"/><circle cx="215" cy="120" r="4"/><circle cx="345" cy="60" r="4"/><circle cx="360" cy="130" r="4"/><circle cx="330" cy="40" r="3"/><circle cx="180" cy="100" r="3"/></g>
+    <!-- chicken foot -->
+    <g class="gold-s" stroke-width="9" stroke-linecap="round" fill="none"><path d="M525 140 L488 64"/><path d="M525 140 L525 50"/><path d="M525 140 L562 64"/><path d="M525 140 L525 158"/></g>
+    <!-- head -->
+    <circle cx="400" cy="272" r="72" class="panel-f ink-s" stroke-width="3"/>
+    <line x1="400" y1="200" x2="400" y2="344" class="red-s" stroke-width="3" stroke-dasharray="6 5"/>
+    <path d="M300 176 L352 214" class="muted-s" stroke-width="2.5"/><path d="M500 176 L448 214" class="muted-s" stroke-width="2.5"/>
+    <text x="364" y="280" text-anchor="middle" class="mono muted-f" font-size="15">silent</text>
+    <text x="436" y="280" text-anchor="middle" class="mono muted-f" font-size="15">talking</text>
+    <!-- shovel -->
+    <line x1="220" y1="248" x2="220" y2="360" class="ink-s" stroke-width="7" stroke-linecap="round"/>
+    <path d="M198 360 L242 360 L236 404 Q220 416 204 404 Z" class="ink-f"/>
+    <rect x="206" y="236" width="28" height="12" rx="5" class="ink-f"/>
+    <text x="220" y="228" text-anchor="middle" class="ink-f" font-size="17" font-weight="600">hand picks a shovel</text>
+    <!-- bubble -->
+    <rect x="502" y="226" width="284" height="104" rx="18" class="panel-f red-s" stroke-width="3"/>
+    <path d="M504 286 L462 300 L506 304" class="panel-f red-s" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="500" y="284" width="8" height="22" class="panel-f"/>
+    <text x="644" y="268" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">“Easy. You need a shovel</text>
+    <text x="644" y="298" text-anchor="middle" class="ink-f" font-size="19" font-weight="600">to clean the chicken shed.”</text>
+    <text x="644" y="400" text-anchor="middle" class="disp red-f" font-size="26">CONFIDENT. AND INVENTED.</text>
+  </svg>
+  </div>
+  <p class="cap">In these patients the two brain halves can’t talk to each other. The talking half never saw the snow, yet it explained the shovel instantly. In another study, people happily defended a photo they <b>had not picked</b>; most never noticed the swap.</p>
+</section>
+
+<!-- EXHIBIT 5: DOMINOES -->
+<section aria-labelledby="h-dom">
+  <span class="eyebrow">The big argument · Robert Sapolsky, “Determined” (2023)</span>
+  <h2 id="h-dom">Every choice has a cause. So does that cause.</h2>
+  <div class="fig">
+    <div class="dominoes" id="dominoes">
+      <div class="dom">Genes</div><div class="dom">The womb</div><div class="dom">Childhood</div><div class="dom">Culture</div><div class="dom">Last night’s sleep</div><div class="dom">Today’s hormones</div><div class="dom">Neurons, right now</div><div class="dom last">Your “choice”</div>
+    </div>
+  </div>
+  <div class="row"><button id="push" type="button">Push the first domino</button><span class="cap">Neurons fire because of chemistry. Nobody picked their genes or childhood. So where would a free, uncaused choice slip in?</span></div>
+</section>
+
+<!-- PUSHBACK -->
+<section aria-labelledby="h-push">
+  <span class="eyebrow">The other side</span>
+  <h2 id="h-push">Why many scientists aren’t convinced</h2>
+  <div class="grid2">
+    <div class="card">
+      <svg viewBox="0 0 84 50" aria-hidden="true"><path d="M2 30 L10 22 L16 34 L24 16 L31 30 L38 24 L45 36 L52 12 L60 28 L67 20 L74 32 L82 8" class="none gold-s" stroke-width="4" stroke-linejoin="round"/></svg>
+      <h3>The ramp may be noise</h3>
+      <p>A 2012 study argued Libet’s rising brain signal is random background drift that tips over a line, not a hidden decision.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 84 50" aria-hidden="true"><circle cx="30" cy="25" r="22" class="none red-s" stroke-width="5"/><line x1="15" y1="10" x2="45" y2="40" class="red-s" stroke-width="5"/></svg>
+      <h3>You can still veto</h3>
+      <p>People can cancel a movement until about 0.2 seconds before it happens. Libet himself called this “free won’t.”</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 84 50" aria-hidden="true"><circle cx="25" cy="25" r="22" class="gold-f"/><text x="25" y="33" text-anchor="middle" class="disp ink-f" font-size="22">50</text><text x="62" y="33" text-anchor="middle" class="disp ink-f" font-size="22">60</text></svg>
+      <h3>60% isn’t mind reading</h3>
+      <p>And pressing a random button isn’t choosing a career or a partner, where you weigh reasons for days.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 84 50" aria-hidden="true"><rect x="10" y="20" width="40" height="28" rx="4" class="ink-f"/><path d="M20 20 V12 a12 12 0 0 1 24 0" class="none ink-s" stroke-width="5"/></svg>
+      <h3>“Free” may mean something else</h3>
+      <p>Many philosophers (compatibilists, like Daniel Dennett) say free will means acting on your own reasons, without a gun to your head. Causes don’t rule that out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section aria-labelledby="h-verdict">
+  <span class="eyebrow">Where that leaves us</span>
+  <h2 id="h-verdict">The scorecard</h2>
+  <div class="verdict">
+    <div><strong>Well supported</strong>
+      <ul><li>The brain gets to work before you feel you’ve decided.</li><li>The feeling of “I willed it” can be created or removed.</li><li>Your mind invents reasons after the fact, and believes them.</li></ul></div>
+    <div class="open"><strong>Still open</strong>
+      <ul><li>Whether conscious thinking can steer the back room over longer decisions.</li><li>Whether any of this rules out the everyday meaning of “free.”</li></ul></div>
+  </div>
+  <p class="closing">The press secretary is real. What’s argued is whether it ever sends notes back.</p>
+
+  <div class="sources">
+    <strong>Studies behind the pictures</strong>
+    <ul>
+      <li>Libet et al., <i>Brain</i> (1983) · readiness potential and timing of intention</li>
+      <li>Soon, Brass, Heinze &amp; Haynes, <i>Nature Neuroscience</i> (2008) · predicting choices from fMRI</li>
+      <li>Desmurget et al., <i>Science</i> (2009) · stimulation creates the intention to move</li>
+      <li>Gazzaniga · split-brain “interpreter” studies</li>
+      <li>Johansson &amp; Hall, <i>Science</i> (2005) · choice blindness</li>
+      <li>Schurger, Sitt &amp; Dehaene, <i>PNAS</i> (2012) · readiness potential as neural noise</li>
+      <li>Schultze-Kraft et al., <i>PNAS</i> (2016) · the point of no return for vetoing</li>
+      <li>Sapolsky, <i>Determined</i> (2023) · Dennett, <i>Elbow Room</i> (1984)</li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Libet replay
+  var btn = document.getElementById('replay');
+  var head = document.getElementById('playhead');
+  var evs = Array.prototype.slice.call(document.querySelectorAll('.ev'));
+  var running = false;
+  btn.addEventListener('click', function(){
+    if (running) return;
+    running = true;
+    evs.forEach(function(e){ e.classList.add('dim'); });
+    if (reduce){
+      evs.forEach(function(e, i){ setTimeout(function(){ e.classList.remove('dim'); if(i===evs.length-1) running=false; }, 400*(i+1)); });
+      return;
+    }
+    head.setAttribute('opacity','1');
+    var start = null, dur = 3600, x0 = 60, x1 = 740;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min(1,(ts-start)/dur), x = x0 + (x1-x0)*p;
+      head.setAttribute('x1', x); head.setAttribute('x2', x);
+      evs.forEach(function(e){ if (x >= +e.dataset.x) e.classList.remove('dim'); });
+      if (p < 1) requestAnimationFrame(step);
+      else { setTimeout(function(){ head.setAttribute('opacity','0'); running=false; }, 500); }
+    }
+    requestAnimationFrame(step);
+  });
+
+  // Dominoes
+  var push = document.getElementById('push');
+  var doms = Array.prototype.slice.call(document.querySelectorAll('.dom'));
+  var down = false;
+  push.addEventListener('click', function(){
+    if (!down){
+      doms.forEach(function(d,i){ setTimeout(function(){ d.classList.add('fall'); }, reduce ? 0 : i*170); });
+      push.textContent = 'Stand them back up';
+    } else {
+      doms.forEach(function(d){ d.classList.remove('fall'); });
+      push.textContent = 'Push the first domino';
+    }
+    down = !down;
+  });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

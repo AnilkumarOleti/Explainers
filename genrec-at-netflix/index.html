@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GenRec at Netflix | Explainers</title>
+<meta name="description" content="A paper walkthrough: Netflix tests a language model as the ranker for its whole catalog.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/genrec-at-netflix/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="GenRec at Netflix">
+<meta property="og:description" content="A paper walkthrough: Netflix tests a language model as the ranker for its whole catalog.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/genrec-at-netflix/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/genrec-at-netflix/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&amp;display=swap">
+<style>
+/* Layout: one reading column (about 64 characters) on rental-card stock; figures run wider, like a shelf passing behind the text. */
+:root{
+  --paper:#E7ECED; --card:#F5F7F6; --ink:#14222C; --muted:#4F606B; --rule:#B4C1C7;
+  --tape:#1B2A35; --tape-ink:#E9EFF1; --tape-dim:#9FB2BD;
+  --sticker:#F4C534; --sticker-ink:#231B00;
+  --teal:#086B6C; --teal-soft:#CDE4E2; --strike:#A93049;
+  --f-display:'Archivo','Arial Narrow',Arial,sans-serif;
+  --f-body:'Newsreader',Georgia,'Times New Roman',serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --measure:64ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1A22; --card:#17252F; --ink:#E4ECEF; --muted:#9BAEB8; --rule:#34474F;
+    --tape:#22343F; --tape-ink:#E9EFF1; --tape-dim:#9FB2BD;
+    --sticker:#F4C534; --sticker-ink:#231B00;
+    --teal:#4CC4BE; --teal-soft:#153A3D; --strike:#F0768E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1A22; --card:#17252F; --ink:#E4ECEF; --muted:#9BAEB8; --rule:#34474F;
+  --tape:#22343F; --tape-ink:#E9EFF1; --tape-dim:#9FB2BD;
+  --sticker:#F4C534; --sticker-ink:#231B00;
+  --teal:#4CC4BE; --teal-soft:#153A3D; --strike:#F0768E;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.1875rem;line-height:1.6}
+p,h1,h2,h3,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0}
+a{color:var(--teal);text-underline-offset:.15em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+code,.mono{font-family:var(--f-mono);font-size:.84em}
+
+.wrap{max-width:1040px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:clamp(28px,5vw,60px);display:flex;flex-direction:column;gap:clamp(56px,8vw,92px)}
+.block{display:flex;flex-direction:column;gap:1.1rem;border-top:3px solid var(--ink);padding-top:1.3rem}
+.block > p,.block > h2,.block > h3,.block > ul,.block > dl{max-width:var(--measure)}
+
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance}
+h1{font-weight:850;font-stretch:66%;text-transform:uppercase;font-size:clamp(2.7rem,8.6vw,5.3rem);line-height:.9}
+h2{font-weight:800;font-stretch:78%;font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.02}
+h3{font-weight:700;font-size:1.16rem;line-height:1.25;padding-top:.7rem}
+
+.sticker{align-self:flex-start;display:inline-block;background:var(--sticker);color:var(--sticker-ink);font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;padding:.3em .7em;transform:rotate(-1.5deg)}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,60px);align-items:end}
+.hero-text{display:flex;flex-direction:column;gap:1.2rem;min-width:0}
+.lede{font-size:1.3rem;line-height:1.5}
+.cite{font-family:var(--f-display);font-size:.86rem;line-height:1.5;color:var(--muted)}
+.shelf-fig{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.shelf{list-style:none;padding-top:18px;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px;border-bottom:5px solid var(--ink)}
+.spine{height:clamp(190px,28vw,250px);background:var(--tape);color:var(--tape-ink);border:1px solid var(--rule);border-bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding-bottom:7px;animation:shelve .7s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i)*55ms)}
+.spine::before{content:"";display:block;width:100%;height:20px;background:var(--band)}
+.spine-title{writing-mode:vertical-rl;transform:rotate(180deg);flex:1;min-height:0;overflow:hidden;white-space:nowrap;padding-block:8px;font-family:var(--f-display);font-stretch:70%;font-weight:700;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}
+.spine-score{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--sticker);color:var(--sticker-ink);font-family:var(--f-mono);font-size:.6rem;font-weight:500}
+.spine.pick{transform:translateY(-16px)}
+.spine.low .spine-title{color:var(--tape-dim)}
+.spine.rest{background:transparent;color:var(--muted);border-style:dashed}
+.spine.rest .spine-score{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+@keyframes shelve{from{translate:0 22px}}
+
+/* ---------- figures ---------- */
+.fig{display:flex;flex-direction:column;gap:.8rem;padding-block:.5rem}
+figcaption{font-family:var(--f-display);font-size:.85rem;line-height:1.45;color:var(--muted);max-width:var(--measure)}
+.fig-tag{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+.two-up{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,32px)}
+.side{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.form-sheet{flex:1;border:1.5px solid var(--ink);padding:14px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;background-color:var(--card);background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:13px 13px}
+.feat{font-family:var(--f-mono);font-size:.72rem;line-height:1.3;background:var(--paper);border:1px solid var(--rule);padding:3px 6px;overflow-wrap:anywhere}
+.rcard{flex:1;border:1.5px solid var(--ink);background:var(--card);font-family:var(--f-mono);font-size:.78rem;line-height:1.75rem;padding:8px 14px;overflow-wrap:anywhere;background-image:linear-gradient(transparent calc(1.75rem - 1px),var(--rule) calc(1.75rem - 1px));background-size:100% 1.75rem;background-position:0 8px}
+.rcard b{font-weight:500;color:var(--teal)}
+
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:1.02rem;line-height:1.4}
+.tbl th{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;text-align:left;color:var(--muted);padding:0 14px 8px 0;border-bottom:1.5px solid var(--ink)}
+.tbl td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);vertical-align:top;width:50%}
+.tbl td:last-child,.tbl th:last-child{padding-right:0}
+.tbl .was{color:var(--muted)}
+
+.map{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.55rem 1.4rem;font-size:1.05rem;line-height:1.4}
+.map dt{font-style:italic}
+.map dd{font-family:var(--f-display);font-size:.96rem}
+
+/* ---------- flow diagrams ---------- */
+.flow{display:grid;gap:10px;align-items:stretch}
+.flow-4{grid-template-columns:minmax(0,.85fr) auto minmax(0,1.15fr) auto minmax(0,1fr) auto minmax(0,1.1fr)}
+.flow-3{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr)}
+.stage{display:flex;flex-direction:column;gap:.55rem;min-width:0;border:1.5px solid var(--ink);background:var(--card);padding:12px}
+.stage.clerk{background:var(--tape);color:var(--tape-ink);border-color:var(--tape)}
+.stage.clerk .stage-sub{color:var(--tape-dim)}
+.stage.genrec{background:var(--teal-soft);border-color:var(--teal)}
+.stage-name{font-family:var(--f-display);font-weight:750;font-stretch:88%;font-size:1.05rem;line-height:1.15}
+.stage-sub{font-family:var(--f-display);font-size:.8rem;line-height:1.4;color:var(--muted)}
+.stage-as{font-style:italic;font-size:.98rem;line-height:1.2}
+.chips{list-style:none;display:flex;flex-direction:column;gap:6px}
+.chips li{font-family:var(--f-mono);font-size:.72rem;line-height:1.35;border:1px solid var(--rule);background:var(--paper);padding:4px 7px}
+.stage .prompt{font-family:var(--f-mono);font-size:.72rem;line-height:1.55;overflow-wrap:anywhere}
+.stage .prompt b{font-weight:500;color:var(--teal)}
+.vec{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px}
+.vec i{display:block;height:20px;background:var(--sticker);opacity:var(--o)}
+.scores{list-style:none;display:flex;flex-direction:column;gap:7px;font-family:var(--f-mono);font-size:.72rem;line-height:1.3}
+.scores li{display:grid;grid-template-columns:minmax(0,1fr) 2.6em;gap:2px 8px;align-items:center;font-variant-numeric:tabular-nums}
+.scores .t{overflow-wrap:anywhere}
+.scores .v{text-align:right}
+.scores .track{grid-column:1 / -1;height:7px;background:var(--paper);border:1px solid var(--rule)}
+.bar{display:block;height:100%;background:var(--teal);transform-origin:left center}
+.flow-arrow{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;font-family:var(--f-display);font-weight:700;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;line-height:1.25;color:var(--muted)}
+.flow-arrow svg{width:40px;height:12px;flex:none}
+.facts{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.3rem .7rem;font-family:var(--f-display);font-size:.82rem;line-height:1.4}
+.facts dt{font-weight:700;color:var(--muted)}
+
+/* ---------- context demo ---------- */
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.6rem;max-width:none}
+.moves div{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.moves dd{font-size:1.02rem;line-height:1.45}
+.tag{justify-self:start;align-self:flex-start;font-family:var(--f-display);font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;padding:.2em .5em;border:1.5px solid currentColor}
+.tag.keep{color:var(--teal)}
+.tag.omit{color:var(--strike)}
+.tag.comp{color:var(--ink)}
+.tag.elab{background:var(--sticker);color:var(--sticker-ink);border-color:var(--sticker)}
+.demo{border:1.5px solid var(--ink);background:var(--card)}
+.demo-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1.5px solid var(--ink)}
+.seg{display:inline-flex;border:1.5px solid var(--ink)}
+.seg button{font-family:var(--f-display);font-weight:700;font-size:.8rem;padding:.5em .9em;background:transparent;color:var(--ink);border:0;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.log{list-style:none;font-family:var(--f-mono);font-size:.78rem;line-height:1.5}
+.log li{display:grid;grid-template-columns:6.4rem minmax(0,1fr);gap:4px 12px;align-items:baseline;padding:8px 14px;border-bottom:1px solid var(--rule)}
+.log.raw li{grid-template-columns:minmax(0,1fr)}
+.log-text{min-width:0;overflow-wrap:anywhere}
+.log li.is-omit .log-text{text-decoration:line-through;color:var(--muted)}
+.log li.more .log-text{color:var(--muted);font-style:italic}
+.meter-wrap{display:flex;flex-direction:column;gap:7px;padding:12px 14px}
+.meter{height:14px;background:var(--paper);border:1.5px solid var(--ink)}
+.meter-fill{height:100%;width:34%;background:var(--teal);transition:width .6s ease}
+.meter-label{font-family:var(--f-display);font-size:.85rem;line-height:1.4}
+
+/* ---------- pass diagram ---------- */
+.dg-scroll{overflow-x:auto}
+.dg{display:block;width:100%;min-width:600px;height:auto;color:var(--ink)}
+.dg text{font-family:var(--f-display);font-size:12px;fill:currentColor}
+.dg .dg-title{font-weight:700;font-size:13px}
+.dg .dg-note{fill:var(--muted)}
+.dg-box{fill:var(--card);stroke:currentColor;stroke-width:1.5}
+.dg-hi{fill:var(--teal-soft);stroke:var(--teal);stroke-width:1.5}
+.dg-line{fill:none;stroke:currentColor;stroke-width:1.5}
+.dg-head{fill:currentColor}
+
+.formula{font-family:var(--f-mono);font-size:.86rem;line-height:1.7;border-left:3px solid var(--ink);padding-left:14px;overflow-x:auto}
+
+.turns{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px}
+.turn{display:flex;flex-direction:column;gap:.4rem;min-width:0;border:1.5px solid var(--ink);background:var(--card);padding:12px;font-family:var(--f-mono);font-size:.74rem;line-height:1.6;overflow-wrap:anywhere}
+.turn.truth{background:var(--teal-soft);border-color:var(--teal)}
+.turn b{font-weight:500;color:var(--teal)}
+
+/* ---------- gains chart ---------- */
+.gains{display:flex;flex-direction:column;gap:1rem;max-width:760px}
+.gain-row{display:flex;flex-direction:column;gap:5px}
+.gain-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--f-display);font-size:.88rem;line-height:1.35}
+.gain-val{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gain-track{position:relative;height:18px;border-left:1.5px solid var(--ink);background-image:linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid var(--rule)}
+.gain-bar{position:absolute;top:3px;bottom:3px;background:var(--teal);transform-origin:left center}
+.gain-dot{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--teal)}
+.gain-axis{position:relative;height:1.4rem;font-family:var(--f-mono);font-size:.68rem;color:var(--muted)}
+.gain-axis span{position:absolute;top:2px;transform:translateX(-50%)}
+.gain-axis span:first-child{transform:none}
+.gain-axis span:last-child{transform:translateX(-100%)}
+
+/* ---------- rewards ---------- */
+.slips{list-style:none;display:flex;flex-direction:column;max-width:760px}
+.slips li{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:6px 20px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule);font-size:1.02rem;line-height:1.4}
+.slips li:first-child{border-top:1.5px solid var(--ink)}
+.w{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+.w-track{flex:1;height:9px;background:var(--card);border:1px solid var(--rule)}
+
+/* ---------- results ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,34px)}
+.stat{display:flex;flex-direction:column;gap:.35rem;min-width:0;border-top:1.5px solid var(--ink);padding-top:.7rem}
+.stat-num{font-family:var(--f-display);font-stretch:72%;font-weight:800;font-size:clamp(2.3rem,5.4vw,3.5rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat-what{font-family:var(--f-display);font-weight:700;font-size:.95rem;line-height:1.3}
+.stat-note{font-size:.98rem;line-height:1.45;color:var(--muted)}
+.plain{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.plain li{padding-left:1.1rem;border-left:3px solid var(--rule)}
+.plain strong{font-family:var(--f-display);font-weight:700;font-size:.98em}
+
+.one-line{font-size:1.35rem;line-height:1.45}
+.foot{font-family:var(--f-display);font-size:.85rem;line-height:1.5;color:var(--muted);border-top:1px solid var(--rule);padding-top:1rem}
+
+.anim.play .bar,.anim.play .gain-bar{animation:grow .9s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes grow{from{transform:scaleX(0)}}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .flow-4,.flow-3{grid-template-columns:minmax(0,1fr)}
+  .flow-arrow{width:auto;flex-direction:row;gap:10px;padding-block:2px}
+  .flow-arrow svg{transform:rotate(90deg);width:26px}
+  .stats{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  body{font-size:1.09rem}
+  .two-up,.turns,.moves{grid-template-columns:minmax(0,1fr)}
+  .map{grid-template-columns:minmax(0,1fr);gap:.1rem}
+  .map dd{padding-bottom:.6rem}
+  .log li{grid-template-columns:minmax(0,1fr)}
+  .slips li{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  .spine,.anim.play .bar,.anim.play .gain-bar{animation:none}
+  .meter-fill{transition:none}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-text">
+    <span class="sticker">Paper walkthrough</span>
+    <h1>The clerk who reads your rental card</h1>
+    <p class="lede">GenRec is Netflix's test of a language model as its catalog ranker. The model reads a short written account of what you watched, once, and gives every title on the shelf a score. Offline it beat the production ranker with about 40 times fewer task-specific training examples. A four-week A/B test confirmed a small, statistically significant lift.</p>
+    <p class="cite">Li, Sehgal, Rao, Houthooft, Zhu, Rastogi. <a href="https://arxiv.org/abs/2608.10257">GenRec: An LLM-Backed Recommendation Ranker at Netflix</a>. arXiv:2608.10257, August 2026.</p>
+  </div>
+  <figure class="shelf-fig">
+    <ol class="shelf" aria-label="A shelf of nine tape spines, each with a score. The three highest are pulled forward.">
+      <li class="spine pick" style="--i:0;--band:var(--sticker)"><span class="spine-title">Night Ferry</span><span class="spine-score">.31</span></li>
+      <li class="spine pick" style="--i:1;--band:var(--teal)"><span class="spine-title">Glass Orchard</span><span class="spine-score">.22</span></li>
+      <li class="spine pick" style="--i:2;--band:var(--strike)"><span class="spine-title">Kiln</span><span class="spine-score">.12</span></li>
+      <li class="spine" style="--i:3;--band:var(--tape-dim)"><span class="spine-title">Harbor Lights</span><span class="spine-score">.07</span></li>
+      <li class="spine" style="--i:4;--band:var(--teal)"><span class="spine-title">Tin Comet</span><span class="spine-score">.05</span></li>
+      <li class="spine low" style="--i:5;--band:var(--sticker)"><span class="spine-title">Low Tide Radio</span><span class="spine-score">.03</span></li>
+      <li class="spine low" style="--i:6;--band:var(--strike)"><span class="spine-title">Quiet Meridian</span><span class="spine-score">.02</span></li>
+      <li class="spine low" style="--i:7;--band:var(--tape-dim)"><span class="spine-title">Ash and Honey</span><span class="spine-score">.01</span></li>
+      <li class="spine rest" style="--i:8;--band:transparent"><span class="spine-title">The rest</span><span class="spine-score">.17</span></li>
+    </ol>
+    <figcaption>One read of the card, one score per tape, and the scores sum to 1. Titles and scores are invented for illustration.</figcaption>
+  </figure>
+</header>
+
+<!-- ================= PROBLEM ================= -->
+<section class="block">
+  <span class="sticker">The problem</span>
+  <h2>The old ranker knows you through a form</h2>
+  <p>Netflix's production ranker describes each member with thousands of hand-built features: counts, recencies, ratios, and crosses between them. Around those features sit custom architectures, one for feature interactions, one for sequences of viewing, one for running several tasks at once.</p>
+  <p>Years of tuning made this system very good. The cost shows when something new arrives. Adding games, live events or podcasts, or a new place in the app to show recommendations, means new features, architecture changes, new pipelines and a fresh round of experiments.</p>
+
+  <figure class="fig">
+    <div class="two-up">
+      <div class="side">
+        <p class="fig-tag">Production ranker: a form with thousands of boxes</p>
+        <div class="form-sheet">
+          <span class="feat">plays_last_7d</span>
+          <span class="feat">days_since_last_play</span>
+          <span class="feat">genre_affinity[thriller]</span>
+          <span class="feat">device × hour_of_day</span>
+          <span class="feat">completion_rate × genre × tenure</span>
+          <span class="feat">title_popularity_28d</span>
+          <span class="feat">thumbs_ratio_by_content_type</span>
+          <span class="feat">… thousands more</span>
+        </div>
+      </div>
+      <div class="side">
+        <p class="fig-tag">GenRec: a card with a few written lines</p>
+        <div class="rcard">
+          <div>May 21, 2 PM, TV</div>
+          <div><b>Play</b> · Salt Road · 30 min</div>
+          <div>May 23, 4 PM, tablet</div>
+          <div><b>Play</b> · The Long Thaw · 2 h</div>
+          <div><b>Add to list</b> · Harbor Lights</div>
+        </div>
+      </div>
+    </div>
+    <figcaption>The same member, described two ways. Feature names are invented; the paper says only that production uses thousands of engineered features. The card follows the format of the paper's own example.</figcaption>
+  </figure>
+
+  <h3>Why a stock LLM can't take over</h3>
+  <p>An LLM brings what the form lacks. It knows what titles are about, and it can read a history written in plain language. Used off the shelf, it fails in four ways the paper names. GenRec has an answer for each.</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th scope="col">A stock LLM</th><th scope="col">GenRec's answer</th></tr></thead>
+      <tbody>
+        <tr><td class="was">Pushes whatever is popular everywhere</td><td>Post-training on Netflix's own catalog and viewing behavior</td></tr>
+        <tr><td class="was">Invents titles that are not in the catalog</td><td>A scoring head that can only score catalog items</td></tr>
+        <tr><td class="was">Ignores business constraints</td><td>Reward signals folded into the training loss</td></tr>
+        <tr><td class="was">Personalizes weakly</td><td>A foundation model already trained on member behavior, plus each member's history in the prompt</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= IDEA ================= -->
+<section class="block">
+  <span class="sticker">The idea</span>
+  <h2>Hire a clerk. Hand over the card.</h2>
+  <p>Picture a video shop. The clerk behind the counter went to film school, so they know films and can talk about them. They then spent years at this shop, learning its shelf and its regulars. Finally they were trained for one job: when a regular walks in, say what that person should take home tonight.</p>
+  <p>You hand over your rental card. The clerk reads it once and looks along the shelf. Every tape gets a score, and the clerk can only point at tapes that are actually there.</p>
+  <p>That is GenRec. Each part of the picture has a counterpart in the paper.</p>
+  <dl class="map">
+    <dt>The rental card</dt><dd>The verbalized prompt: history, title metadata and context written as text</dd>
+    <dt>Film school</dt><dd>An open-source LLM</dd>
+    <dt>Years at this counter</dt><dd>Phase 1, a foundation model trained on Netflix data</dd>
+    <dt>Training for tonight's pick</dt><dd>Phase 2, post-training for ranking. The result is GenRec.</dd>
+    <dt>One read of the card</dt><dd>A single forward pass, which the paper calls prefill-only inference</dd>
+    <dt>Pointing only at the shelf</dt><dd>The catalog-aware scoring head</dd>
+  </dl>
+
+  <figure class="fig anim">
+    <div class="flow flow-4">
+      <div class="stage">
+        <p class="stage-name">Raw logs</p>
+        <ul class="chips">
+          <li>viewing history</li>
+          <li>title metadata</li>
+          <li>context: time, device, surface</li>
+        </ul>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span>verbalize</span><svg viewBox="0 0 40 12"><line x1="0" y1="6" x2="31" y2="6" stroke="currentColor" stroke-width="1.5"/><polygon points="31,1 40,6 31,11" fill="currentColor"/></svg></div>
+      <div class="stage">
+        <p class="stage-name">The card</p>
+        <p class="stage-sub">A natural-language prompt, cut to fit a token budget</p>
+        <div class="prompt">
+          <div>May 21, 2 PM, TV</div>
+          <div><b>Play</b> · Salt Road · 30 min</div>
+          <div>May 23, 4 PM, tablet</div>
+          <div><b>Play</b> · The Long Thaw · 2 h</div>
+          <div><b>Add to list</b> · Harbor Lights</div>
+        </div>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span>read once</span><svg viewBox="0 0 40 12"><line x1="0" y1="6" x2="31" y2="6" stroke="currentColor" stroke-width="1.5"/><polygon points="31,1 40,6 31,11" fill="currentColor"/></svg></div>
+      <div class="stage clerk">
+        <p class="stage-name">The clerk</p>
+        <p class="stage-sub">GenRec, a decoder-only LLM. It writes nothing. It hands back one vector, h.</p>
+        <div class="vec" aria-hidden="true">
+          <i style="--o:.95"></i><i style="--o:.3"></i><i style="--o:.7"></i><i style="--o:.15"></i><i style="--o:.85"></i><i style="--o:.45"></i><i style="--o:.2"></i><i style="--o:.6"></i><i style="--o:.35"></i><i style="--o:.9"></i>
+        </div>
+        <p class="stage-sub">h summarizes this member, right now</p>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span>score every title</span><svg viewBox="0 0 40 12"><line x1="0" y1="6" x2="31" y2="6" stroke="currentColor" stroke-width="1.5"/><polygon points="31,1 40,6 31,11" fill="currentColor"/></svg></div>
+      <div class="stage">
+        <p class="stage-name">The shelf, scored</p>
+        <ol class="scores">
+          <li><span class="t">Night Ferry</span><span class="v">0.31</span><span class="track"><span class="bar" style="width:100%"></span></span></li>
+          <li><span class="t">Glass Orchard</span><span class="v">0.22</span><span class="track"><span class="bar" style="width:71%"></span></span></li>
+          <li><span class="t">Kiln</span><span class="v">0.12</span><span class="track"><span class="bar" style="width:38.7%"></span></span></li>
+          <li><span class="t">Harbor Lights</span><span class="v">0.07</span><span class="track"><span class="bar" style="width:22.6%"></span></span></li>
+          <li><span class="t">… every other title</span><span class="v"></span></li>
+        </ol>
+      </div>
+    </div>
+    <figcaption>The GenRec inference path, after the paper's Figure 1. Sorting the scores gives the ranking. Titles and scores are invented.</figcaption>
+  </figure>
+</section>
+
+<!-- ================= MECHANISM 1 ================= -->
+<section class="block">
+  <span class="sticker">How it works · the card</span>
+  <h2>Deciding what goes on the card</h2>
+  <p>The card has limited lines. A member's full history, with metadata for every event, runs far past the model's token budget. Long prompts also dilute attention and cost more to train and serve. So the team chooses what the model gets to read. The paper calls this context engineering and describes four moves.</p>
+  <dl class="moves">
+    <div><dt><span class="tag keep">Keep in full</span></dt><dd>Long plays and thumbs-up events, written with richer metadata.</dd></div>
+    <div><dt><span class="tag omit">Omit</span></dt><dd>Very short plays and stray clicks. They cost tokens and say little.</dd></div>
+    <div><dt><span class="tag comp">Compress</span></dt><dd>A binge becomes one line. Older history becomes a short summary of interests.</dd></div>
+    <div><dt><span class="tag elab">Elaborate</span></dt><dd>New releases and cold-start titles get extra description, because neither the model nor the logs know them yet.</dd></div>
+  </dl>
+
+  <figure class="fig">
+    <div class="demo">
+      <div class="demo-head">
+        <p class="fig-tag">One member's log</p>
+        <div class="seg" role="group" aria-label="Choose which version of the log to show">
+          <button type="button" id="btn-raw" aria-pressed="false">Raw log</button>
+          <button type="button" id="btn-eng" aria-pressed="true">What the model reads</button>
+        </div>
+      </div>
+      <ol class="log raw" id="log-raw" hidden>
+        <li><span class="log-text">May 03, 9 PM, TV · Play · Salt Road S1E1 · 52 min</span></li>
+        <li><span class="log-text">May 03, 10 PM, TV · Play · Salt Road S1E2 · 49 min</span></li>
+        <li><span class="log-text">May 04, 9 PM, TV · Play · Salt Road S1E3 · 55 min</span></li>
+        <li><span class="log-text">May 04, 10 PM, TV · Play · Salt Road S1E4 · 51 min</span></li>
+        <li><span class="log-text">May 06, 8 PM, phone · Play · Kiln · 2 min</span></li>
+        <li><span class="log-text">May 06, 8 PM, phone · Click · Night Ferry trailer</span></li>
+        <li><span class="log-text">May 09, 7 PM, TV · Play · The Long Thaw · 1 h 58 min</span></li>
+        <li><span class="log-text">May 09, 9 PM, TV · Thumbs up · The Long Thaw</span></li>
+        <li><span class="log-text">May 12, 4 PM, tablet · Add to list · Harbor Lights</span></li>
+        <li class="more"><span class="log-text">… plus 140 older events, listed one by one</span></li>
+      </ol>
+      <ol class="log" id="log-eng">
+        <li><span class="tag comp">Compress</span><span class="log-text">May 03 to 04, TV · Binged Salt Road S1E1 to E4, finished each episode</span></li>
+        <li class="is-omit"><span class="tag omit">Omit</span><span class="log-text">May 06, 8 PM, phone · Play · Kiln · 2 min</span></li>
+        <li class="is-omit"><span class="tag omit">Omit</span><span class="log-text">May 06, 8 PM, phone · Click · Night Ferry trailer</span></li>
+        <li><span class="tag keep">Keep in full</span><span class="log-text">May 09, 7 PM, TV · Play · The Long Thaw (2024 film, slow-burn Arctic survival drama) · 1 h 58 min · Thumbs up</span></li>
+        <li><span class="tag keep">Keep in full</span><span class="log-text">May 12, 4 PM, tablet · Add to list · Harbor Lights</span></li>
+        <li><span class="tag comp">Compress</span><span class="log-text">Older history: mostly crime drama and nature documentaries, rarely comedy</span></li>
+        <li><span class="tag elab">Elaborate</span><span class="log-text">New this week: Glass Orchard. Limited series, 6 episodes, a courtroom drama set on a family vineyard.</span></li>
+      </ol>
+      <div class="meter-wrap">
+        <div class="meter" aria-hidden="true"><div class="meter-fill" id="meter-fill"></div></div>
+        <p class="meter-label" id="meter-label" aria-live="polite">About 1,700 tokens after context engineering, in the paper's example</p>
+      </div>
+    </div>
+    <figcaption>The log rows are invented to show the four moves. The token figures are the paper's own example: about 5,000 tokens cut to about 1,700.</figcaption>
+  </figure>
+
+  <p>The team also tuned how much history to keep. Ranking quality rises with the number of events up to an elbow, then flattens. Trimming to the elbow and tightening the wording cut the prompt to about a third of its length with negligible loss in offline quality. Serving cost fell to about a third as well, because cost tracks context length.</p>
+</section>
+
+<!-- ================= MECHANISM 2 ================= -->
+<section class="block">
+  <span class="sticker">How it works · the look</span>
+  <h2>One look along the shelf</h2>
+  <p>An LLM normally answers by writing, one token at a time. Ranking a large set of titles that way means a model pass for every token, usually with beam search on top. At Netflix's traffic that is too expensive.</p>
+  <p>GenRec keeps the generative backbone and skips the writing. The model reads the prompt once. The hidden state at one chosen position becomes a vector, h, that summarizes this member in this moment. A scoring head compares h with a learned embedding for each title, and a softmax turns the scores into a distribution over the catalog.</p>
+  <p class="formula">score<sub>i</sub> = φ(h, e<sub>i</sub>) &nbsp; for every title i in the catalog<br>p(i) = softmax of the scores</p>
+
+  <figure class="fig">
+    <div class="dg-scroll">
+      <svg class="dg" viewBox="0 0 680 300" role="img" aria-label="Two ways to get a ranking from an LLM. Writing the answer out needs one model pass per token. GenRec reads the prompt once, takes one vector, and scores every catalog title against it.">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker>
+        </defs>
+
+        <text class="dg-title" x="10" y="20">Writing the answer out (autoregressive decoding)</text>
+        <rect class="dg-box" x="10" y="36" width="100" height="52"/>
+        <text x="60" y="59" text-anchor="middle">verbalized</text><text x="60" y="75" text-anchor="middle">prompt</text>
+        <line class="dg-line" x1="110" y1="62" x2="157" y2="62" marker-end="url(#ah)"/>
+        <rect class="dg-box" x="160" y="36" width="90" height="52"/>
+        <text x="205" y="67" text-anchor="middle">LLM</text>
+        <line class="dg-line" x1="250" y1="62" x2="287" y2="62" marker-end="url(#ah)"/>
+        <rect class="dg-box" x="290" y="44" width="52" height="36"/><text x="316" y="67" text-anchor="middle">Night</text>
+        <rect class="dg-box" x="348" y="44" width="52" height="36"/><text x="374" y="67" text-anchor="middle">Ferry</text>
+        <rect class="dg-box" x="406" y="44" width="40" height="36"/><text x="426" y="67" text-anchor="middle">…</text>
+        <line class="dg-line" x1="446" y1="62" x2="487" y2="62" marker-end="url(#ah)"/>
+        <rect class="dg-box" x="490" y="36" width="180" height="52"/>
+        <text x="580" y="59" text-anchor="middle">a few titles,</text><text x="580" y="75" text-anchor="middle">one token at a time</text>
+        <path class="dg-line" d="M 374 82 C 374 122, 205 122, 205 92" marker-end="url(#ah)"/>
+        <text class="dg-note" x="290" y="136" text-anchor="middle">each token is fed back in: one pass per token, per beam</text>
+
+        <text class="dg-title" x="10" y="180">Reading only (prefill-only, GenRec)</text>
+        <rect class="dg-box" x="10" y="196" width="100" height="52"/>
+        <text x="60" y="219" text-anchor="middle">verbalized</text><text x="60" y="235" text-anchor="middle">prompt</text>
+        <line class="dg-line" x1="110" y1="222" x2="157" y2="222" marker-end="url(#ah)"/>
+        <rect class="dg-hi" x="160" y="196" width="90" height="52"/>
+        <text x="205" y="219" text-anchor="middle">LLM</text><text x="205" y="235" text-anchor="middle">reads once</text>
+        <line class="dg-line" x1="250" y1="222" x2="287" y2="222" marker-end="url(#ah)"/>
+        <rect class="dg-hi" x="290" y="196" width="100" height="52"/>
+        <text x="340" y="219" text-anchor="middle">h</text><text x="340" y="235" text-anchor="middle">one vector</text>
+        <line class="dg-line" x1="390" y1="222" x2="427" y2="222" marker-end="url(#ah)"/>
+        <rect class="dg-hi" x="430" y="196" width="110" height="52"/>
+        <text x="485" y="219" text-anchor="middle">scoring head</text><text x="485" y="235" text-anchor="middle">φ(h, eᵢ)</text>
+        <line class="dg-line" x1="540" y1="222" x2="567" y2="222" marker-end="url(#ah)"/>
+        <rect class="dg-hi" x="570" y="196" width="100" height="52"/>
+        <text x="620" y="219" text-anchor="middle">a score for</text><text x="620" y="235" text-anchor="middle">every title</text>
+        <text class="dg-note" x="10" y="278">one model pass per request; only real titles have an embedding eᵢ to score against</text>
+      </svg>
+    </div>
+    <figcaption>The backbone can still generate text. GenRec is deployed so that it never has to.</figcaption>
+  </figure>
+
+  <p>Two things follow. The whole candidate set is scored in a single pass. And the head has an embedding only for real titles, so a recommendation from outside the catalog cannot happen. When the catalog is too large to score exhaustively, the paper says sampled softmax can stand in.</p>
+
+  <h3>What it costs to serve</h3>
+  <p>Serving cost is roughly model size times context length. The paper pulls three levers: smaller or distilled backbones, shorter prompts, and prefill-only inference. GenRec runs on Netflix's internal LLM serving stack, built on vLLM.</p>
+</section>
+
+<!-- ================= MECHANISM 3 ================= -->
+<section class="block">
+  <span class="sticker">How it works · the training</span>
+  <h2>Training the clerk in two phases</h2>
+  <p>The two phases have different jobs, refresh on different schedules, and face different cost pressure. The paper is about Phase 2.</p>
+
+  <figure class="fig">
+    <div class="flow flow-3">
+      <div class="stage">
+        <p class="stage-as">Film school</p>
+        <p class="stage-name">Open-source LLM</p>
+        <dl class="facts">
+          <dt>Knows</dt><dd>Language and the world</dd>
+          <dt>Lacks</dt><dd>Netflix's catalog and members</dd>
+        </dl>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span>train on Netflix data</span><svg viewBox="0 0 40 12"><line x1="0" y1="6" x2="31" y2="6" stroke="currentColor" stroke-width="1.5"/><polygon points="31,1 40,6 31,11" fill="currentColor"/></svg></div>
+      <div class="stage">
+        <p class="stage-as">Years at this counter</p>
+        <p class="stage-name">Phase 1: foundation model</p>
+        <dl class="facts">
+          <dt>Learns</dt><dd>Catalog and member behavior, balanced with content understanding and instruction following</dd>
+          <dt>Refresh</dt><dd>Infrequent</dd>
+          <dt>Cost</dt><dd>Built for capability; serving cost matters less</dd>
+        </dl>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span>post-train for ranking</span><svg viewBox="0 0 40 12"><line x1="0" y1="6" x2="31" y2="6" stroke="currentColor" stroke-width="1.5"/><polygon points="31,1 40,6 31,11" fill="currentColor"/></svg></div>
+      <div class="stage genrec">
+        <p class="stage-as">Tonight's pick</p>
+        <p class="stage-name">Phase 2: GenRec</p>
+        <dl class="facts">
+          <dt>Learns</dt><dd>Ranking, from task data, labels and rewards</dd>
+          <dt>Refresh</dt><dd>Frequent, to follow new launches and shifting tastes</dd>
+          <dt>Cost</dt><dd>Must be cheap enough to serve at scale</dd>
+        </dl>
+      </div>
+    </div>
+    <figcaption>The two-phase framework, after the paper's Figure 2.</figcaption>
+  </figure>
+
+  <h3>The training data is written as a conversation</h3>
+  <p>Each member's history becomes one or more turns between a user and a recommender. The user turn carries context, profile, history, item details and a task. The assistant turn is what the member actually did next.</p>
+  <figure class="fig">
+    <div class="turns">
+      <div class="turn">
+        <p class="fig-tag">User turn</p>
+        <div><b>Context</b> TV home page, Friday 9 PM</div>
+        <div><b>Member</b> country, tenure, plan</div>
+        <div><b>History</b> the card from above</div>
+        <div><b>Items</b> title names, synopses, release dates, popularity trends</div>
+        <div><b>Task</b> predict the next titles this member will play</div>
+      </div>
+      <div class="turn truth">
+        <p class="fig-tag">Assistant turn: the ground truth</p>
+        <div>Played Night Ferry for 1 h 44 min.</div>
+        <div>Thumbs up.</div>
+      </div>
+    </div>
+    <figcaption>The field list comes from the paper. The values shown are invented.</figcaption>
+  </figure>
+
+  <h3>Two objectives, one of them used at serving time</h3>
+  <p>The ranking objective is a cross-entropy loss over the catalog. Positives are high-quality engagements such as long plays and strong explicit feedback, with denoising thresholds that vary by content type. The language-modeling objective keeps predicting the text of the prompt and its outputs. It preserves the backbone's language skill, keeps the model steerable by prompt, and leaves room for written explanations later. Only the ranking head runs at inference.</p>
+  <p class="formula">L = α·L<sub>ranking</sub> + β·L<sub>language</sub> + γ·L<sub>misc</sub><br>α + β + γ = 1, each tuned offline</p>
+
+  <h3>How much each phase adds</h3>
+  <figure class="fig anim">
+    <div class="gains" role="img" aria-label="Range chart of gains in offline MRR. Phase 1 adds 10 to 20 percent over an open-source base. Phase 2 adds 35 to 50 percent over a fresh Phase 1 model, rising to roughly 80 percent two weeks later.">
+      <div class="gain-row">
+        <div class="gain-top"><span>Phase 1 foundation, against an open-source base</span><span class="gain-val">+10 to 20%</span></div>
+        <div class="gain-track"><span class="gain-bar" style="left:10%;width:10%"></span></div>
+      </div>
+      <div class="gain-row">
+        <div class="gain-top"><span>Phase 2, against a freshly trained Phase 1</span><span class="gain-val">+35 to 50%</span></div>
+        <div class="gain-track"><span class="gain-bar" style="left:35%;width:15%"></span></div>
+      </div>
+      <div class="gain-row">
+        <div class="gain-top"><span>Phase 2, against the same Phase 1 two weeks on</span><span class="gain-val">about +80%</span></div>
+        <div class="gain-track"><span class="gain-dot" style="left:80%"></span></div>
+      </div>
+      <div class="gain-axis" aria-hidden="true"><span style="left:0">0%</span><span style="left:25%">25%</span><span style="left:50%">50%</span><span style="left:75%">75%</span><span style="left:100%">100%</span></div>
+    </div>
+    <figcaption>Relative gain in offline MRR, from the paper's Table 1 and Section 5.3. The rows use different baselines, so they do not add up.</figcaption>
+  </figure>
+  <p>The second gain grows with time. The foundation model goes stale on new launches and shifting tastes, while Phase 2 keeps refreshing. That gap is the reason the phases run on different schedules.</p>
+</section>
+
+<!-- ================= MECHANISM 4 ================= -->
+<section class="block">
+  <span class="sticker">How it works · the rewards</span>
+  <h2>The owner's note</h2>
+  <p>A clerk trained only on what people rented would learn to hand you the next episode of whatever you are binging. The shop's owner wants more than that: customers who come back, and a shelf where films, games, live events and podcasts all get seen. Raw engagement logs do not carry those goals.</p>
+  <p>So each training example gets a weight. Separate reward models, built earlier at Netflix, score how valuable an engagement was. One group estimates long-term satisfaction: did this play lead the member to return, explore more of the catalog, or stay engaged over time? Another rebalances across content types and launch stages. The ranking loss for each example is multiplied by its weight.</p>
+
+  <figure class="fig anim">
+    <ul class="slips">
+      <li><span>Finished a film in a genre they had never tried, and came back the next day</span><span class="w"><span>×1.5</span><span class="w-track"><span class="bar" style="width:100%"></span></span></span></li>
+      <li><span>Played a newly launched game for twenty minutes</span><span class="w"><span>×1.3</span><span class="w-track"><span class="bar" style="width:86.7%"></span></span></span></li>
+      <li><span>Let episode six autoplay after episode five</span><span class="w"><span>×0.7</span><span class="w-track"><span class="bar" style="width:46.7%"></span></span></span></li>
+    </ul>
+    <figcaption>Three training examples and the weight each might carry in the loss. The weights are invented; the paper does not publish them.</figcaption>
+  </figure>
+
+  <p>This is still supervised learning. In early experiments, reinforcement-learning methods such as GRPO did better, at a much higher training cost. The team chose the weighted loss for its simplicity and stability and left RL for later work.</p>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section class="block">
+  <span class="sticker">Did it work?</span>
+  <h2>Against a ranker tuned for years</h2>
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">+1.6%</span>
+      <span class="stat-what">Offline MRR, relative</span>
+      <span class="stat-note">With about 40 times fewer Phase-2 labeled examples than production uses, and fewer input signals.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">+0.115%</span>
+      <span class="stat-what">Short-term homepage engagement</span>
+      <span class="stat-note">Online A/B test. p = 3.1 × 10<sup>−10</sup>.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">+0.006%</span>
+      <span class="stat-what">Long-term core metric</span>
+      <span class="stat-note">Same test. p = 0.025.</span>
+    </div>
+  </div>
+  <p>The A/B test took about 10% of Netflix traffic for four weeks, on batch-compute surfaces, with GenRec in a low-data, low-signal configuration. MRR is mean reciprocal rank: the average of one over the position of the title the member actually chose.</p>
+  <ul class="plain">
+    <li><strong>More data keeps helping.</strong> Offline MRR rose steadily as Phase-2 data grew from 1× to 20×, for both a roughly 1B-parameter and a roughly 10B-parameter backbone.</li>
+    <li><strong>Bigger backbones win.</strong> Under a fixed training budget, larger models consistently reached higher MRR.</li>
+    <li><strong>Shorter prompts cost almost nothing in quality.</strong> About 5,000 tokens became about 1,700, and serving cost fell to roughly a third.</li>
+  </ul>
+</section>
+
+<!-- ================= SHIFTS ================= -->
+<section class="block">
+  <span class="sticker">What changes</span>
+  <h2>Five shifts the authors expect</h2>
+  <p>The authors argue that an LLM ranker changes more than the model. Their discussion section names five shifts.</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th scope="col">Classic recommender stack</th><th scope="col">LLM-native stack</th></tr></thead>
+      <tbody>
+        <tr><td class="was">Feature engineering: design features and their crosses</td><td>Context engineering: choose what to say, how briefly, and how far back. The prompt is the new feature vector.</td></tr>
+        <tr><td class="was">A bespoke architecture for each task</td><td>One transformer backbone shared with the foundation model</td></tr>
+        <tr><td class="was">Diminishing returns from sparse IDs and hand-tuned objectives</td><td>Scaling curves used as a planning tool for data and model size</td></tr>
+        <tr><td class="was">Each recommender built from scratch</td><td>Pre-train once, post-train often, align with rewards</td></tr>
+        <tr><td class="was">Serving built around MLPs and factorization models</td><td>GPU serving with vLLM, batching, KV caching and prefix caching</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= CARE ================= -->
+<section class="block">
+  <span class="sticker">Read with care</span>
+  <h2>What the paper does not settle</h2>
+  <ul class="plain">
+    <li><strong>The online lifts are small.</strong> A gain of 0.006% is detectable because the test is enormous. The paper calls it meaningful at Netflix scale and gives no way to size it in member or revenue terms.</li>
+    <li><strong>The 40× figure counts Phase-2 labels only.</strong> The foundation model underneath was trained on Netflix data too. The authors call this marginal data efficiency, which is the accurate name.</li>
+    <li><strong>Only batch-compute surfaces were tested.</strong> Rankings there are computed ahead of time. Real-time surfaces with tight latency limits are not covered.</li>
+    <li><strong>No cost comparison is given.</strong> The paper reports that context trimming cut GenRec's own serving cost to a third. It does not say how GenRec's cost compares with the production ranker's.</li>
+    <li><strong>Much is withheld.</strong> The base model, the catalog size, the metric definitions and the reward weights are not disclosed, and the charts are normalized.</li>
+    <li><strong>Prompt steering is preserved, not measured.</strong> The language objective is kept partly so the ranker can be steered in natural language. No steering results appear here.</li>
+    <li><strong>The authors' own claim is modest.</strong> They describe a viable and promising path in at least some scenarios, to be weighed against strong non-LLM baselines.</li>
+  </ul>
+</section>
+
+<!-- ================= CLOSE ================= -->
+<section class="block">
+  <span class="sticker">In one line</span>
+  <p class="one-line">Write the member's story as text, let a Netflix-trained LLM read it once, and score the shelf with a head that only knows real titles.</p>
+  <p class="foot">Source: <a href="https://arxiv.org/abs/2608.10257">arXiv:2608.10257</a>. All figures are taken from the paper unless marked as invented for illustration.</p>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var raw=document.getElementById('log-raw'), eng=document.getElementById('log-eng');
+  var bRaw=document.getElementById('btn-raw'), bEng=document.getElementById('btn-eng');
+  var fill=document.getElementById('meter-fill'), label=document.getElementById('meter-label');
+  function show(isRaw){
+    raw.hidden=!isRaw; eng.hidden=isRaw;
+    bRaw.setAttribute('aria-pressed',String(isRaw));
+    bEng.setAttribute('aria-pressed',String(!isRaw));
+    fill.style.width=isRaw?'100%':'34%';
+    label.textContent=isRaw
+      ? 'About 5,000 tokens before context engineering, in the paper’s example'
+      : 'About 1,700 tokens after context engineering, in the paper’s example';
+  }
+  bRaw.addEventListener('click',function(){show(true);});
+  bEng.addEventListener('click',function(){show(false);});
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('play'); io.unobserve(e.target); }
+      });
+    },{threshold:.35});
+    document.querySelectorAll('.anim').forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

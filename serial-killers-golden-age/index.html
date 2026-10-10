@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Serial Killers&#x27; Golden Age | Explainers</title>
+<meta name="description" content="For three decades America produced serial killers at a record rate. Then the numbers fell by about 85%.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/serial-killers-golden-age/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Serial Killers&#x27; Golden Age">
+<meta property="og:description" content="For three decades America produced serial killers at a record rate. Then the numbers fell by about 85%.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/serial-killers-golden-age/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/serial-killers-golden-age/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800;900&family=Overpass+Mono:wght@400;600&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap">
+<style>
+  /* A deliberate single look: the interstate at night. */
+  :root{
+    color-scheme: dark;
+    --asphalt:#121416;
+    --shoulder:#1a1d20;
+    --shoulder-2:#22262a;
+    --rule:#30353a;
+    --line:#ece8df;
+    --muted:#a2a89f;
+    --faint:#6f766f;
+    --sign:#1d6a45;
+    --sign-edge:#e9efe9;
+    --sodium:#f0a23b;
+    --sodium-dim:#8a6128;
+    --brake:#d9503e;
+    --display:"Overpass","Arial Narrow",Arial,system-ui,sans-serif;
+    --body:"Literata",Georgia,"Times New Roman",serif;
+    --mono:"Overpass Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--asphalt);color:var(--line);font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+  .prose{max-width:64ch}
+  h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+  h2{font-size:clamp(28px,4.4vw,40px);font-weight:900;letter-spacing:-.01em}
+  h3{font-size:21px;font-weight:800}
+  p{margin:0}
+  a{color:var(--sodium)}
+  a:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--sodium);outline-offset:3px}
+  .label{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sodium)}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  section{padding-block:56px;border-top:1px dashed var(--rule)}
+  section > * + *{margin-top:18px}
+
+  /* ---------- HERO ---------- */
+  .hero{display:grid;gap:28px;padding-block:8px 48px}
+  .sign{display:inline-flex;flex-direction:column;gap:2px;align-self:start;justify-self:start;background:var(--sign);color:#fff;border:3px solid var(--sign-edge);outline:4px solid var(--sign);border-radius:10px;padding:10px 18px 8px;font-family:var(--display);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  .sign .top{font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.92}
+  .sign .big{font-weight:800;font-size:22px;letter-spacing:.02em}
+  .hero h1{font-size:clamp(46px,9vw,104px);font-weight:900;letter-spacing:-.025em;line-height:.92}
+  .hero h1 span{color:var(--sodium)}
+  .dek{font-size:clamp(18px,2.2vw,21px);color:var(--line);max-width:58ch}
+  .dek em{color:var(--sodium);font-style:normal}
+
+  /* chart */
+  .chart-card{background:var(--shoulder);border:1px solid var(--rule);border-radius:6px;padding:20px 20px 14px}
+  .chart-head{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline}
+  .chart-head h3{font-size:18px}
+  .chart-head p{color:var(--muted);font-size:14px;font-family:var(--display)}
+  .chart-scroll{overflow-x:auto}
+  svg text{font-family:var(--mono)}
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+  .stat{border-top:2px solid var(--rule);padding-top:10px}
+  .stat b{display:block;font-family:var(--display);font-weight:900;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+  .stat span{font-size:14px;color:var(--muted);font-family:var(--display)}
+  .stat.hot b{color:var(--brake)}
+  .stat.cool b{color:var(--sodium)}
+
+  /* ---------- MODEL ---------- */
+  .gates{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gate{background:var(--shoulder);border:1px solid var(--rule);border-radius:6px;padding:18px;display:grid;gap:10px;align-content:start}
+  .gate .plate{display:inline-block;justify-self:start;font-family:var(--display);font-weight:900;letter-spacing:.08em;font-size:15px;background:var(--sodium);color:#1a1206;padding:5px 10px 3px;border-radius:3px}
+  .gate .q{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.3}
+  .gate p{color:var(--muted);font-size:15.5px}
+  .equation{font-family:var(--display);font-weight:800;font-size:clamp(17px,2.4vw,22px);line-height:1.4;background:var(--shoulder-2);border-left:4px solid var(--sodium);padding:14px 18px;border-radius:0 6px 6px 0}
+  .equation i{font-style:normal;color:var(--sodium)}
+
+  /* ---------- DRIVE ---------- */
+  .drive{background:var(--shoulder);border:1px solid var(--rule);border-radius:6px;padding:20px;display:grid;gap:20px}
+  .drive-top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between}
+  .odometer{font-family:var(--mono);font-weight:600;font-size:clamp(40px,7vw,60px);line-height:1;color:var(--sodium);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .drive-top .hint{color:var(--muted);font-family:var(--display);font-size:14px;max-width:34ch}
+  .slider-row{display:grid;gap:6px}
+  input[type=range]{width:100%;accent-color:var(--sodium);height:28px;cursor:pointer}
+  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--faint)}
+  .btns{display:flex;gap:8px;flex-wrap:wrap}
+  button{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--line);border:1px solid var(--rule);border-radius:4px;padding:8px 12px;cursor:pointer}
+  button:hover{border-color:var(--sodium);color:var(--sodium)}
+  .lanes{display:grid;gap:14px}
+  .lane{display:grid;grid-template-columns:120px 1fr 48px;gap:12px;align-items:center}
+  .lane .name{font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.08em}
+  .road{position:relative;height:30px;background:#0c0d0e;border-radius:3px;overflow:hidden;border:1px solid var(--rule)}
+  .road::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:repeating-linear-gradient(90deg,var(--faint) 0 14px,transparent 14px 28px);opacity:.55}
+  .open{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(240,162,59,.18),rgba(240,162,59,.55));border-right:3px solid var(--sodium);transition:width .45s ease}
+  .lane .pct{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:right}
+  .lane.total .name{color:var(--sodium)}
+  .lane.total .open{background:linear-gradient(90deg,rgba(217,80,62,.25),rgba(217,80,62,.7));border-right-color:var(--brake)}
+  .schematic{font-size:13px;color:var(--faint);font-family:var(--display)}
+  .markers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+  .markers li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:9px 10px;border:1px solid var(--rule);border-radius:4px;font-size:14.5px;line-height:1.4;color:var(--faint);transition:color .3s,border-color .3s,background .3s}
+  .markers li .yr{font-family:var(--mono);font-weight:600}
+  .markers li .g{display:block;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+  .markers li.passed{color:var(--line);border-color:var(--sodium-dim);background:rgba(240,162,59,.06)}
+  .markers li.passed .yr,.markers li.passed .g{color:var(--sodium)}
+
+  /* ---------- FACTOR DETAIL ---------- */
+  .factor{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+  .factor + .factor{margin-top:40px}
+  .factor .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:grid;gap:8px}
+  .factor .side .plate{justify-self:start;font-family:var(--display);font-weight:900;letter-spacing:.08em;font-size:16px;background:var(--sodium);color:#1a1206;padding:6px 12px 4px;border-radius:3px}
+  .factor .side small{color:var(--muted);font-family:var(--display);font-size:14px;line-height:1.35}
+  .then-now{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+  .then-now > div{background:var(--shoulder);padding:14px 16px;display:grid;gap:8px;align-content:start}
+  .then-now h4{margin:0;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .then-now .then h4{color:var(--brake)}
+  .then-now .now h4{color:var(--sodium)}
+  .then-now ul{margin:0;padding-left:18px;font-size:15.5px;color:var(--line);display:grid;gap:6px}
+  .factor .body{display:grid;gap:16px}
+  .quote{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.35;border-left:3px solid var(--sodium);padding-left:14px;color:var(--line)}
+  .quote cite{display:block;font-style:normal;font-weight:400;font-size:13px;color:var(--muted);margin-top:6px}
+
+  /* prison mini-chart */
+  .mini{background:var(--shoulder);border:1px solid var(--rule);border-radius:6px;padding:14px 16px}
+  .mini h4{margin:0 0 8px;font-family:var(--display);font-weight:800;font-size:14px}
+
+  /* ---------- SUPPLY ---------- */
+  .supply{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .supply > div{border-top:3px solid var(--rule);padding-top:12px;display:grid;gap:8px;align-content:start}
+  .supply h3{font-size:18px}
+  .supply p{font-size:15.5px;color:var(--muted)}
+  .tag{justify-self:start;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px 2px;border-radius:3px;border:1px solid currentColor}
+  .tag.solid{color:#7cc59b}
+  .tag.contested{color:var(--sodium)}
+
+  /* ---------- COUNTING ---------- */
+  .lens{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .lens > div{background:var(--shoulder);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;display:grid;gap:8px;align-content:start}
+  .lens h3{font-size:17px}
+  .lens p{font-size:15.5px;color:var(--muted)}
+  .paradox{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--shoulder-2);border-radius:6px;padding:18px}
+  .paradox .nums{font-family:var(--display);font-weight:900;font-size:clamp(30px,5vw,44px);line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .paradox .nums small{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:6px}
+  .paradox p{font-size:16px}
+
+  /* ---------- END ---------- */
+  .endsign{display:grid;justify-items:center;text-align:center;gap:16px;padding-block:24px 8px}
+  .endsign .sign{justify-self:center;align-self:center}
+  .endsign p{max-width:52ch;font-size:19px}
+  .sources{font-size:14px;color:var(--muted);columns:2 280px;column-gap:28px}
+  .sources li{margin-bottom:6px;break-inside:avoid}
+  .foot{font-size:13px;color:var(--faint);font-family:var(--display);margin-top:24px}
+
+  @media (max-width:760px){
+    .gates,.supply,.lens{grid-template-columns:1fr}
+    .factor{grid-template-columns:1fr;gap:14px}
+    .factor .side{position:static}
+    .then-now{grid-template-columns:1fr}
+    .lane{grid-template-columns:92px 1fr 40px;gap:8px}
+    .lane .name{font-size:12px}
+    .paradox{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .open,.markers li{transition:none}
+  }
+</style>
+<style>.hero>*,.factor>*,.factor .body>*{min-width:0}</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="sign" aria-hidden="true"><span class="top">U.S. crime history</span><span class="big">Golden Age · 1970–1999</span></div>
+    <h1>The open road <span>closes.</span></h1>
+    <p class="dek">For three decades, America produced serial killers at a rate never seen before or since. Then the numbers fell by about 85%. The killers didn't change much. <em>The world they hunted in did.</em></p>
+
+    <figure class="chart-card" style="margin:0">
+      <div class="chart-head">
+        <h3>U.S. serial killers active, by decade</h3>
+        <p>Radford/FGCU Serial Killer Database · Aamodt</p>
+      </div>
+      <div class="chart-scroll">
+        <svg id="decadeChart" viewBox="0 0 760 320" width="100%" role="img" aria-labelledby="chartDesc" style="min-width:520px;display:block">
+          <desc id="chartDesc">Bar chart. 1940s: 55. 1950s: 72. 1960s: 217. 1970s: 605. 1980s: 768. 1990s: 669. 2000s: 371. 2010s through 2016: 117.</desc>
+        </svg>
+      </div>
+      <div class="stat-row">
+        <div class="stat hot"><b>768</b><span>serial killers active in the 1980s, the peak decade</span></div>
+        <div class="stat hot"><b>189 → 30</b><span>people killed by serial killers in the U.S., 1987 vs 2015</span></div>
+        <div class="stat cool"><b>&lt;1%</b><span>of all U.S. murders, even at the peak (FBI)</span></div>
+      </div>
+    </figure>
+  </header>
+
+  <!-- MODEL -->
+  <section id="model" aria-labelledby="model-h">
+    <p class="label">The mental model</p>
+    <h2 id="model-h">A serial killer needs three things to go on killing.</h2>
+    <p class="prose">A “serial” killer is defined by repetition: two or more victims, killed in separate events. Many people commit one murder. What turns one murder into a series is the ability to do it again, and again. That takes three conditions. The golden age was the era when all three were wide open at once.</p>
+    <div class="gates">
+      <div class="gate">
+        <span class="plate">ACCESS</span>
+        <p class="q">Can he get a stranger alone?</p>
+        <p>Someone who can go missing without anyone noticing for hours or days. Hitchhikers, runaways, kids roaming free, women stranded by a broken-down car.</p>
+      </div>
+      <div class="gate">
+        <span class="plate">ANONYMITY</span>
+        <p class="q">Does anything point back to him?</p>
+        <p>A stranger with no link to the victim, in an era with no DNA matching, no cameras, no phone records. Crimes in different counties never got connected.</p>
+      </div>
+      <div class="gate">
+        <span class="plate">RUNWAY</span>
+        <p class="q">Is he free long enough to repeat it?</p>
+        <p>Time on the street between killings. Short sentences and early parole meant violent men were back out, often already carrying earlier convictions.</p>
+      </div>
+    </div>
+    <p class="equation">Serial killings ≈ would-be killers × <i>access</i> × <i>anonymity</i> × <i>runway</i></p>
+    <p class="prose">Because the factors multiply, narrowing each one somewhat shrinks the total a lot. That is how a phenomenon can fall 85% without any single breakthrough.</p>
+  </section>
+
+  <!-- DRIVE -->
+  <section id="drive" aria-labelledby="drive-h">
+    <p class="label">Interactive</p>
+    <h2 id="drive-h">Drive through the decades.</h2>
+    <p class="prose">Drag the year. Each milestone narrows one of the three lanes. The bottom lane multiplies them together: the room left for a killer to reach a second, third or tenth victim.</p>
+
+    <div class="drive">
+      <div class="drive-top">
+        <div>
+          <div class="label" style="color:var(--muted)">Year</div>
+          <div class="odometer" id="yearOut" aria-live="polite">1970</div>
+        </div>
+        <div class="btns">
+          <button type="button" id="btnPlay" aria-pressed="false">Play</button>
+          <button type="button" data-year="1975">1975</button>
+          <button type="button" data-year="1995">1995</button>
+          <button type="button" data-year="2020">2020</button>
+        </div>
+      </div>
+      <div class="slider-row">
+        <label for="yearSlider" class="label" style="color:var(--muted)">Choose a year, 1965 to 2020</label>
+        <input type="range" id="yearSlider" min="1965" max="2020" step="1" value="1970">
+        <div class="ticks" aria-hidden="true"><span>1965</span><span>1980</span><span>1995</span><span>2010</span><span>2020</span></div>
+      </div>
+
+      <div class="lanes" id="lanes">
+        <div class="lane" data-gate="access"><span class="name">ACCESS</span><div class="road"><div class="open"></div></div><span class="pct"></span></div>
+        <div class="lane" data-gate="anon"><span class="name">ANONYMITY</span><div class="road"><div class="open"></div></div><span class="pct"></span></div>
+        <div class="lane" data-gate="runway"><span class="name">RUNWAY</span><div class="road"><div class="open"></div></div><span class="pct"></span></div>
+        <div class="lane total" data-gate="total"><span class="name">ALL THREE</span><div class="road"><div class="open"></div></div><span class="pct"></span></div>
+      </div>
+      <p class="schematic">Schematic. Lane widths show the direction and rough order of change, not measured values. The milestones are real.</p>
+
+      <ul class="markers" id="markers"></ul>
+    </div>
+  </section>
+
+  <!-- FACTORS -->
+  <section id="factors" aria-labelledby="factors-h">
+    <p class="label">Lane by lane</p>
+    <h2 id="factors-h">What closed each lane.</h2>
+
+    <div class="factor" style="margin-top:32px">
+      <div class="side">
+        <span class="plate">ACCESS</span>
+        <small>Fewer strangers alone, fewer people who could vanish unnoticed.</small>
+      </div>
+      <div class="body">
+        <div class="then-now">
+          <div class="then"><h4>1970s</h4>
+            <ul>
+              <li>Hitchhiking was an ordinary way to get around, for students especially.</li>
+              <li>Children walked or biked alone for hours, far from home.</li>
+              <li>Stranded on a highway at night meant waiting for whoever stopped.</li>
+              <li>A missing adult often wasn't reported for days.</li>
+            </ul>
+          </div>
+          <div class="now"><h4>Today</h4>
+            <ul>
+              <li>Hitchhiking has almost disappeared; rideshare trips are logged and traceable.</li>
+              <li>Childhood is far more supervised.</li>
+              <li>Almost everyone carries a phone that can call for help and be located.</li>
+              <li>An hour of silence gets noticed.</li>
+            </ul>
+          </div>
+        </div>
+        <blockquote class="quote" style="margin:0">“People don't hitchhike anymore. They have means of reaching out in an emergency situation using cell phones. There are cameras everywhere.”<cite>James Alan Fox, criminologist, Northeastern University</cite></blockquote>
+        <p class="prose">Many golden-age killers built their method around this lane: Ted Bundy, Edmund Kemper and others picked up young women who accepted rides. The Green River Killer targeted women working on a highway strip. These victims were chosen because they could be approached by a stranger and would not be missed quickly.</p>
+      </div>
+    </div>
+
+    <div class="factor">
+      <div class="side">
+        <span class="plate">ANONYMITY</span>
+        <small>Evidence that can link a stranger to a body, and bodies to each other.</small>
+      </div>
+      <div class="body">
+        <div class="then-now">
+          <div class="then"><h4>1970s</h4>
+            <ul>
+              <li>Blood typing could only narrow a suspect to a large share of the population.</li>
+              <li>Each county investigated its own cases. A killer who crossed a line reset the file.</li>
+              <li>No cameras, no phone location, no card payment trail.</li>
+            </ul>
+          </div>
+          <div class="now"><h4>Today</h4>
+            <ul>
+              <li>DNA from a single hair or trace of skin can identify one person.</li>
+              <li>National DNA database (CODIS) matches crime scenes to offenders across states.</li>
+              <li>CCTV, licence-plate readers and phone records reconstruct movements.</li>
+              <li>Genetic genealogy identifies suspects through their relatives.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="prose">This lane matters most for the second killing. Today a killer who leaves DNA at the first scene is often identified before he can commit a second. The label “serial killer” requires a second event, so many would-be serial killers are now stopped at one.</p>
+        <p class="prose">The same tools also reach backward. In 2018 genetic genealogy identified the Golden State Killer, whose crimes date to 1974–86. Cold-case solves like this keep <em>adding</em> killers to the 1970s and 80s bars, which makes the old peak look even higher.</p>
+      </div>
+    </div>
+
+    <div class="factor">
+      <div class="side">
+        <span class="plate">RUNWAY</span>
+        <small>How long a violent man stays free to act again.</small>
+      </div>
+      <div class="body">
+        <figure class="mini" style="margin:0">
+          <h4>U.S. state + federal prisoners</h4>
+          <div class="chart-scroll">
+            <svg id="prisonChart" viewBox="0 0 640 200" width="100%" role="img" aria-labelledby="prisonDesc" style="min-width:420px;display:block">
+              <desc id="prisonDesc">Prison population rose from about 196,000 in 1972 to 320,000 in 1980, 774,000 in 1990, 1.33 million in 2000 and a peak of about 1.62 million in 2009, then fell to about 1.2 million by 2020.</desc>
+            </svg>
+          </div>
+        </figure>
+        <p class="prose">From the 1980s, America locked up far more people for far longer. Truth-in-sentencing and three-strikes laws in the 1990s cut early release. Many serial killers had earlier convictions for assault, rape or burglary. In the golden age those sentences were short. Later, the same men were more likely to be in prison during the years they would otherwise have killed.</p>
+        <blockquote class="quote" style="margin:0">“Some of the would-be serial killers were likely behind bars as opposed to in the bars looking for victims.”<cite>James Alan Fox</cite></blockquote>
+        <p class="prose">This is the bluntest of the three levers, and it came at a large social cost. It explains part of the decline in serial murder, as it does part of the fall in violent crime overall.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPLY -->
+  <section id="supply" aria-labelledby="supply-h">
+    <p class="label">The other side of the equation</p>
+    <h2 id="supply-h">Were there also more would-be killers?</h2>
+    <p class="prose">The three lanes explain how killers operated. A separate question is whether more people with the impulse were born and raised in that era. There are three candidate explanations, and they vary in strength.</p>
+    <div class="supply">
+      <div>
+        <span class="tag solid">Well supported</span>
+        <h3>A general crime wave</h3>
+        <p>The U.S. murder rate roughly doubled between the early 1960s and 1980, reaching about 10 per 100,000, then fell by more than half by the 2010s. Serial murder rose and fell with it.</p>
+      </div>
+      <div>
+        <span class="tag solid">Well supported</span>
+        <h3>A baby-boom bulge</h3>
+        <p>Violent crime is mostly committed by men aged about 15 to 35. The huge post-war generation was at that age from the late 1960s to the early 1990s, which matches the peak.</p>
+      </div>
+      <div>
+        <span class="tag contested">Contested</span>
+        <h3>Childhood lead exposure</h3>
+        <p>Leaded petrol peaked in the 1970s and was phased out between 1975 and 1996. Some researchers link early lead exposure to later impulsivity and violence. The evidence for a link to crime is debated, and the link to serial murder specifically is speculative.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTING -->
+  <section id="counting" aria-labelledby="counting-h">
+    <p class="label">Checking the count</p>
+    <h2 id="counting-h">Part of the curve reflects how we counted.</h2>
+    <p class="prose">Researchers agree that serial murder rose and then fell. Measurement probably makes both the rise and the fall look steeper than they really were.</p>
+    <div class="lens">
+      <div>
+        <h3>The rise looks bigger</h3>
+        <p>The term “serial killer” only came into wide use in the 1970s and 80s, through FBI profilers. The FBI's ViCAP system (1985) and later DNA made it possible to link killings that once looked unrelated. Some earlier series were never recognised as series.</p>
+      </div>
+      <div>
+        <h3>The fall looks bigger</h3>
+        <p>A killer is only counted once he is caught or identified. Killers active in the 2010s may not be identified for decades. Samuel Little, active from 1970 to 2005, only confessed to 93 murders in 2018. The most recent bars will grow.</p>
+      </div>
+    </div>
+    <div class="paradox">
+      <div class="nums">91% → 52%<small>U.S. murders cleared, 1965 → 2024</small></div>
+      <p>Police now solve a much smaller share of murders than in the 1960s. The Murder Accountability Project has used unsolved-case data to flag clusters of killings of women that may be undetected series. So the decline is real, but “better policing” alone does not explain it. The forensic tools improved while investigative capacity was stretched thin.</p>
+    </div>
+  </section>
+
+  <!-- END -->
+  <section aria-labelledby="end-h">
+    <div class="endsign">
+      <div class="sign" aria-hidden="true"><span class="top">In one line</span><span class="big">The window closed</span></div>
+      <h2 id="end-h" style="max-width:22ch">The golden age was an environment, not an epidemic of monsters.</h2>
+      <p>Strangers alone on open roads, crimes that left no trace, and violent men released early all came together between 1970 and 2000. Phones, DNA, cameras and prisons closed that combination, one lane at a time.</p>
+    </div>
+
+    <div style="margin-top:40px">
+      <p class="label" style="color:var(--muted)">Sources</p>
+      <ul class="sources">
+        <li><a href="https://www.discovermagazine.com/what-explains-the-decline-of-serial-killers-42052">What explains the decline of serial killers?</a> — Discover Magazine (Aamodt data; 1987 vs 2015 victims)</li>
+        <li><a href="https://news.northeastern.edu/2023/04/26/serial-killer-decline/">What caused the decline of serial killers?</a> — Northeastern Global News (James Alan Fox)</li>
+        <li><a href="https://maamodt.asp.radford.edu/serial%20killer%20information%20center/serial%20killer%20statistics.pdf">Serial Killer Statistics</a> — Mike Aamodt, Radford University</li>
+        <li><a href="https://maamodt.asp.radford.edu/Research%20-%20Forensic/Aamodt%20&%20Surrette%20(2010)%20handout.pdf">Using the Radford Serial Killer Database to Monitor Trends</a> — Aamodt &amp; Surrette</li>
+        <li><a href="https://www.goodreads.com/notes/218089381-murderland/130571840-nat/b7bd104d-42a9-4ac8-b23f-fa7a00e87088">Murderland</a> — Caroline Fraser (decade counts; lead hypothesis)</li>
+        <li><a href="https://www.annualreviews.org/content/journals/10.1146/annurev-criminol-022422-122744">The Sixty-Year Trajectory of Homicide Clearance Rates</a> — Annual Review of Criminology</li>
+        <li><a href="https://crimeresearch.org/2025/10/americas-dramatic-decline-in-homicide-clearance-rates-from-1965-to-2023-falling-from-91-to-58-percent/">Decline in homicide clearance rates, 1965–2024</a> — Crime Prevention Research Center</li>
+        <li><a href="https://www.murderdata.org/">Murder Accountability Project</a></li>
+      </ul>
+      <p class="foot">Prison figures from Bureau of Justice Statistics year-end counts, rounded. Database counts change as cases are added.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const NS = "http://www.w3.org/2000/svg";
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  function el(tag, attrs, parent, text){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  /* ---------- Decade bar chart ---------- */
+  const decades = [
+    {d:"1940s",v:55},{d:"1950s",v:72},{d:"1960s",v:217},{d:"1970s",v:605},
+    {d:"1980s",v:768},{d:"1990s",v:669},{d:"2000s",v:371},{d:"2010s*",v:117,partial:true}
+  ];
+  const chart = document.getElementById("decadeChart");
+  const W=760,H=320,L=48,R=12,T=26,B=40, max=800;
+  const plotW=W-L-R, plotH=H-T-B;
+  const y = v => T + plotH - (v/max)*plotH;
+  const barRefs = [];
+  function drawDecades(){
+    const muted=css("--muted"), faint=css("--faint"), rule=css("--rule");
+    const sodium=css("--sodium"), brake=css("--brake"), line=css("--line");
+    [0,200,400,600,800].forEach(t=>{
+      el("line",{x1:L,x2:W-R,y1:y(t),y2:y(t),stroke:rule,"stroke-width":1},chart);
+      el("text",{x:L-8,y:y(t)+4,"text-anchor":"end","font-size":11,fill:faint},chart,t);
+    });
+    // golden age band
+    const slot = plotW/decades.length;
+    el("rect",{x:L+slot*3,y:T-18,width:slot*3,height:plotH+18,fill:sodium,"fill-opacity":.07},chart);
+    el("text",{x:L+slot*4.5,y:T-6,"text-anchor":"middle","font-size":11,fill:sodium,"letter-spacing":"1.5"},chart,"GOLDEN AGE");
+    decades.forEach((o,i)=>{
+      const bw = slot*0.62, x = L + slot*i + (slot-bw)/2;
+      const golden = i>=3 && i<=5;
+      const r = el("rect",{x, y:y(o.v), width:bw, height:plotH-(y(o.v)-T), fill: o.v===768?brake:(golden?sodium:muted), "fill-opacity": golden?1:.55, rx:2},chart);
+      if (o.partial) { r.setAttribute("fill-opacity",.35); r.setAttribute("stroke",muted); r.setAttribute("stroke-dasharray","4 3"); }
+      barRefs.push(r);
+      el("text",{x:x+bw/2,y:y(o.v)-6,"text-anchor":"middle","font-size":12,"font-weight":600,fill:line},chart,o.v);
+      el("text",{x:x+bw/2,y:H-B+18,"text-anchor":"middle","font-size":11.5,fill:muted},chart,o.d);
+    });
+    el("text",{x:W-R,y:H-4,"text-anchor":"end","font-size":10.5,fill:faint},chart,"* 2010s counted through 2016 only");
+  }
+  drawDecades();
+
+  /* ---------- Prison mini chart ---------- */
+  const prison = [[1972,196],[1980,320],[1990,774],[2000,1331],[2009,1615],[2020,1215]];
+  const pc = document.getElementById("prisonChart");
+  (function(){
+    const W=640,H=200,L=56,R=16,T=18,B=28, x0=1970,x1=2022, ymax=1800;
+    const px = yr => L + (yr-x0)/(x1-x0)*(W-L-R);
+    const py = v => T + (H-T-B) - v/ymax*(H-T-B);
+    const rule=css("--rule"), faint=css("--faint"), sodium=css("--sodium"), line=css("--line"), muted=css("--muted");
+    [0,600,1200,1800].forEach(t=>{
+      el("line",{x1:L,x2:W-R,y1:py(t),y2:py(t),stroke:rule},pc);
+      el("text",{x:L-8,y:py(t)+4,"text-anchor":"end","font-size":11,fill:faint},pc, t===0?"0":(t/1000)+"M");
+    });
+    [1970,1980,1990,2000,2010,2020].forEach(t=> el("text",{x:px(t),y:H-8,"text-anchor":"middle","font-size":11,fill:muted},pc,t));
+    const pts = prison.map(p=>px(p[0])+","+py(p[1])).join(" ");
+    el("polygon",{points:px(1972)+","+py(0)+" "+pts+" "+px(2020)+","+py(0),fill:sodium,"fill-opacity":.12},pc);
+    el("polyline",{points:pts,fill:"none",stroke:sodium,"stroke-width":2.5,"stroke-linejoin":"round"},pc);
+    prison.forEach(p=>{
+      el("circle",{cx:px(p[0]),cy:py(p[1]),r:3.5,fill:sodium},pc);
+    });
+    el("text",{x:px(1972)+6,y:py(196)-8,"font-size":11,fill:line},pc,"196k (1972)");
+    el("text",{x:px(2009),y:py(1615)-10,"text-anchor":"middle","font-size":11,fill:line},pc,"1.62M peak (2009)");
+  })();
+
+  /* ---------- Drive-through ---------- */
+  // weight = how much this milestone narrows its lane (schematic)
+  const milestones = [
+    {yr:1972,g:"runway",w:0,   t:"About 196,000 people in U.S. state and federal prisons. Sentences are short; parole is common."},
+    {yr:1978,g:"access",w:.18, t:"Hitchhiking fades as safety fears spread and cheap used cars become common."},
+    {yr:1980,g:"runway",w:.10, t:"The prison boom begins: 320,000 prisoners and rising fast."},
+    {yr:1985,g:"anon",  w:.10, t:"FBI launches ViCAP to link violent crimes across police jurisdictions."},
+    {yr:1988,g:"anon",  w:.15, t:"First murder conviction using DNA fingerprinting (Colin Pitchfork, England)."},
+    {yr:1990,g:"runway",w:.12, t:"Prison population passes 770,000."},
+    {yr:1994,g:"runway",w:.15, t:"Truth-in-sentencing and three-strikes laws cut early release."},
+    {yr:1995,g:"access",w:.18, t:"Mobile phones spread: about 5 million U.S. subscriptions in 1990, over 100 million by 2000."},
+    {yr:1998,g:"anon",  w:.22, t:"CODIS national DNA database goes live, matching scenes to offenders across states."},
+    {yr:2000,g:"access",w:.14, t:"More supervised childhoods; fewer children roam alone."},
+    {yr:2005,g:"anon",  w:.15, t:"CCTV, licence-plate readers and phone location data become routine evidence."},
+    {yr:2009,g:"runway",w:.08, t:"U.S. prison population peaks at about 1.62 million."},
+    {yr:2012,g:"access",w:.12, t:"Smartphones and logged rideshare trips replace thumbing a ride."},
+    {yr:2018,g:"anon",  w:.10, t:"Genetic genealogy identifies the Golden State Killer from a relative's DNA."}
+  ];
+  const gateName = {access:"Access",anon:"Anonymity",runway:"Runway"};
+  const list = document.getElementById("markers");
+  milestones.forEach(m=>{
+    const li = document.createElement("li");
+    li.innerHTML = '<span class="yr">'+m.yr+'</span><span><span class="g">'+gateName[m.g]+'</span>'+m.t+'</span>';
+    m.el = li; list.appendChild(li);
+  });
+
+  const slider = document.getElementById("yearSlider");
+  const out = document.getElementById("yearOut");
+  const lanes = {};
+  document.querySelectorAll(".lane").forEach(l=> lanes[l.dataset.gate] = {bar:l.querySelector(".open"), pct:l.querySelector(".pct")});
+
+  function update(year){
+    out.textContent = year;
+    const open = {access:1, anon:1, runway:1};
+    milestones.forEach(m=>{
+      const passed = m.yr <= year;
+      m.el.classList.toggle("passed", passed);
+      if (passed) open[m.g] -= m.w;
+    });
+    let total = 1;
+    ["access","anon","runway"].forEach(g=>{
+      const v = Math.max(.15, open[g]);
+      total *= v;
+      lanes[g].bar.style.width = (v*100)+"%";
+      lanes[g].pct.textContent = Math.round(v*100)+"%";
+    });
+    lanes.total.bar.style.width = (total*100)+"%";
+    lanes.total.pct.textContent = Math.round(total*100)+"%";
+    // highlight the matching decade bar
+    const idx = Math.min(7, Math.max(0, Math.floor((year-1940)/10)));
+    barRefs.forEach((r,i)=> r.setAttribute("stroke-width", i===idx?2.5:(decades[i].partial?1:0)));
+    barRefs.forEach((r,i)=> { if(i===idx){ r.setAttribute("stroke", css("--line")); } else if(!decades[i].partial){ r.removeAttribute("stroke"); } else { r.setAttribute("stroke", css("--muted")); } });
+  }
+  slider.addEventListener("input", ()=> update(+slider.value));
+  document.querySelectorAll("button[data-year]").forEach(b=> b.addEventListener("click", ()=>{ stop(); slider.value=b.dataset.year; update(+b.dataset.year); }));
+
+  const btn = document.getElementById("btnPlay");
+  let timer = null;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function stop(){ if(timer){clearInterval(timer); timer=null;} btn.textContent="Play"; btn.setAttribute("aria-pressed","false"); }
+  btn.addEventListener("click", ()=>{
+    if (timer) { stop(); return; }
+    if (+slider.value >= 2020) slider.value = 1965;
+    btn.textContent="Pause"; btn.setAttribute("aria-pressed","true");
+    timer = setInterval(()=>{
+      const v = +slider.value + 1;
+      if (v > 2020) { stop(); return; }
+      slider.value = v; update(v);
+    }, reduce ? 250 : 140);
+  });
+
+  update(+slider.value);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

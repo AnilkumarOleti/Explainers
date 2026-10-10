@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Internet at 200 km/h | Explainers</title>
+<meta name="description" content="On a fast train your phone changes towers every minute. The internet never finds out.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/internet-at-200-kmh/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Internet at 200 km/h">
+<meta property="og:description" content="On a fast train your phone changes towers every minute. The internet never finds out.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/internet-at-200-kmh/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/internet-at-200-kmh/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Overpass:wght@600;800;900&family=Overpass+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one reading column down the page like a road; the hero is a night-drive scene plate;
+   green highway-sign panels are reserved for the two statements that matter. */
+:root{
+  --bg:#E8ECE9; --surface:#F5F7F5; --ink:#13201B; --muted:#52625B; --rule:#C3CDC7;
+  --sign:#0A6847; --sign-ink:#FFFFFF;
+  --marker:#F0B400; --marker-ink:#1B1600;
+  --a:#0A6847; --b:#1756A9;
+  --scene:#141C22; --scene-ink:#DCE4DF; --scene-dim:#8A9891; --scene-road:#2C343B; --scene-line:#E9ECE6;
+  --scene-cover:rgba(80,200,150,.12); --scene-edge:rgba(80,200,150,.55); --scene-link:#FFC62E;
+  --font-display:"Overpass","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Literata",Georgia,"Times New Roman",serif;
+  --font-data:"Overpass Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1519; --surface:#172026; --ink:#E6ECE8; --muted:#98A7A0; --rule:#2A363D;
+    --sign:#0B7450; --sign-ink:#FFFFFF;
+    --marker:#FFC62E; --marker-ink:#1B1600;
+    --a:#45C596; --b:#73ADF3;
+    --scene:#090E12; --scene-ink:#DCE4DF; --scene-dim:#8A9891; --scene-road:#252D34; --scene-line:#D9DDD6;
+    --scene-cover:rgba(80,200,150,.12); --scene-edge:rgba(80,200,150,.55); --scene-link:#FFC62E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1519; --surface:#172026; --ink:#E6ECE8; --muted:#98A7A0; --rule:#2A363D;
+  --sign:#0B7450; --sign-ink:#FFFFFF;
+  --marker:#FFC62E; --marker-ink:#1B1600;
+  --a:#45C596; --b:#73ADF3;
+  --scene:#090E12; --scene-ink:#DCE4DF; --scene-dim:#8A9891; --scene-road:#252D34; --scene-line:#D9DDD6;
+  --scene-cover:rgba(80,200,150,.12); --scene-edge:rgba(80,200,150,.55); --scene-link:#FFC62E;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.65;padding-inline:clamp(16px,4vw,40px);padding-block:clamp(28px,6vw,72px) 72px}
+.wide{width:100%;max-width:60rem;margin-inline:auto}
+.col{width:100%;max-width:41rem;margin-inline:auto}
+main>*,section>*,header>*,figure>*{min-width:0}
+main{display:flex;flex-direction:column;gap:clamp(56px,9vw,104px)}
+section{display:flex;flex-direction:column;gap:1.15rem}
+p{margin:0}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance}
+h1{font-weight:900;font-size:clamp(2.1rem,6vw,3.9rem);line-height:1.02;letter-spacing:-.012em}
+h2{font-weight:800;font-size:clamp(1.55rem,3.6vw,2.15rem);line-height:1.12}
+.lede{font-size:clamp(1.1rem,2.2vw,1.3rem);line-height:1.5;color:var(--muted);max-width:38rem}
+strong{font-weight:600}
+.num{font-family:var(--font-data);font-variant-numeric:tabular-nums;font-size:.94em}
+
+/* milestone marker: yellow-capped stone + short label */
+.stone{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-weight:800;font-size:.8rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.stone::before{content:"";flex:none;width:15px;height:19px;border:1.5px solid var(--ink);border-radius:7px 7px 1px 1px;background:linear-gradient(var(--marker) 0 42%,var(--surface) 42% 100%)}
+
+header{display:flex;flex-direction:column;gap:1.25rem}
+
+/* hero scene */
+.scene{background:var(--scene);border-radius:14px;overflow:hidden;border:1px solid var(--rule)}
+.scene svg{display:block;width:100%;height:auto}
+.dome{fill:var(--scene-cover);stroke:var(--scene-edge);stroke-width:1.2;stroke-dasharray:3 5}
+.mast{stroke:var(--scene-ink);stroke-width:2.5;fill:none;stroke-linecap:round}
+.ant{fill:var(--scene-dim)}
+.tower.on .ant{fill:var(--scene-link)}
+.road{fill:var(--scene-road)}
+.lane{stroke:var(--scene-line);stroke-width:2.5;stroke-dasharray:22 20;fill:none}
+.veh-body{fill:var(--scene-line)}
+.veh-win{fill:var(--scene)}
+.veh-lamp{fill:var(--scene-link)}
+.link{stroke:var(--scene-link);stroke-width:3;stroke-linecap:round;fill:none}
+.probe{stroke:var(--scene-ink);stroke-width:1.6;stroke-dasharray:3 6;stroke-linecap:round;fill:none;opacity:.8}
+.pulse{fill:none;stroke:var(--scene-link);stroke-width:2.5}
+.km{font-family:var(--font-data);font-size:15px;fill:var(--scene-dim)}
+.ms-cap{fill:var(--scene-link)} .ms-body{fill:var(--scene-line)}
+
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-family:var(--font-display);font-weight:600;font-size:.84rem;color:var(--muted);margin:0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:.5rem}
+.sw{flex:none;width:26px;height:0;border-top:3px solid var(--scene-link)}
+.sw--probe{border-top:2px dashed var(--muted)}
+.sw--dome{height:12px;border:1.5px dashed var(--a);border-radius:12px 12px 0 0;border-bottom:0}
+
+.controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1.1rem 2rem}
+.ctl{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.ctl-label{font-family:var(--font-display);font-weight:800;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ctl--speed{flex:1 1 16rem}
+.speed-row{display:flex;align-items:center;gap:.9rem}
+input[type=range]{flex:1;min-width:0;accent-color:var(--sign);height:1.6rem}
+output{font-family:var(--font-data);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.seg{display:flex;flex-wrap:wrap;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin:0;padding:0;min-width:0}
+.seg legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.seg label{font-family:var(--font-display);font-weight:600;font-size:.9rem;padding:.42rem .8rem;cursor:pointer;border-left:1.5px solid var(--ink);line-height:1.2}
+.seg label:first-of-type{border-left:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg input:checked + label{background:var(--ink);color:var(--bg)}
+.seg input:focus-visible + label{outline:3px solid var(--marker);outline-offset:-3px}
+button.play{font-family:var(--font-display);font-weight:800;font-size:.9rem;padding:.48rem 1rem;border:1.5px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;min-width:5.2rem}
+button.play:hover{background:var(--ink);color:var(--bg)}
+button.play:focus-visible,input[type=range]:focus-visible{outline:3px solid var(--marker);outline-offset:2px}
+
+/* highway sign panel */
+.sign{background:var(--sign);color:var(--sign-ink);border-radius:12px;outline:2px solid var(--sign-ink);outline-offset:-8px;padding:1.6rem 1.7rem}
+.readouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1.2rem 1.5rem}
+.readouts div{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.readouts b{font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,5.5vw,2.9rem);line-height:1;font-variant-numeric:tabular-nums}
+.readouts span{font-family:var(--font-display);font-weight:600;font-size:.92rem;line-height:1.25;opacity:.92}
+.note{font-family:var(--font-display);font-weight:600;font-size:.84rem;color:var(--muted)}
+.hero-fig{display:flex;flex-direction:column;gap:1rem;margin:0}
+
+/* chain of hops */
+figure{margin:0;display:flex;flex-direction:column;gap:.8rem}
+figcaption{font-family:var(--font-display);font-weight:600;font-size:.88rem;line-height:1.4;color:var(--muted)}
+.chain{display:flex;align-items:stretch;padding-block:.4rem}
+.node{flex:0 1 auto;min-width:0;border:1.5px solid var(--ink);border-radius:7px;background:var(--surface);padding:.55rem .6rem;display:flex;flex-direction:column;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:.98rem;line-height:1.15}
+.node small{font-weight:600;font-size:.76rem;color:var(--muted);line-height:1.25;margin-top:.15rem}
+.hop{flex:1 1 3rem;min-width:3rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;font-family:var(--font-data);font-size:.68rem;color:var(--muted);text-align:center;line-height:1.15}
+.hop::after{content:"";align-self:stretch;border-top:2px solid var(--ink)}
+.hop--air{flex-grow:1.4;min-width:4.6rem;color:var(--marker-ink)}
+.hop span{white-space:nowrap}
+.hop--air span{background:var(--marker);padding:.18rem .4rem;border-radius:4px;font-weight:700}
+.hop--air::after{border-top:3px dashed var(--ink)}
+@media (max-width:640px){
+  .chain{flex-direction:column;align-items:flex-start}
+  .node{flex-direction:row;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+  .node small{margin-top:0}
+  .hop{flex:none;flex-direction:row-reverse;justify-content:flex-end;min-height:2.3rem;margin-left:1.4rem;gap:.7rem}
+  .hop::after{align-self:stretch;border-top:0;border-left:2px solid var(--ink)}
+  .hop--air::after{border-top:0;border-left:3px dashed var(--ink)}
+}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:.2rem .6rem;padding-block:.85rem;border-top:1px solid var(--rule)}
+.steps li:last-child{border-bottom:1px solid var(--rule)}
+.steps li::before{content:counter(s);font-family:var(--font-display);font-weight:900;font-size:1.9rem;line-height:1;color:var(--a);grid-row:span 2}
+.steps h3{font-weight:800;font-size:1.08rem;line-height:1.3}
+.steps p{grid-column:2;font-size:1rem;line-height:1.55}
+
+.scroll{max-width:100%;overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+.scroll svg{display:block;width:100%;min-width:540px;height:auto}
+.dg text{font-family:var(--font-display);font-weight:600;font-size:13px;fill:var(--ink)}
+.dg .dim{fill:var(--muted)}
+.dg .axis{stroke:var(--ink);stroke-width:1.5;fill:none}
+.dg .grid{stroke:var(--rule);stroke-width:1;fill:none}
+.dg .thin{fill:none;stroke-width:1.5;opacity:.45}
+.dg .thick{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+.dg .sa{stroke:var(--a)} .dg .sb{stroke:var(--b)}
+.dg .ta{fill:var(--a)} .dg .tb{fill:var(--b)}
+.dg .guide{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:3 4;fill:none}
+.dg .band{fill:var(--marker);opacity:.35}
+.dg .box{fill:var(--bg);stroke:var(--ink);stroke-width:1.5}
+.dg .box--key{fill:var(--sign);stroke:var(--sign)}
+.dg .on-sign{fill:var(--sign-ink)}
+.dg .wire{stroke:var(--ink);stroke-width:2;fill:none}
+.dg .wire--old{stroke-dasharray:4 5;opacity:.5}
+.dg .wire--new{stroke:var(--a);stroke-width:4.5}
+.dg .lbl-new{fill:var(--a);font-weight:800}
+
+/* table */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-family:var(--font-data);font-variant-numeric:tabular-nums;font-size:.95rem}
+caption{caption-side:bottom;text-align:left;padding-top:.7rem;font-family:var(--font-display);font-weight:600;font-size:.88rem;line-height:1.4;color:var(--muted)}
+th,td{padding:.6rem .8rem;text-align:right;border-bottom:1px solid var(--rule);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font-family:var(--font-display);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink)}
+tbody th{font-weight:700}
+
+/* point lists */
+.points{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1.6rem 2rem;margin:0}
+.points div{display:flex;flex-direction:column;gap:.35rem;border-top:2px solid var(--ink);padding-top:.75rem;min-width:0}
+.points dt{font-family:var(--font-display);font-weight:800;font-size:1.08rem;line-height:1.25}
+.points dd{margin:0;font-size:1rem;line-height:1.55}
+
+.sign--close{display:flex;flex-direction:column;gap:.7rem}
+.sign--close h2{font-size:clamp(1.4rem,3.2vw,1.9rem)}
+.sign--close p{font-size:1.08rem;line-height:1.55}
+.sign--close .stone{color:var(--sign-ink);opacity:.9}
+.sign--close .stone::before{border-color:var(--sign-ink)}
+footer{font-family:var(--font-display);font-weight:600;font-size:.84rem;line-height:1.5;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+
+<header class="wide">
+  <p class="stone">Mobile internet on the move</p>
+  <h1>Your phone changes towers every minute. The internet never finds out.</h1>
+  <p class="lede">At 160 km/h you cover 44 metres every second, and no tower reaches far enough to keep up. The connection survives because the network passes you from tower to tower, while one fixed point deep inside it holds on to your address.</p>
+
+  <figure class="hero-fig">
+    <div class="scene">
+      <svg id="scene" viewBox="0 0 720 320" role="img" aria-label="A vehicle drives along a road past three towers with overlapping coverage. A solid line connects it to one tower at a time. Inside each overlap, a dashed line shows it listening to the next tower before the solid line jumps across.">
+        <path class="dome" d="M-40 250 A160 150 0 0 1 280 250 Z"/>
+        <path class="dome" d="M200 250 A160 150 0 0 1 520 250 Z"/>
+        <path class="dome" d="M440 250 A160 150 0 0 1 760 250 Z"/>
+        <g id="tw0" class="tower on"><path class="mast" d="M120 250V104M104 250l16-70 16 70M110 214h20M114 186h12"/><rect class="ant" x="111" y="88" width="18" height="18" rx="3"/></g>
+        <g id="tw1" class="tower"><path class="mast" d="M360 250V104M344 250l16-70 16 70M350 214h20M354 186h12"/><rect class="ant" x="351" y="88" width="18" height="18" rx="3"/></g>
+        <g id="tw2" class="tower"><path class="mast" d="M600 250V104M584 250l16-70 16 70M590 214h20M594 186h12"/><rect class="ant" x="591" y="88" width="18" height="18" rx="3"/></g>
+        <circle id="pulse" class="pulse" cx="120" cy="97" r="0" opacity="0"/>
+        <rect class="road" x="0" y="250" width="720" height="42"/>
+        <path class="lane" d="M0 271H720"/>
+        <line id="probe" class="probe" x1="360" y1="97" x2="215" y2="254"/>
+        <line id="link" class="link" x1="120" y1="97" x2="215" y2="254"/>
+        <g id="veh" transform="translate(183 0)">
+          <rect class="veh-body" x="0" y="254" width="64" height="22" rx="7"/>
+          <rect class="veh-win" x="8" y="259" width="10" height="8" rx="2"/>
+          <rect class="veh-win" x="22" y="259" width="10" height="8" rx="2"/>
+          <rect class="veh-win" x="36" y="259" width="10" height="8" rx="2"/>
+          <rect class="veh-lamp" x="58" y="266" width="6" height="5" rx="2"/>
+        </g>
+        <g><rect class="ms-body" x="92" y="299" width="12" height="13" rx="1"/><path class="ms-cap" d="M92 303v-2a6 6 0 0 1 12 0v2z"/><text id="km0" class="km" x="110" y="312">km 0</text></g>
+        <g><rect class="ms-body" x="332" y="299" width="12" height="13" rx="1"/><path class="ms-cap" d="M332 303v-2a6 6 0 0 1 12 0v2z"/><text id="km1" class="km" x="350" y="312">km 3</text></g>
+        <g><rect class="ms-body" x="572" y="299" width="12" height="13" rx="1"/><path class="ms-cap" d="M572 303v-2a6 6 0 0 1 12 0v2z"/><text id="km2" class="km" x="590" y="312">km 6</text></g>
+      </svg>
+    </div>
+    <ul class="legend">
+      <li><span class="sw"></span>connected to this tower</li>
+      <li><span class="sw sw--probe"></span>listening to the next one</li>
+      <li><span class="sw sw--dome"></span>one tower's reach</li>
+    </ul>
+
+    <div class="controls">
+      <div class="ctl ctl--speed">
+        <label class="ctl-label" for="speed">Vehicle speed</label>
+        <div class="speed-row">
+          <input type="range" id="speed" min="100" max="200" step="5" value="160">
+          <output id="speedOut" for="speed">160 km/h</output>
+        </div>
+      </div>
+      <div class="ctl">
+        <span class="ctl-label" id="spLabel">Gap between towers</span>
+        <fieldset class="seg" aria-labelledby="spLabel">
+          <legend>Gap between towers</legend>
+          <input type="radio" name="spacing" id="sp1" value="1"><label for="sp1">1 km, city</label>
+          <input type="radio" name="spacing" id="sp3" value="3" checked><label for="sp3">3 km, highway</label>
+          <input type="radio" name="spacing" id="sp8" value="8"><label for="sp8">8 km, open country</label>
+        </fieldset>
+      </div>
+      <button type="button" class="play" id="play" aria-pressed="false">Pause</button>
+    </div>
+
+    <div class="sign readouts" aria-live="off">
+      <div><b id="rMps">44 m</b><span>of road every second</span></div>
+      <div><b id="rSec">68 s</b><span>under each tower</span></div>
+      <div><b id="rHr">53</b><span>tower changes an hour</span></div>
+    </div>
+    <p class="note">The animation plays <span id="rFast">27</span>× faster than real time. Tower gaps are typical figures and vary a lot by place.</p>
+  </figure>
+</header>
+
+<section class="col">
+  <p class="stone">Standing still first</p>
+  <h2>Only the first hop is wireless</h2>
+  <p>Start with a phone that isn't moving. When you open a video, your phone doesn't reach the internet through the air. It sends radio waves to the nearest tower, usually a kilometre or two away. From the tower onward everything is cable: fibre to your operator's core network, a gateway there that gave your phone its IP address, then the public internet and the video's server.</p>
+  <figure>
+    <div class="chain">
+      <div class="node">Phone<small>in your hand</small></div>
+      <div class="hop hop--air"><span>radio 1–3 km</span></div>
+      <div class="node">Tower<small>by the road</small></div>
+      <div class="hop"><span>fibre</span></div>
+      <div class="node">Operator core<small>holds your IP</small></div>
+      <div class="hop"><span>fibre</span></div>
+      <div class="node">Internet</div>
+      <div class="hop"><span>fibre</span></div>
+      <div class="node">Server<small>the video</small></div>
+    </div>
+    <figcaption>The path of every packet. The dashed radio hop is the only part with no wire, and the only part that travel disturbs.</figcaption>
+  </figure>
+  <p>So a moving vehicle changes one thing: which tower sits at the end of that first hop. Everything behind the tower stays where it is. The job is to swap that one link quickly, and to do it without the rest of the chain noticing.</p>
+</section>
+
+<section class="col">
+  <p class="stone">The swap</p>
+  <h2>A handover takes five steps and a few hundredths of a second</h2>
+  <p>Each tower covers a patch of ground called a cell. Neighbouring cells overlap on purpose, and the switch from one tower to the next happens inside that overlap. Engineers call the switch a handover.</p>
+  <ol class="steps">
+    <li><h3>Listen</h3><p>Even in the middle of a video, your phone keeps measuring the tower it is on and every neighbour it can hear, several times a second.</p></li>
+    <li><h3>Report</h3><p>When a neighbour has been stronger than the current tower by a set margin for a set time, the phone tells its current tower.</p></li>
+    <li><h3>Prepare</h3><p>The current tower asks the neighbour to reserve capacity for you. The neighbour replies with the details your phone needs to join it.</p></li>
+    <li><h3>Switch</h3><p>The phone gets the order, drops the old tower and locks on to the new one. This is the only moment you are disconnected, typically for tens of milliseconds. Packets that reach the old tower during the gap are forwarded to the new one.</p></li>
+    <li><h3>Reroute</h3><p>The new tower tells the core network to send your traffic its way from now on. The old tower frees your slot for someone else.</p></li>
+  </ol>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 640 290" role="img" aria-label="Signal strength against distance for two towers three kilometres apart. Tower A's signal falls and tower B's rises as you travel. They are equal at 1.5 kilometres, but the phone stays on A until B leads by 3 decibels at about 1.65 kilometres, then switches to B.">
+        <path class="grid" d="M70 67.2H590M70 108.5H590M70 149.8H590M70 191.1H590"/>
+        <rect class="band" x="330" y="30" width="25.6" height="190"/>
+        <path class="guide" d="M330 30V220M355.6 30V220"/>
+        <polyline class="thin sa" points="96.0,30.7 104.7,48.7 113.3,62.7 122.0,74.2 130.7,83.9 139.3,92.3 148.0,99.6 156.7,106.3 165.3,112.2 174.0,117.7 182.7,122.7 191.3,127.4 200.0,131.7 208.7,135.8 217.3,139.6 226.0,143.2 234.7,146.6 243.3,149.8 252.0,152.8 260.7,155.8 269.3,158.6 278.0,161.2 286.7,163.8 295.3,166.3 304.0,168.6 312.7,170.9 321.3,173.1 330.0,175.2 338.7,177.3 347.3,179.3 356.0,181.2 364.7,183.1 373.3,184.9 382.0,186.7 390.7,188.4 399.3,190.1 408.0,191.7 416.7,193.3 425.3,194.9 434.0,196.4 442.7,197.8 451.3,199.3 460.0,200.7 468.7,202.1 477.3,203.4 486.0,204.7 494.7,206.0 503.3,207.3 512.0,208.6 520.7,209.8 529.3,211.0 538.0,212.1 546.7,213.3 555.3,214.4 564.0,215.5 572.7,216.6 581.3,217.7 590.0,218.8"/>
+        <polyline class="thin sb" points="70.0,218.8 78.7,217.7 87.3,216.6 96.0,215.5 104.7,214.4 113.3,213.3 122.0,212.1 130.7,211.0 139.3,209.8 148.0,208.6 156.7,207.3 165.3,206.0 174.0,204.7 182.7,203.4 191.3,202.1 200.0,200.7 208.7,199.3 217.3,197.8 226.0,196.4 234.7,194.9 243.3,193.3 252.0,191.7 260.7,190.1 269.3,188.4 278.0,186.7 286.7,184.9 295.3,183.1 304.0,181.2 312.7,179.3 321.3,177.3 330.0,175.2 338.7,173.1 347.3,170.9 356.0,168.6 364.7,166.3 373.3,163.8 382.0,161.2 390.7,158.6 399.3,155.8 408.0,152.8 416.7,149.8 425.3,146.6 434.0,143.2 442.7,139.6 451.3,135.8 460.0,131.7 468.7,127.4 477.3,122.7 486.0,117.7 494.7,112.2 503.3,106.3 512.0,99.6 520.7,92.3 529.3,83.9 538.0,74.2 546.7,62.7 555.3,48.7 564.0,30.7"/>
+        <polyline class="thick sa" points="96.0,30.7 98.6,36.6 105.7,50.6 112.8,62.0 120.0,71.7 127.1,80.1 134.3,87.5 141.4,94.1 148.5,100.1 155.7,105.5 162.8,110.6 170.0,115.2 177.1,119.5 184.2,123.6 191.4,127.4 198.5,131.0 205.6,134.4 212.8,137.6 219.9,140.7 227.1,143.6 234.2,146.4 241.3,149.1 248.5,151.6 255.6,154.1 262.8,156.5 269.9,158.7 277.0,160.9 284.2,163.1 291.3,165.1 298.5,167.1 305.6,169.1 312.7,170.9 319.9,172.7 327.0,174.5 334.2,176.2 341.3,177.9 348.4,179.5 355.6,181.1"/>
+        <polyline class="thick sb" points="355.6,168.7 361.4,167.1 367.3,165.5 373.2,163.8 379.0,162.1 384.9,160.4 390.7,158.5 396.6,156.7 402.5,154.7 408.3,152.7 414.2,150.7 420.0,148.5 425.9,146.3 431.8,144.1 437.6,141.7 443.5,139.2 449.3,136.7 455.2,134.0 461.1,131.2 466.9,128.3 472.8,125.2 478.6,122.0 484.5,118.6 490.4,115.0 496.2,111.2 502.1,107.2 508.0,102.8 513.8,98.2 519.7,93.1 525.5,87.7 531.4,81.7 537.3,75.1 543.1,67.7 549.0,59.3 554.8,49.6 560.7,38.2 564.0,30.7"/>
+        <path class="axis" d="M70 30V220H590"/>
+        <path class="axis" d="M70 220v6M156.7 220v6M243.3 220v6M330 220v6M416.7 220v6M503.3 220v6M590 220v6"/>
+        <text class="dim" x="70" y="243" text-anchor="middle">0</text>
+        <text class="dim" x="156.7" y="243" text-anchor="middle">0.5</text>
+        <text class="dim" x="243.3" y="243" text-anchor="middle">1</text>
+        <text class="dim" x="330" y="243" text-anchor="middle">1.5</text>
+        <text class="dim" x="416.7" y="243" text-anchor="middle">2</text>
+        <text class="dim" x="503.3" y="243" text-anchor="middle">2.5</text>
+        <text class="dim" x="590" y="243" text-anchor="middle">3</text>
+        <text class="dim" x="330" y="272" text-anchor="middle">distance travelled from tower A, km</text>
+        <text class="dim" transform="translate(40 125) rotate(-90)" text-anchor="middle">signal strength</text>
+        <text class="ta" x="132" y="52">Tower A</text>
+        <text class="tb" x="528" y="52" text-anchor="end">Tower B</text>
+        <text x="322" y="84" text-anchor="end">equal strength</text>
+        <text x="364" y="84">B leads by 3 dB:</text>
+        <text x="364" y="101">phone switches</text>
+      </svg>
+    </div>
+    <figcaption>Why the phone waits past the halfway point. At 1.5 km both towers are equally strong, and real signals flicker, so switching there would bounce you back and forth. The phone holds on to A (thick line) until B leads by a margin, here 3 dB or twice the power. Example values; each gridline is a tenfold change in power.</figcaption>
+  </figure>
+  <p>Speed changes this routine in one way. A 4G phone keeps count of how many cells it has crossed recently. Cross enough of them and it treats itself as fast-moving and shortens its waiting time, because at 200 km/h half a second of hesitation is 28 metres of road.</p>
+</section>
+
+<section class="col">
+  <p class="stone">The fixed point</p>
+  <h2>Your address stays at a gateway, far from the road</h2>
+  <p>The video server sends its packets to one IP address. If that address changed at every tower, every download and every call would break about once a minute. It doesn't change, because the address never belonged to a tower. A gateway in your operator's core network issued it when your phone connected, and keeps it for the whole session.</p>
+  <p>Between that gateway and whichever tower you are on runs a tunnel, a private forwarding path for your packets. The last step of a handover moves the tower end of the tunnel. The gateway end stays put, and so does the address the internet sees.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 640 270" role="img" aria-label="Your phone has dropped tower A and connected to tower B. The tunnel from tower A to the gateway is removed and a tunnel from tower B to the gateway replaces it. The link from the gateway to the server is unchanged and uses the same IP address.">
+        <path class="wire wire--old" d="M112 122L180 66"/>
+        <path class="wire" d="M112 148L180 204"/>
+        <path class="wire wire--old" d="M280 62L370 118"/>
+        <path class="wire wire--new" d="M280 208L370 152"/>
+        <path class="wire" d="M480 135H548"/>
+        <rect class="box" x="16" y="110" width="96" height="50" rx="7"/>
+        <text x="64" y="140" text-anchor="middle">Your phone</text>
+        <rect class="box" x="180" y="40" width="100" height="50" rx="7"/>
+        <text x="230" y="62" text-anchor="middle">Tower A</text>
+        <text class="dim" x="230" y="79" text-anchor="middle">left behind</text>
+        <rect class="box" x="180" y="180" width="100" height="50" rx="7"/>
+        <text x="230" y="202" text-anchor="middle">Tower B</text>
+        <text class="dim" x="230" y="219" text-anchor="middle">now serving</text>
+        <rect class="box box--key" x="370" y="105" width="110" height="60" rx="7"/>
+        <text class="on-sign" x="425" y="131" text-anchor="middle">Gateway</text>
+        <text class="on-sign" x="425" y="149" text-anchor="middle">holds your IP</text>
+        <rect class="box" x="548" y="110" width="76" height="50" rx="7"/>
+        <text x="586" y="140" text-anchor="middle">Server</text>
+        <text class="dim" x="330" y="76" text-anchor="start">old tunnel, removed</text>
+        <text class="lbl-new" x="330" y="204" text-anchor="start">tunnel moved here</text>
+        <text class="dim" x="124" y="80" text-anchor="middle">radio dropped</text>
+        <text x="124" y="200" text-anchor="middle">radio link</text>
+        <text class="dim" x="514" y="124" text-anchor="middle">same IP</text>
+        <text class="dim" x="514" y="188" text-anchor="middle">unchanged</text>
+      </svg>
+    </div>
+    <figcaption>A handover moves one end of one tunnel. The server keeps sending to the same address and has no way to tell that anything happened. In 4G the gateway is called the P-GW, in 5G the UPF.</figcaption>
+  </figure>
+</section>
+
+<section class="col">
+  <p class="stone">The physics</p>
+  <h2>Speed bends the radio signal, slightly</h2>
+  <p>Moving toward a tower squeezes its radio waves to a higher frequency. Moving away stretches them lower. This is the Doppler effect, the same thing that drops the pitch of a train horn as it passes. The size of the shift is the signal's frequency multiplied by your speed and divided by the speed of light.</p>
+  <div class="tbl">
+    <table>
+      <caption>Largest Doppler shift in hertz, when heading straight at the tower. The three bands are common ones for long-range 4G, city 4G and mid-band 5G.</caption>
+      <thead><tr><th scope="col">Speed</th><th scope="col">700 MHz</th><th scope="col">1,800 MHz</th><th scope="col">3,500 MHz</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">100 km/h</th><td>65</td><td>167</td><td>324</td></tr>
+        <tr><th scope="row">160 km/h</th><td>104</td><td>267</td><td>519</td></tr>
+        <tr><th scope="row">200 km/h</th><td>130</td><td>334</td><td>649</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>These are small numbers. A 4G signal is split into narrow channels 15,000 Hz apart, and mid-band 5G uses 30,000 Hz, so the worst case in the table is about 2% of the spacing. The phone measures the shift from known reference signals and cancels it. When you pass a tower the shift flips from plus to minus within a second or two, and the phone follows that as well.</p>
+  <p>The harder effect is how quickly the radio path itself changes. Signals reach you by bouncing off buildings, ground and other vehicles, and the bounces add up differently every few centimetres. At walking pace the pattern holds for tens of milliseconds. At 200 km/h it reshuffles about every millisecond. The tower picks its data rate from your phone's reports about the channel, and at speed those reports are out of date when they arrive. The tower responds by sending more cautiously, with more error protection and less data in each burst. That is why full bars on a fast train deliver less than the same bars on the platform.</p>
+  <p>Both standards were written with this in mind. 4G is specified to hold a connection up to 350 km/h and 5G up to 500 km/h. A car at 100 and a train at 200 are well inside the design range.</p>
+</section>
+
+<section class="col">
+  <p class="stone">Where it breaks</p>
+  <h2>The stutters come from four places</h2>
+  <dl class="points">
+    <div><dt>The metal box</dt><dd>A coach or car body blocks radio. A modern train coach with metal-coated windows can weaken the signal 100 to 1,000 times (20–30 dB). Your phone copes by sending slower, sturdier transmissions.</dd></div>
+    <div><dt>Gaps between towers</dt><dd>A handover needs overlap. In open country, cuttings and tunnels, the old signal can vanish before the new tower is ready. The phone then reconnects from scratch, which takes from a few hundred milliseconds to several seconds.</dd></div>
+    <div><dt>Everyone crosses together</dt><dd>On a train, hundreds of phones reach the same cell edge within the same second. The next tower has to admit all of them at once and split its capacity among them.</dd></div>
+    <div><dt>A thin line behind the tower</dt><dd>A remote tower may reach the core over a modest link, sometimes a microwave dish instead of fibre. It cannot deliver more than that link carries, however strong your signal is.</dd></div>
+  </dl>
+  <p>Apps hide most of this. A video player keeps many seconds of video in reserve, so a 50-millisecond handover or even a five-second tunnel passes unnoticed. A live call has no reserve beyond a fraction of a second. That is why streaming survives a train journey that makes video calls freeze.</p>
+</section>
+
+<section class="col">
+  <p class="stone">The fixes</p>
+  <h2>How fast vehicles get a better link</h2>
+  <dl class="points">
+    <div><dt>Antenna on the roof</dt><dd>Put the antenna outside the metal and repeat the signal inside as Wi-Fi or a cellular booster. The 20–30 dB loss goes away, and one roof unit does the handover for the whole coach.</dd></div>
+    <div><dt>Towers along the line</dt><dd>Along rail lines and expressways, cells are given long, narrow coverage aimed down the route. Overlaps get longer and handovers happen at predictable spots.</dd></div>
+    <div><dt>Orders given early</dt><dd>Newer 5G networks can hand the phone its switching order in advance, to carry out by itself once the next tower is strong enough. Losing the old tower before the order arrives stops being a risk.</dd></div>
+    <div><dt>Satellite</dt><dd>Some trains and most connected aircraft link to satellites through a roof antenna. Low-orbit satellites cross the sky at about 27,000 km/h, so the vehicle's own speed hardly counts, and the same handover idea applies between satellites.</dd></div>
+  </dl>
+</section>
+
+<section class="col">
+  <div class="sign sign--close">
+    <p class="stone">The picture to keep</p>
+    <h2>Only the last kilometre knows you are travelling</h2>
+    <p>Your phone holds one radio link at a time and trades it for the next before the old one fades. Your address sits at a gateway that never moves, and the internet talks to the gateway.</p>
+  </div>
+  <footer>Figures are typical values. Cell sizes, margins and timers differ by operator, band and location.</footer>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var svg=document.getElementById('scene'); if(!svg) return;
+  var $=function(id){return document.getElementById(id)};
+  var towers=[120,360,600], TOP=97, ROOF=254;
+  var veh=$('veh'), link=$('link'), probe=$('probe'), pulse=$('pulse');
+  var tw=[$('tw0'),$('tw1'),$('tw2')];
+  var speedEl=$('speed'), playBtn=$('play');
+  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var v=160, sp=3, x=215, serving=0, playing=!reduce, last=null, pulseT=0;
+
+  function fmtTime(s){
+    s=Math.round(s);
+    if(s<100) return s+' s';
+    var m=Math.floor(s/60), r=s%60;
+    return m+' min'+(r? ' '+r+' s':'');
+  }
+  function readouts(){
+    $('speedOut').textContent=v+' km/h';
+    $('rMps').textContent=Math.round(v/3.6)+' m';
+    $('rSec').textContent=fmtTime(sp*3600/v);
+    $('rHr').textContent=Math.round(v/sp);
+    $('rFast').textContent=9*sp;
+    for(var i=0;i<3;i++) $('km'+i).textContent='km '+(i*sp);
+  }
+  function draw(){
+    veh.setAttribute('transform','translate('+(x-32).toFixed(1)+' 0)');
+    link.setAttribute('x1',towers[serving]); link.setAttribute('y1',TOP);
+    link.setAttribute('x2',x.toFixed(1)); link.setAttribute('y2',ROOF);
+    var n=serving+1;
+    if(n<3 && x>(towers[serving]+towers[n])/2-46){
+      probe.setAttribute('x1',towers[n]); probe.setAttribute('y1',TOP);
+      probe.setAttribute('x2',x.toFixed(1)); probe.setAttribute('y2',ROOF);
+      probe.setAttribute('opacity','.8');
+    } else probe.setAttribute('opacity','0');
+    for(var i=0;i<3;i++) tw[i].setAttribute('class', i===serving?'tower on':'tower');
+    if(pulseT>0){
+      pulse.setAttribute('cx',towers[serving]); pulse.setAttribute('cy',TOP);
+      pulse.setAttribute('r',(10+(1-pulseT)*34).toFixed(1));
+      pulse.setAttribute('opacity',pulseT.toFixed(2));
+    } else pulse.setAttribute('opacity','0');
+  }
+  function tick(ts){
+    if(last===null) last=ts;
+    var dt=Math.min(.05,(ts-last)/1000); last=ts;
+    if(playing){
+      x+=v*0.6*dt;
+      if(x>770){ x=-50; serving=0; }
+      var n=serving+1;
+      if(n<3 && x>(towers[serving]+towers[n])/2+16){ serving=n; pulseT=1; }
+    }
+    if(pulseT>0) pulseT=Math.max(0,pulseT-dt*1.5);
+    draw();
+    requestAnimationFrame(tick);
+  }
+  function setPlay(on){
+    playing=on;
+    playBtn.textContent=on?'Pause':'Play';
+    playBtn.setAttribute('aria-pressed', on?'false':'true');
+  }
+  speedEl.addEventListener('input',function(){ v=+speedEl.value; readouts(); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=spacing]'),function(r){
+    r.addEventListener('change',function(){ if(r.checked){ sp=+r.value; readouts(); } });
+    if(r.checked) sp=+r.value;
+  });
+  playBtn.addEventListener('click',function(){ setPlay(!playing); });
+  v=+speedEl.value;
+  readouts(); setPlay(playing); draw();
+  requestAnimationFrame(tick);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

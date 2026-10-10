@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Half-Marathon Build | Explainers</title>
+<meta name="description" content="Twelve weeks of training, and why you get faster by running slower than you think you should.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/half-marathon-build/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Half-Marathon Build">
+<meta property="og:description" content="Twelve weeks of training, and why you get faster by running slower than you think you should.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/half-marathon-build/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/half-marathon-build/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#E8E9E4; --card:#FAFAF6; --card-2:#F1F2EC;
+  --ink:#131518; --ink-2:#4B5058; --ink-3:#80858C; --rule:#CDD0C8;
+  --accent:#2346D6; --accent-soft:rgba(35,70,214,.10);
+  --easy:#2F8A57; --steady:#C98B00; --hard:#CC3A34;
+  --easy-soft:rgba(47,138,87,.14); --steady-soft:rgba(201,139,0,.16); --hard-soft:rgba(204,58,52,.13);
+  --pin:#9BA0A6;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111317; --card:#1A1D22; --card-2:#20242A;
+    --ink:#EDEFF2; --ink-2:#A9AFB8; --ink-3:#7A818B; --rule:#2F343C;
+    --accent:#8DA2FF; --accent-soft:rgba(141,162,255,.14);
+    --easy:#5CC48A; --steady:#F0B53A; --hard:#FF6E66;
+    --easy-soft:rgba(92,196,138,.15); --steady-soft:rgba(240,181,58,.15); --hard-soft:rgba(255,110,102,.14);
+    --pin:#5D636C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111317; --card:#1A1D22; --card-2:#20242A;
+  --ink:#EDEFF2; --ink-2:#A9AFB8; --ink-3:#7A818B; --rule:#2F343C;
+  --accent:#8DA2FF; --accent-soft:rgba(141,162,255,.14);
+  --easy:#5CC48A; --steady:#F0B53A; --hard:#FF6E66;
+  --easy-soft:rgba(92,196,138,.15); --steady-soft:rgba(240,181,58,.15); --hard-soft:rgba(255,110,102,.14);
+  --pin:#5D636C;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17.5px;line-height:1.6;padding-inline:16px;padding-block:0 72px}
+.wrap{max-width:900px;margin:0 auto}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1;text-wrap:balance}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.prose{max-width:64ch;display:flex;flex-direction:column;gap:14px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- bib hero ---------- */
+header{padding-block:40px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:36px;align-items:center}
+@media (max-width:760px){header{grid-template-columns:1fr;gap:28px}}
+.hero-copy{display:flex;flex-direction:column;gap:18px}
+h1{font-size:clamp(46px,8vw,76px);font-weight:900;font-stretch:78%;text-transform:uppercase;letter-spacing:-.01em;line-height:.92}
+.lede{font-size:clamp(18px,2.3vw,21px);max-width:34ch;line-height:1.45}
+.lede em{font-style:italic;color:var(--easy)}
+.bib{background:var(--card);border-radius:14px;position:relative;box-shadow:0 1px 0 var(--rule),0 18px 40px -24px rgba(0,0,0,.35);overflow:hidden;transform:rotate(-1.4deg);max-width:100%}
+.bib .pin{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--pin)}
+.bib .pin.tl{top:12px;left:12px}.bib .pin.tr{top:12px;right:12px}.bib .pin.bl{bottom:12px;left:12px}.bib .pin.br{bottom:12px;right:12px}
+.bib-band{background:var(--accent);color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:10px 36px;display:flex;justify-content:space-between;gap:10px}
+:root[data-theme="dark"] .bib-band{color:#0d1020}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bib-band{color:#0d1020}}
+.bib-num{font-family:var(--display);font-weight:900;font-stretch:125%;font-size:clamp(88px,15vw,148px);line-height:.95;text-align:center;letter-spacing:-.03em;padding:18px 20px 4px;font-variant-numeric:tabular-nums}
+.bib-unit{font-family:var(--mono);text-align:center;font-size:12px;letter-spacing:.3em;color:var(--ink-3);padding-bottom:14px}
+.bib-foot{display:grid;grid-template-columns:repeat(3,1fr);border-top:1.5px dashed var(--rule)}
+.bib-foot div{padding:10px 12px;display:flex;flex-direction:column;gap:2px;text-align:center}
+.bib-foot div + div{border-left:1.5px dashed var(--rule)}
+.bib-foot b{font-family:var(--display);font-stretch:90%;font-weight:800;font-size:18px}
+.bib-foot span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- sections ---------- */
+main{display:flex;flex-direction:column;gap:80px;margin-top:72px}
+section{display:flex;flex-direction:column;gap:22px;scroll-margin-top:16px}
+.sh{display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--ink);padding-top:14px}
+.sh .km{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+.sh h2{font-size:clamp(32px,5.4vw,50px);font-weight:900;font-stretch:80%;text-transform:uppercase;letter-spacing:-.005em}
+.big-idea{font-size:clamp(20px,2.8vw,24px);line-height:1.4;max-width:40ch}
+
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:10px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:7px 12px;border-radius:999px;border:1px solid var(--rule);background:var(--card-2);color:var(--ink-2);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.seg button:hover{border-color:var(--ink)}
+
+/* model chart */
+.model{padding:18px;display:flex;flex-direction:column;gap:14px}
+.chart-scroll{overflow-x:auto}
+.chart-scroll svg{display:block;width:100%;min-width:560px;height:auto}
+svg text{font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)}
+svg .gl{stroke:var(--rule);stroke-width:1}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{display:inline-block;width:18px;height:3px;border-radius:2px}
+.readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.readouts div{background:var(--card-2);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.readouts b{font-family:var(--display);font-weight:800;font-stretch:90%;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.readouts{grid-template-columns:1fr}}
+.model-note{font-size:15.5px;color:var(--ink-2);max-width:66ch}
+.model-note b{color:var(--ink)}
+.good{color:var(--easy)} .warn{color:var(--steady)} .bad{color:var(--hard)}
+
+/* zones */
+.zbar{display:flex;height:44px;border-radius:8px;overflow:hidden;font-family:var(--mono);font-size:12px}
+.zbar div{display:flex;align-items:center;padding-inline:12px;color:#fff;white-space:nowrap;overflow:hidden}
+.zbar .z1{background:var(--easy);flex:80}.zbar .z2{background:var(--steady);flex:10}.zbar .z3{background:var(--hard);flex:10}
+:root[data-theme="dark"] .zbar div{color:#0f1114}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .zbar div{color:#0f1114}}
+.zones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:720px){.zones{grid-template-columns:1fr}}
+.zone{padding:16px 18px;display:flex;flex-direction:column;gap:8px;border-top:5px solid var(--c)}
+.zone h3{font-size:24px;font-weight:800;font-stretch:85%;text-transform:uppercase}
+.zone .talk{font-style:italic;font-size:17px}
+.zone dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px}
+.zone dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.zone dd{margin:0;color:var(--ink-2)}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+@media (max-width:720px){.week{grid-template-columns:1fr}}
+.day{padding:12px;display:flex;flex-direction:column;gap:6px;min-height:150px;border-top:5px solid var(--c,var(--rule))}
+@media (max-width:720px){.day{min-height:0;display:grid;grid-template-columns:52px 1fr;gap:2px 12px}.day .dn{grid-row:span 2}}
+.day .dn{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink-3)}
+.day b{font-family:var(--display);font-weight:800;font-stretch:85%;font-size:18px;line-height:1.05;text-transform:uppercase}
+.day p{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.day.rest{background:transparent;border-style:dashed;border-width:1px;border-top:5px solid var(--rule)}
+
+/* plan chart */
+.plan{padding:18px;display:flex;flex-direction:column;gap:12px}
+.phases{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.phases span{display:inline-flex;align-items:center;gap:7px}
+.phases i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:720px){.rules{grid-template-columns:1fr}}
+.rule{padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.rule h3{font-size:19px;font-weight:800;font-stretch:88%}
+.rule p{font-size:15px;color:var(--ink-2)}
+
+/* pace calc */
+.calc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.calc-in{padding:18px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--rule)}
+@media (max-width:720px){.calc-in{border-right:0;border-bottom:1px solid var(--rule)}}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.field input{font-family:var(--mono);font-size:22px;padding:8px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--bg);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
+.field input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
+.field small{font-size:13px;color:var(--ink-3)}
+.field small.err{color:var(--hard)}
+.delta{font-size:15px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+.delta b{color:var(--ink)}
+.calc-out{padding:18px;display:flex;flex-direction:column;gap:14px}
+.paces{display:flex;flex-direction:column;gap:8px}
+.pace{display:grid;grid-template-columns:10px 1fr auto;gap:12px;align-items:center;padding:10px 12px;background:var(--card-2);border-radius:6px}
+.pace i{width:10px;height:28px;border-radius:3px;background:var(--c)}
+.pace b{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:17px;text-transform:uppercase;display:block;line-height:1.1}
+.pace small{font-size:13px;color:var(--ink-3)}
+.pace .v{font-family:var(--mono);font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.splits{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.splits th{font-weight:400;text-align:left;color:var(--ink-3);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 6px;border-bottom:1px solid var(--rule)}
+.splits td{padding:6px;border-bottom:1px dotted var(--rule)}
+.splits td:not(:first-child),.splits th:not(:first-child){text-align:right}
+
+/* race day timeline */
+.timeline{display:flex;flex-direction:column}
+.tl{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--rule)}
+.tl:first-child{border-top:0}
+.tl .when{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.06em;padding-top:3px}
+.tl h3{font-size:20px;font-weight:800;font-stretch:88%;margin-bottom:4px}
+.tl p{font-size:15.5px;color:var(--ink-2);max-width:62ch}
+.course{padding:18px;display:flex;flex-direction:column;gap:10px}
+.course-bar{display:flex;height:34px;border-radius:6px;overflow:hidden;font-family:var(--mono);font-size:11.5px}
+.course-bar div{display:flex;align-items:center;justify-content:center;padding-inline:8px;white-space:nowrap;overflow:hidden}
+.course-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;font-size:14.5px;color:var(--ink-2)}
+.course-legend b{display:block;font-family:var(--display);font-stretch:88%;font-weight:800;color:var(--ink);font-size:16px}
+@media (max-width:620px){.course-legend{grid-template-columns:1fr}}
+
+/* guardrails */
+.guards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.guards{grid-template-columns:1fr}}
+.guard{padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.guard h3{font-size:20px;font-weight:800;font-stretch:88%}
+.guard p,.guard li{font-size:15px;color:var(--ink-2)}
+.guard ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.stop{border:1.5px solid var(--hard);background:var(--hard-soft)}
+.stop h3{color:var(--hard)}
+
+footer{margin-top:80px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);display:flex;flex-direction:column;gap:6px;max-width:80ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="hero-copy">
+    <span class="label">Training explainer · 12 weeks</span>
+    <h1>Half-Marathon Build</h1>
+    <p class="lede">You get faster by running <em>slower than you think you should</em>, most of the time, for long enough.</p>
+  </div>
+  <div class="bib" role="img" aria-label="A race bib reading 21.1 kilometres">
+    <span class="pin tl"></span><span class="pin tr"></span><span class="pin bl"></span><span class="pin br"></span>
+    <div class="bib-band"><span>Half marathon</span><span>Wave C</span></div>
+    <div class="bib-num">21.1</div>
+    <div class="bib-unit">21.0975 KILOMETRES</div>
+    <div class="bib-foot">
+      <div><b>12</b><span>weeks</span></div>
+      <div><b>80/20</b><span>easy / hard</span></div>
+      <div><b>4</b><span>runs a week</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. THE IDEA -->
+<section id="idea" aria-labelledby="h-idea">
+  <div class="sh"><span class="km">KM 0 · The one idea</span><h2 id="h-idea">Training makes you tired. Rest makes you fit.</h2></div>
+  <div class="prose">
+    <p>Every run does two things at once. It adds a little <b>fitness</b>, which builds slowly and fades slowly over weeks. It also adds <b>fatigue</b>, which builds fast and clears within days. How you feel on any morning is roughly fitness minus fatigue.</p>
+    <p>A good plan keeps fatigue high enough to force adaptation but never so high that it outruns fitness for weeks. Then, in the last fortnight, it lets fatigue drain away while fitness stays. That's the taper, and it's why you arrive at the start line feeling better than you have in months.</p>
+  </div>
+
+  <div class="panel model">
+    <div class="seg" role="group" aria-label="Choose a training plan">
+      <button type="button" data-s="A" aria-pressed="true">Steady build + taper</button>
+      <button type="button" data-s="B" aria-pressed="false">Same build, no taper</button>
+      <button type="button" data-s="C" aria-pressed="false">Too much, too soon</button>
+    </div>
+    <div class="chart-scroll"><svg id="model" viewBox="0 0 720 350" role="img" aria-label="Chart of modelled fitness and fatigue over twelve weeks, with a weekly ramp-rate strip below."></svg></div>
+    <div class="legend">
+      <span><i style="background:var(--accent)"></i>Fitness (42-day average load)</span>
+      <span><i style="background:var(--hard)"></i>Fatigue (7-day average load)</span>
+      <span><i style="background:var(--easy-soft);height:10px;border:1px solid var(--easy)"></i>Safe weekly ramp (0.8–1.3×)</span>
+    </div>
+    <div class="readouts">
+      <div><span class="label">Race-morning form</span><b id="r-form">—</b><span class="label" id="r-form-l"></span></div>
+      <div><span class="label">Fitness gained</span><b id="r-fit">—</b><span class="label">vs week 1</span></div>
+      <div><span class="label">Steepest weekly ramp</span><b id="r-ramp">—</b><span class="label" id="r-ramp-l"></span></div>
+    </div>
+    <p class="model-note" id="model-note"></p>
+  </div>
+  <p class="model-note">This is the fitness–fatigue (Banister) model that apps like Strava, Garmin and TrainingPeaks use in some form. It's a simplification of real physiology, but it predicts the two things that matter most here: the cost of ramping too fast, and the payoff of a taper.</p>
+</section>
+
+<!-- 2. EASY -->
+<section id="easy" aria-labelledby="h-easy">
+  <div class="sh"><span class="km">KM 3 · Intensity</span><h2 id="h-easy">Mostly easy, a little hard, almost nothing in between</h2></div>
+  <p class="big-idea">A half marathon is about 99% aerobic. The engine for that is built by easy running, and easy running is cheap in fatigue.</p>
+  <div class="zbar" role="img" aria-label="80 percent easy, 10 percent steady, 10 percent hard">
+    <div class="z1">≈ 80% EASY</div><div class="z2">STEADY</div><div class="z3">HARD</div>
+  </div>
+  <div class="zones">
+    <div class="panel zone" style="--c:var(--easy)">
+      <span class="label">Zone 1–2</span><h3>Easy</h3>
+      <p class="talk">"I can tell you a whole story."</p>
+      <dl><dt>Feels</dt><dd>Almost embarrassingly slow. Breathing through the nose is possible.</dd>
+      <dt>Heart</dt><dd>Roughly 60–75% of max</dd>
+      <dt>Builds</dt><dd>Capillaries, mitochondria, a bigger heart stroke, tougher tendons</dd></dl>
+    </div>
+    <div class="panel zone" style="--c:var(--steady)">
+      <span class="label">Zone 3–4</span><h3>Tempo</h3>
+      <p class="talk">"Short… sentences… only."</p>
+      <dl><dt>Feels</dt><dd>Comfortably hard. You could hold it for about an hour.</dd>
+      <dt>Heart</dt><dd>Roughly 80–90% of max</dd>
+      <dt>Builds</dt><dd>The pace you can sustain before lactate piles up</dd></dl>
+    </div>
+    <div class="panel zone" style="--c:var(--hard)">
+      <span class="label">Zone 5</span><h3>Intervals</h3>
+      <p class="talk">"Yes." "No."</p>
+      <dl><dt>Feels</dt><dd>Hard, in repeats of 2–5 minutes with recovery jogs.</dd>
+      <dt>Heart</dt><dd>90%+ of max by the end of each rep</dd>
+      <dt>Builds</dt><dd>Top-end aerobic power and running economy</dd></dl>
+    </div>
+  </div>
+  <div class="prose">
+    <p><b>The common mistake is running every run at "medium".</b> Too hard to build the base cheaply, too easy to sharpen speed, and tiring enough to wreck the next day. If your easy runs and your hard runs are within 30 seconds per km of each other, your easy runs are too fast.</p>
+    <p>Use the talk test before the watch. Heart-rate zones need a real maximum, and the age formula (220 minus age) can be off by 10–15 beats for any individual. In heat and humidity, heart rate drifts up at the same pace; slow down and let it.</p>
+  </div>
+</section>
+
+<!-- 3. THE WEEK -->
+<section id="week" aria-labelledby="h-week">
+  <div class="sh"><span class="km">KM 7 · The week</span><h2 id="h-week">Four runs, two strength sessions, one real rest day</h2></div>
+  <div class="week">
+    <div class="panel day rest"><span class="dn">MON</span><b>Rest</b><p>Walk, mobility. Adaptation happens today.</p></div>
+    <div class="panel day" style="--c:var(--easy)"><span class="dn">TUE</span><b>Easy run</b><p>30–45 min conversational. Strides at the end: 4–6 × 20 s quick.</p></div>
+    <div class="panel day" style="--c:var(--hard)"><span class="dn">WED</span><b>Quality</b><p>Alternate weeks: tempo (e.g. 3 × 8 min) or intervals (e.g. 5 × 3 min).</p></div>
+    <div class="panel day" style="--c:var(--rule)"><span class="dn">THU</span><b>Strength</b><p>30 min: split squats, calf raises, bridges, planks.</p></div>
+    <div class="panel day" style="--c:var(--easy)"><span class="dn">FRI</span><b>Easy run</b><p>30–40 min. Slow is the point.</p></div>
+    <div class="panel day" style="--c:var(--rule)"><span class="dn">SAT</span><b>Strength or rest</b><p>Short strength session, or off if Sunday is a big one.</p></div>
+    <div class="panel day" style="--c:var(--accent)"><span class="dn">SUN</span><b>Long run</b><p>The keystone. Easy pace, time on feet. Practise fuel here.</p></div>
+  </div>
+  <p class="model-note">Only one day is hard. The long run is long, not fast. Put the hard day and the long run at least two days apart.</p>
+</section>
+
+<!-- 4. THE 12 WEEKS -->
+<section id="plan" aria-labelledby="h-plan">
+  <div class="sh"><span class="km">KM 10 · The arc</span><h2 id="h-plan">Build for three weeks, back off for one</h2></div>
+  <div class="panel plan">
+    <div class="phases">
+      <span><i style="background:var(--easy)"></i>Base · weeks 1–4</span>
+      <span><i style="background:var(--steady)"></i>Build · weeks 5–8</span>
+      <span><i style="background:var(--hard)"></i>Peak · weeks 9–10</span>
+      <span><i style="background:var(--accent)"></i>Taper · weeks 11–12</span>
+    </div>
+    <div class="chart-scroll"><svg id="planchart" viewBox="0 0 720 280" role="img" aria-label="Bar chart of weekly kilometres over twelve weeks with the long run for each week marked."></svg></div>
+    <p class="model-note">Bars are weekly km; the dots and the bottom row are each week's long run in km. Weeks 4 and 8 are cutbacks. This is the same plan as "Steady build + taper" above. It assumes you can already run about 5 km comfortably and 15–20 km a week.</p>
+  </div>
+  <div class="rules">
+    <div class="panel rule"><h3>Ramp about 10% a week</h3><p>Tendons and bones adapt more slowly than heart and lungs. Most running injuries are a load that grew faster than the tissue could.</p></div>
+    <div class="panel rule"><h3>Cut back every 3rd or 4th week</h3><p>Drop volume by 20–30%. The recovery week is when the previous three weeks turn into fitness.</p></div>
+    <div class="panel rule"><h3>Peak long run 16–19 km</h3><p>You don't need to run 21 km in training. Race-day adrenaline and the taper cover the last few km.</p></div>
+  </div>
+</section>
+
+<!-- 5. PACES -->
+<section id="paces" aria-labelledby="h-paces">
+  <div class="sh"><span class="km">KM 13 · Your numbers</span><h2 id="h-paces">Pick a goal, then every pace follows from it</h2></div>
+  <div class="panel calc">
+    <form class="calc-in" onsubmit="return false">
+      <div class="field"><label for="last">Last half-marathon finish</label><input id="last" value="3:30:00" inputmode="numeric" autocomplete="off" aria-describedby="last-h"><small id="last-h">h:mm:ss</small></div>
+      <div class="field"><label for="goal">Goal finish</label><input id="goal" value="2:59:00" inputmode="numeric" autocomplete="off" aria-describedby="goal-h"><small id="goal-h">h:mm:ss</small></div>
+      <p class="delta" id="delta"></p>
+    </form>
+    <div class="calc-out" aria-live="polite">
+      <div class="paces">
+        <div class="pace" style="--c:var(--easy)"><i></i><div><b>Easy &amp; long runs</b><small>Most of your km</small></div><span class="v" id="p-easy">—</span></div>
+        <div class="pace" style="--c:var(--accent)"><i></i><div><b>Goal race pace</b><small>Practise in the last few km of some long runs</small></div><span class="v" id="p-race">—</span></div>
+        <div class="pace" style="--c:var(--steady)"><i></i><div><b>Tempo</b><small>Wednesday, 15–25 min total</small></div><span class="v" id="p-tempo">—</span></div>
+        <div class="pace" style="--c:var(--hard)"><i></i><div><b>Intervals</b><small>Wednesday, 3–5 min repeats</small></div><span class="v" id="p-int">—</span></div>
+      </div>
+      <table class="splits" aria-label="Even-pace split times for the goal">
+        <thead><tr><th>Checkpoint</th><th>Goal split</th><th>Last race pace</th></tr></thead>
+        <tbody id="splits"></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="model-note">Training paces are estimates built from goal pace. Treat them as ceilings: if the talk test says slower, go slower. For goals above about 2:45, a planned run-walk (for example 4 min running, 1 min walking from the start) often finishes faster than running until you're forced to walk.</p>
+</section>
+
+<!-- 6. FUEL & HEAT -->
+<section id="fuel" aria-labelledby="h-fuel">
+  <div class="sh"><span class="km">KM 15 · Fuel</span><h2 id="h-fuel">Anything over 90 minutes needs food on the move</h2></div>
+  <div class="guards">
+    <div class="panel guard"><h3>Carbs during the race</h3><p>Your stored glycogen covers roughly 90 minutes of steady running. Beyond that, take 30–60 g of carbohydrate an hour: one gel every 30–45 minutes, starting around the 45-minute mark. A 3-hour finish means about 4 gels.</p></div>
+    <div class="panel guard"><h3>Train the gut</h3><p>Stomachs adapt to eating while running, just like legs. Take gels on every long run over 75 minutes, in the brand the race will hand out or the one you'll carry.</p></div>
+    <div class="panel guard"><h3>Heat and humidity</h3><p>Drink to thirst and sip at most aid stations. In a humid race, add electrolytes: sweat loses sodium, and plain water alone can leave you flat. Weigh yourself before and after a long run; losing more than 2% of body weight means drink more next time.</p></div>
+    <div class="panel guard"><h3>The day before</h3><p>Eat a normal, carb-heavy dinner early. No need for a giant pasta binge before a half. Skip anything spicy, fried or new.</p></div>
+  </div>
+</section>
+
+<!-- 7. RACE DAY -->
+<section id="race" aria-labelledby="h-race">
+  <div class="sh"><span class="km">KM 18 · Race week</span><h2 id="h-race">Nothing new on race day</h2></div>
+  <div class="panel timeline" style="padding:4px 18px">
+    <div class="tl"><span class="when">T − 7 days</span><div><h3>Last long-ish run</h3><p>10–12 km easy, with 2–3 km at goal pace. Volume this week is roughly half of peak.</p></div></div>
+    <div class="tl"><span class="when">T − 3 days</span><div><h3>Short sharpener</h3><p>20–30 min easy with 4 × 1 min at goal pace. You'll feel restless. That's the taper working.</p></div></div>
+    <div class="tl"><span class="when">T − 1 day</span><div><h3>Lay out everything</h3><p>Bib pinned, shoes you've run 50+ km in, gels, chafe balm. 15 min shakeout jog or rest. In bed early; the night before the night before matters more for sleep.</p></div></div>
+    <div class="tl"><span class="when">T − 2.5 hrs</span><div><h3>Familiar breakfast</h3><p>Something you've eaten before long runs: toast, banana, idli, a little coffee if that's your habit. Then small sips of water.</p></div></div>
+    <div class="tl"><span class="when">T − 45 min</span><div><h3>At the start</h3><p>Toilet queue, then 5–10 min very easy jogging. Get into the corral that matches your goal, not your hopes.</p></div></div>
+  </div>
+  <div class="panel course">
+    <span class="label">How to run the 21.1 km</span>
+    <div class="course-bar" role="img" aria-label="Course split into three parts: 0 to 5 km hold back, 5 to 16 km settle, 16 to 21.1 km race">
+      <div style="flex:5;background:var(--easy-soft);color:var(--easy)">0–5 km</div>
+      <div style="flex:11;background:var(--steady-soft);color:var(--steady)">5–16 km</div>
+      <div style="flex:5.1;background:var(--hard-soft);color:var(--hard)">16–21.1</div>
+    </div>
+    <div class="course-legend">
+      <div><b>Hold back</b>No faster than goal pace. Every 10 s/km too fast here costs you more later. Most first-halfers go out too fast.</div>
+      <div><b>Settle</b>Lock into goal pace. Gel on schedule. Take water at stations even if you don't feel thirsty yet.</div>
+      <div><b>Race</b>If you have something left, spend it here. A negative split (second half faster) is the sign of a well-run race.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. GUARDRAILS -->
+<section id="guard" aria-labelledby="h-guard">
+  <div class="sh"><span class="km">KM 21 · Guardrails</span><h2 id="h-guard">The best plan is the one you finish uninjured</h2></div>
+  <div class="guards">
+    <div class="panel guard"><h3>Check readiness each morning</h3><p>If your overnight HRV sits clearly below your normal range, or resting heart rate is up 5+ beats for a couple of days, swap the hard session for an easy one. One missed workout costs nothing. Training through illness can cost weeks.</p></div>
+    <div class="panel guard"><h3>Strength twice a week</h3><p>Runners who lift get injured less. Focus on single-leg work and calves: split squats, step-ups, calf raises (straight and bent knee), glute bridges, planks. 25–30 minutes is enough.</p></div>
+    <div class="panel guard"><h3>Sleep is training</h3><p>Most tissue repair and hormonal recovery happens in deep sleep. A week of 6-hour nights shows up as a bad long run.</p></div>
+    <div class="panel guard stop"><h3>Stop and get it checked if pain is…</h3><ul><li>Sharp, or in one spot you can press with a finger</li><li>Getting worse as the run goes on</li><li>Making you change your stride</li><li>Still there the next morning, or in a bone rather than a muscle</li></ul></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>Half-Marathon Build · general training guidance for recreational runners. Not medical advice. See a doctor before starting if you have heart, joint or other health concerns.</span>
+  <span>Training-load chart uses a simplified fitness–fatigue model with 42-day and 7-day time constants; the numbers are illustrative.</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const txt = (s, attrs, parent) => { const t = el('text', attrs, parent); t.textContent = s; return t; };
+
+  /* ---------- plans ---------- */
+  const PLANS = {
+    A:{w:[20,23,25,20,27,30,32,25,34,36,26,12], l:[8,10,11,9,12,14,15,12,16,18,12,0]},
+    B:{w:[20,23,25,20,27,30,32,25,34,36,36,36], l:[8,10,11,9,12,14,15,12,16,18,18,18]},
+    C:{w:[28,36,44,50,54,58,60,60,60,60,60,60], l:[10,13,15,17,18,18,20,20,20,20,20,20]}
+  };
+  const NOTES = {
+    A:'Fatigue rises and falls with each long run, and fitness climbs underneath it. Cutback weeks (4 and 8) let fatigue dip. In the last two weeks fatigue drops below fitness: <b class="good">you start the race fresh</b>, with almost all the fitness still there.',
+    B:'Same training, but no taper. Fitness ends slightly higher on paper, yet <b class="warn">fatigue is still sitting on top of it</b> on race morning. You carry the tiredness of the last fortnight onto the start line.',
+    C:'Volume doubles in three weeks. Fatigue shoots far above fitness and stays there for more than a month, with weekly jumps above 1.5×. <b class="bad">This is where overuse injuries live:</b> shin splints, Achilles and knee pain. The model can’t show the injury, only the load that causes it.'
+  };
+  function loads(p){
+    const out = [];
+    p.w.forEach((W,i) => { const L = p.l[i], R = W - L; out.push(0, .3*R, .35*R*1.6, .2*R, 0, .15*R, L*1.1); });
+    return out;
+  }
+  function sim(p){
+    let ctl = 2.6, atl = 2.6; const fit = [ctl], fat = [atl];
+    loads(p).forEach(l => { ctl += (l-ctl)/42; atl += (l-atl)/7; fit.push(ctl); fat.push(atl); });
+    return {fit, fat};
+  }
+  function ramps(p){ const h = [18,18,18,18].concat(p.w); return p.w.map((W,i) => W / ((h[i]+h[i+1]+h[i+2]+h[i+3])/4)); }
+
+  /* ---------- model chart ---------- */
+  const svg = $('model');
+  const X0 = 44, X1 = 700, TOP = 14, MID = 214, RT = 268, RB = 318;
+  const DAYS = 84;
+  const x = d => X0 + (X1 - X0) * d / DAYS;
+  const yMax = 10;
+  const y = v => MID - (MID - TOP) * v / yMax;
+  const rMax = 2;
+  const ry = v => RB - (RB - RT) * Math.min(v, rMax) / rMax;
+
+  function drawModel(key){
+    svg.innerHTML = '';
+    const p = PLANS[key], s = sim(p), r = ramps(p);
+    // grid
+    [0,2,4,6,8,10].forEach(v => { el('line',{x1:X0,x2:X1,y1:y(v),y2:y(v),class:'gl'},svg); txt(v,{x:X0-8,y:y(v)+3.5,'text-anchor':'end'},svg); });
+    txt('load (model units)',{x:X0+4,y:TOP+12},svg);
+    // taper shade
+    el('rect',{x:x(70),y:TOP,width:x(84)-x(70),height:MID-TOP,style:'fill:var(--accent-soft)'},svg);
+    txt('taper',{x:x(77),y:TOP+14,'text-anchor':'middle',style:'fill:var(--accent)'},svg);
+    // week ticks
+    for (let w=0; w<12; w++){ txt('W'+(w+1),{x:x(w*7+3.5),y:MID+16,'text-anchor':'middle'},svg); if(w>0) el('line',{x1:x(w*7),x2:x(w*7),y1:MID,y2:MID+5,class:'gl'},svg); }
+    el('line',{x1:X0,x2:X1,y1:MID,y2:MID,style:'stroke:var(--ink-3)'},svg);
+    // race marker
+    el('line',{x1:x(84),x2:x(84),y1:TOP,y2:MID,style:'stroke:var(--ink)','stroke-dasharray':'3 3'},svg);
+    txt('RACE',{x:x(84)-4,y:MID-6,'text-anchor':'end',style:'fill:var(--ink);font-weight:500'},svg);
+    // lines
+    const path = arr => arr.slice(0,DAYS+1).map((v,i) => (i?'L':'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
+    el('path',{d:path(s.fat),fill:'none',style:'stroke:var(--hard)','stroke-width':1.6,'stroke-linejoin':'round'},svg);
+    el('path',{d:path(s.fit),fill:'none',style:'stroke:var(--accent)','stroke-width':2.6,'stroke-linejoin':'round'},svg);
+    // ramp strip
+    txt('weekly ramp (this week ÷ previous 4-week average)',{x:X0,y:RT-16},svg);
+    el('rect',{x:X0,y:ry(1.3),width:X1-X0,height:ry(.8)-ry(1.3),style:'fill:var(--easy-soft)'},svg);
+    el('line',{x1:X0,x2:X1,y1:ry(1.5),y2:ry(1.5),style:'stroke:var(--hard)','stroke-dasharray':'4 3'},svg);
+    txt('1.5×',{x:X0-8,y:ry(1.5)+3.5,'text-anchor':'end',style:'fill:var(--hard)'},svg);
+    txt('1.0×',{x:X0-8,y:ry(1)+3.5,'text-anchor':'end'},svg);
+    el('line',{x1:X0,x2:X1,y1:RB,y2:RB,style:'stroke:var(--ink-3)'},svg);
+    r.forEach((v,i) => {
+      const cx = x(i*7+3.5), bw = (x(7)-x(0))*.5;
+      const col = v > 1.5 ? 'var(--hard)' : v > 1.3 ? 'var(--steady)' : 'var(--ink-3)';
+      el('rect',{x:cx-bw/2,y:ry(v),width:bw,height:RB-ry(v),style:`fill:${col}`},svg);
+      txt(v.toFixed(1),{x:cx,y:RB+14,'text-anchor':'middle'},svg);
+    });
+    // readouts (race eve = day 83)
+    const e = 83, form = (s.fit[e]-s.fat[e]) / s.fit[e] * 100;
+    const fEl = $('r-form');
+    fEl.textContent = (form>0?'+':'') + Math.round(form) + '%';
+    fEl.className = form > 5 ? 'good' : form > -5 ? 'warn' : 'bad';
+    $('r-form-l').textContent = form > 5 ? 'fresh' : 'still tired';
+    $('r-fit').textContent = '+' + Math.round((s.fit[e]/s.fit[7]-1)*100) + '%';
+    const mr = Math.max(...r); const rEl = $('r-ramp');
+    rEl.textContent = mr.toFixed(2) + '×';
+    rEl.className = mr > 1.5 ? 'bad' : mr > 1.3 ? 'warn' : 'good';
+    $('r-ramp-l').textContent = mr > 1.5 ? 'injury-risk territory' : 'within a safe range';
+    $('model-note').innerHTML = NOTES[key];
+  }
+  const segBtns = document.querySelectorAll('.seg button');
+  segBtns.forEach(b => b.addEventListener('click', () => { segBtns.forEach(o => o.setAttribute('aria-pressed', o===b)); drawModel(b.dataset.s); }));
+  drawModel('A');
+
+  /* ---------- plan chart ---------- */
+  (function(){
+    const g = $('planchart'), P = PLANS.A;
+    const L = 44, R = 700, T = 20, B = 232, maxV = 40;
+    const py = v => B - (B - T) * v / maxV;
+    const bw = (R - L) / 12;
+    const phaseCol = i => i < 4 ? 'var(--easy)' : i < 8 ? 'var(--steady)' : i < 10 ? 'var(--hard)' : 'var(--accent)';
+    [0,10,20,30,40].forEach(v => { el('line',{x1:L,x2:R,y1:py(v),y2:py(v),class:'gl'},g); txt(v,{x:L-8,y:py(v)+3.5,'text-anchor':'end'},g); });
+    txt('km / week',{x:L,y:10},g);
+    P.w.forEach((W,i) => {
+      const cx = L + bw*i + bw/2, w = bw*.62;
+      el('rect',{x:cx-w/2,y:py(W),width:w,height:B-py(W),rx:2,style:`fill:${phaseCol(i)};opacity:.9`},g);
+      txt(W,{x:cx,y:py(W)-6,'text-anchor':'middle',style:'fill:var(--ink);font-weight:500'},g);
+      const lr = i === 11 ? 21.1 : P.l[i];
+      const ly = py(lr);
+      el('circle',{cx:cx,cy:ly,r:i===11?6:4.5,style:`fill:var(--card);stroke:var(--ink)`,'stroke-width':1.6},g);
+      if (i===11) txt('race 21.1',{x:cx-10,y:ly-10,'text-anchor':'end',style:'fill:var(--ink-2)'},g);
+      txt('W'+(i+1),{x:cx,y:B+16,'text-anchor':'middle'},g);
+      txt(i===11 ? '21.1' : lr,{x:cx,y:B+36,'text-anchor':'middle',style:'fill:var(--ink);font-weight:500'},g);
+    });
+    el('line',{x1:L,x2:R,y1:B,y2:B,style:'stroke:var(--ink-3)'},g);
+    txt('LR km',{x:L-6,y:B+36,'text-anchor':'end',style:'fill:var(--ink-3);font-size:9.5px'},g);
+  })();
+
+  /* ---------- pace calculator ---------- */
+  const HM = 21.0975;
+  const parse = s => { const p = String(s).trim().split(':').map(Number); if (p.some(n => isNaN(n))) return NaN; if (p.length===3) return p[0]*3600+p[1]*60+p[2]; if (p.length===2) return p[0]*3600+p[1]*60; return NaN; };
+  const mmss = sec => { sec = Math.round(sec); const m = Math.floor(sec/60), s = sec%60; return m + ':' + String(s).padStart(2,'0'); };
+  const hms = sec => { sec = Math.round(sec); const h = Math.floor(sec/3600), m = Math.floor(sec%3600/60), s = sec%60; return (h? h+':'+String(m).padStart(2,'0') : m) + ':' + String(s).padStart(2,'0'); };
+  function calc(){
+    const last = parse($('last').value), goal = parse($('goal').value);
+    const gh = $('goal-h');
+    if (!(goal > 3600)) { gh.textContent = 'Enter a time like 2:45:00'; gh.className = 'err'; return; }
+    gh.textContent = 'h:mm:ss'; gh.className = '';
+    const gp = goal / HM;
+    $('p-race').textContent = mmss(gp) + ' /km';
+    $('p-easy').textContent = mmss(gp+60) + '–' + mmss(gp+90) + ' /km';
+    $('p-tempo').textContent = mmss(gp-20) + '–' + mmss(gp-10) + ' /km';
+    $('p-int').textContent = mmss(gp-45) + '–' + mmss(gp-30) + ' /km';
+    const lp = last > 0 ? last / HM : NaN;
+    const rows = [5,10,15,20,HM].map(k => `<tr><td>${k===HM?'Finish':k+' km'}</td><td>${hms(gp*k)}</td><td>${isFinite(lp)?hms(lp*k):'—'}</td></tr>`);
+    $('splits').innerHTML = rows.join('');
+    const d = $('delta');
+    if (isFinite(lp)) {
+      const cut = last - goal, pct = cut / last * 100;
+      if (cut > 0) {
+        d.innerHTML = `Goal is <b>${hms(cut)}</b> faster (${pct.toFixed(0)}%), which means <b>${Math.round(lp-gp)} s</b> quicker every km: ${mmss(lp)} → ${mmss(gp)} /km. ` +
+          (pct > 20 ? 'That’s a very big jump for 12 weeks unless the last race involved lots of walking or no training.' : pct > 10 ? 'Ambitious but realistic after a first half, when consistent training replaces walking breaks.' : 'A solid, realistic target for one training block.');
+      } else d.innerHTML = 'Goal is at or slower than your last finish. A good choice if you’re coming back from a break.';
+    } else d.textContent = '';
+  }
+  ['last','goal'].forEach(id => $(id).addEventListener('input', calc));
+  calc();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

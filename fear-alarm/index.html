@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Fear Alarm | Explainers</title>
+<meta name="description" content="Fear is a smoke detector, built to scream at burnt toast, because missing one real fire costs everything.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/fear-alarm/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Fear Alarm">
+<meta property="og:description" content="Fear is a smoke detector, built to scream at burnt toast, because missing one real fire costs everything.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/fear-alarm/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/fear-alarm/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --panel:#E4E9E2;      /* institutional safety-panel green-grey */
+  --panel-2:#D6DDD3;
+  --card:#F2F5F0;
+  --ink:#172524;
+  --ink-2:#4A5A57;
+  --rule:#B9C3B6;
+  --alarm:#C8302A;      /* alarm red */
+  --amber:#C98A0C;      /* caution amber */
+  --safe:#2F7A55;       /* all-clear green */
+  --wind:#6F8F86;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --panel:#131C1B; --panel-2:#1B2625; --card:#1E2A29;
+    --ink:#E3EAE5; --ink-2:#9DB0AB; --rule:#33423F;
+    --alarm:#F0574E; --amber:#E7AE3A; --safe:#5DBB8A; --wind:#7FA59A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --panel:#131C1B; --panel-2:#1B2625; --card:#1E2A29;
+  --ink:#E3EAE5; --ink-2:#9DB0AB; --rule:#33423F;
+  --alarm:#F0574E; --amber:#E7AE3A; --safe:#5DBB8A; --wind:#7FA59A;
+}
+*{box-sizing:border-box}
+body{background:var(--panel);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;padding-inline:20px}
+.wrap{max-width:880px;margin-inline:auto;padding-block:40px 80px;display:flex;flex-direction:column;gap:88px}
+h1,h2,h3{font-family:var(--display);line-height:.98;text-wrap:balance;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:800;text-transform:uppercase}
+h3{font-size:1.45rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+p{margin:0;max-width:62ch}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.label b{color:var(--alarm);font-weight:600}
+section{display:flex;flex-direction:column;gap:22px}
+.lede{font-size:1.2rem;color:var(--ink-2)}
+em{font-style:italic}
+strong{font-weight:600}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(3.2rem,10vw,6.6rem);font-weight:900;text-transform:uppercase}
+.hero h1 span{color:var(--alarm)}
+.hero-text{display:flex;flex-direction:column;gap:20px}
+.detector{width:100%;max-width:300px;justify-self:center}
+.led{animation:blink 2.4s infinite}
+@keyframes blink{0%,86%,100%{opacity:.25}90%,96%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.led{animation:none;opacity:1}}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.detector{max-width:200px;grid-row:1}}
+
+/* ASYMMETRY */
+.errors{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.err{background:var(--card);border:1px solid var(--rule);padding:22px;display:flex;flex-direction:column;gap:10px}
+.err .cost{font-family:var(--mono);font-size:.82rem;padding-top:12px;border-top:1px dashed var(--rule);color:var(--ink-2)}
+.err .cost b{font-weight:600}
+.err.fa .cost b{color:var(--amber)}
+.err.miss{border-color:var(--alarm)}
+.err.miss .cost b{color:var(--alarm)}
+@media (max-width:560px){.errors{grid-template-columns:1fr}}
+
+/* SIMULATOR */
+.console{background:var(--card);border:2px solid var(--ink);padding:24px;display:flex;flex-direction:column;gap:18px}
+.console-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.chart-box{overflow-x:auto}
+svg text{font-family:var(--mono)}
+.controls{display:flex;flex-direction:column;gap:10px}
+.controls label{font-family:var(--mono);font-size:.8rem;display:flex;justify-content:space-between;gap:8px}
+input[type=range]{width:100%;accent-color:var(--alarm);height:28px}
+input[type=range]:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button,.seg button{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--ink);border:1px solid var(--ink-2);padding:7px 12px;cursor:pointer}
+.presets button:hover,.seg button:hover{background:var(--panel-2)}
+.seg{display:flex;gap:0;flex-wrap:wrap}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.readouts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.ro{background:var(--card);padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.ro .v{font-family:var(--display);font-size:2.3rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.ro .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+#roFA{color:var(--amber)} #roMiss{color:var(--alarm)}
+.verdict{font-family:var(--mono);font-size:.86rem;padding:12px 14px;border-left:4px solid var(--ink-2);background:var(--panel-2)}
+.verdict.good{border-color:var(--safe)}
+.verdict.bad{border-color:var(--alarm)}
+@media (max-width:560px){.readouts{grid-template-columns:1fr}.ro{flex-direction:row;justify-content:space-between;align-items:baseline}.ro .v{font-size:1.8rem}}
+
+/* ROADS */
+.roads{background:var(--card);border:1px solid var(--rule);padding:18px;overflow-x:auto}
+.roads svg{min-width:560px;width:100%;display:block}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note{display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:3px solid var(--alarm)}
+.note.slow{border-top-color:var(--safe)}
+@media (max-width:560px){.notes{grid-template-columns:1fr}}
+
+/* BODY */
+.body-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.bg{background:var(--card);padding:18px;display:flex;flex-direction:column;gap:6px}
+.bg .what{font-family:var(--display);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.bg .why{font-size:.95rem;color:var(--ink-2)}
+@media (max-width:720px){.body-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.body-grid{grid-template-columns:1fr}}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mode{display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid var(--rule)}
+.mode .m{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--alarm)}
+@media (max-width:620px){.modes{grid-template-columns:1fr}}
+
+/* PREPARED */
+.prepared{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.list li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:.85rem}
+.list li span:last-child{color:var(--ink-2);text-align:right}
+@media (max-width:620px){.prepared{grid-template-columns:1fr}}
+
+/* MISFIRES */
+.faults{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
+.fault{display:grid;grid-template-columns:190px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.fault .code{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--alarm);padding-top:4px}
+.fault .code small{display:block;color:var(--ink-2);letter-spacing:.04em;margin-top:4px;text-transform:none}
+@media (max-width:560px){.fault{grid-template-columns:1fr;gap:6px}}
+
+.closing{background:var(--ink);color:var(--panel);padding:36px 28px;display:flex;flex-direction:column;gap:14px}
+.closing p{font-family:var(--display);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;text-transform:uppercase;line-height:1.02;max-width:none}
+.closing p span{color:var(--alarm)}
+.closing .label{color:var(--panel);opacity:.7}
+
+.sources{font-size:.85rem;color:var(--ink-2);display:flex;flex-direction:column;gap:6px}
+.sources a{color:var(--ink-2)}
+.sources ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-text">
+    <div class="label">Explainer · Evolution &amp; the brain</div>
+    <h1>Fear is a <span>smoke detector.</span></h1>
+    <p class="lede">It is built to scream at burnt toast. That is not a flaw. Missing one real fire costs everything, and a false alarm costs almost nothing.</p>
+  </div>
+  <svg class="detector" viewBox="0 0 200 200" role="img" aria-label="A ceiling smoke detector with a blinking red light">
+    <circle cx="100" cy="100" r="92" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/>
+    <circle cx="100" cy="100" r="66" fill="none" stroke="var(--rule)" stroke-width="2"/>
+    <g stroke="var(--ink-2)" stroke-width="5" stroke-linecap="round">
+      <line x1="62" y1="82" x2="138" y2="82"/><line x1="56" y1="96" x2="144" y2="96"/>
+      <line x1="56" y1="110" x2="144" y2="110"/><line x1="62" y1="124" x2="138" y2="124"/>
+    </g>
+    <circle cx="100" cy="152" r="7" fill="var(--alarm)" class="led"/>
+    <text x="100" y="58" text-anchor="middle" font-size="9" fill="var(--ink-2)" letter-spacing="2">AMYGDALA · MK I</text>
+  </svg>
+</header>
+
+<!-- PROBLEM -->
+<section>
+  <div class="label"><b>01</b> · The problem</div>
+  <h2>Something rustles in the grass</h2>
+  <p>Most of the time it is wind. Once in a while it is a snake. You have a fraction of a second, and not enough information. Whatever you do, you can be wrong in two ways.</p>
+  <div class="errors">
+    <div class="err fa">
+      <h3>False alarm</h3>
+      <p>You jump. It was wind. You feel a bit silly.</p>
+      <div class="cost">Cost: <b>a few calories, a racing heart</b></div>
+    </div>
+    <div class="err miss">
+      <h3>Missed threat</h3>
+      <p>You stay calm. It was a snake.</p>
+      <div class="cost">Cost: <b>possibly your life, and every descendant after it</b></div>
+    </div>
+  </div>
+  <p>The two mistakes are wildly unequal. So natural selection did not build an accurate alarm. It built a <strong>jumpy</strong> one. Our ancestors were the ones who flinched. The calm ones left fewer children.</p>
+</section>
+
+<!-- SIMULATOR -->
+<section>
+  <div class="label"><b>02</b> · The core idea</div>
+  <h2>Tune the detector yourself</h2>
+  <p>Each rustle gives a “snake-ness” signal. Wind usually reads low, snakes usually read high, but they overlap. Set the threshold where fear fires. Out of every 100 rustles, 5 are snakes.</p>
+
+  <div class="console" aria-label="Fear threshold simulator">
+    <div class="console-top">
+      <span class="label">Signal detection panel</span>
+      <div class="seg" role="group" aria-label="How costly is a missed snake">
+        <button type="button" id="costLow" aria-pressed="false">Miss = 5× a false alarm</button>
+        <button type="button" id="costHigh" aria-pressed="true">Miss = 100×</button>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <svg id="chart" viewBox="0 0 640 230" width="100%" role="img" aria-label="Two overlapping curves, wind and snakes, with a movable fear threshold"></svg>
+    </div>
+
+    <div class="controls">
+      <label for="thr"><span>Fear threshold</span><span id="thrVal">—</span></label>
+      <input type="range" id="thr" min="10" max="95" step="1" value="62">
+      <div class="presets">
+        <button type="button" data-t="80">Calm</button>
+        <button type="button" data-t="52">Balanced</button>
+        <button type="button" data-best>Set to evolution's pick</button>
+      </div>
+    </div>
+
+    <div class="readouts">
+      <div class="ro"><span class="k">False alarms / 100 rustles</span><span class="v" id="roFA">—</span></div>
+      <div class="ro"><span class="k">Snakes missed / 100 snakes</span><span class="v" id="roMiss">—</span></div>
+      <div class="ro"><span class="k">Total cost / 100 rustles</span><span class="v" id="roCost">—</span></div>
+    </div>
+    <div class="verdict" id="verdict" aria-live="polite">—</div>
+  </div>
+
+  <p>When a miss is deadly, the cheapest setting fires at lots of harmless rustles. When a miss is cheap, the best setting is calmer. This is biologist Randolph Nesse’s <strong>smoke detector principle</strong>: defences tune themselves to the cost of each mistake, not to accuracy.</p>
+</section>
+
+<!-- MECHANISM -->
+<section>
+  <div class="label"><b>03</b> · The wiring</div>
+  <h2>Two roads to the alarm</h2>
+  <p>The brain sends danger signals down a fast road and a slow road at the same time. The fast one decides first. The slow one checks the work.</p>
+  <div class="roads">
+    <svg viewBox="0 0 640 250" role="img" aria-label="Sensory input goes to the thalamus, then by a fast route straight to the amygdala, and by a slow route through the cortex to the amygdala. The amygdala triggers the body.">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink)"/></marker>
+        <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--alarm)"/></marker>
+        <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--safe)"/></marker>
+      </defs>
+      <!-- nodes -->
+      <g font-size="12" fill="var(--ink)">
+        <rect x="4" y="100" width="116" height="48" fill="var(--panel-2)" stroke="var(--ink)"/>
+        <text x="62" y="121" text-anchor="middle" font-weight="600">EYES / EARS</text>
+        <text x="62" y="137" text-anchor="middle" fill="var(--ink-2)" font-size="10">“long curvy shape”</text>
+
+        <rect x="160" y="100" width="100" height="48" fill="var(--panel-2)" stroke="var(--ink)"/>
+        <text x="210" y="121" text-anchor="middle" font-weight="600">THALAMUS</text>
+        <text x="210" y="137" text-anchor="middle" fill="var(--ink-2)" font-size="10">relay station</text>
+
+        <rect x="330" y="14" width="130" height="48" fill="var(--panel-2)" stroke="var(--safe)" stroke-width="2"/>
+        <text x="395" y="35" text-anchor="middle" font-weight="600">CORTEX</text>
+        <text x="395" y="51" text-anchor="middle" fill="var(--ink-2)" font-size="10">“it’s a stick”</text>
+
+        <rect x="330" y="160" width="130" height="48" fill="var(--card)" stroke="var(--alarm)" stroke-width="2"/>
+        <text x="395" y="181" text-anchor="middle" font-weight="600" fill="var(--alarm)">AMYGDALA</text>
+        <text x="395" y="197" text-anchor="middle" fill="var(--ink-2)" font-size="10">the alarm</text>
+
+        <rect x="520" y="160" width="110" height="48" fill="var(--panel-2)" stroke="var(--ink)"/>
+        <text x="575" y="181" text-anchor="middle" font-weight="600">BODY</text>
+        <text x="575" y="197" text-anchor="middle" fill="var(--ink-2)" font-size="10">via hypothalamus</text>
+      </g>
+      <!-- edges -->
+      <line x1="120" y1="124" x2="156" y2="124" stroke="var(--ink)" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M260,136 C300,170 300,184 326,184" fill="none" stroke="var(--alarm)" stroke-width="4" marker-end="url(#ahR)"/>
+      <text x="272" y="222" font-size="11" fill="var(--alarm)" font-weight="600">FAST · crude · fires first</text>
+      <path d="M260,112 C300,70 300,38 326,38" fill="none" stroke="var(--safe)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ahG)"/>
+      <text x="268" y="78" font-size="11" fill="var(--safe)" font-weight="600" text-anchor="end">SLOW · detailed</text>
+      <path d="M395,62 L395,156" fill="none" stroke="var(--safe)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ahG)"/>
+      <text x="404" y="112" font-size="11" fill="var(--safe)">stand down</text>
+      <line x1="460" y1="184" x2="516" y2="184" stroke="var(--alarm)" stroke-width="4" marker-end="url(#ahR)"/>
+    </svg>
+  </div>
+  <div class="notes">
+    <div class="note">
+      <h3>The fast road</h3>
+      <p>A blurry sketch goes straight to the amygdala. In Joseph LeDoux’s rat studies it arrived roughly twice as fast as the cortical route. You flinch before you know why.</p>
+    </div>
+    <div class="note slow">
+      <h3>The slow road</h3>
+      <p>The cortex builds the full picture and, if it was a stick, tells the alarm to stand down. That is the moment of relief right after a jump scare.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section>
+  <div class="label"><b>04</b> · The response</div>
+  <h2>What the alarm does to you</h2>
+  <p>Adrenaline and noradrenaline hit within seconds, cortisol follows in minutes. Every change pays for one thing: the next 60 seconds of survival. Long-term jobs get paused.</p>
+  <div class="body-grid">
+    <div class="bg"><span class="what">Heart pounds</span><span class="why">Pushes oxygen to muscles that may need to run or fight.</span></div>
+    <div class="bg"><span class="what">Breath quickens</span><span class="why">More oxygen in, more CO₂ out.</span></div>
+    <div class="bg"><span class="what">Pupils widen</span><span class="why">Lets in more light to spot movement.</span></div>
+    <div class="bg"><span class="what">Sugar floods blood</span><span class="why">The liver releases fuel for instant effort.</span></div>
+    <div class="bg"><span class="what">Gut goes quiet</span><span class="why">Blood leaves digestion and skin for the limbs. Hence “butterflies”.</span></div>
+    <div class="bg"><span class="what">Pain dulls</span><span class="why">An injury matters less than escaping it.</span></div>
+  </div>
+  <div class="modes">
+    <div class="mode"><span class="m">Freeze</span><p>Threat far or unsure. Stay still, many predators track motion.</p></div>
+    <div class="mode"><span class="m">Flight</span><p>Threat close, escape possible. Run.</p></div>
+    <div class="mode"><span class="m">Fight</span><p>Cornered. Nothing left but to defend.</p></div>
+  </div>
+</section>
+
+<!-- PREPARED -->
+<section>
+  <div class="label"><b>05</b> · Factory settings</div>
+  <h2>Pre-wired, then tuned by life</h2>
+  <div class="prepared">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <p>We are not born fearing everything, but some fears are <strong>easy to learn</strong>. The brain ships with a shortlist of ancient dangers.</p>
+      <p>In Susan Mineka’s experiments, lab-raised monkeys with no fear of snakes learned it quickly by watching videos of another monkey reacting in fear. When the same footage was edited to show the fear aimed at flowers, they learned nothing.</p>
+      <p>Evolution preloads the <em>candidates</em>. Experience, including watching others, decides which ones switch on.</p>
+    </div>
+    <ul class="list" aria-label="Easy-to-learn fears versus rare ones">
+      <li><span>Snakes, spiders</span><span>learned fast</span></li>
+      <li><span>Heights, deep water</span><span>learned fast</span></li>
+      <li><span>Angry faces, strangers</span><span>learned fast</span></li>
+      <li><span>Dark, being alone</span><span>learned fast</span></li>
+      <li><span>Cars, sockets, sugar</span><span>deadlier today, feared less</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- MISFIRES -->
+<section>
+  <div class="label"><b>06</b> · Faults</div>
+  <h2>When the alarm misfires</h2>
+  <p>A detector tuned for the savannah now lives in an inbox. The same wiring fires at a deadline, a stage, or a message that says “can we talk?”</p>
+  <div class="faults">
+    <div class="fault"><div class="code">Sensitivity too high<small>anxiety</small></div><p>The threshold slides so low that ordinary uncertainty trips it. The alarm rings with no fire in sight.</p></div>
+    <div class="fault"><div class="code">One wire crossed<small>phobia</small></div><p>A single cue, a lift or a needle, gets hard-linked to the alarm, far beyond its real danger.</p></div>
+    <div class="fault"><div class="code">Won’t reset<small>trauma, PTSD</small></div><p>After a real fire, the detector stays armed and keeps firing at reminders long after the danger is gone.</p></div>
+    <div class="fault"><div class="code">Recalibration<small>exposure therapy</small></div><p>Meeting the feared thing safely, again and again, feeds the slow road new evidence. The old alarm is not erased. A newer “this is safe” memory learns to overrule it.</p></div>
+  </div>
+</section>
+
+<div class="closing">
+  <span class="label">The one-line version</span>
+  <p>Fear exists because <span>being wrong and alive</span> beats being right and dead.</p>
+</div>
+
+<footer class="sources">
+  <span class="label">Sources</span>
+  <ol>
+    <li>Nesse, R. M. (2005). Natural selection and the regulation of defenses: a signal detection analysis of the smoke detector principle. <em>Evolution and Human Behavior</em>.</li>
+    <li>LeDoux, J. E. (1996). <em>The Emotional Brain</em>. Simon &amp; Schuster.</li>
+    <li>Cook, M. &amp; Mineka, S. (1989). Observational conditioning of fear to fear-relevant versus fear-irrelevant stimuli in rhesus monkeys. <em>Journal of Abnormal Psychology</em>.</li>
+    <li>Öhman, A. &amp; Mineka, S. (2001). Fears, phobias, and preparedness. <em>Psychological Review</em>.</li>
+  </ol>
+  <p>Simulator numbers are illustrative: two bell curves and made-up costs, chosen to show the shape of the trade-off.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const W=640,H=230,PL=30,PR=16,PT=32,PB=36;
+  const MW=40,MS=64,SD=11,NW=95,NS=5,FA_COST=1;
+  let missCost=100;
+  const svg=document.getElementById('chart');
+  const thr=document.getElementById('thr');
+  const x=v=>PL+(v-0)/(100)*(W-PL-PR);
+  const pdf=(v,m)=>Math.exp(-0.5*((v-m)/SD)**2)/(SD*Math.sqrt(2*Math.PI));
+  function erf(z){const t=1/(1+0.3275911*Math.abs(z));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-z*z);return z>=0?y:-y;}
+  const cdf=(v,m)=>0.5*(1+erf((v-m)/(SD*Math.SQRT2)));
+  const peak=pdf(MW,MW);
+  const y=d=>H-PB-(d/peak)*(H-PB-PT);
+  function stats(t){const fa=1-cdf(t,MW),miss=cdf(t,MS);return{fa,miss,cost:NW*fa*FA_COST+NS*miss*missCost};}
+  function best(){let bt=10,bc=1e9;for(let t=10;t<=95;t+=0.5){const c=stats(t).cost;if(c<bc){bc=c;bt=t;}}return Math.round(bt);}
+  function curve(m){let d='';for(let v=0;v<=100;v+=1){d+=(v?'L':'M')+x(v).toFixed(1)+','+y(pdf(v,m)).toFixed(1);}return d;}
+  function area(m,from,to){let d='M'+x(from).toFixed(1)+','+(H-PB);for(let v=from;v<=to;v+=0.5){d+='L'+x(v).toFixed(1)+','+y(pdf(v,m)).toFixed(1);}d+='L'+x(to).toFixed(1)+','+(H-PB)+'Z';return d;}
+  function draw(){
+    const t=+thr.value,b=best();
+    let s='';
+    for(let g=0;g<=100;g+=20){s+=`<line x1="${x(g)}" y1="${PT}" x2="${x(g)}" y2="${H-PB}" stroke="var(--rule)" stroke-width="1"/>`;s+=`<text x="${x(g)}" y="${H-PB+16}" text-anchor="middle" font-size="10" fill="var(--ink-2)">${g}</text>`;}
+    s+=`<text x="${W-PR}" y="${H-4}" text-anchor="end" font-size="10" fill="var(--ink-2)">SNAKE-NESS SIGNAL →</text>`;
+    s+=`<path d="${area(MW,t,100)}" fill="var(--amber)" opacity=".35"/>`;
+    s+=`<path d="${area(MS,0,t)}" fill="var(--alarm)" opacity=".35"/>`;
+    s+=`<path d="${curve(MW)}" fill="none" stroke="var(--wind)" stroke-width="2.5"/>`;
+    s+=`<path d="${curve(MS)}" fill="none" stroke="var(--alarm)" stroke-width="2.5"/>`;
+    s+=`<text x="${x(MW)}" y="${PT-12}" text-anchor="middle" font-size="11" fill="var(--wind)" font-weight="600">WIND</text>`;
+    s+=`<text x="${x(MS)}" y="${PT-12}" text-anchor="middle" font-size="11" fill="var(--alarm)" font-weight="600">SNAKE</text>`;
+    s+=`<line x1="${x(b)}" y1="${PT+10}" x2="${x(b)}" y2="${H-PB}" stroke="var(--safe)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+    s+=`<text x="${x(b)+4}" y="${H-PB-6}" font-size="10" fill="var(--safe)">best</text>`;
+    s+=`<line x1="${x(t)}" y1="${PT}" x2="${x(t)}" y2="${H-PB}" stroke="var(--ink)" stroke-width="2.5"/>`;
+    const lx=t>70?x(t)-6:x(t)+6,anc=t>70?'end':'start';
+    s+=`<text x="${lx}" y="${PT+22}" text-anchor="${anc}" font-size="11" fill="var(--ink)" font-weight="600">FEAR FIRES ABOVE ${t}</text>`;
+    s+=`<line x1="${PL}" y1="${H-PB}" x2="${W-PR}" y2="${H-PB}" stroke="var(--ink-2)" stroke-width="1"/>`;
+    svg.innerHTML=s;
+    const st=stats(t),bs=stats(b);
+    document.getElementById('thrVal').textContent=t;
+    document.getElementById('roFA').textContent=Math.round(st.fa*NW);
+    document.getElementById('roMiss').textContent=Math.round(st.miss*100);
+    document.getElementById('roCost').textContent=Math.round(st.cost);
+    const v=document.getElementById('verdict');
+    const gap=st.cost-bs.cost;
+    if(Math.abs(t-b)<=2){v.className='verdict good';v.textContent=`Near the cheapest setting (${b}). You jump at ${Math.round(st.fa*NW)} harmless rustles to catch ${100-Math.round(st.miss*100)}% of snakes. Jumpy, and correct.`;}
+    else if(t>b){v.className='verdict bad';v.textContent=`Too calm. Fewer false alarms, but missed snakes cost ${Math.round(gap)} more units than the best setting (${b}).`;}
+    else{v.className='verdict';v.textContent=`Too jumpy even for this world. Extra false alarms cost ${Math.round(gap)} more than the best setting (${b}).`;}
+  }
+  thr.addEventListener('input',draw);
+  document.querySelectorAll('.presets button').forEach(bn=>bn.addEventListener('click',()=>{thr.value=bn.hasAttribute('data-best')?best():bn.dataset.t;draw();}));
+  const lo=document.getElementById('costLow'),hi=document.getElementById('costHigh');
+  function setCost(c){missCost=c;lo.setAttribute('aria-pressed',c===5);hi.setAttribute('aria-pressed',c===100);draw();}
+  lo.addEventListener('click',()=>setCost(5));hi.addEventListener('click',()=>setCost(100));
+  draw();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

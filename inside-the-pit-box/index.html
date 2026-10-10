@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inside the Pit Box | Explainers</title>
+<meta name="description" content="Two seconds, four tyres, twenty people: a Formula 1 pit stop you can play in slow motion.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/inside-the-pit-box/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Inside the Pit Box">
+<meta property="og:description" content="Two seconds, four tyres, twenty people: a Formula 1 pit stop you can play in slow motion.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/inside-the-pit-box/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/inside-the-pit-box/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@700&display=swap">
+<style>
+  :root{
+    color-scheme: dark;
+    --asphalt:#26292D;
+    --asphalt-2:#2F3338;
+    --asphalt-3:#3B4046;
+    --paint:#ECECE4;
+    --muted:#A3AAB2;
+    --dim:#6E767F;
+    --yellow:#F2C230;
+    --soft:#E4312B;
+    --medium:#F2C230;
+    --hard:#ECECE4;
+    --inter:#3DB44A;
+    --wet:#2F7FD1;
+    --gun:#ECECE4;
+    --off:#8C98A5;
+    --on:#8FD3E8;
+    --jack:#FF8A3D;
+    --car:#1E8C84;
+    --display:"Big Shoulders Display","Big Shoulders","Oswald","Arial Narrow",sans-serif;
+    --stencil:"Big Shoulders Stencil Display","Big Shoulders Stencil","Big Shoulders Display","Arial Narrow",sans-serif;
+    --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  html{background:var(--asphalt)}
+  body{
+    background:var(--asphalt);
+    background-image:radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size:5px 5px;
+    color:var(--paint);
+    font-family:var(--body);
+    font-size:18px;
+    line-height:1.5;
+    padding-inline:20px;
+    padding-block:0 64px;
+  }
+  .wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:88px}
+  section{display:flex;flex-direction:column;gap:18px}
+  .stencil{
+    font-family:var(--stencil);font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--yellow);font-size:20px;
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance;letter-spacing:.01em}
+  h1{font-size:clamp(46px,9vw,96px)}
+  h2{font-size:clamp(38px,6.5vw,68px)}
+  h3{font-size:clamp(26px,4vw,36px);margin-top:18px}
+  p{margin:0;max-width:60ch;color:var(--muted);font-size:20px}
+  p strong{color:var(--paint);font-weight:600}
+  .lede{font-size:22px}
+  figure{margin:0;display:flex;flex-direction:column;gap:10px}
+  figcaption{font-size:15px;color:var(--dim);max-width:70ch}
+  svg{display:block;width:100%;height:auto}
+  .svgtext{font-family:var(--body)}
+  .mono{font-family:var(--mono)}
+
+  header.hero{padding-top:44px;display:flex;flex-direction:column;gap:20px}
+  .stage{
+    background:var(--asphalt-2);border-radius:6px;overflow:hidden;
+    border:1px solid var(--asphalt-3);
+  }
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+  button.play{
+    font-family:var(--display);font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.04em;
+    background:var(--yellow);color:#1b1b1b;border:0;border-radius:4px;padding:10px 22px 9px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  button.play:hover{filter:brightness(1.08)}
+  button.play:disabled{opacity:.55;cursor:default}
+  button.play:focus-visible, .toggle input:focus-visible + span{outline:3px solid var(--on);outline-offset:3px}
+  .toggle{display:inline-flex;align-items:center;gap:10px;cursor:pointer;color:var(--muted);font-size:17px;user-select:none}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle span{width:42px;height:24px;border-radius:12px;background:var(--asphalt-3);position:relative;transition:background .2s}
+  .toggle span::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:var(--paint);transition:transform .2s}
+  .toggle input:checked + span{background:var(--car)}
+  .toggle input:checked + span::after{transform:translateX(18px)}
+  .clock{margin-left:auto;display:flex;align-items:baseline;gap:10px}
+  .clock b{font-family:var(--mono);font-weight:500;font-size:40px;color:var(--paint);font-variant-numeric:tabular-nums;min-width:4.2ch;text-align:right}
+  .clock small{font-size:14px;color:var(--dim);text-transform:uppercase;letter-spacing:.12em}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:16px;color:var(--muted)}
+  .legend i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:8px;vertical-align:-2px}
+  .note{border-left:3px solid var(--yellow);padding-left:14px;font-size:17px}
+
+  .tyres{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+  .tyre{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+  .tyre svg{width:min(110px,100%)}
+  .tyre b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:24px;line-height:1}
+  .tyre .meta{font-size:14px;color:var(--dim);line-height:1.35}
+  .meter{display:grid;grid-template-columns:auto 1fr;gap:3px 8px;align-items:center;font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;width:100%;max-width:130px}
+  .bar{height:6px;background:var(--asphalt-3);border-radius:3px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--paint)}
+  .rule{
+    display:flex;gap:14px;align-items:flex-start;background:var(--asphalt-2);border:1px dashed var(--dim);
+    padding:14px 18px;border-radius:4px;max-width:720px;
+  }
+  .rule .stencil{font-size:16px;padding-top:3px}
+  .rule p{font-size:18px}
+
+  .panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .panel{background:var(--asphalt-2);border:1px solid var(--asphalt-3);border-radius:6px;padding:12px 14px 16px;display:flex;flex-direction:column;gap:8px}
+  .panel .step{font-family:var(--mono);font-size:13px;color:var(--yellow);letter-spacing:.06em}
+  .panel p{font-size:17px;color:var(--paint)}
+
+  .closer{
+    font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(34px,5.5vw,58px);line-height:1;
+    border-top:4px solid var(--yellow);padding-top:26px;text-wrap:balance;
+  }
+  .closer em{font-style:normal;color:var(--yellow)}
+  footer{font-size:14px;color:var(--dim)}
+
+  @media (max-width:680px){
+    .tyres{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .panels{grid-template-columns:1fr}
+    .clock{margin-left:0}
+    p{font-size:18px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="stencil">Formula 1 · The pit stop</div>
+    <h1>Two seconds. Four tyres. Twenty people.</h1>
+    <p class="lede">Mid-race, a car darts into its garage for fresh tyres. Press play.</p>
+
+    <div class="stage">
+      <svg id="hero" viewBox="0 0 800 410" role="img" aria-label="Top-down view of an F1 car in its pit box with about twenty crew members around it.">
+        <defs>
+          <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="8" height="8" fill="#2F3338"/>
+            <rect width="3" height="8" fill="#3B4046"/>
+          </pattern>
+        </defs>
+        <!-- fast lane -->
+        <rect x="0" y="14" width="800" height="80" fill="#2A2D31"/>
+        <line x1="0" y1="102" x2="800" y2="102" stroke="#ECECE4" stroke-width="3" stroke-dasharray="26 18" opacity=".7"/>
+        <text x="20" y="46" class="svgtext" font-size="15" fill="#6E767F" letter-spacing="2">PIT LANE · 80 km/h LIMIT</text>
+        <path d="M680 54 h60 m-14 -10 l14 10 l-14 10" stroke="#6E767F" stroke-width="3" fill="none"/>
+        <!-- pit box -->
+        <rect x="120" y="120" width="560" height="280" fill="none" stroke="#F2C230" stroke-width="4"/>
+        <text x="134" y="390" font-family="Big Shoulders Stencil Display, Big Shoulders Stencil, Arial Narrow, sans-serif" font-weight="700" font-size="22" fill="#F2C230" opacity=".55" letter-spacing="3">PIT BOX</text>
+        <text x="666" y="390" text-anchor="end" class="svgtext" font-size="13" fill="#6E767F" letter-spacing="1.5">GARAGE ↓</text>
+        <g id="stageG" transform="translate(400,258)"></g>
+      </svg>
+    </div>
+
+    <div class="controls">
+      <button class="play" id="playBtn" type="button"><span aria-hidden="true">▶</span> Play the stop</button>
+      <label class="toggle"><input type="checkbox" id="slowmo"><span></span>Slow motion</label>
+      <div class="clock" aria-live="polite"><small>Car stopped</small><b id="clock">0.00</b><small>sec</small></div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:var(--gun)"></i>Wheel gun: undoes one nut</span>
+      <span><i style="background:var(--off)"></i>Pulls old tyre off</span>
+      <span><i style="background:var(--on)"></i>Pushes new tyre on</span>
+      <span><i style="background:var(--jack)"></i>Jacks &amp; steadiers lift the car</span>
+    </div>
+    <p class="note">Three people per wheel. Tyres only: <strong>no fuel</strong>. Refuelling has been banned since 2010, so cars start with enough for the whole race.</p>
+  </header>
+
+  <!-- WHY -->
+  <section>
+    <div class="stencil">Why stop?</div>
+    <h2>Tyres wear out.</h2>
+    <p>Rubber gets used up, like an eraser. Worn tyres grip less, so <strong>every lap gets a little slower.</strong> Fresh tyres reset the clock.</p>
+    <figure>
+      <svg id="wear" viewBox="0 0 800 300" role="img" aria-label="Lap times rise as tyres wear, drop after a pit stop, and keep rising if the car stays out."></svg>
+    </figure>
+
+    <h3>Softer tyre = faster, but dies sooner.</h3>
+    <div class="tyres" id="tyres"></div>
+    <div class="rule">
+      <span class="stencil">Rule</span>
+      <p>In a dry race, every car must use <strong>two different dry tyres.</strong> So everyone stops at least once.</p>
+    </div>
+  </section>
+
+  <!-- COST -->
+  <section>
+    <div class="stencil">The cost</div>
+    <h2>The stop is quick. The detour isn't.</h2>
+    <p>In the pit lane cars must crawl at <strong>80 km/h</strong>. Out on track, rivals keep flying at 300.</p>
+    <figure class="stage" style="padding:6px 0">
+      <svg id="lanes" viewBox="0 0 800 200" role="img" aria-label="Two cars: one stays on track at full speed, the other detours slowly through the pit lane and stops.">
+        <path d="M20 50 H780" stroke="#3B4046" stroke-width="30" fill="none" stroke-linecap="round"/>
+        <path id="pitPath" d="M20 50 H110 C170 50 170 146 240 146 H560 C630 146 630 50 690 50 H780" stroke="#2A2D31" stroke-width="22" fill="none"/>
+        <path d="M110 50 C170 50 170 146 240 146 H560 C630 146 630 50 690 50" stroke="#F2C230" stroke-width="2" stroke-dasharray="8 8" fill="none" opacity=".6"/>
+        <rect x="380" y="130" width="40" height="32" fill="none" stroke="#F2C230" stroke-width="3"/>
+        <text x="20" y="22" class="svgtext" font-size="16" fill="#8FD3E8" letter-spacing="1.5">TRACK · ~300 km/h</text>
+        <text x="240" y="190" class="svgtext" font-size="16" fill="#ECECE4" letter-spacing="1.5">PIT LANE · 80 km/h</text>
+        <text x="430" y="190" class="svgtext" font-size="16" fill="#F2C230" letter-spacing="1.5">STOP</text>
+        <circle id="dotA" cx="700" cy="50" r="11" fill="#8FD3E8"/>
+        <circle id="dotB" cx="400" cy="146" r="11" fill="#ECECE4"/>
+        <text x="780" y="22" text-anchor="end" class="svgtext" font-size="14" fill="#6E767F">● blue stays out · ● white pits</text>
+      </svg>
+    </figure>
+
+    <figure>
+      <svg viewBox="0 0 800 130" role="img" aria-label="About 22 seconds lost in total: about 20 seconds driving the pit lane, about 2 seconds stationary.">
+        <text x="20" y="28" class="svgtext" font-size="17" fill="#A3AAB2">Slow drive through the pit lane ≈ 20 s</text>
+        <text x="716" y="28" text-anchor="end" class="svgtext" font-size="17" fill="#8FD3E8" font-weight="600">Stop ≈ 2 s</text>
+        <path d="M700 34 L700 44" stroke="#8FD3E8" stroke-width="2"/>
+        <rect x="20" y="46" width="633" height="40" fill="url(#hatch)"/>
+        <rect x="653" y="46" width="63" height="40" fill="#8FD3E8"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#6E767F" text-anchor="middle">
+          <line x1="20" y1="90" x2="20" y2="98" stroke="#6E767F"/><text x="20" y="116">0</text>
+          <line x1="178" y1="90" x2="178" y2="98" stroke="#6E767F"/><text x="178" y="116">5</text>
+          <line x1="337" y1="90" x2="337" y2="98" stroke="#6E767F"/><text x="337" y="116">10</text>
+          <line x1="495" y1="90" x2="495" y2="98" stroke="#6E767F"/><text x="495" y="116">15</text>
+          <line x1="653" y1="90" x2="653" y2="98" stroke="#6E767F"/><text x="653" y="116">20</text>
+          <text x="760" y="116">sec</text>
+        </g>
+      </svg>
+      <figcaption>Total time lost vs. staying out: about 22 seconds, and only 2 of them are the stop itself. Varies by track, roughly 18–30 s.</figcaption>
+    </figure>
+  </section>
+
+  <!-- PAYOFF -->
+  <section>
+    <div class="stencil">The payoff</div>
+    <h2>A pit stop is a trade.</h2>
+    <p>Lose ~22 seconds now. <strong>Win them back, lap by lap,</strong> on fresh tyres while your rival's get worse.</p>
+    <figure>
+      <svg id="trade" viewBox="0 0 800 330" role="img" aria-label="Car B pits on lap 10 and falls 22 seconds behind Car A, then gains time every lap and gets back ahead around lap 25."></svg>
+      <figcaption>Illustrative race. Car B pits on lap 10; Car A stays out on old tyres.</figcaption>
+    </figure>
+  </section>
+
+  <!-- TIMING -->
+  <section>
+    <div class="stencil">Timing</div>
+    <h2>When you stop matters.</h2>
+    <p>The <strong>undercut</strong>: stop first, and use your fresh tyres to jump the car ahead.</p>
+    <div class="panels" id="panels"></div>
+
+    <h3>Safety car = discount stop.</h3>
+    <p>After a crash, everyone follows a safety car slowly. The detour costs far less, so the whole field rushes in.</p>
+    <figure>
+      <svg viewBox="0 0 800 140" role="img" aria-label="A normal stop costs about 22 seconds; under a safety car about 11.">
+        <text x="20" y="44" class="svgtext" font-size="18" fill="#A3AAB2">Normal</text>
+        <rect x="190" y="20" width="572" height="36" fill="url(#hatch)"/>
+        <text x="770" y="44" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="16" fill="#ECECE4">≈ 22 s</text>
+        <text x="20" y="104" class="svgtext" font-size="18" fill="#A3AAB2">Under safety car</text>
+        <rect x="190" y="80" width="286" height="36" fill="#F2C230"/>
+        <text x="486" y="104" font-family="IBM Plex Mono, monospace" font-size="16" fill="#F2C230">≈ 11 s</text>
+      </svg>
+      <figcaption>Rule of thumb: roughly half the usual loss.</figcaption>
+    </figure>
+  </section>
+
+  <div class="closer">Stop too early and you run out of tyre. Too late and you crawl. <em>Races are won in between.</em></div>
+  <footer>Figures are typical and rounded. They change with each track, tyre and season.</footer>
+</div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const C={paint:"#ECECE4",muted:"#A3AAB2",dim:"#6E767F",yellow:"#F2C230",soft:"#E4312B",medium:"#F2C230",hard:"#ECECE4",inter:"#3DB44A",wet:"#2F7FD1",gun:"#ECECE4",off:"#8C98A5",on:"#8FD3E8",jack:"#FF8A3D",car:"#1E8C84",a3:"#3B4046"};
+  function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+  function txt(parent,x,y,s,attrs){const t=el("text",Object.assign({x,y,"font-family":"Barlow, Arial, sans-serif"},attrs||{}),parent);t.textContent=s;return t;}
+  const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- HERO PIT STOP ---------- */
+  const G=document.getElementById("stageG");
+  const crewL=el("g",{},G), jackL=el("g",{},G), wheelL=el("g",{},G), carG=el("g",{},G), fxL=el("g",{},G);
+
+  // car body (local coords, nose to the right)
+  const body=el("g",{},carG);
+  el("ellipse",{cx:0,cy:0,rx:150,ry:40,fill:"#000",opacity:.25,id:"shadow"},body);
+  // suspension arms
+  [[95,-1],[95,1],[-95,-1],[-95,1]].forEach(([x,s])=>{
+    el("line",{x1:x-14,y1:s*8,x2:x,y2:s*34,stroke:"#15191c","stroke-width":4},body);
+    el("line",{x1:x+14,y1:s*8,x2:x,y2:s*34,stroke:"#15191c","stroke-width":4},body);
+  });
+  el("rect",{x:-147,y:-42,width:24,height:84,rx:3,fill:"#15191c"},body);           // rear wing
+  el("rect",{x:-143,y:-38,width:16,height:76,rx:2,fill:C.car},body);
+  el("path",{d:"M-122,-14 L-62,-31 L18,-31 L60,-12 L60,12 L18,31 L-62,31 L-122,14 Z",fill:C.car},body);
+  el("path",{d:"M-40,-31 L18,-31 L40,-20 L-40,-20 Z",fill:"#15191c",opacity:.35},body);
+  el("path",{d:"M-40,31 L18,31 L40,20 L-40,20 Z",fill:"#15191c",opacity:.35},body);
+  el("polygon",{points:"58,-11 150,-5 150,5 58,11",fill:C.car},body);             // nose
+  el("rect",{x:128,y:-50,width:20,height:100,rx:3,fill:"#15191c"},body);          // front wing
+  el("rect",{x:131,y:-46,width:14,height:92,rx:2,fill:C.paint,opacity:.9},body);
+  el("ellipse",{cx:6,cy:0,rx:22,ry:10,fill:"#15191c"},body);                       // cockpit
+  el("circle",{cx:2,cy:0,r:7,fill:C.yellow},body);                                  // helmet
+  el("path",{d:"M-18,0 Q6,-16 30,0 Q6,16 -18,0",fill:"none",stroke:"#0e1113","stroke-width":3},body); // halo
+  el("line",{x1:-120,y1:0,x2:56,y2:0,stroke:C.paint,"stroke-width":3,opacity:.5},body);
+
+  // wheels
+  const mounts=[
+    {x:95,y:-44,w:44,h:26,s:-1},{x:95,y:44,w:44,h:26,s:1},
+    {x:-95,y:-44,w:50,h:28,s:-1},{x:-95,y:44,w:50,h:28,s:1}
+  ];
+  function tyre(parent,w,h,col){
+    const g=el("g",{},parent);
+    el("rect",{x:-w/2,y:-h/2,width:w,height:h,rx:7,fill:"#111315",stroke:col,"stroke-width":3.5},g);
+    for(let i=-w/2+7;i<w/2-4;i+=7) el("line",{x1:i,y1:-h/2+4,x2:i,y2:h/2-4,stroke:"#24282c","stroke-width":2},g);
+    return g;
+  }
+  mounts.forEach(m=>{
+    m.offPos={x:m.x-40,y:m.s*102};
+    m.onPos={x:m.x+40,y:m.s*102};
+    // crew
+    el("circle",{cx:m.x,cy:m.s*80,r:10,fill:C.gun},crewL);
+    el("circle",{cx:m.offPos.x,cy:m.s*124,r:10,fill:C.off},crewL);
+    el("circle",{cx:m.onPos.x,cy:m.s*124,r:10,fill:C.on},crewL);
+    m.old=tyre(wheelL,m.w,m.h,"#9c8430");
+    m.nu=tyre(wheelL,m.w,m.h,C.soft);
+    m.spark=el("circle",{cx:m.x,cy:m.y,r:18,fill:"none",stroke:C.gun,"stroke-width":3,opacity:0},fxL);
+  });
+  // steadiers
+  el("circle",{cx:0,cy:-78,r:10,fill:C.jack},crewL);
+  el("circle",{cx:0,cy:78,r:10,fill:C.jack},crewL);
+  // jacks
+  const fj=el("g",{},jackL), rj=el("g",{},jackL);
+  const fjBar=el("line",{x1:148,y1:0,x2:232,y2:0,stroke:C.jack,"stroke-width":6,"stroke-linecap":"round",opacity:0},fj);
+  const fjMan=el("circle",{cx:232,cy:0,r:10,fill:C.jack},fj);
+  const rjBar=el("line",{x1:-146,y1:0,x2:-232,y2:0,stroke:C.jack,"stroke-width":6,"stroke-linecap":"round",opacity:0},rj);
+  const rjMan=el("circle",{cx:-232,cy:0,r:10,fill:C.jack},rj);
+  // release light
+  const light=el("g",{transform:"translate(250,-116)"},G);
+  el("rect",{x:-12,y:-20,width:24,height:40,rx:4,fill:"#15191c",stroke:C.a3},light);
+  const red=el("circle",{cx:0,cy:-9,r:6,fill:C.soft},light);
+  const grn=el("circle",{cx:0,cy:9,r:6,fill:"#1f3a24"},light);
+  txt(light,20,4,"RELEASE",{fill:C.dim,"font-size":11,"letter-spacing":1.5});
+
+  const clock=document.getElementById("clock");
+  const ease=p=>p<=0?0:p>=1?1:p*p*(3-2*p);
+  const seg=(t,a,b)=>ease((t-a)/(b-a));
+  const lerp=(a,b,p)=>a+(b-a)*p;
+  const STOP_END=2.2;
+
+  function render(T,opts){
+    opts=opts||{};
+    let carX=0;
+    if(T<0) carX=-760*Math.pow(1-Math.min(1,(T+1.1)/1.1),2);
+    else if(T>STOP_END+0.1){const p=Math.min(1,(T-STOP_END-0.1)/0.9);carX=760*p*p;}
+    const lift=seg(T,0.18,0.32)-seg(T,1.55,1.7);
+    const sc=1+0.035*lift;
+    carG.setAttribute("transform",`translate(${carX},0) scale(${sc})`);
+    const jk=seg(T,0,0.22)-seg(T,1.72,1.92);
+    fjMan.setAttribute("cx",232-72*jk); rjMan.setAttribute("cx",-232+74*jk);
+    fjBar.setAttribute("x2",232-72*jk); rjBar.setAttribute("x2",-232+74*jk);
+    fjBar.setAttribute("opacity",jk); rjBar.setAttribute("opacity",jk);
+    mounts.forEach(m=>{
+      // old tyre
+      let ox,oy,oo=1;
+      if(opts.rest){ox=m.x;oy=m.y;}
+      else if(T<0.34){ox=m.x+carX;oy=m.y;}
+      else {const p=seg(T,0.34,0.72);ox=lerp(m.x,m.offPos.x,p);oy=lerp(m.y,m.offPos.y,p);oo=1-0.45*p;}
+      m.old.setAttribute("transform",`translate(${ox},${oy})`);m.old.setAttribute("opacity",oo);
+      // new tyre
+      let nx,ny;
+      if(opts.rest||T<0.76){nx=m.onPos.x;ny=m.onPos.y;}
+      else if(T<=STOP_END){const p=seg(T,0.76,1.28);nx=lerp(m.onPos.x,m.x,p);ny=lerp(m.onPos.y,m.y,p);}
+      else {nx=m.x+carX;ny=m.y;}
+      m.nu.setAttribute("transform",`translate(${nx},${ny})`);
+      const sp=Math.max(T>0.26&&T<0.44?1-Math.abs(T-0.35)/0.09:0, T>1.3&&T<1.48?1-Math.abs(T-1.39)/0.09:0);
+      m.spark.setAttribute("opacity",Math.max(0,sp));
+      m.spark.setAttribute("r",14+10*(1-Math.max(0,sp)));
+    });
+    const go=!opts.rest&&T>=STOP_END;
+    red.setAttribute("fill",go?"#3a1a18":C.soft);
+    grn.setAttribute("fill",go?"#4BE36A":"#1f3a24");
+    if(!opts.rest) clock.textContent=Math.max(0,Math.min(T,STOP_END)).toFixed(2);
+  }
+  render(0,{rest:true});
+
+  const btn=document.getElementById("playBtn"), slow=document.getElementById("slowmo");
+  let running=false;
+  btn.addEventListener("click",()=>{
+    if(running) return;
+    running=true;btn.disabled=true;
+    const rate=slow.checked?0.22:1;
+    let last=performance.now(), T=-1.1;
+    clock.textContent="0.00";
+    function frame(now){
+      const dt=Math.min(0.05,(now-last)/1000);last=now;
+      // arrival and departure play at normal pace; the stop itself follows the chosen rate
+      T+= dt*((T>=0&&T<=STOP_END)?rate:1);
+      render(T);
+      if(T<STOP_END+1.3) requestAnimationFrame(frame);
+      else setTimeout(()=>{render(0,{rest:true});clock.textContent=STOP_END.toFixed(2);running=false;btn.disabled=false;},500);
+    }
+    requestAnimationFrame(frame);
+  });
+
+  /* ---------- TYRE WEAR CHART ---------- */
+  (function(){
+    const s=document.getElementById("wear");
+    const X0=60,X1=770,Y0=30,Y1=250, L=40, vMin=0.8, vMax=4.2;
+    const x=l=>X0+(l/L)*(X1-X0), y=v=>Y1-(v-vMin)/(vMax-vMin)*(Y1-Y0);
+    const f=k=>1+0.03*k+0.0022*k*k;
+    const clip=el("clipPath",{id:"plotclip"},el("defs",{},s));
+    el("rect",{x:X0,y:Y0-4,width:X1-X0,height:Y1-Y0+4},clip);
+    el("line",{x1:X0,y1:Y1,x2:X1,y2:Y1,stroke:C.a3,"stroke-width":2},s);
+    el("line",{x1:X0,y1:Y0-10,x2:X0,y2:Y1,stroke:C.a3,"stroke-width":2},s);
+    txt(s,X0-14,Y0+4,"slower",{fill:C.dim,"font-size":15,"text-anchor":"end",transform:`rotate(-90 ${X0-14} ${Y0+4})`}).setAttribute("text-anchor","end");
+    txt(s,X1,Y1+30,"laps →",{fill:C.dim,"font-size":15,"text-anchor":"end"});
+    txt(s,X0+6,Y1+30,"start",{fill:C.dim,"font-size":15});
+    const pts=(a,b,off)=>{let d="";for(let l=a;l<=b;l+=0.5){d+=(l===a?"M":"L")+x(l).toFixed(1)+","+y(f(l-off)).toFixed(1);}return d;};
+    el("path",{d:pts(20,40,0),stroke:C.dim,"stroke-width":3,"stroke-dasharray":"7 7",fill:"none","clip-path":"url(#plotclip)"},s);
+    el("path",{d:pts(0,20,0),stroke:C.medium,"stroke-width":5,fill:"none","stroke-linecap":"round"},s);
+    el("path",{d:pts(20,40,20),stroke:C.hard,"stroke-width":5,fill:"none","stroke-linecap":"round"},s);
+    el("line",{x1:x(20),y1:Y0,x2:x(20),y2:Y1,stroke:C.yellow,"stroke-width":2,"stroke-dasharray":"4 6"},s);
+    txt(s,x(20),Y0-8,"PIT STOP",{fill:C.yellow,"font-size":15,"text-anchor":"middle","font-weight":600,"letter-spacing":1.5});
+    txt(s,x(1),y(2.3),"Old tyres: slower every lap",{fill:C.medium,"font-size":17});
+    txt(s,x(21.5),y(1)+28,"New tyres: fast again",{fill:C.hard,"font-size":17});
+    txt(s,x(39.5),y(3.0),"Stay out? Keeps getting worse",{fill:C.muted,"font-size":16,"text-anchor":"end"});
+  })();
+
+  /* ---------- TYRE LINEUP ---------- */
+  (function(){
+    const box=document.getElementById("tyres");
+    const list=[
+      {n:"Soft",c:C.soft,g:100,l:35,m:"Fastest. Wears quickest."},
+      {n:"Medium",c:C.medium,g:70,l:65,m:"The middle ground."},
+      {n:"Hard",c:C.hard,g:45,l:100,m:"Slowest. Lasts longest."},
+      {n:"Inter",c:C.inter,m:"Damp track."},
+      {n:"Wet",c:C.wet,m:"Heavy rain."}
+    ];
+    list.forEach(t=>{
+      const d=document.createElement("div");d.className="tyre";
+      const s=document.createElementNS(NS,"svg");s.setAttribute("viewBox","0 0 100 100");s.setAttribute("aria-hidden","true");
+      el("circle",{cx:50,cy:50,r:47,fill:"#111315"},s);
+      el("circle",{cx:50,cy:50,r:35,fill:"none",stroke:t.c,"stroke-width":5},s);
+      el("circle",{cx:50,cy:50,r:24,fill:"#4a5057"},s);
+      el("circle",{cx:50,cy:50,r:7,fill:"#23272b"},s);
+      d.appendChild(s);
+      const b=document.createElement("b");b.textContent=t.n;b.style.color=t.c;d.appendChild(b);
+      if(t.g){
+        const m=document.createElement("div");m.className="meter";
+        m.innerHTML=`<span>Grip</span><span class="bar"><i style="width:${t.g}%"></i></span><span>Life</span><span class="bar"><i style="width:${t.l}%"></i></span>`;
+        d.appendChild(m);
+      }
+      const p=document.createElement("div");p.className="meta";p.textContent=t.m;d.appendChild(p);
+      box.appendChild(d);
+    });
+  })();
+
+  /* ---------- TRADE CHART ---------- */
+  (function(){
+    const s=document.getElementById("trade");
+    const X0=70,X1=770,Y0=30,Y1=280, L=30, gMin=-26, gMax=18;
+    const x=l=>X0+(l/L)*(X1-X0), y=g=>Y1-(g-gMin)/(gMax-gMin)*(Y1-Y0);
+    const gap=l=>{if(l<=10)return 0;const k=l-10;if(k<1)return lerp(0,-21.28,k);return -22+0.6*k+0.06*k*(k+1);};
+    el("rect",{x:X0,y:y(0),width:X1-X0,height:Y1-y(0),fill:"#E4312B",opacity:.07},s);
+    [-20,-10,10].forEach(g=>{
+      el("line",{x1:X0,y1:y(g),x2:X1,y2:y(g),stroke:C.a3,"stroke-width":1},s);
+      txt(s,X0-10,y(g)+5,(g>0?"+":"")+g+" s",{fill:C.dim,"font-size":13,"text-anchor":"end","font-family":"IBM Plex Mono, monospace"});
+    });
+    el("line",{x1:X0,y1:y(0),x2:X1,y2:y(0),stroke:C.muted,"stroke-width":2},s);
+    txt(s,X0-10,y(0)+5,"0",{fill:C.muted,"font-size":13,"text-anchor":"end","font-family":"IBM Plex Mono, monospace"});
+    txt(s,X1,y(0)-10,"B AHEAD ↑",{fill:C.on,"font-size":14,"text-anchor":"end","letter-spacing":1.5,"font-weight":600});
+    txt(s,X1,y(0)+22,"B BEHIND ↓",{fill:"#E77A74","font-size":14,"text-anchor":"end","letter-spacing":1.5,"font-weight":600});
+    [0,10,20,30].forEach(l=>txt(s,x(l),Y1+28,"lap "+l,{fill:C.dim,"font-size":13,"text-anchor":"middle","font-family":"IBM Plex Mono, monospace"}));
+    let d="";for(let l=0;l<=L;l+=0.25){d+=(l===0?"M":"L")+x(l).toFixed(1)+","+y(gap(l)).toFixed(1);}
+    el("path",{d,stroke:C.on,"stroke-width":5,fill:"none","stroke-linejoin":"round","stroke-linecap":"round"},s);
+    // crossing
+    let cross=11;while(gap(cross)<0&&cross<L)cross+=0.02;
+    el("circle",{cx:x(cross),cy:y(0),r:8,fill:C.on,stroke:"#26292D","stroke-width":3},s);
+    txt(s,x(cross)-12,y(0)-16,"Back in front",{fill:C.paint,"font-size":17,"text-anchor":"end","font-weight":600});
+    // pit annotation
+    el("circle",{cx:x(11),cy:y(gap(11)),r:6,fill:C.yellow},s);
+    txt(s,x(11)+18,y(gap(11))+6,"Pit stop: −22 s",{fill:C.yellow,"font-size":17,"font-weight":600});
+    txt(s,x(19.5),y(-18),"Fresh tyres claw it back",{fill:C.muted,"font-size":16});
+  })();
+
+  /* ---------- UNDERCUT PANELS ---------- */
+  (function(){
+    const box=document.getElementById("panels");
+    const data=[
+      {step:"LAP 20",txt:"B is 1 second behind A. Both on worn tyres.",a:{x:200,c:"#9c8430"},b:{x:140,c:"#9c8430"},gap:"1.0 s"},
+      {step:"LAP 21",txt:"B pits first. On fresh tyres, B laps 1.5 s quicker.",a:{x:200,c:"#9c8430"},b:{x:165,c:C.soft},gap:"−1.5 s / lap",chev:true},
+      {step:"LAP 22",txt:"A pits a lap later. Same pit loss, but B gained 1.5 s. B is ahead.",a:{x:150,c:C.soft},b:{x:200,c:C.soft},gap:"B +0.5 s",flip:true}
+    ];
+    data.forEach(p=>{
+      const d=document.createElement("div");d.className="panel";
+      const s=document.createElementNS(NS,"svg");s.setAttribute("viewBox","0 0 300 100");s.setAttribute("aria-hidden","true");
+      el("rect",{x:0,y:44,width:300,height:32,fill:"#2A2D31"},s);
+      el("line",{x1:0,y1:60,x2:300,y2:60,stroke:C.dim,"stroke-width":1.5,"stroke-dasharray":"10 10"},s);
+      el("path",{d:"M262 20 h24 m-8 -6 l8 6 l-8 6",stroke:C.dim,"stroke-width":2,fill:"none"},s);
+      const car=(o,col,label)=>{
+        el("circle",{cx:o.x,cy:60,r:15,fill:col,stroke:o.c,"stroke-width":5},s);
+        txt(s,o.x,66,label,{fill:"#15191c","font-size":16,"font-weight":700,"text-anchor":"middle"});
+      };
+      if(p.chev){for(let i=0;i<3;i++)el("path",{d:`M${108+i*12} 52 l7 8 l-7 8`,stroke:C.on,"stroke-width":2.5,fill:"none",opacity:.35+i*.25},s);}
+      car(p.a,C.paint,"A");car(p.b,C.on,"B");
+      const lx=(p.a.x+p.b.x)/2;
+      txt(s,lx,28,p.gap,{fill:p.flip?C.on:C.paint,"font-size":16,"text-anchor":"middle","font-family":"IBM Plex Mono, monospace"});
+      d.innerHTML=`<span class="step">${p.step}</span>`;
+      d.appendChild(s);
+      const t=document.createElement("p");t.textContent=p.txt;d.appendChild(t);
+      box.appendChild(d);
+    });
+  })();
+
+  /* ---------- LANES ANIMATION ---------- */
+  (function(){
+    const path=document.getElementById("pitPath"), A=document.getElementById("dotA"), B=document.getElementById("dotB");
+    const len=path.getTotalLength();
+    // find box distance
+    let boxD=0;for(let d=0;d<len;d+=2){const p=path.getPointAtLength(d);if(p.y>140&&p.x>=400){boxD=d;break;}}
+    if(reduced) return; // rest state already drawn
+    let t=0,ax=20,bd=0,stopT=0,stopped=false,hold=0,last=performance.now();
+    function frame(now){
+      const dt=Math.min(0.05,(now-last)/1000);last=now;
+      if(ax<780) ax=Math.min(780,ax+345*dt);
+      const bp=path.getPointAtLength(bd);
+      if(bd<len){
+        if(!stopped&&bd>=boxD){stopT+=dt;if(stopT>0.7)stopped=true;}
+        else{const fast=bp.x<110||bp.x>690;bd=Math.min(len,bd+(fast?345:118)*dt);}
+      } else {hold+=dt;if(hold>1.2){ax=20;bd=0;stopT=0;stopped=false;hold=0;}}
+      const p=path.getPointAtLength(bd);
+      A.setAttribute("cx",ax);B.setAttribute("cx",p.x);B.setAttribute("cy",p.y);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

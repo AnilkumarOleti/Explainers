@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Missing Gauge | Explainers</title>
+<meta name="description" content="Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/missing-gauge/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Missing Gauge">
+<meta property="og:description" content="Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/missing-gauge/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/missing-gauge/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one continuous instrument panel. Legend and words on the left, the instrument on the right; stacks on phones. */
+:root{
+  --ground:#DCE2DC; --plate:#C6CFC8; --plate-edge:#A7B3AA; --face:#F6F5EE; --hole:#B1BCB3;
+  --ink:#17201B; --ink-soft:#49574F; --bezel:#2A342E; --screw:#8D9A91;
+  --needle:#D4451A; --amber:#E79A00; --ok:#1C7448; --bad:#B02A1E;
+  --display:"Barlow Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#131A16; --plate:#1D2722; --plate-edge:#35443B; --face:#0C1210; --hole:#090E0B;
+    --ink:#E4EBE4; --ink-soft:#9BAAA0; --bezel:#3C4C43; --screw:#56675D;
+    --needle:#FF7043; --amber:#FFC043; --ok:#5FD093; --bad:#FF8A7A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#131A16; --plate:#1D2722; --plate-edge:#35443B; --face:#0C1210; --hole:#090E0B;
+  --ink:#E4EBE4; --ink-soft:#9BAAA0; --bezel:#3C4C43; --screw:#56675D;
+  --needle:#FF7043; --amber:#FFC043; --ok:#5FD093; --bad:#FF8A7A;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:400 18px/1.5 var(--body);padding-inline:20px}
+.wrap{max-width:1080px;margin-inline:auto;padding-block:clamp(32px,6vw,72px) 56px;display:flex;flex-direction:column;gap:clamp(64px,10vw,128px)}
+h1,h2,h3,p,figure,ul{margin:0}
+ul{padding:0;list-style:none}
+svg{display:block;width:100%;height:auto}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--needle);outline-offset:3px}
+
+/* type */
+h1{font:700 clamp(60px,12vw,124px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+h2{font:600 clamp(32px,4.8vw,48px)/1.02 var(--display);text-wrap:balance}
+h3{font:600 23px/1.1 var(--display);letter-spacing:.01em}
+.legend{display:flex;align-items:center;gap:10px;font:500 12px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.legend::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--amber);flex:none}
+.words{display:flex;flex-direction:column;gap:16px;min-width:0}
+.words p:not(.legend){max-width:34ch;color:var(--ink)}
+.note{font:400 13px/1.45 var(--mono);color:var(--ink-soft)}
+
+/* rows */
+.row{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,64px);align-items:center}
+.stack{display:flex;flex-direction:column;gap:28px}
+.pic{min-width:0;display:flex;flex-direction:column;gap:18px}
+@media (max-width:820px){.row{grid-template-columns:minmax(0,1fr)}}
+
+/* hero */
+.hero{display:flex;flex-direction:column;gap:clamp(24px,4vw,40px)}
+.hero-top{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,4vw,56px);align-items:end}
+.hero-top .words p:not(.legend){font-size:clamp(18px,2.1vw,21px);max-width:32ch}
+.hero-title{display:flex;flex-direction:column;gap:18px;min-width:0}
+@media (max-width:820px){.hero-top{grid-template-columns:minmax(0,1fr)}}
+
+/* the panel plate, with a screw in each corner */
+.plate{
+  border:1px solid var(--plate-edge);border-radius:18px;padding:clamp(26px,4.5vw,44px);
+  background:
+    radial-gradient(circle at 15px 15px,var(--screw) 0 4px,transparent 4.6px),
+    radial-gradient(circle at calc(100% - 15px) 15px,var(--screw) 0 4px,transparent 4.6px),
+    radial-gradient(circle at 15px calc(100% - 15px),var(--screw) 0 4px,transparent 4.6px),
+    radial-gradient(circle at calc(100% - 15px) calc(100% - 15px),var(--screw) 0 4px,transparent 4.6px),
+    var(--plate);
+}
+.dash{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,5vw,72px);justify-items:center}
+.dash figure{width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.dash figcaption{font:400 15px/1.35 var(--body);text-align:center;color:var(--ink-soft)}
+.dash figcaption b{display:block;font:600 20px/1.1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+
+/* gauges */
+.g-bezel{fill:var(--bezel)}
+.g-face{fill:var(--face)}
+.g-minor{fill:none;stroke:var(--ink-soft);stroke-width:7;stroke-dasharray:.3 1.7}
+.g-major{fill:none;stroke:var(--ink);stroke-width:14;stroke-dasharray:.6 9.4}
+.g-zone{fill:none;stroke:var(--needle);stroke-width:5}
+.g-name{font:600 30px var(--display);letter-spacing:.08em;fill:var(--ink)}
+.g-hub{fill:var(--bezel)}
+.needle{transform-origin:180px 180px;transform:rotate(calc((var(--v) - 50) * 2.7deg));transition:transform .9s cubic-bezier(.3,1.35,.5,1)}
+.needle path{fill:var(--needle)}
+.jit{transform-origin:180px 180px;animation:idle 1.3s ease-in-out infinite}
+.needle.sweep{animation:sweep 1.6s cubic-bezier(.3,1.15,.4,1) .25s backwards}
+@keyframes idle{0%,100%{transform:rotate(-.5deg)}50%{transform:rotate(.7deg)}}
+@keyframes sweep{from{transform:rotate(-135deg)}}
+
+.ghost .g-bezel{fill:none;stroke:var(--ink-soft);stroke-width:3;stroke-dasharray:7 7}
+.ghost .g-face{fill:var(--hole)}
+.ghost .g-major{stroke:var(--ink-soft)}
+.ghost .needle path{fill:var(--ink)}
+.ghost .g-hub{fill:var(--ink)}
+
+.b-hole{fill:var(--hole)}
+.b-plate{fill:var(--plate);stroke:var(--plate-edge);stroke-width:2}
+.b-ring{fill:none;stroke:var(--ink-soft);stroke-width:2;stroke-dasharray:5 7}
+.b-screw{fill:var(--screw)}
+.b-slot{fill:none;stroke:var(--bezel);stroke-width:2.5;stroke-linecap:round}
+.b-stamp{font:700 40px var(--display);letter-spacing:.1em;fill:var(--ink-soft)}
+
+/* demo */
+.demo{display:flex;flex-direction:column;gap:clamp(22px,3.5vw,34px)}
+.stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stops button{
+  font:500 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 10px;border-radius:8px;border:1px solid var(--plate-edge);
+  background:var(--face);color:var(--ink);cursor:pointer;
+}
+.stops button:hover{border-color:var(--ink-soft)}
+.stops button[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.demo-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(22px,4vw,48px);align-items:center}
+.slips{display:flex;flex-direction:column;gap:14px;min-width:0}
+.slip{background:var(--face);border-radius:6px;padding:12px 16px 14px;display:flex;flex-direction:column;gap:6px}
+.slip .tag{font:500 11px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.slip p{font:400 17px/1.4 var(--mono);overflow-wrap:anywhere}
+.slip.out p{font-weight:500}
+.verdict{display:flex;gap:12px;align-items:flex-start;font:500 17px/1.35 var(--body)}
+.verdict::before{content:"";width:14px;height:14px;border-radius:50%;flex:none;margin-top:4px;background:var(--ok)}
+.verdict.bad::before{background:var(--bad)}
+.dash.small figure{max-width:250px}
+@media (max-width:760px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.stops{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* next-word bars */
+.guesses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,36px)}
+.guess{display:flex;flex-direction:column;gap:14px;min-width:0}
+.prompt{font:400 16px/1.4 var(--mono);background:var(--face);border-radius:6px;padding:12px 14px}
+.blank{display:inline-block;width:2.6em;border-bottom:3px solid var(--needle);vertical-align:baseline}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bars li{display:grid;grid-template-columns:4.2em minmax(0,1fr) 2.8em;gap:10px;align-items:center;font:400 14px/1.2 var(--mono)}
+.bars .track{height:20px;display:block}
+.bars .bar{display:block;height:100%;width:calc(var(--p) * 1%);min-width:3px;background:var(--ink);border-radius:2px}
+.bars li:first-child .bar{background:var(--needle)}
+.bars .pct{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.bars .more{grid-template-columns:minmax(0,1fr);color:var(--ink-soft)}
+.printed{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--plate-edge);padding-top:12px}
+.printed .tag{font:500 11px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.printed b{font:600 34px/1 var(--display);letter-spacing:.01em}
+.printed span:last-child{font-size:15px;color:var(--ink-soft)}
+@media (max-width:520px){.guesses{grid-template-columns:minmax(0,1fr)}}
+
+/* bookshelf */
+.shelf{display:flex;align-items:flex-end;gap:3px;height:clamp(150px,24vw,220px);border-bottom:10px solid var(--bezel)}
+.shelf i{flex:var(--w,1) 1 0;height:var(--h);border-radius:2px 2px 0 0;background:color-mix(in srgb,var(--ink) 72%,var(--ground))}
+.shelf i.s2{background:color-mix(in srgb,var(--ink) 48%,var(--ground))}
+.shelf i.s3{background:color-mix(in srgb,var(--ink) 30%,var(--ground))}
+.shelf i.q{flex:0 0 12px;background:var(--amber)}
+.key{display:flex;flex-wrap:wrap;gap:8px 24px;font:400 14px/1.3 var(--mono);color:var(--ink-soft)}
+.key span{display:flex;align-items:center;gap:8px}
+.key span::before{content:"";width:12px;height:12px;border-radius:2px;background:color-mix(in srgb,var(--ink) 72%,var(--ground))}
+.key span.q::before{background:var(--amber)}
+
+/* answer sheets */
+.sheets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,3vw,36px)}
+.sheets figure{display:flex;flex-direction:column;gap:12px;max-width:300px;width:100%;min-width:0}
+.sheets figcaption{font:400 15px/1.35 var(--body);color:var(--ink-soft)}
+.sheets figcaption b{display:block;font:600 20px/1.1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.sh-paper{fill:var(--face);stroke:var(--plate-edge);stroke-width:1.5}
+.sh-o{fill:none;stroke:var(--ink-soft);stroke-width:2}
+.sh-f{fill:var(--ink);stroke:var(--ink);stroke-width:2}
+.sh-rule{fill:none;stroke:var(--plate-edge);stroke-width:1.5}
+.sh-ok{fill:none;stroke:var(--ok);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.sh-bad{fill:none;stroke:var(--bad);stroke-width:4;stroke-linecap:round}
+.sh-nil{fill:none;stroke:var(--ink-soft);stroke-width:4;stroke-linecap:round}
+.sh-score{font:700 46px var(--display);fill:var(--ink)}
+.sh-score.win{fill:var(--needle)}
+
+/* loose wire */
+.wire{max-width:660px}
+.w-wire{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+.w-plug{fill:var(--bezel)}
+.w-prong{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.w-spark{fill:none;stroke:var(--amber);stroke-width:3.5;stroke-linecap:round}
+.w-lamp{fill:var(--hole);stroke:var(--bezel);stroke-width:6}
+.w-tick{fill:none;stroke:var(--ink-soft);stroke-width:6;stroke-dasharray:1.2 18.8}
+.w-needle{fill:none;stroke:var(--needle);stroke-width:4;stroke-linecap:round}
+.w-spin{transform-origin:84px 105px;transform:rotate(-58deg)}
+.w-jit{transform-origin:84px 105px;animation:twitch 2.2s ease-in-out infinite}
+@keyframes twitch{0%,100%{transform:rotate(0)}30%{transform:rotate(16deg)}45%{transform:rotate(4deg)}70%{transform:rotate(22deg)}}
+.w-label{font:600 17px var(--display);letter-spacing:.09em;fill:var(--ink)}
+
+/* what to do */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(22px,3vw,36px)}
+.tiles li{display:flex;flex-direction:column;gap:10px;min-width:0}
+.tiles svg{width:56px;height:56px;color:var(--ink)}
+.tiles svg *{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.tiles svg text{fill:currentColor;stroke:none;font:700 20px var(--display)}
+.tiles svg .hot{stroke:var(--needle)}
+.tiles p{font-size:16px;line-height:1.4;color:var(--ink-soft)}
+@media (max-width:860px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+footer{border-top:1px solid var(--plate-edge);padding-top:24px;display:flex;flex-direction:column;gap:12px}
+footer ul{display:flex;flex-direction:column;gap:6px;font-size:15px}
+
+@media (prefers-reduced-motion: reduce){
+  .jit,.w-jit,.needle.sweep{animation:none}
+  .needle{transition:none}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <div class="hero-top">
+      <div class="hero-title">
+        <p class="legend">Why AI says wrong things so confidently</p>
+        <h1>The missing gauge</h1>
+      </div>
+      <div class="words">
+        <p>A chatbot is a fluency machine. Its dashboard has a dial for how smooth an answer sounds, and an empty slot where &ldquo;I don&rsquo;t know&rdquo; should be.</p>
+      </div>
+    </div>
+
+    <div class="plate">
+      <div class="dash">
+        <figure>
+          <svg viewBox="0 0 360 360" role="img" aria-label="A fluency gauge with its needle pinned near the top of the scale">
+            <circle class="g-bezel" cx="180" cy="180" r="172"/>
+            <circle class="g-face" cx="180" cy="180" r="156"/>
+            <path class="g-minor" pathLength="100.3" d="M85.6 274.4 A133.5 133.5 0 1 1 274.4 274.4"/>
+            <path class="g-major" pathLength="100.6" d="M88.08 271.92 A130 130 0 1 1 271.92 271.92"/>
+            <path class="g-zone" d="M294.57 161.85 A116 116 0 0 1 262.02 262.02"/>
+            <text class="g-name" x="180" y="262" text-anchor="middle">FLUENCY</text>
+            <g class="needle sweep" style="--v:92"><g class="jit"><path d="M174 180 L180 58 L186 180 Z"/></g></g>
+            <circle class="g-hub" cx="180" cy="180" r="13"/>
+          </svg>
+          <figcaption><b>Fitted</b>Reads high on every answer.</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 360 360" role="img" aria-label="An empty gauge slot covered by a blanking plate stamped: not fitted">
+            <circle class="g-bezel" cx="180" cy="180" r="172"/>
+            <circle class="b-hole" cx="180" cy="180" r="156"/>
+            <circle class="b-ring" cx="180" cy="180" r="142"/>
+            <circle class="b-plate" cx="180" cy="180" r="128"/>
+            <circle class="b-screw" cx="106.5" cy="106.5" r="8"/><path class="b-slot" d="M101.5 109.5 L111.5 103.5"/>
+            <circle class="b-screw" cx="253.5" cy="106.5" r="8"/><path class="b-slot" d="M249 102 L258 111"/>
+            <circle class="b-screw" cx="106.5" cy="253.5" r="8"/><path class="b-slot" d="M100.5 253.5 L112.5 253.5"/>
+            <circle class="b-screw" cx="253.5" cy="253.5" r="8"/><path class="b-slot" d="M250.5 248.5 L256.5 258.5"/>
+            <text class="b-stamp" x="180" y="174" text-anchor="middle">NOT</text>
+            <text class="b-stamp" x="180" y="216" text-anchor="middle">FITTED</text>
+          </svg>
+          <figcaption><b>Never fitted</b>&ldquo;Do I actually know this?&rdquo;</figcaption>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <section class="stack" aria-labelledby="h-demo">
+    <div class="words">
+      <p class="legend">Try it</p>
+      <h2 id="h-demo">One steady voice, right or wrong</h2>
+      <p>Pick a question. The fitted dial barely moves. The dashed dial is the one you wish it had.</p>
+    </div>
+
+    <div class="plate demo">
+      <div class="stops" role="group" aria-label="Pick a kind of question">
+        <button type="button" id="stop-0" aria-pressed="false">Famous fact</button>
+        <button type="button" id="stop-1" aria-pressed="false">Known fact</button>
+        <button type="button" id="stop-2" aria-pressed="true">Obscure fact</button>
+        <button type="button" id="stop-3" aria-pressed="false">Made-up thing</button>
+      </div>
+      <div class="demo-grid">
+        <div class="slips" aria-live="polite">
+          <div class="slip"><span class="tag">You ask</span><p id="demo-q">What was the population of Ouagadougou in 1904?</p></div>
+          <div class="slip out"><span class="tag">It answers</span><p id="demo-a">The population was 8,312.</p></div>
+          <p class="verdict bad" id="demo-v">A tidy number, likely invented. Records that old are thin.</p>
+        </div>
+        <div class="dash small">
+          <figure>
+            <svg viewBox="0 0 360 360" role="img" aria-label="Fluency gauge, reading high">
+              <circle class="g-bezel" cx="180" cy="180" r="172"/>
+              <circle class="g-face" cx="180" cy="180" r="156"/>
+              <path class="g-minor" pathLength="100.3" d="M85.6 274.4 A133.5 133.5 0 1 1 274.4 274.4"/>
+              <path class="g-major" pathLength="100.6" d="M88.08 271.92 A130 130 0 1 1 271.92 271.92"/>
+              <path class="g-zone" d="M294.57 161.85 A116 116 0 0 1 262.02 262.02"/>
+              <text class="g-name" x="180" y="262" text-anchor="middle">FLUENCY</text>
+              <g class="needle" id="n-flu" style="--v:92"><g class="jit"><path d="M174 180 L180 58 L186 180 Z"/></g></g>
+              <circle class="g-hub" cx="180" cy="180" r="13"/>
+            </svg>
+            <figcaption><b>On the dash</b>How sure it sounds.</figcaption>
+          </figure>
+          <figure>
+            <svg class="ghost" viewBox="0 0 360 360" role="img" aria-label="An imagined gauge showing how well the model actually knows the answer">
+              <circle class="g-bezel" cx="180" cy="180" r="168"/>
+              <circle class="g-face" cx="180" cy="180" r="156"/>
+              <path class="g-minor" pathLength="100.3" d="M85.6 274.4 A133.5 133.5 0 1 1 274.4 274.4"/>
+              <path class="g-major" pathLength="100.6" d="M88.08 271.92 A130 130 0 1 1 271.92 271.92"/>
+              <text class="g-name" x="180" y="262" text-anchor="middle">KNOWS IT?</text>
+              <g class="needle" id="n-know" style="--v:9"><path d="M174 180 L180 58 L186 180 Z"/></g>
+              <circle class="g-hub" cx="180" cy="180" r="13"/>
+            </svg>
+            <figcaption><b>Not on the dash</b>How much it has to go on.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <p class="note">Illustrative answers and readings, not a recording of a real chatbot.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="h-engine">
+    <div class="words">
+      <p class="legend">The engine</p>
+      <h2 id="h-engine">Its one job is to pick the next word</h2>
+      <p>A language model writes one word at a time. For every gap it scores each candidate, then prints one.</p>
+      <p>The doubt lives in the bars. The printed sentence leaves it behind.</p>
+    </div>
+    <div class="pic">
+      <div class="guesses">
+        <figure class="guess">
+          <p class="prompt">The capital of France is <span class="blank"></span></p>
+          <ul class="bars" aria-label="Candidate next words, one far ahead">
+            <li><span>Paris</span><span class="track"><span class="bar" style="--p:92"></span></span><span class="pct">92%</span></li>
+            <li><span>Lyon</span><span class="track"><span class="bar" style="--p:2"></span></span><span class="pct">2%</span></li>
+            <li><span>Nice</span><span class="track"><span class="bar" style="--p:1"></span></span><span class="pct">1%</span></li>
+            <li><span>Rome</span><span class="track"><span class="bar" style="--p:1"></span></span><span class="pct">1%</span></li>
+            <li class="more"><span>&hellip;a few stragglers</span></li>
+          </ul>
+          <p class="printed"><span class="tag">It prints</span><b>Paris.</b><span>One clear winner.</span></p>
+        </figure>
+        <figure class="guess">
+          <p class="prompt">My grandmother&rsquo;s first teacher was called <span class="blank"></span></p>
+          <ul class="bars" aria-label="Candidate next words, nearly tied">
+            <li><span>Mary</span><span class="track"><span class="bar" style="--p:3"></span></span><span class="pct">3%</span></li>
+            <li><span>Anna</span><span class="track"><span class="bar" style="--p:3"></span></span><span class="pct">3%</span></li>
+            <li><span>Rose</span><span class="track"><span class="bar" style="--p:2"></span></span><span class="pct">2%</span></li>
+            <li><span>Ellen</span><span class="track"><span class="bar" style="--p:2"></span></span><span class="pct">2%</span></li>
+            <li class="more"><span>&hellip;thousands more</span></li>
+          </ul>
+          <p class="printed"><span class="tag">It prints</span><b>Mary.</b><span>A near tie. It prints a name anyway.</span></p>
+        </figure>
+      </div>
+      <p class="note">Illustrative numbers.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="h-voice">
+    <div class="words">
+      <p class="legend">The voice</p>
+      <h2 id="h-voice">It learned to talk from people who were sure</h2>
+      <p>Its training text is books, articles and answers. People write down what they know. Hardly anyone publishes &ldquo;no idea&rdquo;, so its default voice is a sure one.</p>
+    </div>
+    <figure class="pic">
+      <div class="shelf" role="img" aria-label="A long shelf of books. One thin spine among them stands for writing that admits not knowing.">
+        <i style="--h:78%;--w:2"></i><i class="s2" style="--h:92%"></i><i class="s3" style="--h:64%;--w:2"></i><i style="--h:88%"></i>
+        <i class="s2" style="--h:70%;--w:3"></i><i style="--h:96%;--w:2"></i><i class="s3" style="--h:82%"></i><i class="s2" style="--h:60%;--w:2"></i>
+        <i style="--h:90%"></i><i class="s3" style="--h:74%;--w:2"></i><i class="s2" style="--h:86%"></i>
+        <i class="q" style="--h:56%"></i>
+        <i style="--h:94%;--w:2"></i><i class="s3" style="--h:68%"></i><i class="s2" style="--h:84%;--w:3"></i><i style="--h:76%"></i>
+        <i class="s3" style="--h:98%;--w:2"></i><i class="s2" style="--h:62%"></i><i style="--h:88%;--w:2"></i><i class="s3" style="--h:72%"></i>
+        <i class="s2" style="--h:80%;--w:2"></i><i style="--h:90%"></i>
+      </div>
+      <figcaption class="key"><span>Stated as fact</span><span class="q">&ldquo;I&rsquo;m not sure&rdquo;</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="row" aria-labelledby="h-test">
+    <div class="words">
+      <p class="legend">The test</p>
+      <h2 id="h-test">Guessing scores higher</h2>
+      <p>Models are tuned against tests. On most of them &ldquo;I don&rsquo;t know&rdquo; earns zero and a lucky guess earns a point. Train on that and you get a guesser.</p>
+    </div>
+    <div class="pic">
+      <div class="sheets">
+        <figure>
+          <svg viewBox="0 0 260 300" role="img" aria-label="Answer sheet: three right, two left blank, score three out of five">
+            <rect class="sh-paper" x="2" y="2" width="256" height="296" rx="10"/>
+            <circle class="sh-o" cx="44" cy="44" r="12"/><circle class="sh-f" cx="84" cy="44" r="12"/><circle class="sh-o" cx="124" cy="44" r="12"/><circle class="sh-o" cx="164" cy="44" r="12"/><path class="sh-ok" d="M208 44 l7 8 l13 -17"/>
+            <circle class="sh-o" cx="44" cy="84" r="12"/><circle class="sh-o" cx="84" cy="84" r="12"/><circle class="sh-o" cx="124" cy="84" r="12"/><circle class="sh-f" cx="164" cy="84" r="12"/><path class="sh-ok" d="M208 84 l7 8 l13 -17"/>
+            <circle class="sh-f" cx="44" cy="124" r="12"/><circle class="sh-o" cx="84" cy="124" r="12"/><circle class="sh-o" cx="124" cy="124" r="12"/><circle class="sh-o" cx="164" cy="124" r="12"/><path class="sh-ok" d="M208 124 l7 8 l13 -17"/>
+            <circle class="sh-o" cx="44" cy="164" r="12"/><circle class="sh-o" cx="84" cy="164" r="12"/><circle class="sh-o" cx="124" cy="164" r="12"/><circle class="sh-o" cx="164" cy="164" r="12"/><path class="sh-nil" d="M209 164 h18"/>
+            <circle class="sh-o" cx="44" cy="204" r="12"/><circle class="sh-o" cx="84" cy="204" r="12"/><circle class="sh-o" cx="124" cy="204" r="12"/><circle class="sh-o" cx="164" cy="204" r="12"/><path class="sh-nil" d="M209 204 h18"/>
+            <path class="sh-rule" d="M24 234 H236"/>
+            <text class="sh-score" x="130" y="282" text-anchor="middle">3 / 5</text>
+          </svg>
+          <figcaption><b>The honest one</b>Leaves two blank.</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 260 300" role="img" aria-label="Answer sheet: three right, two guessed with one lucky, score four out of five">
+            <rect class="sh-paper" x="2" y="2" width="256" height="296" rx="10"/>
+            <circle class="sh-o" cx="44" cy="44" r="12"/><circle class="sh-f" cx="84" cy="44" r="12"/><circle class="sh-o" cx="124" cy="44" r="12"/><circle class="sh-o" cx="164" cy="44" r="12"/><path class="sh-ok" d="M208 44 l7 8 l13 -17"/>
+            <circle class="sh-o" cx="44" cy="84" r="12"/><circle class="sh-o" cx="84" cy="84" r="12"/><circle class="sh-o" cx="124" cy="84" r="12"/><circle class="sh-f" cx="164" cy="84" r="12"/><path class="sh-ok" d="M208 84 l7 8 l13 -17"/>
+            <circle class="sh-f" cx="44" cy="124" r="12"/><circle class="sh-o" cx="84" cy="124" r="12"/><circle class="sh-o" cx="124" cy="124" r="12"/><circle class="sh-o" cx="164" cy="124" r="12"/><path class="sh-ok" d="M208 124 l7 8 l13 -17"/>
+            <circle class="sh-o" cx="44" cy="164" r="12"/><circle class="sh-o" cx="84" cy="164" r="12"/><circle class="sh-f" cx="124" cy="164" r="12"/><circle class="sh-o" cx="164" cy="164" r="12"/><path class="sh-ok" d="M208 164 l7 8 l13 -17"/>
+            <circle class="sh-o" cx="44" cy="204" r="12"/><circle class="sh-f" cx="84" cy="204" r="12"/><circle class="sh-o" cx="124" cy="204" r="12"/><circle class="sh-o" cx="164" cy="204" r="12"/><path class="sh-bad" d="M209 195 l18 18 M227 195 l-18 18"/>
+            <path class="sh-rule" d="M24 234 H236"/>
+            <text class="sh-score win" x="130" y="282" text-anchor="middle">4 / 5</text>
+          </svg>
+          <figcaption><b>The bluffer</b>Guesses both. One lands.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="h-wire">
+    <div class="words">
+      <p class="legend">Behind the panel</p>
+      <h2 id="h-wire">A faint signal exists. The wire is loose.</h2>
+      <p>Researchers looking inside models find something like &ldquo;I recognise this&rdquo;. It is weak, and a name that only sounds familiar can trip it.</p>
+      <p>Newer models are trained to heed it more. They still miss.</p>
+    </div>
+    <figure class="pic wire">
+      <svg viewBox="-36 0 512 220" role="img" aria-label="A small twitching gauge inside the machine. Its wire has slipped out of the socket that feeds the not-sure warning lamp, so the lamp stays dark.">
+        <circle class="g-bezel" cx="84" cy="105" r="60"/>
+        <circle class="g-face" cx="84" cy="105" r="51"/>
+        <path class="w-tick" pathLength="101.2" d="M55.72 133.28 A40 40 0 1 1 112.28 133.28"/>
+        <g class="w-spin"><g class="w-jit"><path class="w-needle" d="M84 105 L84 68"/></g></g>
+        <circle class="g-hub" cx="84" cy="105" r="6"/>
+        <path class="w-wire" d="M144 105 C174 105 182 78 206 86 S228 124 242 122"/>
+        <rect class="w-plug" x="240" y="112" width="18" height="20" rx="4"/>
+        <path class="w-prong" d="M258 118 h9 M258 126 h9"/>
+        <path class="w-spark" d="M276 96 l-5 -11 M286 93 l1 -13 M295 97 l7 -10"/>
+        <rect class="w-plug" x="300" y="95" width="18" height="20" rx="4"/>
+        <path class="w-wire" d="M318 105 H342"/>
+        <circle class="w-lamp" cx="372" cy="105" r="28"/>
+        <text class="w-label" x="84" y="200" text-anchor="middle">RECOGNISE THIS?</text>
+        <text class="w-label" x="372" y="200" text-anchor="middle">&ldquo;NOT SURE&rdquo; LAMP</text>
+      </svg>
+    </figure>
+  </section>
+
+  <section class="stack" aria-labelledby="h-do">
+    <div class="words">
+      <p class="legend">What to do</p>
+      <h2 id="h-do">Until it is fitted, you are the gauge</h2>
+    </div>
+    <ul class="tiles">
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="13"/><path d="M30 30 L43 43"/><path class="hot" d="M15 17 h10 M15 23 h6"/></svg>
+        <h3>Check the brittle bits</h3>
+        <p>Names, numbers, dates, quotes, links. Bluffs cluster there.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 5 h16 l9 9 v29 H12 Z"/><path d="M28 5 v9 h9"/><path class="hot" d="M18 23 h13 M18 29 h13 M18 35 h8"/></svg>
+        <h3>Hand it the source</h3>
+        <p>Paste the document in. Reading beats remembering.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M21 27 a8 8 0 0 1 0 -11 l6 -6 a8 8 0 0 1 11 11 l-3 3"/><path class="hot" d="M27 21 a8 8 0 0 1 0 11 l-6 6 a8 8 0 0 1 -11 -11 l3 -3"/></svg>
+        <h3>Ask where it&rsquo;s from</h3>
+        <p>Then open that source yourself. Citations get invented too.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 8 h36 v24 H24 l-9 9 v-9 H6 Z"/><text x="24" y="27" text-anchor="middle">?</text></svg>
+        <h3>Allow &ldquo;I don&rsquo;t know&rdquo;</h3>
+        <p>Say so in your prompt. It lowers the pressure to guess.</p>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="legend">Sources</p>
+    <ul>
+      <li><a href="https://openai.com/index/why-language-models-hallucinate/">OpenAI, &ldquo;Why language models hallucinate&rdquo; (2025)</a>, on tests that reward guessing.</li>
+      <li><a href="https://www.anthropic.com/research/tracing-thoughts-language-model">Anthropic, &ldquo;Tracing the thoughts of a large language model&rdquo; (2025)</a>, on the recognition signal that misfires.</li>
+    </ul>
+    <p class="note">Dial readings and percentages on this page are illustrations, not measurements.</p>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var stops = [
+    { q: "What is the capital of France?",
+      a: "The capital of France is Paris.",
+      flu: 92, know: 95, ok: true,
+      v: "Correct. It has met this fact thousands of times." },
+    { q: "What is the capital of Burkina Faso?",
+      a: "The capital of Burkina Faso is Ouagadougou.",
+      flu: 91, know: 78, ok: true,
+      v: "Correct. Rarer, still well covered." },
+    { q: "What was the population of Ouagadougou in 1904?",
+      a: "The population was 8,312.",
+      flu: 92, know: 9, ok: false,
+      v: "A tidy number, likely invented. Records that old are thin." },
+    { q: "Summarise the 2019 paper “Thermal Drift in Lunar Honeybees”.",
+      a: "The paper found that drift rose 14% during the lunar night.",
+      flu: 91, know: 3, ok: false,
+      v: "No such paper exists. The voice never changed." }
+  ];
+  var q = document.getElementById("demo-q"),
+      a = document.getElementById("demo-a"),
+      v = document.getElementById("demo-v"),
+      flu = document.getElementById("n-flu"),
+      know = document.getElementById("n-know"),
+      buttons = stops.map(function (_, i) { return document.getElementById("stop-" + i); });
+
+  function show(i) {
+    var s = stops[i];
+    q.textContent = s.q;
+    a.textContent = s.a;
+    v.textContent = s.v;
+    v.className = "verdict" + (s.ok ? "" : " bad");
+    flu.style.setProperty("--v", s.flu);
+    know.style.setProperty("--v", s.know);
+    buttons.forEach(function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+  }
+  buttons.forEach(function (b, i) { b.addEventListener("click", function () { show(i); }); });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

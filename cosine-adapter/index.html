@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Cosine Adapter | Explainers</title>
+<meta name="description" content="A small network that turns similarity scores into probabilities, so one cutoff works for every search query.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/cosine-adapter/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Cosine Adapter">
+<meta property="og:description" content="A small network that turns similarity scores into probabilities, so one cutoff works for every search query.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/cosine-adapter/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/cosine-adapter/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
+<style>
+:root{
+  --paper:#F5F7F4;
+  --paper-2:#EBEFEA;
+  --ink:#1D2842;
+  --ink-soft:#505C75;
+  --ink-faint:#8A94A8;
+  --rule:#D3DDEA;
+  --margin:#E9B0B0;
+  --red:#C2313B;
+  --red-wash:rgba(194,49,59,.08);
+  --exact:#2C7A57;
+  --sub:#A86E14;
+  --irr:#8A94A8;
+  --bar:#3B5B9A;
+  --card:#FFFFFF;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --pen:"Caveat", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#121824; --paper-2:#1A2231; --ink:#E4E8F1; --ink-soft:#A3AEC3; --ink-faint:#6D7890;
+    --rule:#1F2A3D; --margin:#5A2830; --red:#F0636C; --red-wash:rgba(240,99,108,.10);
+    --exact:#5CC293; --sub:#E1A84E; --irr:#6D7890; --bar:#7C9BE0; --card:#172031;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#121824; --paper-2:#1A2231; --ink:#E4E8F1; --ink-soft:#A3AEC3; --ink-faint:#6D7890;
+  --rule:#1F2A3D; --margin:#5A2830; --red:#F0636C; --red-wash:rgba(240,99,108,.10);
+  --exact:#5CC293; --sub:#E1A84E; --irr:#6D7890; --bar:#7C9BE0; --card:#172031;
+}
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper);
+  background-image:repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--rule) 31px, var(--rule) 32px);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.62;
+  padding-inline:16px;
+  padding-block:0 64px;
+}
+.sheet{max-width:760px;margin:0 auto;position:relative}
+@media (min-width:900px){
+  .sheet::before{content:"";position:absolute;left:-44px;top:0;bottom:0;width:2px;background:var(--margin)}
+}
+.wide{max-width:1040px;margin-inline:auto}
+header.hero{padding-block:56px 20px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,68px);line-height:1.02;letter-spacing:-.015em;margin:10px 0 18px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--red)}
+.lede{font-family:var(--serif);font-size:clamp(20px,2.6vw,24px);line-height:1.42;color:var(--ink);max-width:36em;margin:0}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.6vw,34px);line-height:1.15;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.02em;margin:0 0 6px}
+p{margin:0 0 14px;max-width:65ch}
+section{padding-block:40px 8px}
+.pen{font-family:var(--pen);color:var(--red);font-size:24px;line-height:1.15;font-weight:500}
+.note{display:block;transform:rotate(-1.2deg);margin:4px 0 18px;max-width:34ch}
+code,.m{font-family:var(--mono);font-size:.9em}
+.m{font-variant-numeric:tabular-nums}
+strong{font-weight:600}
+
+/* pipeline */
+.figure{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:18px 16px 12px;margin:18px 0 8px}
+.scroll{overflow-x:auto}
+.figure svg{display:block;min-width:640px;width:100%;height:auto}
+.cap{font-size:13.5px;color:var(--ink-soft);margin:10px 0 0;max-width:none}
+.swatch{display:inline-block;width:10px;height:10px;border:1.5px solid var(--red);border-radius:2px;vertical-align:-1px;margin-right:4px}
+
+/* demo */
+.demo{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:20px;margin:22px 0 10px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin-bottom:18px}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{font:500 14px var(--sans);background:transparent;color:var(--ink);border:0;padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.slider{display:flex;align-items:center;gap:12px;flex:1 1 280px;min-width:0}
+.slider label{font-size:14px;color:var(--ink-soft);white-space:nowrap}
+.slider input{flex:1;min-width:0;accent-color:var(--red)}
+.slider output{font:500 15px var(--mono);color:var(--red);min-width:3.2em;text-align:right}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:20px}
+.panel{border-top:2px solid var(--ink);padding-top:12px;min-width:0}
+.qhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.qtext{font-family:var(--serif);font-size:20px;font-style:italic}
+.qkind{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.curve{display:block;width:100%;height:auto;margin:8px 0 6px}
+.rows{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:18px 1fr 70px 48px;gap:10px;align-items:center;padding:5px 0;border-bottom:1px dashed var(--rule);font-size:13.5px;line-height:1.3;position:relative}
+.row .lab{font:600 11px var(--mono);width:18px;height:18px;border-radius:3px;display:grid;place-items:center;color:var(--card)}
+.lab.E{background:var(--exact)} .lab.S{background:var(--sub)} .lab.I{background:var(--irr)}
+.row .t{min-width:0;overflow-wrap:anywhere}
+.row .b{height:6px;background:var(--paper-2);border-radius:3px;position:relative;overflow:hidden}
+.row .b i{position:absolute;left:0;top:0;bottom:0;background:var(--bar);border-radius:3px;transition:width .35s ease}
+.row .v{font:500 12.5px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.row.cut .t,.row.cut .v{color:var(--ink-faint)}
+.row.cut .b i{background:var(--ink-faint)}
+.row.cut::after{content:"";position:absolute;left:26px;right:0;top:50%;height:1.5px;background:var(--red);transform:rotate(-.4deg);opacity:.85}
+.tally{margin-top:10px;font-size:13.5px;color:var(--ink-soft)}
+.tally b{color:var(--ink);font-weight:600}
+.verdict{margin-top:18px;padding:12px 14px;background:var(--red-wash);border-left:3px solid var(--red);font-size:15px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-soft);margin-top:14px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .lab{font:600 10px var(--mono);width:15px;height:15px;border-radius:3px;display:grid;place-items:center;color:var(--card)}
+.fine{font-size:12.5px;color:var(--ink-faint);margin-top:8px;max-width:none}
+
+/* formula */
+.formula{font-family:var(--mono);font-size:15px;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin:16px 0;line-height:2}
+.formula .r{color:var(--red)}
+.steps{display:grid;gap:14px;margin:18px 0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;counter-increment:s}
+.steps li::before{content:counter(s);font-family:var(--serif);font-size:26px;line-height:1;color:var(--red)}
+.steps p{margin:0}
+
+/* shapes */
+.shapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:18px 0}
+.shape{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:10px 10px 8px}
+.shape svg{display:block;width:100%;height:auto}
+.shape .n{font-size:13px;font-weight:600;margin-top:4px}
+.shape .f{font:12px var(--mono);color:var(--ink-soft)}
+.shape.pick{border-color:var(--red)}
+.shape .tag{font-family:var(--pen);color:var(--red);font-size:18px;line-height:1}
+
+/* compare table */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl th{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.tbl tr.us td{background:var(--red-wash)}
+.tbl td.m{white-space:nowrap}
+
+/* results bars */
+.chart{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin:14px 0}
+.chart h3{margin-bottom:10px}
+.hb{display:grid;grid-template-columns:130px 1fr 56px;gap:10px;align-items:center;font-size:13.5px;margin:6px 0}
+.hb .track{height:14px;background:var(--paper-2);border-radius:2px;position:relative}
+.hb .fill{position:absolute;left:0;top:0;bottom:0;background:var(--ink-faint);border-radius:2px}
+.hb.us .fill{background:var(--red)}
+.hb .val{font:500 13px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.stat{border-top:2px solid var(--ink);padding-top:8px}
+.stat .num{font-family:var(--serif);font-size:34px;line-height:1.05}
+.stat .num.red{color:var(--red)}
+.stat .lbl{font-size:13px;color:var(--ink-soft)}
+
+.aside{border:1px dashed var(--ink-faint);border-radius:6px;padding:14px 16px;margin:18px 0;font-size:15px}
+.aside p:last-child{margin:0}
+footer{padding-top:36px;font-size:13.5px;color:var(--ink-soft)}
+footer a{color:var(--ink)}
+a{color:var(--ink);text-decoration-color:var(--red);text-underline-offset:3px}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+@media (max-width:520px){
+  .row{grid-template-columns:18px 1fr 44px;}
+  .row .b{display:none}
+  .hb{grid-template-columns:96px 1fr 50px}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header class="hero">
+    <div class="eyebrow">Embedding search · relevance filtering</div>
+    <h1>The <em>Cosine</em> Adapter</h1>
+    <p class="lede">A cosine adapter is a small network that reads a search query and converts that query's cosine similarity scores into probabilities of relevance. The scores then share one scale, so a single cutoff can drop irrelevant results for every query.</p>
+    <span class="pen note">In short: it moderates the marks before anyone applies a pass mark.</span>
+  </header>
+
+  <section id="problem">
+    <h2>Embedding search has no natural stopping point</h2>
+    <p>Keyword search stops by itself: if a product doesn't contain the words, it isn't returned. Embedding search doesn't. You turn the query into a vector, ask the ANN index for the <strong>top K</strong> nearest items, and you get K items back every time. That happens even when only one of them is any good.</p>
+    <p>The obvious fix is a score cutoff: drop anything with cosine similarity below, say, 0.70. That fails because <strong>a cosine score only means something relative to other scores for the same query</strong>. Dual encoders are trained with contrastive or listwise losses, which reward "the right item scores higher than the wrong ones" and never say how high "high" is. A specific query can put its junk at 0.78. A broad query can put its best match at 0.64.</p>
+    <p>Think of two examiners. One marks harshly and one marks generously. A 62 from the first may be a better answer than a 75 from the second. A single pass mark applied to raw marks is unfair to both. You first need to <em>moderate</em> each examiner's marks onto a common scale.</p>
+  </section>
+
+  <section id="idea">
+    <h2>The idea: learn each query's conversion curve</h2>
+    <p>The cosine adapter is that moderation step. It looks at the query embedding and predicts the shape of a curve that maps this query's raw cosine scores to a probability that an item is relevant. After conversion, 0.5 means the same thing for every query, so one global threshold works.</p>
+    <div class="figure">
+      <div class="scroll">
+        <svg viewBox="0 0 760 250" role="img" aria-label="Pipeline: the query encoder produces an embedding. It goes both to the ANN index, which returns the top K items with cosine scores, and to the Cosine Adapter, which outputs parameters a, b and k. The relevance filter combines them, keeps items whose calibrated probability is at least t, and passes them to the re-ranker.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/></marker>
+          </defs>
+          <g font-family="IBM Plex Sans, system-ui, sans-serif" font-size="13" fill="var(--ink)">
+            <rect x="8" y="104" width="96" height="44" rx="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"/>
+            <text x="56" y="123" text-anchor="middle">"starbucks</text>
+            <text x="56" y="139" text-anchor="middle">pineapple…"</text>
+
+            <rect x="130" y="104" width="100" height="44" rx="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"/>
+            <text x="180" y="123" text-anchor="middle">Query</text>
+            <text x="180" y="139" text-anchor="middle">encoder</text>
+
+            <circle cx="262" cy="126" r="7" fill="var(--ink)"/>
+            <text x="262" y="160" text-anchor="middle" font-size="12" fill="var(--ink-soft)">embedding q</text>
+
+            <rect x="318" y="22" width="150" height="54" rx="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"/>
+            <text x="393" y="45" text-anchor="middle">ANN index</text>
+            <text x="393" y="63" text-anchor="middle" font-size="12" fill="var(--ink-soft)">top-K + cosine scores</text>
+
+            <rect x="318" y="176" width="150" height="54" rx="5" fill="var(--red-wash)" stroke="var(--red)" stroke-width="1.6"/>
+            <text x="393" y="199" text-anchor="middle" font-weight="600">Cosine Adapter</text>
+            <text x="393" y="217" text-anchor="middle" font-size="12" fill="var(--ink-soft)">small MLP → a, b, k</text>
+
+            <rect x="506" y="92" width="130" height="68" rx="5" fill="var(--red-wash)" stroke="var(--red)" stroke-width="1.6"/>
+            <text x="571" y="116" text-anchor="middle" font-weight="600">Relevance filter</text>
+            <text x="571" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5">σ(F(cos)) ≥ t</text>
+            <text x="571" y="150" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">one global t</text>
+
+            <rect x="664" y="104" width="88" height="44" rx="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"/>
+            <text x="708" y="131" text-anchor="middle">Re-ranker</text>
+          </g>
+          <g stroke="var(--ink-soft)" stroke-width="1.4" fill="none">
+            <line x1="104" y1="126" x2="128" y2="126" marker-end="url(#ah)"/>
+            <line x1="230" y1="126" x2="253" y2="126" marker-end="url(#ah)"/>
+            <path d="M269,122 C290,100 290,49 316,49" marker-end="url(#ah)"/>
+            <path d="M269,130 C290,152 290,203 316,203" marker-end="url(#ah)"/>
+            <path d="M468,49 C492,49 488,112 504,112" marker-end="url(#ah)"/>
+            <path d="M468,203 C492,203 488,140 504,140" marker-end="url(#ah)"/>
+            <line x1="636" y1="126" x2="662" y2="126" marker-end="url(#ah)"/>
+          </g>
+        </svg>
+      </div>
+      <p class="cap"><span class="swatch"></span>New parts added to a standard embedding search. The encoders and the index stay exactly as they were.</p>
+    </div>
+  </section>
+</div>
+
+<section id="demo" class="wide">
+  <div class="sheet">
+    <h2>Try one cutoff on two queries</h2>
+    <p>Here are two queries with ten retrieved items each, sorted by raw cosine. First try to find one raw cutoff that keeps the good items and drops the junk for both. Then switch on the adapter.</p>
+  </div>
+  <div class="demo" id="demoBox">
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Scoring mode">
+        <button type="button" id="modeRaw" aria-pressed="true">Raw cosine cutoff</button>
+        <button type="button" id="modeAdapt" aria-pressed="false">With cosine adapter</button>
+      </div>
+      <div class="slider">
+        <label for="thr" id="thrLabel">Global cutoff on cosine</label>
+        <input type="range" id="thr" min="0.50" max="0.90" step="0.005" value="0.70">
+        <output id="thrOut" for="thr">0.700</output>
+      </div>
+    </div>
+    <div class="panels" id="panels"></div>
+    <div class="verdict" id="verdict" aria-live="polite"></div>
+    <div class="legend">
+      <span><i class="lab E">E</i>Exact match</span>
+      <span><i class="lab S">S</i>Substitute (label 0.5 in training)</span>
+      <span><i class="lab I">I</i>Irrelevant</span>
+      <span><span class="pen" style="font-size:18px">— struck</span> = filtered out</span>
+    </div>
+    <p class="fine">The Starbucks product titles and their exact, substitute and irrelevant labels come from the paper's production case study. The paper doesn't publish per-item cosines, so the scores, the running-shoe query and the curve parameters are illustrative.</p>
+  </div>
+</section>
+
+<div class="sheet">
+  <section id="mechanism">
+    <h2>What's inside</h2>
+    <p>The adapter is small. It takes the query embedding the search system has already computed and passes it through a few feed-forward layers with ReLU activations. It outputs just three numbers.</p>
+    <div class="formula" aria-label="Formulas">
+      Θ = (a, b, k) = <span class="r">CosineAdapter</span>(query embedding)<br>
+      F(x) = sgn(x) · a · |x|<sup>k</sup> + b &nbsp;&nbsp;<span style="color:var(--ink-faint)">// x = raw cosine</span><br>
+      P(relevant) = σ(F(x)) &nbsp;&nbsp;→&nbsp;&nbsp; keep if P ≥ <span class="r">t</span>
+    </div>
+    <ol class="steps">
+      <li><p><strong>a</strong> sets how steep the curve is: how quickly a small cosine gap becomes a big change in confidence.</p></li>
+      <li><p><strong>b</strong> shifts the curve left or right. It decides where this query's 50/50 point falls on the cosine axis.</p></li>
+      <li><p><strong>k</strong> bends it. It is squeezed into (0, 2) with <code>2σ(·)</code>, so the curve can be concave, straight or convex.</p></li>
+    </ol>
+    <p>The curve is <strong>monotonic</strong> by design, so it never reorders results. An item that ranked third on cosine still ranks third. The adapter only decides where to cut the list. That keeps recall safe, and the re-ranker downstream still handles ordering.</p>
+
+    <h3 style="margin-top:22px">Curve shapes the authors tried</h3>
+    <div class="shapes" id="shapes"></div>
+    <p>The differences between the shapes were small. Power won narrowly on MS MARCO. Square root was the version deployed at Walmart. The large gain comes from making the curve depend on the query, not from the exact shape.</p>
+  </section>
+
+  <section id="training">
+    <h2>How it's trained</h2>
+    <p>The dual encoder is <strong>frozen</strong>. Only the adapter's layers learn. Each training example is a query–item pair with a relevance label. The loss is ordinary binary cross-entropy on σ(F(cos)), so the output is literally trained to be a probability.</p>
+    <p>At Walmart, human raters labelled 6 million query–product pairs across 700k queries as <em>exact</em> (1), <em>substitute</em> (0.5) or <em>irrelevant</em> (0). Giving substitutes half credit worked better than treating them as negatives. The encoder itself had been trained on engagement data such as clicks. The adapter adds a different signal, human-judged relevance, without retraining the encoder.</p>
+    <span class="pen note">Same encoder, same index. You only bolt a calibrator onto the side.</span>
+  </section>
+
+  <section id="cost">
+    <h2>Why this rather than something heavier</h2>
+    <div class="scroll">
+    <table class="tbl">
+      <thead><tr><th>Approach</th><th>How it decides the cut</th><th>Cost per query</th></tr></thead>
+      <tbody>
+        <tr><td>Raw cosine cutoff</td><td>One fixed number for every query</td><td class="m">O(K)</td></tr>
+        <tr><td>Max-normalised cutoff</td><td>Divide by the query's top score, then cut</td><td class="m">O(K)</td></tr>
+        <tr><td>Ranked-list truncation (e.g. Choppy)</td><td>Transformer reads the whole score list and predicts a cut position</td><td class="m">O(K²·d)</td></tr>
+        <tr><td>Cross-encoder classifier</td><td>Scores every query–item pair with a full model</td><td class="m">K model calls</td></tr>
+        <tr class="us"><td><strong>Cosine adapter</strong></td><td>Query-specific curve, one global probability threshold</td><td class="m">O(d²) once + O(K)</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The adapter runs <strong>once per query</strong>, not once per item. Calibrating K scores is a few arithmetic operations each. It fits between retrieval and re-ranking, so the re-ranker gets a shorter and cleaner list.</p>
+  </section>
+
+  <section id="results">
+    <h2>What it bought</h2>
+    <p>From the CIKM 2024 paper by Rossi et al. at Walmart Global Tech.</p>
+
+    <div class="chart">
+      <h3>MS MARCO passages, K = 1000 · PR AUC</h3>
+      <div id="barsA"></div>
+      <p class="fine">A raw global threshold mostly either kept all 1,000 passages for a query or dropped all of them. The per-query counts clustered at those two extremes.</p>
+    </div>
+
+    <div class="chart">
+      <h3>Walmart product search · precision at 95% recall (listwise-trained encoder)</h3>
+      <div id="barsB"></div>
+    </div>
+
+    <h3 style="margin-top:22px">Live on walmart.com</h3>
+    <p>Square-root adapter, with the threshold set for 99% recall to stay cautious. Measured on about 700 affected queries after the re-ranker:</p>
+    <div class="stats">
+      <div class="stat"><div class="num red">+5.34%</div><div class="lbl">precision in the top 5</div></div>
+      <div class="stat"><div class="num red">+4.00%</div><div class="lbl">precision in the top 10</div></div>
+      <div class="stat"><div class="num">±0</div><div class="lbl">orders and GMV in the A/B test (+0.03% and −0.11%, not significant)</div></div>
+    </div>
+    <p>For "starbucks pineapple passion fruit juice", only 2 of the top 10 results were exact matches before filtering. The filter removed 4 of the 5 irrelevant juices, two of the three Welch's bottles plus the Goya and Dole pineapple juices, which had matched on flavour words alone.</p>
+  </section>
+
+  <section id="limits">
+    <h2>Where it slips</h2>
+    <p>With the cutoff tuned for 95% recall, some relevant items still get cut. The queries that lose them share a pattern: <strong>rare words, rare brand names, numbers and misspellings</strong>. Examples from the paper are "what is einstein neem oil good for" and "sydeny climate". The adapter only sees the query embedding. When the encoder doesn't understand the query well, the adapter can't tell how the scores should be read.</p>
+    <p>It is also tied to one encoder. Retrain or swap the dual encoder and the cosine scales shift, so the adapter has to be retrained on that dataset too.</p>
+    <div class="aside">
+      <h3>Not to be confused with</h3>
+      <p>"Cosine adaptation" also appears in LLM fine-tuning papers such as LoCA and MaCP. There it refers to the discrete cosine transform, used as a LoRA-style way to parameterise weight updates. It shares a word with the cosine adapter and nothing else.</p>
+    </div>
+  </section>
+
+  <footer>
+    Source: Rossi, Lin, Liu, Yang, Lee, Magnani &amp; Liao, <a href="https://arxiv.org/abs/2408.04887" target="_blank" rel="noopener">“Relevance Filtering for Embedding-based Retrieval”</a>, CIKM 2024. Code: <a href="https://github.com/juexinlin/dense_retrieval_relevance_filter" target="_blank" rel="noopener">github.com/juexinlin/dense_retrieval_relevance_filter</a>.
+  </footer>
+</div>
+
+<script>
+(function(){
+  const Q = [
+    { text:"starbucks pineapple passion fruit juice", kind:"specific · scores run high",
+      a:60, k:1.6, x0:0.79,
+      items:[
+        ["Starbucks Paradise Drink Pineapple Passionfruit, 14 fl oz","E",0.861],
+        ["Starbucks Paradise Drink Pineapple Passionfruit, 12-pack","E",0.848],
+        ["Starbucks Pink Drink Strawberry Açaí, 14 fl oz","S",0.829],
+        ["Starbucks Refreshers Peach Passion Fruit, 12 oz can","S",0.815],
+        ["Welch's Passion Fruit Juice Drink, 59 fl oz","I",0.806],
+        ["Starbucks Refreshers Peach Passion Fruit w/ Coconut Water","S",0.801],
+        ["Welch's Passion Fruit Juice Cocktail, 64 fl oz","I",0.779],
+        ["Welch's Passion Fruit Juice Drink, 89 fl oz","I",0.774],
+        ["Goya Pineapple Juice, 33.8 fl oz","I",0.762],
+        ["Dole Pineapple 100% Juice, 59 oz","I",0.755]
+      ]},
+    { text:"mens running shoes", kind:"broad · scores run low",
+      a:110, k:0.7, x0:0.58,
+      items:[
+        ["Nike Pegasus 41 men's road running shoe","E",0.642],
+        ["ASICS Gel-Nimbus 26 men's running shoe","E",0.628],
+        ["Brooks Ghost 16 men's running shoe","E",0.619],
+        ["New Balance Fresh Foam 880 men's","E",0.611],
+        ["Hoka Clifton 9 men's running shoe","E",0.603],
+        ["Saucony Ride 17 women's running shoe","S",0.596],
+        ["Adidas Ultraboost men's lifestyle sneaker","S",0.584],
+        ["Men's cushioned running socks, 6-pack","I",0.561],
+        ["Men's Dri-FIT running shorts","I",0.552],
+        ["Foam shoe insoles, unisex","I",0.540]
+      ]}
+  ];
+  Q.forEach(q=>{ q.b = -q.a*Math.pow(q.x0,q.k); });
+  const sig = z => 1/(1+Math.exp(-z));
+  const prob = (q,x) => sig(Math.sign(x)*q.a*Math.pow(Math.abs(x),q.k)+q.b);
+
+  let mode = "raw";
+  let rawT = 0.70, calT = 0.50;
+  const thr = document.getElementById("thr"), out = document.getElementById("thrOut"), lab = document.getElementById("thrLabel");
+  const bRaw = document.getElementById("modeRaw"), bAd = document.getElementById("modeAdapt");
+  const panels = document.getElementById("panels"), verdict = document.getElementById("verdict");
+
+  // build panels
+  Q.forEach((q,qi)=>{
+    const p = document.createElement("div"); p.className="panel";
+    p.innerHTML = `<div class="qhead"><span class="qtext">“${q.text}”</span><span class="qkind">${q.kind}</span></div>
+      <svg class="curve" viewBox="0 0 440 150" role="img" aria-label="Score chart for ${q.text}" id="svg${qi}"></svg>
+      <ul class="rows" id="rows${qi}"></ul><div class="tally" id="tally${qi}"></div>`;
+    panels.appendChild(p);
+    const ul = p.querySelector("ul");
+    q.items.forEach(([t,l,c])=>{
+      const li=document.createElement("li"); li.className="row";
+      li.innerHTML=`<i class="lab ${l}" aria-label="${l==='E'?'exact':l==='S'?'substitute':'irrelevant'}">${l}</i><span class="t">${t}</span><span class="b"><i></i></span><span class="v"></span>`;
+      ul.appendChild(li);
+    });
+  });
+
+  const X0=0.50, X1=0.90, L=36, R=430, T=10, B=118;
+  const sx = x => L+(x-X0)/(X1-X0)*(R-L);
+  const sy = y => B-(y)*(B-T);
+  const col = l => l==="E"?"var(--exact)":l==="S"?"var(--sub)":"var(--irr)";
+
+  function drawSVG(q,qi){
+    const s = document.getElementById("svg"+qi);
+    let h = "";
+    // axes
+    h += `<line x1="${L}" y1="${B}" x2="${R}" y2="${B}" stroke="var(--ink-faint)" stroke-width="1"/>`;
+    [0.5,0.6,0.7,0.8,0.9].forEach(v=>{
+      h += `<line x1="${sx(v)}" y1="${B}" x2="${sx(v)}" y2="${B+4}" stroke="var(--ink-faint)"/>`;
+      h += `<text x="${sx(v)}" y="${B+17}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-soft)">${v.toFixed(1)}</text>`;
+    });
+    h += `<text x="${R}" y="${B+30}" text-anchor="end" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="var(--ink-soft)">raw cosine →</text>`;
+    if(mode==="adapt"){
+      h += `<line x1="${L}" y1="${T}" x2="${L}" y2="${B}" stroke="var(--ink-faint)"/>`;
+      [0,0.5,1].forEach(v=>{ h += `<text x="${L-6}" y="${sy(v)+3.5}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-soft)">${v}</text>`; });
+      h += `<text x="${L+4}" y="${T+2}" font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="var(--ink-soft)" dominant-baseline="hanging">P(relevant)</text>`;
+      let d=""; for(let i=0;i<=120;i++){ const x=X0+(X1-X0)*i/120; d += (i?"L":"M")+sx(x).toFixed(1)+","+sy(prob(q,x)).toFixed(1); }
+      h += `<path d="${d}" fill="none" stroke="var(--bar)" stroke-width="2"/>`;
+      h += `<line x1="${L}" y1="${sy(calT)}" x2="${R}" y2="${sy(calT)}" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+      h += `<text x="${R}" y="${sy(calT)-5}" text-anchor="end" font-family="Caveat, cursive" font-size="17" fill="var(--red)">t = ${calT.toFixed(2)}</text>`;
+      q.items.forEach(([t,l,c])=>{ h += `<circle cx="${sx(c)}" cy="${sy(prob(q,c))}" r="4.2" fill="${col(l)}" stroke="var(--card)" stroke-width="1.2"/>`; });
+    } else {
+      const lanes={E:40,S:62,I:84};
+      Object.entries(lanes).forEach(([k,y])=>{ h += `<text x="${L-6}" y="${y+3.5}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="${col(k)}">${k}</text>`; h+=`<line x1="${L}" y1="${y}" x2="${R}" y2="${y}" stroke="var(--rule)"/>`; });
+      q.items.forEach(([t,l,c])=>{ h += `<circle cx="${sx(c)}" cy="${lanes[l]}" r="4.2" fill="${col(l)}" stroke="var(--card)" stroke-width="1.2"/>`; });
+      const xr = sx(Math.min(Math.max(rawT,X0),X1));
+      h += `<rect x="${L}" y="${T}" width="${xr-L}" height="${B-T}" fill="var(--red-wash)"/>`;
+      h += `<line x1="${xr}" y1="${T}" x2="${xr}" y2="${B}" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+      const anchor = xr > R-60 ? "end" : "start";
+      h += `<text x="${anchor==="end"?xr-5:xr+5}" y="${T+14}" text-anchor="${anchor}" font-family="Caveat, cursive" font-size="17" fill="var(--red)">cut ${rawT.toFixed(3)}</text>`;
+    }
+    s.innerHTML = h;
+  }
+
+  function render(){
+    const res = Q.map((q,qi)=>{
+      const rows = document.querySelectorAll(`#rows${qi} .row`);
+      let kept={E:0,S:0,I:0}, tot={E:0,S:0,I:0};
+      q.items.forEach(([t,l,c],i)=>{
+        const p = prob(q,c);
+        const keep = mode==="raw" ? c>=rawT : p>=calT;
+        tot[l]++; if(keep) kept[l]++;
+        const r = rows[i];
+        r.classList.toggle("cut", !keep);
+        r.querySelector(".v").textContent = mode==="raw" ? c.toFixed(3) : p.toFixed(2);
+        const w = mode==="raw" ? (c-0.5)/(0.9-0.5) : p;
+        r.querySelector(".b i").style.width = (Math.max(0,Math.min(1,w))*100).toFixed(1)+"%";
+      });
+      const n = kept.E+kept.S+kept.I;
+      document.getElementById("tally"+qi).innerHTML =
+        `Kept <b>${n}</b> of 10 · <b>${kept.E}</b>/${tot.E} exact · <b>${kept.S}</b>/${tot.S} substitutes · <b>${kept.I}</b>/${tot.I} irrelevant`;
+      drawSVG(q,qi);
+      return {kept,tot,n};
+    });
+    let v;
+    const [A,Bq]=res;
+    if(mode==="raw"){
+      if(Bq.n===0) v = `At ${rawT.toFixed(3)} the broad query loses <b>all</b> of its results, including five exact matches. Its best score is only 0.642.`;
+      else if(A.kept.I>=4) v = `Low enough to rescue the running shoes, but the juice query now keeps <b>${A.kept.I}</b> irrelevant bottles. No single raw cutoff works for both queries, because their scores sit on different scales.`;
+      else if(Bq.kept.E<Bq.tot.E) v = `The juice query looks cleaner, but the broad query has already lost ${Bq.tot.E-Bq.kept.E} exact match${Bq.tot.E-Bq.kept.E>1?"es":""}. Move the slider to look for a cutoff that suits both. There isn't one.`;
+      else v = `The shoes survive, but the juice query keeps <b>${A.kept.I}</b> irrelevant item${A.kept.I===1?"":"s"}. A cut that suits one query is wrong for the other.`;
+    } else {
+      const junk = A.kept.I+Bq.kept.I, ex = A.kept.E+Bq.kept.E, exT=A.tot.E+Bq.tot.E;
+      v = `One threshold, <b>t = ${calT.toFixed(2)}</b>, applied to both. It keeps <b>${ex}/${exT}</b> exact matches and lets through <b>${junk}</b> irrelevant item${junk===1?"":"s"}. Each query got its own curve, so a probability of ${calT.toFixed(2)} means the same thing on both sides.`;
+    }
+    verdict.innerHTML = v;
+  }
+
+  function setMode(m){
+    mode=m;
+    bRaw.setAttribute("aria-pressed", m==="raw"); bAd.setAttribute("aria-pressed", m==="adapt");
+    if(m==="raw"){ thr.min="0.50"; thr.max="0.90"; thr.step="0.005"; thr.value=rawT; lab.textContent="Global cutoff on cosine"; out.textContent=rawT.toFixed(3); }
+    else { thr.min="0.05"; thr.max="0.95"; thr.step="0.01"; thr.value=calT; lab.textContent="Global threshold t on P(relevant)"; out.textContent=calT.toFixed(2); }
+    render();
+  }
+  thr.addEventListener("input",()=>{
+    const v=parseFloat(thr.value);
+    if(mode==="raw"){ rawT=v; out.textContent=v.toFixed(3); } else { calT=v; out.textContent=v.toFixed(2); }
+    render();
+  });
+  bRaw.addEventListener("click",()=>setMode("raw"));
+  bAd.addEventListener("click",()=>setMode("adapt"));
+  setMode("raw");
+
+  // curve shapes gallery
+  const shapes = [
+    ["Raw score","F(x) = x", x=>x, false, "baseline"],
+    ["Linear","a·x + b", x=>x, false, ""],
+    ["Square root","a·√|x| + b", x=>Math.sqrt(x), true, "deployed"],
+    ["Quadratic","a·x² + b", x=>x*x, false, ""],
+    ["Power","a·|x|ᵏ + b", x=>Math.pow(x,0.6), true, "best offline"]
+  ];
+  const sh = document.getElementById("shapes");
+  shapes.forEach(([n,f,fn,pick,tag])=>{
+    let d=""; for(let i=0;i<=40;i++){ const x=i/40; d+=(i?"L":"M")+(8+x*104).toFixed(1)+","+(66-fn(x)*56).toFixed(1); }
+    const extra = n==="Power" ? (()=>{ let d2=""; for(let i=0;i<=40;i++){const x=i/40; d2+=(i?"L":"M")+(8+x*104).toFixed(1)+","+(66-Math.pow(x,1.6)*56).toFixed(1);} return `<path d="${d2}" fill="none" stroke="var(--bar)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".7"/>`; })() : "";
+    const el=document.createElement("div"); el.className="shape"+(pick?" pick":"");
+    el.innerHTML=`<svg viewBox="0 0 120 72" aria-hidden="true"><line x1="8" y1="66" x2="112" y2="66" stroke="var(--rule)"/><line x1="8" y1="8" x2="8" y2="66" stroke="var(--rule)"/>${extra}<path d="${d}" fill="none" stroke="${n==='Raw score'?'var(--ink-faint)':'var(--bar)'}" stroke-width="2"/></svg>
+      <div class="n">${n}</div><div class="f">${f}</div>${tag?`<div class="tag">${tag}</div>`:""}`;
+    sh.appendChild(el);
+  });
+
+  // result bars
+  function bars(id, rows, max){
+    const box=document.getElementById(id);
+    rows.forEach(([n,v,us])=>{
+      const r=document.createElement("div"); r.className="hb"+(us?" us":"");
+      r.innerHTML=`<span>${n}</span><span class="track"><span class="fill" style="width:${(v/max*100).toFixed(1)}%"></span></span><span class="val">${v.toFixed(3)}</span>`;
+      box.appendChild(r);
+    });
+  }
+  bars("barsA",[["Raw cosine",0.041],["Max-normalised",0.119],["Adapter (sqrt)",0.141,true],["Adapter (power)",0.139,true]],0.15);
+  bars("barsB",[["No filter",0.4916],["Raw cosine",0.5217],["Max-normalised",0.5865],["Adapter (power)",0.6225,true],["Adapter (sqrt)",0.6231,true]],0.7);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

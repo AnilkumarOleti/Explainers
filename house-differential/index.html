@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The House Differential | Explainers</title>
+<meta name="description" content="A fan&#x27;s case file on House, M.D.: eight seasons, 177 episodes and one very grumpy genius.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/house-differential/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The House Differential">
+<meta property="og:description" content="A fan&#x27;s case file on House, M.D.: eight seasons, 177 episodes and one very grumpy genius.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/house-differential/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/house-differential/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;600&family=Kalam:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --room:#172025;
+  --room-2:#1f2a30;
+  --room-line:#2b3940;
+  --board:#f6f7f4;
+  --frame:#b9c0c4;
+  --mk-black:#1d2126;
+  --mk-red:#d7263d;
+  --mk-blue:#1f5fbf;
+  --mk-green:#1e8a4c;
+  --pill:#e8791d;
+  --paper:#f3f4ef;
+  --paper-ink:#1c2226;
+  --paper-2:#5b666c;
+  --text:#e7ece9;
+  --muted:#9fb0b4;
+  --head:"Archivo","Arial Narrow",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --marker:"Kalam","Segoe Print","Bradley Hand",cursive;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--room);
+  background-image:linear-gradient(var(--room-line) 1px,transparent 1px),linear-gradient(90deg,var(--room-line) 1px,transparent 1px),radial-gradient(ellipse at 50% 0%,#26343b,transparent 70%);
+  background-size:64px 64px,64px 64px,100% 100%;background-position:-1px -1px,-1px -1px,0 0;
+  color:var(--text);font-family:var(--serif);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 64px;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{margin:0;text-wrap:balance}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--pill);outline-offset:3px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* masthead: patient chart */
+.mast{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 32px;align-items:end;padding-block:30px 22px}
+.mast h1{font-family:var(--head);font-weight:900;font-stretch:62%;font-size:clamp(64px,12vw,150px);line-height:.86;text-transform:uppercase;letter-spacing:-.01em}
+.mast h1 span{color:var(--pill)}
+.mast .lede{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:44ch;margin-top:12px}
+.chart{background:var(--paper);color:var(--paper-ink);font-family:var(--mono);font-size:12px;line-height:1.7;padding:14px 16px;min-width:0;max-width:320px;border-top:6px solid var(--mk-blue);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.chart div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dotted #b7bfc2}
+.chart div:last-child{border:0}
+.chart b{font-weight:600}
+.chart .hot{color:var(--mk-red)}
+@media (max-width:760px){.mast{grid-template-columns:minmax(0,1fr)}.mast h1{font-size:clamp(48px,16vw,110px);overflow-wrap:anywhere}.chart{max-width:none}}
+
+/* whiteboard */
+.frame{background:linear-gradient(180deg,#d6dbde,#9ea7ab);padding:12px 12px 0;border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.board{position:relative;width:100%;aspect-ratio:16/10;max-width:100%;overflow:hidden;touch-action:pan-y;
+  background:var(--board);
+  background-image:radial-gradient(ellipse at 22% 30%,rgba(120,140,160,.10),transparent 30%),radial-gradient(ellipse at 76% 70%,rgba(120,140,160,.09),transparent 28%),radial-gradient(ellipse at 60% 20%,rgba(215,38,61,.04),transparent 22%),linear-gradient(115deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);
+  box-shadow:inset 0 0 0 1px #c9d0d3}
+.tray{height:26px;background:linear-gradient(180deg,#aab3b7,#7f898d);margin:10px -12px 0;border-radius:0 0 6px 6px;display:flex;gap:10px;align-items:center;padding-left:40px}
+.tray i{display:block;width:74px;height:12px;border-radius:6px 3px 3px 6px;box-shadow:0 2px 2px rgba(0,0,0,.25)}
+.arrows{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+.arrows path{fill:none;stroke:var(--mk-blue);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.ddx{position:absolute;left:33%;top:16%;width:34%;z-index:5;color:var(--mk-black);font-family:var(--marker)}
+.ddx .h{font-weight:700;font-size:clamp(22px,2.9vw,38px);line-height:1;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.ddx .sx{font-size:clamp(13px,1.35vw,18px);line-height:1.35;color:var(--mk-blue);margin:8px 0 10px}
+.ddx ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.ddx li button{background:none;border:0;padding:0 4px;font-family:var(--marker);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.2;color:var(--mk-black);text-align:left;position:relative}
+.ddx li button::after{content:"";position:absolute;left:-2px;right:-6px;top:52%;height:3px;background:var(--mk-red);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.ddx li button.x::after{transform:scaleX(1)}
+.ddx li button.x{color:#8a9296}
+.ddx li button.win{color:var(--mk-green)}
+.ddx li button.win::before{content:"";position:absolute;inset:-4px -10px;border:3px solid var(--mk-green);border-radius:50%;transform:rotate(-3deg)}
+.ddx .hint{font-size:clamp(11px,1.1vw,14px);color:var(--mk-red);margin-top:6px}
+.item{position:absolute;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;transform:rotate(var(--r,0deg));transition:transform .15s;z-index:10}
+.item:hover{transform:rotate(var(--r,0deg)) scale(1.03)}
+.item.dragging{cursor:grabbing;transform:rotate(var(--r,0deg)) scale(1.07);z-index:999!important;filter:drop-shadow(0 18px 16px rgba(0,0,0,.25))}
+.magnet{position:absolute;top:-8px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb26b,var(--pill) 55%,#8a3f06);box-shadow:0 3px 4px rgba(0,0,0,.3);z-index:2}
+.magnet.b{background:radial-gradient(circle at 35% 30%,#8fb3ff,var(--mk-blue) 55%,#0d2e66)}
+.magnet.r{background:radial-gradient(circle at 35% 30%,#ff8f9d,var(--mk-red) 55%,#6e0b18)}
+.photo{width:clamp(96px,12.5%,160px);background:#fff;padding:7px 7px 5px;box-shadow:0 8px 16px rgba(20,30,40,.25)}
+.photo .shot{aspect-ratio:1/1;background:#eef1f2;display:grid;place-items:center;overflow:hidden}
+.photo .shot svg{width:86%;height:86%}
+.photo .cap{font-family:var(--marker);font-size:clamp(11px,1.15vw,14px);line-height:1.15;text-align:center;padding-top:5px;min-height:2.3em;color:var(--mk-black)}
+.note{width:clamp(88px,11%,138px);aspect-ratio:1/1;padding:10px;display:grid;place-items:center;text-align:center;font-family:var(--marker);font-weight:700;font-size:clamp(13px,1.6vw,21px);line-height:1.1;color:#262014;box-shadow:0 8px 12px rgba(20,30,40,.22);background:#fff27a}
+.note.o{background:#ffc58f}.note.b{background:#b8dcff}
+.memo{width:clamp(150px,17%,210px);background:#fff;color:var(--paper-ink);padding:12px 14px;font-family:var(--mono);font-size:clamp(9px,.95vw,11.5px);line-height:1.45;box-shadow:0 8px 16px rgba(20,30,40,.22);border-top:5px solid var(--mk-red)}
+.memo b{display:block;font-family:var(--head);font-weight:800;font-stretch:75%;font-size:clamp(13px,1.5vw,18px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+.memo .sig{font-family:var(--marker);font-size:clamp(13px,1.4vw,17px);color:var(--mk-blue)}
+.xray{width:clamp(120px,15%,200px);background:#0b1419;padding:8px;box-shadow:0 8px 16px rgba(20,30,40,.3)}
+.xray svg{width:100%;height:auto;display:block}
+.xray .cap{font-family:var(--mono);font-size:clamp(8px,.85vw,10px);color:#9fc4d6;letter-spacing:.08em;text-transform:uppercase;padding-top:4px}
+.cane{width:clamp(34px,4vw,54px)}
+.cane svg{width:100%;height:auto;display:block;overflow:visible}
+.boardhint{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:12px}
+.boardhint button{background:transparent;border:1px solid var(--room-line);color:var(--text);padding:5px 12px;border-radius:3px;font-family:var(--mono);font-size:12px}
+
+section{padding-block:84px 0}
+.sec-head{display:grid;gap:6px;margin-bottom:28px}
+.sec-head h2{font-family:var(--head);font-weight:900;font-stretch:62%;font-size:clamp(46px,7vw,86px);line-height:.9;text-transform:uppercase}
+.sec-head h2 em{font-style:normal;color:var(--pill)}
+.sec-head p{margin:4px 0 0;color:var(--muted);max-width:60ch}
+
+/* team badges */
+.team{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:860px){.team{grid-template-columns:1fr}}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:16px 12px}
+.badge{position:relative;background:#fff;color:var(--paper-ink);border:0;border-radius:8px;padding:26px 10px 10px;text-align:left;box-shadow:0 8px 18px rgba(0,0,0,.35);transition:transform .15s}
+.badge::before{content:"";position:absolute;top:7px;left:50%;width:26px;height:6px;margin-left:-13px;border-radius:3px;background:#c9d0d3}
+.badge:hover{transform:translateY(-4px)}
+.badge[aria-pressed="true"]{outline:3px solid var(--pill);outline-offset:2px;transform:translateY(-4px)}
+.badge .ini{display:grid;place-items:center;aspect-ratio:1/1;width:100%;border-radius:4px;font-family:var(--head);font-weight:900;font-stretch:62%;font-size:40px;color:#fff;letter-spacing:.02em}
+.badge .nm{font-family:var(--head);font-weight:800;font-stretch:75%;font-size:15px;line-height:1.05;margin-top:8px;text-transform:uppercase}
+.badge .rl{font-family:var(--mono);font-size:10px;color:var(--paper-2);letter-spacing:.04em;margin-top:2px}
+.dossier{background:var(--paper);color:var(--paper-ink);padding:24px;border-top:6px solid var(--pill);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.dossier .top{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-2)}
+.dossier h3{font-family:var(--head);font-weight:900;font-stretch:62%;font-size:clamp(40px,5vw,60px);line-height:.92;text-transform:uppercase;margin:10px 0 4px}
+.dossier .who{font-family:var(--mono);font-size:13px;color:var(--mk-blue);margin-bottom:12px}
+.dossier p{margin:0 0 12px}
+.dossier .dx{background:#fff;border-left:4px solid var(--mk-red);padding:10px 12px;font-size:15px;margin:0}
+.dossier .dx b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--mk-red);text-transform:uppercase}
+
+/* case reports */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filters button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid #3a4a52;border-radius:3px;padding:6px 12px}
+.filters button[aria-pressed="true"]{background:var(--pill);border-color:var(--pill);color:#1b1206}
+.reports{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.rep{background:var(--paper);color:var(--paper-ink);padding:18px 20px 20px;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.rep .jr{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-2);border-bottom:2px solid var(--paper-ink);padding-bottom:6px;font-variant-numeric:tabular-nums}
+.rep .jr span:last-child{color:var(--mk-red)}
+.rep h3{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.15;margin:12px 0 8px}
+.rep p{margin:0;font-size:15.5px;line-height:1.55}
+.rep .big{float:right;font-family:var(--head);font-weight:900;font-stretch:62%;font-size:58px;line-height:.85;color:var(--pill);margin:4px 0 4px 10px}
+
+/* history */
+.hist{display:grid;gap:0;border-left:3px solid var(--pill);margin-left:8px}
+.hx{display:grid;grid-template-columns:150px minmax(0,1fr);gap:4px 22px;padding:14px 0 14px 22px;position:relative;border-bottom:1px dashed var(--room-line)}
+.hx::before{content:"";position:absolute;left:-10px;top:22px;width:17px;height:17px;border-radius:50%;background:var(--room);border:3px solid var(--pill)}
+.hx.k::before{background:var(--pill)}
+.hx .d{font-family:var(--mono);font-size:13px;color:var(--pill);letter-spacing:.06em;padding-top:4px;font-variant-numeric:tabular-nums}
+.hx h3{font-family:var(--head);font-weight:800;font-stretch:75%;font-size:24px;text-transform:uppercase;line-height:1.05}
+.hx p{margin:2px 0 0;color:var(--muted);font-size:15.5px}
+@media (max-width:620px){.hx{grid-template-columns:1fr}}
+
+/* quiz */
+.room{background:var(--board);color:var(--mk-black);border-radius:4px;padding:clamp(20px,4vw,42px);position:relative;box-shadow:0 0 0 10px #aab3b7, 0 30px 50px rgba(0,0,0,.4);margin:10px}
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#5b666c;font-variant-numeric:tabular-nums}
+.tally{font-family:var(--marker);font-weight:700;font-size:22px;color:var(--mk-black);margin:6px 0 16px;min-height:1.3em;letter-spacing:.08em}
+.tally .n{color:var(--mk-red)}
+.qtext{font-family:var(--marker);font-weight:700;font-size:clamp(26px,3.6vw,42px);line-height:1.15;max-width:26ch}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:22px}
+.opts button{background:#fff;border:2px solid var(--mk-black);border-radius:3px;padding:12px 14px;text-align:left;font-family:var(--serif);font-size:16px;font-weight:600;color:var(--mk-black);transition:transform .08s}
+.opts button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 0 var(--mk-black)}
+.opts button.right{background:#c9f0d7;border-color:var(--mk-green)}
+.opts button.wrong{background:#ffd5da;border-color:var(--mk-red);text-decoration:line-through}
+.opts button:disabled{cursor:default}
+.verdict{margin-top:16px;min-height:3em;max-width:62ch;font-size:16px}
+.verdict b{font-family:var(--marker);font-weight:700;font-size:22px;color:var(--mk-red);margin-right:6px}
+.verdict b.g{color:var(--mk-green)}
+.qnext{margin-top:12px;background:var(--mk-black);color:#fff;border:0;border-radius:3px;padding:10px 18px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.final .score{font-family:var(--marker);font-weight:700;font-size:clamp(80px,14vw,150px);line-height:.9;color:var(--mk-blue);font-variant-numeric:tabular-nums}
+.final h3{font-family:var(--head);font-weight:900;font-stretch:62%;font-size:clamp(34px,5vw,54px);text-transform:uppercase;line-height:.95;margin:8px 0}
+.final p{margin:0;max-width:56ch;color:#3d474c}
+
+/* toys */
+.toys{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px}
+@media (max-width:860px){.toys{grid-template-columns:1fr}}
+.toy{background:var(--paper);color:var(--paper-ink);padding:22px;box-shadow:0 12px 26px rgba(0,0,0,.35);border-top:6px solid var(--mk-red)}
+.toy.b{border-top-color:var(--mk-blue)}
+.toy h3{font-family:var(--head);font-weight:900;font-stretch:62%;font-size:40px;line-height:.95;text-transform:uppercase}
+.toy .sub{font-size:15px;color:var(--paper-2);margin:6px 0 16px}
+.lupus{display:grid;place-items:center;gap:14px;text-align:center}
+.lbtn{width:min(220px,70vw);aspect-ratio:1/1;border-radius:50%;border:0;background:radial-gradient(circle at 38% 32%,#ff6b7d,var(--mk-red) 55%,#7e0c1c);color:#fff;font-family:var(--head);font-weight:900;font-stretch:62%;font-size:34px;line-height:.95;text-transform:uppercase;box-shadow:0 10px 0 #6e0b18,0 18px 30px rgba(0,0,0,.35);transition:transform .08s,box-shadow .08s}
+.lbtn:active{transform:translateY(8px);box-shadow:0 2px 0 #6e0b18,0 6px 12px rgba(0,0,0,.35)}
+.lout{font-family:var(--marker);font-weight:700;font-size:clamp(22px,2.8vw,30px);line-height:1.15;min-height:2.4em;max-width:22ch}
+.lout.yes{color:var(--mk-green);animation:wob .6s}
+@keyframes wob{25%{transform:rotate(-3deg) scale(1.1)}50%{transform:rotate(3deg) scale(1.1)}100%{transform:none}}
+.lcount{font-family:var(--mono);font-size:12px;color:var(--paper-2);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{background:#fff;border:1px solid #b7bfc2;border-radius:20px;padding:6px 12px;font-family:var(--serif);font-size:14.5px;color:var(--paper-ink)}
+.chips button[aria-pressed="true"]{background:var(--mk-blue);color:#fff;border-color:var(--mk-blue)}
+.tr label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-2);margin:16px 0 6px}
+.tr input{width:100%;font-family:var(--serif);font-size:16px;padding:10px 12px;border:2px solid var(--paper-ink);border-radius:3px;background:#fff;color:var(--paper-ink)}
+.tout{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.tout{grid-template-columns:1fr}}
+.tout div{padding:14px;border-radius:3px}
+.tout .said{background:#fff;border:1px solid #d3d9db}
+.tout .meant{background:var(--board);border:2px solid var(--mk-black);font-family:var(--marker);font-weight:700;font-size:19px;line-height:1.25}
+.tout span{display:block;font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-2);margin-bottom:4px}
+
+footer{padding-block:80px 0;text-align:center}
+footer .big{font-family:var(--head);font-weight:900;font-stretch:62%;font-size:clamp(56px,11vw,130px);line-height:.9;text-transform:uppercase;color:var(--room-2);-webkit-text-stroke:1.5px #3d5059}
+footer p{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+
+@media (max-width:640px){
+  .board{aspect-ratio:auto;height:1400px}
+  .ddx{left:5%;top:1.5%;width:90%}
+  .ddx .h{font-size:30px}.ddx .sx{font-size:15px}.ddx li button{font-size:22px}.ddx .hint{font-size:13px}
+  .photo{width:124px}.photo .cap{font-size:12.5px}.note{width:104px;font-size:17px}.memo{width:190px;font-size:11px}.memo b{font-size:16px}.xray{width:160px}.cane{width:40px}
+  .tray i{width:44px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <span class="eyebrow">Princeton-Plainsboro Teaching Hospital · Dept. of Diagnostic Medicine</span>
+      <h1>Every<span>body</span><br>lies.</h1>
+      <p class="lede">A fan's case file on Gregory House, M.D.: 8 seasons, 177 episodes and one very grumpy genius. It's not lupus.</p>
+    </div>
+    <div class="chart" aria-label="Patient chart">
+      <div><span>Patient</span><b>House, Gregory</b></div>
+      <div><span>Network</span><b>Fox, 2004–2012</b></div>
+      <div><span>Episodes</span><b>177</b></div>
+      <div><span>Complaint</span><b>Right thigh, chronic</b></div>
+      <div><span>Bedside manner</span><b class="hot">None found</b></div>
+      <div><span>Clinic hours</span><b class="hot">Avoiding</b></div>
+    </div>
+  </header>
+
+  <div class="frame">
+    <div class="board" id="board" aria-label="Whiteboard collage. Items can be dragged; diagnoses can be crossed out.">
+      <svg class="arrows" id="arrows" aria-hidden="true"></svg>
+      <div class="ddx" id="ddx">
+        <div class="h">DDx — patient Z</div>
+        <div class="sx">fever · rash · seizure · "never left New Jersey"</div>
+        <ul>
+          <li><button type="button" data-d="infection">Infection?</button></li>
+          <li><button type="button" data-d="sarc">Sarcoidosis</button></li>
+          <li><button type="button" data-d="vasc">Vasculitis</button></li>
+          <li><button type="button" data-d="lupus">Lupus</button></li>
+          <li><button type="button" data-d="lying">Patient is lying</button></li>
+        </ul>
+        <div class="hint" id="ddxHint">↑ tap a diagnosis to rule it out</div>
+      </div>
+
+      <div class="item photo" data-id="pills" style="--r:-5deg">
+        <span class="magnet"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="28" y="14" width="44" height="14" rx="3" fill="#f7f7f5" stroke="#c9cfd1"/>
+          <path d="M30 28 L70 28 L68 88 Q68 92 64 92 L36 92 Q32 92 32 88 Z" fill="#e8791d" opacity=".92"/>
+          <rect x="34" y="42" width="32" height="30" fill="#fff"/>
+          <text x="50" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="5.6" fill="#1c2226" font-weight="600">HOUSE, G.</text>
+          <text x="50" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="5.2" fill="#1c2226">VICODIN</text>
+          <text x="50" y="67" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="4.2" fill="#5b666c">REFILLS: YES</text>
+          <ellipse cx="80" cy="84" rx="6" ry="3.6" fill="#fff" stroke="#c9cfd1"/><ellipse cx="18" cy="88" rx="6" ry="3.6" fill="#fff" stroke="#c9cfd1"/>
+        </svg></div>
+        <div class="cap">Pain management (unsupervised)</div>
+      </div>
+
+      <div class="item cane" data-id="cane" style="--r:8deg">
+        <svg viewBox="0 0 40 300" aria-hidden="true">
+          <path d="M20 40 L20 292" stroke="#2a1c12" stroke-width="9" stroke-linecap="round"/>
+          <path d="M20 44 Q20 8 4 10 Q-6 12 -4 26" stroke="#2a1c12" stroke-width="9" fill="none" stroke-linecap="round"/>
+          <path d="M20 292 L20 296" stroke="#1d2126" stroke-width="11" stroke-linecap="round"/>
+          <path d="M16 150 Q12 132 20 118 Q18 132 26 140 Q30 128 26 116 Q36 132 30 156 Q26 170 20 170 Q12 168 16 150 Z" fill="#e8791d"/>
+          <path d="M18 156 Q17 144 21 136 Q22 146 25 150 Q26 160 21 164 Q18 162 18 156 Z" fill="#ffd36e"/>
+          <path d="M16 190 Q12 176 20 164 Q18 176 26 182 Q30 172 26 162 Q36 176 30 196 Q26 208 20 208 Q12 206 16 190 Z" fill="#d7263d"/>
+        </svg>
+      </div>
+
+      <div class="item photo" data-id="ball" style="--r:4deg">
+        <span class="magnet b"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="36" fill="#9aa3a8"/>
+          <path d="M50 14 A36 36 0 0 1 50 86 A18 36 0 0 0 50 14 Z" fill="#d7263d"/>
+          <path d="M50 14 A18 36 0 0 0 50 86" stroke="#fff" stroke-width="2" fill="none"/>
+          <ellipse cx="38" cy="34" rx="10" ry="6" fill="#fff" opacity=".35" transform="rotate(-30 38 34)"/>
+        </svg></div>
+        <div class="cap">Thinking aid. Thrown at walls.</div>
+      </div>
+
+      <div class="item photo" data-id="guitar" style="--r:-3deg">
+        <span class="magnet r"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <g transform="rotate(35 50 50)">
+            <rect x="47" y="6" width="6" height="48" fill="#3b2a1a"/>
+            <rect x="44" y="2" width="12" height="10" rx="2" fill="#1d2126"/>
+            <path d="M50 50 Q30 48 32 64 Q26 72 32 82 Q40 96 50 92 Q60 96 68 82 Q74 72 68 64 Q70 48 50 50 Z" fill="#1f5fbf"/>
+            <rect x="44" y="66" width="12" height="4" fill="#e7ece9"/><rect x="44" y="76" width="12" height="3" fill="#1d2126"/>
+            <path d="M49 12 L49 80 M51 12 L51 80" stroke="#e7ece9" stroke-width=".6"/>
+          </g>
+        </svg></div>
+        <div class="cap">Plays blues at 3am. Neighbours thrilled.</div>
+      </div>
+
+      <div class="item photo" data-id="sandwich" style="--r:5deg">
+        <span class="magnet"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M14 60 L86 60 L80 76 L20 76 Z" fill="#d9a066"/>
+          <path d="M12 56 Q20 50 30 56 Q40 50 50 56 Q60 50 70 56 Q80 50 88 56 L86 62 L14 62 Z" fill="#6fbf5a"/>
+          <rect x="14" y="48" width="72" height="8" fill="#c0392b"/>
+          <rect x="16" y="44" width="68" height="5" fill="#ffd36e"/>
+          <path d="M14 44 Q50 22 86 44 Z" fill="#e8b27a"/>
+          <circle cx="70" cy="38" r="6" fill="#eef1f2"/><circle cx="78" cy="42" r="5" fill="#eef1f2"/>
+          <text x="50" y="92" text-anchor="middle" font-family="Kalam, cursive" font-size="9" fill="#d7263d" font-weight="700">WILSON'S</text>
+        </svg></div>
+        <div class="cap">Stolen lunch, day 1,412</div>
+      </div>
+
+      <div class="item photo" data-id="moto" style="--r:-4deg">
+        <span class="magnet b"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="24" cy="68" r="14" fill="none" stroke="#1d2126" stroke-width="6"/>
+          <circle cx="78" cy="68" r="14" fill="none" stroke="#1d2126" stroke-width="6"/>
+          <path d="M24 68 L44 50 L66 50 L78 68" stroke="#5b666c" stroke-width="4" fill="none"/>
+          <path d="M36 50 Q42 36 62 38 L74 44 L70 54 L44 56 Z" fill="#e8791d"/>
+          <path d="M60 38 L68 30 L76 32" stroke="#1d2126" stroke-width="3" fill="none"/>
+          <rect x="44" y="40" width="16" height="6" rx="3" fill="#1d2126"/>
+        </svg></div>
+        <div class="cap">Parks in Cuddy's spot.</div>
+      </div>
+
+      <div class="item xray" data-id="xray" style="--r:3deg">
+        <span class="magnet"></span>
+        <svg viewBox="0 0 160 110" aria-hidden="true">
+          <rect width="160" height="110" fill="#0b1419"/>
+          <path d="M30 10 Q40 6 46 14 L52 96 Q46 104 38 98 Z" fill="#cfe4ee" opacity=".85"/>
+          <path d="M66 12 Q76 8 80 16 L78 98 Q70 104 64 96 Z" fill="#cfe4ee" opacity=".7"/>
+          <ellipse cx="42" cy="12" rx="12" ry="8" fill="#e6f3f8" opacity=".9"/>
+          <path d="M40 46 Q58 52 60 40" stroke="#d7263d" stroke-width="3" fill="none"/>
+          <circle cx="48" cy="52" r="10" fill="none" stroke="#d7263d" stroke-width="2.5"/>
+          <text x="104" y="30" font-family="IBM Plex Mono, monospace" font-size="8" fill="#9fc4d6">R FEMUR</text>
+          <text x="104" y="44" font-family="IBM Plex Mono, monospace" font-size="8" fill="#9fc4d6">QUAD</text>
+          <text x="104" y="58" font-family="IBM Plex Mono, monospace" font-size="8" fill="#d7263d">INFARCT</text>
+        </svg>
+        <div class="cap">Right thigh · the reason for everything</div>
+      </div>
+
+      <div class="item memo" data-id="memo" style="--r:-2deg">
+        <span class="magnet r"></span>
+        <b>Memo: clinic duty</b>
+        To: Dr. House<br>
+        From: Dean of Medicine<br>
+        Hours owed: <span style="color:var(--mk-red)">a lot</span><br>
+        Hours worked: a rounding error<br>
+        <span class="sig">— L. Cuddy</span>
+      </div>
+
+      <div class="item note" data-id="n1" style="--r:-6deg">It's never lupus.</div>
+      <div class="item note o" data-id="n2" style="--r:5deg">Humanity is overrated.</div>
+      <div class="item note b" data-id="n3" style="--r:-3deg">Apt. 221B</div>
+      <div class="item note" data-id="n4" style="--r:7deg">Break into the patient's house</div>
+    </div>
+    <div class="tray" aria-hidden="true"><i style="background:#1d2126"></i><i style="background:#d7263d"></i><i style="background:#1f5fbf"></i><i style="background:#1e8a4c"></i></div>
+  </div>
+  <div class="boardhint">
+    <span>Drag the clues. Rule out diagnoses on the board. The blue arrows follow along.</span>
+    <button type="button" id="reset">Erase the board</button>
+  </div>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="sec-head">
+      <span class="eyebrow">Staff directory · fellows come and go</span>
+      <h2>The <em>team</em></h2>
+      <p>Tap an ID badge to open the file. Contains spoilers.</p>
+    </div>
+    <div class="team">
+      <div class="badges" id="badges" role="group" aria-label="Team members"></div>
+      <div class="dossier" id="dossier" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- CASE REPORTS -->
+  <section id="reports">
+    <div class="sec-head">
+      <span class="eyebrow">Journal of Diagnostic Trivia · peer review: Wilson</span>
+      <h2>Case <em>reports</em></h2>
+      <p>Fun facts from behind the scenes, the cast, and the lore.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter case reports">
+      <button type="button" data-f="all" aria-pressed="true">All reports</button>
+      <button type="button" data-f="Production">Production</button>
+      <button type="button" data-f="Cast">Cast</button>
+      <button type="button" data-f="Holmes">The Holmes link</button>
+      <button type="button" data-f="Lore">Lore</button>
+    </div>
+    <div class="reports" id="reportGrid"></div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history">
+    <div class="sec-head">
+      <span class="eyebrow">History of present illness</span>
+      <h2>Patient <em>history</em></h2>
+    </div>
+    <div class="hist">
+      <div class="hx k"><div class="d">16 Nov 2004</div><div><h3>Admitted</h3><p>The pilot airs on Fox. A kindergarten teacher collapses, and it turns out to be a tapeworm in her brain.</p></div></div>
+      <div class="hx"><div class="d">Sep 2005</div><div><h3>"Three Stories" wins an Emmy</h3><p>David Shore wins for writing the episode where House finally explains his leg.</p></div></div>
+      <div class="hx"><div class="d">2006 · 2007</div><div><h3>Back-to-back Globes</h3><p>Hugh Laurie wins Best Actor in a drama two years in a row.</p></div></div>
+      <div class="hx k"><div class="d">May 2006</div><div><h3>Shot</h3><p>The season 2 finale: House is shot in his office, and most of the episode happens in his head.</p></div></div>
+      <div class="hx"><div class="d">2008</div><div><h3>World's most-watched</h3><p>Reported as the most-watched TV show on the planet, with about 82 million viewers in 66 countries.</p></div></div>
+      <div class="hx k"><div class="d">May 2008</div><div><h3>"Wilson's Heart"</h3><p>A bus crash, and Amber. The finale that fans still rank as the show's most painful.</p></div></div>
+      <div class="hx"><div class="d">May 2011</div><div><h3>The car</h3><p>The season 7 finale ends with House driving a car into Cuddy's living room.</p></div></div>
+      <div class="hx k"><div class="d">21 May 2012</div><div><h3>"Everybody Dies"</h3><p>House fakes his own death to spend Wilson's last five months with him. Discharged against medical advice.</p></div></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="sec-head">
+      <span class="eyebrow">Differential exam · no consults</span>
+      <h2>Diagnose <em>this</em></h2>
+      <p>Eight questions. Get enough right and House might not humiliate you in front of the team.</p>
+    </div>
+    <div class="room" id="room" aria-live="polite"></div>
+  </section>
+
+  <!-- TOYS -->
+  <section id="toys">
+    <div class="sec-head">
+      <span class="eyebrow">Clinic duty distractions</span>
+      <h2>Toys for <em>avoiding patients</em></h2>
+    </div>
+    <div class="toys">
+      <div class="toy">
+        <h3>Is it lupus?</h3>
+        <p class="sub">Press the button. Get a second opinion. It's almost never lupus, but the show did find it once.</p>
+        <div class="lupus">
+          <button type="button" class="lbtn" id="lbtn">Is it<br>lupus?</button>
+          <div class="lout" id="lout">It's not lupus.</div>
+          <div class="lcount" id="lcount">Consults: 0 · Lupus found: 0</div>
+        </div>
+      </div>
+      <div class="toy b tr">
+        <h3>Everybody lies</h3>
+        <p class="sub">What the patient says, and what House hears. Pick a classic or type your own.</p>
+        <div class="chips" id="chips" role="group" aria-label="Classic patient statements"></div>
+        <label for="custom">Or type what a patient said</label>
+        <input type="text" id="custom" maxlength="120" placeholder="I only had one slice of cake">
+        <div class="tout">
+          <div class="said"><span>Patient says</span><div id="said"></div></div>
+          <div class="meant"><span>House hears</span><div id="meant"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">It's not lupus.</div>
+    <p>Made by a fan, for fans. Unofficial and unaffiliated. Not medical advice (obviously).</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var board=document.getElementById('board'),svg=document.getElementById('arrows'),ddx=document.getElementById('ddx');
+  var wide={pills:[3,5],cane:[4,40],ball:[12,62],guitar:[82,56],sandwich:[68,4],moto:[84,20],xray:[60,68],memo:[15,33],n1:[74,40],n2:[36,76],n3:[20,5],n4:[86,86]};
+  var narrow={pills:[4,21],ball:[60,21],memo:[4,34],sandwich:[60,35],n1:[34,47],cane:[88,46],moto:[4,51],guitar:[58,53],xray:[4,67],n3:[60,66],n2:[8,81],n4:[56,82]};
+  var links=[['pills','ddx'],['xray','ddx'],['moto','ddx'],['memo','ddx'],['n1','ddx'],['sandwich','ddx']];
+  var linksN=[['pills','ddx'],['ball','ddx'],['n1','ddx']];
+  var items={};document.querySelectorAll('.item').forEach(function(el,i){items[el.dataset.id]=el;el.style.zIndex=10+i;});
+  var mq=window.matchMedia('(max-width:640px)');
+  function layout(){var p=mq.matches?narrow:wide;for(var k in p){if(items[k]){items[k].style.left=p[k][0]+'%';items[k].style.top=p[k][1]+'%';}}requestAnimationFrame(draw);}
+  function rect(el){var b=board.getBoundingClientRect(),r=el.getBoundingClientRect();return {x:r.left-b.left,y:r.top-b.top,w:r.width,h:r.height,cx:r.left-b.left+r.width/2,cy:r.top-b.top+r.height/2};}
+  function edge(r,tx,ty){var dx=tx-r.cx,dy=ty-r.cy;if(!dx&&!dy)return [r.cx,r.cy];var s=Math.min(Math.abs((r.w/2+8)/(dx||1e-6)),Math.abs((r.h/2+8)/(dy||1e-6)));return [r.cx+dx*s,r.cy+dy*s];}
+  function draw(){
+    var b=board.getBoundingClientRect();svg.setAttribute('viewBox','0 0 '+b.width+' '+b.height);
+    var d=rect(ddx),h='';
+    (mq.matches?linksN:links).forEach(function(l,i){var a=rect(items[l[0]]);
+      var p=edge(a,d.cx,d.cy),q=edge(d,a.cx,a.cy);
+      var mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,nx=-(q[1]-p[1]),ny=q[0]-p[0],nl=Math.hypot(nx,ny)||1,bend=(i%2?1:-1)*18;
+      var cx=mx+nx/nl*bend,cy=my+ny/nl*bend;
+      var ang=Math.atan2(q[1]-cy,q[0]-cx),L=12;
+      h+='<path d="M'+p[0]+' '+p[1]+' Q'+cx+' '+cy+' '+q[0]+' '+q[1]+'"/>';
+      h+='<path d="M'+(q[0]-L*Math.cos(ang-.45))+' '+(q[1]-L*Math.sin(ang-.45))+' L'+q[0]+' '+q[1]+' L'+(q[0]-L*Math.cos(ang+.45))+' '+(q[1]-L*Math.sin(ang+.45))+'"/>';
+    });
+    svg.innerHTML=h;
+  }
+  layout();
+  if(mq.addEventListener)mq.addEventListener('change',layout);
+  window.addEventListener('resize',function(){requestAnimationFrame(draw)});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+  var topZ=100,drag=null;
+  Object.keys(items).forEach(function(k){var el=items[k];
+    el.addEventListener('pointerdown',function(e){if(e.button!==undefined&&e.button!==0)return;var b=board.getBoundingClientRect();
+      drag={el:el,sx:e.clientX,sy:e.clientY,ox:el.offsetLeft,oy:el.offsetTop,bw:b.width,bh:b.height};el.setPointerCapture(e.pointerId);el.classList.add('dragging');el.style.zIndex=++topZ;});
+    el.addEventListener('pointermove',function(e){if(!drag||drag.el!==el)return;
+      var x=drag.ox+e.clientX-drag.sx,y=drag.oy+e.clientY-drag.sy;
+      x=Math.max(-el.offsetWidth*.3,Math.min(drag.bw-el.offsetWidth*.7,x));y=Math.max(0,Math.min(drag.bh-el.offsetHeight*.5,y));
+      el.style.left=(x/drag.bw*100)+'%';el.style.top=(y/drag.bh*100)+'%';draw();});
+    function end(){if(drag&&drag.el===el){el.classList.remove('dragging');drag=null;setTimeout(draw,160);}}
+    el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+  });
+
+  /* ddx crossing out */
+  var hint=document.getElementById('ddxHint');
+  var lines={infection:'Cultures negative. Next.',sarc:'Chest film clean. Not sarcoid.',vasc:'Biopsy negative. Scratch it.',lupus:'It\'s never lupus.',lying:'Found a passport in her sock drawer. Told you.'};
+  ddx.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+    var d=b.dataset.d;
+    if(d==='lying'){b.classList.toggle('win');b.classList.remove('x');hint.textContent=b.classList.contains('win')?lines.lying:'↑ tap a diagnosis to rule it out';return;}
+    b.classList.toggle('x');hint.textContent=b.classList.contains('x')?lines[d]:'Back on the board.';
+  });});
+  document.getElementById('reset').addEventListener('click',function(){layout();ddx.querySelectorAll('button').forEach(function(b){b.classList.remove('x','win')});hint.textContent='↑ tap a diagnosis to rule it out';});
+
+  /* team */
+  var T=[
+    {i:'GH',c:'#e8791d',n:'Gregory House',r:'Head of Diagnostics',a:'Hugh Laurie',s:'S1–8',p:'Nephrologist and infectious disease specialist who would rather solve a puzzle than meet the patient. Lives on Vicodin, sarcasm and other people\'s lunches.',dx:'Chronic pain from a thigh infarction that went undiagnosed for days. Treats everyone accordingly.'},
+    {i:'JW',c:'#1f5fbf',n:'James Wilson',r:'Head of Oncology',a:'Robert Sean Leonard',s:'S1–8',p:'House\'s only friend and full-time enabler. A genuinely kind oncologist who has been married three times.',dx:'Watson to House\'s Holmes. His cancer diagnosis drives the whole final season.'},
+    {i:'LC',c:'#d7263d',n:'Lisa Cuddy',r:'Dean of Medicine',a:'Lisa Edelstein',s:'S1–7',p:'The only person who can make House do clinic hours, sometimes. Runs the hospital while cleaning up after him.',dx:'The House–Cuddy relationship ends with a car in her living room.'},
+    {i:'EF',c:'#1e8a4c',n:'Eric Foreman',r:'Neurologist',a:'Omar Epps',s:'S1–8',p:'Former teenage car thief turned brilliant neurologist, who is terrified of turning into House.',dx:'He becomes Dean of Medicine in season 8, which makes him House\'s boss.'},
+    {i:'RC',c:'#6a4bc4',n:'Robert Chase',r:'Intensivist, then surgeon',a:'Jesse Spencer',s:'S1–8',p:'An Australian who started out as a suck-up and grew into the fellow most like House.',dx:'In the last episode he takes over running Diagnostics.'},
+    {i:'AC',c:'#c46a8f',n:'Allison Cameron',r:'Immunologist',a:'Jennifer Morrison',s:'S1–6 (+ finale)',p:'The team\'s moral compass, who cares a lot, possibly too much. Moves to the ER after season 3.',dx:'Married Chase in season 5. It didn\'t last.'},
+    {i:'13',c:'#2e3a40',n:'Remy "Thirteen" Hadley',r:'Internist',a:'Olivia Wilde',s:'S4–8',p:'Nicknamed after her number in the season 4 fellowship competition. Guarded, impulsive, brilliant.',dx:'Carries the gene for Huntington\'s disease, which is at the centre of her story.'},
+    {i:'CT',c:'#8a6a3a',n:'Chris Taub',r:'Former plastic surgeon',a:'Peter Jacobson',s:'S4–8',p:'Walked away from a lucrative practice to work for House. Has a complicated love life, to put it mildly.',dx:'Ends up with two daughters by two different women, born days apart.'},
+    {i:'LK',c:'#0f7f9a',n:'Lawrence Kutner',r:'Sports medicine',a:'Kal Penn',s:'S4–5',p:'The team\'s cheerful optimist, always willing to try the idea nobody else would.',dx:'Written out suddenly in season 5 when Kal Penn left to work in the Obama White House.'},
+    {i:'AV',c:'#b8860b',n:'Amber Volakis',r:'Interventional radiologist',a:'Anne Dudek',s:'S4',p:'The most ruthless candidate in the fellowship competition, with a nickname we won\'t print. Later dates Wilson.',dx:'Dies in "Wilson\'s Heart" from amantadine toxicity after a bus crash.'}
+  ];
+  var bg=document.getElementById('badges'),ds=document.getElementById('dossier');
+  bg.innerHTML=T.map(function(t,i){return '<button type="button" class="badge" data-i="'+i+'" aria-pressed="false"><span class="ini" style="background:'+t.c+'">'+t.i+'</span><div class="nm">'+t.n+'</div><div class="rl">'+t.r+'</div></button>'}).join('');
+  function openT(i){var t=T[i];bg.querySelectorAll('.badge').forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    ds.innerHTML='<div class="top"><span>Staff file</span><span>'+t.s+'</span></div><h3>'+t.n+'</h3><div class="who">'+t.r+' · played by '+t.a+'</div><p>'+t.p+'</p><p class="dx"><b>Key finding</b>'+t.dx+'</p>';}
+  bg.addEventListener('click',function(e){var b=e.target.closest('.badge');if(b)openT(+b.dataset.i);});
+  openT(0);
+
+  /* case reports */
+  var R=[
+    {c:'Production',t:'The bathroom audition',p:'Hugh Laurie taped his audition in a hotel bathroom in Namibia while filming another movie. Producer Bryan Singer reportedly praised the "American actor" without realising Laurie is English.'},
+    {c:'Production',t:'Not really a hospital',p:'The outside of Princeton-Plainsboro is really Princeton University\'s Frist Campus Center. Nobody gets treated there.'},
+    {c:'Production',t:'82 million patients',big:'82M',p:'In 2008 House was reported as the most-watched TV show in the world, with roughly 82 million viewers across 66 countries.'},
+    {c:'Production',t:'Two different themes',p:'US viewers got Massive Attack\'s "Teardrop" over the opening credits. Many international broadcasts used an original instrumental theme instead.'},
+    {c:'Cast',t:'Six nominations, no Emmy',big:'0',p:'Laurie was nominated six times for the lead actor Emmy and never won. He did win two Golden Globes, in 2006 and 2007.'},
+    {c:'Cast',t:'The blues are real',p:'Laurie really plays piano and guitar. In 2011 he released a New Orleans blues album, Let Them Talk.'},
+    {c:'Cast',t:'Kutner went to Washington',p:'Kal Penn left mid-season 5 to work in the White House Office of Public Engagement. The writers gave Kutner a sudden, unexplained death.'},
+    {c:'Cast',t:'Wrong-hand cane',p:'House holds his cane in his right hand, on the same side as his bad right leg. Physical therapists teach the opposite. House, as usual, doesn\'t care.'},
+    {c:'Holmes',t:'House = Holmes',p:'Creator David Shore modelled House on Sherlock Holmes. Even the name is a pun: Holmes sounds like "homes".'},
+    {c:'Holmes',t:'221B',p:'House lives in apartment 221B, the same number as Holmes\'s Baker Street address. Wilson is his Watson, down to the initial W.'},
+    {c:'Holmes',t:'Moriarty pulls the trigger',p:'The man who shoots House in the season 2 finale is credited as Moriarty, named after Holmes\'s arch-enemy.'},
+    {c:'Holmes',t:'Cocaine to Vicodin',p:'Holmes had his cocaine and violin. House has his Vicodin and piano. The addiction-plus-music genius is a direct update.'},
+    {c:'Lore',t:'It was lupus once',p:'"It\'s never lupus" is the running joke. In season 4\'s "You Don\'t Want to Know" it finally was, and House keeps a Vicodin stash in a hollowed-out lupus textbook.'},
+    {c:'Lore',t:'The pilot\'s tapeworm',p:'The first patient, a kindergarten teacher with seizures, turned out to have neurocysticercosis: pork tapeworm larvae in her brain.'},
+    {c:'Lore',t:'Forty candidates',big:'40',p:'After the original team broke up in season 3, House picked new fellows by making 40 applicants compete, reality-show style, and eliminating them one by one.'},
+    {c:'Lore',t:'"Three Stories"',p:'House teaches a class using three leg-pain cases, and one turns out to be his own. The episode explains his infarction and won an Emmy for writing.'}
+  ];
+  var rg=document.getElementById('reportGrid');
+  rg.innerHTML=R.map(function(r,i){return '<article class="rep" data-c="'+r.c+'"><div class="jr"><span>Case '+String(i+1).padStart(3,'0')+'</span><span>'+r.c+'</span></div>'+(r.big?'<span class="big">'+r.big+'</span>':'')+'<h3>'+r.t+'</h3><p>'+r.p+'</p></article>'}).join('');
+  document.getElementById('filters').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    rg.querySelectorAll('.rep').forEach(function(a){a.hidden=!(b.dataset.f==='all'||a.dataset.c===b.dataset.f)});});
+
+  /* quiz */
+  var Q=[
+    {q:'The pilot patient\'s seizures were caused by…',o:['Lupus','Neurocysticercosis (tapeworm)','Multiple sclerosis','A brain tumour'],a:1,w:'Pork tapeworm larvae in her brain. The first case set the tone.'},
+    {q:'Where does House hide his Vicodin in season 4?',o:['Inside his cane','A hollowed-out lupus textbook','His guitar case','Wilson\'s office'],a:1,w:'In a lupus textbook, the one book he knew he\'d never need to open.'},
+    {q:'What was House\'s apartment number?',o:['13','42','221B','1701'],a:2,w:'221B, a nod to Sherlock Holmes at 221B Baker Street.'},
+    {q:'What actually damaged House\'s leg?',o:['A motorcycle crash','A gunshot','An undiagnosed muscle infarction','A sports injury'],a:2,w:'A blood clot cut off blood flow to his thigh muscle, and it was missed for days. "Three Stories" tells it.'},
+    {q:'Which fellow was written out because the actor went to work at the White House?',o:['Taub','Kutner','Chase','Foreman'],a:1,w:'Kutner. Kal Penn left to join the Obama administration.'},
+    {q:'What killed Amber in "Wilson\'s Heart"?',o:['A heart attack','Amantadine toxicity after the bus crash','An allergic reaction','A stroke'],a:1,w:'She had taken amantadine for flu, and her crash-damaged kidneys couldn\'t clear it.'},
+    {q:'Who becomes Dean of Medicine in season 8?',o:['Wilson','Chase','Foreman','Cameron'],a:2,w:'Foreman, the fellow who swore he\'d never become House, ends up as his boss.'},
+    {q:'How does the series end?',o:['House goes to prison','House fakes his death to be with Wilson','House marries Cuddy','House quits medicine for music'],a:1,w:'He fakes his death, and the two ride off on motorcycles. Cancer is boring.'}
+  ];
+  var room=document.getElementById('room'),qi=0,score=0,hist=[];
+  function tally(){var s='';for(var i=0;i<hist.length;i++)s+=hist[i]?'|':'<span class="n">✗</span>';return '<div class="tally" aria-label="Running tally">'+(s||'&nbsp;')+'</div>';}
+  function renderQ(){var it=Q[qi];
+    room.innerHTML='<div class="qmeta"><span>Question '+(qi+1)+' of '+Q.length+'</span><span>Score '+score+'</span></div>'+tally()+'<div class="qtext">'+it.q+'</div>'+
+      '<div class="opts">'+it.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+o+'</button>'}).join('')+'</div><div class="verdict" id="verdict"></div>';
+    room.querySelectorAll('.opts button').forEach(function(b){b.addEventListener('click',answer)});}
+  function answer(e){var i=+e.currentTarget.dataset.i,it=Q[qi],ok=i===it.a;if(ok)score++;hist.push(ok);
+    room.querySelectorAll('.opts button').forEach(function(b,j){b.disabled=true;if(j===it.a)b.classList.add('right');else if(j===i)b.classList.add('wrong');});
+    var v=document.getElementById('verdict');
+    v.innerHTML='<b class="'+(ok?'g':'')+'">'+(ok?['Correct. Don\'t get cocky.','Fine. Lucky guess.','Right. Who told you?','Yes. Now do clinic duty.'][qi%4]:['Wrong. The patient died.','Nope. Next differential.','Idiot. Lovable, but still.','Wrong. Go do clinic hours.'][qi%4])+'</b>'+it.w;
+    var n=document.createElement('button');n.type='button';n.className='qnext';n.textContent=qi<Q.length-1?'Next patient':'Get the diagnosis';
+    n.addEventListener('click',function(){qi++;qi<Q.length?renderQ():renderEnd();});v.after(n);n.focus();
+    room.querySelector('.qmeta span:last-child').textContent='Score '+score;room.querySelector('.tally').outerHTML=tally();}
+  function renderEnd(){var t,d;
+    if(score===8){t='Head of Diagnostics';d='Perfect. House would never say it out loud, but he\'d steal your lunch as a sign of respect.';}
+    else if(score>=6){t='Hired fellow';d='You made the team. Expect insults, a nickname and the occasional break-in at a patient\'s house.';}
+    else if(score>=3){t='Clinic duty';d='Some good calls. Cuddy is putting you on walk-ins until you improve.';}
+    else{t='It was lupus';d='It wasn\'t. Rewatch from the pilot, and bring Wilson.';}
+    room.innerHTML='<div class="final"><div class="qmeta"><span>Discharge summary</span><span>'+Q.length+' of '+Q.length+'</span></div>'+tally()+'<div class="score">'+score+'/'+Q.length+'</div><h3>'+t+'</h3><p>'+d+'</p><button type="button" class="qnext" id="again">Readmit</button></div>';
+    document.getElementById('again').addEventListener('click',function(){qi=0;score=0;hist=[];renderQ();});}
+  renderQ();
+
+  /* lupus */
+  var L=['It\'s not lupus.','It\'s never lupus.','Sarcoidosis. Obviously.','Check the patient\'s house. Then no, it\'s not lupus.','Lupus? I\'d rather do clinic duty. Almost.','The patient is lying. And it\'s not lupus.','Amyloidosis. Or boredom. Not lupus.','Get me a biopsy. And a Reuben. Not lupus.','Have you considered that you\'re an idiot? Not lupus.'];
+  var lb=document.getElementById('lbtn'),lo=document.getElementById('lout'),lc=document.getElementById('lcount'),consults=0,found=0,last=-1;
+  lb.addEventListener('click',function(){consults++;lo.classList.remove('yes');void lo.offsetWidth;
+    if(consults>3&&Math.random()<1/15){found++;lo.textContent='IT\'S LUPUS! (Season 4. Savour it.)';lo.classList.add('yes');}
+    else{var k;do{k=Math.floor(Math.random()*L.length)}while(k===last);last=k;lo.textContent=L[k];}
+    lc.textContent='Consults: '+consults+' · Lupus found: '+found;});
+
+  /* everybody lies */
+  var P=[
+    ['I only have a couple of drinks a week.','A couple of drinks a night. Check the liver enzymes.'],
+    ['I\'ve never taken drugs.','Has taken drugs. Run the tox screen twice.'],
+    ['I haven\'t travelled anywhere.','Went somewhere with parasites. Ask the spouse.'],
+    ['I take my medication exactly as prescribed.','Took it twice last week. Possibly someone else\'s.'],
+    ['I feel fine, really.','About to collapse in the lobby. Get a gurney.'],
+    ['My husband and I have no secrets.','Someone in this marriage is hiding something contagious.'],
+    ['I eat really healthy.','Thinks ketchup is a vegetable.']
+  ];
+  var ch=document.getElementById('chips'),said=document.getElementById('said'),meant=document.getElementById('meant'),cu=document.getElementById('custom');
+  ch.innerHTML=P.map(function(p,i){return '<button type="button" data-i="'+i+'" aria-pressed="false">'+p[0]+'</button>'}).join('');
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function show(i){ch.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});said.textContent='"'+P[i][0]+'"';meant.textContent=P[i][1];}
+  ch.addEventListener('click',function(e){var b=e.target.closest('button');if(b){cu.value='';show(+b.dataset.i);}});
+  var G=['The opposite. Everybody lies.','Lying. Search their home.','Half true. The dangerous half is missing.','Technically true, which is the worst kind of lie.','Lying to protect someone. Find out who.'];
+  cu.addEventListener('input',function(){var v=cu.value.trim();ch.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed','false')});
+    if(!v){show(0);return;}said.innerHTML='"'+esc(v)+'"';var h=0;for(var i=0;i<v.length;i++)h=(h*31+v.charCodeAt(i))>>>0;meant.textContent=G[h%G.length];});
+  show(0);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

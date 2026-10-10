@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Long Dusk | Explainers</title>
+<meta name="description" content="Death in pictures: what happens in the body, the stories every culture tells, and why we fear it.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/long-dusk/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Long Dusk">
+<meta property="og:description" content="Death in pictures: what happens in the body, the stories every culture tells, and why we fear it.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/long-dusk/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/long-dusk/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column of big sky "plates" (always night-coloured pictures) set on a themed page;
+   light theme is last light, dark theme is after dusk. Few words, large pictures. */
+:root{
+  --bg:#EDE9F2; --surface:#F8F5FB; --ink:#1E1A3C; --soft:#5A5478; --line:#CDC6DB;
+  --ember:#A8480F; --violet:#57479A; --glow:#E9983F;
+  /* picture colours: the plates are night scenes in both themes */
+  --night:#0F0E24; --night-2:#1B1A3D; --night-line:#2F2C58; --moonlight:#ECE7F7; --moon-soft:#ABA4CB;
+  --lamp:#FFD27A; --algae:#7FE3C4;
+  --display:'Bodoni Moda','Didot','Bodoni MT',Georgia,serif;
+  --body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131229; --surface:#1B1A38; --ink:#ECE7F7; --soft:#ABA4CB; --line:#343160;
+    --ember:#F2A65A; --violet:#AC9EEE; --glow:#F2A65A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131229; --surface:#1B1A38; --ink:#ECE7F7; --soft:#ABA4CB; --line:#343160;
+  --ember:#F2A65A; --violet:#AC9EEE; --glow:#F2A65A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+p,h1,h2,h3,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.wrap{max-width:1000px;margin-inline:auto;padding-inline:clamp(16px,4vw,36px);padding-block:clamp(16px,3vw,32px) 72px;display:flex;flex-direction:column;gap:clamp(64px,10vw,112px)}
+.part{display:flex;flex-direction:column;gap:clamp(44px,7vw,72px)}
+.block{display:flex;flex-direction:column;gap:20px}
+.head{display:flex;flex-direction:column;gap:12px}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,6.4vw,3.6rem);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4.2vw,2.2rem);line-height:1.1;text-wrap:balance}
+.deck{font-size:clamp(1.05rem,2.3vw,1.25rem);color:var(--soft);max-width:36em}
+.note{font-family:var(--mono);font-size:.75rem;color:var(--soft);line-height:1.5}
+.plate{background:var(--night);color:var(--moonlight);border:1px solid var(--night-line);--hotc:var(--lamp)}
+.ico{width:64px;height:64px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hot{fill:var(--hotc,var(--ember));stroke:none}
+.stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* hero */
+.sky{position:relative;overflow:hidden;border:1px solid var(--night-line);color:var(--moonlight);
+  background:linear-gradient(to top,#FBD38A 0,#F4A65E 64px,#D0607A 136px,#7A4388 214px,#2D2A6E 330px,#1B1A4F 100%);
+  padding:clamp(28px,6vw,64px) clamp(20px,5vw,56px) 250px;display:flex;flex-direction:column;gap:18px}
+.sky .eyebrow{color:var(--lamp)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(3rem,12vw,7rem);line-height:.95;letter-spacing:-.02em}
+h1 em{font-weight:400}
+.sky .deck{color:var(--moonlight);max-width:30em}
+.jump{display:flex;flex-wrap:wrap;gap:10px}
+.jump a{font-family:var(--mono);font-size:.8rem;text-decoration:none;border:1px solid rgba(236,231,247,.5);padding:7px 12px;color:var(--moonlight)}
+.jump a:hover{background:rgba(236,231,247,.14)}
+.sun{position:absolute;left:50%;bottom:14px;width:150px;height:150px;margin-left:-75px;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,#FFF6DC 0,#FFD98A 45%,#F9A94E 100%);box-shadow:0 0 70px 30px rgba(255,214,140,.55);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{box-shadow:0 0 90px 42px rgba(255,214,140,.7)}}
+.hill{position:absolute;left:-6%;right:-6%;bottom:-70px;height:160px;border-radius:50%;background:var(--night)}
+.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--line);border-top:0;background:var(--surface)}
+.phase{display:flex;flex-direction:column;gap:6px;padding:16px 14px;border-left:1px solid var(--line);min-width:0}
+.phase:first-child{border-left:0}
+.phase svg{width:64px;height:44px}
+.phase b{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ember)}
+.phase span{font-size:.95rem;line-height:1.35}
+.phase i{font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--soft)}
+
+/* the building at dusk */
+.dusk{position:relative;overflow:hidden;border:1px solid var(--night-line);color:var(--moonlight);
+  --s-top:#1E1D54;--s-mid:#6B3F86;--s-low:#D9706A;--star:0;--sun-y:-140px;
+  background:linear-gradient(180deg,var(--s-top) 0,var(--s-top) 30%,var(--s-mid) 72%,var(--s-low) 100%);
+  padding:clamp(20px,4vw,40px) clamp(14px,4vw,40px) 0}
+.dusk .stars{opacity:var(--star)}
+.dusk-sun{position:absolute;right:7%;bottom:var(--sun-y);width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle,#FFF2CF 0,#FFC873 60%,#F59E48 100%);box-shadow:0 0 80px 36px rgba(255,200,120,.5)}
+.readout{position:relative;display:flex;flex-direction:column;gap:8px;max-width:640px;margin-inline:auto;min-height:9.5em}
+.readout .eyebrow{color:var(--lamp)}
+.clock{font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,9vw,4.6rem);line-height:1;letter-spacing:-.01em;font-variant-numeric:lining-nums}
+.clock small{font-family:var(--body);font-size:1rem;font-weight:400;color:var(--moon-soft);letter-spacing:0;white-space:nowrap}
+.now{font-size:1.0625rem;line-height:1.45;max-width:34em}
+.tower{position:relative;max-width:640px;margin:22px auto 0;background:var(--night);border:1px solid var(--night-line);border-bottom:0}
+.floor{display:grid;grid-template-columns:clamp(84px,24%,128px) minmax(0,1fr);gap:14px;align-items:center;padding:9px 14px;border-top:1px solid var(--night-line)}
+.floor:first-child{border-top:0}
+.wins{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.w{position:relative;aspect-ratio:3/4;background:#1D1B42}
+.w::after{content:"";position:absolute;inset:0;background:var(--lit,var(--lamp));opacity:var(--o,1);box-shadow:0 0 12px var(--lit,var(--lamp))}
+.fl-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.fl-name{font-weight:600;font-size:1rem;line-height:1.25}
+.fl-state{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--moon-soft);border:1px solid var(--night-line);padding:1px 6px}
+.fl-state[data-s="on"]{color:var(--night);background:var(--lit,var(--lamp));border-color:transparent}
+.fl-state[data-s="mid"]{color:var(--lit,var(--lamp));border-color:currentColor}
+.fl-fact{font-size:.875rem;color:var(--moon-soft);line-height:1.35}
+.floor.cellar{--lit:var(--algae);background:#080816;border-top:3px solid #45417A}
+.controls{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-top:0;padding:16px clamp(14px,3vw,24px) 18px}
+.ctl-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.btn{font:inherit;font-weight:600;font-size:.95rem;background:var(--ink);color:var(--bg);border:0;padding:9px 16px;cursor:pointer}
+.btn:hover{background:var(--ember)}
+.ctl-row label{font-size:.95rem;color:var(--soft)}
+.slider{display:flex;flex-direction:column;gap:6px;min-width:0}
+.slider input{width:100%;margin:0;accent-color:var(--ember);height:28px}
+.bands{display:flex;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--moonlight)}
+.bands span{padding:3px 0;text-align:center;overflow:hidden;white-space:nowrap}
+.ticks{position:relative;height:1.3em;font-family:var(--mono);font-size:.7rem;color:var(--soft)}
+.ticks span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+
+/* pairs and strips */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tile{display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid var(--line);background:var(--surface);min-width:0}
+.tile h4{margin:0;font-family:var(--display);font-weight:500;font-size:1.5rem;line-height:1.1}
+.tile p{font-size:1rem;color:var(--soft)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:s}
+.step{display:flex;flex-direction:column;gap:8px;min-width:0}
+.step svg{width:100%;max-width:150px;height:auto;aspect-ratio:1;color:var(--ink)}
+.step b{font-size:1.05rem;line-height:1.25}
+.step b::before{counter-increment:s;content:counter(s) " ";font-family:var(--mono);font-weight:400;color:var(--ember)}
+.step span{font-size:.9rem;color:var(--soft);line-height:1.4}
+.why{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;align-items:center}
+.why svg{width:100%;height:auto}
+.why ol{display:flex;flex-direction:column;gap:14px}
+.why li{font-size:1.05rem;line-height:1.4;padding-left:16px;border-left:2px solid var(--ember)}
+
+/* stories */
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.story{font:inherit;text-align:left;display:flex;flex-direction:column;gap:8px;padding:16px;cursor:pointer;min-width:0;
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);--sub:var(--soft)}
+.story:hover{border-color:var(--ember)}
+.story[aria-pressed="true"]{background:var(--night);color:var(--moonlight);border-color:var(--lamp);--sub:var(--moon-soft);--hotc:var(--lamp)}
+.story-t{font-family:var(--display);font-style:italic;font-size:1.4rem;line-height:1.1}
+.story-s{font-size:.9rem;color:var(--sub);line-height:1.35}
+.detail{position:relative;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,4vw,36px);padding:clamp(20px,4vw,36px)}
+.detail .ico{width:clamp(72px,14vw,128px);height:clamp(72px,14vw,128px);stroke-width:1.5;position:relative}
+.detail-body{position:relative;display:flex;flex-direction:column;gap:16px}
+.detail h4{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.05}
+.rows{display:flex;flex-direction:column}
+.rows li{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);gap:4px 16px;padding:12px 0;border-top:1px solid var(--night-line)}
+.rows b{font-family:var(--mono);font-weight:500;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lamp);padding-top:3px}
+.rows span{font-size:1rem;line-height:1.4}
+
+/* grief calendar */
+.cal{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);background:var(--surface);padding:18px clamp(14px,3vw,24px) 14px}
+.cal-row{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid var(--line)}
+.cal-row b{font-size:1rem}
+.cal-row > span{font-size:.9rem;color:var(--soft);line-height:1.35}
+.track{position:relative;height:40px;margin-inline:22px}
+.track::before{content:"";position:absolute;left:-22px;right:-22px;top:29px;height:1px;background:var(--line)}
+.dot{position:absolute;top:24px;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:var(--ember)}
+.dot i{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--ink);white-space:nowrap}
+.span{position:absolute;top:27px;height:5px;background:var(--ember);border-radius:3px}
+.axis{position:relative;height:1.4em;margin-inline:22px;font-family:var(--mono);font-size:.68rem;color:var(--soft)}
+.axis span{position:absolute;top:6px;transform:translateX(-50%);white-space:nowrap}
+
+/* fear */
+.sum{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:stretch}
+.sum .tile{align-items:flex-start}
+.sum .tile p{color:var(--ink);font-size:1.1rem;line-height:1.3}
+.sum .tile.plate{background:var(--night);border-color:var(--night-line)}
+.sum .tile.plate p{color:var(--moonlight)}
+.sign{align-self:center;font-family:var(--display);font-size:2.4rem;color:var(--ember);line-height:1}
+.roof{display:block;width:100%;height:36px;color:var(--ember);fill:none;stroke:currentColor;stroke-width:2}
+.shelter{display:flex;flex-direction:column;min-width:0}
+.shelter .tile{border-top:0;flex:1}
+.bars{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);background:var(--surface);padding:20px}
+.bar-row{display:flex;flex-direction:column;gap:4px}
+.bar-row span{font-size:.95rem}
+.bar{height:30px;background:var(--violet);display:flex;align-items:center}
+.bar b{font-family:var(--mono);font-weight:500;font-size:.95rem;margin-left:calc(100% + 10px);white-space:nowrap;color:var(--ink)}
+.bar.big{background:var(--ember)}
+.bar.big b{margin-left:auto;margin-right:10px;color:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font:inherit;font-size:1rem;padding:10px 16px;background:var(--surface);color:var(--ink);border:1px solid var(--line);cursor:pointer}
+.chip:hover{border-color:var(--ember)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.answer{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;padding:clamp(22px,5vw,44px)}
+.answer > :not(.stars){position:relative}
+.answer .eyebrow{color:var(--lamp)}
+.answer q{quotes:none;font-family:var(--display);font-style:italic;font-size:clamp(2rem,6.4vw,3.6rem);line-height:1.04;text-wrap:balance}
+.answer p{max-width:36em;font-size:1.0625rem}
+.answer .note{color:var(--moon-soft)}
+.help{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.help li{padding:18px 18px 18px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.help b{font-family:var(--display);font-weight:500;font-style:italic;font-size:1.4rem;line-height:1.1}
+.help span{font-size:.98rem;color:var(--soft)}
+.end{position:relative;overflow:hidden;padding:clamp(120px,24vw,260px) clamp(20px,5vw,56px) clamp(40px,8vw,90px);display:flex;flex-direction:column;gap:16px;
+  background:linear-gradient(180deg,#070716 0,#0F0E2A 60%,#1E1C45 100%)}
+.end > :not(.stars){position:relative}
+.end q{quotes:none;font-family:var(--display);font-size:clamp(2.3rem,8vw,4.8rem);line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.end p{max-width:30em;color:var(--moon-soft);font-size:1.1rem}
+.sources{display:flex;flex-direction:column;gap:10px;font-size:.85rem;color:var(--soft)}
+.sources ul{display:flex;flex-direction:column;gap:5px}
+.sources a{color:var(--ink);text-decoration-color:var(--ember);text-underline-offset:3px}
+
+@media (max-width:820px){
+  .phases{grid-template-columns:1fr}
+  .phase{display:grid;grid-template-columns:64px minmax(0,1fr);gap:2px 14px;border-left:0;border-top:1px solid var(--line);padding:12px 14px}
+  .phase:first-child{border-top:0}
+  .phase svg{grid-row:1 / span 3}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}
+  .why{grid-template-columns:1fr}
+  .sum{grid-template-columns:1fr}
+  .sign{justify-self:center}
+}
+@media (max-width:640px){
+  .pair,.help{grid-template-columns:1fr}
+  .stories{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .story .ico{width:48px;height:48px}
+  .story-t{font-size:1.2rem}
+  .detail{grid-template-columns:1fr}
+  .rows li{grid-template-columns:1fr}
+  .dusk-sun{display:none}
+}
+@media (prefers-reduced-motion:reduce){.sun{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="block" style="gap:0">
+  <div class="sky">
+    <p class="eyebrow">Death, in pictures</p>
+    <h1>Death is <em>a dusk.</em></h1>
+    <p class="deck">No switch flips. The light leaves in stages, every culture tells a story about the night, and we are the one animal that can read the clock.</p>
+    <nav class="jump" aria-label="Sections">
+      <a href="#body">1 · The body</a><a href="#stories">2 · The stories</a><a href="#fear">3 · The fear</a>
+    </nav>
+    <div class="sun" aria-hidden="true"></div>
+    <div class="hill" aria-hidden="true"></div>
+  </div>
+  <ol class="phases" aria-label="The stages of dusk, and what each stands for in a dying body">
+    <li class="phase">
+      <svg viewBox="0 0 64 44" aria-hidden="true"><circle cx="32" cy="16" r="8" fill="var(--glow)"/><path d="M2 16h60" stroke="var(--ink)" stroke-width="1.5"/></svg>
+      <b>Sunset</b><span>The heart stops.</span><i>0 seconds</i>
+    </li>
+    <li class="phase">
+      <svg viewBox="0 0 64 44" aria-hidden="true"><path d="M2 16h60" stroke="var(--ink)" stroke-width="1.5"/><circle cx="32" cy="24" r="8" fill="var(--glow)" opacity=".8"/><path d="M2 16h60" stroke="var(--ink)" stroke-width="1.5"/></svg>
+      <b>Civil twilight</b><span>Awareness and brain signals go dark.</span><i>the first minute</i>
+    </li>
+    <li class="phase">
+      <svg viewBox="0 0 64 44" aria-hidden="true"><path d="M2 16h60" stroke="var(--ink)" stroke-width="1.5"/><circle cx="32" cy="30" r="8" fill="var(--glow)" opacity=".55"/></svg>
+      <b>Nautical twilight</b><span>Brain and heart cells begin to fail.</span><i>the first hour</i>
+    </li>
+    <li class="phase">
+      <svg viewBox="0 0 64 44" aria-hidden="true"><path d="M2 16h60" stroke="var(--ink)" stroke-width="1.5"/><circle cx="32" cy="36" r="8" fill="var(--glow)" opacity=".3"/></svg>
+      <b>Astronomical twilight</b><span>Muscle, skin and genes wind down.</span><i>hours to days</i>
+    </li>
+    <li class="phase">
+      <svg viewBox="0 0 64 44" aria-hidden="true"><path d="M2 16h60" stroke="var(--ink)" stroke-width="1.5"/><g fill="var(--ink)"><circle cx="14" cy="6" r="1.4"/><circle cx="30" cy="9" r="1"/><circle cx="44" cy="4" r="1.6"/><circle cx="55" cy="10" r="1"/></g></svg>
+      <b>Night</b><span>Only the microbes are awake.</span><i>after day four</i>
+    </li>
+  </ol>
+</header>
+
+<!-- ================= PART ONE ================= -->
+<section class="part" id="body">
+  <div class="block">
+    <div class="head">
+      <p class="eyebrow">Part one · The body</p>
+      <h2>The light leaves in stages</h2>
+      <p class="deck">Your body is a building with many tenants. When the heart stops, they do not all leave at once. Drag the time and watch the floors go dark.</p>
+    </div>
+    <div>
+      <div class="dusk" id="dusk">
+        <canvas class="stars" id="stars1" aria-hidden="true"></canvas>
+        <div class="dusk-sun" aria-hidden="true"></div>
+        <div class="readout">
+          <p class="eyebrow" id="phase">Nautical twilight · sun at −8.3°</p>
+          <p class="clock"><span id="clock">6 minutes</span> <small>since the heart stopped</small></p>
+          <p class="now" id="now">Without help, brain cells start to die. After 2 to 5 minutes with no pulse, doctors may declare death.</p>
+        </div>
+        <div class="tower" id="tower" role="list" aria-label="Body systems, top floor goes dark first"></div>
+      </div>
+      <div class="controls">
+        <div class="ctl-row">
+          <button class="btn" id="play" type="button">Play the dusk</button>
+          <label for="since">Time since the heart stopped</label>
+        </div>
+        <div class="slider">
+          <input type="range" id="since" min="0" max="1000" step="1" value="442">
+          <div class="bands" aria-hidden="true">
+            <span style="width:31.9%;background:#9A3F63">civil</span><span style="width:32%;background:#4E3A7C">nautical</span><span style="width:31.9%;background:#23214F">astronomical</span><span style="width:4.2%;background:#0B0B1E"></span>
+          </div>
+          <div class="ticks" aria-hidden="true">
+            <span style="left:0">1 s</span><span style="left:30.8%">1 min</span><span style="left:61.5%">1 hr</span><span style="left:85.4%">1 day</span><span style="left:100%">1 wk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Typical figures for an adult at normal body temperature. Cold slows every stage. The twilight names are the picture, the timings are the biology.</p>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>So when is someone dead?</h3>
+      <p class="deck">A dusk has no exact end, so medicine draws two lines across it.</p>
+    </div>
+    <div class="pair">
+      <div class="tile">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 34h12l4-12 6 24 5-16 3 4h26"/><circle cx="60" cy="34" r="3" class="hot"/></svg>
+        <h4>The heart line</h4>
+        <p>No pulse, no breath, and neither will return. Doctors wait 2 to 5 minutes to be sure.</p>
+      </div>
+      <div class="tile">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 34q3-9 6 0t6 0 6 0 6 0h32"/><circle cx="60" cy="34" r="3" class="hot"/></svg>
+        <h4>The brain line</h4>
+        <p>The whole brain has stopped for good, even while a ventilator keeps the heart beating. First defined in 1968. Indian law has recognised it since 1994.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>Why a cell goes dark</h3>
+      <p class="deck">Every floor fails the same way. Only the speed differs.</p>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="70" cy="60" r="38" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="70" cy="60" r="14" fill="var(--glow)"/><g fill="var(--violet)"><circle cx="10" cy="44" r="4"/><circle cx="14" cy="62" r="4"/><circle cx="9" cy="80" r="4"/></g><path d="M24 34v54" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <b>Oxygen stops</b><span>No blood flow, no delivery.</span>
+      </li>
+      <li class="step">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="38" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="60" cy="60" r="14" fill="var(--glow)" opacity=".28"/><circle cx="60" cy="60" r="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/></svg>
+        <b>Fuel runs out</b><span>The cell's battery, ATP, is spent in minutes.</span>
+      </li>
+      <li class="step">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="60" cy="60" r="14" fill="var(--glow)" opacity=".15"/><g fill="var(--violet)"><circle cx="34" cy="44" r="4"/><circle cx="84" cy="40" r="4"/><circle cx="90" cy="72" r="4"/><circle cx="40" cy="84" r="4"/><circle cx="62" cy="28" r="4"/><circle cx="66" cy="92" r="4"/></g></svg>
+        <b>Pumps fail</b><span>Salt and water flood in. The cell swells.</span>
+      </li>
+      <li class="step">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="14 12"/><g fill="var(--glow)" opacity=".7"><circle cx="60" cy="58" r="5"/><circle cx="78" cy="70" r="3.5"/><circle cx="46" cy="72" r="3"/><circle cx="104" cy="30" r="3"/><circle cx="14" cy="88" r="3.5"/><circle cx="96" cy="100" r="2.5"/></g></svg>
+        <b>It digests itself</b><span>Its own enzymes break the walls.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>Why we die at all</h3>
+      <p class="deck">Evolution only guards you while you can still pass on genes.</p>
+    </div>
+    <div class="why">
+      <figure>
+        <svg viewBox="0 0 640 330" role="img" aria-label="Schematic curve: the protection evolution gives you is strong through youth, then falls away after the childbearing years.">
+          <path d="M60 70H210C310 70 330 268 520 272L610 274V276H60Z" fill="var(--glow)" opacity=".28"/>
+          <path d="M60 70H210C310 70 330 268 520 272L610 274" fill="none" stroke="var(--ember)" stroke-width="3.5"/>
+          <path d="M60 30V276H616" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+          <g fill="var(--ink)" font-family="var(--body)" font-size="21">
+            <text x="60" y="22" font-size="19" fill="var(--soft)">How hard evolution protects you</text>
+            <text x="92" y="180" font-weight="600">Guarded</text>
+            <text x="440" y="236" font-weight="600">The shadow</text>
+          </g>
+          <g fill="var(--soft)" font-family="var(--mono)" font-size="18" text-anchor="middle">
+            <text x="60" y="306">birth</text><text x="243" y="306">30</text><text x="427" y="306">60</text><text x="596" y="306">90</text>
+          </g>
+        </svg>
+        <figcaption class="note">Schematic, after Medawar (1952) and Kirkwood (1977).</figcaption>
+      </figure>
+      <ol>
+        <li>A gene that kills you young gets weeded out fast.</li>
+        <li>A gene that harms you at 70 has already been passed on.</li>
+        <li>So bodies are built to last long enough. Repairs get skipped, damage piles up.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART TWO ================= -->
+<section class="part" id="stories">
+  <div class="block">
+    <div class="head">
+      <p class="eyebrow">Part two · The stories</p>
+      <h2>Every culture has a story for the night</h2>
+      <p class="deck">Thousands of traditions, six basic answers. Pick one.</p>
+    </div>
+    <div class="stories" id="stories-grid">
+      <button class="story" type="button" data-i="0" aria-pressed="true">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d="M32 10v44M10 32h44M16.4 16.4l31.2 31.2M47.6 16.4 16.4 47.6"/><circle cx="32" cy="32" r="5" class="hot"/></svg>
+        <span class="story-t">Dawn comes again</span><span class="story-s">You return, until you are free.</span>
+      </button>
+      <button class="story" type="button" data-i="1" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 52q5-4 10 0t10 0 10 0 10 0 10 0"/><path d="M10 40h26l-5 7H16z"/><path d="M23 40V18l11 16H23"/><path d="M42 27q8-8 18 0"/><circle cx="51" cy="14" r="4" class="hot"/></svg>
+        <span class="story-t">A far shore</span><span class="story-s">One life, a judgment, another world.</span>
+      </button>
+      <button class="story" type="button" data-i="2" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 56V38l14-11 14 11v18z"/><rect x="28" y="42" width="8" height="8" class="hot"/><path class="hot" d="M14 12l1.6 4.4L20 18l-4.4 1.6L14 24l-1.6-4.4L8 18l4.4-1.6z"/><path class="hot" d="M49 6l1.3 3.7L54 11l-3.7 1.3L49 16l-1.3-3.7L44 11l3.7-1.3z"/><path class="hot" d="M32 4l1 2.9 3 1.1-3 1.1-1 2.9-1-2.9-3-1.1 3-1.1z"/></svg>
+        <span class="story-t">The stars stay close</span><span class="story-s">The dead remain in the family.</span>
+      </button>
+      <button class="story" type="button" data-i="3" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="28" r="18" stroke-dasharray="3 6"/><path d="M8 56h48"/></svg>
+        <span class="story-t">Night is nothing</span><span class="story-s">Nothing follows, and that is fine.</span>
+      </button>
+      <button class="story" type="button" data-i="4" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 8h28M18 56h28M20 8c0 14 12 16 12 24S20 42 20 56M44 8c0 14-12 16-12 24s12 10 12 24"/><path class="hot" d="M24 54c1-7 5-9 8-12 3 3 7 5 8 12z"/></svg>
+        <span class="story-t">Dusk makes the day</span><span class="story-s">The limit gives life its weight.</span>
+      </button>
+      <button class="story" type="button" data-i="5" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 36h12l-3 22h-6z"/><path class="hot" d="M32 5c7 8 10 13 10 18a10 10 0 0 1-20 0c0-4 3-6 5-10 1 3 2 4 3 5 0-5 1-9 2-13z"/></svg>
+        <span class="story-t">Refuse the night</span><span class="story-s">Fight it. Find a cure.</span>
+      </button>
+    </div>
+    <div class="plate detail" id="detail" aria-live="polite">
+      <canvas class="stars" id="stars2" aria-hidden="true"></canvas>
+      <svg class="ico" id="detail-ico" viewBox="0 0 64 64" aria-hidden="true"></svg>
+      <div class="detail-body">
+        <h4 id="detail-t"></h4>
+        <ul class="rows" id="detail-rows"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>Grief gets a calendar</h3>
+      <p class="deck">Whatever the story, a funeral does three jobs: care for the body, send the person on, and stitch the living back together. Almost everywhere, that work is scheduled.</p>
+    </div>
+    <div class="cal" id="cal" role="img" aria-label="Mourning milestones on a time scale from one day to ten years: Islam at 3 days and about 130 days; Judaism at 7 days, 30 days and one year; Hinduism at 13 days and one year; Orthodox Christianity at 3, 9 and 40 days and one year; Buddhism at 7 and 49 days and one year; the Merina of Madagascar every 5 to 7 years."></div>
+    <p class="note">Days after a death, on a scale that compresses as it goes (each step is about ten times longer). Customs vary by community.</p>
+  </div>
+</section>
+
+<!-- ================= PART THREE ================= -->
+<section class="part" id="fear">
+  <div class="block">
+    <div class="head">
+      <p class="eyebrow">Part three · The fear</p>
+      <h2>We are the animal that can read the clock</h2>
+      <p class="deck">Every creature runs from danger. Only one knows the ending in advance.</p>
+    </div>
+    <div class="sum">
+      <div class="tile">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54S10 40 10 24a11 11 0 0 1 22-3 11 11 0 0 1 22 3c0 16-22 30-22 30z"/></svg>
+        <p>A body built to stay alive</p>
+      </div>
+      <div class="sign" aria-hidden="true">+</div>
+      <div class="tile">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 32s10-16 26-16 26 16 26 16-10 16-26 16S6 32 6 32z"/><circle cx="32" cy="32" r="7" class="hot"/></svg>
+        <p>A mind that can see the end coming</p>
+      </div>
+      <div class="sign" aria-hidden="true">=</div>
+      <div class="tile plate">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path class="hot" d="M35 5 15 36h14l-3 23 22-34H34z"/></svg>
+        <p>A dread no other animal carries</p>
+      </div>
+    </div>
+    <p class="note">The idea is Ernest Becker's, from The Denial of Death (1973).</p>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>So we build two shelters</h3>
+      <p class="deck">Terror management theory says most of culture doubles as a roof over this dread.</p>
+    </div>
+    <div class="pair">
+      <div class="shelter">
+        <svg class="roof" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><path d="M1 35 100 3l99 32" vector-effect="non-scaling-stroke"/></svg>
+        <div class="tile"><h4>A story that outlasts me</h4><p>Faith, nation, family, art, science. Something that was here before me and will go on.</p></div>
+      </div>
+      <div class="shelter">
+        <svg class="roof" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><path d="M1 35 100 3l99 32" vector-effect="non-scaling-stroke"/></svg>
+        <div class="tile"><h4>A part in it</h4><p>Self-esteem: the feeling that I count for something inside that story.</p></div>
+      </div>
+    </div>
+    <div class="bars">
+      <p><b>The famous test, 1989.</b> Twenty-two judges set bail for the same case. Half were first asked to write about their own death.</p>
+      <div class="bar-row"><span>Judges who were not reminded</span><div class="bar" style="width:11%"><b>$50</b></div></div>
+      <div class="bar-row"><span>Judges reminded of death</span><div class="bar big" style="width:100%"><b>$455</b></div></div>
+      <p class="note">Handle with care. In 2022 a large multi-lab re-test of a related experiment found no effect. The idea is influential. The lab evidence is contested.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>Which part scares you?</h3>
+      <p class="deck">The fear of death is really several fears. Each has a different answer.</p>
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip" type="button" data-i="0" aria-pressed="true">It will hurt</button>
+      <button class="chip" type="button" data-i="1" aria-pressed="false">I will stop existing</button>
+      <button class="chip" type="button" data-i="2" aria-pressed="false">I don't know what comes</button>
+      <button class="chip" type="button" data-i="3" aria-pressed="false">I'll leave people behind</button>
+      <button class="chip" type="button" data-i="4" aria-pressed="false">I'm running out of time</button>
+      <button class="chip" type="button" data-i="5" aria-pressed="false">I'll be forgotten</button>
+    </div>
+    <div class="plate answer" aria-live="polite">
+      <canvas class="stars" id="stars3" aria-hidden="true"></canvas>
+      <p class="eyebrow" id="ans-k"></p>
+      <q id="ans-q"></q>
+      <p id="ans-p"></p>
+      <p class="note" id="ans-s"></p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="head">
+      <h3>What seems to help</h3>
+    </div>
+    <ul class="help">
+      <li><b>Look at it</b><span>Monks, Stoics and hospice workers agree: death scares less the more often you face it.</span></li>
+      <li><b>Close the loops</b><span>Say the thing. Write the will. Fear feeds on what is left undone.</span></li>
+      <li><b>Belong to something longer</b><span>Children, students, a craft, a cause. Anything that carries on.</span></li>
+      <li><b>Trust the ending more</b><span>Your brain files death under "other people", so your picture of it is poor. With good care, most endings are calmer than imagined.</span></li>
+    </ul>
+  </div>
+
+  <div class="plate end">
+    <canvas class="stars" id="stars4" aria-hidden="true"></canvas>
+    <q>Dusk is what makes it a day.</q>
+    <p>The same mind that can see the ending is the one that gets to decide what the day is for.</p>
+  </div>
+</section>
+
+<footer class="sources">
+  <p class="eyebrow">Sources</p>
+  <ul>
+    <li><a href="https://www.nature.com/articles/s41586-019-1099-1">Vrselja et al., Restoration of brain circulation and cellular functions hours post-mortem. Nature, 2019</a></li>
+    <li><a href="https://royalsocietypublishing.org/rsob/article/7/1/160267/28821/Tracing-the-dynamics-of-gene-transcripts-after">Pozhitkov, Noble et al., Tracing the dynamics of gene transcripts after organismal death. Open Biology, 2017</a></li>
+    <li><a href="https://www.pnas.org/doi/10.1073/pnas.2216268120">Xu et al., Surge of gamma oscillations in the dying human brain. PNAS, 2023</a></li>
+    <li><a href="https://journals.sagepub.com/doi/full/10.1177/0956797617701186">Goranson et al., Dying Is Unexpectedly Positive. Psychological Science, 2017</a></li>
+    <li><a href="https://researchers.mq.edu.au/en/publications/the-religious-correlates-of-death-anxiety-a-systematic-review-and/">Jong et al., The religious correlates of death anxiety. Religion, Brain &amp; Behavior, 2018</a></li>
+    <li><a href="https://online.ucpress.edu/collabra/article/8/1/35271/168050/Many-Labs-4-Failure-to-Replicate-Mortality">Klein et al., Many Labs 4: Failure to Replicate Mortality Salience Effect. Collabra, 2022</a></li>
+    <li>Rosenblatt et al., Journal of Personality and Social Psychology, 1989 (the bail study). Russac et al., Death Studies, 2007 (fear by age). Dor-Ziderman et al., NeuroImage, 2019 (the brain's blind spot). Dreier et al., Annals of Neurology, 2018 (the final brain wave).</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var L=Math.log10, MAXL=L(604800), NIGHT=L(345600);
+  function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
+
+  /* ---------- stars ---------- */
+  function prng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function stars(c,seed,density){
+    var r=c.getBoundingClientRect(); if(!r.width||!r.height) return;
+    var d=Math.min(window.devicePixelRatio||1,2); c.width=Math.round(r.width*d); c.height=Math.round(r.height*d);
+    var x=c.getContext('2d'), rnd=prng(seed), n=Math.round(r.width*r.height/density);
+    for(var i=0;i<n;i++){
+      var px=rnd()*c.width, py=Math.pow(rnd(),1.5)*c.height, s=(rnd()*1.1+.4)*d;
+      x.globalAlpha=.3+rnd()*.7; x.fillStyle=rnd()>.86?'#FFD9A8':'#F1ECFF';
+      x.beginPath(); x.arc(px,py,s,0,6.2832); x.fill();
+    }
+  }
+  var skies=[['#stars1',11,2600],['#stars2',23,5200],['#stars3',37,5200],['#stars4',53,2200]];
+  function drawStars(){skies.forEach(function(s){stars($(s[0]),s[1],s[2])})}
+
+  /* ---------- part one: the building at dusk ---------- */
+  var floors=[
+    {n:'Awareness',f:'Gone in 10 to 20 seconds',a:8,b:20},
+    {n:'Brain signals',f:'Quiet within half a minute',a:12,b:40},
+    {n:'Brain cells',f:'Begin to die after about 5 minutes',a:240,b:28800},
+    {n:'Heart muscle',f:'Holds out 20 to 30 minutes',a:1200,b:21600},
+    {n:'Muscles',f:'Last a few hours, then stiffen',a:7200,b:28800},
+    {n:'Skin, bone, cornea',f:'Alive for about a day',a:43200,b:172800},
+    {n:'Genes',f:'Some still switching on days later',a:86400,b:345600},
+    {n:'Gut bacteria',f:'The night shift. Busy within a day or two',a:43200,b:259200,up:true}
+  ];
+  var msgs=[
+    [8,'The heart has stopped and blood stands still. For a few seconds you are still aware.'],
+    [20,'Awareness fades. The brain uses a fifth of the body’s oxygen and keeps no reserve.'],
+    [70,'The brain’s electrical chatter goes quiet. In some patients a short burst of fast waves has been recorded first.'],
+    [300,'One last wave of discharge rolls across the brain. CPR in this window can still bring a person all the way back.'],
+    [1200,'Without help, brain cells start to die. After 2 to 5 minutes with no pulse, doctors may declare death.'],
+    [7200,'Heart muscle begins to fail. Blood settles to the lowest parts. The body cools a little under 1 °C an hour.'],
+    [43200,'Muscles run out of fuel and lock stiff. Yet in 2019, cells in pig brains were restarted four hours after death.'],
+    [86400,'Skin, bone and corneas are still alive enough to donate. A cornea can restore someone’s sight.'],
+    [345600,'Stiffness passes. In some cells genes are still switching on: seen for 2 days in mice and 4 in zebrafish.'],
+    [Infinity,'Night. The body’s own chemistry has ended. Bacteria, then soil, return every atom to circulation.']
+  ];
+  var keys=[
+    [0,[43,42,107],[200,87,122],[247,178,90]],
+    [-6,[30,29,84],[107,63,134],[217,112,106]],
+    [-12,[20,19,64],[44,40,102],[91,63,126]],
+    [-18,[11,11,36],[18,18,51],[30,28,69]],
+    [-24,[7,7,22],[11,11,34],[17,16,43]]
+  ];
+  function sky(alt){
+    alt=clamp(alt,-24,0); var i=0; while(i<keys.length-2 && alt<keys[i+1][0]) i++;
+    var a=keys[i], b=keys[i+1], p=(a[0]-alt)/(a[0]-b[0]);
+    return [1,2,3].map(function(k){return 'rgb('+a[k].map(function(v,j){return Math.round(v+(b[k][j]-v)*p)}).join(',')+')'});
+  }
+  function fmt(t){
+    function pl(n,u){return n+' '+u+(n===1?'':'s')}
+    if(t<59.5) return pl(Math.round(t),'second');
+    if(t<3570) return pl(Math.round(t/60),'minute');
+    if(t<84600) return pl(Math.round(t/3600),'hour');
+    if(t>=590000) return '1 week';
+    return pl(Math.round(t/86400),'day');
+  }
+  var tower=$('#tower'), dusk=$('#dusk'), rng=$('#since'), play=$('#play');
+  floors.forEach(function(f){
+    var el=document.createElement('div'); el.className='floor'+(f.up?' cellar':''); el.setAttribute('role','listitem');
+    el.innerHTML='<div class="wins" aria-hidden="true"><i class="w"></i><i class="w"></i><i class="w"></i><i class="w"></i></div>'+
+      '<div><div class="fl-top"><span class="fl-name">'+f.n+'</span><span class="fl-state"></span></div><div class="fl-fact">'+f.f+'</div></div>';
+    tower.appendChild(el); f.wins=el.querySelectorAll('.w'); f.state=el.querySelector('.fl-state');
+  });
+  function update(){
+    var v=+rng.value, t=Math.pow(10,v/1000*MAXL), alt=-18*L(t)/NIGHT;
+    var phase=t<1.5?'Sunset':alt>-6?'Civil twilight':alt>-12?'Nautical twilight':alt>-18?'Astronomical twilight':'Night';
+    var c=sky(alt);
+    dusk.style.setProperty('--s-top',c[0]); dusk.style.setProperty('--s-mid',c[1]); dusk.style.setProperty('--s-low',c[2]);
+    dusk.style.setProperty('--star',clamp(-alt/14,0,1).toFixed(2));
+    dusk.style.setProperty('--sun-y',Math.round(-55+alt*13)+'px');
+    $('#phase').textContent=phase+' · sun at '+(alt<-0.05?'−':'')+Math.abs(alt).toFixed(1)+'°';
+    $('#clock').textContent=fmt(t);
+    for(var i=0;i<msgs.length;i++){ if(t<msgs[i][0]){ $('#now').textContent=msgs[i][1]; break; } }
+    floors.forEach(function(f){
+      var b=t<=f.a?1:t>=f.b?0:1-(L(t)-L(f.a))/(L(f.b)-L(f.a)); if(f.up) b=1-b;
+      for(var k=0;k<4;k++) f.wins[k].style.setProperty('--o',clamp(b*4-k,0,1).toFixed(2));
+      var s=b>.98?'on':b<.02?'off':'mid';
+      f.state.dataset.s=s;
+      f.state.textContent=f.up?(s==='on'?'busy':s==='off'?'asleep':'waking'):(s==='on'?'lit':s==='off'?'dark':'fading');
+    });
+    rng.setAttribute('aria-valuetext',fmt(t)+', '+phase);
+  }
+  var raf=null;
+  function stop(){ if(raf) cancelAnimationFrame(raf); raf=null; play.textContent='Play the dusk'; }
+  play.addEventListener('click',function(){
+    if(raf){ stop(); return; }
+    var v0=+rng.value>=995?0:+rng.value, start=performance.now(), dur=(1000-v0)/1000*24000;
+    play.textContent='Pause';
+    (function step(now){
+      var p=clamp(((now||start)-start)/dur,0,1); rng.value=Math.round(v0+(1000-v0)*p); update();
+      if(p<1) raf=requestAnimationFrame(step); else stop();
+    })(start);
+  });
+  rng.addEventListener('input',function(){ if(raf) stop(); update(); });
+  update();
+
+  /* ---------- part two: six stories ---------- */
+  var tales=[
+    {t:'You return, until you are free.',r:[
+      ['Hinduism','The self takes a new body the way a person changes worn clothes. Release from the wheel is moksha.'],
+      ['Buddhism','No fixed self travels. One flame lights the next candle. Release is nirvana.'],
+      ['Tibet','Forty-nine days in the bardo, the gap between one life and the next.']]},
+    {t:'One life, a judgment, another world.',r:[
+      ['Ancient Egypt','Your heart is weighed against a feather. Too heavy, and a monster eats it.'],
+      ['Christianity, Islam','The dead will rise, each life will be judged, and a heaven or a hell follows.'],
+      ['Zoroastrianism','A bridge that widens for the good and narrows to a blade for the wicked.']]},
+    {t:'The dead remain in the family.',r:[
+      ['China','At Qingming each spring, families sweep the graves and bring food.'],
+      ['Mexico','On the Day of the Dead, paths of marigold petals guide them home for a night.'],
+      ['Toraja, Indonesia','The dead can stay in the house for months, spoken of as "sick", until the funeral.']]},
+    {t:'Nothing follows, and that is fine.',r:[
+      ['Epicurus','While I am here, death is not. When death is here, I am not. We never meet.'],
+      ['Zhuangzi','Found drumming on a bowl after his wife died. Her death was one more change of season.'],
+      ['Charvaka, India','Once the body is ash, what is left to come back? So live well now.']]},
+    {t:'The limit gives life its weight.',r:[
+      ['The Stoics','Memento mori: remember you will die, then act well today.'],
+      ['Buddhist monks','Maranasati, meditating on your own death to wake up to the present.'],
+      ['Heidegger','Only a life that ends can be truly your own.']]},
+    {t:'Fight it. Find a cure.',r:[
+      ['Gilgamesh','The oldest epic we have, 4,000 years old, is a king’s failed hunt for immortality.'],
+      ['Qin Shi Huang','China’s first emperor is said to have taken mercury pills for eternal life. They likely killed him.'],
+      ['Today','Cryonics tanks and longevity labs carry the same hope.']]}
+  ];
+  var sBtns=document.querySelectorAll('.story');
+  function showTale(i){
+    sBtns.forEach(function(b,j){ b.setAttribute('aria-pressed', j===i?'true':'false'); });
+    $('#detail-ico').innerHTML=sBtns[i].querySelector('svg').innerHTML;
+    $('#detail-t').textContent=tales[i].t;
+    $('#detail-rows').innerHTML=tales[i].r.map(function(r){return '<li><b>'+r[0]+'</b><span>'+r[1]+'</span></li>'}).join('');
+  }
+  sBtns.forEach(function(b,i){ b.addEventListener('click',function(){ showTale(i); stars($('#stars2'),23,5200); }); });
+  showTale(0);
+
+  /* ---------- grief calendar (one log scale for dots and axis) ---------- */
+  var SPAN=L(3650); function pos(d){return (L(d)/SPAN*100).toFixed(2)+'%'}
+  var cal=[
+    ['Islam','Three days of mourning. A widow waits four months and ten days.',[[3,'3 d'],[130,'130 d']]],
+    ['Judaism','Sit seven days, mourn thirty, light a candle every year.',[[7,'7 d'],[30,'30 d'],[365,'1 yr']]],
+    ['Hinduism','Thirteen days of rites, then a yearly offering.',[[13,'13 d'],[365,'1 yr']]],
+    ['Orthodox Christianity','Prayers on day three, nine and forty.',[[3,'3 d'],[9,'9 d'],[40,'40 d'],[365,'1 yr']]],
+    ['Buddhism','Prayers every seventh day until day forty-nine.',[[7,'7 d'],[49,'49 d'],[365,'1 yr']]],
+    ['Merina of Madagascar','Every five to seven years the family rewraps the bones and dances with them.',[[1825,2555,'5–7 yr']]]
+  ];
+  $('#cal').innerHTML=cal.map(function(r){
+    var marks=r[2].map(function(m){
+      if(m.length===3) return '<span class="span" style="left:'+pos(m[0])+';width:calc('+pos(m[1])+' - '+pos(m[0])+')"></span><span class="dot" style="left:'+pos(Math.sqrt(m[0]*m[1]))+';background:none"><i>'+m[2]+'</i></span>';
+      return '<span class="dot" style="left:'+pos(m[0])+'"><i>'+m[1]+'</i></span>';
+    }).join('');
+    return '<div class="cal-row"><b>'+r[0]+'</b><span>'+r[1]+'</span><div class="track">'+marks+'</div></div>';
+  }).join('')+'<div class="axis">'+[[1,'1 day'],[7,'1 week'],[30,'1 month'],[365,'1 year'],[2555,'7 years']].map(function(a){return '<span style="left:'+pos(a[0])+'">'+a[1]+'</span>'}).join('')+'</div>';
+
+  /* ---------- part three: which fear ---------- */
+  var fears=[
+    ['The fear of pain','Usually less than you imagine.','With good palliative care, most pain can be controlled. When researchers compared what dying people actually wrote with what healthy people imagined they would write, the dying were the more positive.','Goranson et al., 2017'],
+    ['The fear of not existing','You have already not existed once.','Lucretius: the billions of years before your birth never troubled you, and the years after are their mirror. Thomas Nagel’s reply: death is bad for what you will miss. Which makes this fear a form of loving being alive.','Lucretius, c. 55 BCE · Nagel, 1970'],
+    ['The fear of the unknown','It is the not-knowing that hurts.','A review of 100 studies found religion and death anxiety only weakly linked. But one pattern kept appearing: firm believers and firm atheists feared least. The unsure in the middle feared most.','Jong et al., 2018'],
+    ['The fear of leaving people','That one is love.','This fear is about them, not you. It is also the one you can act on today: say the thing, write the letter, sort the paperwork.',''],
+    ['The fear of running out of time','Fear peaks in your twenties.','Death anxiety is highest around age 20 and lowest in old age. Psychologists tie it less to the time left than to the life not yet lived.','Russac et al., 2007'],
+    ['The fear of being forgotten','You ripple.','Irvin Yalom’s word for it. Each of us sets off rings of influence, habits and jokes and kindnesses, that keep moving through other people long after the name is gone.','Yalom, Staring at the Sun, 2008']
+  ];
+  var chips=document.querySelectorAll('.chip');
+  function showFear(i){
+    chips.forEach(function(b,j){ b.setAttribute('aria-pressed', j===i?'true':'false'); });
+    $('#ans-k').textContent=fears[i][0]; $('#ans-q').textContent=fears[i][1];
+    $('#ans-p').textContent=fears[i][2]; $('#ans-s').textContent=fears[i][3]; $('#ans-s').hidden=!fears[i][3];
+  }
+  chips.forEach(function(b,i){ b.addEventListener('click',function(){ showFear(i); stars($('#stars3'),37,5200); }); });
+  showFear(0);
+
+  drawStars();
+  var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(drawStars,200); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(drawStars);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

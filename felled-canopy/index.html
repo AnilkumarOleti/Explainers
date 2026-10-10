@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Felled Canopy | Explainers</title>
+<meta name="description" content="A sixty-year-old tree comes down in an afternoon. What goes with it is harder to see.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/felled-canopy/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Felled Canopy">
+<meta property="og:description" content="A sixty-year-old tree comes down in an afternoon. What goes with it is harder to see.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/felled-canopy/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/felled-canopy/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<meta name="description" content="What happens downstream when cities cut down their trees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EDF0EA;
+  --paper:#F7F8F4;
+  --ink:#1C2420;
+  --ink-2:#4A5650;
+  --ink-3:#77837C;
+  --rule:#CDD5CC;
+  --leaf:#2F6B45;
+  --leaf-soft:#D6E6D8;
+  --heat:#B8491F;
+  --heat-soft:#F4DDD2;
+  --water:#2D6285;
+  --water-soft:#D5E4EE;
+  --wood-1:#C9A57A;
+  --wood-2:#A9825A;
+  --wood-3:#E0C39B;
+  --bark:#4B3A2C;
+  --display:"Alegreya", Georgia, "Times New Roman", serif;
+  --body:"Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#121815;
+    --paper:#18201C;
+    --ink:#E4EAE4;
+    --ink-2:#AEBBB2;
+    --ink-3:#7E8C84;
+    --rule:#2C3831;
+    --leaf:#7DC096;
+    --leaf-soft:#1F3328;
+    --heat:#EE8C62;
+    --heat-soft:#3A2419;
+    --water:#7FB4D8;
+    --water-soft:#1A2C38;
+    --wood-1:#8C6C4B;
+    --wood-2:#6E5238;
+    --wood-3:#A5825C;
+    --bark:#2C2119;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#121815;
+  --paper:#18201C;
+  --ink:#E4EAE4;
+  --ink-2:#AEBBB2;
+  --ink-3:#7E8C84;
+  --rule:#2C3831;
+  --leaf:#7DC096;
+  --leaf-soft:#1F3328;
+  --heat:#EE8C62;
+  --heat-soft:#3A2419;
+  --water:#7FB4D8;
+  --water-soft:#1A2C38;
+  --wood-1:#8C6C4B;
+  --wood-2:#6E5238;
+  --wood-3:#A5825C;
+  --bark:#2C2119;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.6;
+  padding-inline:20px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:72px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.12;color:var(--ink)}
+h1{font-size:clamp(2.3rem,5.6vw,3.9rem);font-weight:800;letter-spacing:-0.01em}
+h2{font-size:clamp(1.7rem,3.4vw,2.35rem);font-weight:700}
+h3{font-size:1.28rem;font-weight:700}
+p{margin:0}
+.prose{max-width:64ch;display:flex;flex-direction:column;gap:14px;color:var(--ink-2)}
+.label{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3)}
+a{color:var(--leaf);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:48px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:20px}
+.hero-copy .lede{font-size:1.2rem;color:var(--ink-2);max-width:48ch}
+.stump-fig{display:flex;flex-direction:column;gap:10px;align-items:center;margin:0}
+.stump-fig canvas{width:100%;max-width:380px;aspect-ratio:1/1;display:block}
+.stump-fig figcaption{font-family:var(--mono);font-size:0.78rem;color:var(--ink-3);text-align:center;max-width:36ch}
+.clock{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);max-width:520px}
+.clock div{padding:14px 0;display:flex;flex-direction:column;gap:2px}
+.clock div + div{border-left:1px solid var(--rule);padding-left:20px}
+.clock strong{font-family:var(--display);font-size:1.5rem;font-weight:800}
+.clock .cut strong{color:var(--heat)}
+.clock .grow strong{color:var(--leaf)}
+.clock span{font-size:0.92rem;color:var(--ink-3)}
+
+/* Ledger */
+.ledger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.ledger article{padding:22px 22px 24px 0;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--rule)}
+.ledger article:not(:nth-child(3n+1)){padding-left:22px;border-left:1px solid var(--rule)}
+.ledger .fig{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:1;color:var(--leaf)}
+.ledger .fig small{font-size:1rem;font-weight:700;margin-left:2px}
+.ledger h3{font-size:1.08rem}
+.ledger p{font-size:0.96rem;color:var(--ink-2)}
+.ledger .src{font-family:var(--mono);font-size:0.72rem;color:var(--ink-3);margin-top:auto;padding-top:6px}
+
+/* Cascade */
+.cascade{display:flex;flex-direction:column;gap:24px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{
+  font-family:var(--body);font-size:0.98rem;font-weight:500;
+  background:transparent;color:var(--ink-2);
+  border:1px solid var(--rule);border-radius:999px;padding:8px 16px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:background .15s,border-color .15s,color .15s;
+}
+.tab:hover{border-color:var(--ink-3);color:var(--ink)}
+.tab .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.panel{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,19rem);gap:36px}
+.chain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.chain li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;position:relative;padding-bottom:22px}
+.chain li:last-child{padding-bottom:0}
+.chain li::before{content:"";position:absolute;left:21px;top:36px;bottom:4px;width:2px;background:var(--rule)}
+.chain li:last-child::before{display:none}
+.chain .order{
+  width:44px;height:36px;border-radius:6px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:0.74rem;font-weight:500;letter-spacing:0.04em;
+  background:var(--soft);color:var(--c);border:1px solid var(--c);
+}
+.chain h3{font-size:1.1rem;margin-bottom:4px}
+.chain p{font-size:0.98rem;color:var(--ink-2)}
+.chain li.loop .order{background:var(--c);color:var(--paper)}
+.side{display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--rule);padding-left:28px}
+.side .big{font-family:var(--display);font-size:2.3rem;font-weight:800;line-height:1;color:var(--c)}
+.side p{font-size:0.95rem;color:var(--ink-2)}
+.side .src{font-family:var(--mono);font-size:0.72rem;color:var(--ink-3)}
+.hint{font-size:0.9rem;color:var(--ink-3)}
+
+/* Replacement */
+.replace{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--leaf);margin-left:6px}
+.timeline > div{position:relative;padding:0 0 22px 26px;display:flex;flex-direction:column;gap:2px}
+.timeline > div:last-child{padding-bottom:0}
+.timeline > div::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--ground);border:2px solid var(--leaf)}
+.timeline .when{font-family:var(--mono);font-size:0.78rem;color:var(--leaf);letter-spacing:0.04em}
+.timeline p{font-size:0.98rem;color:var(--ink-2)}
+.meter{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.meter .bar{height:14px;border-radius:3px;background:var(--rule);overflow:hidden;display:flex}
+.meter .bar i{display:block;height:100%;background:var(--leaf)}
+.meter .bar i.maybe{background:repeating-linear-gradient(135deg,var(--leaf) 0 4px,transparent 4px 8px);opacity:.55}
+.meter .scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.72rem;color:var(--ink-3)}
+
+/* Who pays */
+.who{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.who div{display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:3px solid var(--heat)}
+.who h3{font-size:1.08rem}
+.who p{font-size:0.95rem;color:var(--ink-2)}
+
+/* Home */
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.case{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.case .where{font-family:var(--mono);font-size:0.76rem;color:var(--heat);letter-spacing:0.08em;text-transform:uppercase}
+.case p{font-size:0.98rem;color:var(--ink-2)}
+
+/* Better */
+.better{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 40px;list-style:none;margin:0;padding:0;counter-reset:b}
+.better li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:16px 0;border-top:1px solid var(--rule)}
+.better li::before{counter-increment:b;content:counter(b);font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--leaf);line-height:1.1;min-width:1.2ch}
+.better h3{font-size:1.05rem;margin-bottom:3px}
+.better p{font-size:0.96rem;color:var(--ink-2)}
+.better-note{font-size:0.9rem;color:var(--ink-3);max-width:64ch}
+
+.balance{border-left:3px solid var(--ink-3);padding:4px 0 4px 20px;max-width:68ch;color:var(--ink-2);display:flex;flex-direction:column;gap:10px}
+.balance strong{color:var(--ink)}
+
+section{display:flex;flex-direction:column;gap:22px}
+.section-head{display:flex;flex-direction:column;gap:10px}
+
+.sources{border-top:1px solid var(--rule);padding-top:22px;display:flex;flex-direction:column;gap:12px}
+.sources ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--ink-3);columns:2;column-gap:40px;display:block}
+.sources li{break-inside:avoid;margin-bottom:6px}
+
+@media (max-width:860px){
+  .hero,.replace{grid-template-columns:1fr}
+  .stump-fig{order:-1}
+  .stump-fig canvas{max-width:260px}
+  .ledger{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ledger article:not(:nth-child(3n+1)){padding-left:0;border-left:none}
+  .ledger article:nth-child(2n){padding-left:18px;border-left:1px solid var(--rule)}
+  .ledger article{padding-right:18px}
+  .panel{grid-template-columns:1fr}
+  .side{border-left:none;padding-left:0;border-top:1px solid var(--rule);padding-top:20px}
+  .who{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sources ol{columns:1}
+}
+@media (max-width:560px){
+  body{font-size:17px;padding-inline:16px}
+  .wrap{gap:56px;padding-block:24px 48px}
+  .ledger{grid-template-columns:1fr}
+  .ledger article:nth-child(2n){padding-left:0;border-left:none}
+  .who,.cases,.better{grid-template-columns:1fr}
+  .panel{padding:20px}
+  .clock div + div{padding-left:14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-copy">
+      <span class="label">Urban trees · what the felling permit leaves out</span>
+      <h1>A sixty-year-old tree comes down in an afternoon.</h1>
+      <p class="lede">The saw takes a few hours. What goes with the tree is harder to see: shade on a bus stop, rain held back from a storm drain, dust caught before it reached someone's lungs. This page follows those losses downstream.</p>
+      <div class="clock" aria-label="Time to cut versus time to regrow">
+        <div class="cut"><strong>Hours</strong><span>to fell and clear a mature street tree</span></div>
+        <div class="grow"><strong>Decades</strong><span>for a sapling to cast comparable shade, if it survives</span></div>
+      </div>
+    </div>
+    <figure class="stump-fig">
+      <canvas id="stump" width="760" height="760" role="img" aria-label="Illustration of a tree stump cross-section showing sixty growth rings"></canvas>
+      <figcaption>60 growth rings. Each ring is roughly one year of canopy the city is spending.</figcaption>
+    </figure>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="label">The ledger</span>
+      <h2>What a mature canopy does, in numbers</h2>
+      <p class="prose">These are measured or modelled figures from published studies. They vary a lot with climate, species and street layout, so read them as orders of magnitude.</p>
+    </div>
+    <div class="ledger">
+      <article>
+        <div class="fig num">4.9<small>°C</small></div>
+        <h3>Cooler afternoons</h3>
+        <p>Areas with high canopy cover had afternoon air temperatures up to 4.9 °C lower than low-canopy areas.</p>
+        <span class="src">Locke et al., Heliyon 2024</span>
+      </article>
+      <article>
+        <div class="fig num">6,600<small>L</small></div>
+        <h3>Rain held per tree, per year</h3>
+        <p>Average annual rainfall intercepted by a single street tree in California studies. The range ran from 610 to 26,000 litres depending on species and size.</p>
+        <span class="src">Xiao &amp; McPherson 2002, via USDA Forest Service</span>
+      </article>
+      <article>
+        <div class="fig num">10–50<small>%</small></div>
+        <h3>Less air-conditioning</h3>
+        <p>Three well-placed trees cut a home's annual cooling energy by 10 to 50%, and peak electricity draw by up to 23%.</p>
+        <span class="src">Simpson &amp; McPherson 1996</span>
+      </article>
+      <article>
+        <div class="fig num">~30<small>%</small></div>
+        <h3>Less roadside pollution</h3>
+        <p>Tall, dense roadside vegetation can reduce downwind pollutant levels by roughly 30%.</p>
+        <span class="src">US EPA, Benefits of Trees</span>
+      </article>
+      <article>
+        <div class="fig num">1 in 3</div>
+        <h3>Heat deaths avoidable</h3>
+        <p>Across 93 European cities in summer 2015, one third of 6,700 deaths linked to urban heat could have been prevented by raising tree cover to 30%.</p>
+        <span class="src">Iungman et al., The Lancet 2023</span>
+      </article>
+      <article>
+        <div class="fig num">15,080</div>
+        <h3>Heart deaths after tree loss</h3>
+        <p>When an insect pest killed 100 million ash trees in the US, affected counties saw an extra 15,080 cardiovascular and 6,113 respiratory deaths.</p>
+        <span class="src">Donovan et al., Am J Prev Med 2013</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="cascade" aria-labelledby="cascade-h">
+    <div class="section-head">
+      <span class="label">Downstream</span>
+      <h2 id="cascade-h">Follow one felling through the city</h2>
+      <p class="prose">Each loss sets off a chain. Pick a thread to see how it travels from the stump to people's homes, hospitals and water bills.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" role="tabpanel" id="panel" aria-live="polite"></div>
+    <p class="hint">A step marked <strong>LOOP</strong> feeds back into the start of the chain and makes it worse.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">The replanting promise</span>
+      <h2>Why ten saplings don't equal one old tree</h2>
+    </div>
+    <div class="replace">
+      <div class="prose">
+        <p>Most felling permits come with a condition to plant replacements, often several saplings per tree cut. In 2024 the Supreme Court ordered the Delhi Development Authority to plant 100 trees for every one felled on the Delhi Ridge. Ratios like these sound generous. The accounting has three problems.</p>
+        <p><strong>Survival.</strong> Under India's Green India Mission, survival of planted trees has been estimated at around 50–60%. Plantations are usually counted by saplings planted, rarely by trees alive five years later.</p>
+        <p><strong>Location.</strong> Compensatory planting often happens far from where trees were cut. A forest patch on the city's edge does nothing for the heat on the street that lost its shade.</p>
+        <p><strong>Time.</strong> Cooling, rain interception and pollution capture scale with leaf area. A sapling has a tiny fraction of a mature crown, and the gap takes decades to close. The benefits are lost immediately. The replacement benefits arrive slowly and uncertainly.</p>
+      </div>
+      <div class="timeline" aria-label="Replacement timeline">
+        <div><span class="when">DAY 0</span><h3>Mature tree felled</h3><p>Shade, rain interception and dust capture stop the same day.</p></div>
+        <div><span class="when">YEAR 1</span><h3>Saplings planted</h3><p>Often in a different ward or on the city's outskirts. Watering and guarding are the difference between survival and loss.</p>
+          <div class="meter">
+            <div class="bar" aria-label="Estimated sapling survival 50 to 60 percent"><i style="width:50%"></i><i class="maybe" style="width:10%"></i></div>
+            <div class="scale"><span>0%</span><span>~50–60% survive</span><span>100%</span></div>
+          </div>
+        </div>
+        <div><span class="when">YEARS 2–10</span><h3>Small crowns, small returns</h3><p>Leaf area is a fraction of what was lost. The street stays hotter through these summers.</p></div>
+        <div><span class="when">DECADES</span><h3>Canopy starts to close</h3><p>Only surviving trees in good soil, with room for roots, reach a crown like the one that was cut.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">Who pays</span>
+      <h2>The costs don't land evenly</h2>
+      <p class="prose">People with air-conditioned homes and cars feel the loss of a street tree least. The people who spend the day outdoors, or sleep in rooms that never cool down, feel it most.</p>
+    </div>
+    <div class="who">
+      <div><h3>Outdoor workers</h3><p>Delivery riders, vendors, traffic police and construction crews lose the shade they rest in during the hottest hours.</p></div>
+      <div><h3>The elderly and the very young</h3><p>Their bodies regulate heat less well, so a few degrees of extra heat raises hospital admissions in these groups first.</p></div>
+      <div><h3>Dense, low-income areas</h3><p>These areas usually had fewer trees to begin with, more roofs that trap heat, and less money to spend on cooling.</p></div>
+      <div><h3>Pedestrians and cyclists</h3><p>A treeless road in April is hard to walk. People who can afford to switch to cars do, which adds traffic and exhaust.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">Closer to home</span>
+      <h2>Two Indian cities, two warnings</h2>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <span class="where">Bengaluru</span>
+        <h3>From garden city to heat island</h3>
+        <p>IISc researchers led by T.V. Ramachandra estimate the city has lost about 88% of its tree cover over five decades while built-up area grew by more than 1,000%. The losses have come alongside hotter summers, flooding after modest rain, and falling groundwater. Road widening and metro projects continue to require thousands of trees to be felled.</p>
+      </article>
+      <article class="case">
+        <span class="where">Hyderabad</span>
+        <h3>Kancha Gachibowli, 2025</h3>
+        <p>Bulldozers cleared part of a 400-acre wooded parcel next to the University of Hyderabad over a long weekend, ahead of a planned IT development. The Supreme Court stepped in on 3 April 2025, stopped all felling, called the damage to about 100 acres "alarming", and directed the state to restore the green cover and protect wildlife on the site.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="balance">
+      <strong>A fair counterpoint</strong>
+      <p>Some trees do need to come down. Dead or diseased trees can fall on people during storms, and a metro line can take far more cars off the road than a stretch of trees would offset. The problem isn't that cities ever cut trees. The problem is that the decision usually counts the cost of the road and leaves out the cost of the heat, the floods and the hospital visits.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">What better looks like</span>
+      <h2>Keeping the canopy while the city grows</h2>
+    </div>
+    <ol class="better">
+      <li><div><h3>Design around mature trees first</h3><p>Shift an alignment, narrow a carriageway, or bend a footpath before approving a felling. Mature trees are the hardest asset to replace.</p></div></li>
+      <li><div><h3>Price the loss in the approval</h3><p>Put cooling, stormwater and health value into the project's cost-benefit, the same way land and materials are costed.</p></div></li>
+      <li><div><h3>Replant in the same ward</h3><p>Replacement trees should shade the same streets that lost them, not a plantation on the city's edge.</p></div></li>
+      <li><div><h3>Count survivors, not saplings</h3><p>Audit replacement trees at 3 and 5 years, publish the results, and fund the watering and guarding that keeps them alive.</p></div></li>
+      <li><div><h3>Set a canopy target by neighbourhood</h3><p>Cities including Barcelona, Bristol and Seattle have adopted a 30% canopy goal. Tracking it by ward shows where the gaps and inequities are.</p></div></li>
+      <li><div><h3>Make felling decisions public</h3><p>Notify tree counts, species and girth before cutting, and give residents time to object. Transparency deters the long-weekend clearance.</p></div></li>
+    </ol>
+  </section>
+
+  <footer class="sources">
+    <span class="label">Sources</span>
+    <ol>
+      <li><a href="https://www.sciencedirect.com/science/article/pii/S2405844024010727" target="_blank" rel="noopener">Locke et al. (2024), tree canopy and air temperature, Heliyon</a></li>
+      <li><a href="https://www.nature.com/articles/s42949-025-00277-x" target="_blank" rel="noopener">Increasing tree canopy lowers urban air temperature by up to 1.5 °C, npj Urban Sustainability (2025)</a></li>
+      <li><a href="https://www.isglobal.org/en/-/4-of-summer-mortality-is-attributable-to-urban-heat-islands" target="_blank" rel="noopener">ISGlobal: 4% of summer mortality attributable to urban heat islands (Lancet, 2023)</a></li>
+      <li><a href="https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(25)00112-3/fulltext" target="_blank" rel="noopener">Tree canopy and air pollution mortality in European cities, Lancet Planetary Health (2025)</a></li>
+      <li><a href="https://research.fs.usda.gov/treesearch/45049" target="_blank" rel="noopener">Donovan et al. (2013), trees and human health: the emerald ash borer</a></li>
+      <li><a href="https://www.fs.usda.gov/nrs/pubs/jrnl/2022/nrs_2022_selbig_001.pdf" target="_blank" rel="noopener">Selbig et al. (2022), stormwater benefits of street tree canopy, USDA</a></li>
+      <li><a href="https://www.srs.fs.usda.gov/pubs/FS/fs_1146.pdf" target="_blank" rel="noopener">USDA Forest Service, urban forests and green stormwater infrastructure</a></li>
+      <li><a href="https://www.epa.gov/heatislands/benefits-trees-and-vegetation" target="_blank" rel="noopener">US EPA, benefits of trees and vegetation</a></li>
+      <li><a href="https://research.fs.usda.gov/treesearch/61736" target="_blank" rel="noopener">Simpson &amp; McPherson (1996), tree shade and residential energy use</a></li>
+      <li><a href="https://auf.isa-arbor.com/content/35/4/197" target="_blank" rel="noopener">Tree shade and electricity consumption experiment, Arboriculture &amp; Urban Forestry (2009)</a></li>
+      <li><a href="https://citizenmatters.in/explained-how-bengaluru-is-losing-its-green-cover-to-infrastructure-projects/" target="_blank" rel="noopener">Citizen Matters: how Bengaluru is losing its green cover</a></li>
+      <li><a href="https://theprint.in/science/iisc-study-finds-93-of-bengaluru-lost-lake-forest-cover-since-1970s-how-city-can-change-its-course/2006826/" target="_blank" rel="noopener">ThePrint: IISc study on Bengaluru's lake and forest cover</a></li>
+      <li><a href="https://indialegallive.com/constitutional-law-news/courts-news/supreme-court-maintains-status-quo-on-tree-felling-in-kancha-gachibowli-forest-area/" target="_blank" rel="noopener">India Legal: Supreme Court status quo on Kancha Gachibowli</a></li>
+      <li><a href="https://gulfnews.com/world/asia/india/supreme-court-asks-telangana-to-restore-green-cover-on-kancha-gachibowli-land-1.500232107" target="_blank" rel="noopener">Supreme Court asks Telangana to restore Kancha Gachibowli green cover</a></li>
+      <li><a href="https://www.councilonsustainabledevelopment.org/post/evaluating-the-effectiveness-of-tree-planting-schemes-in-india" target="_blank" rel="noopener">Evaluating the effectiveness of tree planting schemes in India</a></li>
+      <li><a href="https://forumias.com/blog/compensatory-afforestation-in-india-significance-and-challenges-explained-pointwise/" target="_blank" rel="noopener">Compensatory afforestation in India and the Delhi Ridge order</a></li>
+      <li><a href="https://theconversation.com/planting-more-trees-could-reduce-premature-heat-related-deaths-in-european-cities-by-a-third-new-research-198960" target="_blank" rel="noopener">The Conversation: cities adopting the 30% canopy target</a></li>
+    </ol>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const threads = [
+    { id:"heat", name:"Heat", c:"--heat", soft:"--heat-soft",
+      steps:[
+        ["Shade and transpiration stop","A mature crown blocks most direct sun and releases water vapour that cools the air around it. Both end the moment it falls."],
+        ["Roads and walls soak up the sun","Asphalt and concrete absorb heat all day and release it through the night, so the street no longer cools after dark."],
+        ["Homes switch on the AC","Unshaded buildings need more cooling. Peak electricity demand rises on the hottest afternoons, straining the grid."],
+        ["Air conditioners dump heat outside","Every AC unit pushes waste heat onto the street, and the power plants feeding them add emissions.", true],
+        ["Heat illness rises","Warm nights stop bodies from recovering. Heat stroke, kidney strain and heart problems climb, especially among the old and outdoor workers."]
+      ],
+      big:"1 in 3", note:"Share of heat-island deaths in 93 European cities that 30% tree cover could have prevented in summer 2015.", src:"The Lancet, 2023" },
+    { id:"water", name:"Water", c:"--water", soft:"--water-soft",
+      steps:[
+        ["Leaves stop catching rain","A tree canopy holds rain on leaves and bark and slows how hard it hits the ground. Without it, rain lands directly on hard surfaces."],
+        ["Runoff arrives faster","More water reaches storm drains at once. Drains built for the old flow overflow, and streets flood after modest rain."],
+        ["Soil dries and compacts","Roots no longer open channels in the soil, so less water soaks in. Exposed soil washes into drains and chokes them.", true],
+        ["Groundwater recharge drops","Less rain seeps down to aquifers. Borewells go deeper, and neighbourhoods turn to water tankers in summer."],
+        ["Lakes and streams suffer","Runoff carries oil, silt and garbage into lakes, and warmer runoff stresses the life in them."]
+      ],
+      big:"9%", note:"Share of rainfall that street trees would have retained in a US catchment study where 31 trees were removed.", src:"Selbig et al., USDA 2022" },
+    { id:"air", name:"Air & lungs", c:"--leaf", soft:"--leaf-soft",
+      steps:[
+        ["Fewer leaves to trap dust","Leaves catch fine particles and absorb gases such as nitrogen dioxide. Fewer leaves means more of that reaches people."],
+        ["Heat speeds up smog","Hotter air accelerates the chemistry that forms ground-level ozone from traffic exhaust."],
+        ["More people breathe dirtier air","Pedestrians, children walking to school, and people living next to busy roads get the largest doses."],
+        ["Lung and heart disease rise","Fine particles inflame airways and blood vessels. Asthma attacks, heart attacks and strokes all increase with exposure."]
+      ],
+      big:"15,080", note:"Extra cardiovascular deaths linked to the loss of 100 million ash trees across 15 US states, plus 6,113 respiratory deaths.", src:"Donovan et al., 2013" },
+    { id:"life", name:"Wildlife", c:"--leaf", soft:"--leaf-soft",
+      steps:[
+        ["Nests and roosts disappear","Old trees with hollows and wide crowns house birds, bats, squirrels and insects that young trees can't support."],
+        ["Green corridors break","Street trees link parks and lakes. Remove them and animals are stranded in isolated patches."],
+        ["Local species decline","Pollinators lose flowers, birds lose insects to feed on, and specialist species vanish first."],
+        ["Natural pest control weakens","Fewer birds, bats and predatory insects means less natural control of pests that affect gardens, trees and people."]
+      ],
+      big:"455+", note:"Species of plants and animals that students and environmentalists said lived in Hyderabad's Kancha Gachibowli forest before it was partly cleared.", src:"Gulf News / PTI, 2025" },
+    { id:"street", name:"Street life", c:"--ink-2", soft:"--rule",
+      steps:[
+        ["Shade leaves the footpath","The tree that shaded a bus stop, a vendor's cart or a tea stall is gone."],
+        ["Walking gets harder","People avoid walking in open sun. Those who can afford to switch to cars and autos."],
+        ["More traffic, more exhaust","More short trips by vehicle add congestion and emissions, which feeds back into heat and air quality.", true],
+        ["Wellbeing takes a hit","Green views and quiet streets are linked to lower stress. Trees also dampen traffic noise and dust at home."]
+      ],
+      big:"2.6×", note:"Electricity used to cool a building in full sun, compared with an identical building in full shade, in an Alabama experiment.", src:"Arboriculture & Urban Forestry, 2009" },
+    { id:"time", name:"Carbon & time", c:"--wood-2", soft:"--leaf-soft",
+      steps:[
+        ["Stored carbon starts to escape","A mature trunk holds decades of carbon. Once cut, much of it returns to the air as the wood burns or rots."],
+        ["The carbon sink stops","A living tree keeps absorbing carbon every year. That uptake ends immediately."],
+        ["Replacements start small","A sapling absorbs a tiny fraction of what the old tree did, and many planted saplings die within a few years."],
+        ["The gap lasts a generation","Even when replacements survive, it takes decades to rebuild the lost canopy. Children growing up on that street live through the whole gap."]
+      ],
+      big:"50–60%", note:"Estimated survival rate of trees planted under India's Green India Mission.", src:"Council on Sustainable Development, 2024" }
+  ];
+
+  const tabs = document.getElementById("tabs");
+  const panel = document.getElementById("panel");
+  let current = "heat";
+  try { const s = localStorage.getItem("felled-thread"); if (s && threads.some(t=>t.id===s)) current = s; } catch(e){}
+
+  function esc(s){ return s.replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch])); }
+
+  function render(){
+    tabs.innerHTML = "";
+    threads.forEach(t=>{
+      const b = document.createElement("button");
+      b.className = "tab"; b.type = "button"; b.id = "tab-"+t.id;
+      b.setAttribute("role","tab");
+      b.setAttribute("aria-selected", t.id===current ? "true":"false");
+      b.setAttribute("aria-controls","panel");
+      b.style.setProperty("--c", `var(${t.c})`);
+      b.innerHTML = `<span class="dot" aria-hidden="true"></span>${esc(t.name)}`;
+      b.addEventListener("click", ()=>{ current=t.id; try{localStorage.setItem("felled-thread",t.id);}catch(e){} render(); });
+      tabs.appendChild(b);
+    });
+    const t = threads.find(x=>x.id===current);
+    panel.style.setProperty("--c", `var(${t.c})`);
+    panel.style.setProperty("--soft", `var(${t.soft})`);
+    panel.setAttribute("aria-labelledby","tab-"+t.id);
+    const items = t.steps.map((s,i)=>`
+      <li class="${s[2]?'loop':''}">
+        <span class="order" aria-hidden="true">${s[2]?'LOOP':String(i+1).padStart(2,'0')}</span>
+        <div><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p></div>
+      </li>`).join("");
+    panel.innerHTML = `
+      <ol class="chain" aria-label="${esc(t.name)} chain of effects">${items}</ol>
+      <aside class="side">
+        <span class="label">Evidence</span>
+        <div class="big num">${esc(t.big)}</div>
+        <p>${esc(t.note)}</p>
+        <span class="src">${esc(t.src)}</span>
+      </aside>`;
+  }
+  tabs.addEventListener("keydown", e=>{
+    if(e.key!=="ArrowRight" && e.key!=="ArrowLeft") return;
+    const i = threads.findIndex(t=>t.id===current);
+    const n = (i + (e.key==="ArrowRight"?1:-1) + threads.length) % threads.length;
+    current = threads[n].id; render();
+    document.getElementById("tab-"+current).focus();
+  });
+  render();
+
+  // Stump cross-section
+  const cv = document.getElementById("stump");
+  const ctx = cv.getContext("2d");
+  function rng(seed){ return ()=>{ seed = (seed*16807) % 2147483647; return (seed-1)/2147483646; }; }
+  function draw(){
+    const cs = getComputedStyle(document.documentElement);
+    const col = n => cs.getPropertyValue(n).trim();
+    const W = cv.width, cx = W/2, cy = W/2, R = W*0.44;
+    const rand = rng(424242);
+    ctx.clearRect(0,0,W,W);
+    // wobble harmonics shared by all rings, scaled outward
+    const harm = [];
+    for(let k=2;k<=6;k++) harm.push({k, a:(rand()-0.5)*0.05/k*2, p:rand()*Math.PI*2});
+    const shape = (r, extra) => {
+      ctx.beginPath();
+      for(let i=0;i<=180;i++){
+        const th = i/180*Math.PI*2;
+        let f = 1;
+        harm.forEach(h=>{ f += h.a*Math.sin(h.k*th+h.p); });
+        const rr = r*f + (extra?extra(th):0);
+        const x = cx + rr*Math.cos(th), y = cy + rr*Math.sin(th);
+        i ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+      }
+      ctx.closePath();
+    };
+    // bark
+    shape(R*1.07, th => 6*Math.sin(th*37) + 4*Math.sin(th*71));
+    ctx.fillStyle = col("--bark"); ctx.fill();
+    // wood base
+    shape(R);
+    ctx.fillStyle = col("--wood-3"); ctx.fill();
+    // rings: 60, variable width (drought years narrower)
+    const n = 60;
+    let widths = []; for(let i=0;i<n;i++) widths.push(0.6 + rand()*0.8 + (i<8?0.6:0));
+    const total = widths.reduce((a,b)=>a+b,0);
+    let acc = 0;
+    for(let i=0;i<n;i++){
+      acc += widths[i];
+      const r = R*0.04 + (R*0.96)*(acc/total);
+      shape(r);
+      ctx.strokeStyle = i%2 ? col("--wood-2") : col("--wood-1");
+      ctx.lineWidth = i%10===9 ? 2.6 : 1.3;
+      ctx.stroke();
+    }
+    // pith
+    ctx.beginPath(); ctx.arc(cx+3,cy-2,R*0.03,0,Math.PI*2);
+    ctx.fillStyle = col("--wood-2"); ctx.fill();
+    // radial checks (drying cracks)
+    ctx.strokeStyle = col("--bark"); ctx.lineCap = "round";
+    for(let c=0;c<3;c++){
+      const th = rand()*Math.PI*2, len = R*(0.25+rand()*0.35);
+      ctx.beginPath();
+      ctx.moveTo(cx+Math.cos(th)*(R*0.98), cy+Math.sin(th)*(R*0.98));
+      let x = cx+Math.cos(th)*(R*0.98), y = cy+Math.sin(th)*(R*0.98);
+      for(let s=1;s<=8;s++){
+        const rr = R*0.98 - len*s/8, jt = th + (rand()-0.5)*0.03;
+        x = cx+Math.cos(jt)*rr; y = cy+Math.sin(jt)*rr; ctx.lineTo(x,y);
+      }
+      ctx.lineWidth = 3.2 - c*0.6; ctx.stroke();
+    }
+    // decade markers along one radius
+    ctx.fillStyle = col("--ink"); ctx.font = `500 ${W*0.024}px "IBM Plex Mono", monospace`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  }
+  draw();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw); } catch(e){}
+  new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

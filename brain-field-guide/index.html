@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Brain Field Guide | Explainers</title>
+<meta name="description" content="Twelve parts of the brain: where each one sits, what it does, and one thing about it you will not forget.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/brain-field-guide/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Brain Field Guide">
+<meta property="og:description" content="Twelve parts of the brain: where each one sits, what it does, and one thing about it you will not forget.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/brain-field-guide/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/brain-field-guide/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: an atlas plate. One 1080px column. The hero is a plate (large brain left, reading panel right).
+   Each region then gets its own row: a large brain with that region lit, and a few words beside it. */
+:root{
+  --ground:#EEF1F4; --paper:#F9FAFB; --cortex:#E2E7EC; --tissue:#D2D9E0;
+  --ink:#131C26; --ink-2:#4B5867; --rule:#C2CAD3; --on-hue:#101820;
+  --h1:#7AA5F2; --h2:#EBB13F; --h3:#5FBF95; --h4:#F0859C;
+  --h5:#AB90EA; --h6:#F0965A; --h7:#55BFCB; --h8:#B5C955;
+  --s1:color-mix(in oklab,var(--h1) 34%,var(--tissue)); --s2:color-mix(in oklab,var(--h2) 34%,var(--tissue));
+  --s3:color-mix(in oklab,var(--h3) 34%,var(--tissue)); --s4:color-mix(in oklab,var(--h4) 34%,var(--tissue));
+  --s5:color-mix(in oklab,var(--h5) 34%,var(--tissue)); --s6:color-mix(in oklab,var(--h6) 34%,var(--tissue));
+  --s7:color-mix(in oklab,var(--h7) 34%,var(--tissue)); --s8:color-mix(in oklab,var(--h8) 34%,var(--tissue));
+  --t1:color-mix(in oklab,var(--ink) 60%,var(--tissue)); --t2:color-mix(in oklab,var(--ink) 30%,var(--tissue)); --t3:color-mix(in oklab,var(--ink) 6%,var(--tissue));
+  --font-display:"Instrument Serif","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F151C; --paper:#161E27; --cortex:#1D2731; --tissue:#2B3643;
+    --ink:#E7ECF1; --ink-2:#9CA9B7; --rule:#2D3945; --on-hue:#101820;
+    --h1:#7AA5F2; --h2:#E6AC3C; --h3:#5CBA91; --h4:#EC8198;
+    --h5:#A78CE6; --h6:#EC9257; --h7:#52BAC6; --h8:#B0C452;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F151C; --paper:#161E27; --cortex:#1D2731; --tissue:#2B3643;
+  --ink:#E7ECF1; --ink-2:#9CA9B7; --rule:#2D3945; --on-hue:#101820;
+  --h1:#7AA5F2; --h2:#E6AC3C; --h3:#5CBA91; --h4:#EC8198;
+  --h5:#A78CE6; --h6:#EC9257; --h7:#52BAC6; --h8:#B0C452;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.55;padding-inline:clamp(16px,4vw,40px);-webkit-font-smoothing:antialiased}
+.page{max-width:1080px;margin-inline:auto;padding-block:clamp(28px,5vw,64px) 72px;display:flex;flex-direction:column;gap:clamp(48px,7vw,88px)}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;margin:0;text-wrap:balance;line-height:1.02;letter-spacing:-.01em}
+h1{font-size:clamp(2.8rem,7.2vw,5rem)}
+h2{font-size:clamp(2rem,4.6vw,3rem)}
+h3{font-size:clamp(1.9rem,4vw,2.5rem)}
+p{margin:0}
+em{font-style:italic}
+.mono{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+
+/* masthead */
+.mast{display:flex;flex-direction:column;gap:18px}
+.mast .lede{font-size:clamp(1.1rem,2vw,1.3rem);max-width:34em;color:var(--ink-2)}
+.spec{display:flex;flex-wrap:wrap;gap:6px 26px;padding-block:12px;border-block:1px solid var(--rule);font-family:var(--font-mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+.spec .pair{display:inline-flex;gap:10px;white-space:nowrap}
+.spec b{font-weight:500}
+.spec .pair span{color:var(--ink-2)}
+
+/* brain drawing */
+svg.brain{display:block;width:100%;height:auto;max-width:100%}
+.r{stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round;transition:fill .2s ease}
+.lobe{stroke:none}
+.deep{stroke-dasharray:5 4}
+.r-frontal{fill:var(--f-frontal,var(--tissue))}
+.r-parietal{fill:var(--f-parietal,var(--tissue))}
+.r-temporal{fill:var(--f-temporal,var(--tissue))}
+.r-occipital{fill:var(--f-occipital,var(--tissue))}
+.r-cerebellum{fill:var(--f-cerebellum,var(--tissue))}
+.r-brainstem{fill:var(--f-brainstem,var(--tissue))}
+.r-cortex{fill:var(--f-cortex,var(--cortex))}
+.r-thalamus{fill:var(--f-thalamus,var(--tissue))}
+.r-hypothalamus{fill:var(--f-hypothalamus,var(--tissue))}
+.r-amygdala{fill:var(--f-amygdala,var(--tissue))}
+.r-hippocampus{fill:var(--f-hippocampus,var(--tissue))}
+.r-basal{fill:var(--f-basal,var(--tissue))}
+.r-callosum{fill:var(--f-callosum,var(--tissue))}
+.line{fill:none;stroke:var(--ink);stroke-linecap:round}
+.gyrus{stroke-width:1.5;stroke-opacity:.2}
+.sulcus{stroke-width:2;stroke-opacity:.8}
+.imag{stroke-width:1.5;stroke-opacity:.55;stroke-dasharray:3 5}
+.edge{stroke-width:2}
+.stalk{stroke-width:2}
+.lbl{font-family:var(--font-body);font-weight:500;font-size:14px;fill:var(--ink);pointer-events:none}
+.lbl.sm{font-size:13px}
+.lead{stroke:var(--ink);stroke-width:1;stroke-opacity:.65;fill:none;pointer-events:none}
+.lbl-frontal{fill:var(--l-frontal,var(--ink))}
+.lbl-parietal{fill:var(--l-parietal,var(--ink))}
+.lbl-temporal{fill:var(--l-temporal,var(--ink))}
+.lbl-occipital{fill:var(--l-occipital,var(--ink))}
+.lbl-cerebellum{fill:var(--l-cerebellum,var(--ink))}
+
+/* hero atlas */
+.plate{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.stage{display:flex;flex-direction:column;gap:14px;min-width:0}
+.views{display:grid}
+.views svg{grid-area:1/1;transition:opacity .25s ease}
+.atlas[data-view="out"] #svg-med,.atlas[data-view="in"] #svg-lat{opacity:0;pointer-events:none}
+.atlas .r[data-r]{cursor:pointer}
+.atlas{
+  --f-frontal:var(--s1);--f-parietal:var(--s2);--f-temporal:var(--s3);--f-occipital:var(--s4);--f-cerebellum:var(--s5);--f-brainstem:var(--s6);
+  --f-basal:var(--s1);--f-thalamus:var(--s2);--f-hippocampus:var(--s3);--f-amygdala:var(--s4);--f-hypothalamus:var(--s7);--f-callosum:var(--s8);
+}
+.atlas[data-sel="frontal"]{--f-frontal:var(--h1);--l-frontal:var(--on-hue)}
+.atlas[data-sel="parietal"]{--f-parietal:var(--h2);--l-parietal:var(--on-hue)}
+.atlas[data-sel="temporal"]{--f-temporal:var(--h3);--l-temporal:var(--on-hue)}
+.atlas[data-sel="occipital"]{--f-occipital:var(--h4);--l-occipital:var(--on-hue)}
+.atlas[data-sel="cerebellum"]{--f-cerebellum:var(--h5);--l-cerebellum:var(--on-hue)}
+.atlas[data-sel="brainstem"]{--f-brainstem:var(--h6)}
+.atlas[data-sel="basal"]{--f-basal:var(--h1)}
+.atlas[data-sel="thalamus"]{--f-thalamus:var(--h2)}
+.atlas[data-sel="hippocampus"]{--f-hippocampus:var(--h3)}
+.atlas[data-sel="amygdala"]{--f-amygdala:var(--h4)}
+.atlas[data-sel="hypothalamus"]{--f-hypothalamus:var(--h7)}
+.atlas[data-sel="callosum"]{--f-callosum:var(--h8)}
+
+.seg{display:inline-flex;align-self:flex-start;border:1px solid var(--ink);border-radius:999px;padding:3px;gap:2px}
+.seg button{font:500 .9rem var(--font-body);color:var(--ink);background:transparent;border:0;border-radius:999px;padding:7px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;font:500 .9rem var(--font-body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:7px 11px;cursor:pointer}
+.chip i{width:11px;height:11px;border-radius:2px;background:var(--h);border:1px solid var(--ink);flex:none}
+.chip[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.panel{display:flex;flex-direction:column;gap:14px;min-width:0;padding-top:6px}
+.panel .tag{display:flex;align-items:center;gap:10px}
+.swatch{width:14px;height:14px;border-radius:3px;background:var(--h);border:1px solid var(--ink);flex:none}
+.job{font-size:1.22rem;line-height:1.35;font-weight:500;max-width:26em}
+.fact{display:flex;flex-direction:column;gap:6px}
+.fact p{font-family:var(--font-display);font-size:clamp(1.3rem,2.3vw,1.52rem);line-height:1.24;max-width:27em}
+.panel a{color:var(--ink);font-weight:500;text-underline-offset:4px;align-self:flex-start}
+.hint{color:var(--ink-2);font-size:.92rem}
+
+/* two rules */
+.sec-head{display:flex;flex-direction:column;gap:10px;max-width:40em}
+.sec-head p{color:var(--ink-2);font-size:1.1rem}
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,56px)}
+.rule{display:flex;flex-direction:column;gap:12px;margin:0;min-width:0}
+.rule h3{font-size:clamp(1.6rem,3vw,2rem)}
+.rule figcaption{display:flex;flex-direction:column;gap:10px}
+.rule p{max-width:30em}
+.key{display:flex;flex-direction:column;gap:6px;list-style:none;margin:0;padding:0;font-size:.95rem}
+.key li{display:flex;gap:10px;align-items:baseline}
+.key i{width:12px;height:12px;border-radius:2px;border:1px solid var(--ink);flex:none;transform:translateY(1px)}
+.key span{color:var(--ink-2)}
+
+/* region entries */
+.group{display:flex;flex-direction:column;gap:28px}
+.entry{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;padding-top:28px;border-top:1px solid var(--rule)}
+.entry figure{margin:0;min-width:0}
+.entry .body{display:flex;flex-direction:column;gap:14px;min-width:0}
+.entry .tag{display:flex;align-items:center;gap:10px}
+.entry h3 small{font-family:var(--font-display);font-style:italic;font-size:.55em;color:var(--ink-2);letter-spacing:0;white-space:nowrap}
+.does{display:flex;flex-wrap:wrap;gap:6px 8px;list-style:none;margin:0;padding:0;font-size:.95rem}
+.does li{border:1px solid var(--rule);border-radius:999px;padding:3px 12px;background:var(--paper)}
+
+/* closing */
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);list-style:none;margin:0;padding:0}
+.notes li{display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--ink);padding-top:14px;min-width:0}
+.notes b{font-family:var(--font-display);font-weight:400;font-size:1.55rem;line-height:1.1}
+.notes span{color:var(--ink-2)}
+footer{color:var(--ink-2);font-size:.9rem;border-top:1px solid var(--rule);padding-top:16px;max-width:60em}
+
+@media (max-width:820px){
+  .plate,.entry,.rules,.notes{grid-template-columns:minmax(0,1fr)}
+  .entry{align-items:start}
+  .entry figure{max-width:440px}
+}
+@media (prefers-reduced-motion:reduce){ .r,.views svg{transition:none} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="mast">
+    <p class="mono">Plate 1 &middot; Human brain, seen from the left</p>
+    <h1>The brain, region by region</h1>
+    <p class="lede">Twelve parts do most of the work. Here is where each one sits, what it does, and one thing about it you will not forget.</p>
+    <p class="spec"><span class="pair"><b>1.4 kg</b> <span>about a pineapple</span></span><span class="pair"><b>86 billion</b> <span>nerve cells</span></span><span class="pair"><b>20 watts</b> <span>a dim light bulb</span></span><span class="pair"><b>2%</b> <span>of your weight, 20% of your energy</span></span></p>
+  </header>
+
+  <!-- ============ HERO ATLAS ============ -->
+  <section class="plate atlas" id="atlas" data-sel="frontal" data-view="out" aria-label="Interactive brain map">
+    <div class="stage">
+      <div class="seg" role="group" aria-label="Choose a view">
+        <button type="button" id="btn-out" aria-pressed="true">Outside</button>
+        <button type="button" id="btn-in" aria-pressed="false">Inside</button>
+      </div>
+
+      <div class="views">
+        <!-- lateral view -->
+        <svg class="brain" id="svg-lat" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain showing the four lobes, the cerebellum and the brainstem">
+          <defs>
+            <clipPath id="cp-cer"><path d="M52 205C40 150 80 80 160 52C230 28 320 30 380 60C440 90 478 150 470 205C466 240 452 262 432 270C400 282 370 296 330 306C290 318 230 328 180 316C150 308 128 290 132 262C133 252 138 246 140 244C110 246 66 236 52 205Z"/></clipPath>
+            <clipPath id="cp-cbl"><path d="M330 298C352 282 420 266 448 280C472 294 464 342 426 358C386 374 336 362 322 336C315 320 320 306 330 298Z"/></clipPath>
+          </defs>
+          <g id="lat">
+            <path class="r r-brainstem" data-r="brainstem" d="M282 300C268 318 270 342 288 352C296 372 302 394 306 416L340 416C337 384 336 350 340 300Z"/>
+            <path class="r r-cerebellum" data-r="cerebellum" d="M330 298C352 282 420 266 448 280C472 294 464 342 426 358C386 374 336 362 322 336C315 320 320 306 330 298Z"/>
+            <g clip-path="url(#cp-cbl)">
+              <path class="line gyrus" d="M326 320C370 300 420 292 462 300"/>
+              <path class="line gyrus" d="M320 336C368 316 425 308 466 318"/>
+              <path class="line gyrus" d="M326 352C372 334 422 326 458 336"/>
+              <path class="line gyrus" d="M350 366C384 352 414 346 440 348"/>
+            </g>
+            <g clip-path="url(#cp-cer)">
+              <path class="r lobe r-parietal" data-r="parietal" d="M0 0H520V345H0Z"/>
+              <path class="r lobe r-frontal" data-r="frontal" d="M285 0L285 33C275 90 262 150 238 228L232 345L0 345L0 0Z"/>
+              <path class="r lobe r-temporal" data-r="temporal" d="M140 244C190 240 260 228 330 196L440 204L440 345L100 345L100 250Z"/>
+              <path class="r lobe r-occipital" data-r="occipital" d="M402 0L402 76C392 140 398 220 404 281L404 345L520 345L520 0Z"/>
+            </g>
+            <path class="line gyrus" d="M150 72C180 82 215 72 244 62"/>
+            <path class="line gyrus" d="M106 122C138 110 170 122 192 102"/>
+            <path class="line gyrus" d="M88 172C130 162 170 178 214 162"/>
+            <path class="line gyrus" d="M98 216C140 208 180 216 214 206"/>
+            <path class="line gyrus" d="M250 40C242 95 230 150 212 212"/>
+            <path class="line gyrus" d="M318 40C310 95 298 150 276 205"/>
+            <path class="line gyrus" d="M330 72C350 86 368 82 386 100"/>
+            <path class="line gyrus" d="M312 140C338 148 362 140 388 158"/>
+            <path class="line gyrus" d="M165 268C220 262 290 250 372 228"/>
+            <path class="line gyrus" d="M185 302C240 304 300 296 372 276"/>
+            <path class="line gyrus" d="M418 120C432 132 444 138 456 150"/>
+            <path class="line gyrus" d="M414 222C430 230 445 228 458 222"/>
+            <path class="line sulcus" d="M285 36C275 90 262 150 238 228"/>
+            <path class="line sulcus" d="M140 244C190 240 260 228 330 196"/>
+            <path class="line imag" d="M330 196L398 203"/>
+            <path class="line imag" d="M402 76C392 140 398 220 404 281"/>
+            <path class="line edge" d="M52 205C40 150 80 80 160 52C230 28 320 30 380 60C440 90 478 150 470 205C466 240 452 262 432 270C400 282 370 296 330 306C290 318 230 328 180 316C150 308 128 290 132 262C133 252 138 246 140 244C110 246 66 236 52 205Z"/>
+          </g>
+          <text class="lbl lbl-frontal" x="150" y="150" text-anchor="middle">Frontal</text>
+          <text class="lbl lbl-parietal" x="346" y="122" text-anchor="middle">Parietal</text>
+          <text class="lbl lbl-temporal" x="262" y="282" text-anchor="middle">Temporal</text>
+          <text class="lbl sm lbl-occipital" x="435" y="186" text-anchor="middle">Occipital</text>
+          <text class="lbl lbl-cerebellum" x="396" y="324" text-anchor="middle">Cerebellum</text>
+          <text class="lbl" x="262" y="396" text-anchor="end">Brainstem</text>
+          <path class="lead" d="M267 391L302 391"/>
+        </svg>
+
+        <!-- medial view -->
+        <svg class="brain" id="svg-med" viewBox="0 0 520 430" role="img" aria-hidden="true" aria-label="The brain cut down the middle, showing the corpus callosum, basal ganglia, thalamus, hypothalamus, amygdala and hippocampus">
+          <g id="med">
+            <path class="r r-cerebellum" data-r="cerebellum" d="M330 298C352 282 420 266 448 280C472 294 464 342 426 358C386 374 336 362 322 336C315 320 320 306 330 298Z"/>
+            <g clip-path="url(#cp-cbl)">
+              <path class="line gyrus" d="M338 326C370 322 410 316 452 300"/>
+              <path class="line gyrus" d="M372 322C384 304 400 292 420 284"/>
+              <path class="line gyrus" d="M392 318C410 330 430 336 448 334"/>
+              <path class="line gyrus" d="M360 324C372 340 384 350 400 358"/>
+            </g>
+            <path class="r r-cortex" d="M52 205C40 150 80 80 160 52C230 28 320 30 380 60C440 90 478 150 470 205C466 240 452 262 432 270C400 282 370 296 330 306C290 318 230 328 180 316C150 308 128 290 132 262C133 252 138 246 140 244C110 246 66 236 52 205Z"/>
+            <path class="line gyrus" d="M150 160C160 120 205 96 252 94C300 92 336 100 352 116"/>
+            <path class="line gyrus" d="M96 150C110 120 140 96 176 82"/>
+            <path class="line gyrus" d="M392 110C420 132 438 164 440 200"/>
+            <path class="line gyrus" d="M366 262C392 252 418 240 440 222"/>
+            <path class="line gyrus" d="M84 208C96 214 112 216 126 212"/>
+            <path class="r r-callosum" data-r="callosum" d="M168 205C150 180 175 150 220 142C270 134 320 145 340 185C346 200 335 212 322 205C318 180 290 162 245 162C205 162 185 175 186 200C186 212 172 214 168 205Z"/>
+            <path class="r r-brainstem" data-r="brainstem" d="M246 226C258 250 266 276 272 298C262 318 268 346 288 352C296 372 302 394 306 416L340 416C337 384 336 350 334 318C330 284 314 250 296 224Z"/>
+            <ellipse class="r r-thalamus" data-r="thalamus" cx="270" cy="206" rx="32" ry="21"/>
+            <g class="r r-hypothalamus" data-r="hypothalamus">
+              <path class="line stalk" d="M224 246L217 256"/>
+              <ellipse cx="232" cy="236" rx="17" ry="12"/>
+              <circle cx="214" cy="262" r="7"/>
+            </g>
+            <path class="r deep r-basal" data-r="basal" d="M198 198C194 180 214 170 232 176C256 172 286 174 308 190C290 182 258 180 236 184C240 200 226 214 210 212C202 211 199 205 198 198Z"/>
+            <path class="r deep r-hippocampus" data-r="hippocampus" d="M320 236C326 264 292 294 240 300C228 301 216 299 212 293C210 286 218 281 228 283C270 283 302 262 306 237C307 228 318 227 320 236Z"/>
+            <ellipse class="r deep r-amygdala" data-r="amygdala" cx="198" cy="292" rx="13" ry="10" transform="rotate(-15 198 292)"/>
+          </g>
+          <text class="lbl" x="250" y="124" text-anchor="middle">Corpus callosum</text>
+          <text class="lbl" x="146" y="170" text-anchor="end">Basal</text>
+          <text class="lbl" x="146" y="187" text-anchor="end">ganglia</text>
+          <path class="lead" d="M150 176L199 191"/>
+          <text class="lbl" x="366" y="152">Thalamus</text>
+          <path class="lead" d="M362 153L298 195"/>
+          <text class="lbl" x="112" y="278" text-anchor="end">Hypothalamus</text>
+          <path class="lead" d="M116 273L216 240"/>
+          <text class="lbl" x="112" y="308" text-anchor="end">Amygdala</text>
+          <path class="lead" d="M116 303L185 294"/>
+          <text class="lbl" x="214" y="362" text-anchor="middle">Hippocampus</text>
+          <path class="lead" d="M232 348L250 300"/>
+          <text class="lbl" x="262" y="402" text-anchor="end">Brainstem</text>
+          <path class="lead" d="M267 397L303 397"/>
+          <text class="lbl" x="396" y="324" text-anchor="middle" style="fill:var(--l-cerebellum,var(--ink))">Cerebellum</text>
+        </svg>
+      </div>
+
+      <div class="chips" id="chips-out" role="group" aria-label="Regions on the outside">
+        <button type="button" class="chip" data-r="frontal" aria-pressed="true" style="--h:var(--h1)"><i></i>Frontal lobe</button>
+        <button type="button" class="chip" data-r="parietal" aria-pressed="false" style="--h:var(--h2)"><i></i>Parietal lobe</button>
+        <button type="button" class="chip" data-r="temporal" aria-pressed="false" style="--h:var(--h3)"><i></i>Temporal lobe</button>
+        <button type="button" class="chip" data-r="occipital" aria-pressed="false" style="--h:var(--h4)"><i></i>Occipital lobe</button>
+        <button type="button" class="chip" data-r="cerebellum" aria-pressed="false" style="--h:var(--h5)"><i></i>Cerebellum</button>
+        <button type="button" class="chip" data-r="brainstem" aria-pressed="false" style="--h:var(--h6)"><i></i>Brainstem</button>
+      </div>
+      <div class="chips" id="chips-in" role="group" aria-label="Regions on the inside" hidden>
+        <button type="button" class="chip" data-r="thalamus" aria-pressed="false" style="--h:var(--h2)"><i></i>Thalamus</button>
+        <button type="button" class="chip" data-r="hypothalamus" aria-pressed="false" style="--h:var(--h7)"><i></i>Hypothalamus</button>
+        <button type="button" class="chip" data-r="amygdala" aria-pressed="false" style="--h:var(--h4)"><i></i>Amygdala</button>
+        <button type="button" class="chip" data-r="hippocampus" aria-pressed="false" style="--h:var(--h3)"><i></i>Hippocampus</button>
+        <button type="button" class="chip" data-r="basal" aria-pressed="false" style="--h:var(--h1)"><i></i>Basal ganglia</button>
+        <button type="button" class="chip" data-r="callosum" aria-pressed="false" style="--h:var(--h8)"><i></i>Corpus callosum</button>
+      </div>
+    </div>
+
+    <div class="panel" id="panel" aria-live="polite" style="--h:var(--h1)">
+      <p class="tag"><span class="swatch"></span><span class="mono" id="p-where">Front &middot; behind the forehead</span></p>
+      <h2 id="p-name">Frontal lobe</h2>
+      <p class="job" id="p-job">Plans, decides, and stops you acting on your first impulse.</p>
+      <div class="fact">
+        <span class="mono">Worth remembering</span>
+        <p id="p-fact">In 1848 an iron rod went through railway foreman Phineas Gage&rsquo;s frontal lobe. He lived, walked and talked, but his personality changed so much that friends said he was &ldquo;no longer Gage&rdquo;. This lobe is also the last to finish developing, in your mid-20s.</p>
+      </div>
+      <a href="#r-frontal" id="p-link">See the full entry</a>
+      <p class="hint">Tap any part of the brain, or switch to <b>Inside</b> to see what sits under the surface.</p>
+    </div>
+  </section>
+
+  <!-- ============ TWO RULES ============ -->
+  <section class="group" aria-labelledby="h-rules">
+    <div class="sec-head">
+      <p class="mono">Before the details</p>
+      <h2 id="h-rules">Two rules explain most of the map</h2>
+    </div>
+    <div class="rules">
+      <figure class="rule">
+        <svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle, shaded in three bands: darkest at the brainstem and cerebellum, medium in the central structures, lightest across the cortex" style="--f-brainstem:var(--t1);--f-cerebellum:var(--t1);--f-thalamus:var(--t2);--f-hypothalamus:var(--t2);--f-amygdala:var(--t2);--f-hippocampus:var(--t2);--f-basal:var(--t2);--f-callosum:var(--t3);--f-cortex:var(--t3)"><use href="#med"/></svg>
+        <figcaption>
+          <h3>Lower means more automatic</h3>
+          <p>The bottom runs without you. The middle decides what deserves attention. The top does the slow, deliberate thinking.</p>
+          <ul class="key">
+            <li><i style="background:var(--t1)"></i><b>Bottom</b> <span>brainstem, cerebellum</span></li>
+            <li><i style="background:var(--t2)"></i><b>Middle</b> <span>thalamus, amygdala, hippocampus and neighbours</span></li>
+            <li><i style="background:var(--t3)"></i><b>Top</b> <span>the folded outer layer, the cortex</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="rule">
+        <svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain: the front part in one colour and the three back lobes in another, split at the central groove" style="--f-frontal:var(--h1);--f-parietal:var(--h2);--f-temporal:var(--h2);--f-occipital:var(--h2)"><use href="#lat"/></svg>
+        <figcaption>
+          <h3>The back senses, the front acts</h3>
+          <p>A groove runs down the middle of each side. Behind it, the brain takes the world in. In front of it, the brain decides what to do and moves.</p>
+          <ul class="key">
+            <li><i style="background:var(--h2)"></i><b>Back</b> <span>sight, sound, touch</span></li>
+            <li><i style="background:var(--h1)"></i><b>Front</b> <span>planning, deciding, moving</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ OUTSIDE ============ -->
+  <section class="group" aria-labelledby="h-out">
+    <div class="sec-head">
+      <p class="mono">Outside view</p>
+      <h2 id="h-out">Six regions on the surface</h2>
+      <p>Four lobes of folded cortex, plus two older parts tucked underneath.</p>
+    </div>
+
+    <article class="entry" id="r-frontal" data-h="1" style="--h:var(--h1)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain with the frontal lobe highlighted at the front" style="--f-frontal:var(--h1)"><use href="#lat"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Front &middot; behind the forehead</span></p>
+        <h3>Frontal lobe</h3>
+        <p class="job">Plans, decides, and stops you acting on your first impulse.</p>
+        <ul class="does"><li>Planning and judgement</li><li>Voluntary movement</li><li>Speaking</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>In 1848 an iron rod went through railway foreman Phineas Gage&rsquo;s frontal lobe. He lived, walked and talked, but his personality changed so much that friends said he was &ldquo;no longer Gage&rdquo;. This lobe is also the last to finish developing, in your mid-20s.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-parietal" data-h="2" style="--h:var(--h2)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain with the parietal lobe highlighted at the top, toward the back" style="--f-parietal:var(--h2)"><use href="#lat"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Top &middot; toward the back</span></p>
+        <h3>Parietal lobe</h3>
+        <p class="job">Feels touch and tracks where your body is in space.</p>
+        <ul class="does"><li>Touch, pain, temperature</li><li>Knowing where your limbs are</li><li>Judging distance and direction</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>Your touch map is sized by sensitivity, not by body size. Lips and fingertips get more brain space than your whole back, which is why a tiny paper cut feels so big.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-temporal" data-h="3" style="--h:var(--h3)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain with the temporal lobe highlighted along the lower side" style="--f-temporal:var(--h3)"><use href="#lat"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Side &middot; behind the temple, above the ear</span></p>
+        <h3>Temporal lobe</h3>
+        <p class="job">Turns sound into meaning and helps you recognise what you see.</p>
+        <ul class="does"><li>Hearing</li><li>Understanding words</li><li>Recognising faces</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>One small patch here is devoted to faces. When it stops working, a person sees perfectly well but cannot recognise their own family by face. About 1 in 50 people are born with a mild version.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-occipital" data-h="4" style="--h:var(--h4)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain with the occipital lobe highlighted at the very back" style="--f-occipital:var(--h4)"><use href="#lat"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Back &middot; the very rear of the head</span></p>
+        <h3>Occipital lobe</h3>
+        <p class="job">Turns signals from your eyes into what you see.</p>
+        <ul class="does"><li>Shapes and edges</li><li>Colour</li><li>Movement</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>Your eyes are at the front, but seeing happens at the very back. That is why a knock to the back of the head makes you see stars. Some people blinded by damage here can still dodge obstacles they say they cannot see.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-cerebellum" data-h="5" style="--h:var(--h5)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain with the cerebellum highlighted underneath at the back" style="--f-cerebellum:var(--h5)"><use href="#lat"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Back &middot; tucked underneath</span></p>
+        <h3>Cerebellum <small>Latin for &ldquo;little brain&rdquo;</small></h3>
+        <p class="job">Makes your movements smooth, balanced and well timed.</p>
+        <ul class="does"><li>Balance</li><li>Fine coordination</li><li>Learned skills like cycling</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>It fills about 10% of the brain&rsquo;s volume but holds about 80% of its nerve cells: roughly 69 billion of 86 billion. It also predicts the feel of your own movements, which is why you cannot tickle yourself.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-brainstem" data-h="6" style="--h:var(--h6)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Side view of the brain with the brainstem highlighted at the base" style="--f-brainstem:var(--h6)"><use href="#lat"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Base &middot; joins the brain to the spinal cord</span></p>
+        <h3>Brainstem</h3>
+        <p class="job">Keeps you alive without asking you.</p>
+        <ul class="does"><li>Breathing and heartbeat</li><li>Sleeping and waking</li><li>Swallowing and coughing</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>It is about the size of your thumb, and every signal between brain and body passes through it. Most movement wiring crosses sides here, so the left half of the brain moves the right half of the body.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ INSIDE ============ -->
+  <section class="group" aria-labelledby="h-in">
+    <div class="sec-head">
+      <p class="mono">Inside view</p>
+      <h2 id="h-in">Six structures under the surface</h2>
+      <p>The brain cut down the middle, front still facing left. Dashed outlines sit deeper, a little to either side of the cut.</p>
+    </div>
+
+    <article class="entry" id="r-thalamus" data-h="2" style="--h:var(--h2)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle with the thalamus highlighted at the centre" style="--f-thalamus:var(--h2)"><use href="#med"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Dead centre &middot; on top of the brainstem</span></p>
+        <h3>Thalamus</h3>
+        <p class="job">Sorts incoming signals and sends each one to the right part of the brain.</p>
+        <ul class="does"><li>Sight, sound, touch, taste</li><li>Alertness</li><li>Attention</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>Every sense passes through it except smell. Smell goes straight to the memory and emotion areas next door, which is why a smell can pull you into an old memory faster than a photograph can.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-hypothalamus" data-h="7" style="--h:var(--h7)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle with the hypothalamus and the pituitary gland below it highlighted" style="--f-hypothalamus:var(--h7)"><use href="#med"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Centre &middot; just below the thalamus</span></p>
+        <h3>Hypothalamus</h3>
+        <p class="job">Keeps the body steady.</p>
+        <ul class="does"><li>Body temperature</li><li>Hunger and thirst</li><li>Hormones and the body clock</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>It weighs about 4 grams, as much as an almond, yet it runs your hormones through the pea-sized pituitary gland hanging below it. A cluster of about 20,000 of its cells keeps your 24-hour clock. Jet lag is that clock catching up.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-amygdala" data-h="4" style="--h:var(--h4)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle with the amygdala highlighted low and toward the front" style="--f-amygdala:var(--h4)"><use href="#med"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Deep in the temporal lobe &middot; one each side</span></p>
+        <h3>Amygdala <small>Greek for &ldquo;almond&rdquo;</small></h3>
+        <p class="job">Spots danger and attaches feeling to what happens to you.</p>
+        <ul class="does"><li>Fear and alarm</li><li>Emotional memories</li><li>Reading emotion in faces</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>A woman known as S.M. lost both amygdalae to a rare disease. She handles snakes with curiosity, laughed her way through a haunted house, and was once held at knifepoint without feeling afraid.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-hippocampus" data-h="3" style="--h:var(--h3)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle with the hippocampus highlighted, curving back from the amygdala" style="--f-hippocampus:var(--h3)"><use href="#med"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Deep in the temporal lobe &middot; behind the amygdala</span></p>
+        <h3>Hippocampus <small>Greek for &ldquo;seahorse&rdquo;</small></h3>
+        <p class="job">Saves new memories and keeps your mental map of places.</p>
+        <ul class="does"><li>Forming new memories</li><li>Finding your way</li><li>Filing the day&rsquo;s memories during sleep</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>In 1953 surgeons removed most of Henry Molaison&rsquo;s hippocampus on both sides. For the next 55 years he could not form a new memory. And London taxi drivers, who memorise about 25,000 streets, have a larger rear hippocampus that grows with years on the job.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-basal" data-h="1" style="--h:var(--h1)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle with the basal ganglia highlighted, in front of and over the thalamus" style="--f-basal:var(--h1)"><use href="#med"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Deep under the cortex &middot; around the thalamus</span></p>
+        <h3>Basal ganglia</h3>
+        <p class="job">Picks which action to start and which to hold back, and runs your habits.</p>
+        <ul class="does"><li>Starting and stopping movement</li><li>Habits and routines</li><li>Learning from reward</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>Once a skill becomes a habit it runs here, which is why you can drive a familiar route and not remember the trip. Parkinson&rsquo;s disease begins when the dopamine cells feeding this area die. Symptoms usually show only after more than half are gone.</p></div>
+      </div>
+    </article>
+
+    <article class="entry" id="r-callosum" data-h="8" style="--h:var(--h8)">
+      <figure><svg class="brain" viewBox="0 0 520 430" role="img" aria-label="Brain cut down the middle with the corpus callosum highlighted, an arch over the central structures" style="--f-callosum:var(--h8)"><use href="#med"/></svg></figure>
+      <div class="body">
+        <p class="tag"><span class="swatch"></span><span class="mono where">Midline &middot; arching over the thalamus</span></p>
+        <h3>Corpus callosum <small>Latin for &ldquo;tough body&rdquo;</small></h3>
+        <p class="job">Connects the left and right halves so they work as one.</p>
+        <ul class="does"><li>About 200 million nerve fibres</li><li>Shares what each side sees and hears</li><li>Coordinates both hands</li></ul>
+        <div class="fact"><span class="mono">Worth remembering</span><p>In the 1960s doctors cut it in a few patients to stop severe epilepsy. Each half of the brain then knew things the other did not. Shown an object on one side only, patients said they saw nothing, yet their left hand picked it out correctly. The research won a Nobel Prize in 1981.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section class="group" aria-labelledby="h-notes">
+    <div class="sec-head">
+      <p class="mono">Keep in mind</p>
+      <h2 id="h-notes">What the map leaves out</h2>
+    </div>
+    <ul class="notes">
+      <li><b>No region works alone</b><span>Reading this sentence uses the occipital lobe to see the letters, the temporal lobe to get the meaning and the frontal lobe to hold the thought.</span></li>
+      <li><b>You use all of it</b><span>The claim that we use only 10% of the brain is a myth. Over a day every region is active, and an organ that burns a fifth of your energy has no spare parts.</span></li>
+      <li><b>Almost everything comes in pairs</b><span>These pictures show one side. You have two of nearly every structure here, a left and a right. Some jobs lean to one side: language usually sits on the left.</span></li>
+    </ul>
+    <footer>The drawings are simplified diagrams, not anatomical scans. Figures such as weight and cell counts are averages for a healthy adult.</footer>
+  </section>
+</div>
+
+<script>
+(function(){
+  var VIEW={frontal:'out',parietal:'out',temporal:'out',occipital:'out',cerebellum:'out',brainstem:'out',
+            thalamus:'in',hypothalamus:'in',amygdala:'in',hippocampus:'in',basal:'in',callosum:'in'};
+  var atlas=document.getElementById('atlas'), panel=document.getElementById('panel');
+  var chips=[].slice.call(atlas.querySelectorAll('.chip'));
+  var el=function(id){return document.getElementById(id)};
+  function txt(node){return node?node.textContent.trim():''}
+
+  function select(id){
+    var entry=el('r-'+id); if(!entry) return;
+    atlas.dataset.sel=id;
+    chips.forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.r===id))});
+    panel.style.setProperty('--h','var(--h'+entry.dataset.h+')');
+    var h=entry.querySelector('h3');
+    el('p-name').textContent=txt(h.firstChild)||txt(h);
+    el('p-where').textContent=txt(entry.querySelector('.where'));
+    el('p-job').textContent=txt(entry.querySelector('.job'));
+    el('p-fact').textContent=txt(entry.querySelector('.fact p'));
+    el('p-link').setAttribute('href','#r-'+id);
+  }
+  function setView(v){
+    atlas.dataset.view=v;
+    el('btn-out').setAttribute('aria-pressed',String(v==='out'));
+    el('btn-in').setAttribute('aria-pressed',String(v==='in'));
+    el('chips-out').hidden=(v!=='out'); el('chips-in').hidden=(v!=='in');
+    el('svg-lat').setAttribute('aria-hidden',String(v!=='out'));
+    el('svg-med').setAttribute('aria-hidden',String(v!=='in'));
+    var sel=atlas.dataset.sel, shared=(sel==='cerebellum'||sel==='brainstem');
+    if(VIEW[sel]!==v && !(v==='in'&&shared)) select(v==='out'?'frontal':'thalamus');
+  }
+  el('btn-out').addEventListener('click',function(){setView('out')});
+  el('btn-in').addEventListener('click',function(){setView('in')});
+  chips.forEach(function(c){c.addEventListener('click',function(){select(c.dataset.r)})});
+  atlas.querySelector('.views').addEventListener('click',function(e){
+    var t=e.target.closest('[data-r]'); if(t) select(t.getAttribute('data-r'));
+  });
+  el('p-link').addEventListener('click',function(e){
+    var target=document.querySelector(this.getAttribute('href')); if(!target) return;
+    e.preventDefault();
+    var calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'});
+  });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Chemistry of Breaking Bad | Explainers</title>
+<meta name="description" content="Walter White called chemistry the study of change. The whole show, read that way.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/chemistry-of-breaking-bad/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Chemistry of Breaking Bad">
+<meta property="og:description" content="Walter White called chemistry the study of change. The whole show, read that way.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/chemistry-of-breaking-bad/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/chemistry-of-breaking-bad/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#EEF2EF; --panel:#FFFFFF; --ink:#16211F; --ink-2:#47544F; --rule:#C9D3CE;
+  --crystal:#1F7FA8; --crystal-soft:#D5EAF3;
+  --hazmat:#D9A413; --rust:#A8502B; --leaf:#3C6A47;
+  --f-cast:#DCE8DF; --f-set:#F1E3C4; --f-sci:#D5EAF3; --f-clue:#EBD9E8; --f-rec:#F2D8CC; --f-after:#E3E1D3;
+  --f-cast-k:#2F6040; --f-set-k:#8A5E08; --f-sci-k:#17698C; --f-clue-k:#7A3E78; --f-rec-k:#94401F; --f-after-k:#5A5638;
+  --display:"Anybody", "Arial Narrow", system-ui, sans-serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0E1514; --panel:#16201E; --ink:#E3ECE8; --ink-2:#A3B2AC; --rule:#2A3835;
+    --crystal:#5BC3EC; --crystal-soft:#143543;
+    --hazmat:#EFC041; --rust:#E08459; --leaf:#7FB78C;
+    --f-cast:#1B2E22; --f-set:#33290F; --f-sci:#12303D; --f-clue:#2E1D2E; --f-rec:#3A2219; --f-after:#2A291E;
+    --f-cast-k:#8FCB9F; --f-set-k:#E8C15C; --f-sci-k:#7ACFEF; --f-clue-k:#D9A2D6; --f-rec-k:#EE9C78; --f-after-k:#C9C39A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0E1514; --panel:#16201E; --ink:#E3ECE8; --ink-2:#A3B2AC; --rule:#2A3835;
+  --crystal:#5BC3EC; --crystal-soft:#143543;
+  --hazmat:#EFC041; --rust:#E08459; --leaf:#7FB78C;
+  --f-cast:#1B2E22; --f-set:#33290F; --f-sci:#12303D; --f-clue:#2E1D2E; --f-rec:#3A2219; --f-after:#2A291E;
+  --f-cast-k:#8FCB9F; --f-set-k:#E8C15C; --f-sci-k:#7ACFEF; --f-clue-k:#D9A2D6; --f-rec-k:#EE9C78; --f-after-k:#C9C39A;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-inline:clamp(16px,4vw,48px);padding-block:0 64px}
+.wrap{max-width:1180px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.02}
+h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;font-stretch:78%;letter-spacing:-.01em}
+h3{font-size:1.25rem;font-weight:700;font-stretch:90%}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.lede{max-width:62ch;color:var(--ink-2);font-size:1.06rem}
+section{padding-block:72px 0}
+.sec-head{display:grid;gap:12px;margin-bottom:32px}
+a{color:var(--crystal)}
+:focus-visible{outline:3px solid var(--crystal);outline-offset:3px;border-radius:4px}
+
+/* hero */
+.hero{padding-block:48px 8px;display:grid;grid-template-columns:1.25fr .9fr;gap:40px;align-items:end}
+.spoil{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);border:1px solid var(--rust);display:inline-block;padding:4px 10px;border-radius:2px;margin-bottom:22px}
+.hero h1{font-size:clamp(3.2rem,11vw,8.4rem);font-weight:900;font-stretch:62%;letter-spacing:-.02em;line-height:.88}
+.hero h1 em{font-style:normal;color:var(--crystal)}
+.hero .q{margin-top:26px;font-size:1.15rem;max-width:40ch}
+.hero .q cite{display:block;font-style:normal;font-family:var(--mono);font-size:.78rem;color:var(--ink-2);margin-top:8px}
+.molecule{background:var(--panel);border:2px solid var(--ink);padding:18px 20px;display:grid;gap:4px;position:relative;max-width:360px;justify-self:end;width:100%}
+.molecule .n{font-family:var(--mono);font-size:.9rem;display:flex;justify-content:space-between}
+.molecule .sym{font-family:var(--display);font-weight:900;font-stretch:70%;font-size:clamp(4rem,9vw,6rem);line-height:1;color:var(--crystal)}
+.molecule .sym sub{font-size:.4em;vertical-align:baseline;position:relative;top:.1em}
+.molecule .nm{font-weight:600}
+.molecule .note{font-size:.84rem;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:10px;margin-top:8px}
+.crystals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+
+/* transformation */
+.arc{background:var(--panel);border:1px solid var(--rule);padding:clamp(20px,3vw,36px);display:grid;gap:28px}
+.arc-top{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.season-no{font-family:var(--display);font-weight:900;font-stretch:60%;font-size:clamp(4.5rem,12vw,7rem);line-height:.8;color:var(--crystal);font-variant-numeric:tabular-nums}
+.season-meta{font-family:var(--mono);font-size:.82rem;color:var(--ink-2)}
+.season-title{font-family:var(--display);font-weight:800;font-stretch:80%;font-size:clamp(1.5rem,3.4vw,2.2rem);margin-top:4px}
+.slider-row{display:grid;gap:10px}
+input[type=range]{width:100%;accent-color:var(--crystal);height:28px}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--ink-2)}
+.gauge{display:grid;gap:8px}
+.gauge-bar{height:14px;background:linear-gradient(90deg,var(--hazmat),var(--rust) 55%,var(--ink));position:relative;border-radius:2px}
+.gauge-pin{position:absolute;top:-6px;width:4px;height:26px;background:var(--crystal);transition:left .5s cubic-bezier(.3,.7,.2,1);border-radius:2px;box-shadow:0 0 0 3px var(--panel)}
+.gauge-lbl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--ink-2);text-transform:uppercase;letter-spacing:.1em}
+.arc-body{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}
+.arc-body blockquote{margin:0;font-family:var(--display);font-stretch:85%;font-weight:600;font-size:clamp(1.3rem,2.6vw,1.8rem);line-height:1.2;border-left:4px solid var(--crystal);padding-left:18px}
+.arc-body blockquote span{display:block;font-family:var(--mono);font-size:.76rem;font-weight:400;color:var(--ink-2);margin-top:10px}
+.arc-body ul{margin:0;padding-left:1.1em;display:grid;gap:8px;color:var(--ink)}
+
+/* reasons */
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.reason{padding:24px 22px 26px 0;border-bottom:1px solid var(--rule);display:grid;gap:10px;align-content:start}
+.reason:not(:nth-child(3n+1)){padding-left:22px;border-left:1px solid var(--rule)}
+.reason .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--crystal)}
+.reason p{color:var(--ink-2);font-size:.96rem}
+
+/* periodic table */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{font:500 .84rem var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:6px 12px;border-radius:2px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.chip i{width:12px;height:12px;display:inline-block;border:1px solid var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chip[aria-pressed="true"] i{border-color:var(--paper)}
+.table{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.el{background:var(--fam);border:1px solid color-mix(in srgb,var(--famk) 35%,transparent);padding:14px 16px 16px;display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:8px;align-content:start;transition:transform .2s}
+.el:hover{transform:translateY(-2px)}
+.el .sym{font-family:var(--display);font-weight:900;font-stretch:70%;font-size:2.7rem;line-height:.9;color:var(--famk);grid-row:span 2;min-width:2.1ch}
+.el .num{font-family:var(--mono);font-size:.72rem;color:var(--famk);display:flex;justify-content:space-between;gap:8px}
+.el h3{font-size:1.06rem;font-stretch:88%;line-height:1.15}
+.el p{grid-column:1/-1;font-size:.9rem;color:var(--ink);line-height:1.5}
+.el[data-f="cast"]{--fam:var(--f-cast);--famk:var(--f-cast-k)}
+.el[data-f="set"]{--fam:var(--f-set);--famk:var(--f-set-k)}
+.el[data-f="sci"]{--fam:var(--f-sci);--famk:var(--f-sci-k)}
+.el[data-f="clue"]{--fam:var(--f-clue);--famk:var(--f-clue-k)}
+.el[data-f="rec"]{--fam:var(--f-rec);--famk:var(--f-rec-k)}
+.el[data-f="after"]{--fam:var(--f-after);--famk:var(--f-after-k)}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-block:2px solid var(--ink)}
+.nums div{padding:22px 18px;display:grid;gap:6px;border-left:1px solid var(--rule)}
+.nums div:first-child{border-left:0;padding-left:0}
+.nums b{font-family:var(--display);font-weight:900;font-stretch:65%;font-size:clamp(2.6rem,6vw,4rem);line-height:.9;color:var(--crystal);font-variant-numeric:tabular-nums}
+.nums span{font-size:.88rem;color:var(--ink-2)}
+.viewers{margin-top:36px;display:grid;gap:14px;max-width:760px}
+.vrow{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.vrow .lbl{font-size:.88rem}
+.vrow .lbl small{display:block;font-family:var(--mono);font-size:.72rem;color:var(--ink-2)}
+.vbar{height:30px;background:var(--crystal-soft);position:relative}
+.vbar i{position:absolute;inset:0 auto 0 0;background:var(--crystal);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-style:normal;font:500 .8rem var(--mono);color:var(--panel);min-width:52px}
+.vnote{font-size:.84rem;color:var(--ink-2)}
+
+/* against */
+.against{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--rule);padding:20px 22px;display:grid;gap:8px;align-content:start}
+.card .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
+.card p{font-size:.95rem;color:var(--ink-2)}
+.verdict{margin-top:28px;border-left:4px solid var(--hazmat);padding:6px 0 6px 18px;max-width:70ch;font-size:1.05rem}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);font-size:.82rem;color:var(--ink-2);display:grid;gap:6px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .molecule{justify-self:start}
+  .arc-body{grid-template-columns:1fr}
+  .reasons{grid-template-columns:1fr}
+  .reason,.reason:not(:nth-child(3n+1)){padding:20px 0;border-left:0}
+  .nums{grid-template-columns:repeat(2,1fr)}
+  .nums div:nth-child(3){border-left:0;padding-left:0}
+  .nums div:nth-child(n+3){border-top:1px solid var(--rule)}
+  .against{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .vrow{grid-template-columns:1fr;gap:6px}
+  .arc-top{grid-template-columns:1fr;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <span class="spoil">Full spoilers, all five seasons</span>
+    <h1>The chemistry of <em>Breaking&nbsp;Bad</em></h1>
+    <p class="q">“Chemistry is, well, technically, chemistry is the study of matter. But I prefer to see it as the study of change.”
+      <cite>Walter White, Pilot, 2008. The whole show in one line.</cite></p>
+  </div>
+  <aside class="molecule" aria-label="Methamphetamine, as shown in the opening credits">
+    <canvas class="crystals" aria-hidden="true"></canvas>
+    <div class="n"><span>C<sub>10</sub>H<sub>15</sub>N</span><span>149.24</span></div>
+    <div class="sym">W<sub>W</sub></div>
+    <div class="nm">Walter White</div>
+    <div class="note">The formula and molar mass of methamphetamine, 149.24 g/mol, both flash by in the show’s opening credits. Blink and you miss them.</div>
+  </aside>
+</header>
+
+<section id="arc">
+  <div class="sec-head">
+    <span class="eyebrow">The pitch</span>
+    <h2>“Mr. Chips into Scarface”</h2>
+    <p class="lede">That was Vince Gilligan’s entire pitch. TV had always kept its heroes roughly the same so a show could run forever. Gilligan planned the opposite: a protagonist who changes, permanently, from season to season. Drag the slider to watch it happen.</p>
+  </div>
+  <div class="arc">
+    <div class="arc-top">
+      <div class="season-no" id="sNo">1</div>
+      <div>
+        <div class="season-meta" id="sMeta">2008 · 7 episodes</div>
+        <div class="season-title" id="sTitle">A dying teacher makes one bad choice</div>
+      </div>
+    </div>
+    <div class="slider-row">
+      <label class="eyebrow" for="season">Season</label>
+      <input type="range" id="season" min="1" max="5" step="1" value="1" aria-describedby="sTitle">
+      <div class="ticks" aria-hidden="true"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span></div>
+    </div>
+    <div class="gauge" aria-hidden="true">
+      <div class="gauge-bar"><div class="gauge-pin" id="pin" style="left:6%"></div></div>
+      <div class="gauge-lbl"><span>Walter</span><span>Heisenberg</span></div>
+    </div>
+    <div class="arc-body">
+      <blockquote id="sQuote">“I am not in danger, Skyler. I am the danger.”<span></span></blockquote>
+      <ul id="sList"></ul>
+    </div>
+  </div>
+</section>
+
+<section id="case">
+  <div class="sec-head">
+    <span class="eyebrow">The case fans make</span>
+    <h2>Why people call it the best ever made</h2>
+    <p class="lede">“Best ever” is a matter of taste, but the argument for Breaking Bad rests on six things it did better than almost anything before it.</p>
+  </div>
+  <div class="reasons">
+    <div class="reason"><span class="tag">Arc</span><h3>It knew where it was going</h3><p>Most long shows drift. This one was built as a single five-season transformation, and it ended on its own terms in 2013, when it was more popular than ever. No limp final years, no cancellation cliffhanger.</p></div>
+    <div class="reason"><span class="tag">Consequence</span><h3>Everything comes back</h3><p>Walt lets Jane die in season 2. Her grieving father, an air traffic controller, makes a mistake, and two planes collide over Albuquerque. Actions in this show ripple outward, sometimes seasons later.</p></div>
+    <div class="reason"><span class="tag">Complicity</span><h3>It made you root for him, then asked why</h3><p>You cheer Walt standing up to bullies in season 1. By season 5 you’re watching a man poison a child. The show slowly makes the audience part of the moral experiment.</p></div>
+    <div class="reason"><span class="tag">Craft</span><h3>It told stories with pictures</h3><p>Cold opens that flash forward, colour-coded costumes, cameras mounted inside trunks and at the bottom of holes, time-lapse desert skies. You could follow a lot of it on mute.</p></div>
+    <div class="reason"><span class="tag">Performance</span><h3>A cast at full strength</h3><p>Cranston won four lead-actor Emmys, Aaron Paul three, Anna Gunn two. Giancarlo Esposito turned a fried-chicken franchise owner into one of TV’s scariest villains while barely raising his voice.</p></div>
+    <div class="reason"><span class="tag">Peak</span><h3>It got better as it went</h3><p>Most shows peak early. Breaking Bad’s final eight episodes are its best reviewed, and “Ozymandias,” the third-to-last episode, is often called the finest hour of television ever made.</p></div>
+  </div>
+</section>
+
+<section id="table">
+  <div class="sec-head">
+    <span class="eyebrow">Fun facts, crazy facts, hidden details</span>
+    <h2>The periodic table of Breaking Bad</h2>
+    <p class="lede">Forty facts, sorted into six families the way Walt would want. Filter by family, or just read the whole table.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter facts by family">
+    <button class="chip" data-filter="all" aria-pressed="true">All 40</button>
+    <button class="chip" data-filter="cast" aria-pressed="false"><i style="background:var(--f-cast)"></i>Casting</button>
+    <button class="chip" data-filter="set" aria-pressed="false"><i style="background:var(--f-set)"></i>On set</button>
+    <button class="chip" data-filter="sci" aria-pressed="false"><i style="background:var(--f-sci)"></i>Chemistry</button>
+    <button class="chip" data-filter="clue" aria-pressed="false"><i style="background:var(--f-clue)"></i>Hidden clues</button>
+    <button class="chip" data-filter="rec" aria-pressed="false"><i style="background:var(--f-rec)"></i>Records</button>
+    <button class="chip" data-filter="after" aria-pressed="false"><i style="background:var(--f-after)"></i>Afterlife</button>
+  </div>
+  <div class="table" id="grid"></div>
+</section>
+
+<section id="numbers">
+  <div class="sec-head">
+    <span class="eyebrow">By the numbers</span>
+    <h2>Small show, huge finish</h2>
+  </div>
+  <div class="nums">
+    <div><b>62</b><span>episodes across 5 seasons, 2008 to 2013</span></div>
+    <div><b>16</b><span>Primetime Emmys, including Outstanding Drama in 2013 and 2014</span></div>
+    <div><b>99</b><span>Metacritic score for the final season, which put it in Guinness World Records</span></div>
+    <div><b>10.0</b><span>IMDb rating of “Ozymandias,” from hundreds of thousands of votes</span></div>
+  </div>
+  <div class="viewers" role="img" aria-label="US viewers: Pilot 1.4 million, series finale 10.3 million">
+    <div class="vrow"><div class="lbl">Pilot<small>Jan 2008</small></div><div class="vbar"><i style="width:13.7%">1.4M</i></div></div>
+    <div class="vrow"><div class="lbl">Finale, “Felina”<small>Sep 2013</small></div><div class="vbar"><i style="width:100%">10.3M</i></div></div>
+    <p class="vnote">Live US viewers on AMC. The audience grew more than sevenfold, largely because people binged the earlier seasons on Netflix and caught up in time for the end. It was one of the first shows to be rescued and supercharged by streaming.</p>
+  </div>
+</section>
+
+<section id="against">
+  <div class="sec-head">
+    <span class="eyebrow">The case against</span>
+    <h2>Not everyone puts it first</h2>
+    <p class="lede">On major critics’ lists it usually lands in the top three, but the other two have strong defenders.</p>
+  </div>
+  <div class="against">
+    <div class="card"><span class="tag">The Sopranos</span><h3>The original antihero</h3><p>Tony Soprano came first. Walt is his direct descendant, and many critics rank the show that invented the form above the one that perfected its plot.</p></div>
+    <div class="card"><span class="tag">The Wire</span><h3>A whole city, not one man</h3><p>Breaking Bad is about one person’s decay. The Wire studies an entire city’s institutions, and its fans argue that is the harder and bigger achievement.</p></div>
+    <div class="card"><span class="tag">Better Call Saul</span><h3>The spinoff that rivals it</h3><p>A real faction thinks the prequel is the better-made show: slower, subtler and more patient. It never won an Emmy in 53 nominations, which fans treat as a scandal.</p></div>
+    <div class="card"><span class="tag">Its own flaws</span><h3>Slow start, ugly fandom</h3><p>Season 1 is short and uneven. Part of the audience cheered Heisenberg rather than seeing a warning, and the hatred aimed at Skyler got so bad that Anna Gunn wrote a New York Times op-ed about it in 2013.</p></div>
+  </div>
+  <p class="verdict">The fairest verdict: few shows have ever planned a story this tightly and then stuck the landing. If “best” means the most complete, controlled piece of storytelling, Breaking Bad has one of the strongest claims there is.</p>
+</section>
+
+<footer>
+  <span>Breaking Bad was created by Vince Gilligan and aired on AMC from January 2008 to September 2013. Viewer figures are Nielsen live US ratings.</span>
+</footer>
+
+</div>
+
+<script>
+const seasons=[
+ {y:"2008 · 7 episodes",t:"A dying teacher makes one bad choice",pin:6,
+  q:"“I prefer to see it as the study of change.”",qs:"Pilot",
+  li:["Walt turns 50, learns he has terminal lung cancer, and starts cooking meth with former student Jesse Pinkman.","The first season was meant to be 9 episodes. The 2007–08 writers’ strike cut it to 7.","He is still sympathetic: a humiliated man working a second job at a car wash."]},
+ {y:"2009 · 13 episodes",t:"Heisenberg gets a hat",pin:30,
+  q:"“Stay out of my territory.”",qs:"“Over”",
+  li:["Four cold opens show a burned pink teddy bear floating in the pool. The payoff is a mid-air collision over Albuquerque.","Walt watches Jane choke and does nothing, the first death he chooses rather than stumbles into.","Saul Goodman arrives. His name is a pun: “S’all good, man.”"]},
+ {y:"2010 · 13 episodes",t:"The superlab and Gus Fring",pin:50,
+  q:"“Never make the same mistake twice.”",qs:"Gus Fring",
+  li:["Walt becomes an employee of Gus Fring, who runs a meth empire behind a fried-chicken chain.","“Fly,” a whole episode of Walt and Jesse chasing a fly, was shot to save money and became a cult favourite.","Walt’s pride starts to matter more than his family’s safety."]},
+ {y:"2011 · 13 episodes",t:"The one who knocks",pin:74,
+  q:"“I am not in danger, Skyler. I am the danger.”",qs:"“Cornered”",
+  li:["A chess match between Walt and Gus that ends with Walt poisoning a child to win Jesse back.","The finale, “Face Off,” ends with the most famous makeup effect in TV history.","Final shot: a lily of the valley plant in Walt’s backyard. He did it."]},
+ {y:"2012–13 · 16 episodes",t:"Say my name",pin:96,
+  q:"“I did it for me. I liked it. I was good at it. And I was really, I was alive.”",qs:"“Felina”",
+  li:["Walt builds an empire, and Hank finally finds him through a book inscription while sitting on the toilet.","“Ozymandias” collapses everything in 47 minutes and holds a perfect 10.0 on IMDb.","In the finale Walt admits the family excuse was never true, then dies in a meth lab to Badfinger’s “Baby Blue.”"]}
+];
+const $=id=>document.getElementById(id);
+function setSeason(i){
+  const s=seasons[i-1];
+  $("sNo").textContent=i; $("sMeta").textContent=s.y; $("sTitle").textContent=s.t;
+  $("pin").style.left=`calc(${s.pin}% - 2px)`;
+  $("sQuote").innerHTML=`${s.q}<span>${s.qs}</span>`;
+  $("sList").innerHTML=s.li.map(x=>`<li>${x}</li>`).join("");
+}
+$("season").addEventListener("input",e=>setSeason(+e.target.value));
+setSeason(1);
+
+const facts=[
+ ["cast","Cr","Cranston came from The X-Files","Gilligan wrote a 1998 X-Files episode, “Drive,” where Cranston played a nasty, dying man you still pitied. That was the audition. AMC wanted a bigger name and reportedly floated John Cusack and Matthew Broderick, who both passed."],
+ ["cast","Jp","Jesse was supposed to die","The plan was to kill Jesse off in season 1. Aaron Paul was so good that Gilligan dropped the idea within the first couple of episodes. Walt and Jesse became the show’s spine."],
+ ["cast","Hl","From sitcom dad to drug lord","Before this, Cranston was best known as Hal, the goofy dad in Malcolm in the Middle. The casting gap was part of the point: nobody expected that face to become frightening."],
+ ["cast","Rm","Walt Jr.’s CP is real","RJ Mitte, who plays Walt Jr., has cerebral palsy in real life, in a milder form than his character. He learned to slow his speech and walk with crutches for the role."],
+ ["cast","Sg","Saul was a guest spot","Bob Odenkirk arrived in season 2 as a sleazy lawyer for a handful of episodes. He ended up leading six seasons of Better Call Saul (2015–2022)."],
+ ["cast","Ah","Anthony Hopkins’ fan letter","In 2013 Anthony Hopkins binged the whole series and wrote Cranston a letter calling his performance the best acting he had ever seen."],
+ ["cast","Gf","The stillest villain on TV","Giancarlo Esposito played Gus with almost no visible emotion: neat, polite, patient. The calm is what made him terrifying."],
+ ["set","Aq","It was meant for California","The scripts were set in Riverside, California. New Mexico’s film tax incentives moved production to Albuquerque, and the desert became one of the show’s best characters."],
+ ["set","Pz","The pizza on the roof","Walt tossing a whole pizza onto his roof was reportedly nailed in one take. Fans kept re-enacting it at the real house, the owners built a fence, and Gilligan publicly asked people to stop."],
+ ["set","Fl","“Fly” was a money-saver","A bottle episode set entirely in the lab, made to stay on budget. It was directed by Rian Johnson, who also directed “Fifty-One” and “Ozymandias,” before making Star Wars: The Last Jedi."],
+ ["set","Bc","Cranston behind the camera","Bryan Cranston directed three episodes: the season 2 and season 3 openers (“Seven Thirty-Seven” and “No Más”) and “Blood Money,” which started the final eight."],
+ ["set","Az","The world’s saddest car","Walt drives a Pontiac Aztek, widely mocked as one of the ugliest cars ever built. That was the point: it is the car of a man life has beaten down."],
+ ["set","Po","The impossible camera","Shots from inside car trunks, the bottom of holes, the inside of a gas mask. The show loved placing the camera where a person could never stand."],
+ ["set","Tt","A title card, not a title song","The opening lasts under 20 seconds: a few drifting elements, a few twangy notes by composer Dave Porter, and straight back into the story."],
+ ["sci","Bm","The meth was rock candy","The “blue sky” was blue rock candy, made for the show by an Albuquerque sweet shop, The Candy Lady, which sold bags of it to fans afterwards."],
+ ["sci","Dn","A real chemist checked the math","Dr. Donna Nelson, a chemistry professor at the University of Oklahoma, advised on the science and later became president of the American Chemical Society. The DEA also consulted."],
+ ["sci","Rx","Deliberately wrong recipe","The show made sure never to teach a working method. Key steps were skipped or scrambled, so the chemistry sounds right without being usable."],
+ ["sci","He","Why “Heisenberg”","Walt’s alias honours physicist Werner Heisenberg and his uncertainty principle. A fitting name for a man who never quite knows which of his two selves is real."],
+ ["sci","Pu","99.1 percent pure","Walt’s product is 99.1% pure. Gale, the gifted chemist Gus hires, only managed 96%, and is openly in awe of Walt."],
+ ["sci","Br","Every credit is an element","Actor and crew names in the opening credits have a chemical symbol highlighted in green, the same trick as the title."],
+ ["sci","Mb","MythBusters tested it","A 2013 MythBusters special with Cranston and Paul tested the acid-through-the-bathtub scene and the mercury fulminate explosion. Both were busted."],
+ ["clue","Sv","737 Down Over ABQ","Four season 2 episodes are titled “Seven Thirty-Seven,” “Down,” “Over” and “ABQ.” Read in order, the titles spell out the plane crash hinted at all season."],
+ ["clue","Tb","The one-eyed bear","The burned pink teddy bear floats in Walt’s pool all season. Its missing eye later turns up in the pool filter, and Walt keeps it."],
+ ["clue","Mp","Marie wears purple","Almost everything Marie owns is purple. Costume designer Kathleen Detoro used colour as code for the whole cast; Walt’s clothes darken as he does."],
+ ["clue","Lg","Leaves of Grass","Gale gives Walt a copy of Whitman inscribed “To my other favorite W.W.” It sits in Walt’s bathroom, where Hank opens it and realises Walt is Heisenberg."],
+ ["clue","Bn","Bacon birthdays","In the pilot Skyler spells “50” in veggie bacon for Walt’s birthday. In the season 5 flash-forward, alone in a Denny’s, Walt spells out “52” himself."],
+ ["clue","Fe","FELINA","The finale’s title is an anagram of “finale.” Fans also read it as Fe, Li, Na: iron, lithium and sodium, or blood, meth and tears. A Marty Robbins song about Feleena plays in the car."],
+ ["clue","Ly","The lily of the valley","Season 4’s last shot pans across Walt’s backyard to the potted plant he used to poison Brock. One shot, and the audience learns what he did."],
+ ["clue","Hk","The hat is the switch","When Walt puts on the black pork-pie hat, Heisenberg is in charge. When he takes it off, he is trying to be Walter White again."],
+ ["rec","Gw","Guinness World Record","In 2013 Guinness named it the highest-rated TV series ever, based on the final season’s Metacritic score of 99."],
+ ["rec","Em","16 Emmys","Two wins for Outstanding Drama Series (2013, 2014), four for Cranston, three for Aaron Paul and two for Anna Gunn."],
+ ["rec","Oz","A perfect 10","“Ozymandias,” named after Shelley’s poem about a fallen king, sits at 10.0 on IMDb, among the highest-rated episodes of any show."],
+ ["rec","Nx","The Netflix effect","Just 1.4 million people watched the pilot. After viewers binged on Netflix, 10.3 million watched the finale live, a jump TV had rarely seen."],
+ ["rec","Ff","Face Off","Gus’s half-destroyed face in “Face Off” was kept secret until air. It combined prosthetics with digital work and is still one of TV’s most talked-about effects shots."],
+ ["after","Fu","A funeral for a fictional man","In October 2013, fans in Albuquerque held a mock funeral for Walter White, with a procession and a headstone, and raised money for charity. There was also an obituary in the Albuquerque Journal."],
+ ["after","St","Bronze statues","In 2022 Albuquerque unveiled bronze statues of Walt and Jesse at its convention centre. Tours of filming locations still run all year."],
+ ["after","Lp","Los Pollos Hermanos is real","Gus’s restaurant was filmed at a real Albuquerque fast-food spot, Twisters. It still has the Pollos Hermanos logo painted on the wall for fans."],
+ ["after","Ec","El Camino","In 2019 Netflix released El Camino, a film that follows Jesse’s escape right after the finale. It was shot in secret."],
+ ["after","Dh","Dos Hombres","Cranston and Aaron Paul stayed close and launched a mezcal brand together, Dos Hombres, in 2019."],
+ ["after","Bb","“Breaking bad” is Southern slang","Gilligan took the title from a Southern US phrase meaning to go wild or turn to crime. Before the show, few people outside the South had heard it."]
+];
+const grid=$("grid");
+grid.innerHTML=facts.map((f,i)=>`<article class="el" data-f="${f[0]}"><div class="sym" aria-hidden="true">${f[1]}</div><div class="num"><span>${String(i+1).padStart(2,"0")}</span><span>${{cast:"casting",set:"on set",sci:"chemistry",clue:"clue",rec:"record",after:"afterlife"}[f[0]]}</span></div><h3>${f[2]}</h3><p>${f[3]}</p></article>`).join("");
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c?"true":"false"));
+  const f=c.dataset.filter;
+  grid.querySelectorAll(".el").forEach(el=>{el.hidden=!(f==="all"||el.dataset.f===f)});
+}));
+
+/* drifting blue crystals behind the molecule tile */
+(function(){
+  const cv=document.querySelector(".crystals"); if(!cv) return;
+  const ctx=cv.getContext("2d"); const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W,H,pts=[];
+  function size(){const r=cv.parentElement.getBoundingClientRect();W=cv.width=r.width*devicePixelRatio;H=cv.height=r.height*devicePixelRatio;cv.style.width=r.width+"px";cv.style.height=r.height+"px";}
+  size(); addEventListener("resize",size);
+  for(let i=0;i<14;i++)pts.push({x:Math.random(),y:Math.random(),s:4+Math.random()*9,r:Math.random()*6,v:.0006+Math.random()*.0012,rv:(Math.random()-.5)*.01});
+  function col(){return getComputedStyle(document.documentElement).getPropertyValue("--crystal").trim()||"#1F7FA8"}
+  let c=col(); matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>c=col());
+  function draw(){
+    ctx.clearRect(0,0,W,H); ctx.globalAlpha=.14; ctx.fillStyle=c;
+    pts.forEach(p=>{
+      if(!reduce){p.y-=p.v;p.r+=p.rv;if(p.y<-.1){p.y=1.1;p.x=Math.random()}}
+      const s=p.s*devicePixelRatio; ctx.save(); ctx.translate(p.x*W,p.y*H); ctx.rotate(p.r);
+      ctx.beginPath(); ctx.moveTo(0,-s); ctx.lineTo(s*.55,-s*.2); ctx.lineTo(s*.35,s*.8); ctx.lineTo(-s*.4,s*.6); ctx.lineTo(-s*.6,-s*.3); ctx.closePath(); ctx.fill(); ctx.restore();
+    });
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Parquet Files | Explainers</title>
+<meta name="description" content="A table saved column by column instead of row by row, and why that makes it smaller and quicker.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/parquet-files/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Parquet Files">
+<meta property="og:description" content="A table saved column by column instead of row by row, and why that makes it smaller and quicker.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/parquet-files/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/parquet-files/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one left-aligned column on a workbench grid. Short text, then a full-width figure
+   built from timber blocks. Each column of the table is one species of wood throughout. */
+:root{
+  --ground:#E4E9EB; --panel:#F2F5F6; --ink:#18242D; --muted:#55636E; --line:#BCC7CE; --grid:rgba(24,36,45,.05);
+  --chalk:#1B5FC1; --chalk-soft:#D3E2F8; --bar:#86939C;
+  --maple:#E9D6A6; --maple-ink:#33270F;
+  --oak:#C99B57; --oak-ink:#2A1D07;
+  --padauk:#B4502D; --padauk-ink:#FFF1E4;
+  --purpleheart:#764672; --purpleheart-ink:#FBEAF8;
+  --walnut:#54382A; --walnut-ink:#F6E7DA;
+  --grain:rgba(40,20,0,.08); --bevel-hi:rgba(255,255,255,.3); --bevel-lo:rgba(0,0,0,.24);
+  --display:"Big Shoulders Display","Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#121A21; --panel:#19232C; --ink:#E7EDF1; --muted:#9BA9B3; --line:#35434E; --grid:rgba(231,237,241,.035);
+    --chalk:#86B6FF; --chalk-soft:#1D3252; --bar:#70808B;
+    --padauk:#C25A34; --purpleheart:#8C5887; --walnut:#74513E;
+    --grain:rgba(20,10,0,.12); --bevel-hi:rgba(255,255,255,.22); --bevel-lo:rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121A21; --panel:#19232C; --ink:#E7EDF1; --muted:#9BA9B3; --line:#35434E; --grid:rgba(231,237,241,.035);
+  --chalk:#86B6FF; --chalk-soft:#1D3252; --bar:#70808B;
+  --padauk:#C25A34; --purpleheart:#8C5887; --walnut:#74513E;
+  --grain:rgba(20,10,0,.12); --bevel-hi:rgba(255,255,255,.22); --bevel-lo:rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--ink); font:400 1.0625rem/1.55 var(--body);
+  background-color:var(--ground);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.page{max-width:66rem; margin-inline:auto; padding-inline:clamp(1rem,4vw,2.5rem); padding-block:clamp(2.5rem,7vw,5rem);
+  display:grid; gap:clamp(4.5rem,11vw,8rem)}
+.page>*{min-width:0}
+p,h1,h2,h3,figure,ol,ul{margin:0}
+ol,ul{padding:0; list-style:none}
+
+/* type */
+h1{font:900 clamp(4.5rem,18vw,11rem)/.8 var(--display); text-transform:uppercase; letter-spacing:-.005em; overflow-wrap:anywhere}
+h2{font:900 clamp(2.25rem,6.5vw,3.75rem)/.95 var(--display); text-transform:uppercase; letter-spacing:.005em; text-wrap:balance; max-width:18ch}
+.stamp{justify-self:start; display:inline-block; font:600 .75rem/1 var(--mono); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--chalk); border:1.5px solid currentColor; border-radius:2px; padding:.4rem .6rem}
+.lead{font-size:clamp(1.1875rem,2.6vw,1.4375rem); line-height:1.4; max-width:34ch}
+.say{max-width:36rem; font-size:1.125rem}
+.small{max-width:40rem; font-size:.9375rem; color:var(--muted)}
+.small b{color:var(--ink); font-weight:600}
+code{font:600 .9em var(--mono)}
+
+/* sections */
+.hero{display:grid; gap:1.5rem}
+section{display:grid; gap:1.5rem}
+.head{display:grid; gap:1rem}
+figure{background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:clamp(1rem,3vw,1.75rem);
+  display:grid; gap:1.5rem; min-width:0}
+figure>*{min-width:0}
+figcaption{font-size:.9375rem; color:var(--muted); max-width:44rem}
+
+/* the block: one value of the table */
+.b{--tone:var(--maple); --tone-ink:var(--maple-ink);
+  background-color:var(--tone); color:var(--tone-ink);
+  background-image:repeating-linear-gradient(90deg,var(--grain) 0 1px,transparent 1px 7px);
+  box-shadow:inset 0 1px 0 var(--bevel-hi),inset 0 -1px 0 var(--bevel-lo);
+  border-radius:2px; font:600 .8125rem/1.15 var(--mono);
+  transition:background-color .3s,color .3s,box-shadow .3s}
+.t1{--tone:var(--oak); --tone-ink:var(--oak-ink)}
+.t2{--tone:var(--padauk); --tone-ink:var(--padauk-ink)}
+.t3{--tone:var(--purpleheart); --tone-ink:var(--purpleheart-ink)}
+.t4{--tone:var(--walnut); --tone-ink:var(--walnut-ink)}
+.b.off{background-color:transparent; background-image:none; color:var(--muted); box-shadow:inset 0 0 0 1px var(--line)}
+
+/* buttons */
+.opts{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem}
+.opts .q{font-weight:600; margin-right:.25rem}
+.opts button{font:500 .9375rem/1.2 var(--body); color:var(--ink); background:transparent; border:1.5px solid var(--ink);
+  border-radius:3px; padding:.55rem .85rem; cursor:pointer; transition:background-color .15s,color .15s}
+.opts button:hover{background:var(--chalk-soft)}
+.opts button[aria-pressed="true"]{background:var(--ink); color:var(--ground)}
+.opts button:focus-visible,.bars li:focus-visible{outline:3px solid var(--chalk); outline-offset:2px}
+.opts.months button{font:600 .8125rem/1 var(--mono); padding:.5rem .55rem}
+
+/* hero floor: 30 blocks that re-lay themselves */
+.floor{position:relative; height:clamp(44px,8vw,76px)}
+.floor .b{position:absolute; inset-block:0; left:0; width:calc(100% / 30); border-radius:1px;
+  transform:translateX(calc(var(--i) * 100%));
+  box-shadow:inset -1px 0 0 var(--ground),inset 0 1px 0 var(--bevel-hi),inset 0 -1px 0 var(--bevel-lo);
+  transition:transform .9s cubic-bezier(.6,0,.2,1); transition-delay:calc(var(--d) * 12ms)}
+.caps{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); margin-top:.4rem;
+  font:400 .6875rem/1.2 var(--mono); color:var(--muted); text-align:center}
+.caps span{border-top:1.5px solid var(--muted); margin-inline:2px; padding-top:.3rem; overflow:hidden; white-space:nowrap}
+
+/* the table */
+.tbl{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; max-width:34rem}
+.tbl .h{font:600 .6875rem/1 var(--mono); letter-spacing:.04em; text-transform:uppercase; color:var(--muted); padding:0 .1rem .2rem; text-align:center; overflow:hidden}
+.tbl .b{padding:.7rem .2rem; text-align:center; font-size:clamp(.6875rem,2.9vw,.8125rem)}
+
+/* strips: the file on disk */
+.lay{display:grid; gap:.6rem}
+.lay-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .75rem}
+.lay-head strong{font:900 1.375rem/1 var(--display); text-transform:uppercase; letter-spacing:.02em}
+.lay-head span{color:var(--muted); font-size:.875rem}
+.lay-head output{margin-left:auto; font:600 .8125rem/1 var(--mono); font-variant-numeric:tabular-nums}
+.strip{display:flex; gap:clamp(4px,1vw,10px)}
+.grp{flex:1 1 0; min-width:0; display:grid; gap:.35rem}
+.cells{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:clamp(1px,.25vw,3px)}
+.cells .b{height:clamp(28px,5vw,46px); border-radius:1px}
+.cap{font:400 .6875rem/1.2 var(--mono); color:var(--muted); text-align:center; white-space:nowrap; overflow:hidden}
+.result{display:flex; flex-wrap:wrap; align-items:baseline; gap:.25rem 1rem; font-size:1rem}
+.result strong{font:900 clamp(1.75rem,5vw,2.5rem)/1 var(--display); text-transform:uppercase}
+
+/* packing stages */
+.stages{display:grid; gap:1.75rem}
+.stage{display:grid; grid-template-columns:minmax(0,13rem) minmax(0,1fr); gap:.6rem 1.5rem; align-items:start}
+.stage h3{font:900 1.375rem/1 var(--display); text-transform:uppercase; letter-spacing:.02em}
+.stage .cost{display:block; margin-top:.4rem; font:600 .8125rem/1.3 var(--mono); color:var(--chalk)}
+.run{display:flex; flex-wrap:wrap; gap:3px}
+.run .b{padding:.55rem .5rem}
+.run .key{box-shadow:inset 0 0 0 1.5px var(--tone); background-color:transparent; background-image:none; color:var(--ink)}
+.run .gap{flex-basis:100%; height:.15rem}
+.fact{display:grid; gap:.5rem}
+.fact .n{font:900 clamp(2.75rem,10vw,5rem)/.9 var(--display); text-transform:uppercase; display:flex; flex-wrap:wrap; align-items:baseline; gap:.1em .3em}
+.fact .n i{font:400 .5em/1 var(--body); color:var(--muted)}
+
+/* the file, end to end */
+.steps{display:grid; gap:.35rem; font-size:.9375rem; counter-reset:s}
+.steps li{display:flex; gap:.6rem; align-items:baseline}
+.steps li::before{counter-increment:s; content:counter(s); flex:none; font:600 .75rem/1 var(--mono); color:var(--ground);
+  background:var(--chalk); border-radius:2px; padding:.25rem .4rem}
+.file{display:grid; grid-template-columns:minmax(0,1fr); gap:6px}
+.magic{display:flex; justify-content:center; align-items:center; gap:.6rem; padding:.45rem .5rem; border-radius:2px;
+  background:var(--ink); color:var(--ground); font:600 .75rem/1 var(--mono); letter-spacing:.1em}
+.magic span{font-weight:400; letter-spacing:.04em; opacity:.75}
+.chunks{display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:4px}
+.chunk{display:grid; gap:.4rem; align-content:space-between; padding:.5rem .15rem; border-radius:2px;
+  border:1.5px dashed var(--line); font:400 .6875rem/1.3 var(--mono); color:var(--muted); text-align:center;
+  transition:background-color .3s,border-color .3s,color .3s}
+.chunk b{font-weight:600}
+.chunk i{font-style:normal; font-weight:600}
+.chunk.on{border:1.5px solid var(--chalk); background:var(--chalk-soft); color:var(--ink)}
+.notes{border:1.5px solid var(--ink); border-radius:2px; padding:.7rem .8rem; font-size:.875rem; line-height:1.4; background:var(--ground); display:grid; gap:.35rem; align-content:start}
+.notes strong{font:900 1.25rem/1 var(--display); text-transform:uppercase; letter-spacing:.02em}
+.notes li{padding-left:.9rem; text-indent:-.9rem}
+.notes li::before{content:"· "; font-weight:600}
+@media (min-width:64rem){
+  .file{grid-template-columns:auto minmax(0,1fr) 12.5rem auto}
+  .magic{writing-mode:vertical-rl; padding:.5rem .45rem}
+}
+@media (max-width:40rem){
+  .chunks{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .stage{grid-template-columns:minmax(0,1fr)}
+}
+
+/* measured bars */
+.charts{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr)); gap:2rem 3.5rem}
+.chart{display:grid; gap:.8rem; align-content:start}
+.chart h3{font:600 1rem/1.3 var(--body)}
+.chart h3 span{color:var(--muted); font-weight:400}
+.bars{display:grid; gap:.55rem}
+.bars li{display:grid; grid-template-columns:6.25rem minmax(0,1fr) 4.5rem; gap:.75rem; align-items:center; font-size:.9375rem; border-radius:2px}
+.track{display:block; height:14px; border-left:1px solid var(--muted)}
+.bar{display:block; height:100%; width:calc(var(--v) * 1%); min-width:2px; background:var(--bar); border-radius:0 4px 4px 0}
+.pq .bar{background:var(--chalk)}
+.pq .name{font-weight:600}
+.val{font:600 .875rem/1 var(--mono); font-variant-numeric:tabular-nums; text-align:right}
+.tip{position:fixed; z-index:5; pointer-events:none; background:var(--ink); color:var(--ground); font:400 .75rem/1.3 var(--mono);
+  padding:.4rem .55rem; border-radius:3px; max-width:16rem}
+
+/* wrong pick */
+.nots{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.75rem 3rem}
+.nots li{border-top:1.5px solid var(--ink); padding-top:.75rem; display:grid; gap:.25rem; align-content:start}
+.nots h3{font:600 1.0625rem/1.3 var(--body)}
+.nots p{color:var(--muted); font-size:.9375rem}
+@media (max-width:40rem){.nots{grid-template-columns:minmax(0,1fr)}}
+
+/* closing */
+.sum{font:900 clamp(2.5rem,9vw,5.5rem)/.92 var(--display); text-transform:uppercase}
+.sum span{display:block}
+.sum span:last-child{color:var(--chalk)}
+footer{display:grid; gap:.75rem; border-top:1px solid var(--line); padding-top:1.5rem}
+footer a{color:var(--chalk)}
+
+@media (prefers-reduced-motion: reduce){
+  .b,.floor .b,.chunk,.opts button{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <p class="stamp">File format · .parquet</p>
+    <h1>Parquet</h1>
+    <p class="lead">A Parquet file is a table saved column by column instead of row by row. That one choice makes it several times smaller and much quicker to answer questions from.</p>
+    <div>
+      <div class="floor" id="floor" role="img" aria-label="Thirty blocks in five wood tones, one tone per column. Laid row by row the tones alternate. Laid column by column they form five solid bands."></div>
+      <div class="caps" id="capsCol"><span>order</span><span>date</span><span>country</span><span>category</span><span>price</span></div>
+      <div class="caps" id="capsRow" hidden><span>row 1</span><span>row 2</span><span>row 3</span><span>row 4</span><span>row 5</span><span>row 6</span></div>
+    </div>
+    <div class="opts" role="group" aria-label="How the blocks are laid">
+      <span class="q">Lay the same 30 values</span>
+      <button type="button" id="layRow" aria-pressed="false">Row by row</button>
+      <button type="button" id="layCol" aria-pressed="true">Column by column</button>
+    </div>
+    <p class="small">The format shares its name with the wood-block floor. Picture every value in a table as one block. The file format decides how the blocks are laid.</p>
+  </header>
+
+  <section aria-labelledby="h-lay">
+    <div class="head">
+      <h2 id="h-lay">One table, two ways to lay it</h2>
+      <p class="say">A file is one long line, so a table has to be flattened to fit in it. You can go across the rows, or down the columns.</p>
+    </div>
+    <figure aria-label="A table of six orders, then the same values as they sit in a row-by-row file and in a column-by-column file.">
+      <div class="tbl" id="tbl"></div>
+      <div class="lay">
+        <div class="lay-head"><strong>Row by row</strong><span>a CSV, the plain-text file a spreadsheet exports</span></div>
+        <div class="strip" data-lay="row"></div>
+      </div>
+      <div class="lay">
+        <div class="lay-head"><strong>Column by column</strong><span>Parquet</span></div>
+        <div class="strip" data-lay="col"></div>
+      </div>
+      <figcaption>The same 30 values in both files. Only the order differs.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="h-read">
+    <div class="head">
+      <p class="stamp">Reason 1 of 3</p>
+      <h2 id="h-read">It reads only what the question needs</h2>
+      <p class="say">Most questions are about one or two columns. When each column sits together, the reader goes straight to those and leaves the rest alone.</p>
+    </div>
+    <figure aria-label="Which blocks each file has to read to answer a question.">
+      <div class="opts" role="group" aria-label="Question to ask the table">
+        <span class="q">Ask the table</span>
+        <button type="button" data-q="avg" aria-pressed="false">Average price?</button>
+        <button type="button" data-q="india" aria-pressed="true">Average price in India?</button>
+        <button type="button" data-q="all" aria-pressed="false">Show every order in full</button>
+      </div>
+      <div class="lay">
+        <div class="lay-head"><strong>Row by row</strong><span>prices are scattered, so every block is passed over</span><output id="outRow">reads 30 of 30</output></div>
+        <div class="strip" data-lay="row" id="readRow"></div>
+      </div>
+      <div class="lay">
+        <div class="lay-head"><strong>Column by column</strong><span>only the columns in the question</span><output id="outCol">reads 12 of 30</output></div>
+        <div class="strip" data-lay="col" id="readCol"></div>
+      </div>
+      <p class="result" aria-live="polite"><strong id="answer">$163.33</strong><span id="saved">18 blocks never touched.</span></p>
+      <figcaption>Real tables are far wider. With 200 columns and a question about 3, the other 197 are never read. In the test further down, the India question read 3 MB of a 12 MB Parquet file. The CSV had to be read in full, all 62 MB.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="h-pack">
+    <div class="head">
+      <p class="stamp">Reason 2 of 3</p>
+      <h2 id="h-pack">Alike things pack small</h2>
+      <p class="say">A column holds one kind of thing, and it repeats. Parquet writes down each repeat once.</p>
+    </div>
+    <figure aria-label="The category column of twelve orders, packed in three steps: as plain text, with each word swapped for a number, then with repeats counted.">
+      <ol class="stages">
+        <li class="stage">
+          <div><h3>As plain text</h3><span class="cost">65 letters</span></div>
+          <div class="run" id="s1"></div>
+        </li>
+        <li class="stage">
+          <div><h3>Swap each word for a number</h3><span class="cost">16 letters + 12 digits</span></div>
+          <div class="run" id="s2"></div>
+        </li>
+        <li class="stage">
+          <div><h3>Say it once, then count</h3><span class="cost">16 letters + 3 counts</span></div>
+          <div class="run" id="s3"></div>
+        </li>
+      </ol>
+      <figcaption>The category column of 12 orders. Phones five times, Shoes four times, Books three times.</figcaption>
+    </figure>
+    <div class="fact">
+      <p class="n">11 MB <i>→</i> 6 KB</p>
+      <p class="say">The date column of a million orders, as text and then in Parquet. The orders were saved in date order, so each day shrank to one entry: the date, and how many times it repeats.</p>
+    </div>
+    <p class="small">Row files get little of this, because each value sits next to a different kind of thing: an order number, then a date, then a country. After these tricks Parquet also runs a general-purpose squeeze, like zipping, on every column.</p>
+  </section>
+
+  <section aria-labelledby="h-skip">
+    <div class="head">
+      <p class="stamp">Reason 3 of 3</p>
+      <h2 id="h-skip">It keeps notes, so it can skip</h2>
+      <p class="say">Parquet saves rows in chunks. At the very end of the file it writes notes, including the smallest and largest value in every chunk. A reader checks the notes first.</p>
+    </div>
+    <figure aria-label="A Parquet file from start to end: ten chunks of rows, then the notes. Picking a month shows which chunks have to be opened.">
+      <div class="opts months" role="group" aria-label="Month to ask about">
+        <span class="q">Average price in</span>
+        <span id="months" class="opts months"></span>
+      </div>
+      <ol class="steps">
+        <li>Read the notes at the end of the file.</li>
+        <li>Open only the chunks whose dates could include that month.</li>
+      </ol>
+      <div class="file">
+        <div class="magic"><b>PAR1</b><span>start of file</span></div>
+        <div class="chunks" id="chunks"></div>
+        <div class="notes">
+          <strong>Notes</strong>
+          <ul>
+            <li>first and last date in each chunk</li>
+            <li>where each chunk begins</li>
+            <li>each column's name and type</li>
+          </ul>
+        </div>
+        <div class="magic"><b>PAR1</b><span>end of file</span></div>
+      </div>
+      <p class="result" aria-live="polite"><strong id="opened">2 of 10 chunks opened</strong><span id="skipped">800,000 orders skipped unread.</span></p>
+      <figcaption>The real notes from the million-order test file, 100,000 orders per chunk. For May, Parquet answered in 4 ms. The CSV took 105 ms.</figcaption>
+    </figure>
+    <p class="small"><b>Skipping depends on order.</b> These orders were saved by date. Shuffled, every chunk would span the whole year and none could be skipped.</p>
+    <p class="small"><b>The real names.</b> Parquet calls a chunk a row group and the notes the footer. <code>PAR1</code> is the four-letter mark at both ends of every Parquet file.</p>
+  </section>
+
+  <section aria-labelledby="h-test">
+    <div class="head">
+      <h2 id="h-test">A million orders, saved three ways</h2>
+      <p class="say">Parquet came out 5 times smaller than the CSV and answered 5 times faster.</p>
+    </div>
+    <figure aria-label="Two bar charts comparing a CSV, a zipped CSV and a Parquet file of the same million orders: file size and time to answer one question.">
+      <div class="charts">
+        <div class="chart">
+          <h3>File size <span>in megabytes</span></h3>
+          <ul class="bars">
+            <li tabindex="0" data-tip="61,878,610 bytes"><span class="name">CSV</span><span class="track"><span class="bar" style="--v:100"></span></span><span class="val">61.9 MB</span></li>
+            <li tabindex="0" data-tip="10,164,355 bytes, gzip"><span class="name">Zipped CSV</span><span class="track"><span class="bar" style="--v:16.43"></span></span><span class="val">10.2 MB</span></li>
+            <li class="pq" tabindex="0" data-tip="12,030,401 bytes, default settings"><span class="name">Parquet</span><span class="track"><span class="bar" style="--v:19.44"></span></span><span class="val">12.0 MB</span></li>
+          </ul>
+        </div>
+        <div class="chart">
+          <h3>Time to answer “average price in India?” <span>in milliseconds</span></h3>
+          <ul class="bars">
+            <li tabindex="0" data-tip="113.9 ms, median of 7 runs"><span class="name">CSV</span><span class="track"><span class="bar" style="--v:53.55"></span></span><span class="val">114 ms</span></li>
+            <li tabindex="0" data-tip="212.7 ms, median of 3 runs"><span class="name">Zipped CSV</span><span class="track"><span class="bar" style="--v:100"></span></span><span class="val">213 ms</span></li>
+            <li class="pq" tabindex="0" data-tip="22.6 ms, median of 7 runs"><span class="name">Parquet</span><span class="track"><span class="bar" style="--v:10.63"></span></span><span class="val">23 ms</span></li>
+          </ul>
+        </div>
+      </div>
+      <figcaption>Zipping the CSV makes it small as well. But every question then means unzipping all of it, which makes it the slowest of the three.</figcaption>
+    </figure>
+    <p class="small"><b>How this was measured.</b> 1,000,000 made-up orders with 8 columns, sorted by date. Written and read with PyArrow 25.0.1 on a 2-CPU cloud machine. Parquet used its default settings (Snappy compression) and 10 chunks of 100,000 rows. A stronger setting (Zstandard) brings the Parquet file down to 7.9 MB. Times will differ on other machines and other data; the gap is the point.</p>
+  </section>
+
+  <section aria-labelledby="h-not">
+    <div class="head">
+      <h2 id="h-not">Where it is the wrong pick</h2>
+    </div>
+    <ul class="nots">
+      <li><h3>Changing one row at a time</h3><p>A Parquet file is written once. To change a single value, the file is written again.</p></li>
+      <li><h3>Fetching one whole row</h3><p>One order is spread across every column. A database finds it faster.</p></li>
+      <li><h3>Reading it with your own eyes</h3><p>The file is packed, not text. A notepad shows gibberish, so you need a tool to open it.</p></li>
+      <li><h3>Small tables</h3><p>A few thousand rows are quick in any format. A CSV is simpler.</p></li>
+    </ul>
+  </section>
+
+  <section aria-label="Summary">
+    <p class="sum"><span>Laid by column.</span><span>Packed by likeness.</span><span>Labelled at the end.</span></p>
+    <footer>
+      <p class="small">The full format description is at <a href="https://parquet.apache.org/docs/file-format/">parquet.apache.org/docs/file-format</a>.</p>
+    </footer>
+  </section>
+</div>
+
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const COLS = ['order', 'date', 'country', 'category', 'price'];
+  const ROWS = [
+    ['1001', '3 May', 'India',   'Phones', '$120'],
+    ['1002', '3 May', 'USA',     'Shoes',  '$45'],
+    ['1003', '3 May', 'India',   'Phones', '$310'],
+    ['1004', '4 May', 'Germany', 'Books',  '$12'],
+    ['1005', '4 May', 'India',   'Shoes',  '$60'],
+    ['1006', '4 May', 'USA',     'Phones', '$95']
+  ];
+
+  /* the table */
+  const tbl = $('#tbl');
+  COLS.forEach(c => tbl.append(el('div', 'h', c)));
+  ROWS.forEach(r => r.forEach((v, c) => tbl.append(el('div', 'b t' + c, v))));
+
+  /* strips: the same values in file order */
+  $$('.strip').forEach(host => {
+    const groups = host.dataset.lay === 'row'
+      ? ROWS.map((r, ri) => ({ cap: 'row ' + (ri + 1), cols: r.map((_, c) => c) }))
+      : COLS.map((name, c) => ({ cap: name, cols: ROWS.map(() => c) }));
+    let i = 0;
+    groups.forEach(g => {
+      const grp = el('div', 'grp'), cells = el('div', 'cells');
+      g.cols.forEach(c => {
+        const b = el('div', 'b t' + c);
+        b.dataset.c = c;
+        b.style.transitionDelay = (reduce ? 0 : i * 14) + 'ms';
+        i++; cells.append(b);
+      });
+      grp.append(cells, el('div', 'cap', g.cap));
+      host.append(grp);
+    });
+  });
+
+  /* hero floor */
+  const floor = $('#floor'), tiles = [];
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 5; c++) {
+    const b = el('div', 'b t' + c); b.dataset.r = r; b.dataset.c = c; floor.append(b); tiles.push(b);
+  }
+  const layRow = $('#layRow'), layCol = $('#layCol');
+  function lay(mode) {
+    tiles.forEach(b => {
+      const r = +b.dataset.r, c = +b.dataset.c;
+      b.style.setProperty('--i', mode === 'row' ? r * 5 + c : c * 6 + r);
+      b.style.setProperty('--d', reduce ? 0 : r * 5 + c);
+    });
+    $('#capsRow').hidden = mode !== 'row';
+    $('#capsCol').hidden = mode !== 'col';
+    layRow.setAttribute('aria-pressed', mode === 'row');
+    layCol.setAttribute('aria-pressed', mode === 'col');
+  }
+  let intro = null;
+  if (reduce) lay('col');
+  else { lay('row'); intro = setTimeout(() => lay('col'), 900); }
+  layRow.addEventListener('click', () => { clearTimeout(intro); lay('row'); });
+  layCol.addEventListener('click', () => { clearTimeout(intro); lay('col'); });
+
+  /* reason 1: what gets read */
+  const QS = {
+    avg:   { cols: [4],             answer: '$107' },
+    india: { cols: [2, 4],          answer: '$163.33' },
+    all:   { cols: [0, 1, 2, 3, 4], answer: 'All 6 orders' }
+  };
+  const qButtons = $$('[data-q]');
+  function ask(k) {
+    const q = QS[k]; let n = 0;
+    $$('#readCol .b').forEach(b => {
+      const on = q.cols.includes(+b.dataset.c);
+      b.classList.toggle('off', !on); if (on) n++;
+    });
+    $('#outCol').textContent = 'reads ' + n + ' of 30';
+    $('#answer').textContent = q.answer;
+    $('#saved').textContent = n < 30
+      ? (30 - n) + ' blocks never touched.'
+      : 'No shortcut here. Every column is needed, so both files are read in full.';
+    qButtons.forEach(b => b.setAttribute('aria-pressed', b.dataset.q === k));
+  }
+  qButtons.forEach(b => b.addEventListener('click', () => ask(b.dataset.q)));
+  ask('india');
+
+  /* reason 2: packing */
+  const WORDS = ['Phones', 'Shoes', 'Books'], COUNTS = [5, 4, 3];
+  const s1 = $('#s1'), s2 = $('#s2'), s3 = $('#s3');
+  WORDS.forEach((w, i) => { for (let k = 0; k < COUNTS[i]; k++) { s1.append(el('span', 'b t3', w)); } });
+  [s2, s3].forEach(s => { WORDS.forEach((w, i) => s.append(el('span', 'b t3 key', i + ' = ' + w))); s.append(el('span', 'gap')); });
+  WORDS.forEach((w, i) => { for (let k = 0; k < COUNTS[i]; k++) { s2.append(el('span', 'b t3', String(i))); } });
+  WORDS.forEach((w, i) => s3.append(el('span', 'b t3', i + ' × ' + COUNTS[i])));
+
+  /* reason 3: the real row-group date ranges from the test file's footer */
+  const RG = [['2025-01-01', '2025-02-06'], ['2025-02-06', '2025-03-15'], ['2025-03-15', '2025-04-20'], ['2025-04-20', '2025-05-27'],
+              ['2025-05-27', '2025-07-02'], ['2025-07-02', '2025-08-08'], ['2025-08-08', '2025-09-13'], ['2025-09-13', '2025-10-19'],
+              ['2025-10-19', '2025-11-25'], ['2025-11-25', '2025-12-31']].map(r => r.map(d => new Date(d + 'T00:00:00Z')));
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fmt = d => d.getUTCDate() + ' ' + MON[d.getUTCMonth()];
+  const chunksEl = $('#chunks'), monthsEl = $('#months');
+  const chunks = RG.map(([a, b], i) => {
+    const c = el('div', 'chunk');
+    const range = el('span'); range.append(fmt(a), el('br'), fmt(b));
+    c.append(el('b', null, String(i + 1)), range, el('i'));
+    chunksEl.append(c); return c;
+  });
+  const mButtons = MON.map((m, i) => {
+    const b = el('button', null, m); b.type = 'button'; b.id = 'month-' + m.toLowerCase();
+    b.addEventListener('click', () => pick(i)); monthsEl.append(b); return b;
+  });
+  function pick(m) {
+    const start = Date.UTC(2025, m, 1), end = Date.UTC(2025, m + 1, 0);
+    let open = 0;
+    chunks.forEach((c, i) => {
+      const on = RG[i][0] <= end && RG[i][1] >= start;
+      c.classList.toggle('on', on); c.lastChild.textContent = on ? 'opened' : 'skipped'; if (on) open++;
+    });
+    $('#opened').textContent = open + ' of 10 chunks opened';
+    $('#skipped').textContent = ((10 - open) * 100000).toLocaleString('en-US') + ' orders skipped unread.';
+    mButtons.forEach((b, i) => b.setAttribute('aria-pressed', i === m));
+  }
+  pick(4);
+
+  /* exact values on hover or focus */
+  const tip = $('#tip');
+  const hide = () => { tip.hidden = true; };
+  $$('[data-tip]').forEach(row => {
+    const show = () => {
+      tip.textContent = row.dataset.tip; tip.hidden = false;
+      const t = row.querySelector('.track').getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+      tip.style.left = Math.max(8, Math.min(t.left, innerWidth - w - 8)) + 'px';
+      tip.style.top = Math.max(8, t.top - h - 6) + 'px';
+    };
+    row.addEventListener('pointerenter', show); row.addEventListener('focus', show);
+    row.addEventListener('pointerleave', hide); row.addEventListener('blur', hide);
+  });
+  addEventListener('scroll', hide, { passive: true });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

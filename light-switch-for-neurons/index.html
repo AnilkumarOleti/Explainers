@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Light Switch for Neurons | Explainers</title>
+<meta name="description" content="Optogenetics, the 2026 Nobel Prize in medicine: a light sensor from a pond alga that switches brain cells on.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/light-switch-for-neurons/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="A Light Switch for Neurons">
+<meta property="og:description" content="Optogenetics, the 2026 Nobel Prize in medicine: a light sensor from a pond alga that switches brain cells on.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/light-switch-for-neurons/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/light-switch-for-neurons/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a fitting-instructions leaflet. Wide line-drawn plates carry the story;
+   each plate has a figure tag and sits under one short paragraph in a narrow column. */
+:root{
+  --paper:#ECF1F4; --plate:#F9FBFC; --ink:#0F1E2E; --ink-2:#47596B; --rule:#C2CED8;
+  --blue:#0A6FD6; --blue-wash:rgba(10,111,214,.13); --on-blue:#FFFFFF;
+  --alga:#27824A; --alga-wash:rgba(39,130,74,.18); --amber:#A66800; --ion:#C5432D;
+  --cell:#D6DFE6; --cell-line:#6F8397;
+  --f-display:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Barlow","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#09131F; --plate:#0E1C2C; --ink:#E7EEF5; --ink-2:#9DB1C4; --rule:#26384A;
+    --blue:#45B5FF; --blue-wash:rgba(69,181,255,.17); --on-blue:#04121F;
+    --alga:#5FCB82; --alga-wash:rgba(95,203,130,.18); --amber:#FFC247; --ion:#FF8469;
+    --cell:#1C2F43; --cell-line:#7089A0; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#09131F; --plate:#0E1C2C; --ink:#E7EEF5; --ink-2:#9DB1C4; --rule:#26384A;
+  --blue:#45B5FF; --blue-wash:rgba(69,181,255,.17); --on-blue:#04121F;
+  --alga:#5FCB82; --alga-wash:rgba(95,203,130,.18); --amber:#FFC247; --ion:#FF8469;
+  --cell:#1C2F43; --cell-line:#7089A0; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.sheet{max-width:1040px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:clamp(28px,5vw,56px) 72px;display:grid;gap:clamp(56px,8vw,96px)}
+.sheet > *{min-width:0}
+h1,h2,h3,p,ol,ul,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+
+.tag{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(3rem,9vw,6rem);line-height:.92;letter-spacing:-.01em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--blue)}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,4.4vw,2.9rem);line-height:1;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:600;font-size:1.45rem;line-height:1.1}
+p{max-width:60ch}
+.lede{font-size:clamp(1.1rem,2vw,1.3rem);line-height:1.45;max-width:54ch}
+a{color:var(--blue);text-underline-offset:.18em}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+.masthead{display:grid;gap:18px}
+.cite{border-left:3px solid var(--blue);padding-left:14px;color:var(--ink-2);max-width:56ch}
+.cite b{color:var(--ink);font-weight:600}
+
+section{display:grid;gap:20px}
+section > *{min-width:0}
+.head{display:grid;gap:10px}
+
+/* plates */
+.plate{background:var(--plate);border:1px solid var(--rule);border-radius:4px;position:relative}
+.plate > .tag{position:absolute;top:10px;left:12px;z-index:1}
+.plate svg{display:block;width:100%;height:auto}
+.plate.scroll{overflow-x:auto}
+.plate.scroll svg{min-width:500px}
+figcaption{padding:12px 14px 14px;border-top:1px solid var(--rule);font-size:.95rem;color:var(--ink-2)}
+figcaption b{color:var(--ink);font-weight:600}
+svg text{font-family:var(--f-mono);fill:var(--ink);font-size:15px}
+svg .dim{fill:var(--ink-2)}
+.lead{stroke:var(--ink-2);stroke-width:1.5;fill:none}
+
+/* fig 1 */
+.wire{stroke:var(--cell-line);stroke-width:2;fill:none;opacity:.55;stroke-linecap:round}
+.wire.stub{opacity:.4}
+.soma{fill:var(--cell);stroke:var(--cell-line);stroke-width:2;transition:fill .25s,stroke .25s}
+.mark{fill:var(--plate);stroke:var(--blue);stroke-width:3.5}
+.ping{fill:none;stroke:var(--blue);stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center}
+.wash{opacity:0;transition:opacity .35s}
+.fibre{fill:var(--ink-2)}
+.tip{fill:var(--cell-line);transition:fill .25s}
+#net.lit .wash{opacity:1}
+#net.lit .tip{fill:var(--blue)}
+#net.lit .tag .soma{fill:var(--blue);stroke:var(--blue)}
+#net.lit .tag .ping{animation:ping 1.3s ease-out infinite;animation-delay:var(--d)}
+@keyframes ping{0%{opacity:.85;transform:scale(1)}100%{opacity:0;transform:scale(2.7)}}
+
+.panel{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:12px 14px 14px;border-top:1px solid var(--rule)}
+.panel .status{flex:1 1 240px;min-width:0;font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:14px;height:14px;border-radius:50%;display:inline-block;background:var(--cell);border:2px solid var(--cell-line)}
+.legend i.t{background:var(--plate);border:3.5px solid var(--blue)}
+.legend i.bl{border-radius:1px;width:4px;height:16px;background:var(--blue);border:0}
+.legend i.ye{border-radius:1px;width:18px;height:10px;background:var(--amber);border:0;opacity:.6}
+
+/* rocker switch + button */
+.sw{font:inherit;color:var(--ink);background:none;border:0;padding:4px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-weight:600}
+.sw .track{width:54px;height:30px;border-radius:15px;background:var(--cell);border:2px solid var(--cell-line);position:relative;transition:background .2s,border-color .2s;flex:none}
+.sw .track::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .2s,background .2s}
+.sw[aria-checked="true"] .track{background:var(--blue);border-color:var(--blue)}
+.sw[aria-checked="true"] .track::after{transform:translateX(24px);background:var(--on-blue)}
+.sw.y[aria-checked="true"] .track{background:var(--amber);border-color:var(--amber)}
+.btn{font:inherit;font-weight:600;color:var(--on-blue);background:var(--blue);border:0;border-radius:4px;padding:9px 16px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+
+/* fig 2 */
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.c{fill:var(--cell);stroke:var(--cell-line);stroke-width:2}
+.c.hot{fill:var(--ion);stroke:var(--ion)}
+.c.soak{fill:var(--amber);stroke:var(--amber);fill-opacity:.5}
+.c.on{fill:var(--blue);stroke:var(--blue)}
+.verdict{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-top:4px}
+.verdict.no{color:var(--ion)} .verdict.yes{color:var(--blue)}
+
+/* fig 3 + 4 */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.head-c{fill:var(--cell);stroke:var(--cell-line);stroke-width:1.5}
+.head{fill:var(--cell);stroke:var(--cell-line);stroke-width:1.5}
+.tail{stroke:var(--cell-line);stroke-width:1.5;fill:none}
+.lobe{fill:var(--alga);stroke:var(--ink);stroke-width:2}
+.ion circle{fill:var(--ion)}
+.ion path{stroke:var(--plate);stroke-width:2;fill:none;stroke-linecap:round}
+.ray{stroke:var(--blue);stroke-width:3.5;fill:none;stroke-linecap:round}
+.flow{animation:flow .75s linear infinite}
+.flow.f0{animation-name:flow-in} .flow.f4{animation-name:flow-out}
+@keyframes flow{to{transform:translateY(40px)}}
+@keyframes flow-in{from{opacity:0}to{opacity:1;transform:translateY(40px)}}
+@keyframes flow-out{from{opacity:1}to{opacity:0;transform:translateY(40px)}}
+
+/* fig 5 */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-rows:auto 1fr}
+.steps .txt{padding:12px 14px 16px;border-top:1px solid var(--rule);display:grid;gap:4px;align-content:start}
+.steps h3::before{content:counter(s);font-family:var(--f-display);font-weight:700;color:var(--blue);margin-right:.4em}
+.steps p{font-size:.95rem;color:var(--ink-2)}
+.ln{stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ln.b{stroke:var(--blue)} .ln.g{stroke:var(--alga)}
+
+/* fig 6 */
+#trace{display:block;width:100%;height:190px}
+
+/* people */
+.cast{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.cast li{display:grid;gap:8px;align-content:start;border-top:3px solid var(--ink);padding-top:14px}
+.cast svg{width:72px;height:72px}
+.cast .where{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.cast p{font-size:.97rem}
+.note{color:var(--ink-2);font-size:.97rem}
+
+/* timeline */
+.tl{display:grid;gap:0;border-left:2px solid var(--rule);margin-left:6px}
+.tl li{display:grid;grid-template-columns:6.6rem minmax(0,1fr);gap:12px;padding:9px 0 9px 20px;position:relative;align-items:baseline}
+.tl li::before{content:"";position:absolute;left:-7px;top:1.05em;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--cell-line)}
+.tl li.hit::before{background:var(--blue);border-color:var(--blue)}
+.tl .yr{font-family:var(--f-display);font-weight:600;font-size:1.35rem;font-variant-numeric:tabular-nums;line-height:1.1;white-space:nowrap}
+
+.src{display:grid;gap:6px;font-size:.92rem}
+footer{display:grid;gap:12px;border-top:1px solid var(--rule);padding-top:20px;color:var(--ink-2)}
+
+@media (max-width:820px){
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cast{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:620px){
+  .trio,.duo{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:440px){
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .steps .plate svg{max-width:300px;margin-inline:auto}
+}
+@media (prefers-reduced-motion: reduce){
+  #net.lit .tag .ping{animation:none;opacity:.5;transform:scale(1.5)}
+  .flow{animation:none}
+  .sw .track,.sw .track::after,.soma,.wash{transition:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="glow" gradientUnits="userSpaceOnUse" cx="480" cy="46" r="600">
+      <stop offset="0" style="stop-color:var(--blue);stop-opacity:.6"/>
+      <stop offset=".3" style="stop-color:var(--blue);stop-opacity:.24"/>
+      <stop offset="1" style="stop-color:var(--blue);stop-opacity:.07"/>
+    </radialGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" style="fill:var(--blue)"/>
+    </marker>
+    <marker id="ahk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" style="fill:var(--ink)"/>
+    </marker>
+  </defs>
+</svg>
+
+<main class="sheet">
+
+<header class="masthead">
+  <p class="tag">Nobel Prize in Physiology or Medicine · 2026</p>
+  <h1>A <em>light switch</em> for neurons</h1>
+  <p class="lede">Karl Deisseroth shares the prize with Peter Hegemann and Georg Nagel for <b>optogenetics</b>. They borrowed a light sensor from a pond alga, put it into chosen brain cells, and used a flash of blue to turn those cells on.</p>
+  <p class="cite">Awarded <b>“for their discoveries concerning light-gated ion channels and optogenetics.”</b></p>
+
+  <figure class="plate">
+    <span class="tag">Fig. 1 · Try it</span>
+    <svg id="net" class="lit" viewBox="0 0 960 400" role="img" aria-label="Eleven nerve cells wired together under one optical fibre. Four carry the light switch and fire when blue light is on. Seven do not.">
+      <rect class="wash" x="0" y="0" width="960" height="400" fill="url(#glow)"/>
+      <path class="wire" d="M110 120 Q157 202 245 235"/>
+<path class="wire" d="M245 235 Q321 186 360 105"/>
+<path class="wire" d="M360 105 Q433 146 480 215"/>
+<path class="wire" d="M480 215 Q558 186 600 115"/>
+<path class="wire" d="M600 115 Q671 171 715 250"/>
+<path class="wire" d="M715 250 Q795 201 850 125"/>
+<path class="wire" d="M245 235 Q215 297 150 320"/>
+<path class="wire" d="M480 215 Q403 250 375 330"/>
+<path class="wire" d="M480 215 Q553 257 585 335"/>
+<path class="wire" d="M715 250 Q795 270 860 320"/>
+<path class="wire" d="M150 320 Q264 293 375 330"/>
+<path class="wire" d="M585 335 Q634 267 715 250"/>
+<path class="wire" d="M360 105 Q479 134 600 115"/>
+<path class="wire" d="M375 330 Q481 307 585 335"/>
+<path class="wire" d="M850 125 Q830 224 860 320"/>
+<path class="wire" d="M110 120 Q234 88 360 105"/>
+<path class="wire stub" d="M110 120 L86 157"/>
+<path class="wire stub" d="M110 120 L87 87"/>
+<path class="wire stub" d="M110 120 L139 104"/>
+<path class="wire stub" d="M245 235 L249 276"/>
+<path class="wire stub" d="M245 235 L213 209"/>
+<path class="wire stub" d="M245 235 L285 219"/>
+<path class="wire stub" d="M360 105 L367 73"/>
+<path class="wire stub" d="M360 105 L364 141"/>
+<path class="wire stub" d="M360 105 L328 89"/>
+<path class="wire stub" d="M480 215 L515 237"/>
+<path class="wire stub" d="M480 215 L458 237"/>
+<path class="wire stub" d="M480 215 L471 172"/>
+<path class="wire stub" d="M600 115 L591 83"/>
+<path class="wire stub" d="M600 115 L630 123"/>
+<path class="wire stub" d="M600 115 L568 123"/>
+<path class="wire stub" d="M715 250 L684 239"/>
+<path class="wire stub" d="M715 250 L743 235"/>
+<path class="wire stub" d="M715 250 L716 282"/>
+<path class="wire stub" d="M850 125 L825 147"/>
+<path class="wire stub" d="M850 125 L866 87"/>
+<path class="wire stub" d="M850 125 L889 141"/>
+<path class="wire stub" d="M150 320 L164 360"/>
+<path class="wire stub" d="M150 320 L121 308"/>
+<path class="wire stub" d="M150 320 L181 308"/>
+<path class="wire stub" d="M585 335 L576 368"/>
+<path class="wire stub" d="M585 335 L557 323"/>
+<path class="wire stub" d="M585 335 L611 307"/>
+<path class="wire stub" d="M860 320 L859 355"/>
+<path class="wire stub" d="M860 320 L821 302"/>
+<path class="wire stub" d="M860 320 L892 299"/>
+<path class="wire stub" d="M375 330 L390 301"/>
+<path class="wire stub" d="M375 330 L375 371"/>
+<path class="wire stub" d="M375 330 L342 330"/>
+<g class="n"><circle class="soma" cx="110" cy="120" r="19"/></g>
+<g class="n tag" style="--d:0.00s"><circle class="ping" cx="245" cy="235" r="19"/><circle class="soma" cx="245" cy="235" r="19"/><circle class="mark" cx="245" cy="235" r="7"/></g>
+<g class="n"><circle class="soma" cx="360" cy="105" r="19"/></g>
+<g class="n tag" style="--d:0.22s"><circle class="ping" cx="480" cy="215" r="19"/><circle class="soma" cx="480" cy="215" r="19"/><circle class="mark" cx="480" cy="215" r="7"/></g>
+<g class="n"><circle class="soma" cx="600" cy="115" r="19"/></g>
+<g class="n tag" style="--d:0.44s"><circle class="ping" cx="715" cy="250" r="19"/><circle class="soma" cx="715" cy="250" r="19"/><circle class="mark" cx="715" cy="250" r="7"/></g>
+<g class="n"><circle class="soma" cx="850" cy="125" r="19"/></g>
+<g class="n"><circle class="soma" cx="150" cy="320" r="19"/></g>
+<g class="n"><circle class="soma" cx="585" cy="335" r="19"/></g>
+<g class="n"><circle class="soma" cx="860" cy="320" r="19"/></g>
+<g class="n tag" style="--d:0.66s"><circle class="ping" cx="375" cy="330" r="19"/><circle class="soma" cx="375" cy="330" r="19"/><circle class="mark" cx="375" cy="330" r="7"/></g>
+      <rect class="fibre" x="473" y="0" width="14" height="42" rx="2"/>
+      <circle class="tip" cx="480" cy="46" r="9"/>
+    </svg>
+    <div class="panel">
+      <button class="sw" id="sw-blue" type="button" role="switch" aria-checked="true"><span class="track"></span>Blue light</button>
+      <span class="status" id="net-status" aria-live="polite">Light on. 4 of 11 cells fire.</span>
+      <span class="legend"><span><i class="t"></i>carries the switch</span><span><i></i>no switch</span></span>
+    </div>
+    <figcaption>Every cell sits in the same blue light. Only the four that carry the switch respond.</figcaption>
+  </figure>
+</header>
+
+<section>
+  <div class="head">
+    <p class="tag">The problem</p>
+    <h2>Nobody could pick one kind of cell</h2>
+    <p>The brain packs many kinds of nerve cell into the same space. To learn what one kind does, you have to drive that kind alone, and quickly. The old tools could not.</p>
+  </div>
+  <div class="trio">
+    <figure class="plate">
+      <svg viewBox="0 0 300 210" role="img" aria-label="An electrode fires every cell near its tip, whatever the type.">
+        <circle cx="150" cy="112" r="82" fill="none" stroke="var(--ion)" stroke-width="2" stroke-dasharray="5 6"/>
+        <circle class="c" cx="57" cy="71" r="14"/>
+<rect class="c hot" x="107" y="52" width="24" height="24" rx="4"/>
+<path class="c hot" d="M187 52 L202 78 L172 78 Z"/>
+<circle class="c" cx="249" cy="70" r="14"/>
+<path class="c" d="M47 102 L62 128 L32 128 Z"/>
+<circle class="c hot" cx="111" cy="112" r="14"/>
+<rect class="c hot" x="166" y="99" width="24" height="24" rx="4"/>
+<path class="c" d="M250 100 L265 126 L235 126 Z"/>
+<rect class="c" x="37" y="155" width="24" height="24" rx="4"/>
+<path class="c hot" d="M115 152 L130 178 L100 178 Z"/>
+<circle class="c hot" cx="186" cy="168" r="14"/>
+<rect class="c" x="234" y="157" width="24" height="24" rx="4"/>
+        <path d="M150 0 V98" stroke="var(--ink)" stroke-width="5" fill="none"/>
+        <path d="M144 96 H156 L150 114 Z" fill="var(--ink)"/>
+      </svg>
+      <figcaption><b>Electric probe.</b> Fast, but it fires every neighbour.<span class="verdict no">Wrong cells</span></figcaption>
+    </figure>
+    <figure class="plate">
+      <svg viewBox="0 0 300 210" role="img" aria-label="A drug soaks into every cell.">
+        <rect x="0" y="0" width="300" height="210" fill="var(--amber)" opacity=".1"/>
+        <circle class="c soak" cx="57" cy="71" r="14"/>
+<rect class="c soak" x="107" y="52" width="24" height="24" rx="4"/>
+<path class="c soak" d="M187 52 L202 78 L172 78 Z"/>
+<circle class="c soak" cx="249" cy="70" r="14"/>
+<path class="c soak" d="M47 102 L62 128 L32 128 Z"/>
+<circle class="c soak" cx="111" cy="112" r="14"/>
+<rect class="c soak" x="166" y="99" width="24" height="24" rx="4"/>
+<path class="c soak" d="M250 100 L265 126 L235 126 Z"/>
+<rect class="c soak" x="37" y="155" width="24" height="24" rx="4"/>
+<path class="c soak" d="M115 152 L130 178 L100 178 Z"/>
+<circle class="c soak" cx="186" cy="168" r="14"/>
+<rect class="c soak" x="234" y="157" width="24" height="24" rx="4"/>
+        <path d="M90 8 C82 22 80 26 80 31 a10 10 0 0 0 20 0 C100 26 98 22 90 8Z M150 2 C142 16 140 20 140 25 a10 10 0 0 0 20 0 C160 20 158 16 150 2Z M210 8 C202 22 200 26 200 31 a10 10 0 0 0 20 0 C220 26 218 22 210 8Z" fill="var(--amber)"/>
+      </svg>
+      <figcaption><b>Drug.</b> It soaks in everywhere and takes minutes.<span class="verdict no">Too slow</span></figcaption>
+    </figure>
+    <figure class="plate">
+      <svg viewBox="0 0 300 210" role="img" aria-label="Light switches on only the round cells that carry the switch.">
+        <rect x="0" y="0" width="300" height="210" fill="var(--blue-wash)"/>
+        <circle class="c on" cx="57" cy="71" r="14"/>
+<rect class="c" x="107" y="52" width="24" height="24" rx="4"/>
+<path class="c" d="M187 52 L202 78 L172 78 Z"/>
+<circle class="c on" cx="249" cy="70" r="14"/>
+<path class="c" d="M47 102 L62 128 L32 128 Z"/>
+<circle class="c on" cx="111" cy="112" r="14"/>
+<rect class="c" x="166" y="99" width="24" height="24" rx="4"/>
+<path class="c" d="M250 100 L265 126 L235 126 Z"/>
+<rect class="c" x="37" y="155" width="24" height="24" rx="4"/>
+<path class="c" d="M115 152 L130 178 L100 178 Z"/>
+<circle class="c on" cx="186" cy="168" r="14"/>
+<rect class="c" x="234" y="157" width="24" height="24" rx="4"/>
+        <rect x="144" y="0" width="12" height="20" fill="var(--ink-2)"/>
+        <circle cx="150" cy="24" r="7" fill="var(--blue)"/>
+      </svg>
+      <figcaption><b>Light plus a gene.</b> Only the round cells carry the switch.<span class="verdict yes">One kind, on cue</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">Where the part came from</p>
+    <h2>The switch was found in a pond</h2>
+    <p><i>Chlamydomonas</i> is a single green cell that swims toward light. In the early 1990s Peter Hegemann set out to learn how it sees. With Georg Nagel he found the sensor, a protein they named <b>channelrhodopsin</b>.</p>
+  </div>
+  <figure class="plate scroll">
+    <span class="tag">Fig. 2</span>
+    <svg viewBox="0 0 640 340" role="img" aria-label="A green alga with two whip-like flagella and an orange eyespot, swimming toward light on the right.">
+      <path d="M352 158 C430 120 470 96 436 42" stroke="var(--alga)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M352 202 C430 240 470 264 436 318" stroke="var(--alga)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <ellipse cx="270" cy="180" rx="96" ry="80" fill="var(--alga-wash)" stroke="var(--alga)" stroke-width="3"/>
+      <path d="M306 124 C196 104 188 256 306 236" stroke="var(--alga)" stroke-width="24" fill="none" opacity=".4" stroke-linecap="round"/>
+      <circle cx="296" cy="180" r="20" fill="var(--plate)" stroke="var(--alga)" stroke-width="2.5"/>
+      <ellipse cx="232" cy="110" rx="13" ry="7" transform="rotate(-28 232 110)" fill="var(--amber)"/>
+      <path class="lead" d="M222 104 L184 86"/>
+      <text x="26" y="50">EYESPOT</text>
+      <text class="dim" x="26" y="70">the light sensor sits here</text>
+      <path class="lead" d="M444 60 L478 60"/>
+      <text x="486" y="56">TWO FLAGELLA</text>
+      <text class="dim" x="486" y="76">oars for steering</text>
+      <path class="ray" d="M618 150 H512" marker-end="url(#ah)"/>
+      <path class="ray" d="M618 180 H496" marker-end="url(#ah)"/>
+      <path class="ray" d="M618 210 H512" marker-end="url(#ah)"/>
+      <text x="548" y="244" style="fill:var(--blue)">LIGHT</text>
+      <path d="M40 180 H130" stroke="var(--ink)" stroke-width="2.5" fill="none" marker-end="url(#ahk)"/>
+      <text x="26" y="206">SWIMS TO IT</text>
+      <path d="M174 300 H366 M174 293 V307 M366 293 V307" stroke="var(--ink-2)" stroke-width="1.5" fill="none"/>
+      <text class="dim" x="212" y="324">about 0.01 mm</text>
+    </svg>
+  </figure>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">How the part works</p>
+    <h2>A gate that light opens</h2>
+    <p>Channelrhodopsin sits in the cell's outer skin. Blue light opens it in a few thousandths of a second and charged particles rush in. In a nerve cell, that rush is what starts a signal.</p>
+  </div>
+  <div class="duo">
+    <figure class="plate">
+      <span class="tag">Fig. 3a · Dark</span>
+      <svg viewBox="0 0 420 300" role="img" aria-label="In the dark the gate is shut and charged particles wait outside the cell.">
+        <path class="tail" d="M14 144 V160 M14 176 V160"/><circle class="head" cx="14" cy="138" r="6"/><circle class="head" cx="14" cy="182" r="6"/>
+<path class="tail" d="M30 144 V160 M30 176 V160"/><circle class="head" cx="30" cy="138" r="6"/><circle class="head" cx="30" cy="182" r="6"/>
+<path class="tail" d="M46 144 V160 M46 176 V160"/><circle class="head" cx="46" cy="138" r="6"/><circle class="head" cx="46" cy="182" r="6"/>
+<path class="tail" d="M62 144 V160 M62 176 V160"/><circle class="head" cx="62" cy="138" r="6"/><circle class="head" cx="62" cy="182" r="6"/>
+<path class="tail" d="M78 144 V160 M78 176 V160"/><circle class="head" cx="78" cy="138" r="6"/><circle class="head" cx="78" cy="182" r="6"/>
+<path class="tail" d="M94 144 V160 M94 176 V160"/><circle class="head" cx="94" cy="138" r="6"/><circle class="head" cx="94" cy="182" r="6"/>
+<path class="tail" d="M110 144 V160 M110 176 V160"/><circle class="head" cx="110" cy="138" r="6"/><circle class="head" cx="110" cy="182" r="6"/>
+<path class="tail" d="M126 144 V160 M126 176 V160"/><circle class="head" cx="126" cy="138" r="6"/><circle class="head" cx="126" cy="182" r="6"/>
+<path class="tail" d="M142 144 V160 M142 176 V160"/><circle class="head" cx="142" cy="138" r="6"/><circle class="head" cx="142" cy="182" r="6"/>
+<path class="tail" d="M270 144 V160 M270 176 V160"/><circle class="head" cx="270" cy="138" r="6"/><circle class="head" cx="270" cy="182" r="6"/>
+<path class="tail" d="M286 144 V160 M286 176 V160"/><circle class="head" cx="286" cy="138" r="6"/><circle class="head" cx="286" cy="182" r="6"/>
+<path class="tail" d="M302 144 V160 M302 176 V160"/><circle class="head" cx="302" cy="138" r="6"/><circle class="head" cx="302" cy="182" r="6"/>
+<path class="tail" d="M318 144 V160 M318 176 V160"/><circle class="head" cx="318" cy="138" r="6"/><circle class="head" cx="318" cy="182" r="6"/>
+<path class="tail" d="M334 144 V160 M334 176 V160"/><circle class="head" cx="334" cy="138" r="6"/><circle class="head" cx="334" cy="182" r="6"/>
+<path class="tail" d="M350 144 V160 M350 176 V160"/><circle class="head" cx="350" cy="138" r="6"/><circle class="head" cx="350" cy="182" r="6"/>
+<path class="tail" d="M366 144 V160 M366 176 V160"/><circle class="head" cx="366" cy="138" r="6"/><circle class="head" cx="366" cy="182" r="6"/>
+<path class="tail" d="M382 144 V160 M382 176 V160"/><circle class="head" cx="382" cy="138" r="6"/><circle class="head" cx="382" cy="182" r="6"/>
+<path class="tail" d="M398 144 V160 M398 176 V160"/><circle class="head" cx="398" cy="138" r="6"/><circle class="head" cx="398" cy="182" r="6"/>
+        <rect class="lobe" x="172" y="114" width="36" height="92" rx="16"/>
+        <rect class="lobe" x="212" y="114" width="36" height="92" rx="16"/>
+        <g class="ion "><circle cx="60" cy="74" r="8"/><path d="M56 74 H64 M60 70 V78"/></g>
+<g class="ion "><circle cx="112" cy="98" r="8"/><path d="M108 98 H116 M112 94 V102"/></g>
+<g class="ion "><circle cx="150" cy="60" r="8"/><path d="M146 60 H154 M150 56 V64"/></g>
+<g class="ion "><circle cx="206" cy="90" r="8"/><path d="M202 90 H210 M206 86 V94"/></g>
+<g class="ion "><circle cx="252" cy="62" r="8"/><path d="M248 62 H256 M252 58 V66"/></g>
+<g class="ion "><circle cx="300" cy="98" r="8"/><path d="M296 98 H304 M300 94 V102"/></g>
+<g class="ion "><circle cx="342" cy="68" r="8"/><path d="M338 68 H346 M342 64 V72"/></g>
+<g class="ion "><circle cx="380" cy="94" r="8"/><path d="M376 94 H384 M380 90 V98"/></g>
+<g class="ion "><circle cx="92" cy="46" r="8"/><path d="M88 46 H96 M92 42 V50"/></g>
+<g class="ion "><circle cx="120" cy="244" r="8"/><path d="M116 244 H124 M120 240 V248"/></g>
+        <text class="dim" x="406" y="26" text-anchor="end">outside the cell</text>
+        <text class="dim" x="406" y="290" text-anchor="end">inside the cell</text>
+      </svg>
+      <figcaption><b>Shut.</b> The charged particles wait outside.</figcaption>
+    </figure>
+    <figure class="plate">
+      <span class="tag">Fig. 3b · Blue light</span>
+      <svg viewBox="0 0 420 300" role="img" aria-label="In blue light the gate opens and charged particles pour into the cell.">
+        <circle cx="210" cy="160" r="84" fill="var(--blue-wash)"/>
+        <path class="tail" d="M14 144 V160 M14 176 V160"/><circle class="head" cx="14" cy="138" r="6"/><circle class="head" cx="14" cy="182" r="6"/>
+<path class="tail" d="M30 144 V160 M30 176 V160"/><circle class="head" cx="30" cy="138" r="6"/><circle class="head" cx="30" cy="182" r="6"/>
+<path class="tail" d="M46 144 V160 M46 176 V160"/><circle class="head" cx="46" cy="138" r="6"/><circle class="head" cx="46" cy="182" r="6"/>
+<path class="tail" d="M62 144 V160 M62 176 V160"/><circle class="head" cx="62" cy="138" r="6"/><circle class="head" cx="62" cy="182" r="6"/>
+<path class="tail" d="M78 144 V160 M78 176 V160"/><circle class="head" cx="78" cy="138" r="6"/><circle class="head" cx="78" cy="182" r="6"/>
+<path class="tail" d="M94 144 V160 M94 176 V160"/><circle class="head" cx="94" cy="138" r="6"/><circle class="head" cx="94" cy="182" r="6"/>
+<path class="tail" d="M110 144 V160 M110 176 V160"/><circle class="head" cx="110" cy="138" r="6"/><circle class="head" cx="110" cy="182" r="6"/>
+<path class="tail" d="M126 144 V160 M126 176 V160"/><circle class="head" cx="126" cy="138" r="6"/><circle class="head" cx="126" cy="182" r="6"/>
+<path class="tail" d="M142 144 V160 M142 176 V160"/><circle class="head" cx="142" cy="138" r="6"/><circle class="head" cx="142" cy="182" r="6"/>
+<path class="tail" d="M270 144 V160 M270 176 V160"/><circle class="head" cx="270" cy="138" r="6"/><circle class="head" cx="270" cy="182" r="6"/>
+<path class="tail" d="M286 144 V160 M286 176 V160"/><circle class="head" cx="286" cy="138" r="6"/><circle class="head" cx="286" cy="182" r="6"/>
+<path class="tail" d="M302 144 V160 M302 176 V160"/><circle class="head" cx="302" cy="138" r="6"/><circle class="head" cx="302" cy="182" r="6"/>
+<path class="tail" d="M318 144 V160 M318 176 V160"/><circle class="head" cx="318" cy="138" r="6"/><circle class="head" cx="318" cy="182" r="6"/>
+<path class="tail" d="M334 144 V160 M334 176 V160"/><circle class="head" cx="334" cy="138" r="6"/><circle class="head" cx="334" cy="182" r="6"/>
+<path class="tail" d="M350 144 V160 M350 176 V160"/><circle class="head" cx="350" cy="138" r="6"/><circle class="head" cx="350" cy="182" r="6"/>
+<path class="tail" d="M366 144 V160 M366 176 V160"/><circle class="head" cx="366" cy="138" r="6"/><circle class="head" cx="366" cy="182" r="6"/>
+<path class="tail" d="M382 144 V160 M382 176 V160"/><circle class="head" cx="382" cy="138" r="6"/><circle class="head" cx="382" cy="182" r="6"/>
+<path class="tail" d="M398 144 V160 M398 176 V160"/><circle class="head" cx="398" cy="138" r="6"/><circle class="head" cx="398" cy="182" r="6"/>
+        <rect class="lobe" x="158" y="114" width="36" height="92" rx="16"/>
+        <rect class="lobe" x="226" y="114" width="36" height="92" rx="16"/>
+        <path class="ray" d="M118 38 L160 104" marker-end="url(#ah)"/>
+        <path class="ray" d="M302 38 L260 104" marker-end="url(#ah)"/>
+        <g class="ion "><circle cx="60" cy="78" r="8"/><path d="M56 78 H64 M60 74 V82"/></g>
+<g class="ion "><circle cx="108" cy="100" r="8"/><path d="M104 100 H112 M108 96 V104"/></g>
+<g class="ion "><circle cx="312" cy="98" r="8"/><path d="M308 98 H316 M312 94 V102"/></g>
+<g class="ion "><circle cx="346" cy="66" r="8"/><path d="M342 66 H350 M346 62 V70"/></g>
+<g class="ion "><circle cx="384" cy="94" r="8"/><path d="M380 94 H388 M384 90 V98"/></g>
+<g class="ion "><circle cx="124" cy="244" r="8"/><path d="M120 244 H128 M124 240 V248"/></g>
+<g class="ion "><circle cx="162" cy="266" r="8"/><path d="M158 266 H166 M162 262 V270"/></g>
+<g class="ion "><circle cx="262" cy="246" r="8"/><path d="M258 246 H266 M262 242 V250"/></g>
+<g class="ion "><circle cx="300" cy="270" r="8"/><path d="M296 270 H304 M300 266 V274"/></g>
+<g class="ion "><circle cx="342" cy="240" r="8"/><path d="M338 240 H346 M342 236 V244"/></g>
+<g class="ion "><circle cx="72" cy="266" r="8"/><path d="M68 266 H76 M72 262 V270"/></g>
+        <g class="ion flow f0"><circle cx="210" cy="52" r="8"/><path d="M206 52 H214 M210 48 V56"/></g>
+<g class="ion flow f1"><circle cx="210" cy="92" r="8"/><path d="M206 92 H214 M210 88 V96"/></g>
+<g class="ion flow f2"><circle cx="210" cy="132" r="8"/><path d="M206 132 H214 M210 128 V136"/></g>
+<g class="ion flow f3"><circle cx="210" cy="172" r="8"/><path d="M206 172 H214 M210 168 V176"/></g>
+<g class="ion flow f4"><circle cx="210" cy="212" r="8"/><path d="M206 212 H214 M210 208 V216"/></g>
+        <text class="dim" x="406" y="26" text-anchor="end">outside the cell</text>
+        <text class="dim" x="406" y="290" text-anchor="end">inside the cell</text>
+      </svg>
+      <figcaption><b>Open.</b> They pour in and the cell fires.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">Fitting instructions</p>
+    <h2>How the switch gets into a brain cell</h2>
+    <p>Karl Deisseroth's lab at Stanford showed in 2005 that the alga's protein works in nerve cells, then turned it into a kit any lab could use.</p>
+  </div>
+  <ol class="steps">
+    <li class="plate">
+      <svg viewBox="0 0 240 150" role="img" aria-label="An alga with a short piece of its DNA picked out.">
+        <ellipse cx="62" cy="76" rx="30" ry="25" fill="var(--alga-wash)" stroke="var(--alga)" stroke-width="2.5"/>
+        <path class="ln g" d="M88 68 C108 58 114 48 104 34 M88 84 C108 94 114 104 104 118"/>
+        <path class="ln" d="M122 62 q14 -22 28 0 t28 0 t28 0 t22 -6"/>
+        <path class="ln" d="M122 90 q14 22 28 0 t28 0 t28 0 t22 6"/>
+        <path class="ln" style="stroke-width:1.5" d="M129 68 V84 M143 62 V90 M157 68 V84 M171 62 V90 M185 68 V84 M199 62 V90 M213 68 V84"/>
+        <path class="ln b" style="stroke-width:5" d="M150 62 q14 22 28 0 M150 90 q14 -22 28 0"/>
+      </svg>
+      <div class="txt"><h3>Copy the gene</h3><p>Take the alga's recipe for the gate.</p></div>
+    </li>
+    <li class="plate">
+      <svg viewBox="0 0 240 150" role="img" aria-label="A harmless virus carrying the gene, with an address label tied to it.">
+        <path class="ln" d="M110 28 L151 52 V98 L110 122 L69 98 V52 Z" fill="var(--plate)"/>
+        <path class="ln b" style="stroke-width:5" d="M90 76 q10 -18 20 0 t20 0"/>
+        <path class="ln" style="stroke-width:1.5" d="M151 60 L176 46"/>
+        <path d="M176 34 H214 a4 4 0 0 1 4 4 V56 a4 4 0 0 1 -4 4 H176 L166 47 Z" fill="var(--amber)" opacity=".85"/>
+        <circle cx="178" cy="47" r="3" fill="var(--plate)"/>
+        <path d="M188 43 H210 M188 51 H204" stroke="var(--plate)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="txt"><h3>Add an address</h3><p>A harmless virus delivers it. A genetic address label means only one kind of cell builds it.</p></div>
+    </li>
+    <li class="plate">
+      <svg viewBox="0 0 240 150" role="img" aria-label="A thin optical fibre reaching into the brain with a blue glow at its tip.">
+        <path class="ln" fill="var(--cell)" d="M58 96 C40 60 78 30 118 34 C160 26 204 52 196 92 C194 116 164 126 138 122 C124 136 100 136 96 120 C76 124 62 114 58 96 Z"/>
+        <path class="ln" style="stroke-width:1.5;opacity:.55" d="M84 70 C100 58 112 76 128 62 M134 96 C150 84 162 100 178 86 M92 100 C104 92 112 104 124 96"/>
+        <circle cx="140" cy="78" r="22" fill="var(--blue-wash)"/>
+        <path d="M140 4 V72" stroke="var(--ink-2)" stroke-width="5" fill="none"/>
+        <circle cx="140" cy="78" r="6" fill="var(--blue)"/>
+      </svg>
+      <div class="txt"><h3>Bring the light</h3><p>A fibre as thin as a hair carries blue light to the spot.</p></div>
+    </li>
+    <li class="plate">
+      <svg viewBox="0 0 240 150" role="img" aria-label="Four blue flashes, each followed at once by one nerve signal.">
+        <path d="M54 26 V46 M100 26 V46 M146 26 V46 M192 26 V46" stroke="var(--blue)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path class="ln" d="M20 110 H52 L57 58 L62 120 L67 110 H98 L103 58 L108 120 L113 110 H144 L149 58 L154 120 L159 110 H190 L195 58 L200 120 L205 110 H224"/>
+      </svg>
+      <div class="txt"><h3>Flash</h3><p>One flash gives one signal, exactly on cue.</p></div>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">On and off</p>
+    <h2>Blue starts a cell. Yellow stops it.</h2>
+    <p>A second protein, taken from a salt-loving microbe, does the opposite job. Yellow light silences the cell for as long as it shines. The cell below carries both.</p>
+  </div>
+  <figure class="plate">
+    <span class="tag">Fig. 4 · Try it</span>
+    <canvas id="trace" role="img" aria-label="A live recording from one nerve cell. Blue flashes each trigger a spike. While yellow light is on, the line stays flat."></canvas>
+    <div class="panel">
+      <button class="btn" id="btn-flash" type="button">Flash blue</button>
+      <button class="sw y" id="sw-yellow" type="button" role="switch" aria-checked="false"><span class="track"></span>Yellow light</button>
+      <span class="status" id="trace-status" aria-live="polite">Left alone, the cell fires now and then.</span>
+      <span class="legend"><span><i class="bl"></i>blue flash</span><span><i class="ye"></i>yellow on</span></span>
+    </div>
+    <figcaption>Each spike in the line is one signal from the cell.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">Why it matters</p>
+    <h2>From watching the brain to testing it</h2>
+    <p>Recording from the brain shows what happens alongside a behaviour. Switching cells on and off shows what causes it. Labs now use the method to trace the circuits behind memory, fear, hunger, sleep, movement and addiction.</p>
+    <p>Medicine is at an early stage. In 2021 a man blind from an inherited eye disease regained partial sight after a light-sensitive protein was added to cells in his retina. On the day of the prize one laureate said he knew of only one patient helped so far.</p>
+  </div>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">Who did what</p>
+    <h2>Three laureates</h2>
+  </div>
+  <ul class="cast">
+    <li>
+      <svg viewBox="0 0 72 72" aria-hidden="true"><ellipse cx="30" cy="38" rx="20" ry="17" fill="var(--alga-wash)" stroke="var(--alga)" stroke-width="2.5"/><path class="ln g" d="M48 32 C60 26 64 18 58 8 M48 44 C60 50 64 58 58 68"/><ellipse cx="22" cy="24" rx="5" ry="3" fill="var(--amber)"/></svg>
+      <h3>Peter Hegemann</h3>
+      <span class="where">Humboldt University of Berlin</span>
+      <p>Asked how a pond alga senses light, and spent decades finding out.</p>
+    </li>
+    <li>
+      <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M4 36 H22 M50 36 H68" stroke="var(--cell-line)" stroke-width="10" fill="none"/><rect class="lobe" x="20" y="16" width="12" height="40" rx="6"/><rect class="lobe" x="40" y="16" width="12" height="40" rx="6"/><circle cx="36" cy="10" r="4" fill="var(--ion)"/><circle cx="36" cy="36" r="4" fill="var(--ion)"/><circle cx="36" cy="62" r="4" fill="var(--ion)"/></svg>
+      <h3>Georg Nagel</h3>
+      <span class="where">University of Würzburg</span>
+      <p>Proved the sensor is a gate that light opens, and that it works in other cells too.</p>
+    </li>
+    <li>
+      <svg viewBox="0 0 72 72" aria-hidden="true"><path class="ln" style="stroke:var(--cell-line)" d="M36 42 L14 62 M36 42 L60 60 M36 42 L10 34"/><circle cx="36" cy="42" r="13" fill="var(--blue)"/><path class="ray" style="stroke-width:3" d="M36 4 V22" marker-end="url(#ah)"/></svg>
+      <h3>Karl Deisseroth</h3>
+      <span class="where">Stanford University</span>
+      <p>Put the gate into nerve cells and built the method that brain labs use today.</p>
+    </li>
+  </ul>
+  <p class="note">A Nobel Prize goes to at most three people. Others shaped this story. Gero Miesenböck first made nerve cells respond to light through their genes in 2002. Zhuo-Hua Pan put the alga's gate into eye cells in 2004. Ed Boyden was first author of Deisseroth's 2005 paper, and many commentators said he should have shared the prize.</p>
+</section>
+
+<section>
+  <div class="head">
+    <p class="tag">In order</p>
+    <h2>Forty-seven years from wish to prize</h2>
+  </div>
+  <ol class="tl">
+    <li><span class="yr">1979</span><span>Francis Crick writes that brain science needs a way to control one kind of cell and leave the rest alone.</span></li>
+    <li><span class="yr">1990s</span><span>Hegemann studies how a pond alga steers by light.</span></li>
+    <li class="hit"><span class="yr">2002–03</span><span>Nagel and Hegemann show channelrhodopsin is a gate that light opens.</span></li>
+    <li class="hit"><span class="yr">2005</span><span>Deisseroth's lab makes nerve cells fire with flashes of blue.</span></li>
+    <li><span class="yr">2007</span><span>The off switch arrives. Yellow light silences cells.</span></li>
+    <li><span class="yr">2021</span><span>A blind patient regains partial sight.</span></li>
+    <li class="hit"><span class="yr">2026</span><span>Nobel Prize, shared equally. 12 million Swedish kronor.</span></li>
+  </ol>
+</section>
+
+<footer>
+  <p class="tag">Sources</p>
+  <ul class="src">
+    <li><a href="https://www.statnews.com/2026/10/05/nobel-prize-medicine-2026-winner-deisseroth-hegemann-nagel/">STAT: 2026 Nobel Prize in Medicine awarded for optogenetics</a></li>
+    <li><a href="https://www.staradvertiser.com/2026/10/05/breaking-news/2026-nobel-prize-in-medicine-awarded-to-optogenetics-pioneers/">Reuters, via Star-Advertiser: Nobel awarded to optogenetics pioneers</a></li>
+    <li><a href="https://www.cnn.com/2026/10/05/science/nobel-prize-medicine-karl-deisseroth-peter-hegemann-georg-nagel-intl">CNN: Nobel Prize in medicine awarded to trio</a></li>
+    <li><a href="https://www.washingtonpost.com/health/2026/10/05/nobel-prize-medicine-awarded-3-scientists-optogenetics-work/">Washington Post: Nobel for medicine awarded to 3 scientists</a></li>
+    <li><a href="https://hms.harvard.edu/news/illuminating-brain">Harvard Medical School: Illuminating the brain</a></li>
+    <li><a href="https://wileyindustrynews.com/en/news/horwitz-prize-foundational-work-optogenetics">Wiley Industry News: Horwitz Prize for foundational work on optogenetics</a></li>
+  </ul>
+  <p class="note">The drawings are simplified and not to scale. Dates before 2026 are from the published record of the field.</p>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Fig 1 */
+  var net = document.getElementById('net'), swB = document.getElementById('sw-blue'), st = document.getElementById('net-status');
+  swB.addEventListener('click', function(){
+    var on = swB.getAttribute('aria-checked') !== 'true';
+    swB.setAttribute('aria-checked', on);
+    net.classList.toggle('lit', on);
+    st.textContent = on ? 'Light on. 4 of 11 cells fire.' : 'Light off. All 11 cells are quiet.';
+  });
+
+  /* Fig 4: one cell carrying both switches */
+  var cv = document.getElementById('trace'), ctx = cv.getContext('2d');
+  var SPAN = 8, t = 8, last = null, raf = 0, yellow = false, nextSpont = 8.9;
+  var spikes = [0.8, 2.1, 3.03, 3.63, 4.23, 7.5], flashes = [3, 3.6, 4.2], bars = [[5, 7]];
+  var tStat = document.getElementById('trace-status');
+  function tok(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function step(dt){
+    t += dt;
+    while (t >= nextSpont){ if (!yellow) spikes.push(nextSpont); nextSpont += 1.0 + Math.random()*1.6; }
+    var cut = t - SPAN - 1;
+    spikes = spikes.filter(function(s){ return s > cut; });
+    flashes = flashes.filter(function(s){ return s > cut; });
+    bars = bars.filter(function(b){ return b[1] === null || b[1] > cut; });
+  }
+  function draw(){
+    var W = cv.clientWidth, H = cv.clientHeight;
+    ctx.clearRect(0, 0, W, H);
+    function X(time){ return W - (t - time)/SPAN*W; }
+    var base = H*0.74, top = H*0.3, amber = tok('--amber'), blue = tok('--blue');
+    bars.forEach(function(b){
+      var x0 = Math.max(0, X(b[0])), x1 = X(b[1] === null ? t : b[1]);
+      if (x1 <= 0) return;
+      ctx.globalAlpha = .2; ctx.fillStyle = amber; ctx.fillRect(x0, 0, x1 - x0, H);
+      ctx.globalAlpha = .9; ctx.fillRect(x0, H - 6, x1 - x0, 6); ctx.globalAlpha = 1;
+    });
+    ctx.fillStyle = blue;
+    flashes.forEach(function(f){ var x = X(f); ctx.globalAlpha = .22; ctx.fillRect(x - 1, 36, 2, H - 36); ctx.globalAlpha = 1; ctx.fillRect(x - 2, 36, 4, 18); });
+    ctx.beginPath(); ctx.moveTo(0, base);
+    spikes.slice().sort(function(a, b){ return a - b; }).forEach(function(s){
+      var x = X(s); if (x < -10 || x > W) return;
+      ctx.lineTo(x - 3, base); ctx.lineTo(x, top); ctx.lineTo(x + 3, base + 9); ctx.lineTo(x + 7, base);
+    });
+    ctx.lineTo(W, base);
+    ctx.strokeStyle = tok('--ink'); ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+  }
+  function size(){
+    var d = window.devicePixelRatio || 1;
+    cv.width = Math.round(cv.clientWidth*d); cv.height = Math.round(cv.clientHeight*d);
+    ctx.setTransform(d, 0, 0, d, 0, 0); draw();
+  }
+  function loop(ts){
+    if (last !== null) { step(Math.min(.1, (ts - last)/1000)); draw(); }
+    last = ts; raf = requestAnimationFrame(loop);
+  }
+  function settle(){ if (reduce) { step(1); draw(); } }
+  document.getElementById('btn-flash').addEventListener('click', function(){
+    flashes.push(t);
+    if (!yellow) spikes.push(t + 0.03);
+    tStat.textContent = yellow ? 'Blue flash, but yellow holds the cell silent.' : 'Blue flash. One signal, at once.';
+    settle();
+  });
+  var swY = document.getElementById('sw-yellow');
+  swY.addEventListener('click', function(){
+    yellow = !yellow; swY.setAttribute('aria-checked', yellow);
+    if (yellow) bars.push([t, null]); else bars[bars.length - 1][1] = t;
+    tStat.textContent = yellow ? 'Yellow on. The cell falls silent.' : 'Yellow off. The cell is free to fire again.';
+    settle();
+  });
+  window.addEventListener('resize', size);
+  size();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
+  if (!reduce && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(en){
+      if (en[0].isIntersecting) { if (!raf) { last = null; raf = requestAnimationFrame(loop); } }
+      else { cancelAnimationFrame(raf); raf = 0; }
+    }).observe(cv);
+  } else if (!reduce) { raf = requestAnimationFrame(loop); }
+  new MutationObserver(draw).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

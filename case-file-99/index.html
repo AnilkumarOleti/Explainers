@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Case File #99 | Explainers</title>
+<meta name="description" content="A fan&#x27;s evidence board for Brooklyn Nine-Nine. Drag anything on the board.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/case-file-99/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Case File #99">
+<meta property="og:description" content="A fan&#x27;s evidence board for Brooklyn Nine-Nine. Drag anything on the board.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/case-file-99/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/case-file-99/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Special+Elite&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --wall:#141c30;
+  --wall-2:#1b2540;
+  --cork:#b98a55;
+  --cork-dark:#8e6538;
+  --frame:#5a3b1e;
+  --manila:#e8d29a;
+  --card:#fbf8ef;
+  --rule:#9fb7dc;
+  --red:#c8102e;
+  --string:#d11a2a;
+  --sticky:#ffe45c;
+  --sticky-2:#ff9fb5;
+  --sticky-3:#9ce8c2;
+  --ink:#1b2a4a;
+  --ink-soft:#44506b;
+  --blue:#2a5bc4;
+  --gold:#e3b23c;
+  --paper-text:#1b2a4a;
+  --wall-text:#e9ecf5;
+  --wall-muted:#a7b0c8;
+  --display:"Anton","Impact","Arial Narrow",sans-serif;
+  --type:"Special Elite","Courier New",monospace;
+  --body:"Courier Prime","Courier New",monospace;
+  --hand:"Permanent Marker","Comic Sans MS","Chalkboard SE",cursive;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--wall);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 2px, transparent 2px 64px),
+    radial-gradient(ellipse at 50% -10%, #25355c 0%, transparent 60%);
+  color:var(--wall-text);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.55;
+  padding-inline:16px;
+  padding-block:0 64px;
+  overflow-x:hidden;
+}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sticky);outline-offset:3px}
+
+/* ---------- masthead ---------- */
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-block:28px 18px}
+.mast-left{display:grid;gap:4px}
+.eyebrow{font-family:var(--type);letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--wall-muted)}
+.mast h1{font-family:var(--display);font-weight:400;font-size:clamp(44px,9vw,104px);line-height:.9;letter-spacing:.01em;text-transform:uppercase}
+.mast h1 .stamp{display:inline-block;color:var(--red);border:5px solid var(--red);padding:0 .14em;transform:rotate(-4deg);margin-left:.12em;border-radius:4px;mix-blend-mode:screen;filter:contrast(1.1)}
+.mast p{margin:6px 0 0;color:var(--wall-muted);max-width:52ch}
+.chant{
+  font-family:var(--display);font-size:22px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--red);color:#fff;border:0;border-radius:6px;padding:14px 22px;
+  box-shadow:0 6px 0 #7d0a1c, 0 10px 24px rgba(0,0,0,.4);transition:transform .08s, box-shadow .08s;
+}
+.chant:active{transform:translateY(5px);box-shadow:0 1px 0 #7d0a1c,0 4px 10px rgba(0,0,0,.4)}
+.chant small{display:block;font-family:var(--type);font-size:11px;letter-spacing:.1em;opacity:.85}
+
+/* ---------- board ---------- */
+.board-frame{background:var(--frame);padding:14px;border-radius:10px;box-shadow:inset 0 0 0 3px #3d2712, 0 30px 60px rgba(0,0,0,.5)}
+.board{
+  position:relative;width:100%;aspect-ratio:16/10;max-width:100%;
+  background-color:var(--cork);background-size:220px 220px;border-radius:4px;overflow:hidden;
+  box-shadow:inset 0 0 60px rgba(60,30,5,.55);touch-action:pan-y;
+}
+.board.shake{animation:shake .5s}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px) rotate(-.4deg)}40%,60%{transform:translateX(8px) rotate(.4deg)}}
+.strings{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.strings line{stroke:var(--string);stroke-width:2.2;stroke-linecap:round;filter:drop-shadow(1px 2px 1px rgba(0,0,0,.35))}
+.item{
+  position:absolute;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;
+  transform:rotate(var(--r,0deg));transition:box-shadow .15s, transform .15s;
+}
+.item:hover{transform:rotate(var(--r,0deg)) scale(1.03)}
+.item.dragging{cursor:grabbing;transform:rotate(0deg) scale(1.07);z-index:999!important}
+.pin{position:absolute;top:-7px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #ff8a8a, var(--red) 55%, #6d0715);box-shadow:1px 3px 3px rgba(0,0,0,.45);z-index:3}
+.pin.blue{background:radial-gradient(circle at 35% 30%, #9cc1ff, var(--blue) 55%, #102a66)}
+.pin.gold{background:radial-gradient(circle at 35% 30%, #fff1b8, var(--gold) 55%, #7a5510)}
+.polaroid{width:clamp(96px,13.5%,176px);background:var(--card);padding:8px 8px 6px;box-shadow:2px 6px 14px rgba(40,20,0,.45);color:var(--paper-text)}
+.polaroid .shot{aspect-ratio:1/1;background:#e9e2cf;display:grid;place-items:center;overflow:hidden}
+.polaroid .shot svg{width:84%;height:84%}
+.polaroid .cap{font-family:var(--hand);font-size:clamp(10px,1.15vw,14px);line-height:1.15;text-align:center;padding-top:6px;min-height:2.3em}
+.sticky{width:clamp(84px,11%,140px);aspect-ratio:1/1;background:var(--sticky);padding:10px;display:grid;place-items:center;text-align:center;
+  font-family:var(--hand);font-size:clamp(13px,1.7vw,22px);line-height:1.05;color:#2b2208;box-shadow:2px 8px 12px rgba(40,20,0,.35)}
+.sticky.pink{background:var(--sticky-2)}.sticky.mint{background:var(--sticky-3)}
+.titlecard{width:clamp(210px,31%,400px);background:var(--card);color:var(--paper-text);padding:16px 18px 18px;box-shadow:3px 10px 20px rgba(40,20,0,.5);
+  background-image:linear-gradient(var(--card) 0 42px, transparent 42px),repeating-linear-gradient(180deg, transparent 0 23px, var(--rule) 23px 24px);
+  border-top:4px solid var(--red)}
+.titlecard .tc-top{display:flex;justify-content:space-between;font-family:var(--type);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.titlecard h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,4.6vw,58px);line-height:.95;text-transform:uppercase;margin-top:12px;color:var(--ink)}
+.titlecard p{margin:8px 0 0;font-size:clamp(12px,1.25vw,15px);line-height:24px}
+.titlecard .st{position:absolute;right:10px;bottom:14px;font-family:var(--display);color:var(--red);border:3px solid var(--red);padding:2px 8px;transform:rotate(-12deg);font-size:clamp(13px,1.6vw,20px);opacity:.85;letter-spacing:.05em}
+.wanted{width:clamp(110px,14%,180px);background:#efe0b6;color:#3b2a12;padding:10px;text-align:center;box-shadow:2px 8px 14px rgba(40,20,0,.45);
+  background-image:radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.35), transparent 60%)}
+.wanted .w1{font-family:var(--display);font-size:clamp(22px,3vw,38px);line-height:.9;letter-spacing:.04em}
+.wanted svg{width:100%;height:auto;margin:6px 0}
+.wanted .w2{font-family:var(--type);font-size:clamp(9px,1vw,12px);text-transform:uppercase;letter-spacing:.08em;line-height:1.2}
+.tribute{width:clamp(120px,15%,190px);background:#1a1a1a;color:#efe7d3;padding:14px 12px;text-align:center;box-shadow:2px 8px 14px rgba(0,0,0,.5);border:1px solid #444}
+.tribute .t1{font-family:var(--type);font-size:clamp(9px,.95vw,11px);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.tribute .t2{font-family:var(--display);font-size:clamp(16px,2vw,26px);line-height:1;margin:6px 0;letter-spacing:.03em}
+.tribute .t3{font-family:var(--body);font-style:italic;font-size:clamp(10px,1.05vw,13px);line-height:1.3}
+.tag{width:clamp(96px,12%,150px);background:var(--manila);color:#3b2a12;padding:10px 12px 12px 22px;box-shadow:2px 6px 10px rgba(40,20,0,.4);clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%);font-family:var(--type);font-size:clamp(9px,1vw,12px);line-height:1.3;text-transform:uppercase;letter-spacing:.06em}
+.tag b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(14px,1.7vw,20px);letter-spacing:.04em}
+.boardhint{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;font-family:var(--type);font-size:13px;color:var(--wall-muted);padding-top:10px}
+.boardhint button{background:none;border:1px dashed var(--wall-muted);color:var(--wall-text);padding:4px 10px;border-radius:4px;font-family:var(--type);font-size:12px}
+.burst{position:absolute;z-index:1000;pointer-events:none;font-family:var(--display);color:#fff;background:var(--red);padding:6px 12px;font-size:clamp(18px,3vw,34px);letter-spacing:.04em;
+  box-shadow:2px 8px 14px rgba(0,0,0,.4);animation:pop 1.6s forwards}
+@keyframes pop{0%{transform:scale(.2) rotate(var(--r));opacity:0}15%{transform:scale(1.15) rotate(var(--r));opacity:1}30%{transform:scale(1) rotate(var(--r))}80%{opacity:1}100%{transform:translateY(-40px) scale(1) rotate(var(--r));opacity:0}}
+
+/* ---------- sections ---------- */
+section{padding-block:72px 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-bottom:26px}
+.sec-head h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,5.5vw,60px);text-transform:uppercase;line-height:1;letter-spacing:.01em}
+.sec-head .eyebrow{flex-basis:100%}
+.sec-head p{margin:0;color:var(--wall-muted);max-width:60ch}
+
+/* case files */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filters button{font-family:var(--type);font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--wall-text);border:1px solid #3a4768;border-radius:3px;padding:6px 12px}
+.filters button[aria-pressed="true"]{background:var(--manila);color:#3b2a12;border-color:var(--manila)}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:26px 22px}
+.file{position:relative;background:var(--card);color:var(--paper-text);padding:18px 18px 20px;border-top:4px solid var(--red);
+  background-image:linear-gradient(var(--card) 0 50px, transparent 50px),repeating-linear-gradient(180deg, transparent 0 25px, var(--rule) 25px 26px);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);transform:rotate(var(--r,0deg));transition:transform .2s}
+.file:hover{transform:rotate(0) translateY(-4px)}
+.file .fid{display:flex;justify-content:space-between;gap:8px;font-family:var(--type);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.file .cat{color:var(--red);font-weight:700}
+.file h3{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.05;text-transform:uppercase;margin:14px 0 6px;color:var(--ink);letter-spacing:.01em}
+.file p{margin:0;font-size:15px;line-height:26px}
+.file .big{font-family:var(--display);font-size:54px;line-height:1;color:var(--red);float:right;margin:-4px 0 0 10px}
+
+/* timeline */
+.custody{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.custody::before{content:"";position:absolute;left:0;right:0;top:22px;height:3px;background:repeating-linear-gradient(90deg,var(--sticky) 0 18px, #111 18px 36px)}
+.ev{position:relative;padding-top:52px}
+.ev::before{content:"";position:absolute;top:13px;left:0;width:20px;height:20px;border-radius:50%;background:var(--wall);border:4px solid var(--sticky)}
+.ev.hot::before{background:var(--red);border-color:var(--red);box-shadow:0 0 0 6px rgba(200,16,46,.3)}
+.ev .d{font-family:var(--type);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sticky);font-variant-numeric:tabular-nums}
+.ev h3{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;margin:4px 0;line-height:1.05}
+.ev p{margin:0;font-size:14px;color:var(--wall-muted);line-height:1.45}
+@media (max-width:820px){
+  .custody{grid-template-columns:1fr;gap:22px;padding-left:34px}
+  .custody::before{left:9px;right:auto;top:0;bottom:0;width:3px;height:auto;background:repeating-linear-gradient(180deg,var(--sticky) 0 18px,#111 18px 36px)}
+  .ev{padding-top:0}.ev::before{left:-34px;top:2px}
+}
+
+/* interrogation */
+.room{position:relative;background:#0c0f18;border:1px solid #263150;border-radius:8px;padding:clamp(18px,4vw,40px);overflow:hidden}
+.room::before{content:"";position:absolute;left:50%;top:-120px;width:700px;height:520px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 20%, rgba(255,236,170,.22), transparent 62%);pointer-events:none}
+.room > *{position:relative}
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-family:var(--type);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--wall-muted);font-variant-numeric:tabular-nums}
+.qbar{height:6px;background:#222b44;border-radius:3px;margin:10px 0 22px;overflow:hidden}
+.qbar i{display:block;height:100%;background:var(--sticky);width:0;transition:width .3s}
+.qtext{font-family:var(--display);font-weight:400;font-size:clamp(24px,3.6vw,40px);line-height:1.1;text-transform:uppercase;max-width:24ch;letter-spacing:.01em}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:24px}
+.opts button{background:var(--card);color:var(--paper-text);border:0;border-radius:4px;padding:14px 14px;font-family:var(--type);font-size:16px;text-align:left;box-shadow:0 4px 0 #8a8574;transition:transform .08s}
+.opts button:hover:not(:disabled){transform:translateY(-2px)}
+.opts button.right{background:var(--sticky-3)}
+.opts button.wrong{background:#ffb3bd;text-decoration:line-through}
+.opts button:disabled{cursor:default}
+.verdict{margin-top:18px;min-height:3.2em;font-size:16px;color:var(--wall-text);max-width:62ch}
+.verdict b{font-family:var(--hand);font-weight:400;color:var(--sticky);font-size:20px;margin-right:6px}
+.qnext{margin-top:12px;background:var(--red);color:#fff;border:0;border-radius:4px;padding:10px 18px;font-family:var(--display);font-size:18px;letter-spacing:.05em;text-transform:uppercase}
+.final{text-align:left}
+.final .score{font-family:var(--display);font-size:clamp(70px,14vw,150px);line-height:.9;color:var(--sticky);font-variant-numeric:tabular-nums}
+.final h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,42px);text-transform:uppercase;margin:6px 0 8px}
+.final p{color:var(--wall-muted);max-width:56ch;margin:0}
+
+/* toys */
+.toys{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.toy{background:var(--manila);color:#3b2a12;padding:22px;border-radius:2px 14px 2px 2px;box-shadow:0 12px 26px rgba(0,0,0,.35);position:relative}
+.toy::before{content:attr(data-tab);position:absolute;top:-26px;left:0;background:var(--manila);padding:4px 16px 2px;border-radius:8px 8px 0 0;font-family:var(--type);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.toy h3{font-family:var(--display);font-weight:400;font-size:28px;text-transform:uppercase;line-height:1}
+.toy label{display:block;font-family:var(--type);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:16px 0 6px}
+.toy input[type=range]{width:100%;accent-color:var(--red)}
+.toy input[type=text]{width:100%;font-family:var(--body);font-size:16px;padding:10px 12px;border:2px solid #3b2a12;background:#fbf4de;color:#1b1407;border-radius:3px}
+.out{margin-top:14px;background:var(--card);padding:16px;min-height:96px;font-family:var(--hand);font-size:clamp(18px,2.4vw,24px);line-height:1.25;color:var(--ink);box-shadow:inset 0 0 0 1px #d6ceb6;overflow-wrap:anywhere}
+.out small{display:block;font-family:var(--type);font-size:12px;letter-spacing:.08em;color:var(--ink-soft);margin-top:8px;text-transform:uppercase}
+.copy{margin-top:10px;background:#3b2a12;color:var(--manila);border:0;border-radius:3px;padding:7px 14px;font-family:var(--type);font-size:13px;letter-spacing:.06em}
+
+footer{padding-block:70px 0;text-align:center;font-family:var(--type);color:var(--wall-muted);font-size:13px;letter-spacing:.08em}
+footer .n{font-family:var(--display);font-size:clamp(48px,10vw,110px);color:var(--wall-2);letter-spacing:.04em;line-height:1;-webkit-text-stroke:1px #33436d}
+
+@media (max-width:640px){
+  .board{aspect-ratio:auto;height:1260px}
+  .polaroid{width:118px}.sticky{width:96px;font-size:17px}.titlecard{width:250px}.wanted{width:128px}.tribute{width:140px}.tag{width:120px}
+  .polaroid .cap{font-size:12px}
+  .titlecard h2{font-size:38px}.titlecard p{font-size:13px}.wanted .w1{font-size:26px}.tribute .t2{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="mast-left">
+      <span class="eyebrow">NYPD · Brooklyn · Precinct 99 (fictional) · 2013–2021</span>
+      <h1>The Nine<span class="stamp">-Nine</span></h1>
+      <p>A fan's evidence board: 8 seasons, 153 episodes, a cancellation, a rescue, and one very good corgi. Drag anything on the board. Then do the chant.</p>
+    </div>
+    <button class="chant" id="chant" type="button">Nine-Nine!<small>Press for squad morale</small></button>
+  </header>
+
+  <div class="board-frame">
+    <div class="board" id="board" aria-label="Evidence board collage. Items can be dragged.">
+      <svg class="strings" id="strings" aria-hidden="true"></svg>
+
+      <div class="item titlecard" data-id="title" style="--r:-1.5deg">
+        <span class="pin"></span>
+        <div class="tc-top"><span>Case #99-2013</span><span>Status: Beloved</span></div>
+        <h2>Brooklyn<br>Nine-Nine</h2>
+        <p>Suspects: 1 man-child detective, 1 binder-loving sergeant, 1 robot-voiced captain, 1 yogurt enthusiast, 1 terrifying detective, 1 foodie, 1 legendary civilian admin.</p>
+        <span class="st">Cool cool cool</span>
+      </div>
+
+      <div class="item polaroid" data-id="binder" style="--r:-6deg">
+        <span class="pin blue"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="18" y="12" width="60" height="78" rx="4" fill="#2a5bc4"/>
+          <rect x="18" y="12" width="12" height="78" rx="3" fill="#1c3f8c"/>
+          <rect x="78" y="20" width="8" height="12" rx="2" fill="#e84a5f"/><rect x="78" y="36" width="8" height="12" rx="2" fill="#ffd23f"/>
+          <rect x="78" y="52" width="8" height="12" rx="2" fill="#3bb273"/><rect x="78" y="68" width="8" height="12" rx="2" fill="#a06cd5"/>
+          <rect x="38" y="30" width="32" height="18" rx="2" fill="#fbf8ef"/>
+          <rect x="42" y="35" width="24" height="3" fill="#2a5bc4"/><rect x="42" y="41" width="16" height="3" fill="#2a5bc4"/>
+          <circle cx="24" cy="30" r="3" fill="#c9d3e6"/><circle cx="24" cy="51" r="3" fill="#c9d3e6"/><circle cx="24" cy="72" r="3" fill="#c9d3e6"/>
+        </svg></div>
+        <div class="cap">Exhibit A: a binder for the binders</div>
+      </div>
+
+      <div class="item polaroid" data-id="yogurt" style="--r:5deg">
+        <span class="pin"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M26 30 L74 30 L66 88 L34 88 Z" fill="#fbf8ef" stroke="#b7ae96" stroke-width="2"/>
+          <rect x="22" y="24" width="56" height="9" rx="3" fill="#e84a8a"/>
+          <rect x="33" y="48" width="34" height="20" rx="3" fill="#e84a8a"/>
+          <text x="50" y="62" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="11" fill="#fff">YOGURT</text>
+          <rect x="60" y="6" width="5" height="34" rx="2.5" transform="rotate(18 62 23)" fill="#9aa4b5"/>
+          <ellipse cx="68" cy="8" rx="6" ry="4" transform="rotate(18 68 8)" fill="#9aa4b5"/>
+        </svg></div>
+        <div class="cap">Terry loves yogurt. Terry loves it.</div>
+      </div>
+
+      <div class="item polaroid" data-id="corgi" style="--r:-3deg">
+        <span class="pin gold"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <ellipse cx="46" cy="62" rx="30" ry="16" fill="#e39a3b"/>
+          <ellipse cx="46" cy="68" rx="20" ry="9" fill="#fbf1de"/>
+          <rect x="22" y="70" width="8" height="12" rx="3" fill="#e39a3b"/><rect x="58" y="70" width="8" height="12" rx="3" fill="#e39a3b"/>
+          <circle cx="74" cy="46" r="15" fill="#e39a3b"/>
+          <path d="M64 36 L66 16 L76 32 Z" fill="#e39a3b"/><path d="M78 32 L88 16 L88 38 Z" fill="#e39a3b"/>
+          <path d="M67 32 L68 22 L73 30 Z" fill="#f7c7a1"/><path d="M81 31 L86 22 L86 34 Z" fill="#f7c7a1"/>
+          <ellipse cx="80" cy="54" rx="10" ry="7" fill="#fbf1de"/>
+          <circle cx="70" cy="44" r="2.2" fill="#1b1407"/><circle cx="80" cy="44" r="2.2" fill="#1b1407"/>
+          <ellipse cx="86" cy="52" rx="3" ry="2.2" fill="#1b1407"/>
+          <path d="M16 56 Q8 50 12 44" stroke="#e39a3b" stroke-width="6" fill="none" stroke-linecap="round"/>
+        </svg></div>
+        <div class="cap">Cheddar. Very good boy. Allegedly.</div>
+      </div>
+
+      <div class="item polaroid" data-id="vhs" style="--r:4deg">
+        <span class="pin"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="8" y="24" width="84" height="52" rx="4" fill="#1e1e22"/>
+          <rect x="16" y="30" width="68" height="16" rx="2" fill="#fbf8ef"/>
+          <text x="50" y="41.5" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="8.5" fill="#c8102e">BEST MOVIE EVER</text>
+          <rect x="24" y="52" width="52" height="18" rx="3" fill="#2e2e34"/>
+          <circle cx="36" cy="61" r="6" fill="#fbf8ef"/><circle cx="64" cy="61" r="6" fill="#fbf8ef"/>
+          <circle cx="36" cy="61" r="2.5" fill="#1e1e22"/><circle cx="64" cy="61" r="2.5" fill="#1e1e22"/>
+        </svg></div>
+        <div class="cap">Jake's #1 movie. Watched it 200 times.</div>
+      </div>
+
+      <div class="item polaroid" data-id="helmet" style="--r:-5deg">
+        <span class="pin blue"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M18 64 Q18 20 54 20 Q86 20 86 58 L86 70 Q86 76 80 76 L26 76 Q18 76 18 70 Z" fill="#141416"/>
+          <path d="M44 42 Q60 36 84 42 L84 58 Q62 54 44 58 Z" fill="#3a4a66"/>
+          <path d="M48 44 Q60 40 78 44" stroke="#8fa5cc" stroke-width="2" fill="none"/>
+          <rect x="18" y="66" width="68" height="4" fill="#c8102e"/>
+        </svg></div>
+        <div class="cap">Property of R. Diaz. Do not ask questions.</div>
+      </div>
+
+      <div class="item polaroid" data-id="bowl" style="--r:3deg">
+        <span class="pin gold"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M14 52 L86 52 Q84 84 50 84 Q16 84 14 52 Z" fill="#fbf8ef" stroke="#b7ae96" stroke-width="2"/>
+          <ellipse cx="50" cy="52" rx="36" ry="7" fill="#7a3f14"/>
+          <circle cx="40" cy="51" r="3" fill="#3bb273"/><circle cx="58" cy="52" r="2.5" fill="#e84a5f"/>
+          <path d="M36 42 Q30 34 36 26 Q42 18 36 10" stroke="#d9cfb5" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M52 42 Q46 34 52 26 Q58 18 52 10" stroke="#d9cfb5" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M66 42 Q60 34 66 26" stroke="#d9cfb5" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg></div>
+        <div class="cap">Boyle recommends: something fermented</div>
+      </div>
+
+      <div class="item polaroid" data-id="trophy" style="--r:-2deg">
+        <span class="pin"></span>
+        <div class="shot"><svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M30 16 L70 16 L68 44 Q66 60 50 62 Q34 60 32 44 Z" fill="#e3b23c"/>
+          <path d="M30 22 Q14 22 16 36 Q18 46 32 46" stroke="#e3b23c" stroke-width="5" fill="none"/>
+          <path d="M70 22 Q86 22 84 36 Q82 46 68 46" stroke="#e3b23c" stroke-width="5" fill="none"/>
+          <rect x="45" y="60" width="10" height="12" fill="#c8962b"/>
+          <rect x="32" y="72" width="36" height="12" rx="2" fill="#3b2a12"/>
+          <path d="M40 26 L44 24 L44 48" stroke="#fff3c4" stroke-width="3" fill="none" opacity=".7"/>
+          <text x="50" y="81" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="6.5" fill="#e3b23c">HEIST CHAMP</text>
+        </svg></div>
+        <div class="cap">Halloween Heist: amazing detective / genius</div>
+      </div>
+
+      <div class="item wanted" data-id="wanted" style="--r:6deg">
+        <span class="pin"></span>
+        <div class="w1">WANTED</div>
+        <svg viewBox="0 0 120 50" aria-hidden="true">
+          <path d="M6 36 L10 24 Q14 18 26 18 L44 16 Q52 8 70 8 L86 8 Q96 8 102 18 L112 22 Q116 24 116 30 L116 36 Z" fill="#3b2a12"/>
+          <path d="M50 16 Q56 11 68 11 L70 18 Z M74 11 L86 11 Q92 11 96 18 L74 18 Z" fill="#efe0b6" opacity=".8"/>
+          <circle cx="30" cy="38" r="8" fill="#3b2a12" stroke="#efe0b6" stroke-width="2.5"/>
+          <circle cx="94" cy="38" r="8" fill="#3b2a12" stroke="#efe0b6" stroke-width="2.5"/>
+        </svg>
+        <div class="w2">The Pontiac Bandit<br>Reward: friendship</div>
+      </div>
+
+      <div class="item tribute" data-id="tribute" style="--r:-2.5deg">
+        <span class="pin gold"></span>
+        <div class="t1">In memory</div>
+        <div class="t2">Andre Braugher</div>
+        <div class="t3">1962–2023 · Captain Raymond Holt, the finest dry delivery on television</div>
+      </div>
+
+      <div class="item tag" data-id="tag" style="--r:8deg">
+        <b>Evidence</b>
+        Precinct 99 · does not exist in real NYC
+      </div>
+
+      <div class="item sticky" data-id="s1" style="--r:-7deg">NOICE.</div>
+      <div class="item sticky pink" data-id="s2" style="--r:5deg">BONE?!</div>
+      <div class="item sticky mint" data-id="s3" style="--r:-3deg">TOIT!</div>
+      <div class="item sticky" data-id="s4" style="--r:8deg">Hot damn!</div>
+      <div class="item sticky pink" data-id="s5" style="--r:-6deg">Title of your…</div>
+      <div class="item sticky mint" data-id="s6" style="--r:4deg">No doubt no doubt</div>
+    </div>
+  </div>
+  <div class="boardhint">
+    <span>Drag any pin. The red string follows. Detective work.</span>
+    <button type="button" id="reset">Put everything back</button>
+  </div>
+
+  <!-- CASE FILES -->
+  <section id="files">
+    <div class="sec-head">
+      <span class="eyebrow">Evidence locker</span>
+      <h2>Case Files</h2>
+      <p>Facts from the show and the people who made it. Filter by file type.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter case files">
+      <button type="button" data-f="all" aria-pressed="true">All files</button>
+      <button type="button" data-f="Rescue">The rescue</button>
+      <button type="button" data-f="Cast">Cast</button>
+      <button type="button" data-f="Lore">Squad lore</button>
+      <button type="button" data-f="Production">Production</button>
+    </div>
+    <div class="files" id="fileGrid"></div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="custody">
+    <div class="sec-head">
+      <span class="eyebrow">Chain of custody</span>
+      <h2>How the show survived</h2>
+    </div>
+    <div class="custody">
+      <div class="ev"><div class="d">17 Sep 2013</div><h3>Fox premiere</h3><p>A workplace comedy about cops, from Dan Goor and Michael Schur of Parks and Recreation.</p></div>
+      <div class="ev"><div class="d">Jan 2014</div><h3>Two Golden Globes</h3><p>Best Comedy Series and Best Actor for Andy Samberg, in its first season.</p></div>
+      <div class="ev hot"><div class="d">10 May 2018</div><h3>Fox cancels it</h3><p>After five seasons. The internet takes it personally.</p></div>
+      <div class="ev hot"><div class="d">11 May 2018</div><h3>NBC saves it</h3><p>About 31 hours later. The fastest rescue in precinct history.</p></div>
+      <div class="ev"><div class="d">Jan 2019</div><h3>Season 6 on NBC</h3><p>New network, same squad, even more heists.</p></div>
+      <div class="ev"><div class="d">16 Sep 2021</div><h3>The last day</h3><p>Season 8 ends it: 153 episodes, finishing on one final heist.</p></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="interrogation">
+    <div class="sec-head">
+      <span class="eyebrow">Interrogation room B</span>
+      <h2>Prove you're a real fan</h2>
+      <p>Eight questions. No lawyer. No bathroom breaks.</p>
+    </div>
+    <div class="room" id="room" aria-live="polite"></div>
+  </section>
+
+  <!-- TOYS -->
+  <section id="toys">
+    <div class="sec-head">
+      <span class="eyebrow">Squad room toys</span>
+      <h2>Say it like Jake</h2>
+    </div>
+    <div class="toys">
+      <div class="toy" data-tab="Form 99-C">
+        <h3>Cool-o-meter</h3>
+        <label for="coolRange">Stress level: <span id="coolN">5</span></label>
+        <input type="range" id="coolRange" min="1" max="20" value="5">
+        <div class="out" id="coolOut"></div>
+        <button type="button" class="copy" data-copy="coolOut">Copy</button>
+      </div>
+      <div class="toy" data-tab="Form 99-T">
+        <h3>Title-of-your-… machine</h3>
+        <label for="titleIn">Type anything a colleague said</label>
+        <input type="text" id="titleIn" value="I need the quarterly report by Friday" maxlength="90">
+        <div class="out" id="titleOut"></div>
+        <button type="button" class="copy" data-copy="titleOut">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="n">99!</div>
+    <p>Made by a fan, for fans. Unofficial and unaffiliated.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  /* ---------- cork texture ---------- */
+  try{
+    var c=document.createElement('canvas');c.width=c.height=220;var g=c.getContext('2d');
+    g.fillStyle='#b98a55';g.fillRect(0,0,220,220);
+    var cols=['#8e6538','#a67844','#c99a63','#d6aa72','#7a5530','#e0b884'];
+    for(var i=0;i<2600;i++){g.fillStyle=cols[i%cols.length];g.globalAlpha=Math.random()*.5+.15;
+      var r=Math.random()*1.8+.4;g.beginPath();g.ellipse(Math.random()*220,Math.random()*220,r,r*(.5+Math.random()),Math.random()*3,0,7);g.fill();}
+    document.getElementById('board').style.backgroundImage='url('+c.toDataURL()+')';
+  }catch(e){}
+
+  /* ---------- board layout ---------- */
+  var board=document.getElementById('board'), svg=document.getElementById('strings');
+  var wide={title:[34,26],binder:[3,5],yogurt:[80,4],corgi:[4,56],vhs:[68,60],helmet:[42,72],bowl:[20,30],trophy:[57,3],wanted:[82,33],tribute:[22,68],tag:[64,34],
+            s1:[18,4],s2:[88,74],s3:[4,34],s4:[45,4],s5:[56,82],s6:[86,58]};
+  var narrow={title:[3,1],s1:[66,12],binder:[2,26],s4:[37,29],yogurt:[63,26],tag:[1,43],corgi:[32,41],wanted:[63,41],
+            vhs:[3,57],s5:[36,60],helmet:[63,57],bowl:[2,72],s6:[36,75],trophy:[63,72],s3:[4,88],tribute:[32,86],s2:[70,89]};
+  var linksNarrow=[['title','binder'],['vhs','trophy'],['corgi','tribute'],['yogurt','wanted']];
+  var linksWide=[['title','binder'],['title','trophy'],['vhs','trophy'],['title','wanted'],['corgi','tribute'],['bowl','title'],['helmet','vhs'],['yogurt','wanted'],['binder','bowl']];
+  var items={};document.querySelectorAll('.item').forEach(function(el,i){items[el.dataset.id]=el;el.style.zIndex=10+i;});
+  var mq=window.matchMedia('(max-width:640px)');
+  function layout(){var p=mq.matches?narrow:wide;for(var k in p){if(items[k]){items[k].style.left=p[k][0]+'%';items[k].style.top=p[k][1]+'%';}}requestAnimationFrame(drawStrings);}
+  function pinPoint(el){var b=board.getBoundingClientRect(),r=el.getBoundingClientRect();return [r.left+r.width/2-b.left, r.top+2-b.top];}
+  function drawStrings(){
+    var b=board.getBoundingClientRect();svg.setAttribute('viewBox','0 0 '+b.width+' '+b.height);
+    var h='';(mq.matches?linksNarrow:linksWide).forEach(function(l){var a=items[l[0]],z=items[l[1]];if(!a||!z)return;var p=pinPoint(a),q=pinPoint(z);
+      h+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+q[0]+'" y2="'+q[1]+'"/>';});
+    svg.innerHTML=h;
+  }
+  layout();
+  if(mq.addEventListener)mq.addEventListener('change',layout);
+  window.addEventListener('resize',function(){requestAnimationFrame(drawStrings)});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawStrings);
+  document.getElementById('reset').addEventListener('click',layout);
+
+  var topZ=100,drag=null;
+  Object.keys(items).forEach(function(k){
+    var el=items[k];
+    el.addEventListener('pointerdown',function(e){
+      if(e.button!==undefined&&e.button!==0)return;
+      var b=board.getBoundingClientRect();
+      drag={el:el,sx:e.clientX,sy:e.clientY,ox:el.offsetLeft,oy:el.offsetTop,bw:b.width,bh:b.height};
+      el.setPointerCapture(e.pointerId);el.classList.add('dragging');el.style.zIndex=++topZ;
+    });
+    el.addEventListener('pointermove',function(e){
+      if(!drag||drag.el!==el)return;
+      var x=drag.ox+e.clientX-drag.sx, y=drag.oy+e.clientY-drag.sy;
+      x=Math.max(-el.offsetWidth*.4,Math.min(drag.bw-el.offsetWidth*.6,x));
+      y=Math.max(0,Math.min(drag.bh-el.offsetHeight*.5,y));
+      el.style.left=(x/drag.bw*100)+'%';el.style.top=(y/drag.bh*100)+'%';drawStrings();
+    });
+    function end(){if(drag&&drag.el===el){el.classList.remove('dragging');drag=null;setTimeout(drawStrings,160);}}
+    el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+  });
+
+  /* ---------- chant ---------- */
+  var chants=['NINE-NINE!','NINE-NINE!','NINE-NINE!','NOICE!','BINGPOT!','COOL COOL COOL','NINE-NINE!','TOIT!','NINE-NINE!'];
+  document.getElementById('chant').addEventListener('click',function(){
+    board.classList.remove('shake');void board.offsetWidth;board.classList.add('shake');
+    chants.forEach(function(t,i){setTimeout(function(){
+      var s=document.createElement('div');s.className='burst';s.textContent=t;
+      s.style.left=(4+Math.random()*70)+'%';s.style.top=(6+Math.random()*80)+'%';s.style.setProperty('--r',(Math.random()*24-12)+'deg');
+      if(i%3===1){s.style.background='#ffe45c';s.style.color='#2b2208';}
+      board.appendChild(s);setTimeout(function(){s.remove()},1700);
+    },i*110);});
+  });
+
+  /* ---------- case files ---------- */
+  var facts=[
+    {c:'Rescue',t:'31 hours',big:'31h',p:'Fox cancelled the show on 10 May 2018. NBC picked it up the next night, roughly 31 hours later, after a storm of fan outrage.'},
+    {c:'Rescue',t:'Celebrity backup',p:'Lin-Manuel Miranda, Mark Hamill and Guillermo del Toro were among the famous fans who tweeted to save it. Miranda later guest-starred as Amy\'s brother David.'},
+    {c:'Production',t:'There is no 99th Precinct',big:'99',p:'Brooklyn\'s real NYPD precincts are numbered in the 60s to 90s, and there is no 99th. The exterior shots use the real 78th Precinct building in Park Slope.'},
+    {c:'Production',t:'Parks and Rec DNA',p:'Co-creator Michael Schur also co-created Parks and Recreation and later made The Good Place. Kevin Cozner\'s actor, Marc Evan Jackson, turns up in The Good Place too.'},
+    {c:'Production',t:'Globes on day one',big:'2',p:'In January 2014, during season 1, it won the Golden Globe for Best Comedy Series and Andy Samberg won Best Actor in a comedy.'},
+    {c:'Production',t:'Season 8, rewritten',p:'After George Floyd\'s murder in 2020, the writers threw out four already-written episodes and reworked the final season around how the show portrayed policing.'},
+    {c:'Production',t:'The Box',p:'A season 5 bottle episode set almost entirely in one interrogation room: Jake and Holt against a suspect played by Sterling K. Brown. Fans rank it near the top.'},
+    {c:'Cast',t:'Terry was a linebacker',p:'Before acting, Terry Crews played in the NFL for teams including the Rams, Chargers and Eagles. The arms are not CGI.'},
+    {c:'Cast',t:'Holt came from drama',p:'Andre Braugher was best known for heavy dramatic work like Homicide: Life on the Street. His deadpan Captain Holt earned him several Emmy nominations.'},
+    {c:'Cast',t:'Rosa\'s story, Stephanie\'s input',p:'Rosa came out as bisexual in season 5. Stephanie Beatriz, who is bisexual herself, helped shape the storyline. She later voiced Mirabel in Disney\'s Encanto.'},
+    {c:'Cast',t:'Hitchcock\'s famous dad',p:'Dirk Blocker, who plays Hitchcock, is the son of Dan Blocker, who played Hoss Cartwright on the western Bonanza.'},
+    {c:'Cast',t:'Gina\'s famous husband',p:'Chelsea Peretti, who played Gina Linetti, is married to Jordan Peele. She left as a series regular during season 6.'},
+    {c:'Lore',t:'Mac, as in McClane',p:'Jake and Amy name their son Mac after John McClane. Of course they do. Die Hard is Jake\'s favourite movie, and he never lets anyone forget it.'},
+    {c:'Lore',t:'The heist tradition',p:'The Halloween Heist began in season 1 and became an annual war for the title of amazing detective/genius. The series finale is itself a heist.'},
+    {c:'Lore',t:'Doug Judy',p:'The Pontiac Bandit is played by Craig Robinson, Darryl from The Office. Jake and Doug Judy share a friendship built on crime and duets.'},
+    {c:'Lore',t:'I Want It That Way',p:'The police lineup where every suspect sings a Backstreet Boys line in turn became one of the show\'s most-shared clips ever.'}
+  ];
+  var grid=document.getElementById('fileGrid');
+  grid.innerHTML=facts.map(function(f,i){
+    var id='99-'+String(i+1).padStart(2,'0');var r=((i*37)%7-3)*.45;
+    return '<article class="file" data-c="'+f.c+'" style="--r:'+r+'deg"><div class="fid"><span>File '+id+'</span><span class="cat">'+f.c+'</span></div>'+
+      (f.big?'<span class="big">'+f.big+'</span>':'')+'<h3>'+f.t+'</h3><p>'+f.p+'</p></article>';
+  }).join('');
+  document.getElementById('filters').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    grid.querySelectorAll('.file').forEach(function(a){a.hidden=!(b.dataset.f==='all'||a.dataset.c===b.dataset.f)});
+  });
+
+  /* ---------- quiz ---------- */
+  var Q=[
+    {q:'Who keeps a binder for basically everything?',o:['Rosa','Amy','Gina','Hitchcock'],a:1,w:'Amy Santiago. Colour-coded, tabbed, and she has strong opinions about the tabs.'},
+    {q:'What is Holt\'s husband Kevin\'s job?',o:['Classics professor','Food critic','Opera singer','Defence lawyer'],a:0,w:'Kevin Cozner teaches classics. He and Holt are perfectly matched in emotional volume.'},
+    {q:'Who is the Pontiac Bandit?',o:['Adrian Pimento','Doug Judy','The Vulture','Seamus Murphy'],a:1,w:'Doug Judy. Jake\'s nemesis, rival and, eventually, one of his best friends.'},
+    {q:'What is the name of Holt\'s corgi?',o:['Brisket','Cheddar','Biscuit','Marmalade'],a:1,w:'Cheddar. Holt would like you to know he is a very good boy.'},
+    {q:'Which character adopts a son named Nikolaj?',o:['Terry','Scully','Charles Boyle','Jake'],a:2,w:'Charles Boyle, who has many feelings about Nikolaj and even more about soup.'},
+    {q:'Jake and Amy name their son Mac after which hero?',o:['Mad Max','MacGyver','John McClane','Mac from Always Sunny'],a:2,w:'John McClane from Die Hard. No other answer was ever possible.'},
+    {q:'What does Terry refer to himself as?',o:['"Me"','"Terry"','"The Sarge"','"Big T"'],a:1,w:'Terry speaks in the third person. Terry loves yogurt. Terry is not ashamed.'},
+    {q:'What does the Halloween Heist winner get called?',o:['Supreme Chief','Amazing detective/genius','Heist Lord','Captain of Captains'],a:1,w:'Amazing detective/genius. Nobody has ever been more motivated by a title.'}
+  ];
+  var room=document.getElementById('room'),qi=0,score=0;
+  function renderQ(){
+    var it=Q[qi];
+    room.innerHTML='<div class="qmeta"><span>Question '+(qi+1)+' of '+Q.length+'</span><span>Score '+score+'</span></div>'+
+      '<div class="qbar"><i style="width:'+(qi/Q.length*100)+'%"></i></div><div class="qtext">'+it.q+'</div>'+
+      '<div class="opts">'+it.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+o+'</button>'}).join('')+'</div>'+
+      '<div class="verdict" id="verdict"></div>';
+    room.querySelectorAll('.opts button').forEach(function(b){b.addEventListener('click',answer)});
+  }
+  function answer(e){
+    var i=+e.currentTarget.dataset.i,it=Q[qi],ok=i===it.a;if(ok)score++;
+    room.querySelectorAll('.opts button').forEach(function(b,j){b.disabled=true;if(j===it.a)b.classList.add('right');else if(j===i)b.classList.add('wrong');});
+    var v=document.getElementById('verdict');
+    v.innerHTML='<b>'+(ok?['Noice.','Toit!','Bingpot!','Cool cool cool.'][qi%4]:['Nope.','Sad trombone.','Classic Hitchcock.','Not noice.'][qi%4])+'</b>'+it.w;
+    var n=document.createElement('button');n.type='button';n.className='qnext';n.textContent=qi<Q.length-1?'Next question':'See the verdict';
+    n.addEventListener('click',function(){qi++;qi<Q.length?renderQ():renderEnd();});v.after(n);n.focus();
+    room.querySelector('.qmeta span:last-child').textContent='Score '+score;
+  }
+  function renderEnd(){
+    var t,d;
+    if(score>=8){t='Amazing detective / genius';d='A perfect score. Holt would allow himself a single, slight nod. Take it.';}
+    else if(score>=6){t='Detective first grade';d='Solid police work. Amy would put this in a binder, which is the highest honour available.';}
+    else if(score>=3){t='Promising rookie';d='Some good instincts, some wild guesses. Charles still believes in you.';}
+    else{t='Scully and Hitchcock level';d='Not great, but you clearly had a nice lunch. Time for a rewatch.';}
+    room.innerHTML='<div class="final"><div class="qmeta"><span>Case closed</span><span>'+Q.length+' of '+Q.length+'</span></div><div class="qbar"><i style="width:100%"></i></div>'+
+      '<div class="score">'+score+'/'+Q.length+'</div><h3>'+t+'</h3><p>'+d+'</p><button type="button" class="qnext" id="again">Reopen the case</button></div>';
+    document.getElementById('again').addEventListener('click',function(){qi=0;score=0;renderQ();});
+  }
+  renderQ();
+
+  /* ---------- toys ---------- */
+  var cr=document.getElementById('coolRange'),co=document.getElementById('coolOut'),cn=document.getElementById('coolN');
+  function cool(){
+    var n=+cr.value;cn.textContent=n;var s=Array(n).fill('cool').join(' ');s=s.charAt(0).toUpperCase()+s.slice(1);
+    var tail=n>=15?' No doubt no doubt no doubt no doubt.':n>=8?' No doubt no doubt.':n>=4?'.':'!';
+    var mood=n>=15?'Panic level: something has gone very wrong':n>=8?'Panic level: hiding it badly':n>=4?'Panic level: mildly nervous':'Panic level: actually fine';
+    co.innerHTML=s+tail+'<small>'+mood+'</small>';
+  }
+  cr.addEventListener('input',cool);cool();
+  var ti=document.getElementById('titleIn'),to=document.getElementById('titleOut');
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function titleCase(s){return s.replace(/\S+/g,function(w){return w.charAt(0).toUpperCase()+w.slice(1)})}
+  function title(){
+    var v=ti.value.trim().replace(/[.!?]+$/,'');
+    to.innerHTML=v?('"'+esc(v)+'."<br>"'+esc(titleCase(v))+'" … title of your sex tape.<small>Delivered with a straight face. Jake Peralta, probably.</small>'):'Type something first.<small>Waiting on the suspect</small>';
+  }
+  ti.addEventListener('input',title);title();
+  document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.copy);var txt=el.firstChild?el.innerText.split('\n').filter(function(l,i,a){return i<a.length-1}).join(' '):'';
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1400)};
+    try{navigator.clipboard.writeText(txt).then(done,function(){sel(el)});}catch(e){sel(el)}
+  })});
+  function sel(el){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

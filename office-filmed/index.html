@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Office, Filmed | Explainers</title>
+<meta name="description" content="A pretend documentary about a very boring paper company, and why the camera is in on the joke.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/office-filmed/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Office, Filmed">
+<meta property="og:description" content="A pretend documentary about a very boring paper company, and why the camera is in on the joke.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/office-filmed/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/office-filmed/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --wall:#E9EDEA; --paper:#FFFFFF; --ink:#1D2630; --ink-2:#4A5561; --muted:#6F7A85; --rule:#CBD3CF;
+  --ballpoint:#2C4DB0; --ballpoint-soft:#DCE3F6; --manila:#E3C77E; --manila-ink:#6B5418; --rec:#D2312A;
+  --carpet:#DCE2DE; --glass:#D5E4EA; --room:#F4F6F4;
+  --scene-wall:#DCE3DF; --scene-floor:#B7C1BC; --scene-ceiling:#F2F4F2; --scene-light:#FFFFFF;
+  --scene-desk:#8C7A62; --scene-metal:#9AA4AA; --scene-screen:#2F4A5C; --scene-blind:#EEF2F0;
+  --fig:#56626E; --fig-head:#CDB99A; --plant:#5E8A63;
+  --hud-bg:rgba(12,16,20,.72); --hud-fg:#F4F6F5;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --wall:#12181C; --paper:#1B2328; --ink:#E4E9E7; --ink-2:#AEB8BE; --muted:#86929A; --rule:#2F3A40;
+    --ballpoint:#8EA6F2; --ballpoint-soft:#23304F; --manila:#B79A53; --manila-ink:#E8D6A4; --rec:#F0564D;
+    --carpet:#1F282D; --glass:#1F3440; --room:#182025;
+    --scene-wall:#1F282D; --scene-floor:#161D21; --scene-ceiling:#252F34; --scene-light:#C9D7DD;
+    --scene-desk:#5E5242; --scene-metal:#4B555B; --scene-screen:#0E1A22; --scene-blind:#2A353B;
+    --fig:#8B98A2; --fig-head:#9C8C72; --plant:#4A7250;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --wall:#12181C; --paper:#1B2328; --ink:#E4E9E7; --ink-2:#AEB8BE; --muted:#86929A; --rule:#2F3A40;
+  --ballpoint:#8EA6F2; --ballpoint-soft:#23304F; --manila:#B79A53; --manila-ink:#E8D6A4; --rec:#F0564D;
+  --carpet:#1F282D; --glass:#1F3440; --room:#182025;
+  --scene-wall:#1F282D; --scene-floor:#161D21; --scene-ceiling:#252F34; --scene-light:#C9D7DD;
+  --scene-desk:#5E5242; --scene-metal:#4B555B; --scene-screen:#0E1A22; --scene-blind:#2A353B;
+  --fig:#8B98A2; --fig-head:#9C8C72; --plant:#4A7250;
+}
+
+*{box-sizing:border-box}
+body{background:var(--wall);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;padding:0 20px;}
+.wrap{max-width:1040px;margin:0 auto;padding-block:28px 72px;display:flex;flex-direction:column;gap:88px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.02}
+h2{font-size:clamp(34px,5.4vw,56px);font-weight:850;font-stretch:112%;letter-spacing:-.01em}
+p{margin:0}
+.slate{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:center}
+.slate b{color:var(--rec);font-weight:600}
+.lede{font-size:clamp(18px,2.2vw,22px);color:var(--ink-2);max-width:40ch}
+section{display:flex;flex-direction:column;gap:22px}
+.head{display:flex;flex-direction:column;gap:12px}
+
+/* HERO */
+.vf{position:relative;border-radius:6px;overflow:hidden;background:var(--scene-wall)}
+.vf svg{display:block;width:100%;height:auto}
+.hud{position:absolute;inset:0;pointer-events:none;padding:clamp(10px,2.4vw,22px)}
+.corner{position:absolute;width:clamp(22px,4vw,44px);height:clamp(22px,4vw,44px);border:3px solid var(--ink)}
+.c-tl{top:clamp(10px,2.4vw,22px);left:clamp(10px,2.4vw,22px);border-right:0;border-bottom:0}
+.c-tr{top:clamp(10px,2.4vw,22px);right:clamp(10px,2.4vw,22px);border-left:0;border-bottom:0}
+.c-bl{bottom:clamp(10px,2.4vw,22px);left:clamp(10px,2.4vw,22px);border-right:0;border-top:0}
+.c-br{bottom:clamp(10px,2.4vw,22px);right:clamp(10px,2.4vw,22px);border-left:0;border-top:0}
+.pill{position:absolute;font-family:var(--f-mono);font-size:clamp(10px,1.4vw,13px);background:var(--hud-bg);color:var(--hud-fg);padding:4px 8px;border-radius:3px;letter-spacing:.06em;display:flex;align-items:center;gap:7px;font-variant-numeric:tabular-nums}
+.p-rec{top:clamp(40px,7vw,78px);left:clamp(40px,7vw,78px)}
+.p-tc{top:clamp(40px,7vw,78px);right:clamp(40px,7vw,78px)}
+.p-loc{bottom:clamp(40px,7vw,78px);left:clamp(40px,7vw,78px)}
+.dot{width:9px;height:9px;border-radius:50%;background:#F0453C;animation:blink 1.2s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.title-block{display:flex;flex-direction:column;gap:14px;margin-top:26px}
+.hero-title{font-size:clamp(64px,13vw,150px);font-weight:900;font-stretch:125%;letter-spacing:-.03em;line-height:.9}
+.hero-title span{display:block;font-size:14px;letter-spacing:.14em!important;margin-bottom:14px!important;font-stretch:100%;font-weight:600;letter-spacing:.02em;color:var(--muted);margin-bottom:.5em;font-family:var(--f-mono);text-transform:uppercase}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.fact{font-family:var(--f-mono);font-size:13px;padding:6px 10px;border:1px solid var(--rule);background:var(--paper);border-radius:3px;color:var(--ink-2)}
+.fact strong{color:var(--ink);font-weight:600}
+
+/* FILM STRIP */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.frame{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.frame svg{display:block;width:100%;height:auto;background:var(--scene-wall)}
+.frame .cap{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px}
+.frame .n{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.frame h3{font-size:22px;font-weight:800;font-stretch:105%}
+.frame p{color:var(--ink-2);font-size:15.5px}
+.big-line{font-family:var(--f-display);font-size:clamp(24px,3.4vw,34px);font-weight:700;font-stretch:100%;max-width:26ch;line-height:1.15}
+.big-line em{font-style:normal;color:var(--ballpoint)}
+
+/* ORIGIN */
+.origin{display:grid;grid-template-columns:1fr auto 1.6fr;gap:18px;align-items:stretch}
+.ocard{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.ocard .where{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ocard h3{font-size:26px;font-weight:800}
+.count{font-family:var(--f-display);font-size:48px;font-weight:900;font-stretch:120%;line-height:1;font-variant-numeric:tabular-nums}
+.count small{font-family:var(--f-body);font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0;margin-left:6px}
+.dots{display:grid;grid-template-columns:repeat(auto-fill,10px);gap:4px}
+.dots i{width:10px;height:10px;border-radius:2px;display:block}
+.uk .dots i{background:var(--manila)}
+.us .dots i{background:var(--ballpoint)}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.arrow svg{width:44px;height:44px}
+.note{color:var(--ink-2);font-size:15.5px;max-width:60ch}
+
+/* FLOOR PLAN */
+.plan-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:18px;align-items:start}
+.plan{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:10px;overflow-x:auto}
+.plan svg{display:block;width:100%;min-width:560px;height:auto}
+.room{fill:var(--room);stroke:var(--ink-2);stroke-width:2}
+.room.glass{fill:var(--glass)}
+.room.floor{fill:var(--carpet)}
+.room.wh{fill:none;stroke-dasharray:6 5}
+.rlabel{font-family:var(--f-mono);font-size:11px;fill:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.furn{fill:none;stroke:var(--rule);stroke-width:2}
+.desk{cursor:pointer;outline:none}
+.desk rect{fill:var(--paper);stroke:var(--ink-2);stroke-width:1.5;transition:fill .15s}
+.desk text{font-family:var(--f-body);font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:middle;pointer-events:none}
+.desk:hover rect{fill:var(--ballpoint-soft)}
+.desk:focus-visible rect{stroke:var(--ballpoint);stroke-width:3}
+.desk.on rect{fill:var(--ballpoint);stroke:var(--ballpoint)}
+.desk.on text{fill:var(--paper)}
+.person{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:10px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+.person .tag{align-self:flex-start;font-family:var(--f-mono);font-size:12px;background:var(--manila);color:#3A2E0C;padding:3px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
+.person h3{font-size:32px;font-weight:850;font-stretch:108%}
+.person .line{font-size:18px;color:var(--ink)}
+.person .actor{font-size:14px;color:var(--muted)}
+.hint{font-size:14px;color:var(--muted)}
+
+/* SEASONS CHART */
+.chart-card{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:18px 18px 22px;display:flex;flex-direction:column;gap:14px}
+.chart-wrap{overflow-x:auto}
+.chart-wrap svg{display:block;width:100%;min-width:520px;height:auto}
+.grid line{stroke:var(--rule);stroke-width:1}
+.axis text{font-family:var(--f-mono);font-size:12px;fill:var(--muted)}
+.xl{font-family:var(--f-mono);font-size:13px;fill:var(--ink-2);text-anchor:middle}
+.xy{font-family:var(--f-mono);font-size:10.5px;fill:var(--muted);text-anchor:middle}
+.bar{cursor:pointer;outline:none}
+.bar path{fill:var(--ballpoint);transition:opacity .15s}
+.bar .hit{fill:transparent}
+.chart-wrap.has-sel .bar:not(.on) path{opacity:.38}
+.bar:focus-visible path{stroke:var(--ink);stroke-width:2}
+.vlabel{font-family:var(--f-mono);font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle}
+.beat{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:baseline;border-top:1px solid var(--rule);padding-top:14px}
+.beat .s{font-family:var(--f-display);font-weight:900;font-stretch:120%;font-size:40px;line-height:1;color:var(--ballpoint);grid-row:span 2}
+.beat .meta{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.beat .txt{font-size:18px}
+.stepper{display:flex;gap:8px}
+button{font:inherit;cursor:pointer}
+.btn{font-family:var(--f-mono);font-size:13px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:3px;padding:6px 12px}
+.btn:hover{border-color:var(--ink-2)}
+.btn:focus-visible{outline:2px solid var(--ballpoint);outline-offset:2px}
+details{font-size:14px;color:var(--ink-2)}
+summary{cursor:pointer;font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+table{border-collapse:collapse;margin-top:10px;font-variant-numeric:tabular-nums;width:100%}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-weight:400}
+.tbl{overflow-x:auto}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stat{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.stat .num{font-family:var(--f-display);font-size:clamp(44px,6vw,64px);font-weight:900;font-stretch:118%;line-height:.95;font-variant-numeric:tabular-nums}
+.stat .num small{font-size:.42em;font-stretch:100%;font-weight:700;margin-left:4px}
+.stat p{color:var(--ink-2);font-size:15.5px}
+
+/* THE PAPER */
+.route{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.route svg{display:block;width:100%;height:auto}
+.road{fill:none;stroke:var(--muted);stroke-width:3;stroke-dasharray:2 10;stroke-linecap:round}
+.pin-a{fill:var(--ballpoint)}
+.pin-b{fill:var(--rec)}
+.city{font-family:var(--f-display);font-weight:850;font-stretch:110%;font-size:26px;fill:var(--ink)}
+.city-sub{font-family:var(--f-mono);font-size:12px;fill:var(--muted);letter-spacing:.06em}
+.cam-body{fill:var(--ink)}
+.cam-lens{fill:var(--paper)}
+.cam{animation:drive 7s ease-in-out infinite}
+@keyframes drive{0%,12%{transform:translateX(0)}55%,100%{transform:translateX(-470px)}}
+.paper-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.pcard{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.pcard h3{font-size:22px;font-weight:800;font-stretch:105%}
+.pcard p{color:var(--ink-2);font-size:15.5px}
+.seasons-row{display:flex;flex-wrap:wrap;gap:10px}
+.srow{flex:1 1 220px;border:1px solid var(--rule);border-radius:3px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;background:var(--wall)}
+.srow b{font-family:var(--f-display);font-size:20px;font-weight:800}
+.srow span{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+
+/* FAMILY */
+.family{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fam{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.fam .rel{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fam h3{font-size:20px;font-weight:800}
+.fam p{font-size:14.5px;color:var(--ink-2)}
+.fam.center{background:var(--ballpoint);border-color:var(--ballpoint)}
+.fam.center .rel,.fam.center h3,.fam.center p{color:var(--paper)}
+
+/* START */
+.start{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.remote{font-family:var(--f-display);font-weight:900;font-stretch:125%;font-size:clamp(56px,9vw,104px);line-height:.9;color:var(--ballpoint)}
+.remote small{display:block;font-family:var(--f-mono);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.1em;margin-top:8px}
+.start p{font-size:18px;max-width:44ch}
+.start p+p{margin-top:10px;color:var(--ink-2);font-size:16px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:18px}
+
+/* scene svg */
+.s-wall{fill:var(--scene-wall)} .s-floor{fill:var(--scene-floor)} .s-ceil{fill:var(--scene-ceiling)}
+.s-light{fill:var(--scene-light)} .s-desk{fill:var(--scene-desk)} .s-metal{fill:var(--scene-metal)}
+.s-screen{fill:var(--scene-screen)} .s-blind{fill:var(--scene-blind)} .s-line{stroke:var(--scene-metal);stroke-width:3}
+.s-box{fill:var(--manila)} .s-boxline{stroke:var(--manila-ink);stroke-width:2;fill:none}
+.s-boxtext{font-family:var(--f-mono);font-size:13px;fill:var(--manila-ink);font-weight:600}
+.s-plant{fill:var(--plant)} .s-water{fill:var(--ballpoint-soft);stroke:var(--scene-metal);stroke-width:2}
+.f-body{fill:var(--fig)} .f-head{fill:var(--fig-head)} .f-eye{fill:var(--ink)}
+.f-hat{fill:var(--rec)} .lower3{fill:var(--hud-bg)} .lower3-t{font-family:var(--f-body);font-size:15px;fill:var(--hud-fg);font-weight:600}
+.lower3-s{font-family:var(--f-mono);font-size:10px;fill:var(--hud-fg);opacity:.75}
+
+@media (max-width:820px){
+  .strip,.stats{grid-template-columns:1fr}
+  .origin{grid-template-columns:1fr}
+  .arrow svg{transform:rotate(90deg)}
+  .plan-grid{grid-template-columns:1fr}
+  .person{position:static}
+  .family{grid-template-columns:repeat(2,1fr)}
+  .paper-grid{grid-template-columns:1fr}
+  .start{grid-template-columns:1fr}
+}
+@media (max-width:460px){ .family{grid-template-columns:1fr} .pill{display:none} .p-rec{display:flex} }
+@media (prefers-reduced-motion:reduce){ .dot,.cam{animation:none} .desk rect,.bar path{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<header>
+  <div class="vf" role="img" aria-label="A camera viewfinder looking at an empty 2000s office: desks with boxy monitors, window blinds, a water cooler and a stack of paper boxes.">
+    <svg viewBox="0 0 1000 540" aria-hidden="true">
+      <rect class="s-wall" width="1000" height="540"/>
+      <rect class="s-ceil" width="1000" height="64"/>
+      <rect class="s-light" x="110" y="18" width="170" height="26" rx="3"/>
+      <rect class="s-light" x="415" y="18" width="170" height="26" rx="3"/>
+      <rect class="s-light" x="720" y="18" width="170" height="26" rx="3"/>
+      <!-- window with blinds -->
+      <rect class="s-metal" x="610" y="112" width="300" height="200" rx="3"/>
+      <rect class="s-blind" x="618" y="120" width="284" height="184"/>
+      <g class="s-line">
+        <line x1="618" y1="140" x2="902" y2="140"/><line x1="618" y1="160" x2="902" y2="160"/>
+        <line x1="618" y1="180" x2="902" y2="180"/><line x1="618" y1="200" x2="902" y2="200"/>
+        <line x1="618" y1="220" x2="902" y2="220"/><line x1="618" y1="240" x2="902" y2="240"/>
+        <line x1="618" y1="260" x2="902" y2="260"/><line x1="618" y1="280" x2="902" y2="280"/>
+      </g>
+      <!-- clock -->
+      <circle class="s-blind" cx="470" cy="150" r="30"/>
+      <circle cx="470" cy="150" r="30" fill="none" class="s-line"/>
+      <line x1="470" y1="150" x2="470" y2="130" class="s-line"/><line x1="470" y1="150" x2="485" y2="156" class="s-line"/>
+      <rect class="s-floor" y="392" width="1000" height="148"/>
+      <!-- water cooler -->
+      <rect class="s-metal" x="92" y="290" width="62" height="130" rx="4"/>
+      <rect class="s-water" x="98" y="228" width="50" height="66" rx="16"/>
+      <!-- desk 1 -->
+      <rect class="s-desk" x="210" y="330" width="250" height="18" rx="2"/>
+      <rect class="s-desk" x="222" y="348" width="14" height="72"/><rect class="s-desk" x="434" y="348" width="14" height="72"/>
+      <rect class="s-metal" x="270" y="250" width="100" height="80" rx="6"/>
+      <rect class="s-screen" x="280" y="258" width="80" height="58" rx="3"/>
+      <rect class="s-metal" x="300" y="326" width="40" height="8"/>
+      <!-- desk 2 -->
+      <rect class="s-desk" x="530" y="340" width="250" height="18" rx="2"/>
+      <rect class="s-desk" x="542" y="358" width="14" height="72"/><rect class="s-desk" x="754" y="358" width="14" height="72"/>
+      <rect class="s-metal" x="610" y="260" width="100" height="80" rx="6"/>
+      <rect class="s-screen" x="620" y="268" width="80" height="58" rx="3"/>
+      <rect class="s-metal" x="640" y="336" width="40" height="8"/>
+      <!-- paper boxes -->
+      <rect class="s-box" x="360" y="440" width="130" height="62" rx="2"/><rect class="s-boxline" x="360" y="440" width="130" height="62" rx="2"/>
+      <text class="s-boxtext" x="425" y="476" text-anchor="middle">20 LB BOND</text>
+      <rect class="s-box" x="490" y="440" width="130" height="62" rx="2"/><rect class="s-boxline" x="490" y="440" width="130" height="62" rx="2"/>
+      <text class="s-boxtext" x="555" y="476" text-anchor="middle">8½ × 11</text>
+      <rect class="s-box" x="425" y="378" width="130" height="62" rx="2"/><rect class="s-boxline" x="425" y="378" width="130" height="62" rx="2"/>
+      <text class="s-boxtext" x="490" y="414" text-anchor="middle">5,000 SHEETS</text>
+      <!-- plant -->
+      <rect class="s-desk" x="880" y="400" width="44" height="46" rx="4"/>
+      <ellipse class="s-plant" cx="902" cy="380" rx="34" ry="40"/>
+      <ellipse class="s-plant" cx="880" cy="350" rx="18" ry="30"/>
+      <ellipse class="s-plant" cx="926" cy="352" rx="16" ry="28"/>
+    </svg>
+    <div class="hud" aria-hidden="true">
+      <div class="corner c-tl"></div><div class="corner c-tr"></div><div class="corner c-bl"></div><div class="corner c-br"></div>
+      <div class="pill p-rec"><span class="dot"></span>REC · CAM B</div>
+      <div class="pill p-tc" id="tc">00:00:00:00</div>
+      <div class="pill p-loc">SCRANTON, PA · 2005</div>
+    </div>
+  </div>
+
+  <div class="title-block">
+    <h1 class="hero-title"><span>NBC · American TV comedy</span>The Office</h1>
+    <p class="lede">A pretend documentary about a very boring paper company. The people are the show.</p>
+    <div class="facts">
+      <div class="fact"><strong>2005–2013</strong></div>
+      <div class="fact"><strong>9</strong> seasons</div>
+      <div class="fact"><strong>201</strong> episodes</div>
+      <div class="fact">Scranton, Pennsylvania</div>
+      <div class="fact">Company: Dunder Mifflin</div>
+    </div>
+  </div>
+</header>
+
+<!-- THE TRICK -->
+<section aria-labelledby="h-trick">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 1 · The trick</div>
+    <h2 id="h-trick">The camera is in on the joke</h2>
+  </div>
+  <div class="strip">
+    <figure class="frame" style="margin:0">
+      <svg viewBox="0 0 300 190" role="img" aria-label="A person in a party hat standing on an office desk.">
+        <rect class="s-floor" y="140" width="300" height="50"/>
+        <rect class="s-desk" x="80" y="120" width="140" height="12"/>
+        <rect class="s-desk" x="90" y="132" width="10" height="46"/><rect class="s-desk" x="200" y="132" width="10" height="46"/>
+        <rect class="f-body" x="132" y="62" width="36" height="58" rx="10"/>
+        <circle class="f-head" cx="150" cy="46" r="17"/>
+        <polygon class="f-hat" points="138,33 162,33 150,6"/>
+        <rect class="f-body" x="112" y="66" width="20" height="9" rx="4" transform="rotate(-35 122 70)"/>
+        <rect class="f-body" x="168" y="66" width="20" height="9" rx="4" transform="rotate(35 178 70)"/>
+      </svg>
+      <figcaption class="cap"><span class="n">1 · The scene</span><h3>Someone does something silly</h3><p>Usually the boss.</p></figcaption>
+    </figure>
+    <figure class="frame" style="margin:0">
+      <svg viewBox="0 0 300 190" role="img" aria-label="A close-up of the same person talking to the camera, with a caption bar reading: It went great.">
+        <rect class="s-blind" x="0" y="0" width="300" height="190"/>
+        <g class="s-line"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="48" x2="300" y2="48"/><line x1="0" y1="72" x2="300" y2="72"/><line x1="0" y1="96" x2="300" y2="96"/></g>
+        <rect class="f-body" x="95" y="112" width="110" height="90" rx="30"/>
+        <circle class="f-head" cx="150" cy="80" r="38"/>
+        <circle class="f-eye" cx="138" cy="78" r="3.5"/><circle class="f-eye" cx="162" cy="78" r="3.5"/>
+        <rect class="lower3" x="14" y="142" width="170" height="36" rx="3"/>
+        <text class="lower3-t" x="24" y="160">"It went great."</text>
+        <text class="lower3-s" x="24" y="172">TALKING HEAD</text>
+      </svg>
+      <figcaption class="cap"><span class="n">2 · The interview</span><h3>They explain it to the camera</h3><p>What they say doesn't match what we saw.</p></figcaption>
+    </figure>
+    <figure class="frame" style="margin:0">
+      <svg viewBox="0 0 300 190" role="img" aria-label="Another worker at a desk turns and looks straight into the camera.">
+        <rect class="s-floor" y="140" width="300" height="50"/>
+        <rect class="s-desk" x="40" y="118" width="220" height="12"/>
+        <rect class="s-metal" x="180" y="72" width="60" height="46" rx="4"/><rect class="s-screen" x="186" y="77" width="48" height="34" rx="2"/>
+        <rect class="f-body" x="92" y="78" width="60" height="42" rx="14"/>
+        <circle class="f-head" cx="122" cy="56" r="24"/>
+        <circle class="f-eye" cx="114" cy="56" r="3"/><circle class="f-eye" cx="130" cy="56" r="3"/>
+        <path d="M110 46 l9 -2 M126 44 l9 2" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M114 67 h16" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <figcaption class="cap"><span class="n">3 · The look</span><h3>A coworker glances at you</h3><p>No words. You're both thinking the same thing.</p></figcaption>
+    </figure>
+  </div>
+  <p class="big-line">The laugh lives in the gap between <em>what people do</em> and <em>what they tell the camera</em>.</p>
+</section>
+
+<!-- ORIGIN -->
+<section aria-labelledby="h-origin">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 2 · Where it came from</div>
+    <h2 id="h-origin">A British show, remade for America</h2>
+  </div>
+  <div class="origin">
+    <div class="ocard uk">
+      <div class="where">BBC · 2001–2003 · Slough, England</div>
+      <h3>The Office (UK)</h3>
+      <div class="count">14<small>episodes</small></div>
+      <div class="dots" id="dots-uk" aria-hidden="true"></div>
+    </div>
+    <div class="arrow" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M6 22h28m-10-10 10 10-10 10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="ocard us">
+      <div class="where">NBC · 2005–2013 · Scranton, USA</div>
+      <h3>The Office (US)</h3>
+      <div class="count">201<small>episodes</small></div>
+      <div class="dots" id="dots-us" aria-hidden="true"></div>
+    </div>
+  </div>
+  <p class="note">The first American episode copied the British script almost word for word. Then it changed: warmer characters, a love story, and far more episodes. Each square is one episode.</p>
+</section>
+
+<!-- FLOOR PLAN -->
+<section aria-labelledby="h-plan">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 3 · Who works here</div>
+    <h2 id="h-plan">Walk the office floor</h2>
+    <p class="hint">Tap a desk. The layout is roughly how the Scranton branch is arranged.</p>
+  </div>
+  <div class="plan-grid">
+    <div class="plan">
+      <svg viewBox="0 0 800 545" id="plan" aria-label="Floor plan of the Scranton office with clickable desks">
+        <rect class="room floor" x="10" y="10" width="780" height="440"/>
+        <rect class="room" x="10" y="10" width="200" height="150"/>
+        <text class="rlabel" x="24" y="32">Conference room</text>
+        <ellipse class="furn" cx="110" cy="95" rx="70" ry="32"/>
+        <rect class="room glass" x="590" y="10" width="200" height="150"/>
+        <text class="rlabel" x="604" y="32">Manager's office</text>
+        <rect class="room" x="10" y="330" width="170" height="120"/>
+        <text class="rlabel" x="24" y="352">Kitchen</text>
+        <rect class="furn" x="30" y="395" width="120" height="36" rx="4"/>
+        <rect class="room" x="620" y="230" width="170" height="220"/>
+        <text class="rlabel" x="634" y="252">The annex</text>
+        <text class="rlabel" x="270" y="72">Accounting</text>
+        <rect x="360" y="444" width="80" height="12" fill="var(--paper)"/>
+        <text class="rlabel" x="400" y="468" text-anchor="middle">Entrance</text>
+        <rect class="room wh" x="10" y="482" width="780" height="54"/>
+        <text class="rlabel" x="24" y="514">Warehouse · downstairs</text>
+      </svg>
+    </div>
+    <aside class="person" aria-live="polite" id="person">
+      <span class="tag" id="p-role">Regional Manager</span>
+      <h3 id="p-name">Michael Scott</h3>
+      <p class="line" id="p-line"></p>
+      <p class="actor" id="p-actor"></p>
+    </aside>
+  </div>
+</section>
+
+<!-- SEASONS -->
+<section aria-labelledby="h-seasons">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 4 · The story</div>
+    <h2 id="h-seasons">Nine seasons, one long workday</h2>
+    <p class="hint">Bar height is the number of episodes. Tap a season.</p>
+  </div>
+  <div class="chart-card">
+    <div class="chart-wrap" id="chartWrap"><svg viewBox="0 0 720 300" id="chart" aria-label="Bar chart of episodes per season"></svg></div>
+    <div class="beat" id="beat">
+      <div class="s" id="b-s">S7</div>
+      <div class="meta" id="b-meta"></div>
+      <div class="txt" id="b-txt"></div>
+    </div>
+    <div class="stepper">
+      <button class="btn" id="prev" type="button" aria-label="Previous season">← Prev</button>
+      <button class="btn" id="next" type="button" aria-label="Next season">Next →</button>
+    </div>
+    <details>
+      <summary>Show as a table</summary>
+      <div class="tbl"><table id="tbl"><thead><tr><th>Season</th><th>Years</th><th>Episodes</th><th>What happens</th></tr></thead><tbody></tbody></table></div>
+    </details>
+  </div>
+</section>
+
+<!-- AFTERLIFE -->
+<section aria-labelledby="h-after">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 5 · After it ended</div>
+    <h2 id="h-after">It got bigger after it stopped</h2>
+    <p class="lede">A new generation found it on streaming and watched it again and again.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">22.9<small>M</small></div><p>People who watched the episode after the 2009 Super Bowl. Its biggest night on TV.</p></div>
+    <div class="stat"><div class="num">57<small>B</small></div><p>Minutes of The Office streamed in the US in 2020. More than any other show.</p></div>
+    <div class="stat"><div class="num">2021</div><p>It left Netflix and moved home to Peacock, NBC's own streaming service.</p></div>
+  </div>
+</section>
+
+<!-- THE PAPER -->
+<section aria-labelledby="h-paper">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 6 · The new show</div>
+    <h2 id="h-paper">The Paper: same camera, new office</h2>
+    <p class="lede">The documentary crew packs up and finds a new workplace to film.</p>
+  </div>
+  <div class="route">
+    <svg viewBox="0 0 800 210" role="img" aria-label="A camera travels west from Scranton, Pennsylvania to Toledo, Ohio.">
+      <path class="road" d="M150 120 C 300 60, 500 180, 650 120"/>
+      <circle class="pin-b" cx="150" cy="120" r="11"/>
+      <circle class="pin-a" cx="650" cy="120" r="11"/>
+      <text class="city" x="150" y="170" text-anchor="middle">Toledo, OH</text>
+      <text class="city-sub" x="150" y="192" text-anchor="middle">NEWSPAPER · 2025–</text>
+      <text class="city" x="650" y="170" text-anchor="middle">Scranton, PA</text>
+      <text class="city-sub" x="650" y="192" text-anchor="middle">PAPER COMPANY · 2005–2013</text>
+      <g class="cam">
+        <g transform="translate(620 52)">
+          <rect class="cam-body" x="0" y="8" width="46" height="30" rx="4"/>
+          <polygon class="cam-body" points="46,16 62,8 62,38 46,30"/>
+          <circle class="cam-body" cx="12" cy="4" r="8"/><circle class="cam-body" cx="32" cy="4" r="8"/>
+          <circle class="cam-lens" cx="12" cy="4" r="3"/><circle class="cam-lens" cx="32" cy="4" r="3"/>
+          <circle cx="8" cy="15" r="3" class="pin-b"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="paper-grid">
+    <div class="pcard"><h3>The workplace</h3><p>The Toledo Truth Teller, an old local newspaper that is nearly dead.</p></div>
+    <div class="pcard"><h3>The hero</h3><p>Ned Sampson (Domhnall Gleeson), a hopeful new editor. His reporters are mostly volunteers.</p></div>
+    <div class="pcard"><h3>A familiar face</h3><p>Oscar Martinez from Dunder Mifflin now works here. Oscar Nuñez plays him again.</p></div>
+    <div class="pcard"><h3>Where</h3><p>Peacock. Made by Greg Daniels, who adapted The Office, with Michael Koman.</p></div>
+  </div>
+  <div class="seasons-row">
+    <div class="srow"><b>Season 1</b><span>Sept 4, 2025 · 10 episodes</span></div>
+    <div class="srow"><b>Season 2</b><span>Sept 9, 2026 · all at once</span></div>
+  </div>
+</section>
+
+<!-- FAMILY -->
+<section aria-labelledby="h-family">
+  <div class="head">
+    <div class="slate"><b>●</b> Tape 7 · Its family</div>
+    <h2 id="h-family">One camera trick, many shows</h2>
+  </div>
+  <div class="family">
+    <div class="fam"><span class="rel">Parent</span><h3>The Office (UK)</h3><p>2001. Where the idea started.</p></div>
+    <div class="fam center"><span class="rel">This one</span><h3>The Office (US)</h3><p>2005. Made the style famous.</p></div>
+    <div class="fam"><span class="rel">Same world</span><h3>The Paper</h3><p>2025. Same crew, new office.</p></div>
+    <div class="fam"><span class="rel">Same makers</span><h3>Parks and Recreation</h3><p>2009. A small-town government office.</p></div>
+    <div class="fam"><span class="rel">Borrowed the camera</span><h3>Modern Family</h3><p>2009. A family, filmed the same way.</p></div>
+    <div class="fam"><span class="rel">Borrowed the camera</span><h3>Abbott Elementary</h3><p>2021. A public school.</p></div>
+  </div>
+</section>
+
+<!-- WHERE TO START -->
+<section aria-labelledby="h-start">
+  <div class="slate"><b>●</b> Tape 8 · If you want to watch</div>
+  <div class="start">
+    <div class="remote" aria-hidden="true">S2<br>E1<small>"THE DUNDIES"</small></div>
+    <div>
+      <h2 id="h-start" style="font-size:clamp(28px,4vw,40px);margin-bottom:14px">Start at Season 2</h2>
+      <p>Season 1 is short and still copying the British show. Season 2 is where it becomes itself.</p>
+      <p>Go back for Season 1 later. It's only six episodes.</p>
+    </div>
+  </div>
+</section>
+
+<footer>Facts from Wikipedia, Nielsen's 2020 streaming report and TVLine. Figures such as episode counts vary slightly depending on how double-length episodes are counted.</footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* timecode */
+  var tc = document.getElementById('tc'), f = 0;
+  function pad(n){return (n<10?'0':'')+n}
+  function drawTC(){var fr=f%30, s=Math.floor(f/30)%60, m=Math.floor(f/1800)%60, h=Math.floor(f/108000);
+    tc.textContent = pad(h)+':'+pad(m)+':'+pad(s)+':'+pad(fr);}
+  f = 30*(12*60+34); drawTC();
+  if(!reduce){ setInterval(function(){f++;drawTC();}, 1000/30); }
+
+  /* episode dots */
+  function dots(id,n){var el=document.getElementById(id),h='';for(var i=0;i<n;i++)h+='<i></i>';el.innerHTML=h;}
+  dots('dots-uk',14); dots('dots-us',201);
+
+  /* floor plan */
+  var NS='http://www.w3.org/2000/svg';
+  var people = [
+    {id:'michael',n:'Michael Scott',r:'Regional Manager',a:'Steve Carell · Seasons 1–7',l:'Wants everyone to love him. Would rather be your best friend than your boss.',x:640,y:80,w:110},
+    {id:'dwight',n:'Dwight Schrute',r:'Salesman',a:'Rainn Wilson',l:'Beet farmer and volunteer sheriff. Takes rules, loyalty and selling paper very, very seriously.',x:220,y:334,w:95},
+    {id:'jim',n:'Jim Halpert',r:'Salesman',a:'John Krasinski',l:'Clever and bored. Pranks Dwight. He is the one who looks at the camera.',x:220,y:290,w:95},
+    {id:'pam',n:'Pam Beesly',r:'Receptionist',a:'Jenna Fischer',l:'A quiet artist at the front desk. Half of the show\'s slow love story with Jim.',x:352,y:386,w:96},
+    {id:'stanley',n:'Stanley',r:'Salesman',a:'Leslie David Baker',l:'Does crossword puzzles and waits for retirement. Lives for Pretzel Day.',x:470,y:290,w:95},
+    {id:'phyllis',n:'Phyllis',r:'Saleswoman',a:'Phyllis Smith',l:'Gentle on the outside, quietly sharp underneath.',x:470,y:334,w:95},
+    {id:'kevin',n:'Kevin',r:'Accountant',a:'Brian Baumgartner',l:'Slow and sweet. Famous for spilling a giant pot of chili.',x:262,y:88,w:88},
+    {id:'angela',n:'Angela',r:'Head of Accounting',a:'Angela Kinsey',l:'Strict, judgmental, and devoted to her cats.',x:360,y:88,w:88},
+    {id:'oscar',n:'Oscar',r:'Accountant',a:'Oscar Nuñez',l:'The sensible one, and he knows it. Later shows up again in The Paper.',x:458,y:88,w:88},
+    {id:'andy',n:'Andy Bernard',r:'Salesman',a:'Ed Helms · joins in Season 3',l:'Loud, sings a cappella, and will tell you he went to Cornell.',x:470,y:190,w:95},
+    {id:'creed',n:'Creed',r:'Quality Assurance',a:'Creed Bratton',l:'Nobody knows what he does or where he came from.',x:262,y:190,w:88},
+    {id:'meredith',n:'Meredith',r:'Supplier Relations',a:'Kate Flannery',l:'Lives loudly and without shame.',x:360,y:190,w:88},
+    {id:'kelly',n:'Kelly',r:'Customer Service',a:'Mindy Kaling',l:'Talks very fast about celebrities, gossip and romance.',x:636,y:272,w:68},
+    {id:'ryan',n:'Ryan',r:'The Temp',a:'B.J. Novak',l:'Starts at the bottom, rockets to the top, then falls all the way back down.',x:712,y:272,w:68},
+    {id:'toby',n:'Toby',r:'Human Resources',a:'Paul Lieberstein',l:'A mild, sad HR man. Michael hates him for no reason at all.',x:650,y:380,w:110},
+    {id:'darryl',n:'Darryl',r:'Warehouse Foreman',a:'Craig Robinson',l:'Calm and wise downstairs while upstairs goes mad.',x:600,y:492,w:110}
+  ];
+  var plan=document.getElementById('plan'), nodes={};
+  people.forEach(function(p){
+    var g=document.createElementNS(NS,'g');
+    g.setAttribute('class','desk'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+    g.setAttribute('aria-label',p.n+', '+p.r);
+    var r=document.createElementNS(NS,'rect');
+    r.setAttribute('x',p.x); r.setAttribute('y',p.y); r.setAttribute('width',p.w); r.setAttribute('height',34); r.setAttribute('rx',3);
+    var t=document.createElementNS(NS,'text');
+    t.setAttribute('x',p.x+p.w/2); t.setAttribute('y',p.y+18); t.textContent=p.n.split(' ')[0];
+    g.appendChild(r); g.appendChild(t); plan.appendChild(g); nodes[p.id]=g;
+    g.addEventListener('click',function(){pick(p)});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(p)}});
+  });
+  function pick(p){
+    for(var k in nodes) nodes[k].classList.toggle('on',k===p.id);
+    document.getElementById('p-role').textContent=p.r;
+    document.getElementById('p-name').textContent=p.n;
+    document.getElementById('p-line').textContent=p.l;
+    document.getElementById('p-actor').textContent='Played by '+p.a;
+  }
+  pick(people[0]);
+
+  /* seasons chart */
+  var S=[
+    {s:1,y:'2005',e:6,t:'A rocky start. It copies the British show a little too closely.'},
+    {s:2,y:'2005–06',e:22,t:'The show finds its heart and wins the Emmy for best comedy.'},
+    {s:3,y:'2006–07',e:25,t:'Another branch merges in. New faces arrive, including Andy.'},
+    {s:4,y:'2007–08',e:19,t:'A Hollywood writers\' strike cuts the season short.'},
+    {s:5,y:'2008–09',e:28,t:'The longest season. Michael quits and starts his own tiny paper company.'},
+    {s:6,y:'2009–10',e:26,t:'Jim and Pam get married. A printer company buys Dunder Mifflin.'},
+    {s:7,y:'2010–11',e:26,t:'Michael says goodbye. Steve Carell\'s last season.'},
+    {s:8,y:'2011–12',e:24,t:'Andy runs the office. A strange new CEO arrives.'},
+    {s:9,y:'2012–13',e:25,t:'The documentary finally airs, and the staff watch themselves on TV.'}
+  ];
+  var svg=document.getElementById('chart'), wrap=document.getElementById('chartWrap');
+  var L=44,R=704,T=24,B=240,max=30,bw=46,step=(R-L)/S.length;
+  function Y(v){return B-(v/max)*(B-T)}
+  var h='<g class="grid">';
+  [0,10,20,30].forEach(function(v){h+='<line x1="'+L+'" x2="'+R+'" y1="'+Y(v)+'" y2="'+Y(v)+'"/>'});
+  h+='</g><g class="axis">';
+  [0,10,20,30].forEach(function(v){h+='<text x="'+(L-10)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+'</text>'});
+  h+='</g>';
+  svg.innerHTML=h;
+  var bars=[];
+  S.forEach(function(d,i){
+    var cx=L+step*i+step/2, x=cx-bw/2, y=Y(d.e), r=4;
+    var g=document.createElementNS(NS,'g');
+    g.setAttribute('class','bar'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+    g.setAttribute('aria-label','Season '+d.s+', '+d.y+', '+d.e+' episodes');
+    var hit=document.createElementNS(NS,'rect');
+    hit.setAttribute('class','hit'); hit.setAttribute('x',cx-step/2); hit.setAttribute('y',T); hit.setAttribute('width',step); hit.setAttribute('height',B-T+50);
+    var p=document.createElementNS(NS,'path');
+    p.setAttribute('d','M'+x+' '+B+'V'+(y+r)+'Q'+x+' '+y+' '+(x+r)+' '+y+'H'+(x+bw-r)+'Q'+(x+bw)+' '+y+' '+(x+bw)+' '+(y+r)+'V'+B+'Z');
+    var xl=document.createElementNS(NS,'text'); xl.setAttribute('class','xl'); xl.setAttribute('x',cx); xl.setAttribute('y',B+20); xl.textContent='S'+d.s;
+    var xy=document.createElementNS(NS,'text'); xy.setAttribute('class','xy'); xy.setAttribute('x',cx); xy.setAttribute('y',B+36); xy.textContent=d.y.split('–')[0];
+    var vl=document.createElementNS(NS,'text'); vl.setAttribute('class','vlabel'); vl.setAttribute('x',cx); vl.setAttribute('y',y-8); vl.textContent=d.e; vl.style.display='none';
+    g.appendChild(hit); g.appendChild(p); g.appendChild(xl); g.appendChild(xy); g.appendChild(vl);
+    svg.appendChild(g); bars.push({g:g,vl:vl});
+    g.addEventListener('click',function(){sel(i)});
+    g.addEventListener('mouseenter',function(){sel(i)});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sel(i)}});
+  });
+  var cur=6;
+  function sel(i){
+    cur=i; wrap.classList.add('has-sel');
+    bars.forEach(function(b,j){b.g.classList.toggle('on',j===i); b.vl.style.display=j===i?'':'none'});
+    var d=S[i];
+    document.getElementById('b-s').textContent='S'+d.s;
+    document.getElementById('b-meta').textContent=d.y+' · '+d.e+' EPISODES';
+    document.getElementById('b-txt').textContent=d.t;
+  }
+  document.getElementById('prev').onclick=function(){sel((cur+S.length-1)%S.length)};
+  document.getElementById('next').onclick=function(){sel((cur+1)%S.length)};
+  sel(6);
+  var tb=document.querySelector('#tbl tbody'),rows='';
+  S.forEach(function(d){rows+='<tr><td>'+d.s+'</td><td>'+d.y+'</td><td>'+d.e+'</td><td>'+d.t+'</td></tr>'});
+  tb.innerHTML=rows;
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
