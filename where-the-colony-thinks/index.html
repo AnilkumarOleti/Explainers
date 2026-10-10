@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Where the Colony Thinks | Explainers</title>
+<meta name="description" content="No ant is intelligent, yet the colony is. Swap its ants, then swap its bridge, and see where the knowledge was kept.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/where-the-colony-thinks/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Where the Colony Thinks">
+<meta property="og:description" content="No ant is intelligent, yet the colony is. Swap its ants, then swap its bridge, and see where the knowledge was kept.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/where-the-colony-thinks/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/where-the-colony-thinks/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap">
+<style>
+/* Layout: a field transect. One reading column runs down the left edge; the observation
+   plot (the live colony) and the comparison figures break out to the full width.
+   Four paint-marker colours, the kind field biologists dab on ants, tag the four systems. */
+:root{
+  --ground:#E6E9E2;      /* lichen-grey stone */
+  --plot:#F2F4EE;        /* figure surface */
+  --bridge:#DADFD3;      /* unscented bridge */
+  --ink:#1A1E19;
+  --ink-soft:#4A5249;
+  --rule:#C2C9BD;
+  --trail:#B3205A;       /* pheromone magenta */
+  --m-ant:#B3205A;
+  --m-neuron:#1D69AD;
+  --m-company:#7C5E00;
+  --m-market:#1A7550;
+  --ant-body:#1A1E19;
+  --paint-a:#F2C230;
+  --paint-b:#5DB8FF;
+  --paint-c:#7DE3B0;
+  --display:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --body:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --measure:64ch;
+  --wide:60rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#141713; --plot:#1C201B; --bridge:#2A3028; --ink:#E4E8E0; --ink-soft:#A2AB9D; --rule:#353C33;
+    --trail:#F0689A; --m-ant:#F0689A; --m-neuron:#6CB0F0; --m-company:#E0B63A; --m-market:#5CCB97;
+    --ant-body:#E4E8E0; --paint-a:#C98200; --paint-b:#2A7BD0; --paint-c:#1F9A66;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141713; --plot:#1C201B; --bridge:#2A3028; --ink:#E4E8E0; --ink-soft:#A2AB9D; --rule:#353C33;
+  --trail:#F0689A; --m-ant:#F0689A; --m-neuron:#6CB0F0; --m-company:#E0B63A; --m-market:#5CCB97;
+  --ant-body:#E4E8E0; --paint-a:#C98200; --paint-b:#2A7BD0; --paint-c:#1F9A66;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:400 1.0625rem/1.62 var(--body);-webkit-font-smoothing:antialiased}
+.page{max-width:var(--wide);margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:2.5rem 4.5rem;display:flex;flex-direction:column;gap:4.25rem}
+section,header.hero{display:flex;flex-direction:column;gap:1.15rem}
+p,h1,h2,h3,ul,dl,figure{margin:0}
+.page p,.page h2,.page h3,.page ul.plain,.eyebrow{max-width:var(--measure)}
+h1{font:400 clamp(2.7rem,8vw,4.8rem)/.98 var(--display);letter-spacing:-.015em;text-wrap:balance}
+h2{font:400 clamp(1.7rem,4vw,2.35rem)/1.1 var(--display);letter-spacing:-.01em;text-wrap:balance}
+h3{font:600 1.08rem/1.35 var(--body)}
+em.t{font-family:var(--display);font-style:italic;font-size:1.06em}
+a{color:inherit;text-decoration-color:var(--trail);text-decoration-thickness:1.5px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--trail);outline-offset:2px}
+.eyebrow{font:500 .74rem/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--c,var(--trail));flex:none}
+
+/* hero */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-items:end}
+.hero-text{display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.deck{font-size:1.14rem;line-height:1.5;color:var(--ink-soft)}
+.specimen{border:1.5px solid var(--ink);background:var(--plot);padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.5rem;max-width:19rem}
+.specimen svg{width:100%;height:auto;display:block}
+.specimen .ant-fill{fill:var(--ant-body)}
+.specimen .ant-line{stroke:var(--ant-body);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.specimen .mark{fill:var(--m-ant)}
+.specimen dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.2rem .8rem;font:400 .76rem/1.4 var(--mono);border-top:1px solid var(--rule);padding-top:.6rem}
+.specimen dt{color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em}
+.specimen dd{margin:0;font-variant-numeric:tabular-nums}
+.answer{border-top:1.5px solid var(--ink);padding-top:1rem;display:flex;flex-direction:column;gap:.6rem}
+.answer p.lead{font:400 clamp(1.3rem,3vw,1.72rem)/1.3 var(--display);max-width:34ch;text-wrap:balance}
+.answer p.lead i{color:var(--trail)}
+@media (min-width:780px){.hero-grid{grid-template-columns:minmax(0,1fr) 19rem}}
+
+/* plot */
+.fig{display:flex;flex-direction:column;gap:.9rem}
+.plot-box{border:1.5px solid var(--ink);background:var(--plot)}
+#plot{display:block;width:100%;aspect-ratio:800/500;max-width:100%}
+.spark-row{border-top:1px solid var(--rule);padding:.5rem .75rem .6rem;display:flex;flex-direction:column;gap:.3rem}
+#spark{display:block;width:100%;height:68px}
+.spark-key{font:400 .72rem/1.4 var(--mono);color:var(--ink-soft);letter-spacing:.02em}
+.controls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.btn{font:500 .92rem/1.2 var(--body);padding:.62rem .95rem;border:1.5px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);cursor:pointer}
+.btn:hover{background:var(--bridge)}
+.btn.solid{background:var(--ink);color:var(--ground)}
+.btn.solid:hover{background:var(--trail);border-color:var(--trail);color:var(--ground)}
+.btn[aria-pressed="true"]{background:var(--trail);border-color:var(--trail);color:var(--ground)}
+.fade-ctl{display:grid;grid-template-columns:minmax(0,1fr);gap:.3rem;max-width:30rem}
+.fade-ctl label{font:600 .92rem/1.3 var(--body)}
+.fade-ctl output{font:400 .8rem/1.3 var(--mono);color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.fade-ctl input[type=range]{width:100%;accent-color:var(--trail);margin:0}
+.fade-ends{display:flex;justify-content:space-between;font:400 .72rem/1 var(--mono);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+.log{font-size:.98rem;border-left:0;padding:.7rem .85rem;background:var(--plot);border:1px dashed var(--ink-soft);max-width:var(--measure);min-height:3.2em}
+.cap{font:400 .76rem/1.5 var(--mono);color:var(--ink-soft);max-width:78ch}
+ul.plain{padding:0;list-style:none;display:flex;flex-direction:column;gap:.75rem}
+ul.plain li{padding-left:1.15rem;position:relative}
+ul.plain li::before{content:"";position:absolute;left:0;top:.62em;width:.5rem;height:.5rem;border-radius:50%;background:var(--trail)}
+
+/* three ingredients */
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));gap:1.4rem 2rem;border-block:1px solid var(--rule);padding-block:1.3rem}
+.trio div{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.trio p{font-size:.98rem;color:var(--ink-soft)}
+
+/* loop diagram */
+.transfer{--sys:var(--m-ant);display:flex;flex-direction:column;gap:1.2rem}
+.transfer[data-sys="neuron"]{--sys:var(--m-neuron)}
+.transfer[data-sys="company"]{--sys:var(--m-company)}
+.transfer[data-sys="market"]{--sys:var(--m-market)}
+.seg{display:flex;flex-wrap:wrap;gap:.5rem;border:0;padding:0;margin:0;min-width:0}
+.seg span{position:relative;display:inline-flex}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;pointer-events:none}
+.seg label{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border:1.5px solid var(--ink);border-radius:2px;font:500 .92rem/1.2 var(--body);cursor:pointer}
+.seg input:checked+label{background:var(--ink);color:var(--ground)}
+.seg input:focus-visible+label{outline:2px solid var(--trail);outline-offset:2px}
+.loop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"parts parts" "write steer" "medium medium";gap:.9rem 1.2rem}
+.node{border:1.5px solid var(--ink);background:var(--plot);padding:.85rem 1rem;display:flex;flex-direction:column;gap:.15rem;min-width:0;border-top:5px solid var(--sys)}
+.node .tag{font:500 .72rem/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.node strong{font:400 1.5rem/1.15 var(--display)}
+.node .note{font-size:.9rem;color:var(--ink-soft)}
+.node.parts{grid-area:parts}.node.medium{grid-area:medium}
+.arrow{display:flex;gap:.7rem;align-items:stretch;min-width:0;font-size:.93rem;line-height:1.35}
+.arrow.write{grid-area:write}.arrow.steer{grid-area:steer}
+.arrow b{display:block;font:500 .72rem/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--sys)}
+.arrow .txt{align-self:center;min-width:0}
+.shaft{flex:none;width:2px;min-height:3.6rem;background:var(--sys);position:relative}
+.shaft::after{content:"";position:absolute;width:0;height:0;border:0 solid transparent}
+.arrow.write .shaft::after{bottom:-2px;left:-5px;border-width:10px 6px 0 6px;border-top-color:var(--sys)}
+.arrow.steer .shaft::after{top:-2px;left:-5px;border-width:0 6px 10px 6px;border-bottom-color:var(--sys)}
+@media (min-width:740px){
+  .loop{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);grid-template-areas:"parts write medium" "parts steer medium";align-items:center;gap:1.1rem 1.4rem}
+  .node{align-self:stretch;justify-content:center}
+  .arrow{flex-direction:column;gap:.45rem}
+  .arrow.steer{flex-direction:column-reverse}
+  .arrow .txt{align-self:auto}
+  .shaft{width:auto;height:2px;min-height:0}
+  .arrow.write .shaft::after{bottom:auto;left:auto;right:-2px;top:-5px;border-width:6px 0 6px 10px;border-top-color:transparent;border-left-color:var(--sys)}
+  .arrow.steer .shaft::after{top:-5px;left:-2px;border-width:6px 10px 6px 0;border-bottom-color:transparent;border-right-color:var(--sys)}
+}
+.verdict{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid var(--rule);padding-top:1rem}
+.verdict .head{font:400 1.45rem/1.2 var(--display);color:var(--sys)}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1.5px solid var(--ink);background:var(--plot)}
+table{border-collapse:collapse;width:100%;min-width:46rem;font-size:.93rem;line-height:1.4}
+th,td{text-align:left;vertical-align:top;padding:.7rem .85rem;border-bottom:1px solid var(--rule)}
+tr:last-child th,tr:last-child td{border-bottom:0}
+thead th{font:600 .95rem/1.3 var(--body);border-bottom:1.5px solid var(--ink);white-space:nowrap}
+thead th .dot{margin-right:.45rem}
+tbody th{font:500 .72rem/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);width:9.5rem}
+td.no{color:var(--ink-soft)}
+
+.limits{display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:1.6rem 2.2rem}
+.limits div{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.limits p{font-size:.99rem}
+
+/* ant mill */
+.mill{display:grid;grid-template-columns:minmax(0,1fr);gap:1.4rem;align-items:center}
+.mill svg{width:min(100%,13rem);height:auto;display:block}
+.mill .ring{fill:none;stroke:var(--trail);stroke-width:13;opacity:.3}
+.mill .a{fill:var(--ant-body)}
+.mill .spin{transform-origin:100px 100px;animation:mill 46s linear infinite}
+.mill-text{display:flex;flex-direction:column;gap:1rem;min-width:0}
+@keyframes mill{to{transform:rotate(360deg)}}
+@media (min-width:700px){.mill{grid-template-columns:13rem minmax(0,1fr);gap:2.4rem}}
+@media (prefers-reduced-motion:reduce){.mill .spin{animation:none}}
+
+/* verdict strip */
+.strip{display:grid;grid-template-columns:minmax(0,1fr);border-top:1.5px solid var(--ink)}
+.strip div{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);gap:.3rem 1.2rem;padding:.8rem 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.strip dt{font:400 1.3rem/1.2 var(--display);display:flex;align-items:baseline;gap:.55rem}
+.strip dd{margin:0}
+@media (max-width:520px){.strip div{grid-template-columns:minmax(0,1fr)}}
+
+.sources{border-top:1px solid var(--rule);padding-top:1.4rem;gap:.7rem}
+.sources ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.4rem;font-size:.9rem;color:var(--ink-soft);max-width:78ch}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Notes on Hofstadter's Ant Fugue</p>
+        <h1>Where the colony thinks</h1>
+        <p class="deck">No single ant is intelligent, yet the colony seems to be. Where does that intelligence live, and does the same answer hold for neurons, companies and markets?</p>
+      </div>
+      <figure class="specimen" aria-label="Specimen card for one worker ant">
+        <svg viewBox="0 0 240 118" role="img" aria-label="Side view of a worker ant with a paint mark on its back">
+          <path class="ant-line" d="M124 66 L104 86 L96 106 M136 70 L139 90 L133 108 M147 67 L163 85 L172 106"/>
+          <path class="ant-line" d="M183 47 L198 28 L214 38 M178 45 L186 24 L204 22"/>
+          <ellipse class="ant-fill" cx="68" cy="60" rx="35" ry="20"/>
+          <circle class="ant-fill" cx="109" cy="66" r="5.5"/>
+          <ellipse class="ant-fill" cx="135" cy="60" rx="23" ry="11.5"/>
+          <ellipse class="ant-fill" cx="175" cy="55" rx="15.5" ry="12.5"/>
+          <circle class="mark" cx="133" cy="54" r="5"/>
+        </svg>
+        <dl>
+          <dt>Specimen</dt><dd>one worker ant</dd>
+          <dt>Neurons</dt><dd>about 250,000</dd>
+          <dt>Knows</dt><dd>the smell in front of it</dd>
+          <dt>Plan</dt><dd>none</dd>
+        </dl>
+      </figure>
+    </div>
+    <div class="answer">
+      <p class="eyebrow">Short answer</p>
+      <p class="lead">In the loop between the ants and <i>the trail they keep rewriting</i>. No ant holds it, and the ground alone doesn't either.</p>
+      <p>A brain fits that answer almost exactly. A company fits it about halfway. A market fits the mechanism and has no mind to go with it.</p>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow">The puzzle</p>
+    <h2>One ant knows almost nothing</h2>
+    <p>In the Ant Fugue chapter of <em class="t">Gödel, Escher, Bach</em> (1979), Douglas Hofstadter has an anteater describe his friendship with an ant colony called Aunt Hillary. He talks with her by reading the trails her ants form. The ants take no part in the conversation and could not follow it. He eats a few of them now and then, and the colony counts him a friend anyway.</p>
+    <p>The joke carries a real question. A worker ant has about 250,000 neurons and follows a handful of rules about smell and touch. A colony builds, farms, fights wars and finds the shortest route to food. Something about the colony knows things that no ant knows. What is that something made of?</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">The experiment</p>
+    <h2>Watch a colony decide</h2>
+    <p>In 1989 a lab in Brussels gave Argentine ants a bridge with two branches between nest and food, one about twice as long as the other. Within a few minutes most of the traffic was on the short branch. No ant compared the two. Each one laid a little scent as it walked and leaned toward whichever branch smelled stronger. Ants on the short branch got back sooner, so that branch collected scent faster, so more ants chose it.</p>
+    <p>The plot below runs the same rule with a hundred ants. It also lets you run the control experiment: keep the bridge and change the ants, or keep the ants and change the bridge.</p>
+
+    <div class="fig">
+      <div class="plot-box">
+        <canvas id="plot" role="img" aria-label="Simulated double-bridge experiment. Ants walk between a nest and a food source along a short upper branch and a long lower branch, laying a scent trail."></canvas>
+        <div class="spark-row">
+          <canvas id="spark" role="img" aria-label="Share of recent trips that took the short branch, over the last minute"></canvas>
+          <span class="spark-key">Share of trips taking the short branch, last 60 s. Marks: R ants replaced, B bridge replaced, C branch closed, O branch reopened.</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn solid" id="btn-replace" type="button">Replace every ant</button>
+        <button class="btn solid" id="btn-bridge" type="button">Replace the bridge</button>
+        <button class="btn" id="btn-gate" type="button" aria-pressed="false">Close the short branch</button>
+        <button class="btn" id="btn-run" type="button">Pause</button>
+      </div>
+      <div class="fade-ctl">
+        <label for="fade">How fast the trail fades</label>
+        <input type="range" id="fade" min="0" max="100" step="1" value="40">
+        <div class="fade-ends"><span>Never</span><span>Fast</span></div>
+        <output id="fade-out" for="fade">Scent half-life about 2.4 s</output>
+      </div>
+      <p class="log" id="log" aria-live="polite">The colony has settled on the short branch. Replace its ants, or replace its bridge, and see which one costs it the answer.</p>
+      <p class="cap">Double bridge after Goss, Aron, Deneubourg and Pasteels (1989), run on <i>Linepithema humile</i>. Each ant at a fork takes the short branch with probability (k + S)² / ((k + S)² + (k + L)²), where S and L are the scent on each branch at that fork. k = 20 is the value Deneubourg and colleagues fitted to real Argentine ants in 1990. Each generation of ants carries a different paint mark.</p>
+    </div>
+
+    <ul class="plain">
+      <li><strong>Replace every ant.</strong> A hundred new individuals walk out of the nest onto the old bridge and take the short branch at once. Nothing was lost.</li>
+      <li><strong>Replace the bridge.</strong> The same hundred ants walk out onto a clean bridge, with everything each of them ever knew. They split evenly. The colony has forgotten which branch is shorter and has to work it out again. About one run in seven it settles on the long branch, and real colonies did the same in a minority of trials.</li>
+      <li><strong>Close the short branch, wait ten seconds, reopen it.</strong> The colony stays on the long branch, as the real ants did when the short branch was added late. The trail now holds an out-of-date answer, and every ant that follows it renews it. Faster fading loosens the grip, but a trail that fades that fast can't hold any decision. A clean bridge is the way out.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="eyebrow">The answer</p>
+    <h2>The knowledge sits in the trail, and the trail only works inside a loop</h2>
+    <p>The two buttons settle it. Swap out every ant and the colony still knows. Swap out the ground and it doesn't. The fact that this branch is shorter is stored outside every ant, as a difference in scent between two strips of ground.</p>
+    <p>The trail on its own is only a stain, though. It means something because ants read it. It stays true because ants keep rewriting it and evaporation erases whatever they stop confirming. The intelligence is that whole loop, and it needs three things.</p>
+
+    <div class="trio">
+      <div><h3>A local rule</h3><p>Each part reacts only to what is right next to it. For an ant: go where the scent is stronger.</p></div>
+      <div><h3>A shared record</h3><p>Parts leave marks that other parts can read. For a colony the record is the ground.</p></div>
+      <div><h3>Reinforcement with forgetting</h3><p>Marks that get used grow. Marks that stop being used fade. With no growth nothing is ever decided. With no fading nothing is ever revised.</p></div>
+    </div>
+
+    <p>Hofstadter's own framing is levels of description. At the level of ants there is only walking and smelling. At the level of trails there are signals. At the level of the colony there is a decision. All three describe the same events. Asking which ant holds the decision is like asking which letter in a sentence holds its meaning.</p>
+    <p>Engineers arrived at the same loop independently. Harvester ants send out foragers faster when foragers are returning with food faster. That is how the internet's TCP sets its sending rate, by how quickly acknowledgements come back.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">The transfer test</p>
+    <h2>Relabel the loop for a brain, a company and a market</h2>
+    <p>The loop has the same shape in all four. Pick a system to see what plays each role.</p>
+
+    <div class="transfer" id="transfer" data-sys="ant">
+      <fieldset class="seg">
+        <legend class="vh">System</legend>
+        <span><input type="radio" name="sys" id="sys-ant" value="ant" checked><label for="sys-ant"><span class="dot" style="--c:var(--m-ant)"></span>Ant colony</label></span>
+        <span><input type="radio" name="sys" id="sys-neuron" value="neuron"><label for="sys-neuron"><span class="dot" style="--c:var(--m-neuron)"></span>Brain</label></span>
+        <span><input type="radio" name="sys" id="sys-company" value="company"><label for="sys-company"><span class="dot" style="--c:var(--m-company)"></span>Company</label></span>
+        <span><input type="radio" name="sys" id="sys-market" value="market"><label for="sys-market"><span class="dot" style="--c:var(--m-market)"></span>Market</label></span>
+      </fieldset>
+
+      <div class="loop" aria-live="polite">
+        <div class="node parts"><span class="tag">The parts</span><strong id="lp-parts">Ants</strong><span class="note" id="lp-parts-note">Each follows smell and touch</span></div>
+        <div class="arrow write"><span class="shaft" aria-hidden="true"></span><span class="txt"><b>Parts write</b><span id="lp-write">Every ant lays scent as it walks</span></span></div>
+        <div class="arrow steer"><span class="shaft" aria-hidden="true"></span><span class="txt"><b>Record steers</b><span id="lp-steer">Every ant turns toward the stronger scent</span></span></div>
+        <div class="node medium"><span class="tag">The shared record</span><strong id="lp-medium">Scent on the ground</strong><span class="note">Fades by: <span id="lp-fade">evaporation</span></span></div>
+      </div>
+
+      <div class="verdict" aria-live="polite">
+        <p class="eyebrow">Does the ant answer hold?</p>
+        <p class="head" id="vd-head">This is the reference case</p>
+        <p id="vd-body">The memory sits on the ground, outside every ant. Biologists call this stigmergy: coordination through marks left in a shared environment. Pierre-Paul Grassé coined the word in 1959 while watching termites build.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The limits</p>
+    <h2>Three things the ants have that the others may lack</h2>
+    <p>The location of the intelligence transfers. Its quality doesn't come with it. A colony's loop works well because of three conditions, and each of the other systems drops at least one.</p>
+
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Comparison of four collective systems">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"><span class="vh">Question</span></th>
+            <th scope="col"><span class="dot" style="--c:var(--m-ant)"></span>Ant colony</th>
+            <th scope="col"><span class="dot" style="--c:var(--m-neuron)"></span>Brain</th>
+            <th scope="col"><span class="dot" style="--c:var(--m-company)"></span>Company</th>
+            <th scope="col"><span class="dot" style="--c:var(--m-market)"></span>Market</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">What tuned the loop?</th><td>Natural selection acting on whole colonies</td><td>Evolution, then a lifetime of learning</td><td>Founders and managers, then competitors</td><td class="no">Law and habit. Nothing scores the whole against a goal</td></tr>
+          <tr><th scope="row">Can a part see the whole?</th><td>No</td><td>No</td><td class="no">Yes, and it acts on that picture</td><td class="no">Yes, and it bets on that picture</td></tr>
+          <tr><th scope="row">Do the parts want what the whole wants?</th><td>Nearly always. Workers are sisters and rarely breed</td><td>Always. One body, one genome</td><td class="no">Partly. Pay, promotion and politics pull sideways</td><td class="no">There is no whole that wants anything</td></tr>
+          <tr><th scope="row">Whole against its best part</th><td>Far beyond it</td><td>Far beyond it</td><td class="no">Can fall below it</td><td class="no">Can fall below it</td></tr>
+          <tr><th scope="row">How the loop fails</th><td>Ant mill</td><td>Seizure: runaway synchronised firing</td><td>Process that outlives its reason</td><td>Bubble</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="limits">
+      <div><h3>Something tuned the loop</h3><p>An ant's rules look simple, but they are the survivors of a long tournament between colonies. Colonies with bad rules founded no daughter colonies. That is why following the smell adds up to something useful. No comparable process scores a market as a whole, so a market has knowledge without anything like purpose.</p></div>
+      <div><h3>The parts can't see the whole</h3><p>An ant has no picture of the colony, so it can't game it. People do have a picture of their company and their market, and they act on it. Traders buy because they expect other traders to buy. Employees hit the metric and let the goal slide. The loop starts responding to beliefs about itself.</p></div>
+      <div><h3>The parts want what the whole wants</h3><p>In most species a worker ant leaves descendants only through her colony. Your neurons share one body. Employees and traders have ends of their own. This is why a room of very capable people can decide worse than its best member. A colony never does worse than its best ant.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The shared failure</p>
+    <h2>The loop that finds the short branch can also walk itself to death</h2>
+    <div class="mill">
+      <svg viewBox="0 0 200 200" role="img" aria-label="A ring of ants following one another in a closed circle">
+        <circle class="ring" cx="100" cy="100" r="70"/>
+        <g class="spin" id="mill-ants"></g>
+      </svg>
+      <div class="mill-text">
+        <p>Army ants that lose the main column follow whoever is in front of them. If the line closes into a ring, they circle until they die of exhaustion. The naturalist William Beebe measured one such mill in 1921 at about 370 metres around. One lap took an ant two and a half hours.</p>
+        <p>Nothing malfunctioned inside any ant. Reinforcement outran forgetting, and the trail stopped carrying information about anything except itself. A market bubble has the same structure. Buying raises the price, the rising price draws more buying, and for a while the price reports only on the crowd. The third experiment in the plot above is a small version of both.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The verdict</p>
+    <h2>Same address, different tenants</h2>
+    <p>In every one of these systems, what the whole knows is stored in a record its parts share and keep rewriting. How well the whole thinks depends on what tuned the loop, whether the parts can see it, and whether they want what it wants.</p>
+    <dl class="strip">
+      <div><dt><span class="dot" style="--c:var(--m-ant)"></span>Ant colony</dt><dd>The intelligence is in the loop, entirely. Any ant can be replaced.</dd></div>
+      <div><dt><span class="dot" style="--c:var(--m-neuron)"></span>Brain</dt><dd>The same, with one addition. This loop is dense enough to model itself.</dd></div>
+      <div><dt><span class="dot" style="--c:var(--m-company)"></span>Company</dt><dd>Partly in the loop. The rest is in people's heads and in a plan somebody wrote.</dd></div>
+      <div><dt><span class="dot" style="--c:var(--m-market)"></span>Market</dt><dd>The knowledge is in the loop. There is no goal, so calling it a mind overstates it.</dd></div>
+    </dl>
+  </section>
+
+  <section class="sources">
+    <p class="eyebrow">Sources</p>
+    <ol>
+      <li>Douglas Hofstadter, <i>Gödel, Escher, Bach: An Eternal Golden Braid</i> (1979), the chapter "… Ant Fugue".</li>
+      <li>Goss, Aron, Deneubourg and Pasteels, <a href="https://link.springer.com/article/10.1007/BF00462870">Self-organized shortcuts in the Argentine ant</a>, Naturwissenschaften (1989).</li>
+      <li>Prabhakar, Dektar and Gordon, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3426560/">The regulation of ant colony foraging activity without spatial information</a>, PLoS Computational Biology (2012).</li>
+      <li>Seeley and colleagues on stop signals in honeybee swarms, Science (2012), as reported by the <a href="https://news.cornell.edu/node/271186">Cornell Chronicle</a>.</li>
+      <li>F. A. Hayek, <a href="https://www.econlib.org/library/Essays/hykKnw.html">The Use of Knowledge in Society</a>, American Economic Review (1945).</li>
+      <li>Nelson and Winter, <i>An Evolutionary Theory of Economic Change</i> (1982), on routines as the genes of a firm.</li>
+      <li><a href="https://en.wikipedia.org/wiki/Ant_mill">Ant mill</a>, Wikipedia, for Beebe's 1921 measurement and Schneirla's 1944 account.</li>
+    </ol>
+  </section>
+</main>
+
+<script>
+/*SIM-CORE*/
+function buildPaths(){
+  var STEP=3;
+  function resample(raw){
+    var cum=[0],i;
+    for(i=1;i<raw.length;i++) cum.push(cum[i-1]+Math.hypot(raw[i].x-raw[i-1].x,raw[i].y-raw[i-1].y));
+    var len=cum[cum.length-1], n=Math.round(len/STEP), out=[], j=0;
+    for(i=0;i<=n;i++){
+      var d=len*i/n;
+      while(j<cum.length-2 && cum[j+1]<d) j++;
+      var t=(d-cum[j])/((cum[j+1]-cum[j])||1);
+      out.push({x:raw[j].x+(raw[j+1].x-raw[j].x)*t, y:raw[j].y+(raw[j+1].y-raw[j].y)*t});
+    }
+    return {u:out,len:len,stepLen:len/n};
+  }
+  var A={x:96,y:210}, B={x:704,y:210}, C={x:400,y:52}, s=[], l=[], i, k;
+  for(i=0;i<=200;i++){ var t=i/200, m=1-t; s.push({x:m*m*A.x+2*m*t*C.x+t*t*B.x, y:m*m*A.y+2*m*t*C.y+t*t*B.y}); }
+  var Kp=[A,{x:38,y:330},{x:120,y:452},{x:400,y:470},{x:680,y:452},{x:762,y:330},B];
+  function cr(a,b,c,d,t){ var t2=t*t,t3=t2*t; return .5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3); }
+  for(i=0;i<Kp.length-1;i++){
+    var p0=Kp[Math.max(0,i-1)],p1=Kp[i],p2=Kp[i+1],p3=Kp[Math.min(Kp.length-1,i+2)];
+    for(k=0;k<40;k++){ var tt=k/40; l.push({x:cr(p0.x,p1.x,p2.x,p3.x,tt), y:cr(p0.y,p1.y,p2.y,p3.y,tt)}); }
+  }
+  l.push({x:B.x,y:B.y});
+  return [resample(s),resample(l)].map(function(p){ p.nseg=Math.max(1,Math.round(p.len/9)); p.tau=new Float32Array(p.nseg); return p; });
+}
+function makeSim(rnd){
+  rnd=rnd||Math.random;
+  var P=buildPaths();
+  var S={P:P,N:100,K:20,rho:0.002,shortOpen:true,ants:[],gen:0,rec:[],ri:0,A:{x:96,y:210},B:{x:704,y:210}};
+  function spawn(maxWait){
+    S.ants=[];
+    for(var i=0;i<S.N;i++) S.ants.push({b:0,s:0,dir:1,v:2.2*(0.85+0.3*rnd()),lat:rnd()*2-1,wait:1+Math.floor(rnd()*maxWait),at:0,seg:-1,gen:S.gen});
+  }
+  function scent(p,end){ var n=p.nseg,m=Math.min(4,n),sum=0; for(var i=0;i<m;i++) sum+=p.tau[end?n-1-i:i]; return sum/m; }
+  S.pShort=function(end){
+    if(!S.shortOpen) return 0;
+    var a=S.K+scent(P[0],end), b=S.K+scent(P[1],end); a*=a; b*=b;
+    return a/(a+b);
+  };
+  S.step=function(){
+    var f=1-S.rho,i,j,p,a;
+    if(f<1) for(j=0;j<2;j++){ var t=P[j].tau; for(i=0;i<t.length;i++) t[i]*=f; }
+    for(i=0;i<S.ants.length;i++){
+      a=S.ants[i];
+      if(a.wait>0){
+        a.wait--;
+        if(a.wait===0){
+          a.dir=a.at===0?1:-1;
+          a.b=rnd()<S.pShort(a.at)?0:1;
+          S.rec[S.ri++%80]=a.b===0?1:0;
+          a.s=a.dir>0?0:P[a.b].len; a.seg=-1; a.lat=rnd()*2-1;
+        }
+        continue;
+      }
+      p=P[a.b]; a.s+=a.dir*a.v;
+      var seg=Math.floor(a.s/(p.len/p.nseg)); if(seg<0) seg=0; if(seg>p.nseg-1) seg=p.nseg-1;
+      if(seg!==a.seg){ p.tau[seg]+=1; a.seg=seg; }
+      if(a.s>=p.len){ a.at=1; a.wait=8+Math.floor(rnd()*24); }
+      else if(a.s<=0){ a.at=0; a.wait=8+Math.floor(rnd()*24); }
+    }
+  };
+  S.share=function(){ var n=S.rec.length,s=0; if(n<20) return null; for(var i=0;i<n;i++) s+=S.rec[i]; return s/n; };
+  S.cleanBridge=function(){ P[0].tau.fill(0); P[1].tau.fill(0); S.rec=[]; S.ri=0; spawn(240); };
+  S.replace=function(){ S.gen++; spawn(150); };
+  spawn(240);
+  return S;
+}
+/*END-SIM-CORE*/
+
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var root=document.documentElement;
+  var reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ant mill ring */
+  (function(){
+    var g=$('mill-ants'), ns='http://www.w3.org/2000/svg', n=26, h='';
+    for(var i=0;i<n;i++){
+      h+='<g transform="rotate('+(i*360/n).toFixed(2)+' 100 100) translate(100 30)">'+
+         '<ellipse class="a" cx="-5.2" cy="0" rx="4.2" ry="2.7"/><ellipse class="a" cx="0.4" cy="0" rx="2.8" ry="1.8"/><ellipse class="a" cx="4.8" cy="0" rx="2.2" ry="2"/></g>';
+    }
+    g.innerHTML=h;
+  })();
+
+  /* loop relabelling */
+  var SYS={
+    ant:{parts:'Ants',note:'Each follows smell and touch',write:'Every ant lays scent as it walks',steer:'Every ant turns toward the stronger scent',medium:'Scent on the ground',fade:'evaporation',
+      head:'This is the reference case',
+      body:'The memory sits on the ground, outside every ant. Biologists call this stigmergy: coordination through marks left in a shared environment. Pierre-Paul Grassé coined the word in 1959 while watching termites build.'},
+    neuron:{parts:'Neurons',note:'Each fires when its inputs add up',write:'Cells that fire together strengthen their link',steer:'Strong links pass the signal on, weak ones drop it',medium:'Synapse strengths',fade:'links that go unused weaken',
+      head:'It holds almost exactly',
+      body:'This is the comparison Hofstadter wrote the dialogue to make. A memory is a pattern of connection strengths spread over many synapses, and no neuron holds it alone. The match has been measured in the other direction too. A honeybee swarm picking a nest site has scouts promote their own option and send stop signals to scouts backing a rival, until one option crosses a threshold. That is the scheme proposed for how groups of neurons settle a decision in a primate brain. One difference matters. The brain\'s loop is dense and fast enough to build a model of itself, and nobody has found that in a colony.'},
+    company:{parts:'People',note:'Each already intelligent, with goals of their own',write:'Decisions harden into process, documents and reporting lines',steer:'Process tells the next person what to do',medium:'Routines and records',fade:'reorganisations, turnover, deprecation',
+      head:'It holds about halfway',
+      body:'A firm does know things no employee knows. How to build an airliner is spread across routines, records, tools and reporting lines, and it survives heavy turnover. The economists Nelson and Winter called routines the genes of a firm. Two things break the analogy. The parts are intelligent themselves, and some of them designed the loop on purpose. A company is partly a colony and partly a plan.'},
+    market:{parts:'Buyers and sellers',note:'Each knows a little about its own corner',write:'Every trade nudges the price',steer:'The price tells everyone what to make, use or skip',medium:'Prices',fade:'each new trade overwrites the last',
+      head:'It holds for the mechanism and fails for the mind',
+      body:'Hayek made the ant argument about prices in 1945. Nobody knows how much tin the world needs, yet a price rise tells millions of people to use less of it without telling them why. The price plays the part of the scent. What a market lacks is a goal. Nothing selects whole markets for getting an answer right, so it holds knowledge without anything you could call purpose.'}
+  };
+  var tr=$('transfer');
+  function setSys(k){
+    var d=SYS[k]; if(!d) return;
+    tr.setAttribute('data-sys',k);
+    $('lp-parts').textContent=d.parts; $('lp-parts-note').textContent=d.note;
+    $('lp-write').textContent=d.write; $('lp-steer').textContent=d.steer;
+    $('lp-medium').textContent=d.medium; $('lp-fade').textContent=d.fade;
+    $('vd-head').textContent=d.head; $('vd-body').textContent=d.body;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="sys"]'),function(r){
+    r.addEventListener('change',function(){ if(r.checked) setSys(r.value); });
+    if(r.checked) setSys(r.value);
+  });
+
+  /* colony plot */
+  var cv=$('plot'), sp=$('spark');
+  if(!cv.getContext) return;
+  var ctx=cv.getContext('2d'), sx=sp.getContext('2d');
+  var MW=800, MH=500, STEP_MS=1000/150, HN=600;
+  var col={}, sim, hist=[], events=[], disp=0.5, tick=0;
+  var running=!reduce, visible=true, raf=0, last=0, acc=0;
+  var fade=$('fade'), fadeOut=$('fade-out'), log=$('log');
+
+  function readColors(){
+    var cs=getComputedStyle(root);
+    ['plot','bridge','trail','ink','ink-soft','ant-body','paint-a','paint-b','paint-c','rule','ground'].forEach(function(k){ col[k]=cs.getPropertyValue('--'+k).trim()||'#888'; });
+  }
+  function rhoFromSlider(){ var v=+fade.value/100; return 0.03*Math.pow(v,3); }
+  function fadeLabel(){
+    var r=rhoFromSlider();
+    if(r<=0){ fadeOut.textContent='Scent never fades'; return; }
+    var sec=Math.log(2)/r/150;
+    fadeOut.textContent='Scent half-life about '+(sec>=10?Math.round(sec):sec.toFixed(1))+' s';
+  }
+  function sample(){
+    var s=sim.share();
+    if(s!==null) disp+=(s-disp)*0.3;
+    hist.push(disp);
+    if(hist.length>HN){ hist.shift(); for(var i=0;i<events.length;i++) events[i].i--; events=events.filter(function(e){return e.i>=0;}); }
+  }
+  function advance(){ sim.step(); tick++; if(tick%15===0) sample(); }
+  function mark(ch){ events.push({i:hist.length-1<0?0:hist.length-1,ch:ch}); }
+
+  function warm(){
+    for(var tries=0;tries<8;tries++){
+      sim=makeSim(); sim.rho=rhoFromSlider(); hist=[]; events=[]; disp=0.5; tick=0;
+      for(var i=0;i<4200;i++) advance();
+      if((sim.share()||0)>0.8) break;
+    }
+  }
+
+  function size(c){
+    var dpr=Math.min(2,window.devicePixelRatio||1), w=c.clientWidth, h=c.clientHeight;
+    if(!w||!h) return false;
+    var W=Math.round(w*dpr), H=Math.round(h*dpr);
+    if(c.width!==W||c.height!==H){ c.width=W; c.height=H; }
+    return dpr;
+  }
+  function hexRgb(h){
+    var m=/^#([0-9a-f]{6})$/i.exec(h||''); if(!m) return null;
+    var n=parseInt(m[1],16); return [n>>16&255,n>>8&255,n&255];
+  }
+  function strokeRange(p,a,b){
+    var u=p.u; ctx.beginPath(); ctx.moveTo(u[a].x,u[a].y);
+    for(var i=a+1;i<=b;i++) ctx.lineTo(u[i].x,u[i].y);
+    ctx.stroke();
+  }
+  function draw(){
+    var dpr=size(cv); if(!dpr) return;
+    var scale=cv.clientWidth/MW, k=dpr*scale, P=sim.P, i, j, p;
+    ctx.setTransform(k,0,0,k,0,0);
+    ctx.clearRect(0,0,MW,MH);
+    ctx.lineJoin='round';
+    var fontPx=12/scale, numPx=Math.max(66,34/scale);
+
+    /* bridges */
+    for(j=0;j<2;j++){
+      p=P[j]; ctx.lineCap='round'; ctx.lineWidth=26; ctx.strokeStyle=col.bridge; ctx.globalAlpha=1;
+      if(j===0 && !sim.shortOpen){ ctx.setLineDash([4,14]); }
+      strokeRange(p,0,p.u.length-1); ctx.setLineDash([]);
+    }
+    /* scent */
+    /* drawn opaque, as a mix of bridge and trail colour, with each piece overlapping the next so no seams show */
+    ctx.lineCap='butt'; ctx.lineWidth=14;
+    var cb=hexRgb(col.bridge), ct=hexRgb(col.trail);
+    for(j=0;j<2;j++){
+      p=P[j]; var M=p.u.length-1;
+      for(i=0;i<p.nseg;i++){
+        var al=Math.min(.92,1-Math.exp(-p.tau[i]/16)); if(al<0.02) continue;
+        if(cb&&ct){ ctx.strokeStyle='rgb('+Math.round(cb[0]+(ct[0]-cb[0])*al)+','+Math.round(cb[1]+(ct[1]-cb[1])*al)+','+Math.round(cb[2]+(ct[2]-cb[2])*al)+')'; }
+        else { ctx.strokeStyle=col.trail; ctx.globalAlpha=al; }
+        strokeRange(p,Math.floor(i*M/p.nseg),Math.min(M,Math.floor((i+1)*M/p.nseg)+1));
+      }
+    }
+    ctx.globalAlpha=1;
+    /* gates on a closed branch */
+    if(!sim.shortOpen){
+      ctx.strokeStyle=col.ink; ctx.lineWidth=5; ctx.lineCap='round';
+      [16,P[0].u.length-17].forEach(function(ix){
+        var a=P[0].u[ix-2], b=P[0].u[ix+2], dx=b.x-a.x, dy=b.y-a.y, L=Math.hypot(dx,dy)||1, c=P[0].u[ix];
+        ctx.beginPath(); ctx.moveTo(c.x-dy/L*18,c.y+dx/L*18); ctx.lineTo(c.x+dy/L*18,c.y-dx/L*18); ctx.stroke();
+      });
+    }
+    /* ants */
+    var Lb=Math.max(10,5.2/scale), paints=[col['paint-a'],col['paint-b'],col['paint-c']];
+    for(i=0;i<sim.ants.length;i++){
+      var a=sim.ants[i]; if(a.wait>0) continue;
+      p=P[a.b]; var ix=Math.round(a.s/p.stepLen); if(ix<1) ix=1; if(ix>p.u.length-2) ix=p.u.length-2;
+      var q0=p.u[ix-1], q1=p.u[ix+1], tx=q1.x-q0.x, ty=q1.y-q0.y, tl=Math.hypot(tx,ty)||1; tx/=tl; ty/=tl;
+      var x=p.u[ix].x-ty*a.lat*7, y=p.u[ix].y+tx*a.lat*7;
+      ctx.save(); ctx.translate(x,y); ctx.rotate(Math.atan2(ty,tx)+(a.dir<0?Math.PI:0));
+      ctx.fillStyle=col['ant-body'];
+      ctx.beginPath(); ctx.ellipse(-0.3*Lb,0,0.25*Lb,0.17*Lb,0,0,6.2832); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0.02*Lb,0,0.17*Lb,0.1*Lb,0,0,6.2832); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0.3*Lb,0,0.13*Lb,0.125*Lb,0,0,6.2832); ctx.fill();
+      ctx.fillStyle=paints[a.gen%3];
+      ctx.beginPath(); ctx.arc(-0.3*Lb,0,0.1*Lb,0,6.2832); ctx.fill();
+      ctx.restore();
+    }
+    /* nest and food */
+    ctx.fillStyle=col.ink; ctx.beginPath(); ctx.arc(sim.A.x,sim.A.y,29,0,6.2832); ctx.fill();
+    ctx.fillStyle=col.plot; ctx.beginPath(); ctx.arc(sim.A.x,sim.A.y,7,0,6.2832); ctx.fill();
+    ctx.fillStyle=col.plot; ctx.strokeStyle=col.ink; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.arc(sim.B.x,sim.B.y,28,0,6.2832); ctx.fill(); ctx.stroke();
+    ctx.fillStyle=col['ink-soft']; ctx.beginPath(); ctx.arc(sim.B.x,sim.B.y,13,0,6.2832); ctx.fill();
+    /* labels */
+    ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+    ctx.font='500 '+fontPx+'px "DM Mono", ui-monospace, Menlo, monospace';
+    ctx.fillStyle=col.ink;
+    ctx.fillText('NEST',sim.A.x,sim.A.y-40); ctx.fillText('FOOD',sim.B.x,sim.B.y-40);
+    ctx.fillStyle=col['ink-soft'];
+    ctx.fillText(sim.shortOpen?'short branch':'short branch, closed',400,108);
+    ctx.fillText('long branch, '+(P[1].len/P[0].len).toFixed(1)+'× the walk',400,446);
+    ctx.fillText('of recent trips took the short branch',400,318+fontPx*1.9);
+    ctx.fillStyle=col.ink;
+    ctx.font='400 '+numPx+'px "Newsreader", Georgia, serif';
+    ctx.fillText(Math.round(disp*100)+'%',400,318);
+    drawSpark();
+  }
+  function drawSpark(){
+    var dpr=size(sp); if(!dpr) return;
+    var w=sp.clientWidth, h=sp.clientHeight, padL=38, padT=14, padB=4, iw=w-padL-4, ih=h-padT-padB, i;
+    sx.setTransform(dpr,0,0,dpr,0,0); sx.clearRect(0,0,w,h);
+    sx.font='400 10.5px "DM Mono", ui-monospace, Menlo, monospace'; sx.textBaseline='middle'; sx.textAlign='right';
+    sx.strokeStyle=col.rule; sx.fillStyle=col['ink-soft']; sx.lineWidth=1;
+    [1,.5,0].forEach(function(v){
+      var y=padT+ih*(1-v); sx.beginPath(); sx.moveTo(padL,y+.5); sx.lineTo(padL+iw,y+.5); sx.stroke();
+      sx.fillText(Math.round(v*100)+'%',padL-6,Math.min(h-6,y));
+    });
+    if(hist.length<2) return;
+    var X=function(i){return padL+iw*(i+HN-hist.length)/(HN-1);}, Y=function(v){return padT+ih*(1-v);};
+    sx.textAlign='center'; sx.textBaseline='alphabetic';
+    events.forEach(function(e){
+      var x=X(e.i); sx.strokeStyle=col['ink-soft']; sx.setLineDash([2,3]);
+      sx.beginPath(); sx.moveTo(x,padT); sx.lineTo(x,padT+ih); sx.stroke(); sx.setLineDash([]);
+      sx.fillStyle=col.ink; sx.fillText(e.ch,Math.max(padL+5,Math.min(w-6,x)),10);
+    });
+    sx.beginPath(); sx.moveTo(X(0),Y(hist[0]));
+    for(i=1;i<hist.length;i++) sx.lineTo(X(i),Y(hist[i]));
+    sx.strokeStyle=col.trail; sx.lineWidth=2; sx.lineJoin='round'; sx.stroke();
+    sx.lineTo(X(hist.length-1),Y(0)); sx.lineTo(X(0),Y(0)); sx.closePath();
+    sx.globalAlpha=.14; sx.fillStyle=col.trail; sx.fill(); sx.globalAlpha=1;
+    sx.fillStyle=col.trail; sx.beginPath(); sx.arc(X(hist.length-1),Y(hist[hist.length-1]),3.2,0,6.2832); sx.fill();
+  }
+
+  function frame(ts){
+    raf=0;
+    if(!running||!visible||document.hidden) return;
+    var dt=Math.min(70,ts-(last||ts)); last=ts; acc+=dt;
+    var n=0; while(acc>=STEP_MS && n<12){ advance(); acc-=STEP_MS; n++; }
+    if(n===12) acc=0;
+    draw(); schedule();
+  }
+  function schedule(){ if(!raf && running && visible && !document.hidden){ raf=requestAnimationFrame(frame); } }
+  function resume(){ last=0; acc=0; schedule(); }
+  function afterAction(){
+    if(reduce && !running){ for(var i=0;i<1500;i++) advance(); draw(); return; }
+    if(!running){ running=true; $('btn-run').textContent='Pause'; }
+    resume();
+  }
+
+  $('btn-replace').addEventListener('click',function(){
+    sim.replace(); mark('R');
+    log.textContent='All 100 ants replaced with new individuals. The bridge was left alone, so the newcomers go the way the old colony went.';
+    afterAction();
+  });
+  $('btn-bridge').addEventListener('click',function(){
+    sim.cleanBridge(); mark('B');
+    log.textContent='Clean bridge, same 100 ants, same rules. They walk out with everything each of them ever knew and split about evenly. The colony has to find the short branch again.';
+    afterAction();
+  });
+  $('btn-gate').addEventListener('click',function(){
+    sim.shortOpen=!sim.shortOpen; mark(sim.shortOpen?'O':'C');
+    this.setAttribute('aria-pressed',String(!sim.shortOpen));
+    this.textContent=sim.shortOpen?'Close the short branch':'Reopen the short branch';
+    log.textContent=sim.shortOpen
+      ?'Short branch reopened. The long branch is now the scented one, and every ant that follows it renews the scent.'
+      :'Short branch closed. Traffic moves to the long branch and scents it. Give it about ten seconds, then reopen.';
+    afterAction();
+  });
+  $('btn-run').addEventListener('click',function(){
+    running=!running; this.textContent=running?'Pause':'Play';
+    if(running) resume();
+  });
+  fade.addEventListener('input',function(){ sim.rho=rhoFromSlider(); fadeLabel(); if(!running) draw(); });
+
+  readColors(); fadeLabel(); warm();
+  if(reduce){ $('btn-run').textContent='Play'; }
+  draw();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ draw(); });
+
+  var recolor=function(){ readColors(); draw(); };
+  if(window.matchMedia){ var mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',recolor); else if(mq.addListener) mq.addListener(recolor); }
+  if(window.MutationObserver) new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:['data-theme','class','style']});
+  if(window.ResizeObserver) new ResizeObserver(function(){ draw(); }).observe(cv); else window.addEventListener('resize',draw);
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(en){ visible=en[0].isIntersecting; if(visible) resume(); },{rootMargin:'120px'}).observe(cv);
+  }
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) resume(); });
+  schedule();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
