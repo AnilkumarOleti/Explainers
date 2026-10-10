@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>World hunger | Explainers</title>
+<meta name="description" content="Who goes hungry, where, and how that has changed since 2000, in the UN’s figures.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/world-hunger/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="World hunger">
+<meta property="og:description" content="Who goes hungry, where, and how that has changed since 2000, in the UN’s figures.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/world-hunger/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/world-hunger/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --font-anthropic-sans:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-anthropic-serif:"Newsreader",ui-serif,Georgia,"Times New Roman",serif;
+  --color-bg:#f9f9f7;--color-panel:#fff;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;
+  --color-border-line:rgba(11,11,11,.1);--color-bad:#8e2626;--color-ok:#006300;--color-warn:#734500;
+  --cds-border:rgba(11,11,11,.1);--cds-text-secondary:#52514e;--cds-surface-popover:#fff;
+  --cds-shadow-popover:0 8px 24px #0000001f,0 2px 6px #00000014;
+  --cds-chart-axis:#c3c2b7;--cds-chart-grid:rgba(11,11,11,.1);--cds-chart-muted:#c3c2b7;
+  --cds-chart-reference:#898781;--cds-chart-status-critical:#d03b3b;
+  --cds-chart-categorical-1:#2a78d6;--cds-chart-categorical-2:#eb6834;--cds-chart-categorical-3:#1baf7a;
+  --cds-chart-categorical-4:#eda100;--cds-chart-categorical-5:#e87ba4;--cds-chart-categorical-6:#008300;
+  --cds-chart-categorical-7:#6250d6;--cds-chart-categorical-8:#e34948;
+  --cds-font-size-caption:.8125rem;--cds-font-size-body:.9375rem;--cds-font-size-heading:1rem;--cds-font-size-title:1.75rem;
+  --cds-font-weight-medium:500;
+  --cds-gap-xs:8px;--cds-gap-sm:12px;--cds-gap-md:16px;--cds-gap-lg:28px;--cds-gap-xl:40px;
+  --cds-pad-xs:6px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:16px;--cds-pad-xl:24px;
+  --cds-radius:8px;--cds-dur-slow:.45s;--cds-ease-out:cubic-bezier(.165,.84,.44,1);
+}
+@media (prefers-color-scheme:dark){:root{
+  color-scheme:dark;
+  --color-bg:#0b0b0b;--color-panel:#1a1a19;--color-fg:#f0efec;--color-fg-muted:#9a988f;
+  --color-border-line:rgba(255,255,255,.1);--color-bad:#ec7e7e;--color-ok:#0ca30c;--color-warn:#db9300;
+  --cds-border:rgba(255,255,255,.1);--cds-text-secondary:#c3c2b7;--cds-surface-popover:#20201f;
+  --cds-shadow-popover:0 8px 24px #00000052,0 2px 6px #0003;
+  --cds-chart-axis:#383835;--cds-chart-grid:rgba(255,255,255,.1);--cds-chart-muted:#5f5e5a;
+  --cds-chart-reference:#97958d;
+  --cds-chart-categorical-1:#3987e5;--cds-chart-categorical-2:#d95926;--cds-chart-categorical-3:#199e70;
+  --cds-chart-categorical-4:#c98500;--cds-chart-categorical-5:#d55181;--cds-chart-categorical-6:#008300;
+  --cds-chart-categorical-7:#9085e9;--cds-chart-categorical-8:#e66767;
+}}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans)}
+#dash-root{box-sizing:border-box;max-width:1240px;margin:0 auto;padding:clamp(16px,4vw,40px);color:var(--color-fg);font-size:var(--cds-font-size-body);line-height:1.45}
+#dash-root :is(b,strong){font-weight:600}
+</style>
+</head>
+<body>
+<main id="dash-root">
+<style>
+.wh { container-type: inline-size; display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.wh-title { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; }
+.wh-takeaway { margin: var(--cds-gap-sm) 0 0; max-width: 50rem; line-height: 1.5; }
+.wh-def { margin: var(--cds-gap-xs) 0 0; max-width: 50rem; line-height: 1.5; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.wh-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--cds-gap-md); }
+.wh-card { position: relative; min-width: 0; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.wh-tile-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.wh-tile-num { margin-top: var(--cds-gap-xs); font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; line-height: 1.15; }
+.wh-tile-sub { margin-top: var(--cds-gap-xs); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.45; }
+.wh-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); align-items: start; }
+.wh-cols3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: var(--cds-gap-md); align-items: start; }
+.wh-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--cds-gap-sm); }
+.wh-section { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.wh-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--cds-gap-sm); }
+.wh-h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); line-height: 1.3; }
+.wh-note { margin: var(--cds-gap-xs) 0 var(--cds-gap-md); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.45; max-width: 50rem; }
+.wh-foot { margin: var(--cds-gap-sm) 0 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.5; }
+.wh-foot b, .wh-foot .wh-strong { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.wh-seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+.wh-segb { appearance: none; border: 0; background: transparent; color: var(--color-fg-muted); font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+.wh-segb + .wh-segb { border-left: 1px solid var(--color-border-line); }
+.wh-segb[aria-pressed="true"] { background: var(--color-bg); color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.wh-segb:focus-visible, .wh-sortb:focus-visible, .wh-search:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+.wh-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); margin-bottom: var(--cds-gap-sm); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: 1.2em; }
+.wh-key { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); white-space: nowrap; }
+.wh-sw { width: .625rem; height: .625rem; border-radius: 2px; flex: none; }
+.wh-chart { position: relative; min-height: 12rem; }
+.wh-chart svg { display: block; overflow: visible; }
+.wh-tick, .wh-lab, .wh-reflab { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.wh-val, .wh-end, .wh-name { fill: var(--color-fg); font-size: var(--cds-font-size-caption); }
+.wh-name, .wh-val { paint-order: stroke; stroke: var(--color-panel); stroke-width: 3px; stroke-linejoin: round; }
+.wh-grid { stroke: var(--cds-chart-grid); stroke-width: 1; }
+.wh-ref { stroke: var(--cds-chart-reference); stroke-width: 1; stroke-dasharray: 4 3; }
+.wh-rule { stroke: var(--cds-chart-axis); stroke-width: 1; }
+.wh-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.wh-proj { fill: none; stroke-width: 2; stroke-dasharray: 2 5; stroke-linecap: round; }
+.wh-hollow { fill: var(--color-panel); stroke-width: 2; }
+.wh-hit { fill: transparent; }
+.wh-row.wh-on .wh-lab { fill: var(--color-fg); }
+.wh-row.wh-dim .wh-rect { opacity: .45; }
+.wh-tip { position: absolute; z-index: 2; left: 0; top: 0; pointer-events: none; white-space: nowrap; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); line-height: 1.5; }
+.wh-tip[hidden] { display: none; }
+.wh-tip-head { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.wh-tip-line { display: flex; align-items: center; gap: var(--cds-gap-xs); color: var(--cds-text-secondary); }
+.wh-tip-sw { width: .625rem; height: .625rem; border-radius: 2px; flex: none; }
+.wh-tip-val { margin-left: auto; padding-left: var(--cds-pad-md); color: var(--color-fg); }
+.wh-stats { width: 100%; border-collapse: collapse; }
+.wh-stats thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.wh-stats td { padding: var(--cds-pad-sm) 0; border-top: 1px solid var(--color-border-line); vertical-align: baseline; }
+.wh-stats tr:first-child td { border-top: 0; padding-top: 0; }
+.wh-stats td.wh-stat-num { font-family: var(--font-anthropic-serif); font-size: 1.25rem; white-space: nowrap; padding-right: var(--cds-pad-md); width: 1%; }
+.wh-stats td.wh-stat-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.45; }
+.wh-search { width: min(100%, 16rem); box-sizing: border-box; font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); }
+.wh-tablebox { max-height: 30rem; overflow: auto; margin-top: var(--cds-gap-sm); }
+.wh-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); }
+.wh-table th { position: sticky; top: 0; z-index: 1; background: var(--color-panel); text-align: left; padding: 0; border-bottom: 1px solid var(--color-border-line); font-weight: var(--cds-font-weight-medium); white-space: nowrap; }
+.wh-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.wh-table .wh-num { text-align: right; }
+.wh-table td.wh-soft { color: var(--color-fg-muted); }
+.wh-dot { display: inline-block; width: .5rem; height: .5rem; border-radius: 50%; margin-right: var(--cds-gap-xs); }
+.wh-sortb { appearance: none; width: 100%; border: 0; background: transparent; color: var(--color-fg-muted); font: inherit; font-weight: inherit; text-align: inherit; padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+.wh-table th[aria-sort] .wh-sortb { color: var(--color-fg); }
+.wh-table th[aria-sort="ascending"] .wh-sortb::after { content: " ↑"; }
+.wh-table th[aria-sort="descending"] .wh-sortb::after { content: " ↓"; }
+.wh-empty { margin: var(--cds-gap-sm) 0 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.wh-empty[hidden] { display: none; }
+.wh-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.wh-fail-dot { width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.wh-method { margin: 0; padding-left: 1.1em; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.55; max-width: 58rem; }
+.wh-method li + li { margin-top: var(--cds-gap-xs); }
+.wh-method a { color: inherit; }
+.wh [data-dash-source-state="refreshing"] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+@container (max-width: 44rem) {
+  .wh .wh-sec { display: none; }
+}
+</style>
+
+<div class="wh">
+  <header id="overview">
+    <h1 class="wh-title">World hunger</h1>
+    <p class="wh-takeaway">
+      About <span class="wh-v-people dash-skeleton" data-source="summary" data-field="people_m" data-row="0">—</span>
+      people went hungry in 2025,
+      <span class="wh-v-peak dash-skeleton" data-source="summary" data-field="fewer_than_peak_m" data-row="0">—</span>
+      fewer than at the 2022 peak but still
+      <span class="wh-v-since dash-skeleton" data-source="summary" data-field="more_than_2019_m" data-row="0">—</span>
+      more than in 2019. Africa, with
+      <span class="wh-v-africa dash-skeleton" data-source="summary" data-field="africa_m" data-row="0">—</span>,
+      now has more undernourished people than Asia
+      (<span class="wh-v-asia dash-skeleton" data-source="summary" data-field="asia_m" data-row="0">—</span>).
+    </p>
+    <p class="wh-def">Hunger here means chronic undernourishment: not getting enough dietary energy, over a year, for a normal, active and healthy life. Figures are the UN's, as published with The State of Food Security and Nutrition in the World 2026.</p>
+  </header>
+
+  <section class="wh-tiles" id="headlines" aria-label="Headline figures">
+    <div class="wh-card">
+      <div class="wh-tile-label">People undernourished · 2025</div>
+      <div class="wh-tile-num wh-v-people dash-skeleton" data-source="summary" data-field="people_m" data-row="0">—</div>
+      <div class="wh-tile-sub"><span class="wh-v-year dash-skeleton" data-source="summary" data-field="fewer_than_last_year_m" data-row="0">—</span> fewer than in 2024</div>
+    </div>
+    <div class="wh-card">
+      <div class="wh-tile-label">Share of the world · 2025</div>
+      <div class="wh-tile-num wh-v-share dash-skeleton" data-source="summary" data-field="share_pct" data-row="0">—</div>
+      <div class="wh-tile-sub"><span class="wh-v-share22 dash-skeleton" data-source="world" data-field="undernourished_pct" data-where="year=2022">—</span> in 2022 and <span class="wh-v-share19 dash-skeleton" data-source="world" data-field="undernourished_pct" data-where="year=2019">—</span> in 2019</div>
+    </div>
+    <div class="wh-card">
+      <div class="wh-tile-label">Food insecure · 2025</div>
+      <div class="wh-tile-num wh-v-fi dash-skeleton" data-source="summary" data-field="food_insecure_bn" data-row="0">—</div>
+      <div class="wh-tile-sub"><span class="wh-v-fipct dash-skeleton" data-source="summary" data-field="food_insecure_pct" data-row="0">—</span> of people lacked reliable access to enough food, and about <span class="wh-v-diet dash-skeleton" data-source="outlook" data-field="value" data-where="metric=healthy_diet">—</span> cannot afford a healthy diet</div>
+    </div>
+    <div class="wh-card">
+      <div class="wh-tile-label">In acute food crisis · 2025</div>
+      <div class="wh-tile-num wh-v-crisis dash-skeleton" data-source="crises" data-field="value" data-where="metric=people">—</div>
+      <div class="wh-tile-sub">across <span class="wh-v-crisisn dash-skeleton" data-source="crises" data-field="value" data-where="metric=countries">—</span> countries and territories, with famine confirmed in Gaza and parts of Sudan</div>
+    </div>
+    <div class="wh-card">
+      <div class="wh-tile-label">Projected for 2030</div>
+      <div class="wh-tile-num wh-v-proj dash-skeleton" data-source="outlook" data-field="value" data-where="metric=projection">—</div>
+      <div class="wh-tile-sub">still undernourished on current trends. The global goal is zero.</div>
+    </div>
+  </section>
+
+  <div class="wh-bar" id="trends">
+    <h2 class="wh-section">Chronic hunger since 2000</h2>
+    <div class="wh-seg wh-measure" role="group" aria-label="Measure">
+      <button type="button" class="wh-segb" value="number" aria-pressed="true">Number of people</button>
+      <button type="button" class="wh-segb" value="share" aria-pressed="false">Share of population</button>
+    </div>
+  </div>
+  <section class="wh-cols">
+    <div class="wh-card" id="world-trend">
+      <h2 class="wh-h2">The world</h2>
+      <p class="wh-note wh-world-note">People undernourished, in millions. The dotted line runs to the UN's projection for 2030.</p>
+      <div class="wh-chart wh-world-chart dash-skeleton" data-source="world outlook"></div>
+      <div class="wh-tip wh-world-tip" hidden></div>
+    </div>
+    <div class="wh-card" id="regions-trend">
+      <h2 class="wh-h2">By region</h2>
+      <p class="wh-note wh-regions-note">People undernourished, in millions. Latin America includes the Caribbean. Europe and Northern America are below 2.5% and are not shown.</p>
+      <div class="wh-chart wh-regions-chart dash-skeleton" data-source="regions"></div>
+      <div class="wh-tip wh-regions-tip" hidden></div>
+    </div>
+  </section>
+
+  <section class="wh-cols">
+    <div class="wh-card" id="subregions">
+      <h2 class="wh-h2">Where hunger is most common</h2>
+      <p class="wh-note">Share of the population undernourished in 2025, by sub-region. The dashed line is the world average.</p>
+      <div class="wh-legend wh-sub-legend" data-source="subregions"></div>
+      <div class="wh-chart wh-sub-chart dash-skeleton" data-source="subregions world"></div>
+      <p class="wh-foot wh-sub-low" data-source="subregions"></p>
+      <div class="wh-tip wh-sub-tip" hidden></div>
+    </div>
+    <div class="wh-card" id="countries">
+      <div class="wh-head">
+        <h2 class="wh-h2 wh-rank-title">Countries with the highest share</h2>
+        <div class="wh-seg wh-rank" role="group" aria-label="Rank countries by">
+          <button type="button" class="wh-segb" value="share" aria-pressed="true">Highest share</button>
+          <button type="button" class="wh-segb" value="people" aria-pressed="false">Most people</button>
+          <button type="button" class="wh-segb" value="rise" aria-pressed="false">Biggest rise</button>
+          <button type="button" class="wh-segb" value="fall" aria-pressed="false">Biggest fall</button>
+        </div>
+      </div>
+      <p class="wh-note wh-rank-note">Share of the population undernourished, average of 2023 to 2025.</p>
+      <div class="wh-legend wh-rank-legend" data-source="ranked"></div>
+      <div class="wh-chart wh-rank-chart dash-skeleton" data-source="ranked"></div>
+      <div class="wh-tip wh-rank-tip" hidden></div>
+    </div>
+  </section>
+
+  <section class="wh-cols3">
+    <div class="wh-card" id="food-insecurity">
+      <h2 class="wh-h2">Food insecurity by region</h2>
+      <p class="wh-note">Share of people who were moderately or severely food insecure in 2025: unsure of getting food, or forced to cut its quality or quantity. The dashed line is the world average.</p>
+      <div class="wh-chart wh-fi-chart dash-skeleton" data-source="food_insecurity world"></div>
+      <p class="wh-foot">
+        Rural areas <span class="wh-strong wh-v-rural" data-source="food_insecurity" data-field="food_insecure_pct" data-where="group=Rural areas">—</span>,
+        towns <span class="wh-strong wh-v-town" data-source="food_insecurity" data-field="food_insecure_pct" data-where="group=Towns and semi-dense areas">—</span>,
+        cities <span class="wh-strong wh-v-city" data-source="food_insecurity" data-field="food_insecure_pct" data-where="group=Cities">—</span>.
+        Women <span class="wh-strong wh-v-women" data-source="food_insecurity" data-field="food_insecure_pct" data-where="group=Women">—</span>,
+        men <span class="wh-strong wh-v-men" data-source="food_insecurity" data-field="food_insecure_pct" data-where="group=Men">—</span>.
+      </p>
+      <div class="wh-tip wh-fi-tip" hidden></div>
+    </div>
+    <div class="wh-card" id="acute-crises">
+      <h2 class="wh-h2">Acute food crises in 2025</h2>
+      <p class="wh-note">The sharpest end of hunger: people needing urgent help to protect lives and livelihoods, from the Global Report on Food Crises 2026.</p>
+      <table class="wh-stats" data-source="crises" data-row-key="metric">
+        <thead><tr><th data-field="value">Figure</th><th data-field="label">What it counts</th></tr></thead>
+        <tbody class="wh-stats-body"></tbody>
+      </table>
+    </div>
+    <div class="wh-card" id="stunting">
+      <h2 class="wh-h2">Stunted children</h2>
+      <p class="wh-note">Children under five who are too short for their age, a lasting mark of poor nutrition. In millions.</p>
+      <div class="wh-chart wh-stunt-chart dash-skeleton" data-source="world"></div>
+      <div class="wh-tip wh-stunt-tip" hidden></div>
+    </div>
+  </section>
+
+  <section class="wh-card" id="all-countries">
+    <div class="wh-head">
+      <h2 class="wh-h2">All countries</h2>
+      <input class="wh-search" type="search" placeholder="Search a country or region" aria-label="Search a country or region">
+    </div>
+    <p class="wh-note">Undernourishment by country. Shares are three-year averages; a value of &lt;2.5 means the UN reports only that the share is below 2.5%, and a blank means no estimate was published.</p>
+    <div class="wh-tablebox">
+      <table class="wh-table" data-source="countries" data-row-key="country">
+        <thead>
+          <tr>
+            <th data-field="country"><button type="button" class="wh-sortb">Country</button></th>
+            <th class="wh-sec" data-field="region"><button type="button" class="wh-sortb">Region</button></th>
+            <th class="wh-num wh-sec" data-field="share_2015"><button type="button" class="wh-sortb">Share 2014–16, %</button></th>
+            <th class="wh-num" data-field="share_2024" aria-sort="descending"><button type="button" class="wh-sortb">Share 2023–25, %</button></th>
+            <th class="wh-num wh-sec" data-source="ranked" data-field="change_pts"><button type="button" class="wh-sortb">Change, points</button></th>
+            <th class="wh-num" data-field="people_2024_m"><button type="button" class="wh-sortb">People, millions</button></th>
+          </tr>
+        </thead>
+        <tbody class="wh-tbody"></tbody>
+      </table>
+    </div>
+    <p class="wh-empty" hidden>No country matches that search.</p>
+  </section>
+
+  <section class="wh-card" id="method">
+    <h2 class="wh-h2">How to read this</h2>
+    <p class="wh-note">Three different measures of hunger appear on this page, and they are not interchangeable.</p>
+    <ul class="wh-method">
+      <li>Undernourishment is a modelled estimate of chronic hunger, built from each country's food supply, population and how unequally food is shared. World and regional figures are annual, and those from 2020 on rest partly on projections. Country figures are three-year averages, so a recent shock shows up slowly.</li>
+      <li>Food insecurity comes from surveys asking people about their own experience over the past year. It is a broader measure, which is why it counts roughly three times as many people.</li>
+      <li>Acute food crisis figures come from a separate, field-based classification of emergencies in a limited set of countries. Fewer countries could supply data for 2025 than in any earlier edition, so the total understates the true number.</li>
+      <li>Several countries with severe crises, including Sudan and North Korea, have no published undernourishment estimate for 2023 to 2025 and so are missing from the country rankings.</li>
+      <li>Sources: FAO, IFAD, UNICEF, WFP and WHO, <a href="https://doi.org/10.4060/cd8306en" target="_blank" rel="noopener">The State of Food Security and Nutrition in the World 2026</a>, with the underlying series taken from the <a href="https://unstats.un.org/sdgs/dataportal" target="_blank" rel="noopener">UN Global SDG Database</a> (indicators 2.1.1, 2.1.2 and 2.2.1) and regional food insecurity from the <a href="https://unstats.un.org/sdgs/report/2026/extended-report/Extended-Report-2026_Goal-2.pdf" target="_blank" rel="noopener">UN SDG Extended Report 2026</a>; Food Security Information Network, Global Report on Food Crises 2026.</li>
+    </ul>
+  </section>
+</div>
+</main>
+<script type="text/csv" data-id="countries">
+country,un_name,region,share_2015,share_2024,people_2024_m
+Afghanistan,Afghanistan,Asia,19.9,27.8,11.9
+Albania,Albania,Europe,4.5,5.6,0.2
+Algeria,Algeria,Africa,2.8,<2.5,
+Angola,Angola,Africa,14.2,17.4,6.6
+Argentina,Argentina,Latin America and the Caribbean,2.9,2.8,1.3
+Armenia,Armenia,Asia,<2.5,<2.5,
+Australia,Australia,Oceania,<2.5,<2.5,
+Austria,Austria,Europe,<2.5,<2.5,
+Azerbaijan,Azerbaijan,Asia,<2.5,<2.5,
+Bangladesh,Bangladesh,Asia,15.3,8.2,14.3
+Barbados,Barbados,Latin America and the Caribbean,2.5,5,<0.1
+Belarus,Belarus,Europe,<2.5,<2.5,
+Belgium,Belgium,Europe,<2.5,<2.5,
+Belize,Belize,Latin America and the Caribbean,6.1,4.4,<0.1
+Benin,Benin,Africa,9.8,11.1,1.6
+Bolivia,Bolivia (Plurinational State of),Latin America and the Caribbean,16.1,19.5,2.4
+Bosnia and Herzegovina,Bosnia and Herzegovina,Europe,<2.5,<2.5,
+Botswana,Botswana,Africa,20.3,18.2,0.5
+Brazil,Brazil,Latin America and the Caribbean,<2.5,<2.5,
+Bulgaria,Bulgaria,Europe,3.3,<2.5,
+Burkina Faso,Burkina Faso,Africa,14.3,11.7,2.8
+Cabo Verde,Cabo Verde,Africa,14.4,8.1,<0.1
+Cambodia,Cambodia,Asia,7.5,4.7,0.8
+Cameroon,Cameroon,Africa,4.9,4.9,1.4
+Canada,Canada,Northern America,<2.5,<2.5,
+Central African Republic,Central African Republic,Africa,28.6,29.8,1.6
+Chad,Chad,Africa,25.9,33.6,6.8
+Chile,Chile,Latin America and the Caribbean,3.6,<2.5,
+China,China,Asia,<2.5,<2.5,
+Colombia,Colombia,Latin America and the Caribbean,5,4.1,2.2
+Comoros,Comoros,Africa,13.6,16.5,0.1
+Congo (Republic),Congo,Africa,28.1,25,1.6
+Costa Rica,Costa Rica,Latin America and the Caribbean,<2.5,<2.5,
+Côte d'Ivoire,Côte d'Ivoire,Africa,13.7,11.4,3.6
+Croatia,Croatia,Europe,<2.5,<2.5,
+Cuba,Cuba,Latin America and the Caribbean,<2.5,3.5,0.4
+Cyprus,Cyprus,Asia,<2.5,<2.5,
+Czechia,Czechia,Europe,<2.5,<2.5,
+North Korea,Democratic People's Republic of Korea,Asia,45.2,,
+DR Congo,Democratic Republic of the Congo,Africa,32.8,39.5,43.2
+Denmark,Denmark,Europe,<2.5,<2.5,
+Djibouti,Djibouti,Africa,14.6,14.7,0.2
+Dominica,Dominica,Latin America and the Caribbean,9.1,3,<0.1
+Dominican Republic,Dominican Republic,Latin America and the Caribbean,7.6,<2.5,
+Ecuador,Ecuador,Latin America and the Caribbean,8.8,10.8,2
+Egypt,Egypt,Africa,6.5,8.4,9.8
+El Salvador,El Salvador,Latin America and the Caribbean,8.6,5.3,0.3
+Estonia,Estonia,Europe,<2.5,<2.5,
+Eswatini,Eswatini,Africa,18.1,15.1,0.2
+Ethiopia,Ethiopia,Africa,14,19.9,26.3
+Fiji,Fiji,Oceania,7.3,7.2,<0.1
+Finland,Finland,Europe,<2.5,<2.5,
+France,France,Europe,<2.5,<2.5,
+French Polynesia,French Polynesia,Oceania,3.4,2.6,<0.1
+Gabon,Gabon,Africa,14.6,23.3,0.6
+Gambia,Gambia,Africa,12.2,17.5,0.5
+Georgia,Georgia,Asia,7.4,<2.5,
+Germany,Germany,Europe,<2.5,<2.5,
+Ghana,Ghana,Africa,9.4,6.4,2.2
+Greece,Greece,Europe,<2.5,<2.5,
+Guatemala,Guatemala,Latin America and the Caribbean,14.8,12.7,2.3
+Guinea,Guinea,Africa,10.6,8.7,1.3
+Guinea-Bissau,Guinea-Bissau,Africa,27.7,20,0.4
+Guyana,Guyana,Latin America and the Caribbean,4.6,<2.5,
+Haiti,Haiti,Latin America and the Caribbean,37.8,51.4,6.1
+Honduras,Honduras,Latin America and the Caribbean,14.2,14.3,1.5
+Hungary,Hungary,Europe,<2.5,<2.5,
+Iceland,Iceland,Europe,<2.5,<2.5,
+India,India,Asia,12.4,9.8,142.5
+Indonesia,Indonesia,Asia,7.1,6.3,18
+Iran,Iran (Islamic Republic of),Asia,7.4,6.7,6.2
+Iraq,Iraq,Asia,15.2,13.4,6.2
+Ireland,Ireland,Europe,<2.5,<2.5,
+Israel,Israel,Asia,<2.5,<2.5,
+Italy,Italy,Europe,<2.5,<2.5,
+Jamaica,Jamaica,Latin America and the Caribbean,8.1,8,0.2
+Japan,Japan,Asia,<2.5,<2.5,
+Jordan,Jordan,Asia,7.7,12.2,1.4
+Kazakhstan,Kazakhstan,Asia,5,<2.5,
+Kenya,Kenya,Africa,21.2,34.9,19.7
+Kiribati,Kiribati,Oceania,3.6,3.8,<0.1
+Kuwait,Kuwait,Asia,<2.5,<2.5,
+Kyrgyzstan,Kyrgyzstan,Asia,6.9,4.8,0.3
+Laos,Lao People's Democratic Republic,Asia,7.2,10,0.8
+Latvia,Latvia,Europe,<2.5,<2.5,
+Lebanon,Lebanon,Asia,6.1,11.1,0.6
+Liberia,Liberia,Africa,35.7,37.3,2.1
+Libya,Libya,Africa,10.1,18.7,1.4
+Lithuania,Lithuania,Europe,<2.5,<2.5,
+Luxembourg,Luxembourg,Europe,<2.5,<2.5,
+Madagascar,Madagascar,Africa,33.7,41.8,13.3
+Malawi,Malawi,Africa,16.3,24.5,5.3
+Malaysia,Malaysia,Asia,3.7,<2.5,
+Mali,Mali,Africa,5.9,12.1,3
+Malta,Malta,Europe,<2.5,<2.5,
+Mauritania,Mauritania,Africa,7,11,0.6
+Mauritius,Mauritius,Africa,7,4.9,<0.1
+Mexico,Mexico,Latin America and the Caribbean,3.9,3.1,4.1
+Mongolia,Mongolia,Asia,9.1,<2.5,
+Montenegro,Montenegro,Europe,<2.5,<2.5,
+Morocco,Morocco,Africa,3.7,6.5,2.5
+Mozambique,Mozambique,Africa,39.9,22.3,7.7
+Myanmar,Myanmar,Asia,4.5,4.6,2.5
+Namibia,Namibia,Africa,21.1,20.1,0.6
+Nepal,Nepal,Asia,7,5.2,1.5
+Netherlands,Netherlands (Kingdom of the),Europe,<2.5,<2.5,
+New Caledonia,New Caledonia,Oceania,7.8,4.1,<0.1
+New Zealand,New Zealand,Oceania,<2.5,<2.5,
+Nicaragua,Nicaragua,Latin America and the Caribbean,17.2,,
+Niger,Niger,Africa,12.6,12.9,3.5
+Nigeria,Nigeria,Africa,11,22.2,51.6
+North Macedonia,North Macedonia,Europe,<2.5,<2.5,
+Norway,Norway,Europe,<2.5,<2.5,
+Oman,Oman,Asia,7.7,7.1,0.4
+Other areas in Eastern Asia,Other non-specified areas in Eastern Asia,Asia,4.3,3.6,0.8
+Pakistan,Pakistan,Asia,13.3,16.1,40.4
+Panama,Panama,Latin America and the Caribbean,7.1,4.7,0.2
+Papua New Guinea,Papua New Guinea,Oceania,27.8,30.5,3.2
+Paraguay,Paraguay,Latin America and the Caribbean,<2.5,4.1,0.3
+Peru,Peru,Latin America and the Caribbean,5.6,5.7,2
+Philippines,Philippines,Asia,11.3,3.4,3.9
+Poland,Poland,Europe,<2.5,<2.5,
+Portugal,Portugal,Europe,<2.5,<2.5,
+South Korea,Republic of Korea,Asia,<2.5,<2.5,
+Moldova,Republic of Moldova,Europe,3.4,<2.5,
+Romania,Romania,Europe,<2.5,<2.5,
+Russia,Russian Federation,Europe,<2.5,<2.5,
+Rwanda,Rwanda,Africa,35.6,22.6,3.2
+Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,Latin America and the Caribbean,4.9,4,<0.1
+Samoa,Samoa,Oceania,4.6,3.4,<0.1
+Sao Tome and Principe,Sao Tome and Principe,Africa,18.1,23,<0.1
+Saudi Arabia,Saudi Arabia,Asia,<2.5,<2.5,
+Senegal,Senegal,Africa,10.4,5.3,1
+Serbia,Serbia,Europe,<2.5,<2.5,
+Seychelles,Seychelles,Africa,4.3,<2.5,
+Sierra Leone,Sierra Leone,Africa,24.6,25.3,2.2
+Slovenia,Slovenia,Europe,<2.5,<2.5,
+Solomon Islands,Solomon Islands,Oceania,21.3,27,0.2
+Somalia,Somalia,Africa,60.7,56.5,10.7
+South Africa,South Africa,Africa,6,11.2,7.2
+South Sudan,South Sudan,Africa,,19.1,2.3
+Spain,Spain,Europe,<2.5,<2.5,
+Sri Lanka,Sri Lanka,Asia,4.5,4.9,1.1
+Sudan,Sudan,Africa,8.9,,
+Suriname,Suriname,Latin America and the Caribbean,9.5,12.7,<0.1
+Sweden,Sweden,Europe,<2.5,<2.5,
+Switzerland,Switzerland,Europe,<2.5,<2.5,
+Syria,Syrian Arab Republic,Asia,12.1,40.8,10.1
+Tajikistan,Tajikistan,Asia,17.3,8,0.8
+Thailand,Thailand,Asia,7.8,5.4,3.9
+Timor-Leste,Timor-Leste,Asia,12.3,16.9,0.2
+Togo,Togo,Africa,21.1,10.2,0.9
+Trinidad and Tobago,Trinidad and Tobago,Latin America and the Caribbean,6,10.4,0.2
+Tunisia,Tunisia,Africa,2.8,2.8,0.3
+Türkiye,Türkiye,Asia,<2.5,<2.5,
+Turkmenistan,Turkmenistan,Asia,3.4,4.1,0.3
+Uganda,Uganda,Africa,31.5,20.9,10.4
+Ukraine,Ukraine,Europe,<2.5,10.8,4.1
+United Arab Emirates,United Arab Emirates,Asia,3.6,<2.5,
+United Kingdom,United Kingdom of Great Britain and Northern Ireland,Europe,<2.5,<2.5,
+Tanzania,United Republic of Tanzania,Africa,21.4,19.1,13.1
+United States,United States of America,Northern America,<2.5,<2.5,
+Uruguay,Uruguay,Latin America and the Caribbean,<2.5,<2.5,
+Uzbekistan,Uzbekistan,Asia,<2.5,<2.5,
+Vanuatu,Vanuatu,Oceania,5.8,5.8,<0.1
+Venezuela,Venezuela (Bolivarian Republic of),Latin America and the Caribbean,11.3,5.3,1.5
+Viet Nam,Viet Nam,Asia,8,6.1,6.1
+Zambia,Zambia,Africa,35.1,41,8.7
+Zimbabwe,Zimbabwe,Africa,34.5,18.4,3.1
+</script>
+<script type="text/csv" data-id="crises">
+metric,value,unit,label
+people,266,million,People facing high levels of acute food insecurity (IPC/CH Phase 3 or above)
+countries,47,,Countries and territories with a food crisis
+share,22.9,%,Share of the population analysed
+emergency,39,million,"In emergency (Phase 4), across 32 countries"
+catastrophe,1.4,million,"In catastrophe (Phase 5), across 6 countries; famine was confirmed in Gaza and in parts of Sudan"
+conflict,147.4,million,Living where conflict was the main driver (19 countries)
+weather,87.5,million,Living where weather extremes were the main driver (16 countries)
+children,35.5,million,Children acutely malnourished
+</script>
+<script type="text/csv" data-id="food_insecurity">
+group_type,group,food_insecure_pct
+region,Sub-Saharan Africa,61.2
+region,Western Asia and Northern Africa,33.4
+region,Central and Southern Asia,31.3
+region,Oceania,26.9
+region,Latin America and the Caribbean,22.9
+region,Northern America and Europe,8.7
+region,Eastern and South-Eastern Asia,8.2
+place,Rural areas,29.7
+place,Towns and semi-dense areas,25.4
+place,Cities,22.3
+sex,Women,23.6
+sex,Men,22.7
+</script>
+<script type="text/csv" data-id="outlook">
+metric,year,value,unit,label
+projection,2030,520,million,People projected to be undernourished in 2030 on current trends
+healthy_diet,2026,2.7,billion,"People who cannot afford a healthy diet, latest estimate in the 2026 report"
+</script>
+<script type="text/csv" data-id="regions">
+region,year,undernourished_m,undernourished_pct
+Africa,2000,183.7,22.1
+Africa,2001,182.3,21.4
+Africa,2002,183,21
+Africa,2003,185.1,20.7
+Africa,2004,185.2,20.2
+Africa,2005,177.7,18.9
+Africa,2006,173.8,18
+Africa,2007,172,17.3
+Africa,2008,169.7,16.7
+Africa,2009,167.3,16
+Africa,2010,170.8,15.9
+Africa,2011,174.3,15.8
+Africa,2012,178.6,15.8
+Africa,2013,183,15.8
+Africa,2014,185,15.6
+Africa,2015,195.8,16.1
+Africa,2016,214.1,17.1
+Africa,2017,214.4,16.7
+Africa,2018,223.3,17
+Africa,2019,236.1,17.5
+Africa,2020,252.7,18.3
+Africa,2021,265.8,18.8
+Africa,2022,276.1,19.1
+Africa,2023,297.2,20.1
+Africa,2024,307.3,20.3
+Africa,2025,309.2,20
+Asia,2000,535.5,14.3
+Asia,2001,562.1,14.8
+Asia,2002,583.3,15.2
+Asia,2003,578.2,14.8
+Asia,2004,577.8,14.6
+Asia,2005,557.6,14
+Asia,2006,507.6,12.6
+Asia,2007,450.5,11
+Asia,2008,419.6,10.1
+Asia,2009,412.2,9.8
+Asia,2010,395.6,9.3
+Asia,2011,367.7,8.6
+Asia,2012,370.1,8.5
+Asia,2013,334.9,7.6
+Asia,2014,322.6,7.3
+Asia,2015,359,8
+Asia,2016,318.1,7
+Asia,2017,290.3,6.3
+Asia,2018,301.1,6.5
+Asia,2019,304.3,6.5
+Asia,2020,361.6,7.7
+Asia,2021,372.2,7.9
+Asia,2022,364.3,7.7
+Asia,2023,342.7,7.2
+Asia,2024,307.6,6.4
+Asia,2025,291.8,6
+Latin America and the Caribbean,2000,53.9,10.3
+Latin America and the Caribbean,2001,53.3,10.1
+Latin America and the Caribbean,2002,55.9,10.4
+Latin America and the Caribbean,2003,51.9,9.6
+Latin America and the Caribbean,2004,50.8,9.2
+Latin America and the Caribbean,2005,47.2,8.5
+Latin America and the Caribbean,2006,43.7,7.8
+Latin America and the Caribbean,2007,40.8,7.2
+Latin America and the Caribbean,2008,38.7,6.7
+Latin America and the Caribbean,2009,37.3,6.4
+Latin America and the Caribbean,2010,35.3,6
+Latin America and the Caribbean,2011,33.9,5.7
+Latin America and the Caribbean,2012,32.9,5.5
+Latin America and the Caribbean,2013,31.9,5.2
+Latin America and the Caribbean,2014,29.9,4.9
+Latin America and the Caribbean,2015,31.4,5.1
+Latin America and the Caribbean,2016,36.8,5.9
+Latin America and the Caribbean,2017,35.1,5.6
+Latin America and the Caribbean,2018,36.5,5.7
+Latin America and the Caribbean,2019,34.9,5.4
+Latin America and the Caribbean,2020,39.6,6.1
+Latin America and the Caribbean,2021,38.3,5.9
+Latin America and the Caribbean,2022,37.4,5.7
+Latin America and the Caribbean,2023,36.1,5.5
+Latin America and the Caribbean,2024,33.3,5
+Latin America and the Caribbean,2025,32.1,4.8
+Oceania,2000,2.1,6.6
+Oceania,2001,2,6.3
+Oceania,2002,2,6.2
+Oceania,2003,2.3,6.9
+Oceania,2004,2.2,6.7
+Oceania,2005,2.3,6.7
+Oceania,2006,2.1,6.2
+Oceania,2007,2.3,6.6
+Oceania,2008,2.3,6.3
+Oceania,2009,2.4,6.5
+Oceania,2010,2.8,7.4
+Oceania,2011,2.7,7.1
+Oceania,2012,2.6,6.8
+Oceania,2013,2.6,6.7
+Oceania,2014,2.6,6.5
+Oceania,2015,2.9,7.2
+Oceania,2016,2.9,7.1
+Oceania,2017,3,7.1
+Oceania,2018,3.2,7.4
+Oceania,2019,3.2,7.4
+Oceania,2020,3.1,7
+Oceania,2021,3.5,7.8
+Oceania,2022,3.4,7.5
+Oceania,2023,3.8,8.4
+Oceania,2024,3.7,8.1
+Oceania,2025,3.7,8
+</script>
+<script type="text/csv" data-id="subregions">
+area,continent,undernourished_pct,undernourished_m
+Eastern Africa,Africa,25.6,131.3
+Middle Africa,Africa,28.9,63.4
+Northern Africa,Africa,9.8,27
+Southern Africa,Africa,12.3,9.1
+Western Africa,Africa,16.9,78.4
+Central Asia,Asia,2.8,2.3
+Eastern Asia,Asia,<2.5,
+South-Eastern Asia,Asia,5.1,35.4
+Southern Asia,Asia,9.3,194.7
+Western Asia,Asia,13,41
+Caribbean,Latin America and the Caribbean,16.6,7.4
+Central America,Latin America and the Caribbean,5.1,9.4
+South America,Latin America and the Caribbean,3.5,15.4
+Melanesia,Oceania,26.9,3.5
+Polynesia,Oceania,2.6,<0.1
+Australia and New Zealand,Oceania,<2.5,
+Europe,Europe,<2.5,
+Northern America,Northern America,<2.5,
+</script>
+<script type="text/csv" data-id="world">
+year,undernourished_m,undernourished_pct,food_insecure_m,food_insecure_pct,stunted_children_m
+2000,791,12.8,,,207.2
+2001,813,13,,,205.7
+2002,835.7,13.2,,,204.7
+2003,828.8,12.9,,,203.4
+2004,826.3,12.7,,,201.9
+2005,794.2,12.1,,,200.3
+2006,735.9,11,,,198.3
+2007,673.6,10,,,195.7
+2008,637.9,9.3,,,192.9
+2009,626.7,9,,,190.1
+2010,611.2,8.7,,,186.9
+2011,584.5,8.2,,,183.5
+2012,590,8.2,,,180.4
+2013,558,7.7,,,177.5
+2014,545.6,7.4,1551.3,21,174.4
+2015,594.8,8,1596.8,21.4,171.2
+2016,577.4,7.6,1688.3,22.3,167.9
+2017,548.1,7.2,1792.8,23.5,164.0
+2018,569.5,7.4,1895.5,24.5,159.8
+2019,583.7,7.5,1941.9,24.9,156.1
+2020,663.3,8.4,2259.4,28.7,153.0
+2021,686.1,8.6,2240.1,28.2,150.8
+2022,687.6,8.6,2223.1,27.7,150.1
+2023,686.4,8.5,2223.1,27.5,149.8
+2024,658.8,8.1,2209.8,27.1,150.2
+2025,644.6,7.8,2124.1,25.8,
+</script>
+<script src="../assets/d3.v7.min.js"></script>
+<script>
+window.dash = (function () {
+  var sets = {}, calcs = {}, subs = [], defaults = {"measure": "number", "rank": "share"}, params = Object.assign({}, defaults);
+  document.querySelectorAll('script[type="text/csv"][data-id]').forEach(function (s) {
+    sets[s.getAttribute('data-id')] = d3.csvParse(s.textContent.replace(/^\s+|\s+$/g, ''));
+  });
+  function answer(status, data, columns) {
+    return { status: status, data: data, rows: Array.isArray(data) ? data : [], columns: columns || [], value: data, message: '', refreshing: false, meta: [] };
+  }
+  function data(id) {
+    if (sets[id]) return answer('ok', sets[id], sets[id].columns);
+    var c = calcs[id];
+    if (c) {
+      if (!c.done) { c.value = c.fn.apply(null, (c.inputs || []).map(function (i) { return data(i).data; })); c.done = true; }
+      var v = c.value;
+      return answer('ok', v, Array.isArray(v) && v[0] && typeof v[0] === 'object' ? Object.keys(v[0]) : []);
+    }
+    return answer('missing', []);
+  }
+  var queued = false;
+  function redraw() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; subs.forEach(function (fn) { fn(); }); });
+  }
+  var root = document.getElementById('dash-root'), width = root.clientWidth;
+  if (window.ResizeObserver) new ResizeObserver(function () {
+    if (root.clientWidth !== width) { width = root.clientWidth; redraw(); }
+  }).observe(root);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+  return {
+    data: data,
+    onData: function (fn) { subs.push(fn); fn(); },
+    calc: function (id, spec) { calcs[id] = { inputs: spec.inputs, fn: spec.fn }; },
+    loader: function () {},
+    colors: [1, 2, 3, 4, 5, 6, 7, 8].map(function (i) { return 'var(--cds-chart-categorical-' + i + ')'; }),
+    params: function () { return Object.assign({}, params); },
+    setParams: function (next) {
+      Object.keys(next || {}).forEach(function (k) { if (next[k] == null) delete params[k]; else params[k] = next[k]; });
+      redraw();
+    },
+    resetParams: function () { params = Object.assign({}, defaults); redraw(); },
+    refresh: function () {},
+    setLink: function (name) { try { history.replaceState(history.state, '', '#' + name); } catch (e) {} }
+  };
+})();
+</script>
+<script>
+const root = document.querySelector('.wh');
+const $ = (s) => root.querySelector(s);
+const REGIONS = ['Africa', 'Asia', 'Latin America and the Caribbean', 'Oceania', 'Europe', 'Northern America'];
+const regionColor = (name) => {
+  const i = REGIONS.indexOf(name);
+  return i < 0 ? 'var(--cds-chart-muted)' : dash.colors[i];
+};
+const shortRegion = (name) => (name === 'Latin America and the Caribbean' ? 'Latin America' : name);
+const f1 = d3.format('.1f');
+const whole = d3.format(',.0f');
+const millions = (v) => (v >= 100 ? whole(v) : f1(v)) + ' million';
+const pct = (v) => f1(v) + '%';
+const signed = (v) => d3.format('+.1f')(v);
+const num = (v) => (v === '' || v == null || String(v).startsWith('<') ? null : Number(v));
+
+dash.calc('summary', {
+  title: 'Headline figures',
+  description: 'The latest world count and share, how they compare with last year, with the peak since 2015 and with 2019, the food-insecure total in billions, and Africa and Asia side by side.',
+  inputs: ['world', 'regions'],
+  fn: (world, regions) => {
+    if (!world.length || !regions.length) return [];
+    const round1 = (v) => Math.round(v * 10) / 10;
+    const rows = world.map((r) => ({ year: Number(r.year), people: Number(r.undernourished_m), share: Number(r.undernourished_pct), insecure: Number(r.food_insecure_m), insecureShare: Number(r.food_insecure_pct) })).sort((a, b) => a.year - b.year);
+    const last = rows[rows.length - 1];
+    const at = (year) => rows.find((r) => r.year === year);
+    const peak = rows.filter((r) => r.year >= 2015).reduce((a, b) => (b.people > a.people ? b : a));
+    const region = (name) => Number(regions.find((r) => r.region === name && Number(r.year) === last.year).undernourished_m);
+    return [{
+      year: last.year,
+      people_m: Math.round(last.people),
+      share_pct: last.share,
+      fewer_than_last_year_m: round1(at(last.year - 1).people - last.people),
+      peak_year: peak.year,
+      fewer_than_peak_m: round1(peak.people - last.people),
+      more_than_2019_m: round1(last.people - at(2019).people),
+      food_insecure_bn: Math.round(last.insecure / 100) / 10,
+      food_insecure_pct: last.insecureShare,
+      africa_m: region('Africa'),
+      asia_m: region('Asia'),
+    }];
+  },
+});
+
+dash.calc('ranked', {
+  title: 'Countries compared',
+  description: 'Each country’s latest share and number of undernourished people as numbers, and the change in share, in percentage points, between the 2014–16 and 2023–25 averages. Values the UN gives only as “below 2.5” are left out of the arithmetic.',
+  inputs: ['countries'],
+  fn: (countries) => {
+    const value = (v) => (v === '' || v == null || String(v).startsWith('<') ? null : Number(v));
+    return countries.map((c) => {
+      const now = value(c.share_2024);
+      const then = value(c.share_2015);
+      return { country: c.country, region: c.region, share: now, people_m: value(c.people_2024_m), share_2015: then, change_pts: now == null || then == null ? null : Math.round((now - then) * 10) / 10 };
+    });
+  },
+});
+
+const statusOf = (id) => dash.data(id).status;
+const rowsOf = (id) => {
+  const d = dash.data(id).data;
+  return Array.isArray(d) ? d : [];
+};
+const okRows = (id) => (statusOf(id) === 'ok' ? rowsOf(id) : []);
+
+function failLine() {
+  const line = document.createElement('div');
+  line.className = 'wh-fail';
+  const dot = document.createElement('span');
+  dot.className = 'wh-fail-dot';
+  line.append(dot, 'Failed to load');
+  return line;
+}
+
+// Clears a chart box and says whether its sources are ready to draw.
+function ready(box, sources, rows) {
+  const states = sources.map(statusOf);
+  box.classList.toggle('dash-skeleton', states.includes('loading'));
+  if (states.includes('error')) {
+    box.replaceChildren(failLine());
+    return false;
+  }
+  if (!states.every((s) => s === 'ok') || !rows.length) {
+    box.replaceChildren();
+    return false;
+  }
+  return true;
+}
+
+function showTip(tip, event, head, lines) {
+  const card = tip.parentElement;
+  const headEl = document.createElement('div');
+  headEl.className = 'wh-tip-head';
+  headEl.textContent = head;
+  tip.replaceChildren(headEl);
+  for (const [name, value, color] of lines) {
+    const line = document.createElement('div');
+    line.className = 'wh-tip-line';
+    if (color) {
+      const sw = document.createElement('span');
+      sw.className = 'wh-tip-sw';
+      sw.style.background = color;
+      line.append(sw);
+    }
+    const nameEl = document.createElement('span');
+    nameEl.textContent = name;
+    const valEl = document.createElement('span');
+    valEl.className = 'wh-tip-val';
+    valEl.textContent = value;
+    line.append(nameEl, valEl);
+    tip.append(line);
+  }
+  tip.hidden = false;
+  const box = card.getBoundingClientRect();
+  let left = event.clientX - box.left + 14;
+  let top = event.clientY - box.top + 14;
+  if (left + tip.offsetWidth > card.clientWidth - 4) left = event.clientX - box.left - tip.offsetWidth - 14;
+  if (top + tip.offsetHeight > card.clientHeight - 4) top = event.clientY - box.top - tip.offsetHeight - 10;
+  tip.style.left = Math.max(4, left) + 'px';
+  tip.style.top = Math.max(4, top) + 'px';
+}
+
+function drawLegend(el, entries) {
+  el.replaceChildren(...entries.map(([name, color]) => {
+    const key = document.createElement('span');
+    key.className = 'wh-key';
+    const sw = document.createElement('span');
+    sw.className = 'wh-sw';
+    sw.style.background = color;
+    key.append(sw, name);
+    return key;
+  }));
+}
+
+// Places labels one at a time. One that would cover a label already placed, or leave the plot,
+// tries each other position in `retries` and is dropped if none is free.
+function placeLabels(texts, bounds, retries) {
+  const taken = [];
+  const free = (b) => b.x >= bounds.x0 && b.x + b.width <= bounds.x1 && b.y >= bounds.y0 && b.y + b.height <= bounds.y1
+    && !taken.some((t) => b.x < t.x + t.width + 4 && b.x + b.width + 4 > t.x && b.y < t.y + t.height + 1 && b.y + b.height + 1 > t.y);
+  texts.each(function (d) {
+    let b = this.getBBox();
+    for (const retry of retries || []) {
+      if (free(b)) break;
+      retry(d3.select(this), d);
+      b = this.getBBox();
+    }
+    if (free(b)) taken.push(b);
+    else this.remove();
+  });
+}
+
+const widest = (sel) => Math.ceil(d3.max(sel.nodes(), (n) => n.getComputedTextLength()) || 0);
+
+// Shortens a label, a character at a time, until it fits.
+function fitText(node, max) {
+  const full = node.textContent;
+  let n = full.length;
+  while (n > 3 && node.getComputedTextLength() > max) {
+    n -= 1;
+    node.textContent = full.slice(0, n).trimEnd() + '…';
+  }
+}
+
+// Lines over years. o: {series: [{name, color, points: [{year, value}]}], format, tickFormat, label,
+// height, points: years to name on a single line, projection: {year, value, text}}
+function drawLines(box, tip, o) {
+  const W = box.clientWidth;
+  if (!W) return;
+  const H = o.height || 290;
+  const mt = 14;
+  const mb = 24;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', o.label);
+  box.replaceChildren(svg.node());
+  const single = o.series.length === 1;
+  const all = o.series.flatMap((s) => s.points);
+  const top = Math.max(d3.max(all, (p) => p.value), o.projection ? o.projection.value : 0);
+  const y = d3.scaleLinear([0, top * 1.12], [H - mb, mt]).nice(4);
+  const ticks = y.ticks(4);
+  const tickText = svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'wh-tick').attr('y', (t) => y(t)).attr('dy', '0.35em').text(o.tickFormat);
+  const ml = widest(tickText) + 8;
+  const ends = svg.append('g').selectAll('text').data(single ? [] : o.series).join('text').attr('class', 'wh-end').attr('dy', '0.35em')
+    .text((s) => `${s.name} ${o.format(s.points[s.points.length - 1].value)}`);
+  const mr = single ? 22 : widest(ends) + 12;
+  const years = d3.extent(all, (p) => p.year);
+  const lastYear = o.projection ? o.projection.year : years[1];
+  const x = d3.scaleLinear([years[0], lastYear], [ml + 6, Math.max(ml + 60, W - mr)]);
+
+  svg.insert('g', 'g').selectAll('line').data(ticks).join('line').attr('class', 'wh-grid').attr('x1', ml).attr('x2', x.range()[1]).attr('y1', (t) => y(t)).attr('y2', (t) => y(t));
+  const yearTicks = d3.range(Math.ceil(years[0] / 5) * 5, lastYear + 1, 5);
+  const yearText = svg.append('g').selectAll('text').data(yearTicks).join('text').attr('class', 'wh-tick').attr('text-anchor', 'middle').attr('x', (t) => x(t)).attr('y', H - 6).text((t) => t);
+  placeLabels(yearText, { x0: 0, x1: W, y0: 0, y1: H + 6 });
+
+  const rule = svg.append('line').attr('class', 'wh-rule').attr('y1', mt).attr('y2', H - mb).style('display', 'none');
+  const line = d3.line().x((p) => x(p.year)).y((p) => y(p.value));
+  svg.append('g').selectAll('path').data(o.series).join('path').attr('class', 'wh-line').attr('d', (s) => line(s.points)).style('stroke', (s) => s.color);
+
+  if (o.projection) {
+    const s = o.series[0];
+    const from = s.points[s.points.length - 1];
+    svg.append('line').attr('class', 'wh-proj').attr('x1', x(from.year)).attr('y1', y(from.value)).attr('x2', x(o.projection.year)).attr('y2', y(o.projection.value)).style('stroke', s.color);
+    svg.append('circle').attr('class', 'wh-hollow').attr('cx', x(o.projection.year)).attr('cy', y(o.projection.value)).attr('r', 4).style('stroke', s.color);
+  }
+
+  if (single) {
+    // Names the points worth reading off: the caller's years, plus the projection.
+    const s = o.series[0];
+    const named = s.points.filter((p) => o.points.includes(p.year)).map((p) => ({ ...p, below: (o.below || []).includes(p.year), text: `${p.year}: ${o.format(p.value)}` }));
+    if (o.projection) named.push({ year: o.projection.year, value: o.projection.value, below: true, text: o.projection.text });
+    const side = (p, flip) => y(p.value) + ((p.below ? !flip : flip) ? 18 : -9);
+    svg.append('g').selectAll('circle').data(named.filter((p) => !o.projection || p.year !== o.projection.year)).join('circle').attr('cx', (p) => x(p.year)).attr('cy', (p) => y(p.value)).attr('r', 3.5).style('fill', s.color);
+    const names = svg.append('g').selectAll('text').data(named.slice().reverse()).join('text').attr('class', 'wh-name').attr('text-anchor', 'middle').attr('x', (p) => x(p.year)).attr('y', (p) => side(p, false)).text((p) => p.text);
+    // A label that does not fit centred moves wholly to the left of its point, then to the right, then to the other side of the line.
+    placeLabels(names, { x0: 0, x1: W, y0: 0, y1: H - mb }, [
+      (text, p) => text.attr('text-anchor', 'end').attr('x', x(p.year) - 4),
+      (text, p) => text.attr('text-anchor', 'start').attr('x', x(p.year) + 4),
+      (text, p) => text.attr('text-anchor', 'middle').attr('x', x(p.year)).attr('y', side(p, true)),
+      (text, p) => text.attr('text-anchor', 'end').attr('x', x(p.year) - 4),
+      (text, p) => text.attr('text-anchor', 'start').attr('x', x(p.year) + 4),
+    ]);
+  } else {
+    // End labels keep to the plot: the lowest stays clear of the year labels and the rest stack up from it.
+    const placed = o.series.map((s) => ({ s, at: Math.min(y(s.points[s.points.length - 1].value), H - mb - 6) })).sort((a, b) => b.at - a.at);
+    for (let i = 1; i < placed.length; i += 1) placed[i].at = Math.min(placed[i].at, placed[i - 1].at - 14);
+    const where = new Map(placed.map((p) => [p.s.name, p.at]));
+    ends.attr('x', x.range()[1] + 8).attr('y', (s) => where.get(s.name));
+  }
+
+  const dots = svg.append('g').selectAll('circle').data(o.series).join('circle').attr('r', 4).style('fill', (s) => s.color).style('display', 'none');
+  svg.append('rect').attr('class', 'wh-hit').attr('x', ml).attr('y', 0).attr('width', Math.max(0, x(years[1]) - ml + 8)).attr('height', H)
+    .on('pointermove', function (event) {
+      const year = Math.max(years[0], Math.min(years[1], Math.round(x.invert(d3.pointer(event, svg.node())[0]))));
+      const found = o.series.map((s) => [s, s.points.find((p) => p.year === year)]).filter(([, p]) => p);
+      if (!found.length) return;
+      rule.attr('x1', x(year)).attr('x2', x(year)).style('display', null);
+      dots.style('display', (s) => (s.points.some((p) => p.year === year) ? null : 'none')).attr('cx', x(year)).attr('cy', (s) => {
+        const p = s.points.find((q) => q.year === year);
+        return p ? y(p.value) : 0;
+      });
+      showTip(tip, event, String(year), found.map(([s, p]) => [s.name, o.format(p.value), single ? null : s.color]));
+    })
+    .on('pointerleave', () => {
+      rule.style('display', 'none');
+      dots.style('display', 'none');
+      tip.hidden = true;
+    });
+}
+
+// Horizontal bars. o: {name, value, format, color, ref, refLabel, label, tip, rowH, stacked}
+// With `stacked`, each name sits on its own line above its bar, for long names in a narrow card.
+function drawBars(box, tip, rows, o) {
+  const W = box.clientWidth;
+  if (!W) return;
+  const rowH = o.rowH || (o.stacked ? 40 : 24);
+  const mt = o.ref == null ? 2 : 20;
+  const H = mt + rows.length * rowH + 2;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', o.label);
+  box.replaceChildren(svg.node());
+  const row = svg.selectAll('g').data(rows).join('g').attr('class', 'wh-row').attr('transform', (d, i) => `translate(0,${mt + i * rowH})`);
+  const barY = o.stacked ? 20 : 4;
+  const barH = o.stacked ? 14 : rowH - 8;
+  const names = row.append('text').attr('class', 'wh-lab').attr('y', o.stacked ? 9 : rowH / 2).attr('dy', '0.35em').attr('text-anchor', o.stacked ? 'start' : 'end').text(o.name);
+  const values = row.append('text').attr('class', 'wh-val').attr('y', barY + barH / 2).attr('dy', '0.35em').text((d) => o.format(o.value(d)));
+  names.each(function () { fitText(this, o.stacked ? W : W * 0.42); });
+  const ml = o.stacked ? 0 : widest(names) + 10;
+  const mr = widest(values) + 10;
+  const top = Math.max(d3.max(rows, (d) => Math.abs(o.value(d))), o.ref == null ? 0 : o.ref);
+  const x = d3.scaleLinear([0, top], [ml, Math.max(ml + 24, W - mr)]);
+  names.attr('x', o.stacked ? 0 : ml - 8);
+  row.insert('rect', 'text').attr('class', 'wh-rect').attr('x', ml).attr('y', barY).attr('height', barH).attr('rx', 4)
+    .attr('width', (d) => Math.max(2, x(Math.abs(o.value(d))) - ml)).style('fill', o.color);
+  values.attr('x', (d) => Math.max(ml + 2, x(Math.abs(o.value(d)))) + 6);
+  if (o.ref != null) {
+    const rx = x(o.ref);
+    if (o.stacked) row.insert('line', 'text').attr('class', 'wh-ref').attr('x1', rx).attr('x2', rx).attr('y1', barY - 3).attr('y2', barY + barH + 3);
+    else svg.append('line').attr('class', 'wh-ref').attr('x1', rx).attr('x2', rx).attr('y1', mt - 4).attr('y2', H);
+    const lab = svg.append('text').attr('class', 'wh-reflab').attr('y', 10).text(o.refLabel);
+    const lw = lab.node().getComputedTextLength();
+    lab.attr('x', Math.max(0, Math.min(rx - lw / 2, W - lw)));
+  }
+  row.append('rect').attr('class', 'wh-hit').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH)
+    .on('pointermove', function (event, d) {
+      row.classed('wh-dim', (e) => e !== d).classed('wh-on', (e) => e === d);
+      showTip(tip, event, o.name(d), o.tip(d));
+    })
+    .on('pointerleave', () => {
+      row.classed('wh-dim', false).classed('wh-on', false);
+      tip.hidden = true;
+    });
+}
+
+const MEASURES = {
+  number: { field: 'undernourished_m', format: (v) => f1(v) + 'M', tickFormat: (t) => whole(t) + 'M', note: 'People undernourished, in millions.' },
+  share: { field: 'undernourished_pct', format: pct, tickFormat: (t) => t + '%', note: 'Share of the population undernourished.' },
+};
+
+function drawWorld(measure) {
+  const spec = MEASURES[measure];
+  const box = $('.wh-world-chart');
+  const world = okRows('world');
+  $('.wh-world-note').textContent = spec.note + (measure === 'number' ? ' The dotted line runs to the UN’s projection for 2030.' : '');
+  if (!ready(box, ['world', 'outlook'], world)) return;
+  const points = world.map((r) => ({ year: Number(r.year), value: Number(r[spec.field]) })).sort((a, b) => a.year - b.year);
+  // Worth naming: the low point, the highest point after it, and the latest year.
+  const low = points.reduce((a, b) => (b.value < a.value ? b : a));
+  const peak = points.filter((p) => p.year > low.year).reduce((a, b) => (b.value > a.value ? b : a), points[points.length - 1]);
+  const proj = okRows('outlook').find((r) => r.metric === 'projection');
+  drawLines(box, $('.wh-world-tip'), {
+    series: [{ name: measure === 'number' ? 'People undernourished' : 'Share undernourished', color: 'var(--color-fg)', points }],
+    points: box.clientWidth < 420 ? [low.year, points[points.length - 1].year] : [low.year, peak.year, points[points.length - 1].year],
+    below: [low.year],
+    format: spec.format,
+    tickFormat: spec.tickFormat,
+    label: 'World undernourishment by year',
+    projection: measure === 'number' && proj ? { year: Number(proj.year), value: Number(proj.value), text: `${proj.year}: about ${whole(Number(proj.value))}M` } : null,
+  });
+}
+
+function drawRegions(measure) {
+  const spec = MEASURES[measure];
+  const box = $('.wh-regions-chart');
+  const rows = okRows('regions');
+  $('.wh-regions-note').textContent = spec.note + ' Latin America includes the Caribbean. Europe and Northern America are below 2.5% and are not shown.';
+  if (!ready(box, ['regions'], rows)) return;
+  const series = REGIONS.filter((name) => rows.some((r) => r.region === name)).map((name) => ({
+    name: shortRegion(name),
+    color: regionColor(name),
+    points: rows.filter((r) => r.region === name).map((r) => ({ year: Number(r.year), value: Number(r[spec.field]) })).sort((a, b) => a.year - b.year),
+  }));
+  drawLines(box, $('.wh-regions-tip'), { series, format: spec.format, tickFormat: spec.tickFormat, label: 'Undernourishment by region and year' });
+}
+
+function drawSubregions() {
+  const box = $('.wh-sub-chart');
+  const legend = $('.wh-sub-legend');
+  const low = $('.wh-sub-low');
+  const all = okRows('subregions');
+  const world = okRows('world').map((r) => ({ year: Number(r.year), share: Number(r.undernourished_pct) })).sort((a, b) => a.year - b.year);
+  if (!ready(box, ['subregions', 'world'], world.length ? all : [])) {
+    legend.replaceChildren();
+    low.textContent = '';
+    return;
+  }
+  const rows = all.filter((r) => num(r.undernourished_pct) != null).map((r) => ({ ...r, share: Number(r.undernourished_pct) })).sort((a, b) => b.share - a.share);
+  drawLegend(legend, REGIONS.filter((n) => rows.some((r) => r.continent === n)).map((n) => [shortRegion(n), regionColor(n)]));
+  const ref = world[world.length - 1].share;
+  drawBars(box, $('.wh-sub-tip'), rows, {
+    name: (d) => d.area,
+    value: (d) => d.share,
+    format: pct,
+    color: (d) => regionColor(d.continent),
+    ref,
+    refLabel: 'World ' + pct(ref),
+    label: 'Share of the population undernourished in 2025 by sub-region',
+    tip: (d) => [['Share undernourished', pct(d.share)], ['People', num(d.undernourished_m) == null ? String(d.undernourished_m || 'not reported') + (d.undernourished_m ? ' million' : '') : millions(Number(d.undernourished_m))]],
+  });
+  low.textContent = 'Below 2.5%: ' + all.filter((r) => String(r.undernourished_pct).startsWith('<')).map((r) => r.area).join(', ') + '.';
+}
+
+const RANKS = {
+  share: { title: 'Countries with the highest share', note: 'Share of the population undernourished, average of 2023 to 2025.', pick: (rows) => rows.filter((r) => r.share != null).sort((a, b) => b.share - a.share), value: (d) => d.share, format: pct },
+  people: { title: 'Countries with the most people', note: 'People undernourished, average of 2023 to 2025.', pick: (rows) => rows.filter((r) => r.people_m != null).sort((a, b) => b.people_m - a.people_m), value: (d) => d.people_m, format: (v) => f1(v) + 'M' },
+  rise: { title: 'Where hunger has risen most', note: 'Rise in the share undernourished, in percentage points, between the 2014–16 and 2023–25 averages.', pick: (rows) => rows.filter((r) => r.change_pts > 0).sort((a, b) => b.change_pts - a.change_pts), value: (d) => d.change_pts, format: (v) => signed(v) + ' pts' },
+  fall: { title: 'Where hunger has fallen most', note: 'Fall in the share undernourished, in percentage points, between the 2014–16 and 2023–25 averages.', pick: (rows) => rows.filter((r) => r.change_pts < 0).sort((a, b) => a.change_pts - b.change_pts), value: (d) => d.change_pts, format: (v) => signed(v) + ' pts' },
+};
+
+function drawRanking() {
+  const view = RANKS[dash.params().rank] ? dash.params().rank : 'share';
+  const spec = RANKS[view];
+  for (const b of root.querySelectorAll('.wh-rank .wh-segb')) b.setAttribute('aria-pressed', String(b.value === view));
+  $('.wh-rank-title').textContent = spec.title;
+  $('.wh-rank-note').textContent = spec.note;
+  const box = $('.wh-rank-chart');
+  const legend = $('.wh-rank-legend');
+  const ranked = rowsOf('ranked');
+  if (!ready(box, ['countries'], ranked)) {
+    legend.replaceChildren();
+    return;
+  }
+  const rows = spec.pick(ranked.slice()).slice(0, 15);
+  drawLegend(legend, REGIONS.filter((n) => rows.some((r) => r.region === n)).map((n) => [shortRegion(n), regionColor(n)]));
+  drawBars(box, $('.wh-rank-tip'), rows, {
+    name: (d) => d.country,
+    value: spec.value,
+    format: spec.format,
+    color: (d) => regionColor(d.region),
+    ref: null,
+    label: spec.title,
+    tip: (d) => [
+      ['Share, 2023–25', d.share == null ? 'Not reported' : pct(d.share)],
+      ['People, 2023–25', d.people_m == null ? 'Not reported' : millions(d.people_m)],
+      ['Share, 2014–16', d.share_2015 == null ? 'Below 2.5% or not reported' : pct(d.share_2015)],
+      ['Change', d.change_pts == null ? 'Not available' : signed(d.change_pts) + ' pts'],
+    ],
+  });
+}
+
+function drawFoodInsecurity() {
+  const box = $('.wh-fi-chart');
+  const all = okRows('food_insecurity');
+  const world = okRows('world').map((r) => ({ year: Number(r.year), share: Number(r.food_insecure_pct) })).filter((r) => r.share).sort((a, b) => a.year - b.year);
+  const text = { rural: 'Rural areas', town: 'Towns and semi-dense areas', city: 'Cities', women: 'Women', men: 'Men' };
+  for (const [key, group] of Object.entries(text)) {
+    const r = all.find((d) => d.group === group);
+    $('.wh-v-' + key).textContent = r ? pct(Number(r.food_insecure_pct)) : '—';
+  }
+  if (!ready(box, ['food_insecurity', 'world'], world.length ? all : [])) return;
+  const rows = all.filter((r) => r.group_type === 'region').map((r) => ({ ...r, share: Number(r.food_insecure_pct) })).sort((a, b) => b.share - a.share);
+  const ref = world[world.length - 1].share;
+  drawBars(box, $('.wh-fi-tip'), rows, {
+    name: (d) => d.group,
+    value: (d) => d.share,
+    format: pct,
+    color: () => 'var(--color-fg-muted)',
+    ref,
+    refLabel: 'World ' + pct(ref),
+    label: 'Moderate or severe food insecurity in 2025 by region',
+    stacked: true,
+    tip: (d) => [['Food insecure', pct(d.share)], ['World', pct(ref)]],
+  });
+}
+
+function drawStunting() {
+  const box = $('.wh-stunt-chart');
+  const points = okRows('world').filter((r) => num(r.stunted_children_m) != null).map((r) => ({ year: Number(r.year), value: Number(r.stunted_children_m) })).sort((a, b) => a.year - b.year);
+  if (!ready(box, ['world'], points)) return;
+  drawLines(box, $('.wh-stunt-tip'), {
+    series: [{ name: 'Stunted children', color: 'var(--color-fg)', points }],
+    points: [points[0].year, points[points.length - 1].year],
+    below: [points[points.length - 1].year],
+    format: (v) => f1(v) + 'M',
+    tickFormat: (t) => whole(t) + 'M',
+    label: 'Stunted children under five by year',
+    height: 250,
+  });
+}
+
+function drawCrises() {
+  const body = $('.wh-stats-body');
+  const rows = okRows('crises');
+  body.replaceChildren(...rows.map((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = r.metric;
+    const figure = document.createElement('td');
+    figure.className = 'wh-stat-num';
+    figure.textContent = r.unit === '%' ? pct(Number(r.value)) : r.unit ? `${r.value} ${r.unit}` : String(r.value);
+    const label = document.createElement('td');
+    label.className = 'wh-stat-label';
+    label.textContent = r.label;
+    tr.append(figure, label);
+    return tr;
+  }));
+}
+
+// Headline text: each class shows one value, wherever it appears.
+function drawText() {
+  const s = rowsOf('summary')[0];
+  const world = okRows('world');
+  const crises = okRows('crises');
+  const outlook = okRows('outlook');
+  const cell = (rows, key, value, field) => {
+    const r = rows.find((d) => String(d[key]) === value);
+    return r ? Number(r[field]) : null;
+  };
+  const show = (v, format) => (v == null || Number.isNaN(v) ? null : format(v));
+  const values = {
+    people: s && whole(s.people_m) + ' million',
+    share: s && pct(s.share_pct),
+    year: s && f1(s.fewer_than_last_year_m) + ' million',
+    peak: s && f1(s.fewer_than_peak_m) + ' million',
+    since: s && f1(s.more_than_2019_m) + ' million',
+    africa: s && f1(s.africa_m) + ' million',
+    asia: s && f1(s.asia_m) + ' million',
+    fi: s && f1(s.food_insecure_bn) + ' billion',
+    fipct: s && pct(s.food_insecure_pct),
+    share22: show(cell(world, 'year', '2022', 'undernourished_pct'), pct),
+    share19: show(cell(world, 'year', '2019', 'undernourished_pct'), pct),
+    crisis: show(cell(crises, 'metric', 'people', 'value'), (v) => whole(v) + ' million'),
+    crisisn: show(cell(crises, 'metric', 'countries', 'value'), whole),
+    proj: show(cell(outlook, 'metric', 'projection', 'value'), (v) => whole(v) + ' million'),
+    diet: show(cell(outlook, 'metric', 'healthy_diet', 'value'), (v) => f1(v) + ' billion'),
+  };
+  const loading = ['world', 'regions', 'crises', 'outlook'].some((id) => statusOf(id) === 'loading');
+  for (const [key, text] of Object.entries(values)) {
+    for (const el of root.querySelectorAll('.wh-v-' + key)) {
+      el.textContent = text || '—';
+      el.classList.toggle('dash-skeleton', !text && loading);
+    }
+  }
+}
+
+const sort = { field: 'share_2024', dir: -1 };
+let search = '';
+// A value given only as "below 2.5" or "below 0.1" sorts just under that number; a blank sorts last.
+const sortable = (v) => (v === '' || v == null ? null : String(v).startsWith('<') ? Number(String(v).slice(1)) - 0.01 : Number(v));
+
+function drawTable() {
+  const body = $('.wh-tbody');
+  const countries = okRows('countries');
+  const calc = new Map(rowsOf('ranked').map((r) => [r.country, r]));
+  const rows = countries.map((c) => ({ ...c, change_pts: (calc.get(c.country) || {}).change_pts }));
+  const needle = search.trim().toLowerCase();
+  const text = (field) => field === 'country' || field === 'region';
+  const key = (r, field) => (text(field) ? r[field] : field === 'change_pts' ? r.change_pts : sortable(r[field]));
+  const shown = rows
+    .filter((r) => !needle || (r.country + ' ' + r.un_name + ' ' + r.region).toLowerCase().includes(needle))
+    .sort((a, b) => {
+      const va = key(a, sort.field);
+      const vb = key(b, sort.field);
+      if (va == null || vb == null) return (va == null) - (vb == null) || a.country.localeCompare(b.country);
+      return sort.dir * (text(sort.field) ? va.localeCompare(vb) : va - vb) || a.country.localeCompare(b.country);
+    });
+  for (const th of root.querySelectorAll('.wh-table th')) {
+    if (th.dataset.field === sort.field) th.setAttribute('aria-sort', sort.dir === 1 ? 'ascending' : 'descending');
+    else th.removeAttribute('aria-sort');
+  }
+  const cell = (value, cls) => {
+    const td = document.createElement('td');
+    if (cls) td.className = cls;
+    td.textContent = value;
+    return td;
+  };
+  const shownValue = (v) => (v === '' || v == null ? '—' : String(v).startsWith('<') ? String(v) : f1(Number(v)));
+  body.replaceChildren(...shown.map((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = r.country;
+    const region = cell('', 'wh-sec');
+    const dot = document.createElement('span');
+    dot.className = 'wh-dot';
+    dot.style.background = regionColor(r.region);
+    region.append(dot, r.region);
+    tr.append(
+      cell(r.country),
+      region,
+      cell(shownValue(r.share_2015), 'wh-num wh-sec wh-soft'),
+      cell(shownValue(r.share_2024), 'wh-num'),
+      cell(r.change_pts == null ? '—' : signed(r.change_pts), 'wh-num wh-sec' + (r.change_pts == null ? ' wh-soft' : '')),
+      cell(shownValue(r.people_2024_m), 'wh-num'),
+    );
+    return tr;
+  }));
+  $('.wh-empty').hidden = !(rows.length && !shown.length);
+}
+
+for (const b of root.querySelectorAll('.wh-measure .wh-segb')) b.addEventListener('click', () => dash.setParams({ measure: b.value }));
+for (const b of root.querySelectorAll('.wh-rank .wh-segb')) b.addEventListener('click', () => dash.setParams({ rank: b.value }));
+for (const b of root.querySelectorAll('.wh-sortb')) {
+  b.addEventListener('click', () => {
+    const field = b.parentElement.dataset.field;
+    if (sort.field === field) sort.dir = -sort.dir;
+    else {
+      sort.field = field;
+      sort.dir = field === 'country' || field === 'region' ? 1 : -1;
+    }
+    drawTable();
+  });
+}
+$('.wh-search').addEventListener('input', (event) => {
+  search = event.target.value;
+  drawTable();
+});
+
+dash.onData(() => {
+  const measure = MEASURES[dash.params().measure] ? dash.params().measure : 'number';
+  for (const b of root.querySelectorAll('.wh-measure .wh-segb')) b.setAttribute('aria-pressed', String(b.value === measure));
+  drawText();
+  drawWorld(measure);
+  drawRegions(measure);
+  drawSubregions();
+  drawRanking();
+  drawFoodInsecurity();
+  drawStunting();
+  drawCrises();
+  drawTable();
+});
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

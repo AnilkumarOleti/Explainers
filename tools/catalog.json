@@ -9,6 +9,165 @@
   },
   "sections": [
     {
+      "id": "data",
+      "name": "Analytics and data science",
+      "pages": [
+        {
+          "slug": "bayes-rule",
+          "title": "Bayes' Rule",
+          "blurb": "Something in your pan glitters. How sure can you be that it is gold?",
+          "artifact": "fbfd6c99-8169-495a-bc99-f8c39b0500ca",
+          "ask": "It glitters. How sure are you that it's gold?"
+        },
+        {
+          "slug": "bell-machine",
+          "title": "The Bell Machine",
+          "blurb": "Why do averages always pile into a bell? The central limit theorem, hands on.",
+          "ask": "Why do averages always pile into a bell?"
+        },
+        {
+          "slug": "size-the-test",
+          "title": "Size the Test",
+          "blurb": "Did the new button win, or was it luck? Sample size and power for an A/B test.",
+          "ask": "Did the new button win, or was it luck?"
+        },
+        {
+          "slug": "dont-peek",
+          "title": "Don't Peek",
+          "blurb": "Why does checking a test early crown fake winners? Peeking and sequential testing.",
+          "ask": "Why does checking a test early crown fake winners?"
+        },
+        {
+          "slug": "why-ab-winners-shrink",
+          "title": "Why A/B Winners Shrink",
+          "blurb": "The test said +4%. After launch you got +1%. Nothing broke.",
+          "artifact": "2d7b5948-503e-448c-bbed-9b21fb28294e",
+          "ask": "Why do A/B test winners shrink after launch?"
+        },
+        {
+          "slug": "ghost-line",
+          "title": "The Ghost Line",
+          "blurb": "How do you know what a launch really did? Difference-in-differences.",
+          "ask": "How do you know what a launch really did?"
+        },
+        {
+          "slug": "sneaky-average",
+          "title": "The Sneaky Average",
+          "blurb": "How can the total fall when nothing got worse? Diagnosing a metric change.",
+          "ask": "How can the total fall when nothing got worse?"
+        },
+        {
+          "slug": "stiff-or-wiggly",
+          "title": "Stiff or Wiggly",
+          "blurb": "Why can a perfect fit predict badly? The bias-variance trade-off.",
+          "ask": "Why can a perfect fit predict badly?"
+        },
+        {
+          "slug": "catch-the-fraud",
+          "title": "Catch the Fraud",
+          "blurb": "How strict should a fraud alarm be? Precision, recall and the threshold.",
+          "ask": "How strict should a fraud alarm be?"
+        },
+        {
+          "slug": "herd-the-dots",
+          "title": "Herd the Dots",
+          "blurb": "How does a computer find groups nobody labelled? k-means clustering.",
+          "ask": "How does a computer find groups nobody labelled?"
+        },
+        {
+          "slug": "roll-downhill",
+          "title": "Roll Downhill",
+          "blurb": "How does a model find its best settings? Neural networks and backpropagation.",
+          "ask": "How does a model find its best settings?"
+        },
+        {
+          "slug": "turn-up-the-heat",
+          "title": "Turn Up the Heat",
+          "blurb": "Why does a chatbot answer differently each time? Encoders, decoders and sampling.",
+          "ask": "Why does a chatbot answer differently each time?"
+        },
+        {
+          "slug": "who-looks-where",
+          "title": "Who Looks Where",
+          "blurb": "How does a model know what “its” refers to? Self-attention and the transformer.",
+          "ask": "How does a model know what “its” refers to?"
+        },
+        {
+          "slug": "cosine-adapter",
+          "title": "The Cosine Adapter",
+          "blurb": "A small network that turns similarity scores into probabilities, so one cutoff works for every search query.",
+          "artifact": "0dc881b6-a0f6-4290-82e1-e1647e0ba49c"
+        },
+        {
+          "slug": "genrec-at-netflix",
+          "title": "GenRec at Netflix",
+          "blurb": "A paper walkthrough: Netflix tests a language model as the ranker for its whole catalog.",
+          "artifact": "a2f5f617-2e3c-45cb-93e1-f9aa55681cc7"
+        },
+        {
+          "slug": "duckdb-in-pictures",
+          "title": "DuckDB in Pictures",
+          "blurb": "A database that reads by the column and lives inside your program.",
+          "artifact": "b0822442-04dc-4189-ba6f-8a3315443180"
+        },
+        {
+          "slug": "parquet-files",
+          "title": "Parquet Files",
+          "blurb": "A table saved column by column instead of row by row, and why that makes it smaller and quicker.",
+          "artifact": "65e0d2c9-609a-4e89-9917-eee42b92a1d4",
+          "ask": "Why save a table column by column?"
+        },
+        {
+          "slug": "analysts-cockpit",
+          "title": "The Analyst's Cockpit",
+          "blurb": "AI now writes the SQL and builds the charts. The judgment is still the analyst's job.",
+          "artifact": "3906ff79-888f-4bff-8fef-8684a71d7f65"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "AI and technology",
+      "pages": [
+        {
+          "slug": "missing-gauge",
+          "title": "The Missing Gauge",
+          "blurb": "Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.",
+          "artifact": "d55a87e1-91a8-40a3-a6a9-747bfb76946b",
+          "ask": "Why does AI say wrong things so confidently?"
+        },
+        {
+          "slug": "ai-model-race",
+          "title": "The AI model race",
+          "blurb": "Which lab leads on capability, how close its rivals are, and what a given level now costs.",
+          "ask": "Who is ahead in the AI model race?",
+          "note": "As of October 2026"
+        },
+        {
+          "slug": "open-weights-vs-closed",
+          "title": "Open Weights vs Closed",
+          "blurb": "AI you can download and keep, against AI you can only rent.",
+          "artifact": "7354daaf-a773-4a53-bfc2-871a65d73cae",
+          "note": "As of September 2026",
+          "css": ".docs{grid-template-columns:repeat(28,minmax(0,10px));max-width:100%}.docs i{width:auto;height:auto;aspect-ratio:1}"
+        },
+        {
+          "slug": "opus-5-5-vs-gpt-6-astra",
+          "title": "Opus 5.5 vs GPT-6 Astra",
+          "blurb": "Which model for which work: benchmarks, prices and the caveats behind them.",
+          "artifact": "525e0c50-f6c9-467c-acaf-da25f118c8da",
+          "note": "As of September 2026"
+        },
+        {
+          "slug": "internet-at-200-kmh",
+          "title": "Internet at 200 km/h",
+          "blurb": "On a fast train your phone changes towers every minute. The internet never finds out.",
+          "artifact": "a121a789-855b-420e-ac6c-13ef41055b1a",
+          "ask": "How does your phone stay online at 200 km/h?"
+        }
+      ]
+    },
+    {
       "id": "body",
       "name": "Body and health",
       "pages": [
@@ -164,13 +323,6 @@
           "ask": "How can a sentence be true and impossible to prove?"
         },
         {
-          "slug": "bayes-rule",
-          "title": "Bayes' Rule",
-          "blurb": "Something in your pan glitters. How sure can you be that it is gold?",
-          "artifact": "fbfd6c99-8169-495a-bc99-f8c39b0500ca",
-          "ask": "It glitters. How sure are you that it's gold?"
-        },
-        {
           "slug": "mungers-latticework",
           "title": "Munger's Latticework",
           "blurb": "How Charlie Munger thought: a frame built from the big ideas of every discipline, with facts hung on it.",
@@ -198,82 +350,16 @@
       ]
     },
     {
-      "id": "ai",
-      "name": "AI and data",
-      "pages": [
-        {
-          "slug": "missing-gauge",
-          "title": "The Missing Gauge",
-          "blurb": "Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.",
-          "artifact": "d55a87e1-91a8-40a3-a6a9-747bfb76946b",
-          "ask": "Why does AI say wrong things so confidently?"
-        },
-        {
-          "slug": "open-weights-vs-closed",
-          "title": "Open Weights vs Closed",
-          "blurb": "AI you can download and keep, against AI you can only rent.",
-          "artifact": "7354daaf-a773-4a53-bfc2-871a65d73cae",
-          "note": "As of September 2026",
-          "css": ".docs{grid-template-columns:repeat(28,minmax(0,10px));max-width:100%}.docs i{width:auto;height:auto;aspect-ratio:1}"
-        },
-        {
-          "slug": "opus-5-5-vs-gpt-6-astra",
-          "title": "Opus 5.5 vs GPT-6 Astra",
-          "blurb": "Which model for which work: benchmarks, prices and the caveats behind them.",
-          "artifact": "525e0c50-f6c9-467c-acaf-da25f118c8da",
-          "note": "As of September 2026"
-        },
-        {
-          "slug": "genrec-at-netflix",
-          "title": "GenRec at Netflix",
-          "blurb": "A paper walkthrough: Netflix tests a language model as the ranker for its whole catalog.",
-          "artifact": "a2f5f617-2e3c-45cb-93e1-f9aa55681cc7"
-        },
-        {
-          "slug": "cosine-adapter",
-          "title": "The Cosine Adapter",
-          "blurb": "A small network that turns similarity scores into probabilities, so one cutoff works for every search query.",
-          "artifact": "0dc881b6-a0f6-4290-82e1-e1647e0ba49c"
-        },
-        {
-          "slug": "duckdb-in-pictures",
-          "title": "DuckDB in Pictures",
-          "blurb": "A database that reads by the column and lives inside your program.",
-          "artifact": "b0822442-04dc-4189-ba6f-8a3315443180"
-        },
-        {
-          "slug": "parquet-files",
-          "title": "Parquet Files",
-          "blurb": "A table saved column by column instead of row by row, and why that makes it smaller and quicker.",
-          "artifact": "65e0d2c9-609a-4e89-9917-eee42b92a1d4",
-          "ask": "Why save a table column by column?"
-        },
-        {
-          "slug": "why-ab-winners-shrink",
-          "title": "Why A/B Winners Shrink",
-          "blurb": "The test said +4%. After launch you got +1%. Nothing broke.",
-          "artifact": "2d7b5948-503e-448c-bbed-9b21fb28294e",
-          "ask": "Why do A/B test winners shrink after launch?"
-        },
-        {
-          "slug": "analysts-cockpit",
-          "title": "The Analyst's Cockpit",
-          "blurb": "AI now writes the SQL and builds the charts. The judgment is still the analyst's job.",
-          "artifact": "3906ff79-888f-4bff-8fef-8684a71d7f65"
-        },
-        {
-          "slug": "internet-at-200-kmh",
-          "title": "Internet at 200 km/h",
-          "blurb": "On a fast train your phone changes towers every minute. The internet never finds out.",
-          "artifact": "a121a789-855b-420e-ac6c-13ef41055b1a",
-          "ask": "How does your phone stay online at 200 km/h?"
-        }
-      ]
-    },
-    {
       "id": "world",
       "name": "World and history",
       "pages": [
+        {
+          "slug": "world-hunger",
+          "title": "World hunger",
+          "blurb": "Who goes hungry, where, and how that has changed since 2000, in the UN’s figures.",
+          "ask": "How many people in the world go hungry?",
+          "note": "Data to 2025"
+        },
         {
           "slug": "bengalurus-lost-canopy",
           "title": "Bengaluru's Lost Canopy",

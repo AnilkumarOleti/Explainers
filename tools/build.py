@@ -197,7 +197,8 @@ def index_html(cat):
     pages = [p for s in cat["sections"] for p in s["pages"]]
     asks = [p for p in pages if p.get("ask")]
     first = asks[0]
-    desc = f"{site['intro']} {len(pages)} pages on the body, the brain, big ideas, AI and data, the world, and a few favourite shows."
+    names = [x["name"][0].lower() + x["name"][1:] if not x["name"].startswith("AI") else x["name"] for x in cat["sections"]]
+    desc = f"{site['intro']} {len(pages)} pages on {', '.join(names[:-1])}, and {names[-1]}."
     nav = "".join(f'<a href="#{e(s["id"])}">{e(s["name"])}</a>' for s in cat["sections"])
     out = ["<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
            "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">\n"

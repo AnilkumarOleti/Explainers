@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The AI model race | Explainers</title>
+<meta name="description" content="Which lab leads on capability, how close its rivals are, and what a given level now costs.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/ai-model-race/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The AI model race">
+<meta property="og:description" content="Which lab leads on capability, how close its rivals are, and what a given level now costs.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/ai-model-race/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/ai-model-race/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400..600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --font-anthropic-sans:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-anthropic-serif:"Newsreader",ui-serif,Georgia,"Times New Roman",serif;
+  --color-bg:#f9f9f7;--color-panel:#fff;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;
+  --color-border-line:rgba(11,11,11,.1);--color-bad:#8e2626;--color-ok:#006300;--color-warn:#734500;
+  --cds-border:rgba(11,11,11,.1);--cds-text-secondary:#52514e;--cds-surface-popover:#fff;
+  --cds-shadow-popover:0 8px 24px #0000001f,0 2px 6px #00000014;
+  --cds-chart-axis:#c3c2b7;--cds-chart-grid:rgba(11,11,11,.1);--cds-chart-muted:#c3c2b7;
+  --cds-chart-reference:#898781;--cds-chart-status-critical:#d03b3b;
+  --cds-chart-categorical-1:#2a78d6;--cds-chart-categorical-2:#eb6834;--cds-chart-categorical-3:#1baf7a;
+  --cds-chart-categorical-4:#eda100;--cds-chart-categorical-5:#e87ba4;--cds-chart-categorical-6:#008300;
+  --cds-chart-categorical-7:#6250d6;--cds-chart-categorical-8:#e34948;
+  --cds-font-size-caption:.8125rem;--cds-font-size-body:.9375rem;--cds-font-size-heading:1rem;--cds-font-size-title:1.75rem;
+  --cds-font-weight-medium:500;
+  --cds-gap-xs:8px;--cds-gap-sm:12px;--cds-gap-md:16px;--cds-gap-lg:28px;--cds-gap-xl:40px;
+  --cds-pad-xs:6px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:16px;--cds-pad-xl:24px;
+  --cds-radius:8px;--cds-dur-slow:.45s;--cds-ease-out:cubic-bezier(.165,.84,.44,1);
+}
+@media (prefers-color-scheme:dark){:root{
+  color-scheme:dark;
+  --color-bg:#0b0b0b;--color-panel:#1a1a19;--color-fg:#f0efec;--color-fg-muted:#9a988f;
+  --color-border-line:rgba(255,255,255,.1);--color-bad:#ec7e7e;--color-ok:#0ca30c;--color-warn:#db9300;
+  --cds-border:rgba(255,255,255,.1);--cds-text-secondary:#c3c2b7;--cds-surface-popover:#20201f;
+  --cds-shadow-popover:0 8px 24px #00000052,0 2px 6px #0003;
+  --cds-chart-axis:#383835;--cds-chart-grid:rgba(255,255,255,.1);--cds-chart-muted:#5f5e5a;
+  --cds-chart-reference:#97958d;
+  --cds-chart-categorical-1:#3987e5;--cds-chart-categorical-2:#d95926;--cds-chart-categorical-3:#199e70;
+  --cds-chart-categorical-4:#c98500;--cds-chart-categorical-5:#d55181;--cds-chart-categorical-6:#008300;
+  --cds-chart-categorical-7:#9085e9;--cds-chart-categorical-8:#e66767;
+}}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans)}
+#dash-root{box-sizing:border-box;max-width:1240px;margin:0 auto;padding:clamp(16px,4vw,40px);color:var(--color-fg);font-size:var(--cds-font-size-body);line-height:1.45}
+#dash-root :is(b,strong){font-weight:600}
+</style>
+</head>
+<body>
+<main id="dash-root">
+<style>
+.amr { container-type: inline-size; display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.amr-title { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; }
+.amr-takeaway { margin: var(--cds-gap-sm) 0 0; max-width: 50rem; line-height: 1.5; }
+.amr-def { margin: var(--cds-gap-xs) 0 0; max-width: 50rem; line-height: 1.5; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.amr-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--cds-gap-md); }
+.amr-card { position: relative; min-width: 0; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.amr-tile-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.amr-tile-num { margin-top: var(--cds-gap-xs); font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; line-height: 1.15; }
+.amr-tile-sub { margin-top: var(--cds-gap-xs); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.45; }
+.amr-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); align-items: start; }
+.amr-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--cds-gap-sm); }
+.amr-h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); line-height: 1.3; }
+.amr-note { margin: var(--cds-gap-xs) 0 var(--cds-gap-md); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.45; max-width: 50rem; }
+.amr-seg { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+.amr-segb { appearance: none; border: 0; background: transparent; color: var(--color-fg-muted); font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+.amr-segb + .amr-segb { border-left: 1px solid var(--color-border-line); }
+.amr-segb[aria-pressed="true"] { background: var(--color-bg); color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.amr-segb:focus-visible, .amr-sortb:focus-visible, .amr-search:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+.amr-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); margin-bottom: var(--cds-gap-sm); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: 1.2em; }
+.amr-key { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); white-space: nowrap; }
+.amr-sw { width: .625rem; height: .625rem; border-radius: 50%; flex: none; }
+.amr-sw-line { width: 1rem; height: 2px; border-radius: 1px; flex: none; background: var(--color-fg); }
+.amr-chart { position: relative; min-height: 12rem; }
+.amr-chart svg { display: block; overflow: visible; }
+.amr-tick, .amr-lab { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.amr-val, .amr-end, .amr-name { fill: var(--color-fg); font-size: var(--cds-font-size-caption); }
+.amr-name { paint-order: stroke; stroke: var(--color-panel); stroke-width: 3px; stroke-linejoin: round; }
+.amr-grid { stroke: var(--cds-chart-grid); stroke-width: 1; }
+.amr-rule { stroke: var(--cds-chart-axis); stroke-width: 1; }
+.amr-dot { stroke: var(--color-panel); stroke-width: .75; }
+.amr-ring { fill: none; stroke: var(--color-fg); stroke-width: 1.5; }
+.amr-step { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.amr-pareto { fill: none; stroke: var(--cds-chart-reference); stroke-width: 1; stroke-dasharray: 4 3; }
+.amr-hit { fill: transparent; }
+.amr-row.amr-on .amr-lab { fill: var(--color-fg); }
+.amr-row.amr-dim .amr-bar, .amr-col.amr-dim { opacity: .45; }
+.amr-tip { position: absolute; z-index: 2; left: 0; top: 0; pointer-events: none; white-space: nowrap; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); line-height: 1.5; }
+.amr-tip[hidden] { display: none; }
+.amr-tip-head { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.amr-tip-line { display: flex; align-items: center; gap: var(--cds-gap-xs); color: var(--cds-text-secondary); }
+.amr-tip-sw { width: .625rem; height: .625rem; border-radius: 2px; flex: none; }
+.amr-tip-val { margin-left: auto; padding-left: var(--cds-pad-md); color: var(--color-fg); }
+.amr-search { width: min(100%, 16rem); box-sizing: border-box; font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); }
+.amr-tablebox { max-height: 30rem; overflow: auto; margin-top: var(--cds-gap-sm); }
+.amr-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); }
+.amr-table th { position: sticky; top: 0; z-index: 1; background: var(--color-panel); text-align: left; padding: 0; border-bottom: 1px solid var(--color-border-line); font-weight: var(--cds-font-weight-medium); white-space: nowrap; }
+.amr-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.amr-table .amr-num { text-align: right; }
+.amr-table td.amr-soft { color: var(--color-fg-muted); }
+.amr-labdot { display: inline-block; width: .5rem; height: .5rem; border-radius: 50%; margin-right: var(--cds-gap-xs); }
+.amr-sortb { appearance: none; width: 100%; border: 0; background: transparent; color: var(--color-fg-muted); font: inherit; font-weight: inherit; text-align: inherit; padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+.amr-table th[aria-sort] .amr-sortb { color: var(--color-fg); }
+.amr-table th[aria-sort="ascending"] .amr-sortb::after { content: " ↑"; }
+.amr-table th[aria-sort="descending"] .amr-sortb::after { content: " ↓"; }
+.amr-empty { margin: var(--cds-gap-sm) 0 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.amr-empty[hidden] { display: none; }
+.amr-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.amr-fail-dot { width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.amr-method { margin: 0; padding-left: 1.1em; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.55; max-width: 58rem; }
+.amr-method li + li { margin-top: var(--cds-gap-xs); }
+.amr-method a { color: inherit; }
+.amr [data-dash-source-state="refreshing"] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+@container (max-width: 44rem) {
+  .amr .amr-sec { display: none; }
+}
+@container (max-width: 28rem) {
+  .amr .amr-sec2 { display: none; }
+}
+</style>
+
+<div class="amr">
+  <header id="overview">
+    <h1 class="amr-title">The AI model race</h1>
+    <p class="amr-takeaway">
+      <span class="amr-v-leader dash-skeleton" data-source="summary" data-field="leader" data-row="0">—</span>
+      tops Epoch's capability index at
+      <span class="amr-v-leadeci dash-skeleton" data-source="summary" data-field="leader_eci" data-row="0">—</span>,
+      but <span class="amr-v-tied dash-skeleton" data-source="summary" data-field="tied" data-row="0">—</span>
+      rivals sit inside its margin of error. Meanwhile GPT-5-level capability costs
+      <span class="amr-v-drop dash-skeleton" data-source="summary" data-field="level150_drop_pct" data-row="0">—</span>
+      less than it did when GPT-5 launched.
+    </p>
+    <p class="amr-def">The Epoch Capabilities Index (ECI) folds results from more than 50 benchmarks into one scale, set so that Claude 3.5 Sonnet scores 130 and GPT-5 scores 150. Prices are API list prices in US dollars per million tokens, blended at three input tokens to one output token. Data as of 9 October 2026.</p>
+  </header>
+
+  <section class="amr-tiles" id="headlines" aria-label="Headline figures">
+    <div class="amr-card">
+      <div class="amr-tile-label">Top of the index</div>
+      <div class="amr-tile-num amr-v-leadeci dash-skeleton" data-source="summary" data-field="leader_eci" data-row="0">—</div>
+      <div class="amr-tile-sub"><span class="amr-v-leader dash-skeleton" data-source="summary" data-field="leader" data-row="0">—</span>, <span class="amr-v-leadlab dash-skeleton" data-source="summary" data-field="leader_lab" data-row="0">—</span>, released <span class="amr-v-leaddate dash-skeleton" data-source="summary" data-field="leader_date" data-row="0">—</span></div>
+    </div>
+    <div class="amr-card">
+      <div class="amr-tile-label">Statistically level with the leader</div>
+      <div class="amr-tile-num amr-v-tied dash-skeleton" data-source="summary" data-field="tied" data-row="0">—</div>
+      <div class="amr-tile-sub">other models score inside the leader's 95% interval</div>
+    </div>
+    <div class="amr-card">
+      <div class="amr-tile-label">Open weights trail closed by</div>
+      <div class="amr-tile-num amr-v-lag dash-skeleton" data-source="summary" data-field="open_lag_months" data-row="0">—</div>
+      <div class="amr-tile-sub"><span class="amr-v-open dash-skeleton" data-source="summary" data-field="open_best" data-row="0">—</span> matches a score closed models first reached with <span class="amr-v-match dash-skeleton" data-source="summary" data-field="closed_match" data-row="0">—</span></div>
+    </div>
+    <div class="amr-card">
+      <div class="amr-tile-label">Price of GPT-5-level capability</div>
+      <div class="amr-tile-num amr-v-now dash-skeleton" data-source="summary" data-field="level150_now" data-row="0">—</div>
+      <div class="amr-tile-sub">per million tokens, down <span class="amr-v-drop dash-skeleton" data-source="summary" data-field="level150_drop_pct" data-row="0">—</span> from <span class="amr-v-first dash-skeleton" data-source="summary" data-field="level150_first" data-row="0">—</span> at GPT-5's launch</div>
+    </div>
+  </section>
+
+  <section class="amr-card" id="frontier">
+    <div class="amr-head">
+      <h2 class="amr-h2">The capability frontier</h2>
+      <div class="amr-seg" role="group" aria-label="Colour models by">
+        <button type="button" class="amr-segb" value="lab" aria-pressed="true">By lab</button>
+        <button type="button" class="amr-segb" value="weights" aria-pressed="false">Open vs closed</button>
+        <button type="button" class="amr-segb" value="country" aria-pressed="false">US vs China</button>
+      </div>
+    </div>
+    <p class="amr-note">Each dot is a model, placed at its release date and ECI score. The stepped line follows the best score released so far. With By lab selected, the band under the chart shows which lab held that record. Models scoring under 100 are left off.</p>
+    <div class="amr-legend amr-frontier-legend" data-source="models"></div>
+    <div class="amr-chart amr-frontier-chart dash-skeleton" data-source="models frontiers"></div>
+    <div class="amr-tip amr-frontier-tip" hidden></div>
+  </section>
+
+  <section class="amr-cols">
+    <div class="amr-card" id="level-cost">
+      <h2 class="amr-h2">What a capability level costs</h2>
+      <p class="amr-note">Cheapest blended price per million tokens among models at or above each ECI score. 140 is roughly o1, 150 is GPT-5, 160 is roughly GPT-5.5 Pro. Log scale.</p>
+      <div class="amr-chart amr-cost-chart dash-skeleton" data-source="level_cost"></div>
+      <div class="amr-tip amr-cost-tip" hidden></div>
+    </div>
+    <div class="amr-card" id="value">
+      <h2 class="amr-h2">Price against capability today</h2>
+      <p class="amr-note">Current blended price per million tokens for models scoring 140 or more. The dashed line is the cheapest way to reach each score. Log scale.</p>
+      <div class="amr-legend amr-value-legend" data-source="priced"></div>
+      <div class="amr-chart amr-value-chart dash-skeleton" data-source="priced"></div>
+      <div class="amr-tip amr-value-tip" hidden></div>
+    </div>
+  </section>
+
+  <section class="amr-cols">
+    <div class="amr-card" id="pace">
+      <h2 class="amr-h2">Release pace</h2>
+      <p class="amr-note">Models released per quarter, among those Epoch has scored. The latest quarters can still grow as newer models are evaluated.</p>
+      <div class="amr-legend amr-pace-legend" data-source="pace"></div>
+      <div class="amr-chart amr-pace-chart dash-skeleton" data-source="pace"></div>
+      <div class="amr-tip amr-pace-tip" hidden></div>
+    </div>
+    <div class="amr-card" id="time-on-top">
+      <h2 class="amr-h2">Time at the top</h2>
+      <p class="amr-note">Days each lab's model has held the highest ECI score since GPT-4's release in March 2023.</p>
+      <div class="amr-chart amr-lead-chart dash-skeleton" data-source="lead_days"></div>
+      <div class="amr-tip amr-lead-tip" hidden></div>
+    </div>
+  </section>
+
+  <section class="amr-card" id="all-models">
+    <div class="amr-head">
+      <h2 class="amr-h2">All models</h2>
+      <input class="amr-search" type="search" placeholder="Search a model or lab" aria-label="Search a model or lab">
+    </div>
+    <div class="amr-tablebox">
+      <table class="amr-table" data-source="models" data-row-key="model">
+        <thead>
+          <tr>
+            <th data-field="model"><button type="button" class="amr-sortb">Model</button></th>
+            <th class="amr-sec2" data-field="organization"><button type="button" class="amr-sortb">Lab</button></th>
+            <th class="amr-sec" data-field="release_date"><button type="button" class="amr-sortb">Released</button></th>
+            <th class="amr-num" data-field="eci" aria-sort="descending"><button type="button" class="amr-sortb">ECI</button></th>
+            <th class="amr-num amr-sec" data-source="priced" data-field="input"><button type="button" class="amr-sortb">Input $/M</button></th>
+            <th class="amr-num" data-source="priced" data-field="output"><button type="button" class="amr-sortb">Output $/M</button></th>
+            <th class="amr-sec" data-field="weights"><button type="button" class="amr-sortb">Weights</button></th>
+          </tr>
+        </thead>
+        <tbody class="amr-tbody"></tbody>
+      </table>
+    </div>
+    <p class="amr-empty" hidden>No model matches that search.</p>
+  </section>
+
+  <section class="amr-card" id="method">
+    <h2 class="amr-h2">How to read this</h2>
+    <p class="amr-note">What the index and the prices do and do not capture.</p>
+    <ul class="amr-method">
+      <li>ECI is fitted across all benchmarks at once, so scores shift a little whenever new evaluations arrive, and small gaps between models are within the margin of error. It measures benchmark performance, not usefulness for a particular job.</li>
+      <li>A model needs results on at least four benchmarks to get a score, so very new, narrow or unevaluated models are missing. That includes some recent flagship releases.</li>
+      <li>Prices come from one tracker of published API list prices and use each model's standard context tier. Where the tracker records no start date, the price is treated as in force since the model's release. Only models with a tracked price appear in the price charts, and coverage of Chinese labs is thin, so the cheapest option at a given level may be cheaper still.</li>
+      <li>The three-to-one blend is a convention. Reasoning-heavy models spend far more on output tokens, so the cost of a real task can differ a lot from the blended figure.</li>
+      <li>Lab colours group Google DeepMind and Google as Google, and collect smaller labs such as Moonshot, Z.ai, Mistral and MiniMax under Other.</li>
+      <li>Sources: Epoch AI, <a href="https://epoch.ai/eci" target="_blank" rel="noopener">Epoch Capabilities Index</a> (scores, release dates and model details, CC BY 4.0), and Simon Willison's <a href="https://www.llm-prices.com/" target="_blank" rel="noopener">llm-prices</a> tracker (list prices and price changes).</li>
+    </ul>
+  </section>
+</div>
+</main>
+<script type="text/csv" data-id="models">
+model,lab,organization,country,release_date,eci,eci_low,eci_high,accessibility,weights,price_id
+LLaMA-13B,Meta,Meta AI,United States,2023-02-24,100.58,88.99,106.41,Open weights (non-commercial),Open weights,
+LLaMA-33B,Meta,Meta AI,United States,2023-02-24,107.41,97.41,112.09,Open weights (non-commercial),Open weights,
+LLaMA-65B,Meta,Meta AI,United States,2023-02-24,110.17,101.4,114.12,Open weights (non-commercial),Open weights,
+LLaMA-7B,Meta,Meta AI,United States,2023-02-24,96.7,83.49,103.66,Open weights (non-commercial),Open weights,
+GPT-4 (Mar 2023),OpenAI,OpenAI,United States,2023-03-14,125.89,119.25,130.45,API access,Closed weights,
+Cerebras-GPT-13B,Other,Cerebras Systems,United States,2023-03-20,83.24,66.01,92.03,Open weights (unrestricted),Open weights,
+Dolly 2.0-12b,Other,Databricks,United States,2023-04-11,89.67,73.6,97.55,Open weights (unrestricted),Open weights,
+vicuna-13b-v1.1,Other,,,2023-04-12,94.67,78.87,102.61,Unknown,Other,
+stablelm-tuned-alpha-7b,Other,,,2023-04-19,55.75,30.79,72.32,Unknown,Other,
+Falcon-7B,Other,Technology Innovation Institute,United Arab Emirates,2023-04-24,95.1,81.1,102.36,Open weights (unrestricted),Open weights,
+RedPajama-INCITE-7B-Base,Other,,,2023-05-04,90.43,74.4,98.46,Unknown,Other,
+MPT-7B,Other,MosaicML,United States,2023-05-05,94.59,80.52,101.56,Open weights (unrestricted),Open weights,
+PaLM 2-L,Other,,,2023-05-17,115.02,106.15,128.07,Unknown,Other,
+PaLM 2-M,Other,,,2023-05-17,108.29,98.56,116.75,Unknown,Other,
+PaLM 2-S,Other,,,2023-05-17,106.17,94.83,114.5,Unknown,Other,
+Falcon-40B,Other,Technology Innovation Institute,United Arab Emirates,2023-05-25,104.45,92.77,109.93,Open weights (unrestricted),Open weights,
+Baichuan1-7B,Other,Baichuan,China,2023-06-01,90.46,75.57,98.46,Open weights (non-commercial),Open weights,
+open_llama_7b,Other,,,2023-06-07,91.65,76.93,99.24,Unknown,Other,
+GPT-3.5 Turbo (Jun 2023),OpenAI,OpenAI,United States,2023-06-13,113.36,104.33,117.81,API access,Closed weights,
+GPT-4 (Jun 2023),OpenAI,OpenAI,United States,2023-06-13,123.12,116.6,126.49,API access,Closed weights,
+MPT-30B,Other,MosaicML,United States,2023-06-22,100.66,88.92,106.41,Open weights (unrestricted),Open weights,
+chatglm2-6b,Other,,,2023-06-24,98.94,80.98,105.48,Unknown,Other,
+XGen-7B,Other,Salesforce,United States,2023-06-27,93.4,78.79,100.75,Open weights (unrestricted),Open weights,
+internlm-7b,Other,,,2023-07-05,102.87,90.77,109.51,Unknown,Other,
+Claude 2,Anthropic,Anthropic,United States,2023-07-11,120.13,112.95,123.79,API access,Closed weights,
+Llama 2-13B,Meta,Meta AI,United States,2023-07-18,106.17,96.07,110.78,Open weights (restricted use),Open weights,
+Llama 2-34B,Meta,Meta AI,United States,2023-07-18,105.2,94.54,110.21,Unreleased,Closed weights,
+Llama 2-70B,Meta,Meta AI,United States,2023-07-18,113.79,105.66,117.44,Open weights (restricted use),Open weights,
+Llama 2-7B,Meta,Meta AI,United States,2023-07-18,99.06,86.79,105.6,Open weights (restricted use),Open weights,
+Stable Beluga 2,Other,Stability AI,United Kingdom,2023-07-20,117.12,108.43,120.12,Open weights (non-commercial),Open weights,
+Claude Instant,Anthropic,Anthropic,United States,2023-08-09,120.28,112.45,122.8,API access,Closed weights,
+Baichuan2-13B,Other,Baichuan,China,2023-09-06,103.19,91.12,110.3,Open weights (restricted use),Open weights,
+Falcon-180B,Other,Technology Innovation Institute,United Arab Emirates,2023-09-06,112.13,103.14,118.9,Open weights (restricted use),Open weights,
+Phi-1.5,Other,Microsoft,United States,2023-09-11,91.53,71.63,100.79,Open weights (unrestricted),Open weights,
+internlm-20b,Other,,,2023-09-18,112.09,102.41,116.27,Unknown,Other,
+Baichuan 2-7B,Other,Baichuan,China,2023-09-20,96.33,83.83,104.32,Open weights (restricted use),Open weights,
+Qwen-14B,Alibaba,Alibaba,China,2023-09-24,113.03,103.3,117.38,Open weights (restricted use),Open weights,
+Mistral 7B v0.1,Other,Mistral AI,France,2023-09-27,112.21,102.36,116.31,Open weights (unrestricted),Open weights,
+Qwen-7B,Alibaba,Alibaba,China,2023-09-28,106.83,93.62,111.9,Open weights (restricted use),Open weights,
+DeepSeek Coder 1.3B,DeepSeek,"DeepSeek,Peking University",China,2023-11-02,63.6,42.27,76.81,Open weights (restricted use),Open weights,
+DeepSeek Coder 33B,DeepSeek,"DeepSeek,Peking University",China,2023-11-02,96.32,82.84,103.49,Open weights (restricted use),Open weights,
+DeepSeek Coder 6.7B,DeepSeek,"DeepSeek,Peking University",China,2023-11-02,89.62,72.98,97.8,Open weights (restricted use),Open weights,
+Yi-34B,Other,01.AI,China,2023-11-02,117.39,107.96,120.6,Open weights (restricted use),Open weights,
+GPT-3.5 Turbo (Nov 2023),OpenAI,OpenAI,United States,2023-11-06,118.55,110.05,121.66,API access,Closed weights,
+Claude 2.1,Anthropic,Anthropic,United States,2023-11-21,119.27,111.28,122.03,API access,Closed weights,
+Yi 6B,Other,01.AI,China,2023-11-22,104.77,94.36,110.35,Open weights (restricted use),Open weights,
+DeepSeek LLM 67B,DeepSeek,DeepSeek,China,2023-11-29,110.5,95.59,116.63,Open weights (restricted use),Open weights,
+Qwen-1_8B,Other,,,2023-11-30,92.93,71.46,101.78,Unknown,Other,
+Mixtral 8x7B,Other,Mistral AI,France,2023-12-11,118.47,110.39,121.07,Open weights (unrestricted),Open weights,open-mixtral-8x7b
+Phi-2,Other,Microsoft,United States,2023-12-12,107.94,88.62,113.81,Open weights (unrestricted),Open weights,
+Gemini 1.0 Pro,Google,Google DeepMind,United States,2023-12-13,117.04,108.83,119.49,API access,Closed weights,
+GPT-3.5 Turbo (Jan 2024),OpenAI,OpenAI,United States,2024-01-25,115.7,107.42,118.9,API access,Closed weights,
+GPT-4 Turbo (Nov 2023),OpenAI,OpenAI,United States,2024-01-25,126.46,120.87,128.99,API access,Closed weights,
+StarCoder 2 15B,Other,"Hugging Face,ServiceNow,Nvidia,BigCode",United States,2024-02-20,105.0,91.04,111.32,Open weights (restricted use),Open weights,
+StarCoder 2 7B,Other,"Hugging Face,ServiceNow,Nvidia,BigCode",United States,2024-02-20,93.56,76.76,101.69,Open weights (restricted use),Open weights,
+Gemma 2B,Google,Google DeepMind,United States,2024-02-21,94.2,80.76,101.32,Open weights (restricted use),Open weights,
+Gemma 7B,Google,Google DeepMind,United States,2024-02-21,111.99,102.38,116.53,Open weights (restricted use),Open weights,
+StarCoder 2 3B,Other,"Hugging Face,ServiceNow,Nvidia,BigCode",United States,2024-02-22,88.76,70.65,97.53,Open weights (restricted use),Open weights,
+Mistral Large,Other,Mistral AI,France,2024-02-26,122.01,114.39,125.14,API access,Closed weights,
+Nemotron-4 15B,Other,Nvidia,United States,2024-02-26,107.72,97.25,113.25,Unreleased,Closed weights,
+Claude 3 Opus,Anthropic,Anthropic,United States,2024-02-29,126.91,121.49,129.98,API access,Closed weights,claude-3-opus
+Claude 3 Sonnet,Anthropic,Anthropic,United States,2024-02-29,120.7,113.16,123.92,API access,Closed weights,
+Yi-9B,Other,,,2024-03-01,107.61,96.2,114.79,Unknown,Other,
+Claude 3 Haiku,Anthropic,Anthropic,United States,2024-03-07,118.35,110.46,121.54,API access,Closed weights,claude-3-haiku
+GPT-4 Turbo (Apr 2024),OpenAI,OpenAI,United States,2024-04-09,127.25,121.86,128.83,API access,Closed weights,
+CodeQwen1.5-7B,Other,,,2024-04-15,94.86,78.95,102.89,Unknown,Other,
+Mixtral 8x22B,Other,Mistral AI,France,2024-04-17,122.03,114.63,124.53,Open weights (unrestricted),Open weights,open-mixtral-8x22b
+Llama 3-70B,Meta,Meta AI,United States,2024-04-18,122.93,116.62,125.75,Open weights (restricted use),Open weights,
+Llama 3-8B,Meta,Meta AI,United States,2024-04-18,116.45,106.78,119.26,Open weights (restricted use),Open weights,
+phi-3-medium 14B,Other,Microsoft,United States,2024-04-23,121.23,113.78,124.1,Open weights (unrestricted),Open weights,
+phi-3-mini 3.8B,Other,Microsoft,United States,2024-04-23,117.36,107.91,120.72,Open weights (unrestricted),Open weights,
+phi-3-small 7.4B,Other,Microsoft,United States,2024-04-23,121.83,114.76,124.37,Open weights (unrestricted),Open weights,
+"DeepSeek-V2 (MoE-236B, May 2024)",DeepSeek,DeepSeek,China,2024-05-07,124.77,118.45,127.76,Open weights (restricted use),Open weights,
+Falcon 2 11B,Other,Technology Innovation Institute,United Arab Emirates,2024-05-09,109.56,99.79,115.57,Open weights (restricted use),Open weights,
+GPT-4o (May 2024),OpenAI,OpenAI,United States,2024-05-13,128.97,123.83,131.74,API access,Closed weights,
+Gemini 1.5 Pro (May 2024),Google,Google DeepMind,United States,2024-05-14,126.91,121.14,129.15,API access,Closed weights,
+Gemini 1.5 Flash (May 2024),Google,Google DeepMind,United States,2024-05-23,122.59,115.65,124.62,API access,Closed weights,
+Mistral 7B v0.3,Other,Mistral AI,France,2024-05-27,108.99,96.78,112.52,Open weights (unrestricted),Open weights,
+Qwen2-72B,Alibaba,Alibaba,China,2024-06-07,125.28,119.01,126.92,Open weights (unrestricted),Open weights,
+DeepSeek-Coder-V2-Lite-Base,Other,,,2024-06-13,108.88,97.54,113.82,Unknown,Other,
+Claude 3.5 Sonnet,Anthropic,Anthropic,United States,2024-06-20,130.0,,,API access,Closed weights,claude-3.5-sonnet
+Gemma 2 27B,Google,Google DeepMind,United States,2024-06-24,122.08,114.44,124.08,Open weights (restricted use),Open weights,
+Gemma 2 9B,Google,Google DeepMind,United States,2024-06-24,119.83,111.63,122.61,Open weights (restricted use),Open weights,
+GPT-4o mini,OpenAI,OpenAI,United States,2024-07-18,126.56,119.1,128.7,API access,Closed weights,gpt-4o-mini
+Mistral NeMo,Other,Mistral AI,France,2024-07-18,118.68,110.95,121.19,Open weights (unrestricted),Open weights,mistral-nemo
+Llama 3.1-405B,Meta,Meta AI,United States,2024-07-23,128.75,123.83,130.75,Open weights (restricted use),Open weights,
+Llama 3.1-70B,Meta,Meta AI,United States,2024-07-23,125.92,120.02,128.5,Open weights (restricted use),Open weights,
+Llama 3.1-8B,Meta,Meta AI,United States,2024-07-23,116.57,106.21,121.11,Open weights (restricted use),Open weights,
+Mistral Large 2 (Jul 2024),Other,Mistral AI,France,2024-07-24,127.54,121.95,129.62,Open weights (non-commercial),Open weights,
+GPT-4o (Aug 2024),OpenAI,OpenAI,United States,2024-08-06,128.76,123.6,130.7,API access,Closed weights,gpt-4o
+Command R+,Other,"Cohere,Cohere Labs (formerly Cohere for AI)",Canada,2024-08-30,119.34,109.86,125.32,Open weights (non-commercial),Open weights,
+o1-mini,OpenAI,OpenAI,United States,2024-09-12,135.82,131.65,137.26,API access,Closed weights,
+o1-preview,OpenAI,OpenAI,United States,2024-09-12,134.79,130.78,138.74,API access,Closed weights,o1-preview
+Qwen2.5-32B,Alibaba,Alibaba,China,2024-09-17,128.52,122.17,130.03,Open weights (unrestricted),Open weights,
+Qwen2.5-Coder (1.5B),Alibaba,Alibaba,China,2024-09-18,102.99,85.28,110.96,Open weights (unrestricted),Open weights,
+Qwen2.5-Coder (7B),Alibaba,Alibaba,China,2024-09-18,113.14,102.61,119.91,Open weights (unrestricted),Open weights,
+Qwen2.5-Coder-0.5B,Other,,,2024-09-18,88.15,58.7,100.41,Unknown,Other,
+Qwen2.5-Coder-14B,Other,,,2024-09-18,116.4,106.49,121.76,Unknown,Other,
+Qwen2.5-Coder-32B,Alibaba,Alibaba,China,2024-09-18,119.49,110.05,124.92,Open weights (unrestricted),Open weights,
+Qwen2.5-Coder-3B,Other,,,2024-09-18,107.74,94.23,115.66,Unknown,Other,
+Qwen2.5-72B,Alibaba,Alibaba,China,2024-09-19,129.0,123.19,130.61,Open weights (unrestricted),Open weights,
+Qwen2.5-7B,Alibaba,Alibaba,China,2024-09-19,118.51,110.9,121.15,Open weights (unrestricted),Open weights,
+Gemini 1.5 Flash (Sep 2024),Google,Google DeepMind,United States,2024-09-24,129.36,123.19,131.25,API access,Closed weights,gemini-1.5-flash
+Gemini 1.5 Pro (Sept 2024),Google,Google DeepMind,United States,2024-09-24,131.73,127.16,133.1,API access,Closed weights,gemini-1.5-pro
+Llama 3.2 1B,Meta,Meta AI,United States,2024-09-24,101.99,90.04,110.07,Open weights (restricted use),Open weights,
+Llama 3.2 90B,Meta,Meta AI,United States,2024-09-24,125.5,119.43,127.28,Open weights (restricted use),Open weights,
+Ministral 3B,Other,Mistral AI,France,2024-10-16,118.1,106.18,121.72,API access,Closed weights,ministral-3b-latest
+Claude 3.5 Haiku,Anthropic,Anthropic,United States,2024-10-22,127.15,120.7,129.48,API access,Closed weights,claude-3.5-haiku
+Claude 3.5 Sonnet (October 2024),Anthropic,Anthropic,United States,2024-10-22,133.55,128.79,137.55,API access,Closed weights,claude-3.5-sonnet
+Mistral Large 2 (Nov 2024),Other,Mistral AI,France,2024-11-18,128.52,122.68,130.58,Open weights (non-commercial),Open weights,
+GPT-4o (Nov 2024),OpenAI,OpenAI,United States,2024-11-20,128.81,123.63,131.15,API access,Closed weights,gpt-4o
+INTELLECT-1,Other,"Prime Intellect,Hugging Face,Arcee AI",United States,2024-11-29,100.86,88.45,106.27,Unknown,Other,
+Amazon Nova Pro,Other,Amazon,United States,2024-12-03,123.8,110.51,126.8,API access,Closed weights,amazon-nova-pro
+Llama 3.3 70B,Meta,Meta AI,United States,2024-12-06,127.33,121.79,129.67,Open weights (restricted use),Open weights,
+Gemini 2.0 Flash (Dec 2024),Google,"Google DeepMind,Google",United States,2024-12-11,134.69,124.88,136.62,API access,Closed weights,
+Grok-2 (Dec 2024),xAI,xAI,United States,2024-12-12,130.48,125.82,132.23,API access,Closed weights,
+Phi-4,Other,Microsoft Research,United States,2024-12-12,130.42,124.72,132.03,Open weights (unrestricted),Open weights,
+o1,OpenAI,OpenAI,United States,2024-12-17,141.91,139.66,143.2,API access,Closed weights,o1-preview
+DeepSeek-V3,DeepSeek,DeepSeek,China,2024-12-26,132.34,127.53,135.73,Open weights (restricted use),Open weights,deepseek-chat
+DeepSeek-R1,DeepSeek,DeepSeek,China,2025-01-20,138.97,136.3,140.31,Open weights (unrestricted),Open weights,deepseek-reasoner
+DeepSeek-R1-Distill-Qwen-14B,DeepSeek,DeepSeek,China,2025-01-20,135.43,127.05,138.01,Open weights (unrestricted),Open weights,
+DeepSeek-R1-Distill-Qwen-32B,DeepSeek,DeepSeek,China,2025-01-20,137.44,126.59,138.7,Open weights (unrestricted),Open weights,
+Gemini 2.0 Flash Thinking (Jan 2025),Google,"Google DeepMind,Google",United States,2025-01-21,135.36,130.35,138.06,API access,Closed weights,
+Qwen2.5-Max,Alibaba,Alibaba,China,2025-01-25,132.53,127.85,135.94,API access,Closed weights,
+Mistral Small 3,Other,Mistral AI,France,2025-01-30,127.07,121.39,128.85,Open weights (unrestricted),Open weights,
+o3-mini,OpenAI,OpenAI,United States,2025-01-31,140.34,137.7,141.84,API access,Closed weights,o3-mini
+Gemini 2.0 Flash (Feb 2025),Google,"Google DeepMind,Google",United States,2025-02-05,134.69,130.78,136.5,API access,Closed weights,gemini-2.0-flash
+Gemini 2.0 Pro,Google,Google DeepMind,United States,2025-02-05,135.06,130.97,136.89,Hosted access (no API),Closed weights,
+Claude 3.7 Sonnet,Anthropic,Anthropic,United States,2025-02-24,141.16,138.82,142.67,API access,Closed weights,claude-3.7-sonnet
+GPT-4.5,OpenAI,OpenAI,United States,2025-02-27,136.74,133.39,138.67,API access,Closed weights,gpt-4.5
+QwQ-32B,Alibaba,Alibaba,China,2025-03-05,137.6,132.89,141.63,Open weights (unrestricted),Open weights,
+Gemma 3 12B,Google,Google DeepMind,United States,2025-03-12,123.5,116.01,128.49,Open weights (restricted use),Open weights,
+Gemma 3 27B,Google,Google DeepMind,United States,2025-03-12,130.04,124.28,132.2,Open weights (restricted use),Open weights,
+Gemma 3 4B,Google,Google DeepMind,United States,2025-03-12,116.02,97.61,123.83,Open weights (restricted use),Open weights,
+Mistral Small 3.1,Other,Mistral AI,France,2025-03-17,127.48,122.21,129.25,Open weights (unrestricted),Open weights,mistral-small-latest
+DeepSeek-V3 (Mar 2025),DeepSeek,DeepSeek,China,2025-03-24,135.94,132.14,137.83,Open weights (restricted use),Open weights,deepseek-chat
+Gemini 2.5 Pro (Mar 2025),Google,Google DeepMind,United States,2025-03-31,144.16,141.92,146.97,API access,Closed weights,gemini-2.5-pro-preview-03-25
+Llama 4 Scout,Meta,Meta AI,United States,2025-04-05,129.64,124.31,131.42,Open weights (restricted use),Open weights,
+Llama 4 Maverick,Meta,Meta AI,United States,2025-04-06,132.2,127.74,134.28,Open weights (restricted use),Open weights,
+Grok 3,xAI,xAI,United States,2025-04-09,138.33,135.35,139.75,API access,Closed weights,grok-3
+GPT-4.1,OpenAI,OpenAI,United States,2025-04-14,136.78,133.62,138.61,API access,Closed weights,gpt-4.1
+GPT-4.1 mini,OpenAI,OpenAI,United States,2025-04-14,135.01,131.28,136.66,API access,Closed weights,gpt-4.1-mini
+GPT-4.1 nano,OpenAI,OpenAI,United States,2025-04-14,129.62,123.19,131.95,API access,Closed weights,gpt-4.1-nano
+o3,OpenAI,OpenAI,United States,2025-04-16,146.86,145.03,148.65,API access,Closed weights,o3
+o4-mini,OpenAI,OpenAI,United States,2025-04-16,145.64,143.23,147.36,API access,Closed weights,o4-mini
+Gemini 2.5 Flash (Apr 2025),Google,Google DeepMind,United States,2025-04-17,139.96,136.13,142.05,API access,Closed weights,
+Qwen3-235B-A22B,Alibaba,Alibaba,China,2025-04-28,139.35,135.49,140.84,Open weights (unrestricted),Open weights,
+Qwen3-8B,Alibaba,Alibaba,China,2025-04-28,136.17,130.09,138.24,Open weights (unrestricted),Open weights,
+Qwen3-14B,Alibaba,Alibaba,China,2025-04-29,138.23,133.7,140.03,Open weights (unrestricted),Open weights,
+Qwen3-30B-A3B,Alibaba,Alibaba,China,2025-04-29,136.18,129.7,138.62,Open weights (unrestricted),Open weights,
+Qwen3-32B,Alibaba,Alibaba,China,2025-04-29,138.51,135.14,140.28,Open weights (unrestricted),Open weights,
+Gemini 2.5 Pro (May 2025),Google,Google DeepMind,United States,2025-05-06,142.47,138.98,145.14,API access,Closed weights,
+Mistral Medium 3,Other,Mistral AI,France,2025-05-07,134.07,130.1,135.5,API access,Closed weights,mistral-medium-2505
+Gemini 2.5 Flash (May 2025),Google,Google DeepMind,United States,2025-05-20,141.53,139.15,142.89,API access,Closed weights,
+Claude Opus 4,Anthropic,Anthropic,United States,2025-05-22,142.67,140.09,144.31,API access,Closed weights,claude-opus-4
+Claude Sonnet 4,Anthropic,Anthropic,United States,2025-05-22,141.69,138.9,142.99,API access,Closed weights,claude-sonnet-4
+DeepSeek-R1 (May 2025),DeepSeek,DeepSeek,China,2025-05-28,141.29,138.64,142.77,Open weights (unrestricted),Open weights,deepseek-reasoner
+Gemini 2.5 Pro (Jun 2025),Google,Google DeepMind,United States,2025-06-05,145.32,143.76,146.76,API access,Closed weights,gemini-2.5-pro
+Magistral Small 1.0,Other,Mistral AI,France,2025-06-10,133.19,128.75,134.47,Open weights (unrestricted),Open weights,
+o3-pro,OpenAI,OpenAI,United States,2025-06-10,147.42,145.69,149.92,API access,Closed weights,o3-pro
+Gemini 2.5 Flash (Jun 2025),Google,Google DeepMind,United States,2025-06-17,140.8,138.38,142.12,API access,Closed weights,gemini-2.5-flash
+Gemini 2.5 Flash-Lite (Jun 2025),Google,Google DeepMind,United States,2025-06-17,133.94,130.01,136.49,API access,Closed weights,gemini-2.5-flash-lite
+Mistral Small 3.2,Other,Mistral AI,France,2025-06-20,131.74,126.5,133.66,Open weights (unrestricted),Open weights,
+Grok-3 mini,xAI,xAI,United States,2025-06-24,140.35,137.52,142.02,API access,Closed weights,grok-3-mini
+Grok 4,xAI,xAI,United States,2025-07-09,146.44,144.68,148.13,API access,Closed weights,grok-4
+Kimi K2 (Jul 2025),Other,Moonshot,China,2025-07-12,140.13,136.55,142.0,Open weights (restricted use),Open weights,kimi-k2-0711-preview
+Qwen3-235B-A22B-Instruct (Jul 2025),Alibaba,Alibaba,China,2025-07-25,138.92,135.74,140.78,Open weights (unrestricted),Open weights,
+Qwen3-235B-A22B-Thinking (Jul 2025),Alibaba,Alibaba,China,2025-07-25,143.85,141.94,145.31,Open weights (unrestricted),Open weights,
+Qwen3-30B-A3B-Instruct (Jul 2025),Alibaba,Alibaba,China,2025-07-29,137.42,131.83,139.38,Open weights (unrestricted),Open weights,
+Qwen3-30B-A3B-Thinking (Jul 2025),Alibaba,Alibaba,China,2025-07-30,139.63,135.51,140.97,Open weights (unrestricted),Open weights,
+Claude Opus 4.1,Anthropic,Anthropic,United States,2025-08-05,144.12,141.66,146.01,API access,Closed weights,claude-opus-4-1
+gpt-oss-120b,OpenAI,OpenAI,United States,2025-08-05,139.93,135.23,142.78,Open weights (unrestricted),Open weights,
+gpt-oss-20b,OpenAI,OpenAI,United States,2025-08-05,137.82,132.91,139.61,Open weights (unrestricted),Open weights,
+GPT-5,OpenAI,OpenAI,United States,2025-08-07,150.0,,,API access,Closed weights,gpt-5
+GPT-5 mini,OpenAI,OpenAI,United States,2025-08-07,145.52,143.58,147.15,API access,Closed weights,gpt-5-mini
+GPT-5 nano,OpenAI,OpenAI,United States,2025-08-07,139.38,134.06,141.39,API access,Closed weights,gpt-5-nano
+DeepSeek-V3.1,DeepSeek,DeepSeek,China,2025-08-21,139.92,135.44,143.18,Open weights (unrestricted),Open weights,
+Magistral Small 1.2,Other,Mistral AI,France,2025-09-18,131.42,126.03,133.47,Open weights (unrestricted),Open weights,
+Grok 4 Fast,xAI,xAI,United States,2025-09-19,144.2,141.72,146.57,API access,Closed weights,grok-4-fast
+Qwen3-Max,Alibaba,Alibaba,China,2025-09-24,142.38,140.13,144.75,API access,Closed weights,
+Gemini 2.5 Flash (Sep 2025),Google,Google DeepMind,United States,2025-09-25,143.03,139.37,146.36,API access,Closed weights,gemini-2.5-flash-preview-09-2025
+Claude Sonnet 4.5,Anthropic,Anthropic,United States,2025-09-29,146.84,145.08,148.32,API access,Closed weights,claude-sonnet-4.5
+DeepSeek-V3.2-Exp,DeepSeek,DeepSeek,China,2025-09-29,145.0,142.39,146.98,Open weights (unrestricted),Open weights,
+GPT-5 Pro,OpenAI,OpenAI,United States,2025-10-07,150.28,148.56,152.85,API access,Closed weights,gpt-5-pro
+Claude Haiku 4.5,Anthropic,Anthropic,United States,2025-10-15,142.41,139.4,144.07,API access,Closed weights,claude-4.5-haiku
+Kimi K2 Thinking,Other,Moonshot,China,2025-11-06,146.01,143.36,147.52,Open weights (restricted use),Open weights,kimi-k2-thinking
+GPT-5.1,OpenAI,OpenAI,United States,2025-11-13,149.64,148.24,151.07,API access,Closed weights,gpt-5.1
+Gemini 3 Pro,Google,Google DeepMind,United States,2025-11-18,152.92,150.92,155.09,API access,Closed weights,gemini-3-pro-preview
+Claude Opus 4.5,Anthropic,Anthropic,United States,2025-11-24,150.09,148.04,152.79,API access,Closed weights,claude-opus-4-5
+DeepSeek-V3.2,DeepSeek,DeepSeek,China,2025-12-01,146.27,144.46,147.44,Open weights (unrestricted),Open weights,
+GPT-5.2,OpenAI,OpenAI,United States,2025-12-11,153.45,151.55,155.37,API access,Closed weights,gpt-5.2
+GPT-5.2 Pro,OpenAI,OpenAI,United States,2025-12-11,155.4,153.08,158.08,API access,Closed weights,gpt-5.2-pro
+Gemini 3 Flash,Google,Google DeepMind,United States,2025-12-17,151.8,150.35,153.29,API access,Closed weights,gemini-3-flash-preview
+GLM-4.7,Other,Z.ai (Zhipu AI),China,2025-12-22,143.51,141.14,145.43,Open weights (unrestricted),Open weights,
+Kimi K2.5,Other,Moonshot,China,2026-01-27,148.03,146.43,149.33,Open weights (unrestricted),Open weights,
+Claude Opus 4.6,Anthropic,Anthropic,United States,2026-02-05,155.24,153.36,157.28,API access,Closed weights,claude-opus-4-6
+GPT-5.3 Codex,OpenAI,OpenAI,United States,2026-02-05,156.77,152.76,160.7,API access,Closed weights,gpt-5.3-codex
+GLM-5,Other,Z.ai (Zhipu AI),China,2026-02-11,145.83,143.83,147.72,Open weights (unrestricted),Open weights,
+MiniMax-M2.5,Other,MiniMax,China,2026-02-12,146.68,141.94,147.9,Open weights (unrestricted),Open weights,
+Qwen3.5 397B-A17B,Alibaba,Alibaba,China,2026-02-13,146.65,144.86,148.26,Open weights (unrestricted),Open weights,
+Qwen 3.5 Plus (hosted 397B-A17B),Alibaba,Alibaba,China,2026-02-16,146.78,144.71,147.94,Unknown,Other,
+Claude Sonnet 4.6,Anthropic,Anthropic,United States,2026-02-17,152.24,149.92,154.49,API access,Closed weights,claude-sonnet-4.6
+Grok 4.20,xAI,xAI,United States,2026-02-17,151.98,149.4,154.5,API access,Closed weights,grok-4.20-0309-reasoning
+Gemini 3.1 Pro,Google,Google DeepMind,United States,2026-02-19,154.77,152.44,157.27,API access,Closed weights,gemini-3-1-pro-preview
+Qwen3.5-35B-A3B,Alibaba,Alibaba,China,2026-02-24,142.52,140.29,144.81,Open weights (unrestricted),Open weights,
+Qwen3.5-9B,Alibaba,Alibaba,China,2026-02-24,139.46,136.25,141.51,Open weights (restricted use),Open weights,
+Qwen 3.5 Flash (hosted 35B-A3B),Alibaba,Alibaba,China,2026-02-25,143.98,141.79,145.66,Unknown,Other,
+Gemini 3.1 Flash-Lite,Google,Google,United States,2026-03-03,144.47,142.38,146.02,API access,Closed weights,gemini-3.1-flash-lite-preview
+GPT-5.4,OpenAI,OpenAI,United States,2026-03-05,156.81,155.0,158.94,API access,Closed weights,gpt-5.4
+GPT-5.4 Pro,OpenAI,OpenAI,United States,2026-03-05,158.93,156.59,161.78,API access,Closed weights,gpt-5.4-pro
+GPT-5.4 Mini,OpenAI,OpenAI,United States,2026-03-17,148.84,147.07,150.28,API access,Closed weights,gpt-5.4-mini
+GPT-5.4 Nano,OpenAI,OpenAI,United States,2026-03-17,145.81,143.48,147.63,API access,Closed weights,gpt-5.4-nano
+MiniMax-M2.7,Other,MiniMax,China,2026-03-18,145.85,137.95,147.86,Open weights (non-commercial),Open weights,
+Qwen 3.6 Plus,Alibaba,Alibaba,China,2026-03-31,147.65,145.66,149.41,API access,Closed weights,qwen3.6-plus
+Gemma 4 26B A4B,Google,Google DeepMind,United States,2026-04-02,141.85,138.71,143.42,Open weights (unrestricted),Open weights,
+Gemma 4 31B IT,Google,Google DeepMind,United States,2026-04-02,142.74,140.25,145.1,Open weights (restricted use),Open weights,
+GLM-5.1,Other,Z.ai (Zhipu AI),China,2026-04-07,149.84,147.91,151.45,Open weights (unrestricted),Open weights,
+Muse Spark,Meta,Meta AI,United States,2026-04-08,152.04,150.13,155.49,API access,Closed weights,
+Qwen 3.6 35B-A3B,Alibaba,Alibaba,China,2026-04-14,143.93,141.21,145.93,Open weights (unrestricted),Open weights,
+Claude Opus 4.7,Anthropic,Anthropic,United States,2026-04-16,156.25,154.36,158.37,API access,Closed weights,claude-opus-4-7
+Grok 4.3 Beta,xAI,xAI,United States,2026-04-17,149.16,147.56,150.68,Hosted access (no API),Closed weights,
+Kimi K2.6,Other,Moonshot,China,2026-04-20,151.05,149.26,152.79,Open weights (unrestricted),Open weights,
+Qwen 3.6 Max (Preview),Alibaba,Alibaba,China,2026-04-20,149.24,147.38,152.11,Unknown,Other,
+Qwen3.6 27B,Alibaba,Alibaba,China,2026-04-22,146.5,144.31,147.72,Open weights (unrestricted),Open weights,
+GPT-5.5,OpenAI,OpenAI,United States,2026-04-23,159.1,156.66,162.27,API access,Closed weights,gpt-5.5
+GPT-5.5 Pro,OpenAI,OpenAI,United States,2026-04-23,162.07,158.98,165.82,API access,Closed weights,gpt-5.5-pro
+DeepSeek-V4-Flash,DeepSeek,DeepSeek,China,2026-04-24,146.07,143.88,147.83,Open weights (unrestricted),Open weights,deepseek-v4-flash
+DeepSeek-V4-Pro,DeepSeek,DeepSeek,China,2026-04-24,149.13,147.31,150.72,Open weights (unrestricted),Open weights,deepseek-v4-pro
+Qwen 3.6 Flash,Alibaba,Alibaba,China,2026-04-27,143.26,140.56,144.93,Unknown,Other,
+Mistral Medium 3.5,Other,Mistral AI,France,2026-04-28,141.35,138.56,143.2,Open weights (restricted use),Open weights,
+GPT-5.5 Instant,OpenAI,OpenAI,United States,2026-05-05,142.52,139.85,145.29,API access,Closed weights,
+Gemini 3.5 Flash,Google,Google DeepMind,United States,2026-05-19,154.46,152.5,156.51,API access,Closed weights,gemini-3.5-flash
+Qwen3.7-Max,Alibaba,Alibaba,China,2026-05-19,153.68,151.67,155.84,API access,Closed weights,
+Claude Opus 4.8,Anthropic,Anthropic,United States,2026-05-28,158.21,156.04,160.77,API access,Closed weights,claude-opus-4-8
+MiniMax-M3,Other,MiniMax,China,2026-06-01,146.95,142.59,149.44,Open weights (restricted use),Open weights,
+Qwen3.7-Plus,Alibaba,Alibaba,China,2026-06-02,147.37,145.75,148.93,API access,Closed weights,
+Nemotron 3 Ultra,Other,Nvidia,United States,2026-06-04,146.17,143.89,148.03,Open weights (unrestricted),Open weights,
+Claude Fable 5,Anthropic,Anthropic,United States,2026-06-09,162.06,159.28,166.18,API access,Closed weights,claude-fable-5
+Kimi K2.7 Code,Other,Moonshot,China,2026-06-12,149.97,147.94,151.54,Open weights (unrestricted),Open weights,
+GLM-5.2,Other,Z.ai (Zhipu AI),China,2026-06-16,151.78,149.81,153.8,Open weights (unrestricted),Open weights,
+Claude Sonnet 5,Anthropic,Anthropic,United States,2026-06-30,156.21,153.48,158.79,API access,Closed weights,claude-sonnet-5
+Grok 4.5,xAI,xAI,United States,2026-07-08,153.92,152.21,155.63,API access,Closed weights,grok-4.5
+GPT-5.6 Luna,OpenAI,OpenAI,United States,2026-07-09,156.39,153.98,158.7,API access,Closed weights,gpt-5.6-luna
+GPT-5.6 Sol,OpenAI,OpenAI,United States,2026-07-09,161.66,159.27,165.1,API access,Closed weights,gpt-5.6-sol
+GPT-5.6 Terra,OpenAI,OpenAI,United States,2026-07-09,159.62,157.17,162.65,API access,Closed weights,gpt-5.6-terra
+Muse Spark 1.1,Meta,Meta AI,United States,2026-07-09,154.21,151.96,156.81,API access,Closed weights,muse-spark-1.1
+Inkling,Other,Thinking Machines,United States,2026-07-15,148.54,145.67,150.36,Open weights (unrestricted),Open weights,
+Inkling-Small,Other,Thinking Machines,United States,2026-07-15,150.15,147.39,151.96,Open weights (unrestricted),Open weights,
+Kimi K3,Other,Moonshot,China,2026-07-16,157.45,155.15,160.03,Open weights (non-commercial),Open weights,
+Gemini 3.5 Flash-Lite,Google,Google DeepMind,United States,2026-07-21,145.13,142.87,146.56,API access,Closed weights,gemini-3.5-flash-lite
+Gemini 3.6 Flash,Google,Google DeepMind,United States,2026-07-21,154.25,152.58,156.22,API access,Closed weights,gemini-3.6-flash
+Claude Opus 5,Anthropic,Anthropic,United States,2026-07-24,162.78,160.12,166.47,API access,Closed weights,claude-opus-5
+Qwen3.7 Flash,Alibaba,Alibaba,China,2026-07-27,144.64,142.51,147.34,API access,Closed weights,
+DeepSeek V4 Flash 0731,DeepSeek,DeepSeek,China,2026-07-31,154.49,152.08,156.35,Open weights (unrestricted),Open weights,
+Qwen 3.8 Max,Alibaba,Alibaba,China,2026-08-02,156.41,154.32,158.61,API access,Closed weights,
+Muse Spark 1.2,Meta,Meta AI,United States,2026-08-05,154.87,152.85,157.44,API access,Closed weights,muse-spark-1.2
+Grok 4.6,xAI,xAI,United States,2026-08-12,156.44,154.51,158.96,API access,Closed weights,grok-4.6
+DeepSeek V4 Pro 0813,DeepSeek,DeepSeek,China,2026-08-13,155.31,153.48,157.45,Open weights (unrestricted),Open weights,
+Gemini 3.7 Flash,Google,Google DeepMind,United States,2026-08-13,157.27,155.37,159.87,API access,Closed weights,gemini-3.7-flash
+GLM-5.3,Other,Z.ai (Zhipu AI),China,2026-08-14,155.61,153.6,157.92,API access,Closed weights,
+Qwen 3.8 27B,Alibaba,Alibaba,China,2026-08-14,149.38,147.3,151.13,Open weights (unrestricted),Open weights,
+GLM-5.3-Flash,Other,Z.ai (Zhipu AI),China,2026-08-20,151.88,149.64,153.95,Open weights (unrestricted),Open weights,
+Claude Fable 5.1,Anthropic,Anthropic,United States,2026-09-01,164.7,161.63,168.81,API access,Closed weights,claude-fable-5-1
+Qwen3.8 Max (0902),Alibaba,Alibaba,China,2026-09-01,155.05,153.29,157.19,API access,Closed weights,
+Gemini 3.8 Flash,Google,Google DeepMind,United States,2026-09-02,156.71,154.41,160.26,API access,Closed weights,gemini-3.8-flash
+Muse Spark 1.3,Meta,Meta AI,United States,2026-09-02,156.75,154.78,159.34,API access,Closed weights,muse-spark-1.3
+GPT-6 Astra,OpenAI,OpenAI,United States,2026-09-03,166.45,163.34,171.46,API access,Closed weights,gpt-6-astra
+DeepSeek V4.1 Flash,DeepSeek,DeepSeek,China,2026-09-09,154.9,148.49,157.33,Open weights (unrestricted),Open weights,
+Grok 4.7,xAI,xAI,United States,2026-09-21,153.53,151.84,155.85,API access,Closed weights,grok-4.7
+Claude Opus 5.5,Anthropic,Anthropic,United States,2026-09-22,167.33,164.06,171.68,API access,Closed weights,claude-opus-5-5
+GPT-6 Luna,OpenAI,OpenAI,United States,2026-09-22,156.28,153.67,158.75,API access,Closed weights,gpt-6-luna
+GPT-6 Sol,OpenAI,OpenAI,United States,2026-09-22,162.72,160.07,166.57,API access,Closed weights,gpt-6-sol
+Claude Sonnet 5.5,Anthropic,Anthropic,United States,2026-09-28,165.03,161.68,169.06,API access,Closed weights,claude-sonnet-5.5
+GPT-6.1 Sol,OpenAI,OpenAI,United States,2026-09-29,166.09,162.89,170.63,API access,Closed weights,gpt-6.1-sol
+</script>
+<script type="text/csv" data-id="prices">
+id,vendor,name,input,output,from_date,to_date
+amazon-nova-pro,amazon,Amazon Nova Pro,0.8,3.2,,
+claude-3.7-sonnet,anthropic,Claude 3.7 Sonnet,3,15,,
+claude-3.5-sonnet,anthropic,Claude 3.5 Sonnet,3,15,,
+claude-3-opus,anthropic,Claude 3 Opus,15,75,,
+claude-3-haiku,anthropic,Claude 3 Haiku,0.25,1.25,,
+claude-3.5-haiku,anthropic,Claude 3.5 Haiku,0.8,4,,
+claude-4.5-haiku,anthropic,Claude 4.5 Haiku,1,5,,
+claude-sonnet-4,anthropic,Claude Sonnet 4 ≤200k,3,15,,
+claude-sonnet-4.5,anthropic,Claude Sonnet 4.5 ≤200k,3,15,,
+claude-sonnet-4.6,anthropic,Claude Sonnet 4.6,3,15,,
+claude-sonnet-5,anthropic,Claude Sonnet 5,2,10,,
+claude-sonnet-5.5,anthropic,Claude Sonnet 5.5,2,10,,
+claude-opus-4,anthropic,Claude Opus 4,15,75,,
+claude-opus-4-1,anthropic,Claude Opus 4.1,15,75,,
+claude-opus-4-5,anthropic,Claude Opus 4.5,5,25,,
+claude-opus-4-6,anthropic,Claude Opus 4.6,5,25,,
+claude-opus-4-7,anthropic,Claude Opus 4.7,5,25,,
+claude-opus-4-8,anthropic,Claude Opus 4.8,5,25,,
+claude-opus-5,anthropic,Claude Opus 5,5,25,,
+claude-opus-5-5,anthropic,Claude Opus 5.5,4,20,,
+claude-fable-5,anthropic,Claude Fable 5,10,50,,
+claude-fable-5-1,anthropic,Claude Fable 5.1,10,50,,
+deepseek-v4-flash,deepseek,DeepSeek-V4-Flash,0.14,0.28,,
+deepseek-v4-pro,deepseek,DeepSeek-V4-Pro,1.74,3.48,,
+deepseek-chat,deepseek,DeepSeek Chat,0.27,1.1,2025-02-08,
+deepseek-chat,deepseek,DeepSeek Chat,0.14,0.28,,2025-02-08
+deepseek-reasoner,deepseek,DeepSeek Reasoner,0.55,2.19,,
+gemini-2.5-pro-preview-03-25,google,Gemini 2.5 Pro Preview ≤200k,1.25,10,,
+gemini-2.0-flash,google,Gemini 2.0 Flash,0.1,0.4,,
+gemini-1.5-flash,google,Gemini 1.5 Flash ≤128k,0.075,0.3,,
+gemini-1.5-pro,google,Gemini 1.5 Pro ≤128k,1.25,5,,
+gemini-2.5-flash,google,Gemini 2.5 Flash,0.3,2.5,,
+gemini-2.5-flash-lite,google,Gemini 2.5 Flash-Lite,0.1,0.4,,
+gemini-2.5-flash-preview-09-2025,google,Gemini 2.5 Flash Preview (09-2025),0.3,2.5,,
+gemini-2.5-pro,google,Gemini 2.5 Pro ≤200k,1.25,10,,
+gemini-3-pro-preview,google,Gemini 3 Pro ≤200k,2,12,,
+gemini-3-flash-preview,google,Gemini 3 Flash Preview,0.5,3,,
+gemini-3-1-pro-preview,google,Gemini 3.1 Pro ≤200k,2,12,,
+gemini-3.1-flash-lite-preview,google,Gemini 3.1 Flash-Lite,0.25,1.5,,
+gemini-3.5-flash,google,Gemini 3.5 Flash,1.5,9,,
+gemini-3.6-flash,google,Gemini 3.6 Flash,0.75,3.75,,2027-01-01
+gemini-3.6-flash,google,Gemini 3.6 Flash,1.5,7.5,2027-01-01,
+gemini-3.7-flash,google,Gemini 3.7 Flash,0.75,3.75,,2027-01-01
+gemini-3.7-flash,google,Gemini 3.7 Flash,1.5,7.5,2027-01-01,
+gemini-3.8-flash,google,Gemini 3.8 Flash,0.75,3.75,,2027-01-01
+gemini-3.8-flash,google,Gemini 3.8 Flash,1.5,7.5,2027-01-01,
+gemini-3.5-flash-lite,google,Gemini 3.5 Flash-Lite,0.3,2.5,,
+muse-spark-1.3,meta-ai,Muse Spark 1.3,1.25,4.25,,
+muse-spark-1.2,meta-ai,Muse Spark 1.2,1.25,4.25,,
+muse-spark-1.1,meta-ai,Muse Spark 1.1,1.25,4.25,,
+mistral-small-latest,mistral,Mistral Small 3.1,0.1,0.3,,
+mistral-medium-2505,mistral,Mistral Medium 3,0.4,2,,
+mistral-nemo,mistral,Mistral NeMo,0.15,0.15,,
+open-mixtral-8x7b,mistral,Mixtral 8x7B,0.7,0.7,,
+open-mixtral-8x22b,mistral,Mixtral 8x22B,2,6,,
+ministral-3b-latest,mistral,Ministral 3B 24.10,0.04,0.04,,
+kimi-k2-0711-preview,moonshot-ai,Kimi K2 0711 Preview,0.6,2.5,,
+kimi-k2-thinking,moonshot-ai,Kimi K2 Thinking,0.6,2.5,,
+gpt-4.5,openai,GPT-4.5,75,150,,
+gpt-4o,openai,GPT-4o,2.5,10,,
+gpt-4o-mini,openai,GPT-4o Mini,0.15,0.6,,
+o1-preview,openai,o1 and o1-preview,15,60,,
+o3-mini,openai,o3-mini,1.1,4.4,,
+gpt-4.1,openai,GPT-4.1,2,8,,
+gpt-4.1-mini,openai,GPT-4.1 Mini,0.4,1.6,,
+gpt-4.1-nano,openai,GPT-4.1 Nano,0.1,0.4,,
+o3,openai,o3,10,40,,2025-06-10
+o3,openai,o3,2,8,2025-06-10,
+o4-mini,openai,o4-mini,1.1,4.4,,
+gpt-5-nano,openai,GPT-5 Nano,0.05,0.4,,
+gpt-5-mini,openai,GPT-5 Mini,0.25,2,,
+gpt-5,openai,GPT-5,1.25,10,,
+gpt-5-pro,openai,GPT-5 Pro,15,120,,
+o3-pro,openai,o3 Pro,20,80,,
+gpt-5.1,openai,GPT-5.1,1.25,10.0,,
+gpt-5.2,openai,GPT-5.2,1.75,14.0,,
+gpt-5.2-pro,openai,GPT-5.2 Pro,21.0,168.0,,
+gpt-5.4,openai,GPT-5.4 ≤272k,2.5,15.0,,
+gpt-5.4-pro,openai,GPT-5.4 Pro ≤272k,30.0,180.0,,
+gpt-5.4-mini,openai,GPT-5.4 Mini,0.75,4.5,,
+gpt-5.4-nano,openai,GPT-5.4 Nano,0.2,1.25,,
+gpt-5.5,openai,GPT-5.5 ≤272k,5.0,30.0,,
+gpt-5.5-pro,openai,GPT-5.5 Pro ≤272k,30.0,180.0,,
+gpt-5.6-sol,openai,GPT-5.6 Sol ≤272k,5.0,30.0,,2026-08-21
+gpt-5.6-sol,openai,GPT-5.6 Sol ≤272k,4.0,20.0,2026-08-21,
+gpt-5.6-terra,openai,GPT-5.6 Terra ≤272k,2.5,15.0,,2026-07-30
+gpt-5.6-terra,openai,GPT-5.6 Terra ≤272k,2,12.0,2026-07-30,
+gpt-5.6-luna,openai,GPT-5.6 Luna ≤272k,1.0,6.0,,2026-07-30
+gpt-5.6-luna,openai,GPT-5.6 Luna ≤272k,0.2,1.2,2026-07-30,
+gpt-6-astra,openai,GPT-6 Astra ≤272k,10.0,50.0,,
+gpt-6-sol,openai,GPT-6 Sol ≤272k,2.0,10.0,,
+gpt-6-luna,openai,GPT-6 Luna ≤272k,0.1,0.5,,
+gpt-6.1-sol,openai,GPT-6.1 Sol ≤272k,2.0,10.0,,
+gpt-5.3-codex,openai,GPT-5.3 Codex,1.75,14.0,,
+qwen3.6-plus,qwen,Qwen3.6 Plus ≤256k,0.5,3,,
+grok-3,xai,Grok 3,3,15,,
+grok-3-mini,xai,Grok 3 Mini,0.3,0.5,,
+grok-4-fast,xai,Grok 4 Fast,0.2,0.5,,
+grok-4,xai,Grok 4 ≤128k,3,15,,
+grok-4.5,xai,Grok 4.5 ≤200k,2,6,,
+grok-4.20-0309-reasoning,xai,Grok 4.20 0309 Reasoning ≤200k,1.25,2.5,,
+grok-4.6,xai,Grok 4.6 ≤200k,2,6,,
+grok-4.7,xai,Grok 4.7 ≤200k,2,6,,
+</script>
+<script src="../assets/d3.v7.min.js"></script>
+<script>
+window.dash = (function () {
+  var sets = {}, calcs = {}, subs = [], defaults = {"group": "lab"}, params = Object.assign({}, defaults);
+  document.querySelectorAll('script[type="text/csv"][data-id]').forEach(function (s) {
+    sets[s.getAttribute('data-id')] = d3.csvParse(s.textContent.replace(/^\s+|\s+$/g, ''));
+  });
+  function answer(status, data, columns) {
+    return { status: status, data: data, rows: Array.isArray(data) ? data : [], columns: columns || [], value: data, message: '', refreshing: false, meta: [] };
+  }
+  function data(id) {
+    if (sets[id]) return answer('ok', sets[id], sets[id].columns);
+    var c = calcs[id];
+    if (c) {
+      if (!c.done) { c.value = c.fn.apply(null, (c.inputs || []).map(function (i) { return data(i).data; })); c.done = true; }
+      var v = c.value;
+      return answer('ok', v, Array.isArray(v) && v[0] && typeof v[0] === 'object' ? Object.keys(v[0]) : []);
+    }
+    return answer('missing', []);
+  }
+  var queued = false;
+  function redraw() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; subs.forEach(function (fn) { fn(); }); });
+  }
+  var root = document.getElementById('dash-root'), width = root.clientWidth;
+  if (window.ResizeObserver) new ResizeObserver(function () {
+    if (root.clientWidth !== width) { width = root.clientWidth; redraw(); }
+  }).observe(root);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+  return {
+    data: data,
+    onData: function (fn) { subs.push(fn); fn(); },
+    calc: function (id, spec) { calcs[id] = { inputs: spec.inputs, fn: spec.fn }; },
+    loader: function () {},
+    colors: [1, 2, 3, 4, 5, 6, 7, 8].map(function (i) { return 'var(--cds-chart-categorical-' + i + ')'; }),
+    params: function () { return Object.assign({}, params); },
+    setParams: function (next) {
+      Object.keys(next || {}).forEach(function (k) { if (next[k] == null) delete params[k]; else params[k] = next[k]; });
+      redraw();
+    },
+    resetParams: function () { params = Object.assign({}, defaults); redraw(); },
+    refresh: function () {},
+    setLink: function (name) { try { history.replaceState(history.state, '', '#' + name); } catch (e) {} }
+  };
+})();
+</script>
+<script>
+const root = document.querySelector('.amr');
+const $ = (s) => root.querySelector(s);
+const LABS = ['OpenAI', 'Anthropic', 'Google', 'xAI', 'Meta', 'DeepSeek', 'Alibaba', 'Other'];
+const MUTED = 'var(--cds-chart-muted)';
+const labColor = (lab) => {
+  const i = LABS.indexOf(lab);
+  return i >= 0 && i < 7 ? dash.colors[i] : MUTED;
+};
+const twoColor = (first, second) => (name) => (name === first ? dash.colors[0] : name === second ? dash.colors[1] : MUTED);
+const VIEWS = {
+  lab: { field: 'lab', names: LABS, color: labColor, short: (n) => n },
+  weights: { field: 'weights', names: ['Closed weights', 'Open weights', 'Other'], color: twoColor('Closed weights', 'Open weights'), short: (n) => n.replace(' weights', '') },
+  country: { field: 'country', names: ['United States', 'China', 'Other'], color: twoColor('United States', 'China'), short: (n) => (n === 'United States' ? 'US' : n) },
+};
+const LEVELS = [[140, 0.4], [150, 0.7], [160, 1]];
+const toDate = (s) => new Date(s + 'T00:00:00Z');
+const fmtDate = d3.utcFormat('%-d %b %Y');
+const fmtMonth = d3.utcFormat('%b %Y');
+const f1 = d3.format('.1f');
+const usd = (v) => {
+  if (v >= 100) return '$' + d3.format(',.0f')(v);
+  if (v >= 1) return '$' + d3.format('.2f')(v);
+  return '$' + d3.format('.3f')(v).replace(/0$/, '');
+};
+
+dash.calc('frontiers', {
+  title: 'Record-setting models',
+  description: 'Every model that set a new top ECI score when it was released, overall and within closed or open weights and within the United States or China, since GPT-4, with the days it stayed on top.',
+  inputs: ['models'],
+  fn: (models) => {
+    const START = '2023-03-14';
+    const AS_OF = '2026-10-09';
+    const days = (from, to) => Math.round((Date.parse(to) - Date.parse(from)) / 864e5);
+    const rows = models
+      .filter((m) => m.release_date >= START)
+      .map((m) => ({ model: m.model, lab: m.lab, weights: m.weights, country: m.country, release_date: m.release_date, eci: Number(m.eci) }))
+      .sort((a, b) => (a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : b.eci - a.eci));
+    const views = [['all', null, ['All models']], ['weights', 'weights', ['Closed weights', 'Open weights']], ['country', 'country', ['United States', 'China']]];
+    const out = [];
+    for (const [view, field, groups] of views) {
+      for (const group of groups) {
+        const records = [];
+        for (const m of rows) {
+          if (field && m[field] !== group) continue;
+          if (!records.length || m.eci > records[records.length - 1].eci) records.push(m);
+        }
+        records.forEach((m, i) => out.push({
+          view, group, model: m.model, lab: m.lab, release_date: m.release_date, eci: m.eci,
+          days_led: days(m.release_date, i + 1 < records.length ? records[i + 1].release_date : AS_OF),
+        }));
+      }
+    }
+    return out;
+  },
+});
+
+dash.calc('lead_days', {
+  title: 'Days at the top by lab',
+  description: 'Days each lab’s models held the highest ECI score, added up from the overall record-setters.',
+  inputs: ['frontiers'],
+  fn: (frontiers) => {
+    const total = new Map();
+    for (const r of frontiers) if (r.view === 'all') total.set(r.lab, (total.get(r.lab) || 0) + r.days_led);
+    return [...total].map(([lab, days]) => ({ lab, days })).sort((a, b) => b.days - a.days);
+  },
+});
+
+dash.calc('priced', {
+  title: 'Models with current prices',
+  description: 'Each model’s tracked list price on 9 October 2026: input, output, and a blend of three input tokens to one output token.',
+  inputs: ['models', 'prices'],
+  fn: (models, prices) => {
+    const AS_OF = '2026-10-09';
+    const priceOn = (id, day) => prices.find((p) => p.id === id && (!p.from_date || p.from_date <= day) && (!p.to_date || day < p.to_date));
+    return models
+      .filter((m) => m.price_id && priceOn(m.price_id, AS_OF))
+      .map((m) => {
+        const p = priceOn(m.price_id, AS_OF);
+        const input = Number(p.input);
+        const output = Number(p.output);
+        return { model: m.model, lab: m.lab, release_date: m.release_date, eci: Number(m.eci), input, output, blended: Math.round(((3 * input + output) / 4) * 1e4) / 1e4 };
+      });
+  },
+});
+
+dash.calc('level_cost', {
+  title: 'Cheapest price by capability level',
+  description: 'For ECI levels 140, 150 and 160: each date the cheapest blended price among models at or above that level fell, the model that set it, and the price on 9 October 2026.',
+  inputs: ['models', 'prices'],
+  fn: (models, prices) => {
+    const AS_OF = '2026-10-09';
+    const priceOn = (id, day) => prices.find((p) => p.id === id && (!p.from_date || p.from_date <= day) && (!p.to_date || day < p.to_date));
+    const blend = (p) => (3 * Number(p.input) + Number(p.output)) / 4;
+    const out = [];
+    for (const level of [140, 150, 160]) {
+      const eligible = models.filter((m) => m.price_id && Number(m.eci) >= level);
+      const dates = new Set([AS_OF]);
+      for (const m of eligible) {
+        dates.add(m.release_date);
+        for (const p of prices) if (p.id === m.price_id && p.from_date && p.from_date > m.release_date && p.from_date <= AS_OF) dates.add(p.from_date);
+      }
+      let low = Infinity;
+      for (const date of [...dates].sort()) {
+        const offers = eligible
+          .filter((m) => m.release_date <= date && priceOn(m.price_id, date))
+          .map((m) => ({ model: m.model, price: blend(priceOn(m.price_id, date)) }));
+        if (!offers.length) continue;
+        const best = offers.reduce((a, b) => (b.price < a.price ? b : a));
+        if (best.price < low - 1e-9 || date === AS_OF) out.push({ level, date, blended: Math.round(best.price * 1e4) / 1e4, model: best.model });
+        low = Math.min(low, best.price);
+      }
+    }
+    return out;
+  },
+});
+
+dash.calc('pace', {
+  title: 'Releases per quarter',
+  description: 'Number of scored models released in each calendar quarter, by lab.',
+  inputs: ['models'],
+  fn: (models) => {
+    const count = new Map();
+    for (const m of models) {
+      const quarter = `${m.release_date.slice(0, 4)} Q${Math.ceil(Number(m.release_date.slice(5, 7)) / 3)}`;
+      const key = quarter + '|' + m.lab;
+      count.set(key, (count.get(key) || 0) + 1);
+    }
+    return [...count].map(([key, releases]) => ({ quarter: key.split('|')[0], lab: key.split('|')[1], releases })).sort((a, b) => (a.quarter < b.quarter ? -1 : a.quarter > b.quarter ? 1 : 0));
+  },
+});
+
+dash.calc('summary', {
+  title: 'Headline figures',
+  description: 'The top-scoring model, how many others fall inside its 95% interval, how far the best open-weights model trails closed ones, and the fall in the cheapest price of GPT-5-level capability.',
+  inputs: ['models', 'level_cost'],
+  fn: (models, level_cost) => {
+    const gpt5 = level_cost.filter((r) => r.level === 150);
+    if (!models.length || !gpt5.length) return [];
+    const rows = models.map((m) => ({ ...m, eci: Number(m.eci) }));
+    const best = (list) => list.reduce((a, b) => (b.eci > a.eci ? b : a));
+    const top = best(rows);
+    const open = best(rows.filter((m) => m.weights === 'Open weights'));
+    const match = rows.filter((m) => m.weights === 'Closed weights' && m.eci >= open.eci).reduce((a, b) => (b.release_date < a.release_date ? b : a));
+    const lagDays = (Date.parse(open.release_date) - Date.parse(match.release_date)) / 864e5;
+    const first = gpt5[0].blended;
+    const now = gpt5[gpt5.length - 1].blended;
+    return [{
+      leader: top.model,
+      leader_lab: top.organization,
+      leader_eci: Math.round(top.eci * 10) / 10,
+      leader_date: top.release_date,
+      tied: rows.filter((m) => m !== top && m.eci >= Number(top.eci_low)).length,
+      open_best: open.model,
+      closed_match: match.model,
+      open_lag_months: Math.round((lagDays / 30.44) * 10) / 10,
+      level150_first: Math.round(first * 100) / 100,
+      level150_now: Math.round(now * 100) / 100,
+      level150_drop_pct: Math.round((1 - now / first) * 100),
+    }];
+  },
+});
+
+const statusOf = (id) => dash.data(id).status;
+const rowsOf = (id) => {
+  const d = dash.data(id).data;
+  return Array.isArray(d) ? d : [];
+};
+
+function failLine() {
+  const line = document.createElement('div');
+  line.className = 'amr-fail';
+  const dot = document.createElement('span');
+  dot.className = 'amr-fail-dot';
+  line.append(dot, 'Failed to load');
+  return line;
+}
+
+// Clears a chart box and says whether its sources are ready to draw.
+function ready(box, sources, rows) {
+  const states = sources.map(statusOf);
+  box.classList.toggle('dash-skeleton', states.includes('loading'));
+  if (states.includes('error')) {
+    box.replaceChildren(failLine());
+    return false;
+  }
+  if (!states.every((s) => s === 'ok') || !rows.length) {
+    box.replaceChildren();
+    return false;
+  }
+  return true;
+}
+
+function showTip(tip, event, head, lines) {
+  const card = tip.parentElement;
+  const headEl = document.createElement('div');
+  headEl.className = 'amr-tip-head';
+  headEl.textContent = head;
+  tip.replaceChildren(headEl);
+  for (const [name, value, color] of lines) {
+    const line = document.createElement('div');
+    line.className = 'amr-tip-line';
+    if (color) {
+      const sw = document.createElement('span');
+      sw.className = 'amr-tip-sw';
+      sw.style.background = color;
+      line.append(sw);
+    }
+    const nameEl = document.createElement('span');
+    nameEl.textContent = name;
+    const valEl = document.createElement('span');
+    valEl.className = 'amr-tip-val';
+    valEl.textContent = value;
+    line.append(nameEl, valEl);
+    tip.append(line);
+  }
+  tip.hidden = false;
+  const box = card.getBoundingClientRect();
+  let left = event.clientX - box.left + 14;
+  let top = event.clientY - box.top + 14;
+  if (left + tip.offsetWidth > card.clientWidth - 4) left = event.clientX - box.left - tip.offsetWidth - 14;
+  if (top + tip.offsetHeight > card.clientHeight - 4) top = event.clientY - box.top - tip.offsetHeight - 10;
+  tip.style.left = Math.max(4, left) + 'px';
+  tip.style.top = Math.max(4, top) + 'px';
+}
+
+function drawLegend(el, entries) {
+  el.replaceChildren(...entries.map(([name, color, line]) => {
+    const key = document.createElement('span');
+    key.className = 'amr-key';
+    const sw = document.createElement('span');
+    sw.className = line ? 'amr-sw-line' : 'amr-sw';
+    if (color) sw.style.background = color;
+    key.append(sw, name);
+    return key;
+  }));
+}
+
+// Places labels one at a time. One that would cover a label already placed, or leave the plot,
+// tries each other position in `retries` and is dropped if none is free. `avoid` holds text
+// already on the chart, such as axis labels, that a label must not cover either.
+function placeLabels(texts, bounds, retries, avoid) {
+  const taken = (avoid || []).map((node) => node.getBBox());
+  const free = (b) => b.x >= bounds.x0 && b.x + b.width <= bounds.x1 && b.y >= bounds.y0 && b.y + b.height <= bounds.y1
+    && !taken.some((t) => b.x < t.x + t.width + 4 && b.x + b.width + 4 > t.x && b.y < t.y + t.height + 1 && b.y + b.height + 1 > t.y);
+  texts.each(function (d) {
+    let b = this.getBBox();
+    for (const retry of retries || []) {
+      if (free(b)) break;
+      retry(d3.select(this), d);
+      b = this.getBBox();
+    }
+    if (free(b)) taken.push(b);
+    else this.remove();
+  });
+}
+
+// Finds the plotted point nearest the pointer, within reach.
+function nearest(points, svgNode, event, reach) {
+  const [px, py] = d3.pointer(event, svgNode);
+  let found = null;
+  let best = reach * reach;
+  for (const p of points) {
+    const d = (p.x - px) ** 2 + (p.y - py) ** 2;
+    if (d < best) {
+      best = d;
+      found = p;
+    }
+  }
+  return found;
+}
+
+function yTicks(svg, ticks, y, format) {
+  return svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'amr-tick').attr('y', (t) => y(t)).attr('dy', '0.35em').text(format);
+}
+const widest = (sel) => Math.ceil(d3.max(sel.nodes(), (n) => n.getComputedTextLength()) || 0);
+
+function drawFrontier() {
+  const view = VIEWS[dash.params().group] ? dash.params().group : 'lab';
+  const spec = VIEWS[view];
+  for (const b of root.querySelectorAll('.amr-segb')) b.setAttribute('aria-pressed', String(b.value === view));
+  const box = $('.amr-frontier-chart');
+  const tip = $('.amr-frontier-tip');
+  const legend = $('.amr-frontier-legend');
+  const models = statusOf('models') === 'ok' ? rowsOf('models') : [];
+  const records = rowsOf('frontiers').filter((r) => r.view === (view === 'lab' ? 'all' : view));
+  if (!ready(box, ['models'], records.length ? models : [])) {
+    legend.replaceChildren();
+    return;
+  }
+  const W = box.clientWidth;
+  if (!W) return;
+  const groupOf = (m) => (spec.names.includes(m[spec.field]) ? m[spec.field] : 'Other');
+  const pts = models.map((m) => ({ ...m, eci: Number(m.eci), when: toDate(m.release_date), group: groupOf(m) })).filter((m) => m.eci >= 100);
+  const present = spec.names.filter((n) => pts.some((p) => p.group === n));
+  drawLegend(legend, [...present.map((n) => [spec.short(n), spec.color(n)]), ...(view === 'lab' ? [['Best score so far', null, true]] : [])]);
+
+  const H = W < 520 ? 320 : 430;
+  const mt = 10;
+  const mb = view === 'lab' ? 40 : 24;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Model ECI scores by release date, with the best score released so far');
+  box.replaceChildren(svg.node());
+
+  const y = d3.scaleLinear([100, d3.max(pts, (p) => p.eci) + 3], [H - mb, mt]);
+  const ticks = y.ticks(6);
+  const tickText = yTicks(svg, ticks, y, (t) => t);
+  const ml = widest(tickText) + 8;
+  const lines = d3.groups(records.filter((r) => r.eci >= 100), (r) => r.group).map(([group, rows]) => ({ group, rows: rows.map((r) => ({ ...r, when: toDate(r.release_date) })) }));
+  const ends = svg.append('g').selectAll('text').data(view === 'lab' ? [] : lines).join('text').attr('class', 'amr-end').attr('dy', '0.35em')
+    .text((l) => `${spec.short(l.group)} ${f1(l.rows[l.rows.length - 1].eci)}`);
+  const mr = view === 'lab' ? 10 : widest(ends) + 12;
+  const last = d3.utcDay.offset(d3.max(pts, (p) => p.when), 12);
+  const x = d3.scaleUtc([toDate('2023-01-01'), last], [ml, Math.max(ml + 60, W - mr)]);
+
+  svg.insert('g', 'g').selectAll('line').data(ticks).join('line').attr('class', 'amr-grid').attr('x1', ml).attr('x2', x.range()[1]).attr('y1', (t) => y(t)).attr('y2', (t) => y(t));
+  const years = x.ticks(d3.utcYear.every(1));
+  svg.append('g').selectAll('text').data(years).join('text').attr('class', 'amr-tick').attr('x', (d) => x(d)).attr('y', H - mb + 14).text(d3.utcFormat('%Y'));
+  svg.append('g').selectAll('line').data(years).join('line').attr('class', 'amr-grid').attr('x1', (d) => x(d)).attr('x2', (d) => x(d)).attr('y1', mt).attr('y2', H - mb);
+
+  const order = (p) => (p.group === 'Other' ? 0 : 1);
+  const plotted = pts.slice().sort((a, b) => order(a) - order(b)).map((p) => ({ ...p, x: x(p.when), y: y(p.eci) }));
+  svg.append('g').selectAll('circle').data(plotted).join('circle').attr('class', 'amr-dot').attr('cx', (p) => p.x).attr('cy', (p) => p.y).attr('r', W < 520 ? 2.75 : 3.5)
+    .style('fill', (p) => spec.color(p.group)).style('fill-opacity', (p) => (p.group === 'Other' ? 0.55 : 0.8));
+
+  const step = d3.line().x((r) => x(r.when)).y((r) => y(r.eci)).curve(d3.curveStepAfter);
+  svg.append('g').selectAll('path').data(lines).join('path').attr('class', 'amr-step')
+    .attr('d', (l) => step([...l.rows, { when: last, eci: l.rows[l.rows.length - 1].eci }]))
+    .style('stroke', (l) => (view === 'lab' ? 'var(--color-fg)' : spec.color(l.group))).style('stroke-width', view === 'lab' ? 1.5 : 2);
+
+  if (view === 'lab') {
+    // The band of who held the top score, and names for as many record-setters as fit.
+    const all = lines[0].rows;
+    svg.append('g').selectAll('rect').data(all).join('rect').attr('x', (r) => x(r.when)).attr('y', H - 12).attr('height', 6)
+      .attr('width', (r, i) => Math.max(1, x(i + 1 < all.length ? all[i + 1].when : last) - x(r.when))).style('fill', (r) => labColor(r.lab));
+    const byNewest = all.slice().sort((a, b) => b.eci - a.eci);
+    const names = svg.append('g').selectAll('text').data(byNewest).join('text').attr('class', 'amr-name').attr('text-anchor', 'end')
+      .attr('x', (r) => x(r.when) - 5).attr('y', (r) => y(r.eci) - 5).text((r) => r.model);
+    placeLabels(names, { x0: ml, x1: W, y0: 0, y1: H - mb }, [(text, r) => text.attr('text-anchor', 'start').attr('x', x(r.when) + 6).attr('y', y(r.eci) + 14)]);
+  } else {
+    const placed = lines.map((l) => ({ l, at: y(l.rows[l.rows.length - 1].eci) })).sort((a, b) => a.at - b.at);
+    for (let i = 1; i < placed.length; i += 1) placed[i].at = Math.max(placed[i].at, placed[i - 1].at + 14);
+    const where = new Map(placed.map((p) => [p.l.group, p.at]));
+    ends.attr('x', x.range()[1] + 8).attr('y', (l) => where.get(l.group));
+  }
+
+  const ring = svg.append('circle').attr('class', 'amr-ring').attr('r', 6).style('display', 'none');
+  svg.append('rect').attr('class', 'amr-hit').attr('x', 0).attr('y', 0).attr('width', W).attr('height', H)
+    .on('pointermove', function (event) {
+      const p = nearest(plotted, svg.node(), event, 28);
+      if (!p) {
+        ring.style('display', 'none');
+        tip.hidden = true;
+        return;
+      }
+      ring.attr('cx', p.x).attr('cy', p.y).style('display', null);
+      const range = p.eci_low && p.eci_high ? ` (${f1(Number(p.eci_low))} to ${f1(Number(p.eci_high))})` : '';
+      showTip(tip, event, p.model, [['Lab', p.organization || 'Unknown'], ['Released', fmtDate(p.when)], ['ECI', f1(p.eci) + range], ['Access', p.accessibility]]);
+    })
+    .on('pointerleave', () => {
+      ring.style('display', 'none');
+      tip.hidden = true;
+    });
+}
+
+function drawCost() {
+  const box = $('.amr-cost-chart');
+  const tip = $('.amr-cost-tip');
+  const rows = rowsOf('level_cost');
+  if (!ready(box, ['models', 'prices'], rows)) return;
+  const W = box.clientWidth;
+  if (!W) return;
+  const H = 280;
+  const mt = 10;
+  const mb = 24;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Cheapest blended price over time for ECI levels 140, 150 and 160');
+  box.replaceChildren(svg.node());
+
+  const series = LEVELS.map(([level, strength]) => ({ level, strength, rows: rows.filter((r) => r.level === level).map((r) => ({ ...r, when: toDate(r.date) })) })).filter((s) => s.rows.length);
+  const allRows = series.flatMap((s) => s.rows);
+  const y = d3.scaleLog([d3.min(allRows, (r) => r.blended) * 0.7, d3.max(allRows, (r) => r.blended) * 1.3], [H - mb, mt]);
+  const ticks = [0.1, 1, 10, 100].filter((t) => t >= y.domain()[0] && t <= y.domain()[1]);
+  const tickText = yTicks(svg, ticks, y, (t) => '$' + t);
+  const ml = widest(tickText) + 8;
+  const ends = svg.append('g').selectAll('text').data(series).join('text').attr('class', 'amr-end').attr('dy', '0.35em')
+    .text((s) => `${s.level}+ ${usd(s.rows[s.rows.length - 1].blended)}`);
+  const mr = widest(ends) + 12;
+  const x = d3.scaleUtc(d3.extent(allRows, (r) => r.when), [ml + 4, Math.max(ml + 60, W - mr)]);
+
+  svg.insert('g', 'g').selectAll('line').data(ticks).join('line').attr('class', 'amr-grid').attr('x1', ml).attr('x2', x.range()[1]).attr('y1', (t) => y(t)).attr('y2', (t) => y(t));
+  const months = x.ticks(W < 420 ? 3 : 5);
+  const monthText = svg.append('g').selectAll('text').data(months).join('text').attr('class', 'amr-tick').attr('text-anchor', 'middle').attr('x', (d) => x(d)).attr('y', H - 6).text(fmtMonth);
+  placeLabels(monthText, { x0: 0, x1: W, y0: 0, y1: H + 4 });
+
+  const step = d3.line().x((r) => x(r.when)).y((r) => y(r.blended)).curve(d3.curveStepAfter);
+  svg.append('g').selectAll('path').data(series).join('path').attr('class', 'amr-step').attr('d', (s) => step(s.rows)).style('stroke', 'var(--color-fg)').style('stroke-opacity', (s) => s.strength);
+  // A dot at each price fall; the last row only carries the line to today.
+  const plotted = series.flatMap((s) => s.rows.slice(0, -1).map((r) => ({ ...r, strength: s.strength, x: x(r.when), y: y(r.blended) })));
+  svg.append('g').selectAll('circle').data(plotted).join('circle').attr('cx', (p) => p.x).attr('cy', (p) => p.y).attr('r', 3).style('fill', 'var(--color-fg)').style('fill-opacity', (p) => p.strength);
+
+  const placed = series.map((s) => ({ s, at: y(s.rows[s.rows.length - 1].blended) })).sort((a, b) => a.at - b.at);
+  for (let i = 1; i < placed.length; i += 1) placed[i].at = Math.max(placed[i].at, placed[i - 1].at + 14);
+  const where = new Map(placed.map((p) => [p.s.level, p.at]));
+  ends.attr('x', x.range()[1] + 8).attr('y', (s) => where.get(s.level));
+
+  const ring = svg.append('circle').attr('class', 'amr-ring').attr('r', 6).style('display', 'none');
+  svg.append('rect').attr('class', 'amr-hit').attr('x', 0).attr('y', 0).attr('width', W).attr('height', H)
+    .on('pointermove', function (event) {
+      const p = nearest(plotted, svg.node(), event, 40);
+      if (!p) {
+        ring.style('display', 'none');
+        tip.hidden = true;
+        return;
+      }
+      ring.attr('cx', p.x).attr('cy', p.y).style('display', null);
+      showTip(tip, event, `ECI ${p.level} or more`, [['From', fmtDate(p.when)], ['Cheapest', usd(p.blended)], ['Model', p.model]]);
+    })
+    .on('pointerleave', () => {
+      ring.style('display', 'none');
+      tip.hidden = true;
+    });
+}
+
+function drawValue() {
+  const box = $('.amr-value-chart');
+  const tip = $('.amr-value-tip');
+  const legend = $('.amr-value-legend');
+  const rows = rowsOf('priced').filter((r) => r.eci >= 140);
+  if (!ready(box, ['models', 'prices'], rows)) {
+    legend.replaceChildren();
+    return;
+  }
+  const W = box.clientWidth;
+  if (!W) return;
+  drawLegend(legend, LABS.filter((n) => rows.some((r) => r.lab === n)).map((n) => [n, labColor(n)]));
+  const H = 280;
+  const mt = 10;
+  const mb = 34;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Current blended price against ECI score for models scoring 140 or more');
+  box.replaceChildren(svg.node());
+
+  const y = d3.scaleLog([d3.min(rows, (r) => r.blended) * 0.5, d3.max(rows, (r) => r.blended) * 1.4], [H - mb, mt]);
+  const ticks = [0.1, 1, 10, 100].filter((t) => t >= y.domain()[0] && t <= y.domain()[1]);
+  const tickText = yTicks(svg, ticks, y, (t) => '$' + t);
+  const ml = widest(tickText) + 8;
+  const x = d3.scaleLinear([140, d3.max(rows, (r) => r.eci) + 1], [ml + 4, W - 10]);
+  svg.insert('g', 'g').selectAll('line').data(ticks).join('line').attr('class', 'amr-grid').attr('x1', ml).attr('x2', W - 10).attr('y1', (t) => y(t)).attr('y2', (t) => y(t));
+  svg.append('g').selectAll('text').data(x.ticks(W < 420 ? 4 : 6)).join('text').attr('class', 'amr-tick').attr('text-anchor', 'middle').attr('x', (t) => x(t)).attr('y', H - mb + 14).text((t) => t);
+  svg.append('text').attr('class', 'amr-tick').attr('text-anchor', 'end').attr('x', W - 10).attr('y', H - 4).text('ECI score');
+
+  // A model is on the dashed line when nothing scoring at least as high is cheaper.
+  const best = rows.filter((r) => !rows.some((o) => o !== r && o.eci >= r.eci && o.blended <= r.blended && (o.eci > r.eci || o.blended < r.blended))).sort((a, b) => a.eci - b.eci);
+  const edge = d3.line().x((r) => x(r.eci)).y((r) => y(r.blended)).curve(d3.curveStepBefore);
+  svg.append('path').attr('class', 'amr-pareto').attr('d', edge([{ eci: 140, blended: best[0].blended }, ...best]));
+
+  const plotted = rows.map((r) => ({ ...r, x: x(r.eci), y: y(r.blended) }));
+  svg.append('g').selectAll('circle').data(plotted).join('circle').attr('class', 'amr-dot').attr('cx', (p) => p.x).attr('cy', (p) => p.y).attr('r', 4).style('fill', (p) => labColor(p.lab)).style('fill-opacity', 0.85);
+  const names = svg.append('g').selectAll('text').data(best.slice().reverse()).join('text').attr('class', 'amr-name').attr('text-anchor', 'end').attr('x', (r) => x(r.eci) - 6).attr('y', (r) => y(r.blended) + 13).text((r) => r.model);
+  placeLabels(names, { x0: 0, x1: W, y0: 0, y1: H - mb }, [
+    (text, r) => text.attr('text-anchor', 'start').attr('x', x(r.eci) + 7).attr('y', y(r.blended) - 10),
+    (text, r) => text.attr('text-anchor', 'end').attr('x', x(r.eci) - 6).attr('y', y(r.blended) - 7),
+  ], tickText.nodes());
+
+  const ring = svg.append('circle').attr('class', 'amr-ring').attr('r', 6.5).style('display', 'none');
+  svg.append('rect').attr('class', 'amr-hit').attr('x', 0).attr('y', 0).attr('width', W).attr('height', H)
+    .on('pointermove', function (event) {
+      const p = nearest(plotted, svg.node(), event, 28);
+      if (!p) {
+        ring.style('display', 'none');
+        tip.hidden = true;
+        return;
+      }
+      ring.attr('cx', p.x).attr('cy', p.y).style('display', null);
+      showTip(tip, event, p.model, [['ECI', f1(p.eci)], ['Input', usd(p.input)], ['Output', usd(p.output)], ['Blended', usd(p.blended)]]);
+    })
+    .on('pointerleave', () => {
+      ring.style('display', 'none');
+      tip.hidden = true;
+    });
+}
+
+function drawPace() {
+  const box = $('.amr-pace-chart');
+  const tip = $('.amr-pace-tip');
+  const rows = rowsOf('pace');
+  const legend = $('.amr-pace-legend');
+  if (!ready(box, ['models'], rows)) {
+    legend.replaceChildren();
+    return;
+  }
+  const W = box.clientWidth;
+  if (!W) return;
+  drawLegend(legend, LABS.filter((n) => rows.some((r) => r.lab === n)).map((n) => [n, labColor(n)]));
+  const H = 240;
+  const mt = 8;
+  const mb = 24;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Models released per quarter by lab');
+  box.replaceChildren(svg.node());
+
+  const quarters = [...new Set(rows.map((r) => r.quarter))].sort();
+  const stacks = quarters.map((quarter) => {
+    let base = 0;
+    const parts = LABS.map((lab) => {
+      const n = (rows.find((r) => r.quarter === quarter && r.lab === lab) || { releases: 0 }).releases;
+      const part = { lab, n, from: base, to: base + n };
+      base += n;
+      return part;
+    }).filter((p) => p.n);
+    return { quarter, total: base, parts };
+  });
+  const y = d3.scaleLinear([0, d3.max(stacks, (s) => s.total)], [H - mb, mt]).nice(4);
+  const ticks = y.ticks(4);
+  const tickText = yTicks(svg, ticks, y, (t) => t);
+  const ml = widest(tickText) + 8;
+  const x = d3.scaleBand(quarters, [ml, W - 4]).paddingInner(0.25).paddingOuter(0.1);
+  svg.insert('g', 'g').selectAll('line').data(ticks).join('line').attr('class', 'amr-grid').attr('x1', ml).attr('x2', W - 4).attr('y1', (t) => y(t)).attr('y2', (t) => y(t));
+  const thick = Math.min(32, x.bandwidth());
+  const col = svg.append('g').selectAll('g').data(stacks).join('g').attr('class', 'amr-col').attr('transform', (s) => `translate(${x(s.quarter) + (x.bandwidth() - thick) / 2},0)`);
+  col.selectAll('rect').data((s) => s.parts).join('rect').attr('width', thick).attr('y', (p) => y(p.to)).attr('height', (p) => Math.max(0, y(p.from) - y(p.to) - 1)).attr('rx', 1.5).style('fill', (p) => labColor(p.lab));
+  // One label per year, under its first quarter.
+  svg.append('g').selectAll('text').data(quarters.filter((q) => q.endsWith('Q1'))).join('text').attr('class', 'amr-tick').attr('x', (q) => x(q)).attr('y', H - 6).text((q) => q.slice(0, 4));
+
+  svg.append('g').selectAll('rect').data(stacks).join('rect').attr('class', 'amr-hit').attr('x', (s) => x(s.quarter) - (x.step() - x.bandwidth()) / 2).attr('y', 0).attr('width', x.step()).attr('height', H)
+    .on('pointermove', function (event, s) {
+      col.classed('amr-dim', (d) => d !== s);
+      showTip(tip, event, `${s.quarter}: ${s.total} models`, s.parts.slice().reverse().map((p) => [p.lab, String(p.n), labColor(p.lab)]));
+    })
+    .on('pointerleave', () => {
+      col.classed('amr-dim', false);
+      tip.hidden = true;
+    });
+}
+
+function drawLead() {
+  const box = $('.amr-lead-chart');
+  const tip = $('.amr-lead-tip');
+  const rows = rowsOf('lead_days');
+  if (!ready(box, ['models'], rows)) return;
+  const W = box.clientWidth;
+  if (!W) return;
+  const rowH = 30;
+  const H = rows.length * rowH + 4;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Days at the top of the index by lab');
+  box.replaceChildren(svg.node());
+  const total = d3.sum(rows, (r) => r.days);
+  const row = svg.selectAll('g').data(rows).join('g').attr('class', 'amr-row').attr('transform', (d, i) => `translate(0,${2 + i * rowH})`);
+  const names = row.append('text').attr('class', 'amr-lab').attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((d) => d.lab);
+  const values = row.append('text').attr('class', 'amr-val').attr('y', rowH / 2).attr('dy', '0.35em').text((d) => d3.format(',')(d.days) + ' days');
+  const ml = widest(names) + 10;
+  const mr = widest(values) + 10;
+  const x = d3.scaleLinear([0, d3.max(rows, (d) => d.days)], [ml, Math.max(ml + 24, W - mr)]);
+  names.attr('x', ml - 8);
+  row.insert('rect', 'text').attr('class', 'amr-bar').attr('x', ml).attr('y', 6).attr('height', rowH - 12).attr('rx', 4).attr('width', (d) => Math.max(2, x(d.days) - ml)).style('fill', (d) => labColor(d.lab));
+  values.attr('x', (d) => Math.max(ml + 2, x(d.days)) + 6);
+  const records = rowsOf('frontiers').filter((r) => r.view === 'all');
+  row.append('rect').attr('class', 'amr-hit').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH)
+    .on('pointermove', function (event, d) {
+      row.classed('amr-dim', (e) => e !== d).classed('amr-on', (e) => e === d);
+      const own = records.filter((r) => r.lab === d.lab);
+      showTip(tip, event, d.lab, [['Share of the period', d3.format('.0%')(d.days / total)], ['Record-setting models', String(own.length)], ['Latest', own.length ? own[own.length - 1].model : 'None']]);
+    })
+    .on('pointerleave', () => {
+      row.classed('amr-dim', false).classed('amr-on', false);
+      tip.hidden = true;
+    });
+}
+
+// Headline text: each class shows one value, wherever it appears.
+function drawText() {
+  const s = rowsOf('summary')[0];
+  const loading = statusOf('models') === 'loading' || statusOf('prices') === 'loading';
+  const values = s ? {
+    leader: s.leader,
+    leadlab: s.leader_lab,
+    leadeci: f1(s.leader_eci),
+    leaddate: fmtDate(toDate(s.leader_date)),
+    tied: String(s.tied),
+    open: s.open_best,
+    match: s.closed_match,
+    lag: f1(s.open_lag_months) + ' months',
+    now: usd(s.level150_now),
+    first: usd(s.level150_first),
+    drop: s.level150_drop_pct + '%',
+  } : {};
+  for (const key of ['leader', 'leadlab', 'leadeci', 'leaddate', 'tied', 'open', 'match', 'lag', 'now', 'first', 'drop']) {
+    for (const el of root.querySelectorAll('.amr-v-' + key)) {
+      el.textContent = values[key] || '—';
+      el.classList.toggle('dash-skeleton', !values[key] && loading);
+    }
+  }
+}
+
+const sort = { field: 'eci', dir: -1 };
+let search = '';
+
+function drawTable() {
+  const body = $('.amr-tbody');
+  const models = statusOf('models') === 'ok' ? rowsOf('models') : [];
+  const price = new Map(rowsOf('priced').map((r) => [r.model, r]));
+  const rows = models.map((m) => {
+    const p = price.get(m.model);
+    return { model: m.model, lab: m.lab, organization: m.organization || '', release_date: m.release_date, eci: Number(m.eci), weights: m.weights, input: p ? p.input : null, output: p ? p.output : null };
+  });
+  const needle = search.trim().toLowerCase();
+  const text = (field) => field === 'model' || field === 'organization' || field === 'release_date' || field === 'weights';
+  const shown = rows
+    .filter((r) => !needle || (r.model + ' ' + r.organization).toLowerCase().includes(needle))
+    .sort((a, b) => {
+      const va = a[sort.field];
+      const vb = b[sort.field];
+      if (va == null || vb == null) return (va == null) - (vb == null) || b.eci - a.eci;
+      return sort.dir * (text(sort.field) ? String(va).localeCompare(String(vb)) : va - vb) || b.eci - a.eci;
+    });
+
+  for (const th of root.querySelectorAll('.amr-table th')) {
+    if (th.dataset.field === sort.field) th.setAttribute('aria-sort', sort.dir === 1 ? 'ascending' : 'descending');
+    else th.removeAttribute('aria-sort');
+  }
+  const cell = (value, cls) => {
+    const td = document.createElement('td');
+    if (cls) td.className = cls;
+    td.textContent = value;
+    return td;
+  };
+  body.replaceChildren(...shown.map((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = r.model;
+    const lab = cell('', 'amr-sec2');
+    const dot = document.createElement('span');
+    dot.className = 'amr-labdot';
+    dot.style.background = labColor(r.lab);
+    lab.append(dot, r.organization);
+    tr.append(
+      cell(r.model),
+      lab,
+      cell(fmtDate(toDate(r.release_date)), 'amr-sec'),
+      cell(f1(r.eci), 'amr-num'),
+      cell(r.input == null ? '—' : usd(r.input), 'amr-num amr-sec' + (r.input == null ? ' amr-soft' : '')),
+      cell(r.output == null ? '—' : usd(r.output), 'amr-num' + (r.output == null ? ' amr-soft' : '')),
+      cell(r.weights, 'amr-sec amr-soft'),
+    );
+    return tr;
+  }));
+  $('.amr-empty').hidden = !(rows.length && !shown.length);
+}
+
+for (const b of root.querySelectorAll('.amr-segb')) b.addEventListener('click', () => dash.setParams({ group: b.value }));
+for (const b of root.querySelectorAll('.amr-sortb')) {
+  b.addEventListener('click', () => {
+    const field = b.parentElement.dataset.field;
+    if (sort.field === field) sort.dir = -sort.dir;
+    else {
+      sort.field = field;
+      sort.dir = field === 'model' || field === 'organization' || field === 'weights' ? 1 : -1;
+    }
+    drawTable();
+  });
+}
+$('.amr-search').addEventListener('input', (event) => {
+  search = event.target.value;
+  drawTable();
+});
+
+dash.onData(() => {
+  drawText();
+  drawFrontier();
+  drawCost();
+  drawValue();
+  drawPace();
+  drawLead();
+  drawTable();
+});
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
