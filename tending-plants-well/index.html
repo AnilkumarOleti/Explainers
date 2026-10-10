@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tending Plants Well | Explainers</title>
+<meta name="description" content="A plant is a solar-powered pump. Light runs it, watering keeps up with it, and roots need air.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/tending-plants-well/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Tending Plants Well">
+<meta property="og:description" content="A plant is a solar-powered pump. Light runs it, watering keeps up with it, and roots need air.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/tending-plants-well/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/tending-plants-well/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,600;0,800;1,400&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one 64ch reading spine on a greenhouse-glass ground; figures widen to a 1040px bench;
+   every section is headed by a nursery stake tag. Yellow always means light, blue water, brown soil. */
+:root{
+  --glass:#E4ECE4; --pane:#F2F6F1; --ink:#13241B; --ink-soft:#47594D; --rule:#B9C8BB;
+  --leaf:#2B7A4B; --leaf-deep:#1B5633; --sun:#E3A008; --on-sun:#1D1600;
+  --water:#1F6FA3; --soil:#6A4B37; --bad:#B03F2B;
+  --display:"Besley","Rockwell","Georgia",serif;
+  --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --glass:#0D1611; --pane:#15221B; --ink:#E2ECE1; --ink-soft:#9DB0A1; --rule:#2B3D31;
+    --leaf:#5FBF85; --leaf-deep:#8FD8AA; --sun:#F5C33B; --on-sun:#1D1600;
+    --water:#62B2E4; --soil:#A47E62; --bad:#E8785F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --glass:#0D1611; --pane:#15221B; --ink:#E2ECE1; --ink-soft:#9DB0A1; --rule:#2B3D31;
+  --leaf:#5FBF85; --leaf-deep:#8FD8AA; --sun:#F5C33B; --on-sun:#1D1600;
+  --water:#62B2E4; --soil:#A47E62; --bad:#E8785F; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--glass);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.page{max-width:1040px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:24px 64px}
+p,h1,h2,h3,ol,ul,dl,dd,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+svg{display:block;max-width:100%;height:auto}
+:focus-visible{outline:2px solid var(--water);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:.82em;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+/* SVG paint classes, so every mark follows the theme */
+.f-sun{fill:var(--sun)} .f-water{fill:var(--water)} .f-leaf{fill:var(--leaf)} .f-soil{fill:var(--soil)}
+.f-pane{fill:var(--pane)} .f-glass{fill:var(--glass)} .f-ink{fill:var(--ink)} .f-none{fill:none}
+.s-sun{stroke:var(--sun)} .s-water{stroke:var(--water)} .s-ink{stroke:var(--ink)} .s-stem{stroke:var(--leaf-deep)}
+.s-root{stroke:var(--pane)} .s-leafdeep{stroke:var(--leaf-deep)}
+
+/* greenhouse ridge */
+.ridge{height:20px;border-block:1.5px solid var(--ink);
+  background:repeating-linear-gradient(90deg,transparent 0 46px,var(--ink) 46px 47.5px)}
+
+/* stake tag */
+.tag{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.09em;
+  text-transform:uppercase;color:var(--pane);background:var(--leaf-deep);padding:8px 24px 8px 11px;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%)}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--glass)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,64px);align-items:start;padding-block:44px 56px}
+.hero-copy{display:grid;gap:22px;min-width:0}
+h1{font:800 clamp(2.5rem,6.4vw,4.5rem)/1 var(--display);letter-spacing:-.025em;text-wrap:balance}
+.lede{font-size:1.18rem;line-height:1.5;max-width:34em}
+.lede strong{font-weight:700;color:var(--leaf-deep)}
+.caretag{background:var(--ink);padding:1.5px;min-width:0;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 52px),50% 100%,0 calc(100% - 52px))}
+.caretag-in{background:var(--pane);padding:54px 24px 84px;display:grid;gap:20px;position:relative;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 52px),50% 100%,0 calc(100% - 52px))}
+.caretag-in::before{content:"";position:absolute;top:16px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;
+  background:var(--glass);border:1.5px solid var(--ink)}
+.caretag-name{display:grid;gap:2px;padding-bottom:16px;border-bottom:1.5px solid var(--ink)}
+.caretag-name b{font:800 1.5rem/1.1 var(--display)}
+.caretag-name i{font:italic 400 .95rem/1.3 var(--display);color:var(--ink-soft)}
+.care{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start}
+.care h3{font:600 1.05rem/1.2 var(--display)}
+.care p{font-size:.95rem;line-height:1.45;color:var(--ink-soft)}
+
+/* sections */
+.sec{display:grid;gap:18px;padding-block:52px;border-top:1px solid var(--rule)}
+.sec>*{min-width:0}
+.sec>h2,.sec>p{max-width:64ch}
+h2{font:600 clamp(1.6rem,3.6vw,2.3rem)/1.12 var(--display);letter-spacing:-.015em;text-wrap:balance}
+h3{font:700 1.02rem/1.3 var(--body)}
+.fig{display:grid;gap:12px;margin-top:10px}
+figcaption{font-size:.88rem;color:var(--ink-soft);max-width:64ch}
+
+/* spiral */
+.spiral{display:flex;flex-wrap:wrap;gap:10px 0;align-items:center}
+.spiral li{display:flex;align-items:center}
+.spiral span{border:1.5px solid var(--ink);padding:7px 12px;font-weight:500;font-size:.95rem;background:var(--pane)}
+.spiral li::after{content:"\2192";margin-inline:9px;font-family:var(--mono);color:var(--ink-soft)}
+.spiral li:last-child::after{content:"\21BA  back to the start";white-space:pre;font-size:.8rem;letter-spacing:.04em}
+
+/* pump */
+.pump-wrap{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.pump text{font:500 16px var(--mono);fill:var(--glass)}
+.pump text.lab{font:500 13px var(--mono);fill:var(--ink-soft);letter-spacing:.04em}
+.flow{stroke-dasharray:4 10;animation:rise 1.6s linear infinite}
+@keyframes rise{to{stroke-dashoffset:-28}}
+.steps{display:grid;gap:16px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--glass);
+  font:500 15px/30px var(--mono);text-align:center}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px 32px;margin-top:8px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h3{display:flex;align-items:center;gap:9px}
+.key{width:12px;height:12px;border-radius:50%;flex:none;border:1.5px solid var(--ink)}
+.key.sun{background:var(--sun)} .key.water{background:var(--water)} .key.soil{background:var(--soil)}
+.trio p{font-size:.97rem;color:var(--ink-soft)}
+
+/* simulator */
+.sim{background:var(--pane);border:1.5px solid var(--ink);padding:clamp(16px,3vw,28px);display:grid;gap:22px}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px 32px;align-items:start}
+.ctl{display:grid;gap:8px;min-width:0}
+.ctl label,.ctl .lbl{font:500 12px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.ctl output{color:var(--ink);font-weight:500}
+input[type=range]{width:100%;accent-color:var(--leaf);margin:0;height:24px}
+.stops{display:grid;grid-template-columns:repeat(4,1fr);font-size:.72rem;line-height:1.2;color:var(--ink-soft);text-align:center;gap:2px}
+.seg{display:flex;border:1.5px solid var(--ink)}
+.seg button{flex:1;min-width:0;font:500 .9rem/1.2 var(--body);padding:9px 8px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.seg button+button{border-left:1.5px solid var(--ink)}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--glass)}
+.note{font-size:.9rem;color:var(--ink-soft);line-height:1.4}
+.chart{position:relative;min-height:250px}
+.chart .band-wet{fill:var(--water);fill-opacity:.17}
+.chart .band-ok{fill:var(--leaf);fill-opacity:.15}
+.chart .band-dry{fill:var(--sun);fill-opacity:.24}
+.chart .grid{stroke:var(--rule);stroke-width:1}
+.chart .trace{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart text{font:400 11px var(--mono);fill:var(--ink-soft)}
+.chart text.band{letter-spacing:.07em;paint-order:stroke;stroke:var(--pane);stroke-width:4px;stroke-linejoin:round}
+.chart .cross{stroke:var(--ink);stroke-width:1;stroke-dasharray:3 3}
+.tip{position:absolute;top:0;pointer-events:none;background:var(--ink);color:var(--glass);font:500 12px/1.3 var(--mono);
+  padding:5px 8px;white-space:nowrap;transform:translateX(-50%)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--ink-soft)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{display:inline-block}
+.lg-dot{width:9px;height:9px;border-radius:50%;background:var(--water)}
+.lg-line{width:18px;height:2px;background:var(--ink)}
+.read{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px 36px;align-items:start;border-top:1px solid var(--rule);padding-top:20px}
+.verdict{display:grid;gap:10px;justify-items:start}
+.chip{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:7px 11px}
+.chip.good{background:var(--leaf);color:var(--pane)}
+.chip.warn{background:var(--sun);color:var(--on-sun)}
+.chip.bad{background:var(--bad);color:var(--pane)}
+.stats{display:grid;gap:8px}
+.stats div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:6px}
+.stats dt{color:var(--ink-soft);font-size:.92rem}
+.stats dd{font:500 .92rem/1.6 var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* light chart */
+.lux{background:var(--pane);border:1px solid var(--rule);padding:clamp(12px,2.4vw,22px)}
+.lux .z0{fill:var(--ink);fill-opacity:.07} .lux .z1{fill:var(--leaf);fill-opacity:.09}
+.lux .z2{fill:var(--leaf);fill-opacity:.2} .lux .z3{fill:var(--sun);fill-opacity:.2}
+.lux text{font:500 13px var(--body);fill:var(--ink)}
+.lux text.zone,.lux text.tick{font:400 10.5px var(--mono);fill:var(--ink-soft);letter-spacing:.07em}
+.lux tspan.val{font:400 11.5px var(--mono);fill:var(--ink-soft)}
+.lux .bar{fill:var(--ink)} .lux .axis{stroke:var(--ink-soft);stroke-width:1}
+.tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px 32px}
+.tests>div{display:grid;gap:8px;align-content:start;min-width:0}
+.tests p{font-size:.97rem;color:var(--ink-soft)}
+.shadows{display:flex;gap:10px}
+.shadows figure{flex:1;display:grid;gap:2px;justify-items:center;font:400 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.match{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;border:1.5px solid var(--ink)}
+.match>div{padding:18px 20px;display:grid;gap:8px;align-content:start;min-width:0;border-top:1.5px solid var(--ink);margin-top:-1.5px;border-left:1.5px solid var(--ink);margin-left:-1.5px}
+.match h3{font:600 1.1rem/1.2 var(--display)}
+.match p{font-size:.95rem} .match .why{color:var(--ink-soft);font-size:.9rem}
+.clipbox{overflow:hidden}
+
+/* watering steps */
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px 28px;counter-reset:h}
+.how li{display:grid;gap:6px;align-content:start;counter-increment:h;border-top:1.5px solid var(--ink);padding-top:12px;min-width:0}
+.how li::before{content:counter(h);font:800 1.7rem/1 var(--display);color:var(--water)}
+.how p{font-size:.97rem;color:var(--ink-soft)}
+.depth{display:grid;gap:0;max-width:64ch}
+.depth div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;padding-block:9px;border-bottom:1px solid var(--rule)}
+.depth dd{font:500 .9rem/1.7 var(--mono);text-align:right}
+
+/* npk */
+.npk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink);max-width:560px;background:var(--pane)}
+.npk div{padding:14px 12px 16px;text-align:center;display:grid;gap:2px}
+.npk div+div{border-left:1.5px solid var(--ink)}
+.npk b{font:800 clamp(1.8rem,6vw,2.6rem)/1 var(--display);font-variant-numeric:tabular-nums}
+.npk span{font:700 .84rem/1.3 var(--body)}
+.npk small{font-size:.86rem;color:var(--ink-soft)}
+
+/* symptoms */
+.dx{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:24px 36px;align-items:start}
+.dx-list{display:grid;gap:6px}
+.dx-list button{font:500 .97rem/1.3 var(--body);text-align:left;padding:10px 14px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.dx-list button[aria-pressed=true]{background:var(--ink);color:var(--glass)}
+.dx-out{background:var(--pane);border:1.5px solid var(--ink);padding:clamp(18px,3vw,28px);display:grid;gap:18px}
+.dx-out .k{font:500 11.5px/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px}
+.dx-out .cause{font:600 clamp(1.3rem,3vw,1.7rem)/1.15 var(--display);text-wrap:balance}
+
+/* rank + round */
+.rank{display:grid;gap:0;counter-reset:r;max-width:760px}
+.rank li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px 16px;align-items:baseline;counter-increment:r;padding-block:14px;border-bottom:1px solid var(--rule)}
+.rank li::before{content:counter(r);font:800 2.4rem/1 var(--display);color:var(--leaf)}
+.rank h3{font:600 1.15rem/1.2 var(--display)}
+.rank p{color:var(--ink-soft);font-size:.97rem}
+.round{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px 24px}
+.round div{display:grid;gap:4px;align-content:start;min-width:0}
+.round dt{font:600 1.1rem/1.2 var(--display)}
+.round dd{font-size:.94rem;color:var(--ink-soft)}
+.last{font:600 clamp(1.4rem,3.6vw,2.1rem)/1.2 var(--display);text-wrap:balance;max-width:26ch;letter-spacing:-.01em}
+.foot{font-size:.84rem;color:var(--ink-soft);max-width:64ch;padding-block:28px 24px;border-top:1px solid var(--rule)}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:32px 44px}
+  .caretag{max-width:400px}
+  .pump-wrap,.dx,.read{grid-template-columns:minmax(0,1fr)}
+  .dx-list{display:flex;flex-wrap:wrap}
+  .dx-list button{padding:8px 11px;font-size:.9rem}
+  .sec{padding-block:40px}
+}
+@media (prefers-reduced-motion:reduce){.flow{animation:none}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="ridge" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="hero-copy">
+      <span class="tag">Care tag for any plant</span>
+      <h1>How to tend plants well</h1>
+      <p class="lede">Most houseplants that die were watered faithfully by someone who cared. One idea fixes that. <strong>A plant is a solar-powered pump.</strong> Light runs it. Everything you do either feeds the pump or keeps up with it.</p>
+    </div>
+
+    <div class="caretag">
+      <div class="caretag-in">
+        <div class="caretag-name"><b>Any plant</b><i>Planta quaelibet</i></div>
+        <div class="care">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+            <g class="s-sun" stroke-width="2.6" stroke-linecap="round"><path d="M20 3v5M20 32v5M3 20h5M32 20h5M8 8l3.5 3.5M28.5 28.5L32 32M8 32l3.5-3.5M28.5 11.5L32 8"/></g>
+            <circle class="f-sun s-ink" cx="20" cy="20" r="7.5" stroke-width="1.5"/>
+          </svg>
+          <div><h3>Light</h3><p>Its only food. Put it where it can see the sky.</p></div>
+        </div>
+        <div class="care">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+            <path class="f-water s-ink" stroke-width="1.5" d="M20 4C20 4 8 18 8 25.5a12 12 0 0 0 24 0C32 18 20 4 20 4Z"/>
+          </svg>
+          <div><h3>Water</h3><p>When the soil is dry two knuckles down. Then soak it.</p></div>
+        </div>
+        <div class="care">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">
+            <g class="s-ink f-none" stroke-width="2" stroke-linecap="round"><path d="M5 14h30M20 5v9M20 14v21M20 14c0 9-6 10-9 19M20 14c0 9 6 10 9 19"/></g>
+            <circle class="f-soil" cx="8" cy="23" r="2.4"/><circle class="f-soil" cx="32" cy="23" r="2.4"/><circle class="f-soil" cx="14.5" cy="19.5" r="1.8"/><circle class="f-soil" cx="25.5" cy="19.5" r="1.8"/>
+          </svg>
+          <div><h3>Air</h3><p>Roots breathe. Drainage hole, loose mix, snug pot.</p></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="sec" aria-labelledby="h-trouble">
+    <span class="tag">The trouble</span>
+    <h2 id="h-trouble">Plants die of attention more often than neglect</h2>
+    <p>The usual advice is a schedule: water once a week. A schedule ignores the one thing that decides how much water a plant uses, which is how much light it gets. The same plant can drink a pot dry in four days on a sunny sill and take a month in a dim corner.</p>
+    <p>Water on schedule in low light and the soil never dries. Wet soil has no air in it, and roots need oxygen as much as they need water. They suffocate, then rot. Rotten roots cannot take up water, so the plant wilts. It looks thirsty. So it gets watered again.</p>
+    <figure class="fig">
+      <ol class="spiral">
+        <li><span>Soil stays wet</span></li>
+        <li><span>Roots run out of air</span></li>
+        <li><span>Roots rot and stop drinking</span></li>
+        <li><span>Plant wilts and looks thirsty</span></li>
+        <li><span>You water again</span></li>
+      </ol>
+      <figcaption>The overwatering spiral. The cure for a wilting plant in wet soil is less water and more air.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec" aria-labelledby="h-model">
+    <span class="tag">The model</span>
+    <h2 id="h-model">A plant is a solar-powered pump</h2>
+    <p>Leaves make the plant's food out of light, air and water. To take in air they open thousands of tiny pores, and water evaporates out through them. That loss pulls more water up from the roots, the way a drink climbs a straw. Almost all the water a plant takes up passes straight through and leaves as vapour.</p>
+    <figure class="fig">
+      <div class="pump-wrap">
+        <svg class="pump" viewBox="0 0 440 470" role="img" aria-label="A potted plant drawn as a pump: sunlight lands on the leaves, vapour escapes from them, water is pulled up the stem, and roots sit in soil that holds both water and air.">
+          <g class="s-sun" stroke-width="3" stroke-linecap="round"><path d="M96 62h12M62 96v12M28 62H16M62 28V16M38 38l-8.500-8.500M86 38l8.500-8.500M38 86l-8.500 8.500"/></g>
+          <circle class="f-sun" cx="62" cy="62" r="24"/>
+          <g class="s-sun f-none" stroke-width="2.6" stroke-dasharray="2 8" stroke-linecap="round"><path d="M96 88L168 122"/><path d="M84 98L140 178"/></g>
+          <text class="lab" x="118" y="92">light</text>
+
+          <path class="s-stem f-none" stroke-width="7" stroke-linecap="round" d="M230 328C227 270 233 210 230 150"/>
+          <path class="f-leaf" d="M229 262C190 262 146 228 128 182C172 184 218 216 229 262Z"/>
+          <path class="f-leaf" d="M231 228C272 226 318 196 336 150C292 152 242 182 231 228Z"/>
+          <path class="f-leaf" d="M229 192C196 182 166 146 160 100C198 112 226 150 229 192Z"/>
+          <path class="f-leaf" d="M231 160C238 124 262 92 296 74C292 114 266 146 231 160Z"/>
+          <g class="s-leafdeep f-none" stroke-width="1.5" stroke-linecap="round"><path d="M229 262C200 240 160 208 136 187"/><path d="M231 228C262 206 304 176 329 156"/><path d="M229 192C210 166 182 128 164 106"/><path d="M231 160C246 134 272 102 291 80"/></g>
+          <path class="flow s-water f-none" stroke-width="3" stroke-linecap="round" d="M230 420C228 360 227 270 230 200"/>
+
+          <g class="s-water f-none" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 7"><path d="M344 140C358 126 368 112 376 96"/><path d="M304 64C314 52 322 40 328 28"/></g>
+          <path class="f-water" d="M372 92l10-4-2 11Z"/><path class="f-water" d="M324 24l10-4-2 11Z"/>
+          <text class="lab" x="350" y="160">vapour</text>
+
+          <rect class="f-pane s-ink" stroke-width="2" x="128" y="302" width="204" height="16" rx="3"/>
+          <path class="f-pane s-ink" stroke-width="2" d="M138 318H322L300 432H160Z"/>
+          <path class="f-soil" d="M147 326H313L294 425H166Z"/>
+          <g class="s-root f-none" stroke-width="3" stroke-linecap="round"><path d="M230 326C226 350 204 366 192 404"/><path d="M230 326C236 352 258 368 270 404"/><path d="M230 332C231 360 228 388 232 414"/><path d="M214 356C200 356 188 362 178 372"/><path d="M246 358C260 358 272 364 282 374"/></g>
+          <g class="f-glass" opacity=".8"><circle cx="172" cy="346" r="5"/><circle cx="288" cy="344" r="5"/><circle cx="210" cy="392" r="4.500"/><circle cx="252" cy="388" r="4.500"/><circle cx="296" cy="392" r="4"/><circle cx="176" cy="398" r="4"/></g>
+          <g class="f-water"><circle cx="196" cy="340" r="3.500"/><circle cx="266" cy="338" r="3.500"/><circle cx="216" cy="412" r="3.500"/><circle cx="250" cy="412" r="3.500"/><circle cx="298" cy="366" r="3.500"/><circle cx="166" cy="368" r="3.500"/></g>
+          <rect class="f-glass" x="222" y="428" width="16" height="7"/>
+          <circle class="f-water" cx="230" cy="444" r="3"/><circle class="f-water" cx="230" cy="455" r="2.500"/>
+          <path class="s-ink f-none" stroke-width="2" stroke-linecap="round" d="M150 464H310"/>
+          <path class="s-ink f-none" stroke-width="1.5" d="M352 376H306"/>
+
+          <circle class="f-ink" cx="106" cy="150" r="15"/><text x="106" y="150" text-anchor="middle" dominant-baseline="central">1</text>
+          <circle class="f-ink" cx="398" cy="66" r="15"/><text x="398" y="66" text-anchor="middle" dominant-baseline="central">2</text>
+          <circle class="f-ink" cx="264" cy="290" r="15"/><text x="264" y="290" text-anchor="middle" dominant-baseline="central">3</text>
+          <circle class="f-ink" cx="368" cy="376" r="15"/><text x="368" y="376" text-anchor="middle" dominant-baseline="central">4</text>
+        </svg>
+        <ol class="steps">
+          <li><p><strong>Light lands on a leaf.</strong> The leaf turns it into sugar. This is the plant's food and its only source of energy.</p></li>
+          <li><p><strong>Pores open to breathe.</strong> Carbon dioxide comes in. Water vapour escapes.</p></li>
+          <li><p><strong>Water climbs the stem.</strong> Each escaping molecule tugs the column behind it upward. Dissolved minerals ride along.</p></li>
+          <li><p><strong>Roots drink and breathe.</strong> They draw water from the soil and oxygen from the air gaps between its particles. The pale dots are air. The blue ones are water.</p></li>
+        </ol>
+      </div>
+      <figcaption>More light opens more pores and moves more water. Less light slows every step.</figcaption>
+    </figure>
+    <div class="trio">
+      <div><h3><i class="key sun"></i>Light is the throttle</h3><p>More light means a faster pump, more growth and more water used. Fertiliser cannot stand in for it.</p></div>
+      <div><h3><i class="key water"></i>Water is the supply line</h3><p>It carries minerals up and keeps the cells firm. The plant needs exactly as much as the light makes it use.</p></div>
+      <div><h3><i class="key soil"></i>Soil is half air</h3><p>A good mix holds water in its particles and air in the gaps between them. Keep the gaps flooded and the roots drown.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-try">
+    <span class="tag">Try it</span>
+    <h2 id="h-try">One watering can, four windows</h2>
+    <p>Set the light, then choose how you water. The line shows how wet the soil is over six weeks. A plant does well when the line spends most of its time in the middle band, where roots have both water and air.</p>
+    <div class="sim">
+      <div class="controls">
+        <div class="ctl">
+          <label for="light">Light: <output id="lightName" for="light">Mid-room</output></label>
+          <input type="range" id="light" min="0" max="100" value="30" step="1">
+          <div class="stops" aria-hidden="true"><span>Dim corner</span><span>Mid-room</span><span>Bright window</span><span>Direct sun</span></div>
+        </div>
+        <div class="ctl">
+          <span class="lbl" id="modeLbl">How you water</span>
+          <div class="seg" role="group" aria-labelledby="modeLbl">
+            <button type="button" id="modeSchedule" aria-pressed="true">On a schedule</button>
+            <button type="button" id="modeCheck" aria-pressed="false">When the soil is dry</button>
+          </div>
+        </div>
+        <div class="ctl" id="everyCtl">
+          <label for="every">Every <output id="everyOut" for="every">7</output> days</label>
+          <input type="range" id="every" min="2" max="21" value="7" step="1">
+        </div>
+        <div class="ctl" id="checkCtl" hidden>
+          <span class="lbl">The cue</span>
+          <p class="note">You check with a finger and soak the pot only once the soil has dried out two knuckles down.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="chart" id="simChart"></div>
+        <div class="legend"><span><i class="lg-line"></i>Soil moisture</span><span><i class="lg-dot"></i>A watering</span><span>A simplified model of one mid-sized pot</span></div>
+      </div>
+
+      <div class="read">
+        <div class="verdict" aria-live="polite">
+          <span class="chip" id="chip"></span>
+          <p id="verdictText"></p>
+        </div>
+        <dl class="stats">
+          <div><dt>Waterings in six weeks</dt><dd id="stWater"></dd></div>
+          <div><dt>Soil too wet for roots</dt><dd id="stWet"></dd></div>
+          <div><dt>Soil bone dry</dt><dd id="stDry"></dd></div>
+        </dl>
+      </div>
+    </div>
+    <p>Slide the light from one end to the other with the schedule on. Weekly watering drowns the plant in the dim corner and parches it in direct sun. Switch to watering when the soil is dry and the line stays healthy at every light level. Only the rhythm changes.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="h-light">
+    <span class="tag">Light</span>
+    <h2 id="h-light">Light comes first, and there is less of it than you think</h2>
+    <p>Your eyes adjust to brightness so well that a room looks evenly lit when it is nothing of the kind. Light falls off steeply with every step back from the glass. A spot two metres into the room can get a tenth of what the windowsill gets, and the windowsill gets a fraction of the open sky.</p>
+    <figure class="fig">
+      <div class="lux"><div id="luxChart"></div></div>
+      <figcaption>Typical daytime light in lux. Each step along the axis is ten times the one before. The shaded columns are the bands growers use: most rooms are darker than the plants in them would like.</figcaption>
+    </figure>
+    <p>For a plant, low light is slow starvation. It can live off its reserves for months, which is why the decline seems to come from nowhere.</p>
+
+    <div class="tests">
+      <div>
+        <h3>The shadow test</h3>
+        <div class="shadows" aria-hidden="true">
+          <figure><svg viewBox="0 0 90 60" width="90" height="60"><ellipse class="f-ink" cx="52" cy="46" rx="26" ry="7" opacity=".8"/><circle class="f-leaf" cx="38" cy="22" r="13"/></svg>direct</figure>
+          <figure><svg viewBox="0 0 90 60" width="90" height="60"><defs><filter id="b1" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="2.6"/></filter></defs><ellipse class="f-ink" cx="52" cy="46" rx="26" ry="7" opacity=".5" filter="url(#b1)"/><circle class="f-leaf" cx="38" cy="22" r="13"/></svg>bright</figure>
+          <figure><svg viewBox="0 0 90 60" width="90" height="60"><defs><filter id="b2" x="-40%" y="-120%" width="180%" height="340%"><feGaussianBlur stdDeviation="6"/></filter></defs><ellipse class="f-ink" cx="52" cy="46" rx="26" ry="7" opacity=".28" filter="url(#b2)"/><circle class="f-leaf" cx="38" cy="22" r="13"/></svg>low</figure>
+        </div>
+        <p>At midday, hold your hand a foot above the spot. A crisp dark shadow is direct sun. A soft shadow with a clear outline is bright indirect light, which suits most houseplants. A faint blur is low light.</p>
+      </div>
+      <div>
+        <h3>The sky test</h3>
+        <p>Crouch to leaf height and look out. If the plant can see a wide piece of sky, it is in good light. If it sees only walls, it is in low light, however bright the room feels to you.</p>
+      </div>
+      <div>
+        <h3>The phone test</h3>
+        <p>A free light meter app gives a rough lux reading. Measure at leaf height around midday and compare it with the chart above.</p>
+      </div>
+    </div>
+
+    <h3>Match the plant to the spot, never the other way round</h3>
+    <div class="clipbox"><div class="match">
+      <div><h3>Low</h3><span class="mono">500 to 2,500 lux</span><p>ZZ plant, snake plant, pothos (money plant), peace lily.</p><p class="why">These tolerate it. They still grow better with more.</p></div>
+      <div><h3>Medium</h3><span class="mono">2,500 to 10,000 lux</span><p>Monstera, rubber plant, philodendron, areca palm, most ferns.</p><p class="why">Beside a bright window, out of the midday sun.</p></div>
+      <div><h3>High</h3><span class="mono">10,000 lux and up</span><p>Succulents, cacti, herbs, tulsi, curry leaf, hibiscus, anything grown for flowers or fruit.</p><p class="why">A sunny sill or a balcony with several hours of direct sun.</p></div>
+    </div></div>
+    <p>Move a plant into stronger sun over a week or two. Leaves grown in shade scorch if they go straight into direct sun.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="h-water">
+    <span class="tag">Water</span>
+    <h2 id="h-water">Ask the soil, then water properly</h2>
+    <ol class="how">
+      <li><h3>Check</h3><p>Push a finger into the soil to the second knuckle, about 5 cm. Cool and damp means wait. Dry means water. Lifting the pot works too: a dry pot is surprisingly light.</p></li>
+      <li><h3>Soak</h3><p>Water slowly over the whole surface until it runs out of the drainage hole. That wets every root and flushes out built-up salts.</p></li>
+      <li><h3>Drain</h3><p>After ten minutes, empty the saucer. A pot standing in water has no air at the bottom.</p></li>
+      <li><h3>Wait</h3><p>Leave it until the check says dry again. That could be four days in strong sun and four weeks in a dull spot.</p></li>
+    </ol>
+    <p>How dry counts as dry depends on the plant.</p>
+    <dl class="depth">
+      <div><dt>Succulents and cacti</dt><dd>dry all the way down</dd></div>
+      <div><dt>Most foliage plants</dt><dd>dry in the top 3 to 5 cm</dd></div>
+      <div><dt>Ferns, calatheas, peace lilies</dt><dd>dry in the top 1 cm only</dd></div>
+    </dl>
+    <p>Small sips every day are the worst of both. The surface stays wet, the deep roots stay dry, and salts build up in the pot.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="h-roots">
+    <span class="tag">Pot and soil</span>
+    <h2 id="h-roots">Give the roots air</h2>
+    <div class="trio">
+      <div><h3>A hole in the bottom</h3><p>Without a drainage hole, water pools at the base where you cannot see it. If you love a pot with no hole, keep the plant in a plain nursery pot and stand that inside it.</p></div>
+      <div><h3>A loose mix</h3><p>Garden soil packs down in a pot and squeezes the air out. Use potting mix and open it up with something chunky: perlite, bark or coco chips. For succulents, make half the mix grit.</p></div>
+      <div><h3>A snug pot</h3><p>Go up one size at a time, 2 to 5 cm wider. A small plant in a big pot sits in a mass of wet soil that its roots cannot dry.</p></div>
+    </div>
+    <p>Repot when roots circle the inside of the pot or poke out of the hole, usually every year or two, at the start of the growing season. Terracotta breathes and dries fast, which forgives a heavy hand. Plastic and glazed pots hold water longer.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="h-feed">
+    <span class="tag">Feeding</span>
+    <h2 id="h-feed">Fertiliser is a vitamin, never a meal</h2>
+    <p>Plants make their own food from light. Fertiliser supplies the minerals they build with. The three numbers on every pack are nitrogen, phosphorus and potassium, always in that order.</p>
+    <div class="npk" role="img" aria-label="A fertiliser label reading 19, 19, 19: nitrogen for leaves, phosphorus for roots and flowers, potassium for toughness.">
+      <div><b>19</b><span>Nitrogen (N)</span><small>leaves</small></div>
+      <div><b>19</b><span>Phosphorus (P)</span><small>roots, flowers</small></div>
+      <div><b>19</b><span>Potassium (K)</span><small>toughness</small></div>
+    </div>
+    <p>Feed only a plant that is growing in good light, at half the strength on the label, every two to four weeks. A plant in dim light cannot use it, and the unused salts burn the roots. Hold off on any plant that is dry, wilting or freshly repotted.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="h-dx">
+    <span class="tag">Symptoms</span>
+    <h2 id="h-dx">Read the leaves, then check the soil</h2>
+    <p>Leaves report a problem weeks after it starts, and several causes look alike. The soil tells them apart. Pick what you see.</p>
+    <div class="dx">
+      <div class="dx-list" id="dxList" role="group" aria-label="Symptoms"></div>
+      <div class="dx-out" aria-live="polite">
+        <div><p class="k">Check the soil</p><p id="dxSoil"></p></div>
+        <div><p class="k">Most likely</p><p class="cause" id="dxCause"></p></div>
+        <div><p class="k">What to do</p><p id="dxFix"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-rank">
+    <span class="tag">Routine</span>
+    <h2 id="h-rank">What matters, in order</h2>
+    <ol class="rank">
+      <li><div><h3>Light</h3><p>Get this right and the plant forgives most mistakes. Get it wrong and nothing below can make up for it.</p></div></li>
+      <li><div><h3>Watering rhythm</h3><p>Follow the soil. Soak, drain, wait.</p></div></li>
+      <li><div><h3>Pot and mix</h3><p>A drainage hole, a loose mix, the right size.</p></div></li>
+      <li><div><h3>Everything else</h3><p>Feeding, humidity, leaf shine. Small gains, worth chasing once the first three are right. Misting raises humidity for a few minutes; grouping plants together does more.</p></div></li>
+    </ol>
+    <h3>A five-minute round, once a week</h3>
+    <dl class="round">
+      <div><dt>Look</dt><dd>New growth is the best sign of health. Check under the leaves for pests.</dd></div>
+      <div><dt>Feel</dt><dd>Finger in the soil. Water only the pots that ask.</dd></div>
+      <div><dt>Turn</dt><dd>A quarter turn keeps growth even instead of leaning to the window.</dd></div>
+      <div><dt>Wipe</dt><dd>Dust blocks light. A damp cloth every few weeks.</dd></div>
+      <div><dt>Leave</dt><dd>Change one thing at a time and give it three weeks. Plants answer slowly.</dd></div>
+    </dl>
+    <p>Growth follows light and warmth through the year. In bright, warm months the pump runs fast, so water and feed more. In dull, cool or very humid stretches it slows, so water less and stop feeding.</p>
+    <p class="last">Light runs the pump. Water keeps up with it. Roots need air.</p>
+  </section>
+
+  <p class="foot">Light figures are typical daytime ranges and shift with season, weather, window direction and glass. The watering chart is a simplified model meant to show the pattern. Real pots vary with size, mix, temperature and humidity.</p>
+  <div class="ridge" aria-hidden="true"></div>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+
+  /* ---------- watering model ---------- */
+  var DAYS=42, DT=.25, WET=.75, DRY=.2, CUE=.32;
+  var state={mode:'schedule'}, last=null;
+  function rate(L){return .025*Math.pow(8.8,L/100)}
+  function simulate(L,mode,N){
+    var k=rate(L), pts=[], waters=[], m=CUE, wet=0, dry=0, steps=DAYS/DT;
+    for(var i=0;i<=steps;i++){
+      var t=i*DT;
+      if(i<steps){
+        var due = mode==='schedule' ? (i%4===0 && t%N===0) : (m<=CUE);
+        if(due){pts.push([t,m]); m=.95; waters.push(t)}
+      }
+      pts.push([t,m]);
+      if(i<steps){ if(m>=WET) wet+=DT; else if(m<DRY) dry+=DT }
+      m=Math.max(0,m-k*(.4+.6*m)*DT);
+    }
+    return {pts:pts,waters:waters,wet:Math.round(wet),dry:Math.round(dry),k:k};
+  }
+  function lightName(L){return L<25?'Dim corner':L<50?'Mid-room':L<75?'Bright window':'Direct sun'}
+  function zoneName(m){return m>=WET?'too wet, no air':m<DRY?'bone dry':'damp with air'}
+
+  function drawSim(res){
+    var el=$('simChart'), W=Math.max(260,el.clientWidth), H=250, l=4, r=4, t=24, b=30;
+    var X=function(d){return l+d/DAYS*(W-l-r)}, Y=function(m){return t+(1-m)*(H-t-b)};
+    var s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Soil moisture over 42 days. '+$('chip').textContent+'. '+$('verdictText').textContent+'">';
+    s+='<rect class="band-wet" x="'+l+'" y="'+Y(1)+'" width="'+(W-l-r)+'" height="'+(Y(WET)-Y(1))+'"/>';
+    s+='<rect class="band-ok" x="'+l+'" y="'+Y(WET)+'" width="'+(W-l-r)+'" height="'+(Y(DRY)-Y(WET))+'"/>';
+    s+='<rect class="band-dry" x="'+l+'" y="'+Y(DRY)+'" width="'+(W-l-r)+'" height="'+(Y(0)-Y(DRY))+'"/>';
+    for(var d=0;d<=DAYS;d+=7){
+      s+='<line class="grid" x1="'+X(d)+'" x2="'+X(d)+'" y1="'+Y(1)+'" y2="'+(Y(0)+5)+'"/>';
+      var anchor=d===0?'start':d===DAYS?'end':'middle';
+      s+='<text x="'+X(d)+'" y="'+(H-8)+'" text-anchor="'+anchor+'">'+(d===0?'day 0':d)+'</text>';
+    }
+    s+='<polyline class="trace" points="'+res.pts.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'"/>';
+    res.waters.forEach(function(d){s+='<circle class="f-water" cx="'+X(d).toFixed(1)+'" cy="11" r="4"/>'});
+    s+='<text class="band" x="'+(l+8)+'" y="'+(Y(.875)+4)+'">TOO WET, NO AIR</text>';
+    s+='<text class="band" x="'+(l+8)+'" y="'+(Y(.475)+4)+'">DAMP WITH AIR</text>';
+    s+='<text class="band" x="'+(l+8)+'" y="'+(Y(.1)+4)+'">BONE DRY</text>';
+    s+='<line class="cross" id="cross" x1="0" x2="0" y1="'+Y(1)+'" y2="'+Y(0)+'" visibility="hidden"/>';
+    s+='</svg><div class="tip" id="tip" hidden></div>';
+    el.innerHTML=s;
+    last={res:res,W:W,l:l,r:r};
+  }
+  function hover(e){
+    if(!last) return;
+    var el=$('simChart'), box=el.getBoundingClientRect(), x=e.clientX-box.left;
+    var d=Math.max(0,Math.min(DAYS,(x-last.l)/(last.W-last.l-last.r)*DAYS));
+    var pts=last.res.pts, m=pts[0][1];
+    for(var i=0;i<pts.length;i++){ if(pts[i][0]<=d) m=pts[i][1]; else break }
+    var cx=last.l+d/DAYS*(last.W-last.l-last.r), cross=$('cross'), tip=$('tip');
+    cross.setAttribute('x1',cx); cross.setAttribute('x2',cx); cross.setAttribute('visibility','visible');
+    tip.hidden=false; tip.textContent='day '+Math.floor(d)+' · '+zoneName(m);
+    tip.style.left=Math.max(70,Math.min(last.W-70,cx))+'px';
+  }
+  function unhover(){ var c=$('cross'), t=$('tip'); if(c) c.setAttribute('visibility','hidden'); if(t) t.hidden=true }
+
+  function update(){
+    var L=+$('light').value, N=+$('every').value, res=simulate(L,state.mode,N);
+    var fw=res.wet/DAYS, fd=res.dry/DAYS, cls, word, text;
+    if(fd>.12){cls='bad';word='Parched';text='The pot runs dry for '+res.dry+' of 42 days. Leaves crisp at the edges and growth stalls.'}
+    else if(fw>.6){cls='bad';word='Drowning';text='The soil is too wet to hold air for '+res.wet+' of 42 days. Roots rot, and the plant wilts in wet soil.'}
+    else if(fw>.45){cls='warn';word='Too wet';text='The soil rarely gets a chance to breathe. Expect yellow lower leaves and tiny flies around the pot.'}
+    else{cls='good';word='Keeping pace';text='Wet after each soak, then a steady dry-down that lets air back to the roots.'}
+    if(state.mode==='check'){
+      text+=' At this light that works out to a soak about every '+Math.max(1,Math.round(.823/res.k))+' days.';
+      if(L<25) text+=' The watering is right, but this is very little light. The plant will survive and barely grow.';
+    }
+    $('chip').className='chip '+cls; $('chip').textContent=word; $('verdictText').textContent=text;
+    $('lightName').textContent=lightName(L); $('everyOut').textContent=N;
+    $('stWater').textContent=res.waters.length;
+    $('stWet').textContent=res.wet+' of 42 days';
+    $('stDry').textContent=res.dry+' of 42 days';
+    drawSim(res);
+  }
+  function setMode(m){
+    state.mode=m;
+    $('modeSchedule').setAttribute('aria-pressed',m==='schedule');
+    $('modeCheck').setAttribute('aria-pressed',m==='check');
+    $('everyCtl').hidden=m!=='schedule'; $('checkCtl').hidden=m!=='check';
+    update();
+  }
+  $('light').addEventListener('input',update);
+  $('every').addEventListener('input',update);
+  $('modeSchedule').addEventListener('click',function(){setMode('schedule')});
+  $('modeCheck').addEventListener('click',function(){setMode('check')});
+  $('simChart').addEventListener('pointermove',hover);
+  $('simChart').addEventListener('pointerleave',unhover);
+
+  /* ---------- light chart ---------- */
+  var ROWS=[
+    ['Open sun outdoors',50000,100000],
+    ['Sunny sill, sun through glass',20000,60000],
+    ['Outdoor shade or overcast sky',10000,25000],
+    ['Bright window, no direct sun',3000,10000],
+    ['1 to 2 m back from the window',800,2500],
+    ['Middle of the room',200,600],
+    ['Far corner or hallway',50,200]
+  ];
+  var ZONES=[[40,500,'TOO DARK','z0'],[500,2500,'LOW','z1'],[2500,10000,'MEDIUM','z2'],[10000,125000,'HIGH','z3']];
+  function fmt(n){return n.toLocaleString('en-US')}
+  function drawLux(){
+    var el=$('luxChart'), W=Math.max(260,el.clientWidth), top=30, rowH=46, bodyH=ROWS.length*rowH, H=top+bodyH+34;
+    var lo=Math.log10(40), hi=Math.log10(125000);
+    var X=function(v){return (Math.log10(v)-lo)/(hi-lo)*W};
+    var s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Typical light levels on a log scale, from about 100 lux in a far corner to 100,000 lux in open sun. Most indoor spots more than a metre from a window fall below 2,500 lux.">';
+    ZONES.forEach(function(z){
+      var x0=X(z[0]), x1=X(z[1]);
+      s+='<rect class="'+z[3]+'" x="'+x0+'" y="'+top+'" width="'+(x1-x0)+'" height="'+bodyH+'"/>';
+      s+='<text class="zone" x="'+((x0+x1)/2)+'" y="18" text-anchor="middle">'+z[2]+'</text>';
+    });
+    ROWS.forEach(function(r,i){
+      var y=top+i*rowH, x0=X(r[1]), x1=X(r[2]);
+      s+='<text x="8" y="'+(y+19)+'">'+r[0]+' <tspan class="val" dx="4">'+fmt(r[1])+' to '+fmt(r[2])+'</tspan></text>';
+      s+='<rect class="bar" x="'+x0+'" y="'+(y+27)+'" width="'+(x1-x0)+'" height="9" rx="4.500"><title>'+r[0]+': '+fmt(r[1])+' to '+fmt(r[2])+' lux</title></rect>';
+    });
+    var ay=top+bodyH;
+    s+='<line class="axis" x1="0" x2="'+W+'" y1="'+ay+'" y2="'+ay+'"/>';
+    [100,1000,10000,100000].forEach(function(v){
+      var x=X(v), end=v===100000, lab=W<460?(v<1000?''+v:(v/1000)+'k'):fmt(v);
+      s+='<line class="axis" x1="'+x+'" x2="'+x+'" y1="'+ay+'" y2="'+(ay+6)+'"/>';
+      s+='<text class="tick" x="'+(end?x+4:x)+'" y="'+(ay+22)+'" text-anchor="'+(end?'end':'middle')+'">'+lab+(end?' LUX':'')+'</text>';
+    });
+    el.innerHTML=s+'</svg>';
+  }
+
+  /* ---------- symptoms ---------- */
+  var DX=[
+    ['Lower leaves turning yellow','Wet, and it has been wet for days.','Too much water, too little air','Stop watering until the top 5 cm is dry. Check that the pot drains freely. Move it to brighter light so it uses water faster.'],
+    ['Wilting, and the soil is dry','Dry all the way down. The pot feels light.','Thirst','Soak it thoroughly. If water runs straight through, stand the pot in a bowl of water for 20 minutes so the mix can rewet.'],
+    ['Wilting, and the soil is wet','Wet, sometimes with a sour smell.','Root rot','Slide the plant out of its pot. Healthy roots are pale and firm; rotten ones are brown and mushy. Cut the rot away, repot in fresh loose mix, and water sparingly until new growth appears.'],
+    ['Brown, crispy tips and edges','Swinging between soaked and bone dry, or a white crust on the surface.','Uneven watering or built-up salts','Water on the soil’s cue so the swings even out. Every month or two, flush the pot with plenty of plain water. Ease off the fertiliser. Very dry air adds to it.'],
+    ['Long, pale, stretched stems','Any. The soil is not the issue here.','Not enough light','Move it closer to the window and turn it weekly. Stretched growth will not shrink back, so prune it once the plant is in better light.'],
+    ['Bleached or scorched patches','Any. Look at where the sun lands at midday.','Too much direct sun, too suddenly','Pull it back or filter the sun with a sheer curtain. Bring it into stronger light gradually over two weeks.'],
+    ['Pale new leaves and little growth','Fine, and the light is good too.','Hungry or root-bound','Feed at half strength every few weeks. If the roots circle the inside of the pot, move up one size.'],
+    ['Tiny flies around the pot','Constantly damp at the surface.','Fungus gnats breeding in wet soil','Let the top few centimetres dry out fully between waterings. Yellow sticky traps catch the adults.'],
+    ['Webbing, cottony tufts or sticky leaves','Any. Look under the leaves and along the stems.','Pests: mites, mealybugs, scale or aphids','Move the plant away from the others. Rinse it under the shower and wipe the leaves, then spray neem oil or insecticidal soap weekly for a month to catch each new generation.']
+  ];
+  var list=$('dxList');
+  DX.forEach(function(d,i){
+    var b=document.createElement('button');
+    b.type='button'; b.id='dx'+i; b.textContent=d[0]; b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){pick(i)});
+    list.appendChild(b);
+  });
+  function pick(i){
+    Array.prototype.forEach.call(list.children,function(b,j){b.setAttribute('aria-pressed',j===i)});
+    $('dxSoil').textContent=DX[i][1]; $('dxCause').textContent=DX[i][2]; $('dxFix').textContent=DX[i][3];
+  }
+
+  /* ---------- boot ---------- */
+  pick(0); update(); drawLux();
+  if('ResizeObserver' in window){
+    var w0=0;
+    new ResizeObserver(function(){
+      var w=$('simChart').clientWidth; if(w===w0) return; w0=w;
+      if(last) drawSim(last.res); drawLux();
+    }).observe($('simChart'));
+  }
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
