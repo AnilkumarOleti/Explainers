@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>From Wolf to Dog | Explainers</title>
+<meta name="description" content="How scavenging wolves at the campfire became dogs, and the jobs people bred them for.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/from-wolf-to-dog/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="From Wolf to Dog">
+<meta property="og:description" content="How scavenging wolves at the campfire became dogs, and the jobs people bred them for.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/from-wolf-to-dog/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/from-wolf-to-dog/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: firelit night scenes on top, then a "breeder's mixing desk" where one procedural dog is reshaped by dials */
+:root{
+  --bg:#e8ecf1; --fg:#1a1f2c; --muted:#596173; --accent:#b9501b; --accent-soft:#f1dccd;
+  --panel:#f6f7f9; --line:#cdd3dd; --lamp:#fbf6ee; --stagebg:#d3d9e3; --shadow:rgba(20,25,40,.18);
+  --display:'Young Serif',Georgia,'Times New Roman',serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10131a; --fg:#ebe5d9; --muted:#9aa1b0; --accent:#f0954c; --accent-soft:#3a2a20;
+  --panel:#181c26; --line:#2a3140; --lamp:#59627a; --stagebg:#222834; --shadow:rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10131a; --fg:#ebe5d9; --muted:#9aa1b0; --accent:#f0954c; --accent-soft:#3a2a20;
+  --panel:#181c26; --line:#2a3140; --lamp:#59627a; --stagebg:#222834; --shadow:rgba(0,0,0,.45); color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.5}
+*{box-sizing:border-box}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.08}
+h2{font-size:clamp(30px,5vw,50px)}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:38ch}
+section{padding-block:clamp(56px,9vw,104px)}
+section + section{border-top:1px solid var(--line)}
+.head{display:grid;gap:12px;margin-bottom:clamp(28px,5vw,48px)}
+
+/* hero */
+.hero{position:relative;background:#0b0e1a;overflow:hidden}
+.hero svg{display:block;width:100%;height:clamp(440px,52vw,600px)}
+.hero .title{position:absolute;inset:0 0 auto 0;padding-top:clamp(28px,5vw,56px)}
+.hero h1{color:#f6ecdb;font-size:clamp(42px,8vw,92px);max-width:11ch;text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.hero .eyebrow{color:#ffb469;margin-bottom:14px;display:block}
+.hero .sub{color:#c9c2b5;font-size:clamp(17px,2.2vw,22px);margin-top:14px}
+
+/* deal strip */
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.frame{display:grid;gap:12px;align-content:start}
+.frame svg{width:100%;height:auto;border-radius:14px;display:block;background:#0b0e1a}
+.frame p{font-size:19px}
+.frame b{font-family:var(--mono);font-weight:500;color:var(--accent);font-size:13px;display:block;letter-spacing:.08em}
+.after{margin-top:32px;font-family:var(--display);font-size:clamp(22px,3vw,30px);max-width:30ch}
+@media (max-width:720px){.strip{grid-template-columns:1fr}}
+
+/* stage */
+.stage{border-radius:18px;background:radial-gradient(ellipse at 50% 70%,var(--lamp),var(--stagebg) 72%);overflow:hidden}
+.stage svg{display:block;width:100%;height:auto}
+
+/* morph */
+.morph{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.morph-ctl{display:grid;gap:14px;margin-top:16px}
+.stagelabel{font-family:var(--display);font-size:clamp(26px,3.4vw,36px);text-align:center;padding-top:16px}
+.ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.fox{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:12px}
+.fox h3{font-family:var(--display);font-weight:400;font-size:24px;margin:0}
+.fox .tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:99px;background:var(--accent-soft);color:var(--fg)}
+.punch{font-family:var(--display);font-size:22px;line-height:1.25}
+@media (max-width:820px){.morph{grid-template-columns:1fr}}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:var(--line)}
+input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--accent);margin-top:-9px;border:3px solid var(--bg);box-shadow:0 1px 4px var(--shadow)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+button{font:inherit;color:inherit}
+.btn{justify-self:start;background:var(--fg);color:var(--bg);border:0;border-radius:99px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:16px}
+.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* trade */
+.trade{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(16px,4vw,48px);align-items:center}
+.side h3{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+.side ul{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.side li{display:flex;align-items:center;gap:16px;font-size:clamp(20px,2.6vw,26px);font-family:var(--display)}
+.side li svg{flex:none;width:52px;height:52px;padding:10px;border-radius:14px;background:var(--panel);border:1px solid var(--line);stroke:var(--accent);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.swap{font-family:var(--display);font-size:56px;color:var(--accent);line-height:1}
+@media (max-width:720px){.trade{grid-template-columns:1fr}.swap{transform:rotate(90deg);justify-self:center}}
+
+/* read us */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:14px;align-content:start}
+.card svg{width:100%;height:auto;aspect-ratio:4/3;max-width:100%;stroke:var(--fg);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.card .hl{stroke:var(--accent)}
+.card .fillhl{fill:var(--accent);stroke:none}
+.card .fillfg{fill:var(--fg);stroke:none}
+.card p{font-size:17px}
+.card p strong{font-family:var(--display);font-weight:400;font-size:22px;display:block;line-height:1.2;margin-bottom:6px}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.cards{grid-template-columns:1fr}}
+.brow{animation:brow 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:100% 50%}
+@keyframes brow{0%,40%{transform:translateY(0) rotate(0)}55%,85%{transform:translateY(-10px) rotate(-12deg)}100%{transform:translateY(0) rotate(0)}}
+
+/* timeline */
+.bar{position:relative;height:56px;border-radius:12px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 6.666%),var(--panel);border:1px solid var(--line);margin-top:44px}
+.bar .now{position:absolute;right:0;top:0;bottom:0;width:1.17%;min-width:4px;background:var(--accent);border-radius:0 11px 11px 0}
+.pin{position:absolute;top:-38px;transform:translateX(-50%);display:grid;justify-items:center;gap:4px}
+.pin span{font-family:var(--mono);font-size:13px;font-weight:500;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--fg);color:var(--bg)}
+.pin i{width:2px;height:48px;background:var(--fg);opacity:.5}
+.pin.hot span{background:var(--accent)}
+.pin.hot i{background:var(--accent);opacity:1}
+.scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+.events{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.events li{display:grid;gap:6px;align-content:start}
+.events .n{font-family:var(--mono);font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--fg);color:var(--bg)}
+.events .hot .n{background:var(--accent)}
+.events .when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.events .what{font-family:var(--display);font-size:20px;line-height:1.25}
+.clock{margin-top:40px;font-family:var(--display);font-size:clamp(22px,3vw,32px);max-width:30ch}
+.clock em{font-style:normal;color:var(--accent)}
+@media (max-width:820px){.events{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* desk */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:9px 16px;cursor:pointer;font-weight:500;font-size:16px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.desk{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+.desk .stage{position:relative}
+.badge{position:absolute;left:18px;top:16px;right:18px;display:grid;gap:4px}
+.badge .job{font-family:var(--display);font-size:clamp(26px,3.6vw,38px);line-height:1.05}
+.badge .breeds{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.why{font-size:18px;margin-top:14px;min-height:3em}
+.console{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:22px}
+.console h3{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.meters{display:grid;gap:9px;transition:opacity .3s}
+.meters.dim{opacity:.35}
+.meter{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:10px;font-size:15px}
+.pips{display:flex;gap:5px}
+.pips i{flex:1;height:12px;border-radius:3px;background:var(--line);transition:background .3s}
+.pips i.on{background:var(--accent)}
+.faders{display:grid;gap:4px}
+.fader{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:10px;font-size:15px}
+.fader label{display:grid}
+.fader small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+@media (max-width:820px){.desk{grid-template-columns:1fr}}
+
+/* too far */
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.trio figure{margin:0;display:grid;gap:12px;align-content:start}
+.trio figcaption{font-size:17px}
+.trio figcaption strong{display:block;font-family:var(--display);font-weight:400;font-size:22px}
+.trio .ok strong{color:var(--muted)}
+@media (max-width:720px){.trio{grid-template-columns:1fr}}
+
+.end{text-align:center;padding-block:clamp(72px,12vw,140px)}
+.end h2{font-size:clamp(34px,6vw,64px);max-width:16ch;margin:0 auto}
+.end p{color:var(--muted);margin-top:18px;font-size:20px}
+
+@media (prefers-reduced-motion:reduce){
+  .fl,.glow,.brow{animation:none!important}
+}
+.fl{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.1s ease-in-out infinite alternate}
+.f2{animation-duration:.8s}.f3{animation-duration:.6s}
+@keyframes flick{from{transform:scaleY(1) skewX(0)}to{transform:scaleY(1.14) skewX(-5deg)}}
+.glow{animation:glow 2.6s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.85}to{opacity:1}}
+</style>
+</head>
+<body>
+<header class="hero" aria-label="A wolf watching people around a campfire at night">
+  <svg id="heroScene" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Night scene: two people by a campfire, a wolf watching from the edge of the light"></svg>
+  <div class="title wrap">
+    <span class="eyebrow">At least 15,000 years ago</span>
+    <h1>How a wolf became your dog</h1>
+    <p class="sub">It started with leftovers.</p>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">The deal</span>
+      <h2>It began at the edge of the firelight</h2>
+    </div>
+    <div class="strip">
+      <div class="frame"><svg id="f1" viewBox="0 0 300 180" role="img" aria-label="A wolf far from the fire"></svg><p><b>STEP 1</b>People left scraps.</p></div>
+      <div class="frame"><svg id="f2" viewBox="0 0 300 180" role="img" aria-label="A wolf closer to the fire"></svg><p><b>STEP 2</b>The least jumpy wolves crept closer.</p></div>
+      <div class="frame"><svg id="f3" viewBox="0 0 300 180" role="img" aria-label="A wolf with pups near the fire"></svg><p><b>STEP 3</b>They ate better and raised more pups.</p></div>
+    </div>
+    <p class="after">Nobody planned it. Calm wolves simply did better near people. Repeat for thousands of years.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap morph">
+    <div>
+      <div class="head" style="margin-bottom:20px">
+        <span class="eyebrow">Drag the slider</span>
+        <h2>Calm wolves turned into dogs</h2>
+      </div>
+      <div class="stage"><div class="stagelabel" id="mLabel">Wild wolf</div><svg id="mStage" viewBox="-190 -215 380 230" role="img" aria-label="A wolf gradually changing into a dog"></svg></div>
+      <div class="morph-ctl">
+        <input type="range" id="mSlider" min="0" max="100" value="0" aria-label="Generations of the calmest animals breeding">
+        <div class="ends"><span>Wolf</span><span>Generations of the calmest →</span><span>Dog</span></div>
+        <button class="btn" id="mPlay">Play it</button>
+      </div>
+    </div>
+    <aside class="fox">
+      <span class="eyebrow">Proof, in foxes</span>
+      <h3>Russia, 1959</h3>
+      <p>Scientists bred only the friendliest silver foxes. Nothing else.</p>
+      <p>Within a few decades the foxes wagged, whined for people, and changed shape:</p>
+      <div class="tags"><span class="tag">floppy ears</span><span class="tag">curly tails</span><span class="tag">patchy coats</span><span class="tag">shorter snouts</span></div>
+      <p class="punch">Friendliness and puppy looks come as a package.</p>
+    </aside>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Why it stuck</span><h2>A fair trade</h2></div>
+    <div class="trade">
+      <div class="side"><h3>Dogs got</h3><ul>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 11a3 3 0 1 0-3-3 3 3 0 1 0-1 5l17 13a3 3 0 1 0 5-1 3 3 0 1 0-3-3L9 11z"/></svg>Food</li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29c-6 0-9-4-9-8 0-6 6-8 5-15 4 2 6 6 5 10 2-1 3-3 3-5 3 3 5 6 5 10 0 4-3 8-9 8z"/></svg>Warmth</li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/></svg>Safety</li>
+      </ul></div>
+      <div class="swap" aria-hidden="true">⇄</div>
+      <div class="side"><h3>People got</h3><ul>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="9" cy="16" r="3"/><path d="M15 9a10 10 0 0 1 0 14M20 5a16 16 0 0 1 0 22"/></svg>A night alarm</li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="21" rx="6" ry="5"/><circle cx="7" cy="13" r="2.5"/><circle cx="12.5" cy="7.5" r="2.5"/><circle cx="19.5" cy="7.5" r="2.5"/><circle cx="25" cy="13" r="2.5"/></svg>A hunting partner</li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20 4a12 12 0 1 0 8 18A10 10 0 0 1 20 4z"/></svg>A bed warmer</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Built for us</span><h2>Then they learned to read us</h2></div>
+    <div class="cards">
+      <div class="card">
+        <svg viewBox="0 0 160 120" aria-hidden="true">
+          <path d="M14 76h30l8-8h40a6 6 0 0 1 0 12H62l-4 10H14z"/>
+          <path class="hl" d="M100 74 Q124 56 130 82" stroke-dasharray="5 7"/>
+          <circle class="fillhl" cx="136" cy="94" r="10"/>
+        </svg>
+        <p><strong>They follow your finger</strong>Wolves raised by people mostly ignore it.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 160 120" aria-hidden="true">
+          <path d="M30 70 Q80 30 130 70 Q80 104 30 70z"/>
+          <circle class="fillfg" cx="80" cy="69" r="17"/>
+          <circle cx="86" cy="63" r="4" fill="var(--panel)" stroke="none"/>
+          <path class="hl brow" d="M40 34 Q70 24 96 32" stroke-width="6"/>
+        </svg>
+        <p><strong>They grew “puppy eyes”</strong>A small muscle lifts the inner eyebrow. Wolves barely have it.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 160 120" aria-hidden="true">
+          <path d="M14 60 Q34 42 54 60 Q34 76 14 60z"/><circle class="fillfg" cx="34" cy="60" r="6"/>
+          <path d="M106 60 Q126 42 146 60 Q126 76 106 60z"/><circle class="fillfg" cx="126" cy="60" r="7"/>
+          <path class="fillhl" d="M80 74 L68 62 a7 7 0 0 1 12-8 a7 7 0 0 1 12 8z"/>
+          <path class="hl" d="M50 36 Q80 18 110 36M110 86 Q80 104 50 86"/>
+        </svg>
+        <p><strong>A shared love loop</strong>When you lock eyes, both brains release oxytocin, the bonding hormone.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 160 120" aria-hidden="true">
+          <path d="M80 112V20"/>
+          <g class="hl"><path d="M80 34 q-14-4-16-18 q14 2 16 18zM80 34 q14-4 16-18 q-14 2-16 18zM80 56 q-14-4-16-18 q14 2 16 18zM80 56 q14-4 16-18 q-14 2-16 18zM80 78 q-14-4-16-18 q14 2 16 18zM80 78 q14-4 16-18 q-14 2-16 18z"/></g>
+        </svg>
+        <p><strong>They learned our diet</strong>When farming began, dogs gained extra genes to digest starch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Drawn to scale</span><h2>Breeds are brand new</h2><p class="lede">This bar is 15,000 years of dogs. The orange sliver on the end is the age of almost every modern breed.</p></div>
+    <div class="bar" role="img" aria-label="Timeline of 15,000 years; modern breeds occupy the last 1 percent">
+      <div class="pin" style="left:6.7%"><span>1</span><i></i></div>
+      <div class="pin" style="left:33.3%"><span>2</span><i></i></div>
+      <div class="pin hot" style="left:98.8%"><span>3</span><i></i></div>
+      <div class="now"></div>
+    </div>
+    <div class="scale"><span>15,000 yrs ago</span><span>10,000</span><span>5,000</span><span>Today</span></div>
+    <ol class="events">
+      <li><span class="n">1</span><span class="when">~14,000 yrs ago</span><span class="what">A sick puppy buried with two people in Germany. Someone had nursed it.</span></li>
+      <li><span class="n">2</span><span class="when">~10,000 yrs ago</span><span class="what">Farming begins. Dogs guard herds and homes.</span></li>
+      <li class="hot"><span class="n">3</span><span class="when">1800s</span><span class="what">Dog shows and kennel clubs. Breeds get fixed rules for looks.</span></li>
+      <li><span class="n">◦</span><span class="when">Today</span><span class="what">About 200 breeds in the US register, 350+ worldwide.</span></li>
+    </ol>
+    <p class="clock">If dog history were one day, most breeds showed up <em>after 11:40 pm</em>. Before that, dogs were picked for the job, not the look.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">The breeder's mixing desk</span><h2>Same wolf, different dials</h2><p class="lede">People kept the dogs that did a job best, and bred them. Pick a job.</p></div>
+    <div class="chips" id="chips" role="group" aria-label="Choose a job"></div>
+    <div class="desk">
+      <div>
+        <div class="stage"><div class="badge"><span class="job" id="dJob"></span><span class="breeds" id="dBreeds"></span></div><svg id="dStage" viewBox="-190 -240 380 255" role="img" aria-label="A dog shaped for the chosen job"></svg></div>
+        <p class="why" id="dWhy"></p>
+      </div>
+      <div class="console">
+        <div><h3>Mind dials breeders turned up</h3><div class="meters" id="meters"></div></div>
+        <div><h3>Body dials · drag them</h3><div class="faders" id="faders"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">The catch</span><h2>Turn a dial too far…</h2><p class="lede">When looks became the goal, some dials went past what a body can handle.</p></div>
+    <div class="trio">
+      <figure class="ok"><div class="stage"><svg id="t1" viewBox="-160 -200 320 215" role="img" aria-label="Wolf"></svg></div><figcaption><strong>Wolf</strong>Long snout, wide-open airway.</figcaption></figure>
+      <figure><div class="stage"><svg id="t2" viewBox="-160 -200 320 215" role="img" aria-label="Pug"></svg></div><figcaption><strong>Flat face</strong>Squeezed airway. Struggles to breathe and to cool down.</figcaption></figure>
+      <figure><div class="stage"><svg id="t3" viewBox="-160 -200 320 215" role="img" aria-label="Dachshund"></svg></div><figcaption><strong>Very long back</strong>Prone to slipped discs.</figcaption></figure>
+    </div>
+    <p class="after">And small, closed breeding pools keep passing the same inherited diseases down.</p>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>A dog is a wolf that bet on people.</h2>
+    <p>We've been shaping each other ever since.</p>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const lerp=(a,b,t)=>a+(b-a)*t;
+const h2r=h=>{h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16))};
+const mixC=(a,b,t)=>'#'+h2r(a).map((v,i)=>Math.round(lerp(v,h2r(b)[i],t)).toString(16).padStart(2,'0')).join('');
+const mixP=(a,b,t)=>{const o={};for(const k in a)o[k]=typeof a[k]==='string'?mixC(a[k],b[k],t):lerp(a[k],b[k],t);return o};
+const f=n=>Math.round(n*10)/10;
+
+const BASE={size:1,legs:1,body:1,depth:1,bulk:1,snout:1,skull:1,ears:0,earSize:.6,tail:0,fluff:.2,tuck:.3,neck:1,
+  coat:'#8d8a83',earCol:'#7a766e',saddle:'#4a463f',saddleAmt:0,mark:'#efe9dc',mChest:0,mSocks:0,mMuzzle:0,eyeCol:'#1d1a18'};
+const P=o=>Object.assign({},BASE,o);
+
+const WOLF=P({size:1.05,legs:1.1,body:1.05,bulk:.9,snout:1.1,ears:0,earSize:.55,tail:0,fluff:.45,tuck:.4,
+  coat:'#8f8b82',earCol:'#6f6b63',saddle:'#46423c',saddleAmt:.45,mark:'#e9e3d6',mChest:.75,mSocks:.35,mMuzzle:.6});
+const DOG=P({size:.9,snout:.72,skull:1.08,ears:.85,earSize:.6,tail:1,fluff:.15,tuck:.3,
+  coat:'#c48b4f',earCol:'#a8733e',saddle:'#7a4f2a',saddleAmt:.15,mark:'#f6f2ea',mChest:.95,mSocks:.85,mMuzzle:.7});
+
+let uidN=0;
+function drawDog(p){
+  const id='c'+(uidN++);
+  const legH=55*p.legs, L=110*p.body, D=44*p.depth;
+  const top=-(legH+D), bot=-legH, cd=8*p.depth, tuckY=bot-p.tuck*D*.45;
+  const c=p.coat, fl=1+p.fluff*12;
+  const st=`fill="${c}" stroke="${c}" stroke-width="${f(fl)}" stroke-linejoin="round"`;
+  const body=`M${f(-L/2)} ${f(top+D*.35)} Q${f(-L/2)} ${f(top)} ${f(-L/2+18)} ${f(top)} L${f(L/2-14)} ${f(top-3)} Q${f(L/2+10)} ${f(top-2)} ${f(L/2+10)} ${f(top+D*.5)} Q${f(L/2+8)} ${f(bot+cd)} ${f(L/2-18)} ${f(bot+cd)} Q${f(L/6)} ${f(bot+cd)} ${f(-L/6)} ${f(tuckY)} Q${f(-L/2+6)} ${f(bot)} ${f(-L/2)} ${f(top+D*.35)}Z`;
+  const lw=10+6*p.bulk;
+  const paw=mixC(c,p.mark,p.mSocks);
+  const leg=(x,far)=>`<rect x="${f(x-lw/2)}" y="${f(bot-10)}" width="${f(lw)}" height="${f(legH+10)}" rx="${f(lw/2)}" ${st}/>`+
+    `<rect x="${f(x-lw/2)}" y="${f(-legH*.45)}" width="${f(lw)}" height="${f(legH*.45)}" rx="${f(lw/2)}" fill="${p.mark}" opacity="${f(p.mSocks)}"/>`+
+    `<ellipse cx="${f(x+lw*.3)}" cy="${f(-lw*.28)}" rx="${f(lw*.72)}" ry="${f(lw*.36)}" fill="${paw}"/>`+
+    (far?`<rect x="${f(x-lw/2-fl/2)}" y="${f(bot-10)}" width="${f(lw+fl)}" height="${f(legH+10)}" rx="${f(lw/2)}" fill="#000" opacity=".22"/><ellipse cx="${f(x+lw*.3)}" cy="${f(-lw*.28)}" rx="${f(lw*.72)}" ry="${f(lw*.36)}" fill="#000" opacity=".22"/>`:'');
+  const hx=L/2+12+6*p.neck, hy=top-14*p.neck-2, r=15*p.skull;
+  const neck=`${f(L/2-26)},${f(top+2)} ${f(hx-r*.6)},${f(hy-r*.6)} ${f(hx+r*.2)},${f(hy+r*.8)} ${f(L/2+10)},${f(top+D*.55)}`;
+  const sl=6+28*p.snout;
+  const snout=`M${f(hx+r*.2)} ${f(hy-r*.5)} L${f(hx+r*.45+sl)} ${f(hy-r*.15)} Q${f(hx+r*.72+sl)} ${f(hy+r*.1)} ${f(hx+r*.45+sl)} ${f(hy+r*.35)} L${f(hx+r*.1)} ${f(hy+r*.85)}Z`;
+  const el=14+16*p.earSize;
+  const tx=lerp(hx-r*.3,hx-r*.55,p.ears), ty=lerp(hy-r-el,hy+r*.15+el*.7,p.ears);
+  const ear=`${f(hx-r*.6)},${f(hy-r*.55)} ${f(tx)},${f(ty)} ${f(hx+r*.1)},${f(hy-r*.95)}`;
+  const t=p.tail, bx=-L/2+4, by=top+6;
+  const tail=`M${f(bx)} ${f(by)} C${f(lerp(-L/2-12,-L/2-22,t))} ${f(lerp(top+12,top-8,t))} ${f(lerp(-L/2-22,-L/2-6,t))} ${f(lerp(top+38,top-42,t))} ${f(lerp(-L/2-22,-L/2+20,t))} ${f(lerp(top+60,top-18,t))}`;
+  const tipX=hx+r*.72+sl, tailX=-L/2-24-p.fluff*6;
+  const xc=(tipX+tailX)/2;
+  const er=2.4+(1.3-p.snout)*1.4;
+  return `<g transform="translate(${f(-xc*p.size)} 0) scale(${f(p.size*100)/100})">
+  <ellipse cx="${f((tailX+tipX)/2+10)}" cy="2" rx="${f(L/2+28)}" ry="6" fill="var(--shadow)"/>
+  <defs><clipPath id="${id}"><path d="${body}"/><polygon points="${neck}"/></clipPath></defs>
+  ${leg(L/2-34,1)}${leg(-L/2+30,1)}
+  <path d="${tail}" fill="none" stroke="${c}" stroke-width="${f(6+p.fluff*11)}" stroke-linecap="round"/>
+  <path d="${body}" ${st}/>
+  <ellipse cx="${f(-L/2+22)}" cy="${f(bot-D*.25)}" rx="${f(22*(.8+.3*p.bulk))}" ry="${f(D*.5)}" ${st}/>
+  <polygon points="${neck}" ${st}/>
+  <g clip-path="url(#${id})">
+    <ellipse cx="${f(-L*.08)}" cy="${f(top+2)}" rx="${f(L*.38)}" ry="${f(D*.5)}" fill="${p.saddle}" opacity="${f(p.saddleAmt)}"/>
+    <g opacity="${f(p.mChest)}"><ellipse cx="${f(L/2+8)}" cy="${f(top+D*.7)}" rx="20" ry="${f(D*.85)}" fill="${p.mark}"/><ellipse cx="${f(L/2+14)}" cy="${f(top-6)}" rx="12" ry="22" fill="${p.mark}"/><ellipse cx="${f(L*.05)}" cy="${f(bot+cd)}" rx="${f(L*.32)}" ry="${f(D*.26)}" fill="${p.mark}"/></g>
+  </g>
+  ${leg(L/2-20,0)}${leg(-L/2+16,0)}
+  <circle cx="${f(hx)}" cy="${f(hy)}" r="${f(r)}" ${st}/>
+  <path d="${snout}" ${st}/>
+  <g opacity="${f(p.mMuzzle)}"><path d="${snout}" fill="${p.mark}" stroke="${p.mark}" stroke-width="${f(fl*.6)}" stroke-linejoin="round"/></g>
+  <polygon points="${ear}" fill="${p.earCol}" stroke="${p.earCol}" stroke-width="${f(3+p.ears*7)}" stroke-linejoin="round"/>
+  <circle cx="${f(hx+r*.3)}" cy="${f(hy-r*.28)}" r="${f(er)}" fill="${p.eyeCol}"/>
+  <circle cx="${f(hx+r*.3+er*.35)}" cy="${f(hy-r*.28-er*.35)}" r="${f(er*.3)}" fill="#fff" opacity=".8"/>
+  <circle cx="${f(hx+r*.5+sl)}" cy="${f(hy-r*.06)}" r="${f(3+1.4*p.skull)}" fill="#1d1a18"/>
+  </g>`;
+}
+
+function fire(x,y,s){return `<g transform="translate(${x} ${y}) scale(${s})">
+<rect x="-26" y="-8" width="52" height="9" rx="4" fill="#5a3a22" transform="rotate(-12)"/><rect x="-26" y="-8" width="52" height="9" rx="4" fill="#6b4529" transform="rotate(12)"/>
+<path class="fl" d="M-18 -4 Q-20 -30 -4 -52 Q-2 -30 6 -22 Q10 -36 8 -46 Q24 -26 18 -4Z" fill="#f2681d"/>
+<path class="fl f2" d="M-11 -4 Q-12 -22 0 -38 Q4 -22 10 -16 Q14 -10 10 -4Z" fill="#ffb03b"/>
+<path class="fl f3" d="M-5 -4 Q-5 -14 1 -22 Q6 -12 5 -4Z" fill="#ffe7a3"/></g>`}
+function person(x,y,s,lit){return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-15 0 Q-17 -30 -6 -43 L8 -43 Q17 -30 15 0Z" fill="#0a0c12"/><circle cx="1" cy="-54" r="10" fill="#0a0c12"/><path d="M${lit*14} -2 Q${lit*16} -30 ${lit*7} -42" stroke="#f08a3c" stroke-width="2" fill="none" opacity=".55"/><path d="M${lit*10} -60 A10 10 0 0 1 ${lit*10} -48" stroke="#f08a3c" stroke-width="2" fill="none" opacity=".55"/></g>`}
+function night(w,h,gid,fx,fy,gr){
+  return `<defs><linearGradient id="${gid}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070915"/><stop offset="1" stop-color="#1a2034"/></linearGradient>
+  <radialGradient id="${gid}g"><stop offset="0" stop-color="#ff9a45" stop-opacity=".55"/><stop offset=".45" stop-color="#f07a2e" stop-opacity=".18"/><stop offset="1" stop-color="#f07a2e" stop-opacity="0"/></radialGradient></defs>
+  <rect width="${w}" height="${h}" fill="url(#${gid}s)"/>`;
+}
+function stars(w,h,n,seed){let s=seed,o='';const r=()=>(s=(s*9301+49297)%233280)/233280;for(let i=0;i<n;i++)o+=`<circle cx="${f(r()*w)}" cy="${f(r()*h)}" r="${f(.6+r()*1.4)}" fill="#e8e6f5" opacity="${f(.3+r()*.6)}"/>`;return o}
+
+const NIGHTWOLF=P(Object.assign({},WOLF,{coat:'#3a3e48',earCol:'#2c3038',saddle:'#22252d',mark:'#6b6a6c',eyeCol:'#ffc46b'}));
+// hero
+document.getElementById('heroScene').innerHTML = night(1200,520,'h') + stars(1200,330,90,7) +
+  `<rect y="432" width="1200" height="88" fill="#0c0f17"/>
+   <circle class="glow" cx="520" cy="430" r="420" fill="url(#hg)"/>` +
+  person(380,436,1.6,1)+person(445,442,1.45,1)+ fire(530,436,1.7) +
+  `<g transform="translate(830 438) scale(-1.25 1.25)">${drawDog(NIGHTWOLF)}</g>`;
+
+// deal frames
+const dusk=P(Object.assign({},WOLF,{coat:'#5e5f66',earCol:'#4a4b52',saddle:'#33343a',mark:'#a8a39a',eyeCol:'#ffc46b'}));
+const frames=[[255,.42,0],[178,.42,0],[132,.42,1]];
+frames.forEach(([x,s,pups],i)=>{
+  const id='f'+(i+1), g=id;
+  let pupsSvg='';
+  if(pups){const pup=P(Object.assign({},dusk,{snout:.8,skull:1.2,ears:.4,tail:.5}));
+    pupsSvg=`<g transform="translate(212 154) scale(-.22 .22)">${drawDog(pup)}</g><g transform="translate(250 156) scale(-.2 .2)">${drawDog(pup)}</g>`;}
+  document.getElementById(id).innerHTML = night(300,180,g) + stars(300,90,18,i*13+3) +
+   `<rect y="152" width="300" height="28" fill="#0c0f17"/><circle class="glow" cx="58" cy="150" r="${120+i*10}" fill="url(#${g}g)"/>`+
+   person(30,154,.6,1) + fire(62,154,.65) +
+   (i<2?`<g opacity=".9"><rect x="96" y="148" width="10" height="5" rx="2" fill="#d8c3a0" transform="rotate(-10 101 150)"/></g>`:'')+
+   `<g transform="translate(${x} 154) scale(${-s} ${s})">${drawDog(dusk)}</g>` + pupsSvg;
+});
+
+// morph
+const mStage=document.getElementById('mStage'), mSlider=document.getElementById('mSlider'), mLabel=document.getElementById('mLabel');
+function renderMorph(v){
+  const t=v/100;
+  mStage.innerHTML=drawDog(mixP(WOLF,DOG,t));
+  mLabel.textContent = t<.15?'Wild wolf':t<.45?'Bolder scavenger':t<.8?'Camp wolf':'Village dog';
+}
+mSlider.addEventListener('input',()=>renderMorph(+mSlider.value));
+renderMorph(0);
+let playing=null;
+document.getElementById('mPlay').addEventListener('click',()=>{
+  if(reduce){mSlider.value=mSlider.value>50?0:100;renderMorph(+mSlider.value);return}
+  cancelAnimationFrame(playing);
+  const from=+mSlider.value>=100?0:+mSlider.value, t0=performance.now(), dur=3200*(1-from/100)+300;
+  const step=now=>{const k=Math.min(1,(now-t0)/dur), v=from+(100-from)*k; mSlider.value=v; renderMorph(v); if(k<1)playing=requestAnimationFrame(step)};
+  playing=requestAnimationFrame(step);
+});
+
+// desk
+const JOBS=[
+ {job:'Herd sheep',breeds:'Border Collie · German Shepherd · Corgi',why:'Circles the flock and obeys a whistle from far away.',m:[2,4,5,2,5],
+  p:P({size:.85,bulk:.8,snout:.85,ears:.45,earSize:.6,tail:.15,fluff:.55,tuck:.35,coat:'#24211f',earCol:'#24211f',mark:'#f4f1ea',mChest:1,mSocks:.9,mMuzzle:.9})},
+ {job:'Follow a scent',breeds:'Beagle · Bloodhound · Basset Hound',why:'Nose to the ground for hours. Long ears, loud voice.',m:[5,2,4,1,2],
+  p:P({size:.72,legs:.7,depth:1.05,snout:.9,skull:1.1,ears:1,earSize:1,tail:.55,fluff:.05,tuck:.2,coat:'#b8743a',earCol:'#a8642e',saddle:'#2a2622',saddleAmt:.9,mark:'#f4f1ea',mChest:1,mSocks:1,mMuzzle:1})},
+ {job:'Chase by sight',breeds:'Greyhound · Saluki · Whippet',why:'Spots movement far away, then sprints. Long legs, deep chest.',m:[1,5,2,1,2],
+  p:P({size:1.05,legs:1.45,body:1.05,depth:1.2,bulk:.4,snout:1.25,skull:.85,ears:.55,earSize:.5,tail:.05,fluff:0,tuck:1,coat:'#c9a57a',earCol:'#a8855c',mark:'#f4f1ea',mChest:.3})},
+ {job:'Guard',breeds:'Mastiff · Rottweiler · Kangal',why:'Big, heavy and wary of strangers.',m:[2,2,2,5,3],
+  p:P({size:1.22,legs:.95,body:1.05,depth:1.3,bulk:1.6,snout:.45,skull:1.35,ears:.8,earSize:.5,tail:.1,fluff:.05,tuck:.15,coat:'#2b2622',earCol:'#221e1b',mark:'#a8622c',mChest:.8,mSocks:.9,mMuzzle:1})},
+ {job:'Pull sleds',breeds:'Siberian Husky · Alaskan Malamute',why:'Thick double coat and huge stamina in the snow.',m:[2,3,5,1,3],
+  p:P({size:.95,snout:.85,skull:1.05,ears:0,earSize:.6,tail:1,fluff:.85,tuck:.3,coat:'#6c6c6e',earCol:'#4b4b4e',saddle:'#3b3b3e',saddleAmt:.5,mark:'#f2f2ef',mChest:1,mSocks:1,mMuzzle:1})},
+ {job:'Dig out badgers',breeds:'Dachshund · Jack Russell · Cairn Terrier',why:'Short legs to fit down a burrow. “Dachshund” means badger dog.',m:[4,1,3,2,2],
+  p:P({size:.72,legs:.35,body:1.55,depth:1.05,bulk:.9,snout:1.15,skull:.95,ears:1,earSize:.8,tail:.3,fluff:0,tuck:.1,coat:'#8b3f1d',earCol:'#73331a'})},
+ {job:'Fetch birds',breeds:'Labrador · Golden Retriever · Spaniels',why:'Soft mouth, loves water, lives to bring things back.',m:[4,3,4,1,5],
+  p:P({size:1,body:1.05,depth:1.15,bulk:1.2,snout:.9,skull:1.15,ears:.9,earSize:.6,tail:.25,fluff:.45,tuck:.2,coat:'#d3a35a',earCol:'#c08e45',mark:'#f1dcb0',mChest:.4})},
+ {job:'Sit on laps',breeds:'Pug · Chihuahua · Shih Tzu',why:'Kept small and baby-faced on purpose: big eyes, flat face.',m:[1,1,1,1,3],
+  p:P({size:.52,legs:.65,body:.8,depth:1.2,bulk:1.3,snout:.08,skull:1.45,ears:.75,earSize:.4,tail:1,fluff:.1,tuck:.1,coat:'#d2b48a',earCol:'#2a2420',mark:'#2a2420',mMuzzle:1})}
+];
+const MLAB=['Nose','Speed','Stamina','Guarding','Teamwork'];
+const FAD=[['size','Size','small','big',.45,1.3],['legs','Legs','short','long',.3,1.5],['snout','Snout','flat','long',.05,1.3],['ears','Ears','up','floppy',0,1],['tail','Tail','down','curled',0,1],['fluff','Fur','sleek','fluffy',0,1]];
+
+const chips=document.getElementById('chips'), dStage=document.getElementById('dStage'), meters=document.getElementById('meters'), faders=document.getElementById('faders');
+meters.innerHTML=MLAB.map((l,i)=>`<div class="meter"><span>${l}</span><div class="pips" id="pm${i}">${'<i></i>'.repeat(5)}</div></div>`).join('');
+faders.innerHTML=FAD.map(([k,l,a,b,mn,mx])=>`<div class="fader"><label for="fd-${k}">${l}<small>${a} ↔ ${b}</small></label><input type="range" id="fd-${k}" min="${mn}" max="${mx}" step="0.01"></div>`).join('');
+chips.innerHTML=JOBS.map((j,i)=>`<button class="chip" data-i="${i}" aria-pressed="false">${j.job}</button>`).join('');
+
+let cur=Object.assign({},JOBS[0].p), anim=null;
+function paint(){dStage.innerHTML=drawDog(cur);FAD.forEach(([k])=>{document.getElementById('fd-'+k).value=cur[k]})}
+function setJob(i){
+  const j=JOBS[i];
+  chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.i==i));
+  document.getElementById('dJob').textContent=j.job;
+  document.getElementById('dBreeds').textContent=j.breeds;
+  document.getElementById('dWhy').textContent=j.why;
+  meters.classList.remove('dim');
+  j.m.forEach((v,mi)=>document.querySelectorAll('#pm'+mi+' i').forEach((el,k)=>el.classList.toggle('on',k<v)));
+  cancelAnimationFrame(anim);
+  if(reduce){cur=Object.assign({},j.p);paint();return}
+  const from=Object.assign({},cur), t0=performance.now();
+  const step=now=>{let k=Math.min(1,(now-t0)/750);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;cur=mixP(from,j.p,k);paint();if(k<1)anim=requestAnimationFrame(step)};
+  anim=requestAnimationFrame(step);
+}
+chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)setJob(+b.dataset.i)});
+FAD.forEach(([k])=>document.getElementById('fd-'+k).addEventListener('input',e=>{
+  cancelAnimationFrame(anim);cur[k]=+e.target.value;dStage.innerHTML=drawDog(cur);
+  chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+  document.getElementById('dJob').textContent='Your own mix';
+  document.getElementById('dBreeds').textContent='Shape only. Behaviour takes generations of picking.';
+  document.getElementById('dWhy').textContent='Breeders could see the body. The mind they picked by watching dogs work.';
+  meters.classList.add('dim');
+}));
+setJob(0);
+
+// too far
+document.getElementById('t1').innerHTML=drawDog(Object.assign({},WOLF,{size:.95}));
+document.getElementById('t2').innerHTML=drawDog(Object.assign({},JOBS[7].p,{size:.85}));
+document.getElementById('t3').innerHTML=drawDog(Object.assign({},JOBS[5].p,{size:.9}));
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

@@ -429,6 +429,13 @@
           "blurb": "You aren't buying a flat. You're buying six things stacked up, and a site visit shows only the top two.",
           "artifact": "0c0a6e50-8be2-4e66-8dcd-a5c1db2a1c43",
           "ask": "What are you really buying when you buy a flat?"
+        },
+        {
+          "slug": "from-wolf-to-dog",
+          "title": "From Wolf to Dog",
+          "blurb": "How scavenging wolves at the campfire became dogs, and the jobs people bred them for.",
+          "artifact": "WbajMNx7sFXCyiGh1xbHQb",
+          "ask": "How did a wolf become your dog?"
         }
       ]
     },
