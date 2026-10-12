@@ -193,7 +193,7 @@ body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(-
   <section class="wh-cols">
     <div class="wh-card" id="world-trend">
       <h2 class="wh-h2">The world</h2>
-      <p class="wh-note wh-world-note">People undernourished, in millions. The dotted line runs to the UN's projection for 2030.</p>
+      <p class="wh-note wh-world-note">People undernourished, in millions.</p>
       <div class="wh-chart wh-world-chart dash-skeleton" data-source="world outlook"></div>
       <div class="wh-tip wh-world-tip" hidden></div>
     </div>
@@ -1004,26 +1004,128 @@ const MEASURES = {
   share: { field: 'undernourished_pct', format: pct, tickFormat: (t) => t + '%', note: 'Share of the population undernourished.' },
 };
 
+// The world: an area over the years, split into its phases (falling to the low point, rising to the peak,
+// easing since), with the gap above the 2019 level shaded and the UN's 2030 projection dotted on.
 function drawWorld(measure) {
   const spec = MEASURES[measure];
   const box = $('.wh-world-chart');
+  const tip = $('.wh-world-tip');
   const world = okRows('world');
-  $('.wh-world-note').textContent = spec.note + (measure === 'number' ? ' The dotted line runs to the UN’s projection for 2030.' : '');
+  $('.wh-world-note').textContent = spec.note + ' The shaded wedge is how far the world sits above its 2019 level' + (measure === 'number' ? '; the dotted line runs to the UN’s projection for 2030.' : '.');
   if (!ready(box, ['world', 'outlook'], world)) return;
-  const points = world.map((r) => ({ year: Number(r.year), value: Number(r[spec.field]) })).sort((a, b) => a.year - b.year);
-  // Worth naming: the low point, the highest point after it, and the latest year.
+  const W = box.clientWidth;
+  if (!W) return;
+  const points = world.map((r) => ({ year: Number(r.year), value: Number(r[spec.field]) })).filter((p) => Number.isFinite(p.value)).sort((a, b) => a.year - b.year);
+  if (!points.length) return;
+  const first = points[0];
+  const last = points[points.length - 1];
   const low = points.reduce((a, b) => (b.value < a.value ? b : a));
-  const peak = points.filter((p) => p.year > low.year).reduce((a, b) => (b.value > a.value ? b : a), points[points.length - 1]);
-  const proj = okRows('outlook').find((r) => r.metric === 'projection');
-  drawLines(box, $('.wh-world-tip'), {
-    series: [{ name: measure === 'number' ? 'People undernourished' : 'Share undernourished', color: 'var(--color-fg)', points }],
-    points: box.clientWidth < 420 ? [low.year, points[points.length - 1].year] : [low.year, peak.year, points[points.length - 1].year],
-    below: [low.year],
-    format: spec.format,
-    tickFormat: spec.tickFormat,
-    label: 'World undernourishment by year',
-    projection: measure === 'number' && proj ? { year: Number(proj.year), value: Number(proj.value), text: `${proj.year}: about ${whole(Number(proj.value))}M` } : null,
+  const peak = points.filter((p) => p.year > low.year).reduce((a, b) => (b.value > a.value ? b : a), last);
+  const base = points.find((p) => p.year === 2019);
+  const projRow = measure === 'number' ? okRows('outlook').find((r) => r.metric === 'projection') : null;
+  const proj = projRow ? { year: Number(projRow.year), value: Number(projRow.value) } : null;
+
+  const narrow = W < 420;
+  const H = narrow ? 270 : 310;
+  const mt = 30;
+  const mb = 24;
+  box.style.minHeight = H + 'px';
+  const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'World undernourishment by year, with its phases and the gap above 2019');
+  box.replaceChildren(svg.node());
+
+  const top = Math.max(d3.max(points, (p) => p.value), proj ? proj.value : 0);
+  const y = d3.scaleLinear([0, top * 1.1], [H - mb, mt]).nice(4);
+  const ticks = y.ticks(4);
+  const gGrid = svg.append('g');
+  const tickText = svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'wh-tick').attr('y', (t) => y(t)).attr('dy', '0.35em').text(spec.tickFormat);
+  const ml = widest(tickText) + 8;
+  const lastYear = proj ? proj.year : last.year;
+  const x = d3.scaleLinear([first.year, lastYear], [ml + 6, W - (narrow ? 14 : 22)]);
+  gGrid.selectAll('line').data(ticks).join('line').attr('class', 'wh-grid').attr('x1', ml).attr('x2', x.range()[1]).attr('y1', (t) => y(t)).attr('y2', (t) => y(t));
+
+  // Phase bands behind everything, named along the top.
+  const phases = [
+    { name: 'Falling', from: first.year, to: low.year, tint: 'var(--color-ok)' },
+    { name: 'Rising', from: low.year, to: peak.year, tint: 'var(--color-bad)' },
+    { name: 'Easing', from: peak.year, to: last.year, tint: 'var(--color-warn)' },
+  ].filter((p) => p.to > p.from);
+  const band = svg.insert('g', 'g').selectAll('g').data(phases).join('g');
+  band.append('rect').attr('x', (p) => x(p.from)).attr('y', mt - 6).attr('width', (p) => x(p.to) - x(p.from)).attr('height', H - mb - mt + 6)
+    .style('fill', (p) => p.tint).style('opacity', 0.07);
+  band.append('line').attr('x1', (p) => x(p.from)).attr('x2', (p) => x(p.to)).attr('y1', mt - 6).attr('y2', mt - 6).style('stroke', (p) => p.tint).style('stroke-width', 3);
+  const phaseText = band.append('text').attr('class', 'wh-lab').attr('x', (p) => (x(p.from) + x(p.to)) / 2).attr('y', mt - 14).attr('text-anchor', 'middle')
+    .text((p) => (narrow ? p.name : `${p.name} ${p.from}–${String(p.to).slice(2)}`));
+  placeLabels(phaseText, { x0: 0, x1: W, y0: 0, y1: H }, [(t, p) => t.text(p.name)]);
+
+  // Area and line.
+  const area = d3.area().x((p) => x(p.year)).y0(y(0)).y1((p) => y(p.value)).curve(d3.curveMonotoneX);
+  const line = d3.line().x((p) => x(p.year)).y((p) => y(p.value)).curve(d3.curveMonotoneX);
+  svg.append('path').attr('d', area(points)).style('fill', 'var(--color-fg)').style('opacity', 0.08);
+
+  // The gap above 2019, from 2019 on.
+  if (base) {
+    const after = points.filter((p) => p.year >= base.year);
+    const gap = d3.area().x((p) => x(p.year)).y0(y(base.value)).y1((p) => y(Math.max(p.value, base.value))).curve(d3.curveMonotoneX);
+    svg.append('path').attr('d', gap(after)).style('fill', 'var(--color-bad)').style('opacity', 0.3);
+    svg.append('line').attr('class', 'wh-ref').attr('x1', x(base.year)).attr('x2', x(lastYear)).attr('y1', y(base.value)).attr('y2', y(base.value));
+  }
+  svg.append('path').attr('class', 'wh-line').attr('d', line(points)).style('stroke', 'var(--color-fg)').style('stroke-width', 2.5);
+
+  if (proj) {
+    svg.append('line').attr('class', 'wh-proj').attr('x1', x(last.year)).attr('y1', y(last.value)).attr('x2', x(proj.year)).attr('y2', y(proj.value)).style('stroke', 'var(--color-fg)');
+    svg.append('circle').attr('class', 'wh-hollow').attr('cx', x(proj.year)).attr('cy', y(proj.value)).attr('r', 4).style('stroke', 'var(--color-fg)');
+  }
+
+  const yearTicks = d3.range(Math.ceil(first.year / 5) * 5, lastYear + 1, 5);
+  const yearText = svg.append('g').selectAll('text').data(yearTicks).join('text').attr('class', 'wh-tick').attr('text-anchor', 'middle').attr('x', (t) => x(t)).attr('y', H - 6).text((t) => t);
+  placeLabels(yearText, { x0: 0, x1: W, y0: 0, y1: H + 6 });
+
+  // Callouts. The low and the projection sit beside their points; the peak and the latest year sit in the
+  // empty space above the curve, right-aligned and joined to their points by thin leaders.
+  const fmtM = spec.format;
+  const callouts = svg.append('g');
+  const dotAt = (p) => callouts.append('circle').attr('cx', x(p.year)).attr('cy', y(p.value)).attr('r', 3.5).style('fill', 'var(--color-fg)');
+  const right = x.range()[1];
+  const rows = [];
+  if (peak.year !== last.year) rows.push({ p: peak, text: `${peak.year} peak: ${fmtM(peak.value)}` });
+  rows.push({ p: last, text: base && last.value > base.value ? `${last.year}: ${fmtM(last.value)}, ${fmtM(last.value - base.value)} above 2019` : `${last.year}: ${fmtM(last.value)}` });
+  rows.forEach((r, i) => {
+    const ty = mt + 14 + i * 18;
+    const label = callouts.append('text').attr('class', 'wh-name').attr('text-anchor', 'end').attr('x', right).attr('y', ty).text(r.text);
+    if (narrow && label.node().getComputedTextLength() > right - ml - 8) label.text(r.text.replace(/, .*$/, ''));
+    callouts.insert('line', 'text').attr('x1', x(r.p.year)).attr('x2', x(r.p.year)).attr('y1', y(r.p.value) - 5).attr('y2', ty + 5)
+      .style('stroke', 'var(--color-fg-muted)').style('stroke-width', 1);
+    dotAt(r.p);
   });
+  dotAt(low);
+  const side = [];
+  side.push(callouts.append('text').attr('class', 'wh-name').attr('text-anchor', 'middle').attr('x', x(low.year)).attr('y', y(low.value) + 18).text(`${low.year} low: ${fmtM(low.value)}`));
+  if (proj) side.push(callouts.append('text').attr('class', 'wh-name').attr('text-anchor', 'end').attr('x', x(proj.year)).attr('y', y(proj.value) + 20).text(`${proj.year}: about ${whole(proj.value)}M`));
+  if (base) side.push(callouts.append('text').attr('class', 'wh-reflab').attr('text-anchor', 'start').attr('x', x(base.year) + 4).attr('y', y(base.value) + 14).text(narrow ? `2019: ${fmtM(base.value)}` : `2019 level ${fmtM(base.value)}`));
+  placeLabels(d3.selectAll(side.map((s) => s.node())), { x0: 0, x1: W, y0: mt + 14 + rows.length * 18, y1: H - mb }, [
+    (text) => text.attr('text-anchor', 'end').attr('x', +text.attr('x') - 8),
+  ]);
+
+  // Hover: a rule, a dot, and the year's value against 2019.
+  const rule = svg.append('line').attr('class', 'wh-rule').attr('y1', mt - 6).attr('y2', H - mb).style('display', 'none');
+  const dot = svg.append('circle').attr('r', 4.5).style('fill', 'var(--color-fg)').style('stroke', 'var(--color-panel)').style('stroke-width', 2).style('display', 'none');
+  svg.append('rect').attr('class', 'wh-hit').attr('x', ml).attr('y', 0).attr('width', Math.max(0, x(last.year) - ml + 8)).attr('height', H)
+    .on('pointermove', function (event) {
+      const year = Math.max(first.year, Math.min(last.year, Math.round(x.invert(d3.pointer(event, svg.node())[0]))));
+      const p = points.find((q) => q.year === year);
+      if (!p) return;
+      rule.attr('x1', x(year)).attr('x2', x(year)).style('display', null);
+      dot.attr('cx', x(year)).attr('cy', y(p.value)).style('display', null);
+      const phase = phases.find((ph) => year >= ph.from && year <= ph.to);
+      const lines = [[measure === 'number' ? 'People undernourished' : 'Share undernourished', spec.format(p.value), null]];
+      if (base && year !== base.year) lines.push(['Against 2019', (p.value >= base.value ? '+' : '−') + spec.format(Math.abs(p.value - base.value)), null]);
+      showTip(tip, event, phase ? `${year} · ${phase.name.toLowerCase()}` : String(year), lines);
+    })
+    .on('pointerleave', () => {
+      rule.style('display', 'none');
+      dot.style('display', 'none');
+      tip.hidden = true;
+    });
 }
 
 function drawRegions(measure) {
