@@ -51,6 +51,13 @@
           "ask": "How do you know what a launch really did?"
         },
         {
+          "slug": "causal-inference",
+          "title": "Causal Inference",
+          "blurb": "Did it actually cause that? The world you never get to see, and six tricks for faking it.",
+          "artifact": "LXmBo3M4q2EZ39D8uHX15r",
+          "ask": "Did it actually cause that, or would it have happened anyway?"
+        },
+        {
           "slug": "sneaky-average",
           "title": "The Sneaky Average",
           "blurb": "How can the total fall when nothing got worse? Diagnosing a metric change.",

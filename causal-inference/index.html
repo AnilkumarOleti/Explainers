@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Causal Inference | Explainers</title>
+<meta name="description" content="Did it actually cause that? The world you never get to see, and six tricks for faking it.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/causal-inference/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Causal Inference">
+<meta property="og:description" content="Did it actually cause that? The world you never get to see, and six tricks for faking it.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/causal-inference/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/causal-inference/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single scroll of "two worlds" — solid ink is what happened, dashed teal is the world you never see. Big pictures, one line of words each. */
+:root{
+  --paper:#EDF0F3; --card:#FBFCFD; --ink:#18212E; --muted:#5B6676; --line:#CDD4DC;
+  --act:#DC6A1F; --ghost:#1F8794; --ghost-soft:#D7ECEE; --act-soft:#F7E2D2;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11171F; --card:#18202A; --ink:#E7ECF2; --muted:#94A1B1; --line:#2B3644;
+  --act:#F0974C; --ghost:#5BC6D1; --ghost-soft:#173238; --act-soft:#3A2618; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11171F; --card:#18202A; --ink:#E7ECF2; --muted:#94A1B1; --line:#2B3644;
+  --act:#F0974C; --ghost:#5BC6D1; --ghost-soft:#173238; --act-soft:#3A2618; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:20px;padding-block:0 64px}
+main{max-width:1020px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ghost-t{color:var(--ghost)} .act-t{color:var(--act)}
+section{padding-block:56px;border-top:1px solid var(--line);display:grid;gap:28px}
+.lead{font-size:clamp(1.15rem,2.4vw,1.35rem);max-width:34ch}
+.frame{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+svg{display:block;width:100%;height:auto}
+button{font:500 15px var(--body);color:var(--ink);background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:9px 18px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--ghost);outline-offset:3px}
+
+/* hero */
+.hero{border-top:0;padding-block:40px 48px;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:40px}
+.hero h1{font-size:clamp(2.5rem,6.4vw,4.6rem)}
+.hero .lead{margin-top:18px}
+.key{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.key span{display:inline-flex;align-items:center;gap:8px}
+.key i{display:inline-block;width:34px;height:0;border-top:3px solid var(--ink)}
+.key i.d{border-top:3px dashed var(--ghost)}
+
+h2{font-size:clamp(1.9rem,4.4vw,2.9rem);max-width:20ch}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.caption{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:8px}
+.reveal-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.says{font-size:1.1rem;min-height:1.6em}
+.big-line{font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.2rem);max-width:26ch;line-height:1.2}
+
+/* tricks */
+.trick{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:center;padding-block:32px;border-top:1px dashed var(--line)}
+.trick:first-of-type{border-top:0}
+.trick h3{font-size:clamp(1.7rem,3.4vw,2.2rem)}
+.real{font-family:var(--mono);font-size:13px;color:var(--ghost);margin-top:6px}
+.trick .say{font-size:1.15rem;margin-top:14px;max-width:32ch}
+.uses{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+.trick .frame{position:relative}
+.mini-btn{position:absolute;right:12px;top:12px;font-size:13px;padding:5px 12px}
+
+/* where */
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:10px;align-content:start}
+.tile svg{width:44px;height:44px}
+.tile b{font-family:var(--display);font-weight:400;font-size:1.25rem}
+.tile p{font-size:.98rem}
+.tile .chip{justify-self:start;color:var(--act);border-color:var(--act)}
+
+/* picker */
+.picker{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:16px}
+.trail{display:flex;flex-wrap:wrap;gap:8px}
+.trail .chip{color:var(--ink)}
+.q{font-family:var(--display);font-size:clamp(1.3rem,2.8vw,1.7rem);max-width:30ch}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.answer{border-left:4px dashed var(--ghost);padding-left:16px;display:grid;gap:8px}
+.answer a{color:var(--ghost);font-weight:600}
+
+/* catch */
+.catch{display:grid;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.catch div{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:16px;padding:14px 18px;border-top:1px solid var(--line)}
+.catch div:first-child{border-top:0}
+.catch b{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--ghost)}
+.end{font-family:var(--display);font-size:clamp(1.7rem,4vw,2.6rem);max-width:24ch;line-height:1.18}
+
+/* svg classes */
+.f-ink{fill:var(--ink)} .f-act{fill:var(--act)} .f-ghost{fill:var(--ghost)} .f-muted{fill:var(--muted)} .f-card{fill:var(--card)} .f-paper{fill:var(--paper)} .f-none{fill:none} .f-actsoft{fill:var(--act-soft)} .f-ghostsoft{fill:var(--ghost-soft)}
+.s-ink{stroke:var(--ink)} .s-act{stroke:var(--act)} .s-muted{stroke:var(--muted)} .s-line{stroke:var(--line)}
+.s-ghost{stroke:var(--ghost);stroke-dasharray:7 6}
+.s-ghostsolid{stroke:var(--ghost)}
+.w2{stroke-width:2} .w3{stroke-width:3} .w15{stroke-width:1.5}
+.p-ink{fill:var(--ink)} .p-act{fill:var(--act)} .p-muted{fill:var(--muted)}
+.p-ghost{fill:none;stroke:var(--ghost);stroke-width:1.6;stroke-dasharray:3 2.5}
+.lbl{font-family:var(--mono);font-size:13px;fill:var(--muted)}
+.lbl-s{font-size:11.5px}
+.lbl-ink{fill:var(--ink)} .lbl-act{fill:var(--act)} .lbl-ghost{fill:var(--ghost)}
+.disp{font-family:var(--display)}
+#sunGroup{transition:opacity .6s ease}
+.mid-arrow{transition:opacity .5s ease}
+.coin-dot{transition:transform .7s cubic-bezier(.6,.05,.3,1),fill .4s}
+.shake{animation:shake .5s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.flow{stroke-dashoffset:0;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-26}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media (max-width:820px){
+  .hero,.trick{grid-template-columns:minmax(0,1fr)}
+  .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .two{grid-template-columns:minmax(0,1fr)}
+  .catch div{grid-template-columns:minmax(0,1fr);gap:4px}
+  body{font-size:16px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="person" viewBox="0 0 24 40"><circle cx="12" cy="8" r="7"/><path d="M2 39 C2 25 6 18 12 18 C18 18 22 25 22 39 Z"/></symbol>
+    <marker id="ar-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-ink"/></marker>
+    <marker id="ar-act" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-act"/></marker>
+    <marker id="ar-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-muted"/></marker>
+    <marker id="ar-ghost" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-ghost"/></marker>
+  </defs>
+</svg>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="eyebrow">An explainer in pictures</p>
+    <h1>Did it <em>actually</em> cause that?</h1>
+    <p class="lead">Causal inference is the toolkit for answering that one question with data.</p>
+    <div class="key" aria-label="Picture key">
+      <span><i></i>what happened</span>
+      <span><i class="d"></i>what would have happened</span>
+    </div>
+  </div>
+  <div class="frame">
+    <svg viewBox="0 0 600 300" role="img" aria-label="A person at a fork. One path, solid, where they took a pill and feel better. The other path, dashed, where they did not take it, ending in a question mark.">
+      <text x="150" y="30" text-anchor="middle" class="lbl lbl-ink">what happened</text>
+      <text x="450" y="30" text-anchor="middle" class="lbl lbl-ghost">what would have happened</text>
+      <path d="M300 222 C300 165 160 175 150 108" class="f-none s-ink w3"/>
+      <path d="M300 222 C300 165 440 175 450 108" class="f-none s-ghost w3 flow"/>
+      <use href="#person" x="282" y="218" width="36" height="60" class="p-ink"/>
+      <g transform="rotate(-28 212 158)"><rect x="196" y="150" width="34" height="16" rx="8" class="f-act"/><rect x="213" y="150" width="17" height="16" rx="0" class="f-paper" opacity=".35"/></g>
+      <text x="212" y="190" text-anchor="middle" class="lbl lbl-s lbl-act">pill</text>
+      <use href="#person" x="132" y="46" width="36" height="60" class="p-ink"/>
+      <path d="M178 62 l8 9 l16 -20" class="f-none s-act w3" stroke-linecap="round" stroke-linejoin="round"/>
+      <use href="#person" x="432" y="46" width="36" height="60" class="p-ghost"/>
+      <text x="492" y="96" class="disp f-ghost" font-size="54">?</text>
+    </svg>
+  </div>
+</section>
+
+<!-- THE TRAP -->
+<section>
+  <p class="eyebrow">The trap</p>
+  <h2>Things that move together don't always cause each other.</h2>
+  <div class="two">
+    <div class="frame">
+      <svg id="trapChart" viewBox="0 0 600 220" role="img" aria-label="Ice cream sales and drownings rise and fall together across the year, peaking in summer."></svg>
+      <p class="caption">Ice cream sales and drownings, month by month (illustrative)</p>
+    </div>
+    <div class="frame">
+      <svg id="sunDiagram" viewBox="0 0 600 240" role="img" aria-label="Diagram: does ice cream cause drownings? Reveal shows hot weather causes both.">
+        <g id="sunGroup" opacity="0">
+          <g transform="translate(300 52)">
+            <circle r="22" class="f-act"/>
+            <g class="s-act w3" stroke-linecap="round">
+              <line x1="0" y1="-30" x2="0" y2="-40"/><line x1="0" y1="30" x2="0" y2="40"/>
+              <line x1="-30" y1="0" x2="-40" y2="0"/><line x1="30" y1="0" x2="40" y2="0"/>
+              <line x1="-21" y1="-21" x2="-28" y2="-28"/><line x1="21" y1="-21" x2="28" y2="-28"/>
+              <line x1="-21" y1="21" x2="-28" y2="28"/><line x1="21" y1="21" x2="28" y2="28"/>
+            </g>
+          </g>
+          <text x="352" y="44" class="lbl lbl-act">hot weather</text>
+          <path d="M278 82 L170 144" class="s-act w3 f-none" marker-end="url(#ar-act)"/>
+          <path d="M322 82 L430 144" class="s-act w3 f-none" marker-end="url(#ar-act)"/>
+        </g>
+        <rect x="40" y="150" width="200" height="58" rx="12" class="f-card s-ink w2"/>
+        <text x="140" y="184" text-anchor="middle" class="lbl lbl-ink">Ice cream sales</text>
+        <rect x="360" y="150" width="200" height="58" rx="12" class="f-card s-ink w2"/>
+        <text x="460" y="184" text-anchor="middle" class="lbl lbl-ink">Drownings</text>
+        <g id="midArrow" class="mid-arrow">
+          <path d="M246 179 L352 179" class="s-muted w2 f-none" marker-end="url(#ar-muted)"/>
+          <text x="299" y="168" text-anchor="middle" class="disp f-muted" font-size="22">?</text>
+        </g>
+        <g id="midCross" opacity="0" class="mid-arrow"><path d="M288 166 l22 26 M310 166 l-22 26" class="s-act w3" stroke-linecap="round"/></g>
+      </svg>
+    </div>
+  </div>
+  <div class="reveal-row">
+    <button id="sunBtn" aria-pressed="false">Show the hidden cause</button>
+    <p class="says" id="sunSays" aria-live="polite">Does ice cream cause drowning?</p>
+  </div>
+  <p class="caption">That drawing of arrows has a name: a <b>causal graph</b>. Drawing one is step one of every method below.</p>
+</section>
+
+<!-- CORE IDEA -->
+<section>
+  <p class="eyebrow">The core idea</p>
+  <h2>The answer lives in a world you never get to see.</h2>
+  <div class="frame" id="twinFrame">
+    <svg id="twinSvg" viewBox="0 0 600 250" role="img" aria-label="Left: Riya takes a pill and her headache goes. Right, dashed: Riya without the pill, outcome unknown.">
+      <rect x="8" y="8" width="284" height="234" rx="16" class="f-none s-ink w2"/>
+      <rect x="308" y="8" width="284" height="234" rx="16" class="f-none s-ghost w2"/>
+      <text x="28" y="36" class="lbl lbl-ink">REAL WORLD</text>
+      <text x="328" y="36" class="lbl lbl-ghost">THE OTHER WORLD</text>
+      <use href="#person" x="70" y="70" width="66" height="110" class="p-ink"/>
+      <g transform="rotate(-25 175 150)"><rect x="156" y="141" width="40" height="18" rx="9" class="f-act"/></g>
+      <path d="M200 92 l10 11 l20 -26" class="f-none s-act w3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="150" y="222" text-anchor="middle" class="lbl lbl-ink">Riya took the pill. Headache gone.</text>
+      <g id="ghostSide">
+        <use href="#person" x="370" y="70" width="66" height="110" class="p-ghost"/>
+        <g transform="rotate(-25 475 150)"><rect x="456" y="141" width="40" height="18" rx="9" class="f-none s-ghost w15"/><line x1="452" y1="160" x2="500" y2="138" class="s-ghost w2"/></g>
+        <text x="502" y="118" class="disp f-ghost" font-size="58">?</text>
+        <text x="450" y="222" text-anchor="middle" class="lbl lbl-ghost">No pill. Would it have gone anyway?</text>
+      </g>
+    </svg>
+  </div>
+  <div class="reveal-row">
+    <button id="peekBtn">Peek at the other world</button>
+    <p class="says" id="peekSays" aria-live="polite"></p>
+  </div>
+  <p class="big-line">Every method below is a clever way to <span class="ghost-t">fake that missing world</span>.</p>
+</section>
+
+<!-- TRICKS -->
+<section>
+  <p class="eyebrow">Six tricks to fake the missing world</p>
+
+  <article class="trick" id="coin">
+    <div class="frame">
+      <button class="mini-btn" id="shuffleBtn">Flip again</button>
+      <svg id="coinSvg" viewBox="0 0 360 240" role="img" aria-label="A coin splits people of all sizes into two groups that end up looking alike."></svg>
+    </div>
+    <div>
+      <h3>Flip a coin</h3>
+      <p class="real">Randomized experiment · A/B test</p>
+      <p class="say">Let chance decide who gets it. Both groups end up alike in every way but one.</p>
+      <div class="uses"><span class="chip">drug trials</span><span class="chip">app features</span><span class="chip">pricing tests</span></div>
+    </div>
+  </article>
+
+  <article class="trick" id="lookalike">
+    <div class="frame">
+      <svg viewBox="0 0 360 250" role="img" aria-label="Each person who got it is paired with a person of the same age who did not."></svg>
+    </div>
+    <div>
+      <h3>Find look-alikes</h3>
+      <p class="real">Matching · propensity scores</p>
+      <p class="say">Can't flip a coin? Pair each person who got it with a twin who didn't.</p>
+      <div class="uses"><span class="chip">hospital records</span><span class="chip">loyalty programs</span><span class="chip">smoking studies</span></div>
+    </div>
+  </article>
+
+  <article class="trick" id="did">
+    <div class="frame">
+      <svg id="didSvg" viewBox="0 0 360 230" role="img" aria-label="Two groups trend in parallel. After a change, one jumps. The dashed line shows where it was heading. The gap is the effect."></svg>
+    </div>
+    <div>
+      <h3>Before &amp; after, twice</h3>
+      <p class="real">Difference-in-differences</p>
+      <p class="say">Compare how much each group <em>changed</em>, not where it ended up.</p>
+      <div class="uses"><span class="chip">new laws</span><span class="chip">city-by-city launches</span><span class="chip">wage rules</span></div>
+    </div>
+  </article>
+
+  <article class="trick" id="rd">
+    <div class="frame">
+      <svg id="rdSvg" viewBox="0 0 360 230" role="img" aria-label="Students scoring 80 or more get a scholarship. Results jump right at the cutoff."></svg>
+    </div>
+    <div>
+      <h3>Look right at the line</h3>
+      <p class="real">Regression discontinuity</p>
+      <p class="say">Scholarship at 80 marks. A 79 and an 81 are basically the same student. The jump is the scholarship.</p>
+      <div class="uses"><span class="chip">scholarships</span><span class="chip">credit limits</span><span class="chip">age rules</span></div>
+    </div>
+  </article>
+
+  <article class="trick" id="iv">
+    <div class="frame">
+      <svg viewBox="0 0 360 230" role="img" aria-label="A lottery pushes people into a good school. Hidden things like family affect both school and earnings, but the lottery only touches the school."></svg>
+    </div>
+    <div>
+      <h3>Use a lucky nudge</h3>
+      <p class="real">Instrumental variables</p>
+      <p class="say">Find something that pushes people toward it but touches nothing else.</p>
+      <div class="uses"><span class="chip">school lotteries</span><span class="chip">distance to a hospital</span><span class="chip">rainfall</span></div>
+    </div>
+  </article>
+
+  <article class="trick" id="synth">
+    <div class="frame">
+      <svg id="synthSvg" viewBox="0 0 360 230" role="img" aria-label="Four other states are mixed in different amounts to build a dashed twin that tracks the real state until a policy starts."></svg>
+    </div>
+    <div>
+      <h3>Build a twin from parts</h3>
+      <p class="real">Synthetic control</p>
+      <p class="say">No single twin exists? Blend several places into one.</p>
+      <div class="uses"><span class="chip">a state's tobacco tax</span><span class="chip">one country's reform</span></div>
+    </div>
+  </article>
+</section>
+
+<!-- WHERE -->
+<section>
+  <p class="eyebrow">Where it's used</p>
+  <h2>Anywhere someone asks "what if we hadn't?"</h2>
+  <div class="grid4">
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><g transform="rotate(-35 20 20)"><rect x="6" y="14" width="28" height="12" rx="6" class="f-none s-ink w2"/><path d="M20 14 h8 a6 6 0 0 1 0 12 h-8 z" class="f-act"/></g></svg>
+      <b>Medicine</b><p>Does the drug work, or would patients recover anyway?</p><span class="chip">Flip a coin</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="4" width="18" height="32" rx="4" class="f-none s-ink w2"/><rect x="15" y="23" width="10" height="6" rx="2" class="f-act"/></svg>
+      <b>Apps</b><p>Did the new button raise sign-ups?</p><span class="chip">Flip a coin</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="14" width="26" height="21" rx="3" class="f-none s-ink w2"/><path d="M14 14 C14 5 26 5 26 14" class="f-none s-ink w2"/><circle cx="20" cy="24" r="3.5" class="f-act"/></svg>
+      <b>Online shops</b><p>Did free shipping lift sales, or was it the Diwali rush?</p><span class="chip">Before &amp; after, twice</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M9 16 L24 9 L24 31 L9 24 Z" class="f-none s-ink w2" stroke-linejoin="round"/><rect x="4" y="16" width="5" height="8" class="f-act"/><path d="M29 14 q4 6 0 12 M33 11 q6 9 0 18" class="f-none s-act w2" stroke-linecap="round"/></svg>
+      <b>Ads</b><p>Would they have bought it without seeing the ad?</p><span class="chip">Flip a coin</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 14 L20 6 L35 14 Z" class="f-act"/><path d="M10 17 V30 M17 17 V30 M23 17 V30 M30 17 V30 M5 34 H35" class="f-none s-ink w2" stroke-linecap="round"/></svg>
+      <b>Government</b><p>Did the helmet law cut road deaths?</p><span class="chip">Build a twin from parts</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 15 L20 8 L37 15 L20 22 Z" class="f-act"/><path d="M11 18 V26 C11 31 29 31 29 26 V18" class="f-none s-ink w2"/></svg>
+      <b>Education</b><p>Does a scholarship change who finishes college?</p><span class="chip">Look right at the line</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 5 V35 H36" class="f-none s-ink w2"/><polyline points="9,29 16,21 22,25 34,10" class="f-none s-act w3" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <b>Economics</b><p>Does one more year of school raise income?</p><span class="chip">Use a lucky nudge</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34 C6 24 3 17 7 11 C11 5 18 7 20 12 C22 7 29 5 33 11 C37 17 34 24 20 34 Z" class="f-none s-ink w2" stroke-linejoin="round"/><polyline points="8,20 15,20 18,15 22,25 25,20 32,20" class="f-none s-act w2" stroke-linejoin="round"/></svg>
+      <b>Public health</b><p>Does smoking cause the disease? (You can't assign smoking.)</p><span class="chip">Find look-alikes</span>
+    </div>
+  </div>
+</section>
+
+<!-- PICKER -->
+<section>
+  <p class="eyebrow">Which trick fits?</p>
+  <h2>Answer a few questions.</h2>
+  <div class="picker" id="picker" aria-live="polite"></div>
+</section>
+
+<!-- CATCH -->
+<section>
+  <p class="eyebrow">The catch</p>
+  <h2>Each trick asks you to believe one thing.</h2>
+  <div class="catch">
+    <div><b>Flip a coin</b><span>Almost nothing. That's why it's the gold standard.</span></div>
+    <div><b>Find look-alikes</b><span>You matched on everything that matters.</span></div>
+    <div><b>Before &amp; after, twice</b><span>Both groups would have kept moving in parallel.</span></div>
+    <div><b>Look right at the line</b><span>Nothing else changes exactly at the cutoff.</span></div>
+    <div><b>Use a lucky nudge</b><span>The nudge has no other path to the outcome.</span></div>
+    <div><b>Build a twin from parts</b><span>The blend tracked well before, so it would have after.</span></div>
+  </div>
+  <p class="end">Correlation shows what moves together. Causal inference asks <span class="act-t">what would change if you changed it.</span></p>
+</section>
+
+</main>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs){e.setAttribute(k,attrs[k]);}if(parent)parent.appendChild(e);return e;}
+function txt(parent,x,y,s,cls,anchor){const t=el('text',{x,y,class:cls||'lbl','text-anchor':anchor||'start'},parent);t.textContent=s;return t;}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const line=pts=>'M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
+
+/* ---------- Trap chart ---------- */
+(function(){
+  const s=document.getElementById('trapChart');
+  const ice=[18,22,34,52,74,92,96,90,66,40,24,18], dro=[4,4,7,10,13,19,20,18,12,8,5,3];
+  const m='JFMAMJJASOND';
+  const X=i=>50+i*45, Y=(v,max)=>180-(v/max)*140;
+  el('path',{d:'M40 180 H560',class:'s-line w15'},s);
+  for(let i=0;i<12;i++) txt(s,X(i),204,m[i],'lbl lbl-s','middle');
+  el('path',{d:line(ice.map((v,i)=>[X(i),Y(v,96)])),class:'f-none s-act w3','stroke-linejoin':'round'},s);
+  el('path',{d:line(dro.map((v,i)=>[X(i),Y(v,20)+6])),class:'f-none s-ink w3','stroke-linejoin':'round'},s);
+  el('rect',{x:50,y:20,width:18,height:4,class:'f-act'},s); txt(s,74,26,'ice cream sales','lbl lbl-act');
+  el('rect',{x:220,y:20,width:18,height:4,class:'f-ink'},s); txt(s,244,26,'drownings','lbl lbl-ink');
+})();
+
+/* ---------- Sun reveal ---------- */
+(function(){
+  const b=document.getElementById('sunBtn'),g=document.getElementById('sunGroup'),mid=document.getElementById('midArrow'),cross=document.getElementById('midCross'),say=document.getElementById('sunSays');
+  let on=false;
+  b.addEventListener('click',()=>{on=!on;
+    g.setAttribute('opacity',on?1:0); cross.setAttribute('opacity',on?1:0); mid.setAttribute('opacity',on?.35:1);
+    b.textContent=on?'Hide it again':'Show the hidden cause'; b.setAttribute('aria-pressed',on);
+    say.innerHTML=on?'<b>No.</b> Summer causes both. That hidden cause is called a <b class="act-t">confounder</b>.':'Does ice cream cause drowning?';
+  });
+})();
+
+/* ---------- Peek ---------- */
+(function(){
+  const b=document.getElementById('peekBtn'),g=document.getElementById('ghostSide'),say=document.getElementById('peekSays');
+  const lines=['You can’t. Nobody can.','Still can’t. Riya only lives once.','This is the whole problem. So we fake it.'];let n=0;
+  b.addEventListener('click',()=>{g.classList.remove('shake');void g.getBoundingClientRect();g.classList.add('shake');say.textContent=lines[Math.min(n,lines.length-1)];n++;});
+})();
+
+/* ---------- Coin flip ---------- */
+(function(){
+  const s=document.getElementById('coinSvg');
+  el('circle',{cx:180,cy:42,r:24,class:'f-actsoft s-act w2'},s);
+  txt(s,180,48,'50/50','lbl lbl-s lbl-act','middle');
+  el('path',{d:'M162 62 L105 98',class:'f-none s-muted w15','marker-end':'url(#ar-muted)'},s);
+  el('path',{d:'M198 62 L255 98',class:'f-none s-muted w15','marker-end':'url(#ar-muted)'},s);
+  el('rect',{x:30,y:104,width:140,height:104,rx:14,class:'f-none s-ink w15'},s);
+  el('rect',{x:190,y:104,width:140,height:104,rx:14,class:'f-none s-ghost w15'},s);
+  txt(s,100,228,'gets it','lbl lbl-ink','middle');
+  txt(s,260,228,'doesn’t','lbl lbl-ghost','middle');
+  const radii=[5,6,7,8,9,10,11,12,5,6,7,8,9,10,11,12];
+  const slot=(g,k)=>{const col=k%4,row=Math.floor(k/4);return[(g?210:50)+col*33+(row%2?8:0),132+row*48];};
+  const dots=radii.map(r=>el('circle',{cx:0,cy:0,r,class:'coin-dot'},s));
+  const R=rng(7);
+  function shuffle(){
+    const idx=[...dots.keys()];for(let i=idx.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+    idx.forEach((d,k)=>{const g=k<8?0:1,[x,y]=slot(g,k%8);const c=dots[d];c.style.transform=`translate(${x}px,${y}px)`;c.setAttribute('class','coin-dot '+(g?'p-ghost':'p-act'));});
+  }
+  shuffle();
+  document.getElementById('shuffleBtn').addEventListener('click',shuffle);
+})();
+
+/* ---------- Look-alikes ---------- */
+(function(){
+  const s=document.querySelector('#lookalike svg');
+  txt(s,70,20,'got it','lbl lbl-ink','middle'); txt(s,290,20,'didn’t','lbl lbl-ghost','middle');
+  const left=[62,25,48,34], ly=[40,92,144,196];
+  const pool=[35,61,70,23,47,40], py=[34,70,106,142,178,214];
+  const match={62:1,25:3,48:4,34:0};
+  left.forEach((a,i)=>{
+    const j=match[a];
+    el('path',{d:`M92 ${ly[i]+20} C180 ${ly[i]+20} 180 ${py[j]+14} 262 ${py[j]+14}`,class:'f-none s-act w15','stroke-dasharray':'2 4'},s);
+  });
+  left.forEach((a,i)=>{el('use',{href:'#person',x:58,y:ly[i],width:24,height:40,class:'p-act'},s);txt(s,40,ly[i]+26,a,'lbl lbl-ink','end');});
+  pool.forEach((a,j)=>{const used=Object.values(match).includes(j);
+    const g=el('g',{opacity:used?1:.35},s);
+    el('use',{href:'#person',x:272,y:py[j],width:18,height:30,class:'p-ghost'},g);txt(g,300,py[j]+20,a,'lbl lbl-ghost');});
+  txt(s,180,246,'same age, same habits','lbl lbl-s','middle');
+})();
+
+/* ---------- Diff-in-diff ---------- */
+(function(){
+  const s=document.getElementById('didSvg');
+  el('path',{d:'M30 20 V200 H292',class:'f-none s-line w15'},s);
+  el('path',{d:'M160 26 V200',class:'f-none s-muted w15','stroke-dasharray':'3 4'},s);
+  txt(s,166,32,'change starts','lbl lbl-s');
+  el('path',{d:line([[30,170],[290,145]]),class:'f-none s-muted w3'},s);
+  el('path',{d:line([[30,120],[160,107.5]]),class:'f-none s-act w3'},s);
+  el('path',{d:line([[160,107.5],[290,95]]),class:'f-none s-ghost w3'},s);
+  el('path',{d:line([[160,107.5],[290,45]]),class:'f-none s-act w3'},s);
+  el('circle',{cx:290,cy:45,r:5,class:'f-act'},s);
+  el('path',{d:'M300 95 H306 V45 H300',class:'f-none s-act w2'},s);
+  txt(s,311,74,'effect','lbl lbl-act');
+  txt(s,36,106,'got the change','lbl lbl-act');
+  txt(s,36,190,'didn’t','lbl');
+  txt(s,190,124,'where it was heading','lbl lbl-s lbl-ghost');
+  txt(s,160,220,'time →','lbl lbl-s','middle');
+})();
+
+/* ---------- Regression discontinuity ---------- */
+(function(){
+  const s=document.getElementById('rdSvg');
+  const X=sc=>30+(sc-55)/45*300, cut=X(80), R=rng(42);
+  el('path',{d:'M30 20 V200 H335',class:'f-none s-line w15'},s);
+  el('path',{d:`M${cut} 20 V200`,class:'f-none s-ink w15','stroke-dasharray':'5 4'},s);
+  txt(s,cut,14,'cutoff: 80 marks','lbl lbl-s lbl-ink','middle');
+  for(let i=0;i<36;i++){const sc=56+i*43/35;const y=190-(sc-55)*1.6-(sc>=80?40:0)+(R()-.5)*16;
+    if(sc<80) el('circle',{cx:X(sc),cy:y,r:4.5,class:'f-none s-ghostsolid','stroke-width':1.6},s);
+    else el('circle',{cx:X(sc),cy:y,r:4.5,class:'f-act'},s);}
+  el('path',{d:line([[30,190],[cut,150]]),class:'f-none s-ghost w2'},s);
+  el('path',{d:line([[cut,110],[330,78]]),class:'f-none s-act w2'},s);
+  el('path',{d:`M${cut-6} 150 H${cut-12} V110 H${cut-6}`,class:'f-none s-ink w2'},s);
+  txt(s,cut-16,124,'jump','lbl lbl-ink','end');
+  txt(s,180,220,'exam marks →','lbl lbl-s','middle');
+  txt(s,36,34,'later success','lbl lbl-s');
+})();
+
+/* ---------- Instrumental variable ---------- */
+(function(){
+  const s=document.querySelector('#iv svg');
+  el('path',{d:'M175 52 C160 52 156 32 175 30 C178 14 205 12 212 26 C222 12 252 16 252 32 C272 32 274 54 254 56 Z',class:'f-ghostsoft s-ghost w15'},s);
+  txt(s,214,78,'hidden stuff: family, drive','lbl lbl-s lbl-ghost','middle');
+  el('path',{d:'M196 86 L180 126',class:'f-none s-ghost w15','marker-end':'url(#ar-ghost)'},s);
+  el('path',{d:'M236 86 L292 126',class:'f-none s-ghost w15','marker-end':'url(#ar-ghost)'},s);
+  el('rect',{x:8,y:132,width:82,height:50,rx:10,class:'f-actsoft s-act w2'},s);
+  el('circle',{cx:8,cy:157,r:6,class:'f-card'},s); el('circle',{cx:90,cy:157,r:6,class:'f-card'},s);
+  txt(s,49,162,'Lottery','lbl lbl-act','middle');
+  el('rect',{x:122,y:132,width:104,height:50,rx:10,class:'f-card s-ink w2'},s);
+  txt(s,174,162,'Gets a seat','lbl lbl-ink','middle');
+  el('rect',{x:258,y:132,width:96,height:50,rx:10,class:'f-card s-ink w2'},s);
+  txt(s,306,162,'Earns later','lbl lbl-ink','middle');
+  el('path',{d:'M94 157 L118 157',class:'f-none s-act w3','marker-end':'url(#ar-act)'},s);
+  el('path',{d:'M228 157 L254 157',class:'f-none s-ink w2','marker-end':'url(#ar-ink)'},s);
+  txt(s,241,124,'?','disp f-ink','middle').setAttribute('font-size','20');
+  el('path',{d:'M49 190 C49 214 300 214 306 190',class:'f-none s-muted w15','stroke-dasharray':'2 4'},s);
+  el('path',{d:'M170 202 l12 12 M182 202 l-12 12',class:'s-act w2','stroke-linecap':'round'},s);
+  txt(s,190,226,'luck has no path here','lbl lbl-s');
+})();
+
+/* ---------- Synthetic control ---------- */
+(function(){
+  const s=document.getElementById('synthSvg'),R=rng(9);
+  const w=['×0.4','×0.3','×0.2','×0.1'];
+  for(let k=0;k<4;k++){const y0=34+k*48,pts=[];for(let i=0;i<8;i++)pts.push([10+i*10,y0+(R()-.5)*18]);
+    el('path',{d:line(pts),class:'f-none s-muted w15'},s);txt(s,94,y0+4,w[k],'lbl lbl-s');}
+  txt(s,10,20,'other states','lbl lbl-s');
+  el('path',{d:'M130 120 L150 120',class:'f-none s-ghost w2','marker-end':'url(#ar-ghost)'},s);
+  const x0=160,x1=350,cut=280;
+  el('path',{d:`M${x0} 20 V200 H${x1}`,class:'f-none s-line w15'},s);
+  el('path',{d:`M${cut} 26 V200`,class:'f-none s-muted w15','stroke-dasharray':'3 4'},s);
+  txt(s,cut-4,36,'policy','lbl lbl-s','end');
+  const real=[],twin=[];
+  for(let i=0;i<=19;i++){const x=x0+i*10;const base=70+i*1.2+Math.sin(i*.9)*6;
+    if(x<=cut){real.push([x,base+(R()-.5)*3]);twin.push([x,base]);}
+    else{twin.push([x,base]);real.push([x,base+(x-cut)*1.05]);}}
+  el('path',{d:line(twin),class:'f-none s-ghost w3'},s);
+  el('path',{d:line(real),class:'f-none s-act w3','stroke-linejoin':'round'},s);
+  txt(s,x0+6,174,'real state','lbl lbl-s lbl-act');
+  txt(s,x0+6,58,'twin from parts','lbl lbl-s lbl-ghost');
+  txt(s,(x0+x1)/2,220,'time →','lbl lbl-s','middle');
+})();
+
+/* ---------- Picker ---------- */
+(function(){
+  const P=document.getElementById('picker');
+  const Q={
+    q1:{t:'Can you decide at random who gets it?',y:'coin',n:'q2'},
+    q2:{t:'Does a score or cutoff decide who gets it?',y:'rd',n:'q3'},
+    q3:{t:'Did it start at one moment for some groups, while others carried on?',y:'did',n:'q4'},
+    q4:{t:'Is there a bit of luck that pushed some people toward it?',y:'iv',n:'lookalike'}
+  };
+  const A={
+    coin:['Flip a coin','The cleanest answer. Run an experiment.'],
+    rd:['Look right at the line','Compare people just above and just below the cutoff.'],
+    did:['Before & after, twice','Only one place changed? Build a twin from parts instead.'],
+    iv:['Use a lucky nudge','Make sure the luck has no other route to the outcome.'],
+    lookalike:['Find look-alikes','Draw your causal graph first, then match on every confounder.']
+  };
+  let trail=[];
+  function render(node){
+    P.innerHTML='';
+    if(trail.length){const tr=document.createElement('div');tr.className='trail';
+      trail.forEach(([q,a])=>{const c=document.createElement('span');c.className='chip';c.textContent=(a?'Yes':'No')+': '+Q[q].t.replace('?','');tr.appendChild(c);});P.appendChild(tr);}
+    if(Q[node]){
+      const q=document.createElement('p');q.className='q';q.textContent=Q[node].t;P.appendChild(q);
+      const bs=document.createElement('div');bs.className='btns';
+      [['Yes',true],['No',false]].forEach(([l,v])=>{const b=document.createElement('button');b.textContent=l;b.addEventListener('click',()=>{trail.push([node,v]);render(v?Q[node].y:Q[node].n);});bs.appendChild(b);});
+      P.appendChild(bs);
+    } else {
+      const a=document.createElement('div');a.className='answer';
+      a.innerHTML=`<p class="eyebrow">Your trick</p><p class="q">${A[node][0]}</p><p>${A[node][1]}</p><p><a href="#${node}">See the picture ↑</a>${node==='did'?' · <a href="#synth">Twin from parts ↑</a>':''}</p>`;
+      P.appendChild(a);
+      const r=document.createElement('button');r.textContent='Start over';r.style.justifySelf='start';r.addEventListener('click',()=>{trail=[];render('q1');});P.appendChild(r);
+    }
+  }
+  render('q1');
+})();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
