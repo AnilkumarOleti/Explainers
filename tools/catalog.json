@@ -64,6 +64,13 @@
           "ask": "How can the total fall when nothing got worse?"
         },
         {
+          "slug": "every-kpi-lies",
+          "title": "Every KPI Lies",
+          "blurb": "Why does a metric drift from the truth once people are paid to move it? Goodhart's law.",
+          "artifact": "2KXjsFjiZLmp5TCyQqgmwv",
+          "ask": "Why does every KPI eventually lie?"
+        },
+        {
           "slug": "stiff-or-wiggly",
           "title": "Stiff or Wiggly",
           "blurb": "Why can a perfect fit predict badly? The bias-variance trade-off.",

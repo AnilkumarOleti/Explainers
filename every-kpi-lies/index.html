@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Every KPI Lies | Explainers</title>
+<meta name="description" content="Why does a metric drift from the truth once people are paid to move it? Goodhart&#x27;s law.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/every-kpi-lies/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Every KPI Lies">
+<meta property="og:description" content="Why does a metric drift from the truth once people are paid to move it? Goodhart&#x27;s law.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/every-kpi-lies/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/every-kpi-lies/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Atkinson+Hyperlegible:wght@400;700&family=Chivo+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a calibration notebook on graph paper. Big drawn instruments, one line of words each. */
+:root{
+  --paper:#EBF0EF; --grid:rgba(24,38,58,.065); --ink:#18263A; --muted:#5B6C7D;
+  --card:#F9FBFA; --world:#D9E6EA; --mercury:#CF3527; --ok:#2C7A57; --gold:#D9A630;
+  --glass:#A9CBD9; --snow:#6E9AB0; --wood:#C49A63; --note:#F4DF86; --note-ink:#2A2410; --on-accent:#FFFFFF;
+  --display:"Gloock", "Georgia", "Times New Roman", serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono:"Chivo Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1822; --grid:rgba(169,203,217,.06); --ink:#E5EDF1; --muted:#93A5B5;
+    --card:#17222E; --world:#1B2A37; --mercury:#F05A4B; --ok:#59B98B; --gold:#E7B84E;
+    --glass:#2E4A5B; --snow:#8FBACD; --wood:#B78D58; --note:#E9D27A; --note-ink:#2A2410; --on-accent:#FFFFFF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1822; --grid:rgba(169,203,217,.06); --ink:#E5EDF1; --muted:#93A5B5;
+  --card:#17222E; --world:#1B2A37; --mercury:#F05A4B; --ok:#59B98B; --gold:#E7B84E;
+  --glass:#2E4A5B; --snow:#8FBACD; --wood:#B78D58; --note:#E9D27A; --note-ink:#2A2410; --on-accent:#FFFFFF;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper); color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+  font-family:var(--body); font-size:1.075rem; line-height:1.55;
+}
+.wrap{max-width:1000px; margin:0 auto; padding-inline:20px; padding-block:40px 80px; display:grid; gap:96px}
+h1,h2{font-family:var(--display); font-weight:400; text-wrap:balance; margin:0; letter-spacing:-.01em}
+h1{font-size:clamp(3rem,9vw,6.4rem); line-height:.95}
+h2{font-size:clamp(2rem,5vw,3.1rem); line-height:1.05}
+h3{font-family:var(--display); font-weight:400; font-size:1.55rem; margin:0; line-height:1.15}
+p{margin:0; max-width:62ch}
+.eyebrow{font-family:var(--mono); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mercury)}
+.lede{font-size:1.25rem; color:var(--muted)}
+.muted{color:var(--muted)}
+em.red{font-style:normal; color:var(--mercury)}
+em.green{font-style:normal; color:var(--ok)}
+
+svg{display:block; width:100%; height:auto; max-width:100%}
+.ln{fill:none; stroke:var(--ink); stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
+.ln2{fill:none; stroke:var(--ink); stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.fc{fill:var(--card)} .fi{fill:var(--ink)} .fm{fill:var(--mercury)} .fo{fill:var(--gold)}
+.fp{fill:var(--paper)} .fg{fill:var(--glass)} .fok{fill:var(--ok)} .fmu{fill:var(--muted)}
+.fw{fill:var(--world)} .fn{fill:var(--note)} .fnt{fill:var(--note-ink)} .fon{fill:var(--on-accent)}
+.sm{stroke:var(--mercury)} .smu{stroke:var(--muted)} .sok{stroke:var(--ok)}
+.wood{stroke:var(--wood); stroke-width:6; stroke-linecap:round; fill:none}
+.flake line{stroke:var(--snow); stroke-width:2; stroke-linecap:round}
+.mono{font-family:var(--mono)}
+.disp{font-family:var(--display)}
+
+/* hero */
+.hero{display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center}
+.hero-text{display:grid; gap:20px; min-width:0}
+.hero-fig{display:grid; gap:10px; min-width:0}
+.caption{font-family:var(--mono); font-size:.85rem; color:var(--muted); text-align:center}
+.caption b{color:var(--mercury); font-weight:600}
+.flame{transform-origin:252px 396px; animation:flick 1.4s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1,1)} to{transform:scale(.92,1.08)}}
+
+/* sections */
+.sec{display:grid; gap:28px}
+.sec-head{display:grid; gap:10px}
+.panel{background:var(--card); border:2px solid var(--ink); border-radius:18px; padding:22px}
+
+/* slider lab */
+.lab{display:grid; gap:18px}
+.chart-box{overflow-x:auto}
+.chart-box svg{min-width:520px}
+.ctrl{display:grid; gap:8px}
+.ctrl label{font-family:var(--display); font-size:1.3rem}
+input[type=range]{width:100%; accent-color:var(--mercury); height:28px; cursor:pointer}
+input[type=range]:focus-visible{outline:3px solid var(--mercury); outline-offset:4px; border-radius:4px}
+.ticks{display:flex; justify-content:space-between; font-family:var(--mono); font-size:.75rem; color:var(--muted); gap:8px}
+.read{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
+.tile{border-top:3px solid var(--ink); padding-top:8px; display:grid; gap:2px; min-width:0}
+.tile .k{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.tile .v{font-family:var(--mono); font-size:1.9rem; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.1}
+.tile.num{border-color:var(--mercury)} .tile.num .v{color:var(--mercury)}
+.tile.real{border-color:var(--ok)} .tile.real .v{color:var(--ok)}
+.verdict{font-family:var(--display); font-size:1.45rem; line-height:1.25; min-height:3.6rem}
+.quote{display:grid; gap:6px; border-left:4px solid var(--mercury); padding-left:16px}
+.quote p{font-family:var(--display); font-size:1.5rem; line-height:1.25}
+
+/* card grids */
+.grid4{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+.card{background:var(--card); border:2px solid var(--ink); border-radius:16px; padding:18px; display:grid; gap:10px; align-content:start; min-width:0}
+.card svg{background:var(--paper); border-radius:10px}
+.card p{font-size:1rem}
+.card .ex{font-family:var(--mono); font-size:.82rem; color:var(--muted); line-height:1.5}
+.stories{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px}
+.story{display:grid; gap:8px; align-content:start; min-width:0}
+.story svg{background:var(--card); border:2px solid var(--ink); border-radius:14px}
+.story .when{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mercury)}
+.story p{font-size:.98rem}
+
+.close{display:grid; gap:18px; justify-items:start; padding-block:20px}
+.close h2{font-size:clamp(2.4rem,7vw,4.6rem)}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .grid4{grid-template-columns:1fr}
+  .stories{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .read{grid-template-columns:1fr 1fr}
+  .read .tile:last-child{grid-column:1 / -1}
+}
+@media (max-width:420px){ .stories{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ .flame{animation:none} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="flake" viewBox="-10 -10 20 20">
+    <g class="flake"><line x1="0" y1="-8" x2="0" y2="8"/><line x1="-7" y1="-4" x2="7" y2="4"/><line x1="-7" y1="4" x2="7" y2="-4"/></g>
+  </symbol>
+</svg>
+
+<main class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-text">
+    <span class="eyebrow">Goodhart's law, in pictures</span>
+    <h1>Every KPI eventually lies.</h1>
+    <p class="lede">You wanted a warm room. You hung a thermometer. Then you rewarded people when it read high.</p>
+  </div>
+  <figure class="hero-fig" style="margin:0">
+    <svg viewBox="0 0 420 440" role="img" aria-label="A thermometer heated by a lit match reads 38 degrees while snow falls around it. A sticky note says the 25 degree target was hit.">
+      <use href="#flake" x="40" y="40" width="22" height="22"/>
+      <use href="#flake" x="70" y="170" width="18" height="18"/>
+      <use href="#flake" x="30" y="300" width="24" height="24"/>
+      <use href="#flake" x="360" y="40" width="20" height="20"/>
+      <use href="#flake" x="370" y="250" width="22" height="22"/>
+      <use href="#flake" x="110" y="390" width="18" height="18"/>
+      <!-- tube -->
+      <rect x="175" y="30" width="60" height="300" rx="30" class="fc ln"/>
+      <g class="ln2">
+        <line x1="160" y1="300" x2="172" y2="300"/><line x1="160" y1="245" x2="172" y2="245"/>
+        <line x1="160" y1="190" x2="172" y2="190"/><line x1="160" y1="135" x2="172" y2="135"/>
+        <line x1="160" y1="80" x2="172" y2="80"/>
+      </g>
+      <g class="mono fmu" font-size="13" text-anchor="end">
+        <text x="153" y="304">0°</text><text x="153" y="249">10°</text><text x="153" y="194">20°</text>
+        <text x="153" y="139">30°</text><text x="153" y="84">40°</text>
+      </g>
+      <!-- bulb -->
+      <circle cx="205" cy="355" r="46" class="fc ln"/>
+      <rect x="177" y="300" width="56" height="26" class="fc"/>
+      <rect x="193" y="91" width="24" height="262" rx="12" class="fm"/>
+      <circle cx="205" cy="355" r="33" class="fm"/>
+      <!-- target -->
+      <line x1="178" y1="162" x2="272" y2="162" class="ln2" stroke-dasharray="5 5"/>
+      <g transform="rotate(-5 334 163)">
+        <rect x="272" y="126" width="126" height="74" class="fn"/>
+        <text x="285" y="150" class="mono fnt" font-size="12" letter-spacing="1.5">TARGET 25°</text>
+        <text x="285" y="186" class="disp fnt" font-size="28">✓ hit</text>
+      </g>
+      <!-- match -->
+      <line x1="366" y1="430" x2="262" y2="404" class="wood"/>
+      <ellipse cx="257" cy="402" rx="9" ry="7" class="fm"/>
+      <g class="flame">
+        <path d="M252 396 C234 383 241 362 250 344 C257 364 273 379 252 396Z" class="fo"/>
+        <path d="M252 392 C244 385 247 374 251 365 C256 376 262 385 252 392Z" class="fm"/>
+      </g>
+    </svg>
+    <figcaption class="caption">Thermometer: <b>38°</b> · Room: 4° · Bonus: paid</figcaption>
+  </figure>
+</header>
+
+<!-- WINDOW -->
+<section class="sec">
+  <div class="sec-head">
+    <span class="eyebrow">What a KPI is</span>
+    <h2>A small window onto a big thing.</h2>
+    <p class="muted">You can't see every customer. So you watch one number that usually moves with them.</p>
+  </div>
+  <div class="panel" style="padding:12px">
+    <svg id="world" viewBox="0 0 600 300" role="img" aria-label="A large crowd of people, some happy and some unhappy, representing reality. A small framed window shows only a rating of 4.6 stars.">
+      <rect x="10" y="10" width="580" height="280" rx="22" class="fw"/>
+      <text x="32" y="40" class="mono fmu" font-size="12" letter-spacing="2">THE REAL THING</text>
+      <g id="people"></g>
+      <text x="372" y="40" class="mono fm" font-size="12" letter-spacing="2">THE KPI</text>
+      <rect x="370" y="50" width="180" height="110" rx="6" class="fc" style="stroke:var(--ink);stroke-width:5"/>
+      <text x="460" y="120" text-anchor="middle" class="mono fm" font-size="40" font-weight="600">4.6★</text>
+    </svg>
+  </div>
+  <p>The window is useful. <em class="red">It is not the room.</em></p>
+</section>
+
+<!-- LAB -->
+<section class="sec">
+  <div class="sec-head">
+    <span class="eyebrow">Try it</span>
+    <h2>Now push on the number.</h2>
+    <p class="muted">Drag the slider. Watch the two lines split.</p>
+  </div>
+  <div class="panel lab">
+    <div class="chart-box">
+      <svg id="chart" viewBox="0 0 640 320" role="img" aria-label="Line chart over twelve months comparing the KPI and the real outcome."></svg>
+    </div>
+    <div class="ctrl">
+      <label for="pressure">How much rides on the number?</label>
+      <input id="pressure" type="range" min="0" max="100" value="70" step="1">
+      <div class="ticks"><span>We just watch it</span><span>It's a target</span><span>Bonuses depend on it</span></div>
+    </div>
+    <div class="read" aria-live="polite">
+      <div class="tile num"><span class="k">The number</span><span class="v" id="vNum">+0%</span></div>
+      <div class="tile real"><span class="k">The real thing</span><span class="v" id="vReal">+0%</span></div>
+      <div class="tile"><span class="k">The lie (gap)</span><span class="v" id="vGap">0</span></div>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+  <div class="quote">
+    <p>"When a measure becomes a target, it ceases to be a good measure."</p>
+    <span class="mono muted" style="font-size:.8rem">Goodhart's law, in anthropologist Marilyn Strathern's wording</span>
+  </div>
+</section>
+
+<!-- FOUR WAYS -->
+<section class="sec">
+  <div class="sec-head">
+    <span class="eyebrow">How it happens</span>
+    <h2>Four ways a number drifts from the truth.</h2>
+  </div>
+  <div class="grid4">
+    <article class="card">
+      <svg viewBox="0 0 240 180" role="img" aria-label="A match heating a thermometer while snow falls.">
+        <use href="#flake" x="28" y="28" width="20" height="20"/>
+        <use href="#flake" x="190" y="30" width="18" height="18"/>
+        <use href="#flake" x="40" y="118" width="18" height="18"/>
+        <rect x="95" y="15" width="30" height="108" rx="15" class="fc ln"/>
+        <circle cx="110" cy="138" r="24" class="fc ln"/>
+        <rect x="97" y="110" width="26" height="14" class="fc"/>
+        <rect x="104" y="26" width="12" height="114" rx="6" class="fm"/>
+        <circle cx="110" cy="138" r="16" class="fm"/>
+        <line x1="210" y1="172" x2="152" y2="158" class="wood" style="stroke-width:5"/>
+        <ellipse cx="148" cy="157" rx="6" ry="5" class="fm"/>
+        <path d="M145 152 C134 144 139 131 143 120 C148 132 158 142 145 152Z" class="fo"/>
+      </svg>
+      <h3>The match</h3>
+      <p>Move the reading, not the thing.</p>
+      <p class="ex">"Tickets closed in 5 min" goes up. Because agents close tickets without solving them.</p>
+    </article>
+    <article class="card">
+      <svg viewBox="0 0 240 180" role="img" aria-label="A spotlight shines on a neat stack of boxes. Outside the light, boxes lie scattered.">
+        <path d="M100 10 L140 10 L150 32 L90 32Z" class="fi"/>
+        <polygon points="92,32 148,32 192,150 48,150" class="fg" opacity=".55"/>
+        <ellipse cx="120" cy="150" rx="72" ry="14" class="fg"/>
+        <rect x="100" y="120" width="40" height="14" class="fc ln2"/>
+        <rect x="100" y="104" width="40" height="14" class="fc ln2"/>
+        <rect x="100" y="88" width="40" height="14" class="fc ln2"/>
+        <rect x="12" y="124" width="22" height="14" class="ln2" style="stroke:var(--muted)" transform="rotate(-25 23 131)"/>
+        <rect x="20" y="152" width="24" height="14" class="ln2" style="stroke:var(--muted)" transform="rotate(15 32 159)"/>
+        <rect x="200" y="120" width="22" height="14" class="ln2" style="stroke:var(--muted)" transform="rotate(30 211 127)"/>
+        <rect x="196" y="155" width="26" height="14" class="ln2" style="stroke:var(--muted)" transform="rotate(-12 209 162)"/>
+        <rect x="6" y="90" width="18" height="12" class="ln2" style="stroke:var(--muted)" transform="rotate(40 15 96)"/>
+      </svg>
+      <h3>The spotlight</h3>
+      <p>Only the lit part gets better.</p>
+      <p class="ex">Test scores rise. Reading doesn't. Teachers taught the test.</p>
+    </article>
+    <article class="card">
+      <svg viewBox="0 0 240 180" role="img" aria-label="An eye stares at a pointing finger instead of the moon it points to.">
+        <circle cx="196" cy="40" r="26" class="fo"/>
+        <circle cx="188" cy="34" r="5" class="fp" opacity=".4"/>
+        <circle cx="204" cy="48" r="7" class="fp" opacity=".4"/>
+        <line x1="134" y1="82" x2="170" y2="56" class="ln2" style="stroke:var(--muted)" stroke-dasharray="2 6"/>
+        <line x1="96" y1="116" x2="128" y2="88" style="stroke:var(--ink);stroke-width:9;stroke-linecap:round"/>
+        <circle cx="88" cy="124" r="14" class="fi"/>
+        <path d="M18 140 Q45 118 72 140 Q45 162 18 140Z" class="fc ln2"/>
+        <circle cx="54" cy="136" r="7" class="fi"/>
+        <line x1="62" y1="132" x2="120" y2="96" class="sm" stroke-width="2" stroke-dasharray="4 4"/>
+      </svg>
+      <h3>The finger</h3>
+      <p>The number becomes the goal. People forget what it pointed at.</p>
+      <p class="ex">"Grow time spent." Nobody asks if people liked that time.</p>
+    </article>
+    <article class="card">
+      <svg viewBox="0 0 240 180" role="img" aria-label="A silent desk phone with zero calls, while chat messages pile up beside it.">
+        <path d="M28 150 L40 115 L96 115 L108 150Z" class="fc ln2"/>
+        <path d="M34 108 Q68 84 102 108" style="fill:none;stroke:var(--ink);stroke-width:10;stroke-linecap:round"/>
+        <text x="68" y="140" text-anchor="middle" class="mono fi" font-size="14" font-weight="600">0</text>
+        <text x="68" y="172" text-anchor="middle" class="mono fmu" font-size="11">calls waiting</text>
+        <g class="fc" style="stroke:var(--mercury);stroke-width:2.5">
+          <rect x="136" y="22" width="84" height="26" rx="13"/>
+          <rect x="146" y="56" width="84" height="26" rx="13"/>
+          <rect x="136" y="90" width="84" height="26" rx="13"/>
+          <rect x="146" y="124" width="84" height="26" rx="13"/>
+        </g>
+        <g class="mono fm" font-size="16" text-anchor="middle" font-weight="600">
+          <text x="178" y="40">• • •</text><text x="188" y="74">• • •</text>
+          <text x="178" y="108">• • •</text><text x="188" y="142">• • •</text>
+        </g>
+      </svg>
+      <h3>The old map</h3>
+      <p>The world moved. The number didn't.</p>
+      <p class="ex">"Calls answered fast": perfect. Customers left the phone for chat long ago.</p>
+    </article>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="sec">
+  <div class="sec-head">
+    <span class="eyebrow">This is old news</span>
+    <h2>People have always gamed the count.</h2>
+  </div>
+  <div class="stories">
+    <div class="story">
+      <svg viewBox="0 0 120 90" role="img" aria-label="A coin beside a pile of rat tails.">
+        <circle cx="38" cy="46" r="22" class="fo"/>
+        <text x="38" y="53" text-anchor="middle" class="disp fnt" font-size="20">1¢</text>
+        <g class="ln2"><path d="M68 30 q8 -9 16 0 t16 0 t10 2"/><path d="M66 48 q8 -9 16 0 t16 0 t12 -2"/><path d="M70 66 q8 -9 16 0 t16 0"/></g>
+      </svg>
+      <span class="when">Hanoi, 1902</span>
+      <p>Paid per rat tail. People cut the tails and let the rats go to breed.</p>
+    </div>
+    <div class="story">
+      <svg viewBox="0 0 120 90" role="img" aria-label="A coiled cobra.">
+        <path d="M18 76 C40 78 38 58 58 58 S90 44 74 26" style="fill:none;stroke:var(--ok);stroke-width:8;stroke-linecap:round"/>
+        <ellipse cx="72" cy="22" rx="12" ry="8" class="fok"/>
+        <circle cx="75" cy="20" r="1.8" class="fp"/>
+        <path d="M61 22 L52 20 M52 20 L48 17 M52 20 L48 23" class="sm" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="when">Delhi, as the story goes</span>
+      <p>A bounty on cobras. People bred cobras. More snakes than before.</p>
+    </div>
+    <div class="story">
+      <svg viewBox="0 0 120 90" role="img" aria-label="A fan of bank cards.">
+        <g class="fc ln2">
+          <rect x="30" y="26" width="60" height="38" rx="5" transform="rotate(-14 60 45)"/>
+          <rect x="30" y="26" width="60" height="38" rx="5" transform="rotate(-4 60 45)"/>
+          <rect x="30" y="26" width="60" height="38" rx="5" transform="rotate(8 60 45)"/>
+        </g>
+        <rect x="30" y="34" width="60" height="7" class="fm" transform="rotate(8 60 45)"/>
+      </svg>
+      <span class="when">Wells Fargo, 2016</span>
+      <p>Sales targets per customer. Staff opened millions of accounts nobody asked for.</p>
+    </div>
+    <div class="story">
+      <svg viewBox="0 0 120 90" role="img" aria-label="Many tiny nails next to one giant nail.">
+        <g class="ln2">
+          <line x1="14" y1="34" x2="14" y2="48"/><line x1="11" y1="34" x2="17" y2="34"/>
+          <line x1="24" y1="40" x2="24" y2="54"/><line x1="21" y1="40" x2="27" y2="40"/>
+          <line x1="34" y1="32" x2="34" y2="46"/><line x1="31" y1="32" x2="37" y2="32"/>
+          <line x1="16" y1="58" x2="16" y2="72"/><line x1="13" y1="58" x2="19" y2="58"/>
+          <line x1="28" y1="62" x2="28" y2="76"/><line x1="25" y1="62" x2="31" y2="62"/>
+          <line x1="40" y1="56" x2="40" y2="70"/><line x1="37" y1="56" x2="43" y2="56"/>
+        </g>
+        <rect x="62" y="14" width="48" height="8" rx="2" class="fi"/>
+        <polygon points="80,22 92,22 89,76 86,84 83,76" class="fi"/>
+      </svg>
+      <span class="when">An old Soviet joke</span>
+      <p>Count nails: millions of tiny ones. Weigh nails: one giant one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec">
+  <div class="sec-head">
+    <span class="eyebrow">What to do</span>
+    <h2>Keep your numbers honest.</h2>
+    <p class="muted">You can't stop the drift. You can slow it and spot it.</p>
+  </div>
+  <div class="grid4">
+    <article class="card">
+      <svg viewBox="0 0 160 100" role="img" aria-label="A balanced seesaw with fast on one side and right on the other.">
+        <polygon points="70,94 90,94 80,76" class="fi"/>
+        <line x1="14" y1="75" x2="146" y2="75" class="ln" style="stroke-width:4"/>
+        <rect x="18" y="48" width="42" height="26" rx="4" class="fm"/>
+        <text x="39" y="66" text-anchor="middle" class="mono fon" font-size="12" font-weight="600">fast</text>
+        <rect x="100" y="48" width="42" height="26" rx="4" class="fok"/>
+        <text x="121" y="66" text-anchor="middle" class="mono fon" font-size="12" font-weight="600">right</text>
+      </svg>
+      <h3>Pair it</h3>
+      <p>Give every number a partner that pulls the other way.</p>
+      <p class="ex">Speed + reopen rate. Signups + 30-day retention.</p>
+    </article>
+    <article class="card">
+      <svg viewBox="0 0 160 100" role="img" aria-label="A magnifying glass over a rating reveals real faces, one of them unhappy.">
+        <text x="10" y="22" class="mono fmu" font-size="13">4.6★</text>
+        <circle cx="72" cy="50" r="32" class="fc" style="stroke:var(--ink);stroke-width:4"/>
+        <line x1="95" y1="73" x2="124" y2="96" style="stroke:var(--ink);stroke-width:8;stroke-linecap:round"/>
+        <g class="ln2">
+          <circle cx="60" cy="44" r="9"/><path d="M56 47 Q60 50 64 47"/>
+          <circle cx="84" cy="44" r="9"/><path d="M80 50 Q84 46 88 50"/>
+          <circle cx="72" cy="64" r="9"/><path d="M68 67 Q72 70 76 67"/>
+        </g>
+        <g class="fi"><circle cx="57" cy="42" r="1.2"/><circle cx="63" cy="42" r="1.2"/><circle cx="81" cy="42" r="1.2"/><circle cx="87" cy="42" r="1.2"/><circle cx="69" cy="62" r="1.2"/><circle cx="75" cy="62" r="1.2"/></g>
+      </svg>
+      <h3>Go look</h3>
+      <p>Read ten real cases behind the number, every month.</p>
+      <p class="ex">If the stories and the number disagree, trust the stories.</p>
+    </article>
+    <article class="card">
+      <svg viewBox="0 0 160 100" role="img" aria-label="A dial gauge next to a coin that is crossed out.">
+        <path d="M22 88 A48 48 0 0 1 118 88" class="ln" style="stroke-width:4"/>
+        <g class="ln2"><line x1="30" y1="66" x2="36" y2="70"/><line x1="70" y1="44" x2="70" y2="51"/><line x1="110" y1="66" x2="104" y2="70"/></g>
+        <line x1="70" y1="88" x2="92" y2="56" class="sm" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="70" cy="88" r="5" class="fi"/>
+        <circle cx="138" cy="30" r="15" class="fo"/>
+        <line x1="124" y1="44" x2="152" y2="16" class="ln" style="stroke-width:3.5"/>
+      </svg>
+      <h3>Watch, don't pay</h3>
+      <p>Keep some numbers for learning only. No bonus attached.</p>
+      <p class="ex">A gauge nobody profits from stays honest longer.</p>
+    </article>
+    <article class="card">
+      <svg viewBox="0 0 160 110" role="img" aria-label="Arrows circling a KPI tag, showing metrics being rotated.">
+        <path d="M46 34 A40 30 0 0 1 114 34" class="ln"/>
+        <polygon points="106,24 120,32 110,42" class="fi"/>
+        <path d="M114 78 A40 30 0 0 1 46 78" class="ln"/>
+        <polygon points="54,68 40,76 50,88" class="fi"/>
+        <rect x="52" y="45" width="56" height="24" rx="5" class="fc ln2"/>
+        <text x="80" y="62" text-anchor="middle" class="mono fi" font-size="13" font-weight="600">KPI v3</text>
+      </svg>
+      <h3>Swap it</h3>
+      <p>Change or retire a number once people learn to play it.</p>
+      <p class="ex">If it only ever goes up, ask why.</p>
+    </article>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close">
+  <span class="eyebrow">The one thing to remember</span>
+  <h2>The number is a hint.<br>Go feel the room.</h2>
+  <p class="muted">A KPI is great at noticing change and bad at being a goal. The harder you lean on it, the faster it bends.</p>
+</section>
+
+</main>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent){
+    const n=document.createElementNS(NS,tag);
+    for(const k in attrs) n.setAttribute(k, attrs[k]);
+    if(parent) parent.appendChild(n);
+    return n;
+  }
+
+  // crowd in the "real thing" picture
+  const people=document.getElementById("people");
+  let i=0;
+  for(let y=85; y<=255; y+=85){
+    for(let x=50; x<=550; x+=62){
+      i++;
+      if(x>=350 && y<=185) continue;
+      const sad = (i%4===0) || (i%7===0);
+      const g=el("g",{},people);
+      el("circle",{cx:x, cy:y-14, r:10, class:"fc ln2"},g);
+      el("path",{d:`M${x-14} ${y+22} Q${x} ${y-2} ${x+14} ${y+22}`, class:"ln2"},g);
+      el("circle",{cx:x-3.5, cy:y-17, r:1.3, class:"fi"},g);
+      el("circle",{cx:x+3.5, cy:y-17, r:1.3, class:"fi"},g);
+      el("path",{d: sad ? `M${x-4} ${y-9} Q${x} ${y-13} ${x+4} ${y-9}` : `M${x-4} ${y-12} Q${x} ${y-8} ${x+4} ${y-12}`, class:"ln2", style: sad ? "stroke:var(--mercury)" : ""},g);
+    }
+  }
+
+  // the lab chart
+  const svg=document.getElementById("chart");
+  const W=640,H=320,L=52,R=118,T=18,B=42, YMAX=220;
+  const px=t=>L+t*(W-L-R), py=v=>T+(1-v/YMAX)*(H-T-B);
+  const num=(t,p)=>100+20*t+80*p*t;
+  const real=(t,p)=>100+20*t+30*p*t-90*p*p*t*t;
+
+  const grid=el("g",{},svg);
+  [50,100,150,200].forEach(v=>{
+    el("line",{x1:L,y1:py(v),x2:W-R,y2:py(v),style:"stroke:var(--grid);stroke-width:1.5"},grid);
+    const tx=el("text",{x:L-8,y:py(v)+4,"text-anchor":"end",class:"mono fmu","font-size":11},grid); tx.textContent=v;
+  });
+  el("line",{x1:L,y1:py(100),x2:W-R,y2:py(100),style:"stroke:var(--muted);stroke-width:1;stroke-dasharray:3 4"},grid);
+  [[0,"Month 0"],[0.5,"6"],[1,"12"]].forEach(([t,s])=>{
+    const tx=el("text",{x:px(t),y:H-14,"text-anchor":t===0?"start":(t===1?"end":"middle"),class:"mono fmu","font-size":11},grid); tx.textContent=s;
+  });
+  const yl=el("text",{x:L,y:T-4,class:"mono fmu","font-size":10},grid); yl.textContent="";
+
+  const gap=el("polygon",{class:"fm",opacity:".13"},svg);
+  const pNum=el("path",{fill:"none",style:"stroke:var(--mercury);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"},svg);
+  const pReal=el("path",{fill:"none",style:"stroke:var(--ok);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"},svg);
+  const dNum=el("circle",{r:6,class:"fm"},svg), dReal=el("circle",{r:6,class:"fok"},svg);
+  const lNum=el("text",{class:"mono fm","font-size":13,"font-weight":600},svg); lNum.textContent="the number";
+  const lReal=el("text",{class:"mono fok","font-size":13,"font-weight":600},svg); lReal.textContent="the real thing";
+
+  const slider=document.getElementById("pressure");
+  const vNum=document.getElementById("vNum"), vReal=document.getElementById("vReal"), vGap=document.getElementById("vGap");
+  const verdict=document.getElementById("verdict");
+  const fmt=v=>(v>=0?"+":"−")+Math.abs(Math.round(v))+"%";
+
+  function draw(){
+    const p=slider.value/100, N=24;
+    const a=[], b=[];
+    for(let k=0;k<=N;k++){ const t=k/N; a.push([px(t),py(num(t,p))]); b.push([px(t),py(real(t,p))]); }
+    pNum.setAttribute("d","M"+a.map(q=>q.join(" ")).join(" L"));
+    pReal.setAttribute("d","M"+b.map(q=>q.join(" ")).join(" L"));
+    gap.setAttribute("points",a.concat(b.slice().reverse()).map(q=>q.join(",")).join(" "));
+    const n1=num(1,p), r1=real(1,p);
+    dNum.setAttribute("cx",px(1)); dNum.setAttribute("cy",py(n1));
+    dReal.setAttribute("cx",px(1)); dReal.setAttribute("cy",py(r1));
+    let yn=py(n1)+4, yr=py(r1)+4;
+    if(Math.abs(yn-yr)<18){ const m=(yn+yr)/2; yn=m-9; yr=m+9; }
+    lNum.setAttribute("x",px(1)+12); lNum.setAttribute("y",yn);
+    lReal.setAttribute("x",px(1)+12); lReal.setAttribute("y",yr);
+    vNum.textContent=fmt(n1-100); vReal.textContent=fmt(r1-100);
+    vGap.textContent=Math.round(n1-r1)+" pts";
+    verdict.textContent = p<0.2 ? "Just watching. The number and reality move together. The window is clear."
+      : p<0.6 ? "It's a target now. The number starts to run ahead of the thing it measures."
+      : "Pay depends on it. The number keeps climbing. The real thing turns down.";
+  }
+  slider.addEventListener("input",draw);
+  draw();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
