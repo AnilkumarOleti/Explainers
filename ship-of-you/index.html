@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Ship of You | Explainers</title>
+<meta name="description" content="Your atoms and cells keep getting replaced. So what exactly is you? The Ship of Theseus, in your body.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/ship-of-you/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Ship of You">
+<meta property="og:description" content="Your atoms and cells keep getting replaced. So what exactly is you? The Ship of Theseus, in your body.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/ship-of-you/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/ship-of-you/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one tall column of oversized living pictures; every figure is drawn in "atoms" (dots). Orange = new matter, teal = matter kept for life. */
+:root{
+  --paper:#ECEDF3; --card:#F7F7FB; --ink:#1F2140; --muted:#5E6286; --line:#CDD0DF;
+  --new:#D45A22; --kept:#1F7F7A; --old:#7C6E8A;
+  --display:"Gloock", "Iowan Old Style", Georgia, serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#13142A; --card:#1B1D37; --ink:#E7E8F4; --muted:#A0A4C6; --line:#2E3150;
+    --new:#F28A54; --kept:#4CC0B8; --old:#A797B6; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13142A; --card:#1B1D37; --ink:#E7E8F4; --muted:#A0A4C6; --line:#2E3150;
+  --new:#F28A54; --kept:#4CC0B8; --old:#A797B6; color-scheme:dark;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:920px;margin:0 auto;padding-inline:20px;padding-block:44px 96px}
+section{margin-top:104px}
+.kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.5rem,7.4vw,4.8rem);line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4.8vw,3rem);line-height:1.06}
+h3{font-size:1.45rem;line-height:1.15}
+p{margin:0;max-width:56ch}
+.say{font-size:1.14rem;margin-top:14px}
+.small{color:var(--muted);font-size:.96rem}
+em.o{font-style:normal;color:var(--new);font-weight:700}
+em.t{font-style:normal;color:var(--kept);font-weight:700}
+.stage{position:relative;margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+canvas{display:block;width:100%}
+.hud{position:absolute;left:16px;top:14px;font-family:var(--mono);font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:2px;font-variant-numeric:tabular-nums}
+.hud b{color:var(--ink);font-weight:500;font-size:1.25rem}
+.btn{position:absolute;right:14px;top:14px;font:500 .8rem var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--new);outline-offset:3px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:.95rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+
+/* ships */
+.ships{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:26px}
+.ship{background:var(--card);border:1px solid var(--line);border-radius:20px;padding-block:14px 6px;padding-inline:14px;min-width:0}
+.ship .tag{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ship svg{display:block;width:100%;height:auto}
+.plank-old{fill:var(--old)} .plank-new{fill:var(--new)}
+.plank-gap{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 4}
+.slider{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:20px}
+.slider input{flex:1 1 260px;accent-color:var(--new);height:28px;min-width:0}
+.slider output{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.slider output b{font-size:1.3rem;color:var(--new);font-weight:500}
+
+/* turnover */
+.turn{margin-top:30px;display:grid;gap:16px}
+.r{display:grid;grid-template-columns:200px minmax(0,1fr) 120px;align-items:center;gap:14px}
+.r .n{font-weight:700}
+.r .v{font-family:var(--mono);font-size:.85rem;color:var(--muted);text-align:right}
+.track{height:18px;background:var(--line);border-radius:9px;position:relative;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;border-radius:9px;background:var(--new)}
+.fill.k{background:var(--kept)}
+.axis{position:relative;height:22px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.axis span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.axis span:first-child{transform:none}
+.axis span:last-child{transform:translateX(-100%)}
+.note{margin-top:34px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}
+.note .yr{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--kept)}
+@media (max-width:640px){
+  .r{grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
+  .r .track,.r .axis{grid-column:1 / -1}
+  .r .v{text-align:right}
+  .r.ax .sp{display:none}
+  .ships{grid-template-columns:minmax(0,1fr)}
+  .note{grid-template-columns:minmax(0,1fr)}
+}
+
+/* rope */
+.ropebox{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding-block:18px;padding-inline:0;overflow:hidden}
+.ropebox svg{display:block;width:100%;height:auto}
+.ages{display:flex;justify-content:space-between;padding-inline:18px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+
+/* answers */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card svg{width:100%;height:130px;display:block}
+.verdict{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.verdict.no{color:var(--muted)} .verdict.yes{color:var(--kept)}
+.card.out{opacity:.72}
+@media (max-width:760px){ .cards{grid-template-columns:minmax(0,1fr)} }
+
+.fork{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:10px}
+.fork svg{display:block;width:100%;height:auto}
+
+.close{margin-top:130px;text-align:left}
+.close h2{font-size:clamp(2.3rem,7vw,4.4rem);line-height:1.04}
+.close h2 span{color:var(--new)}
+.sources{margin-top:56px;font-size:.85rem;color:var(--muted)}
+.sources a{color:inherit}
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="kicker">A question about you</p>
+  <h1>Your atoms keep leaving.<br>So what is “you”?</h1>
+  <p class="say">Watch a lifetime. <em class="o">New atoms</em> stream in. Old ones drift away. <em class="t">A few</em> stay for life.</p>
+  <div class="stage" id="heroStage">
+    <canvas id="hero" aria-label="A human figure made of dots. Over a simulated 80 years, dots leave and new orange dots arrive, yet the figure keeps its shape."></canvas>
+    <div class="hud"><span>Age <b id="yr">0</b></span><span>Original atoms left <b id="pct">100%</b></span></div>
+    <button class="btn" id="heroBtn" type="button">Pause</button>
+  </div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--ink)"></i>Atoms you started with</span>
+    <span><i class="dot" style="background:var(--new)"></i>Just arrived</span>
+    <span><i class="dot" style="background:var(--kept)"></i>Kept for life</span>
+  </div>
+</header>
+
+<section>
+  <p class="kicker">A 2,000-year-old puzzle</p>
+  <h2>Swap every plank. Is it the same ship?</h2>
+  <div class="slider">
+    <input type="range" id="planks" min="0" max="24" value="10" aria-label="Planks swapped">
+    <output for="planks" id="plankOut"><b>10</b> of 24 planks swapped</output>
+  </div>
+  <div class="ships">
+    <div class="ship"><div class="tag">Ship A · in the harbour</div><svg id="shipA" viewBox="0 0 600 300" role="img" aria-label="Ship A, with some planks replaced by new orange ones"></svg></div>
+    <div class="ship"><div class="tag">Ship B · built from the old planks</div><svg id="shipB" viewBox="0 0 600 300" role="img" aria-label="Ship B, assembled from the removed original planks"></svg></div>
+  </div>
+  <p class="say">Drag to the end. Now two ships each claim to be the original.</p>
+</section>
+
+<section>
+  <p class="kicker">Your body is that ship</p>
+  <h2>How long your parts last</h2>
+  <div class="turn" id="turn">
+    <div class="r"><span class="n">Gut lining</span><div class="track"><div class="fill" style="width:13.4%"></div></div><span class="v">~4 days</span></div>
+    <div class="r"><span class="n">Skin surface</span><div class="track"><div class="fill" style="width:32.3%"></div></div><span class="v">~1 month</span></div>
+    <div class="r"><span class="n">Red blood cells</span><div class="track"><div class="fill" style="width:46.4%"></div></div><span class="v">~4 months</span></div>
+    <div class="r"><span class="n">Fat cells</span><div class="track"><div class="fill" style="width:77.4%"></div></div><span class="v">~8 years</span></div>
+    <div class="r"><span class="n">Skeleton</span><div class="track"><div class="fill" style="width:79.6%"></div></div><span class="v">~10 years</span></div>
+    <div class="r"><span class="n">Heart muscle</span><div class="track"><div class="fill k" style="width:100%"></div></div><span class="v">mostly for life</span></div>
+    <div class="r"><span class="n">Brain neurons</span><div class="track"><div class="fill k" style="width:100%"></div></div><span class="v">for life</span></div>
+    <div class="r"><span class="n">Eye lens core</span><div class="track"><div class="fill k" style="width:100%"></div></div><span class="v">for life</span></div>
+    <div class="r ax"><span class="sp"></span><div class="axis"><span style="left:0">1 day</span><span style="left:18.9%">week</span><span style="left:33%">month</span><span style="left:57.2%">year</span><span style="left:79.6%">10 yrs</span><span style="left:100%">life</span></div><span class="sp"></span></div>
+  </div>
+  <div class="note">
+    <div class="yr">1955–63</div>
+    <div>
+      <p><strong>How do we know?</strong> Nuclear bomb tests flooded the air with carbon-14. Every cell built in those years carries a dated stamp. Scientists read the stamp to find each cell’s age.</p>
+      <p class="small" style="margin-top:8px">Some atoms truly stay: tooth enamel, the centre of your eye lens, much of the DNA in your brain cells.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">“But my neurons stay!”</p>
+  <h2>The cell stays. Its parts don’t.</h2>
+  <div class="stage">
+    <svg id="neuron" viewBox="0 0 600 340" role="img" aria-label="A neuron. Orange dots flow out from the cell body along its branches and fade at the tips, showing parts being constantly rebuilt." style="display:block;width:100%;height:auto"></svg>
+  </div>
+  <p class="say">Most proteins inside a neuron are rebuilt within days to weeks. Its connections keep rewiring too. Same cell, new contents.</p>
+</section>
+
+<section>
+  <p class="kicker">The big idea</p>
+  <h2>You are the swirl, not the water.</h2>
+  <div class="stage">
+    <canvas id="swirl" aria-label="A whirlpool made of drifting dots. Each dot spirals in and disappears; new dots enter at the rim. The swirl shape stays constant."></canvas>
+    <button class="btn" id="swirlBtn" type="button">Pause</button>
+  </div>
+  <p class="say">Follow the <em class="o">orange drop</em>. It is gone in seconds. The swirl stays, because of <em>how</em> the water moves. Swap water for atoms, and that is you.</p>
+</section>
+
+<section>
+  <p class="kicker">Why yesterday’s you is still you</p>
+  <h2>No single thread runs the whole way.</h2>
+  <div class="ropebox">
+    <svg id="rope" viewBox="0 0 800 140" role="img" aria-label="A long rope made of many short, overlapping threads. One highlighted thread covers only a short stretch."></svg>
+    <div class="ages"><span>Age 5</span><span>Age 20</span><span>Age 40</span><span>Today</span></div>
+  </div>
+  <p class="say">Today-you shares almost everything with yesterday-you. Memories, habits, body. That overlap, day after day, makes one rope.</p>
+</section>
+
+<section>
+  <p class="kicker">So, what is you?</p>
+  <h2>Three answers</h2>
+  <div class="cards">
+    <div class="card out">
+      <svg viewBox="0 0 200 130" aria-hidden="true" id="icStuff"></svg>
+      <span class="verdict no">Ruled out</span>
+      <h3>Your stuff</h3>
+      <p class="small">The atoms. They keep leaving.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 200 130" aria-hidden="true" id="icBody"></svg>
+      <span class="verdict yes">A living process</span>
+      <h3>Your body, alive</h3>
+      <p class="small">The organism that keeps rebuilding itself. A swirl of matter.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 200 130" aria-hidden="true" id="icMind"></svg>
+      <span class="verdict yes">A pattern</span>
+      <h3>Your mind’s thread</h3>
+      <p class="small">Memories, habits, personality, passed from day to day.</p>
+    </div>
+  </div>
+  <p class="say">Thinkers still argue between the last two. But almost all agree: you are a pattern that keeps going, not a pile of parts.</p>
+</section>
+
+<section>
+  <p class="kicker">The hard case</p>
+  <h2>What if there were two of you?</h2>
+  <div class="fork"><svg id="fork" viewBox="0 0 720 360" role="img" aria-label="You, made of dark dots and holding a childhood memory of a kite, step into a copy machine. Two identical people come out, made of new orange dots in exactly your pattern, each holding the same kite memory and labelled 'you?'."></svg></div>
+  <p class="say">A machine copies you perfectly. Both remember your childhood. Which one is you?</p>
+  <p class="small" style="margin-top:10px">Philosopher Derek Parfit said there may be no hidden fact to find. What matters is the connection, and both have it.</p>
+</section>
+
+<div class="close">
+  <h2>You are not a thing.<br><span>You are something happening.</span></h2>
+</div>
+
+<p class="sources">Turnover figures are rough averages from carbon-14 studies by Jonas Frisén’s lab (Karolinska Institute) and standard physiology texts. Ideas from Plutarch, Hobbes, John Locke and Derek Parfit’s <i>Reasons and Persons</i>.</p>
+
+</div>
+
+<script>
+(function(){
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const root = document.documentElement;
+const T = {};
+function readTokens(){ const cs=getComputedStyle(root); ['--ink','--new','--kept','--card','--line','--muted','--paper','--old'].forEach(k=>T[k]=cs.getPropertyValue(k).trim()); }
+readTokens();
+try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readTokens);}catch(e){}
+new MutationObserver(readTokens).observe(root,{attributes:true,attributeFilter:['data-theme']});
+function rgba(hex,a){ hex=hex.replace('#',''); if(hex.length===3) hex=hex.split('').map(c=>c+c).join(''); const n=parseInt(hex,16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; }
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+function onScreen(node,cb){ if(!('IntersectionObserver' in window)){cb(true);return;} new IntersectionObserver(es=>es.forEach(e=>cb(e.isIntersecting)),{rootMargin:'100px'}).observe(node); }
+
+/* ---------- HERO: body of atoms ---------- */
+(function(){
+  const cv=document.getElementById('hero'), ctx=cv.getContext('2d'), stage=document.getElementById('heroStage');
+  const yrEl=document.getElementById('yr'), pctEl=document.getElementById('pct'), btn=document.getElementById('heroBtn');
+  const test=document.createElement('canvas').getContext('2d');
+  let W,H,dpr,slots=[],gone=[],year=0,hold=0,running=!reduce,visible=true,last=0,dotR=2.4,cx,cy;
+  function rr(p,x,y,w,h,r){ if(p.roundRect) p.roundRect(x,y,w,h,r); else p.rect(x,y,w,h); }
+  const fig=new Path2D(); fig.arc(100,44,30,0,Math.PI*2); rr(fig,88,70,24,24,6); rr(fig,54,88,92,148,26); rr(fig,26,96,24,138,12); rr(fig,150,96,24,138,12); rr(fig,58,222,38,170,18); rr(fig,104,222,38,170,18);
+  let seed=7; function rnd(){ seed=(seed*16807)%2147483647; return seed/2147483647; }
+  function layout(){
+    dpr=Math.min(window.devicePixelRatio||1,2); W=stage.clientWidth; H=Math.round(Math.min(540,Math.max(400,W*0.66)));
+    cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const s=Math.min((H*0.84)/400,(W*0.7)/200); const ox=(W-200*s)/2, oy=(H-392*s)/2+8; cx=W/2; cy=H/2; dotR=Math.max(1.8,2.25*s);
+    seed=7; const old=slots; slots=[]; const st=7;
+    for(let fy=2;fy<396;fy+=st) for(let fx=2;fx<200;fx+=st){
+      const jx=fx+(rnd()-.5)*3, jy=fy+(rnd()-.5)*3;
+      if(test.isPointInPath(fig,jx,jy)) slots.push({x:ox+jx*s,y:oy+jy*s,kind: rnd()<0.12?'kept':'orig',age:0,arr:null});
+    }
+    if(old.length===slots.length) slots.forEach((sl,i)=>{ sl.kind=old[i].kind; sl.age=old[i].age; });
+  }
+  function reset(){ seed=7; slots.forEach(s=>{ s.kind = rnd()<0.12?'kept':'orig'; s.age=0; s.arr=null; }); gone=[]; year=0; hold=0; }
+  const RATE=0.22, YPS=1.6;
+  function step(dt){
+    if(hold>0){ hold-=dt; if(hold<=0) reset(); return; }
+    const dy=dt*YPS; year+=dy;
+    const p=RATE*dy;
+    for(const s of slots){
+      if(s.kind!=='kept'){ s.age+=dy; if(!s.arr && Math.random()<p){
+        const a=Math.atan2(s.y-cy,s.x-cx)+(Math.random()-.5)*0.8;
+        gone.push({x:s.x,y:s.y,vx:Math.cos(a)*55,vy:Math.sin(a)*55-10,a:1});
+        const b=Math.random()*Math.PI*2, d=Math.max(W,H)*0.62;
+        s.arr={fx:cx+Math.cos(b)*d,fy:cy+Math.sin(b)*d,t:0}; s.kind='new'; s.age=0;
+      }}
+      if(s.arr){ s.arr.t+=dt/1.3; if(s.arr.t>=1) s.arr=null; }
+    }
+    for(const g of gone){ g.x+=g.vx*dt; g.y+=g.vy*dt; g.a-=dt*0.7; }
+    gone=gone.filter(g=>g.a>0);
+    if(year>=80){ year=80; hold=2.6; }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const g of gone){ ctx.fillStyle=rgba(T['--ink'],g.a*0.45); ctx.beginPath(); ctx.arc(g.x,g.y,dotR*0.9,0,6.283); ctx.fill(); }
+    let orig=0,tot=0;
+    for(const s of slots){
+      let x=s.x,y=s.y;
+      if(s.arr){ const e=1-Math.pow(1-s.arr.t,3); x=s.arr.fx+(s.x-s.arr.fx)*e; y=s.arr.fy+(s.y-s.arr.fy)*e; }
+      if(s.kind==='kept'){ ctx.fillStyle=T['--kept']; }
+      else { tot++; if(s.kind==='orig'){ orig++; ctx.fillStyle=T['--ink']; } else ctx.fillStyle=T['--ink']; }
+      if(s.kind==='new' && s.age<3){ ctx.fillStyle=T['--ink']; ctx.beginPath(); ctx.arc(x,y,dotR,0,6.283); ctx.fill(); ctx.fillStyle=rgba(T['--new'],Math.min(1,1.15-s.age/3)); }
+      ctx.beginPath(); ctx.arc(x,y,dotR,0,6.283); ctx.fill();
+    }
+    yrEl.textContent=Math.floor(year); pctEl.textContent=Math.round(100*orig/Math.max(1,tot))+'%';
+  }
+  function loop(t){ const dt=Math.min(0.05,(t-last)/1000||0); last=t; if(running&&visible) step(dt); draw(); requestAnimationFrame(loop); }
+  layout();
+  if(reduce){ for(let i=0;i<300;i++) step(1/30); hold=0; btn.textContent='Play'; }
+  else { for(let i=0;i<60;i++) step(1/30); }
+  draw(); requestAnimationFrame(loop);
+  btn.addEventListener('click',()=>{ running=!running; btn.textContent=running?'Pause':'Play'; });
+  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(()=>{layout();draw();},120); });
+  onScreen(stage,v=>visible=v);
+})();
+
+/* ---------- SHIPS ---------- */
+(function(){
+  const A=document.getElementById('shipA'), B=document.getElementById('shipB'), input=document.getElementById('planks'), out=document.getElementById('plankOut');
+  const hull='M40,170 L560,170 C540,214 516,240 470,248 L130,248 C84,240 60,214 40,170 Z';
+  const order=[13,2,20,7,17,0,10,22,5,15,8,23,3,18,11,1,21,6,14,9,19,4,16,12];
+  function build(svg,id,ghost){
+    const defs=el('defs',{},svg); const cp=el('clipPath',{id:'hc'+id},defs); el('path',{d:hull},cp);
+    el('path',{d:'M20,262 q20,-10 40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0',fill:'none',stroke:'var(--line)','stroke-width':3,'stroke-linecap':'round'},svg);
+    const mast=el('g',{},svg);
+    el('line',{x1:300,y1:170,x2:300,y2:36,stroke:'var(--ink)','stroke-width':5,'stroke-linecap':'round','stroke-dasharray':ghost?'7 7':'none',opacity:ghost?.35:1},mast);
+    el('path',{d:'M308,46 L308,160 L430,160 Z',fill:ghost?'none':'var(--paper)',stroke:'var(--ink)','stroke-width':2.5,'stroke-linejoin':'round','stroke-dasharray':ghost?'7 7':'none',opacity:ghost?.35:1},mast);
+    const g=el('g',{'clip-path':`url(#hc${id})`},svg); const rects=[];
+    for(let r=0;r<3;r++) for(let c=0;c<8;c++){
+      rects.push(el('rect',{x:40+c*65+1.5,y:170+r*26+1.5,width:62,height:23,rx:3},g));
+    }
+    el('path',{d:hull,fill:'none',stroke:'var(--ink)','stroke-width':2.5,opacity:ghost?.3:.8,'stroke-dasharray':ghost?'7 7':'none'},svg);
+    return rects;
+  }
+  const ra=build(A,'a',false), rb=build(B,'b',true);
+  function render(){
+    const v=+input.value;
+    ra.forEach((r,i)=>r.setAttribute('class', order[i]<v?'plank-new':'plank-old'));
+    rb.forEach((r,i)=>r.setAttribute('class', order[i]<v?'plank-old':'plank-gap'));
+    out.innerHTML=`<b>${v}</b> of 24 planks swapped`;
+  }
+  input.addEventListener('input',render); render();
+})();
+
+/* ---------- NEURON ---------- */
+(function(){
+  const svg=document.getElementById('neuron');
+  const paths=[
+    'M300,170 C260,130 225,95 160,62','M300,170 C250,165 195,180 110,160','M300,170 C258,212 228,252 165,292',
+    'M300,170 C298,115 312,80 322,30','M300,170 C300,225 290,265 280,318',
+    'M300,170 C380,175 440,165 520,170 C545,150 560,128 578,108','M300,170 C380,175 440,165 520,170 C548,182 564,204 580,232'
+  ];
+  const small=['M200,95 C190,80 175,78 158,84','M190,170 C180,150 165,140 150,140','M210,245 C200,262 185,268 170,268','M160,62 C150,48 140,40 126,36','M110,160 C95,148 80,145 64,150','M165,292 C150,300 135,302 120,298'];
+  small.forEach(d=>el('path',{d,fill:'none',stroke:'var(--ink)','stroke-width':3,'stroke-linecap':'round',opacity:.55},svg));
+  const P=paths.map((d,i)=>el('path',{d,fill:'none',stroke:'var(--ink)','stroke-width':i>4?5:6,'stroke-linecap':'round',opacity:.85},svg));
+  [[578,108],[580,232],[160,62],[110,160],[165,292],[322,30],[280,318]].forEach(([x,y])=>el('circle',{cx:x,cy:y,r:7,fill:'var(--card)',stroke:'var(--ink)','stroke-width':2.5},svg));
+  el('circle',{cx:300,cy:170,r:36,fill:'var(--card)',stroke:'var(--ink)','stroke-width':4},svg);
+  el('circle',{cx:300,cy:170,r:13,fill:'var(--kept)'},svg);
+  const lbl=el('text',{x:300,y:226,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-size':13,fill:'var(--muted)'},svg); lbl.textContent='same cell, decades';
+  const layer=el('g',{},svg); const L=P.map(p=>p.getTotalLength());
+  const dots=[];
+  function spawn(i,t0){ const c=el('circle',{r:5,fill:'var(--new)'},layer); dots.push({i,t:t0,c}); }
+  P.forEach((p,i)=>{ for(let k=0;k<4;k++) spawn(i,k/4+Math.random()*0.1); });
+  function place(d){ const pt=P[d.i].getPointAtLength(Math.min(1,d.t)*L[d.i]); d.c.setAttribute('cx',pt.x); d.c.setAttribute('cy',pt.y); d.c.setAttribute('opacity', d.t>0.82? Math.max(0,(1-d.t)/0.18):(d.t<0.12? d.t/0.12+0.2:1)); }
+  dots.forEach(place);
+  if(reduce) return;
+  let last=0,vis=true; onScreen(svg,v=>vis=v);
+  function loop(t){ const dt=Math.min(0.05,(t-last)/1000||0); last=t;
+    if(vis) for(const d of dots){ d.t+=dt*55/L[d.i]; if(d.t>=1) d.t-=1; place(d); }
+    requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+})();
+
+/* ---------- WHIRLPOOL ---------- */
+(function(){
+  const cv=document.getElementById('swirl'), ctx=cv.getContext('2d'), btn=document.getElementById('swirlBtn');
+  let W,H,dpr,R,cx,cy,ps=[],track=0,trail=[],running=!reduce,vis=true,last=0;
+  const N=760;
+  function respawn(p,init){ p.r= init? R*Math.sqrt(0.05+0.95*Math.random()) : R*(0.86+0.14*Math.random()); p.a=Math.random()*Math.PI*2; p.s=0.7+Math.random()*0.8; }
+  function layout(){ dpr=Math.min(window.devicePixelRatio||1,2); W=cv.parentElement.clientWidth; H=Math.round(Math.min(480,Math.max(320,W*0.6)));
+    cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
+    cx=W/2; cy=H/2; R=Math.min(W*0.46,H*0.88); ps=[]; for(let i=0;i<N;i++){ const p={}; respawn(p,true); ps.push(p);} track=0; ps[0].r=R*0.95; trail=[];
+    ctx.fillStyle=T['--card']; ctx.fillRect(0,0,W,H); }
+  function xy(p){ return [cx+Math.cos(p.a)*p.r, cy+Math.sin(p.a)*p.r*0.5]; }
+  function step(dt){
+    for(let i=0;i<N;i++){ const p=ps[i];
+      p.a+=dt*1.15*Math.min(7,Math.pow(R/(p.r+18),1.15));
+      p.r-=dt*(9+1500/(p.r+20))*p.s*0.55;
+      if(p.r<5){ respawn(p,false); if(i===track){ track=(Math.random()*N)|0; ps[track].r=R*0.95; trail=[]; } }
+    }
+    trail.push(xy(ps[track])); if(trail.length>40) trail.shift();
+  }
+  function draw(fade){
+    ctx.fillStyle=fade?rgba(T['--card'],0.24):T['--card']; ctx.fillRect(0,0,W,H);
+    for(let i=0;i<N;i++){ if(i===track) continue; const p=ps[i],[x,y]=xy(p); ctx.fillStyle=rgba(T['--ink'],0.25+0.6*(1-p.r/R)); ctx.fillRect(x-1.2,y-1.2,2.4,2.4); }
+    ctx.fillStyle=rgba(T['--ink'],0.9); ctx.beginPath(); ctx.ellipse(cx,cy,7,3.5,0,0,6.283); ctx.fill();
+    if(trail.length>1){ ctx.strokeStyle=rgba(T['--new'],0.55); ctx.lineWidth=2; ctx.beginPath(); trail.forEach(([x,y],k)=>k?ctx.lineTo(x,y):ctx.moveTo(x,y)); ctx.stroke(); }
+    const [tx,ty]=xy(ps[track]); ctx.fillStyle=T['--new']; ctx.beginPath(); ctx.arc(tx,ty,5.5,0,6.283); ctx.fill();
+  }
+  layout();
+  for(let i=0;i<240;i++){ step(1/60); }
+  for(let i=0;i<14;i++){ step(1/60); draw(true); }
+  if(reduce) btn.textContent='Play';
+  function loop(t){ const dt=Math.min(0.05,(t-last)/1000||0); last=t; if(running&&vis){ step(dt); draw(true);} requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+  btn.addEventListener('click',()=>{ running=!running; btn.textContent=running?'Pause':'Play'; });
+  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(()=>{ layout(); for(let i=0;i<200;i++) step(1/60); draw(false); },120); });
+  onScreen(cv,v=>vis=v);
+})();
+
+/* ---------- ROPE ---------- */
+(function(){
+  const svg=document.getElementById('rope'); let s=11; const rnd=()=>{ s=(s*16807)%2147483647; return s/2147483647; };
+  const n=72, Lf=150, hi=38;
+  for(let i=0;i<n;i++){
+    const x0=-160+i*(960/n)+(rnd()-.5)*8, ph=rnd()*6.283, A=9+rnd()*10;
+    let d=''; for(let x=x0;x<=x0+Lf;x+=5){ const y=70+A*Math.sin(x/26+ph); d+=(d?'L':'M')+x.toFixed(1)+','+y.toFixed(1); }
+    if(i===hi) continue;
+    el('path',{d,fill:'none',stroke:'var(--ink)','stroke-width':2.6,'stroke-linecap':'round','stroke-opacity':.42},svg);
+  }
+  const x0=-160+hi*(960/n), ph=1.3, A=14; let d='';
+  for(let x=x0;x<=x0+Lf;x+=5){ const y=70+A*Math.sin(x/26+ph); d+=(d?'L':'M')+x.toFixed(1)+','+y.toFixed(1); }
+  el('path',{d,fill:'none',stroke:'var(--new)','stroke-width':5,'stroke-linecap':'round'},svg);
+  const t=el('text',{x:x0+Lf/2,y:128,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-size':14,fill:'var(--new)'},svg); t.textContent='one thread';
+})();
+
+/* ---------- ICONS ---------- */
+(function(){
+  const st=document.getElementById('icStuff'); let s=3; const r=()=>{ s=(s*16807)%2147483647; return s/2147483647; };
+  for(let i=0;i<46;i++){ const x=20+r()*160,y=20+r()*90; el('circle',{cx:x,cy:y,r:3+r()*2,fill: i%5===0?'var(--new)':'var(--ink)',opacity:.6},st); }
+  for(let i=0;i<8;i++){ const x=150+r()*40,y=10+r()*110; el('circle',{cx:x,cy:y,r:2.5,fill:'var(--ink)',opacity:.25},st); }
+  const bd=document.getElementById('icBody'); let d='';
+  for(let a=0;a<6*Math.PI;a+=0.12){ const rr=4+a*3.1; d+=(d?'L':'M')+(100+Math.cos(a)*rr).toFixed(1)+','+(65+Math.sin(a)*rr*0.6).toFixed(1); }
+  el('path',{d,fill:'none',stroke:'var(--kept)','stroke-width':3,'stroke-linecap':'round'},bd);
+  el('circle',{cx:155,cy:62,r:5,fill:'var(--new)'},bd);
+  const md=document.getElementById('icMind');
+  for(let i=0;i<9;i++){ const x=8+i*20, y=65+Math.sin(i)*10; el('path',{d:`M${x},${y} q20,-22 44,0 t30,0`,fill:'none',stroke:i===4?'var(--new)':'var(--kept)','stroke-width':i===4?4:3,'stroke-linecap':'round',opacity:i===4?1:.7},md); }
+})();
+
+/* ---------- FORK ---------- */
+(function(){
+  const svg=document.getElementById('fork');
+  // Same dot pattern as the hero figure, sampled once so every copy is identical.
+  const test=document.createElement('canvas').getContext('2d');
+  const fig=new Path2D(); const rr=(x,y,w,h,r)=>fig.roundRect?fig.roundRect(x,y,w,h,r):fig.rect(x,y,w,h);
+  fig.arc(100,44,30,0,Math.PI*2); rr(88,70,24,24,6); rr(54,88,92,148,26); rr(26,96,24,138,12); rr(150,96,24,138,12); rr(58,222,38,170,18); rr(104,222,38,170,18);
+  let s=5; const rnd=()=>{ s=(s*16807)%2147483647; return s/2147483647; };
+  const pts=[]; for(let fy=3;fy<396;fy+=9) for(let fx=3;fx<200;fx+=9){ const x=fx+(rnd()-.5)*3,y=fy+(rnd()-.5)*3; if(test.isPointInPath(fig,x,y)) pts.push([x,y]); }
+  const mono='IBM Plex Mono, monospace', serif='Gloock, Georgia, serif';
+  function person(cx,top,sc,fill){ const g=el('g',{transform:`translate(${cx-100*sc},${top}) scale(${sc})`},svg); pts.forEach(([x,y])=>el('circle',{cx:x,cy:y,r:3.6,fill},g)); }
+  function kite(cx,cy,sc){ const g=el('g',{transform:`translate(${cx},${cy}) scale(${sc})`},svg);
+    el('path',{d:'M0,-16 L11,0 L0,18 L-11,0 Z',fill:'var(--kept)'},g);
+    el('path',{d:'M0,-16 L0,18 M-11,0 L11,0',stroke:'var(--card)','stroke-width':1.6},g);
+    el('path',{d:'M0,18 q-6,8 0,14 t0,14',fill:'none',stroke:'var(--kept)','stroke-width':1.8,'stroke-linecap':'round'},g); }
+  function bubble(cx,cy,hx,hy){
+    el('circle',{cx:hx+(cx-hx)*0.35,cy:hy+(cy-hy)*0.35,r:3,fill:'var(--paper)',stroke:'var(--line)','stroke-width':2},svg);
+    el('circle',{cx:hx+(cx-hx)*0.6,cy:hy+(cy-hy)*0.6,r:5,fill:'var(--paper)',stroke:'var(--line)','stroke-width':2},svg);
+    el('ellipse',{cx,cy,rx:34,ry:30,fill:'var(--paper)',stroke:'var(--line)','stroke-width':2},svg);
+    kite(cx,cy-4,0.9); }
+  // arrows
+  const defs=el('defs',{},svg); const mk=el('marker',{id:'fkArrow',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs);
+  el('path',{d:'M0,0 L10,5 L0,10 Z',fill:'var(--muted)'},mk);
+  el('path',{d:'M168,212 L242,212',stroke:'var(--muted)','stroke-width':2.5,fill:'none','marker-end':'url(#fkArrow)'},svg);
+  el('path',{d:'M378,212 C430,212 420,92 482,92',stroke:'var(--new)','stroke-width':2.5,fill:'none','stroke-dasharray':'7 6','marker-end':'url(#fkArrow)'},svg);
+  el('path',{d:'M378,212 C430,212 420,272 482,272',stroke:'var(--new)','stroke-width':2.5,fill:'none','stroke-dasharray':'7 6','marker-end':'url(#fkArrow)'},svg);
+  // you, today
+  person(95,96,0.55,'var(--ink)');
+  bubble(190,62,118,104);
+  const t1=el('text',{x:95,y:336,'text-anchor':'middle','font-family':mono,'font-size':17,fill:'var(--muted)'},svg); t1.textContent='you, today';
+  // copier
+  el('rect',{x:250,y:128,width:124,height:168,rx:16,fill:'var(--paper)',stroke:'var(--ink)','stroke-width':3},svg);
+  el('rect',{x:262,y:140,width:100,height:144,rx:8,fill:'var(--card)'},svg);
+  for(let i=0;i<9;i++) el('line',{x1:270,x2:354,y1:150+i*16,y2:150+i*16,stroke:'var(--kept)','stroke-width':2,opacity:.35},svg);
+  const beam=el('rect',{x:262,y:140,width:100,height:6,rx:3,fill:'var(--kept)',opacity:.9},svg);
+  if(!reduce){ el('animate',{attributeName:'y',values:'140;278;140',dur:'2.6s',repeatCount:'indefinite'},beam); }
+  else beam.setAttribute('y',206);
+  const t2=el('text',{x:312,y:322,'text-anchor':'middle','font-family':mono,'font-size':17,fill:'var(--muted)'},svg); t2.textContent='copy machine';
+  // two copies, new atoms, same pattern
+  [[530,14],[530,192]].forEach(([cx,top])=>{
+    person(cx,top,0.39,'var(--new)');
+    bubble(640,top+20,cx+16,top+14);
+    const q=el('text',{x:640,y:top+122,'text-anchor':'middle','font-family':serif,'font-size':34,fill:'var(--new)'},svg); q.textContent='you?';
+  });
+})();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
