@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Night Shift | Explainers</title>
+<meta name="description" content="Why does sleep matter? While you sleep, your body cleans, repairs and files away the day.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-night-shift/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Night Shift">
+<meta property="og:description" content="Why does sleep matter? While you sleep, your body cleans, repairs and files away the day.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-night-shift/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-night-shift/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Gloock&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one tall night sky that scrolls from bedtime to dawn. Each crew gets a clock stamp, one big picture, a headline and one line. */
+:root{
+  --sky:#11163a; --sky-2:#1a2150; --sky-3:#2b3471; --line:#3d4890;
+  --moon:#eeedf8; --dim:#a9aed6;
+  --lamp:#f5b942; --water:#5fd0e6; --dream:#c6a3f6; --deep:#5f7cff; --light:#8fa2dc;
+  --dawn:#f3a27f; --rose:#ff7d8c; --dusk:#3a2f66; --ember:#8c4f72;
+  --f-display:"Gloock", "Georgia", "Times New Roman", serif;
+  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"Martian Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:dark;
+}
+body{background:var(--sky);color:var(--moon);font-family:var(--f-body);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(3rem,13vw,5.4rem);line-height:.95}
+h2{font-size:clamp(2rem,8.5vw,3rem);line-height:1.02}
+p{margin:0}
+em{font-style:normal;color:var(--lamp)}
+a{color:var(--water)}
+a:focus-visible,input:focus-visible{outline:3px solid var(--lamp);outline-offset:3px}
+
+.stamp{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim);display:flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.dot.deep{background:var(--deep)} .dot.dream{background:var(--dream)} .dot.light{background:var(--light)} .dot.wake{background:var(--lamp)}
+
+.pic{display:block;width:100%;height:auto;max-width:500px;margin-inline:auto}
+.say{font-size:1.3rem;line-height:1.4;max-width:30ch}
+.fact{font-size:.92rem;color:var(--dim);border-left:2px solid var(--line);padding-left:12px;max-width:54ch}
+.fact b{font-family:var(--f-mono);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--moon);display:block;margin-bottom:2px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--sky)}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;display:grid;gap:18px;padding-block:40px 24px}
+.hero .lede{font-size:1.45rem;line-height:1.35;max-width:24ch}
+
+.shift .wrap{display:grid;gap:16px;padding-block:56px}
+.shift + .shift .wrap{border-top:1px dashed var(--line)}
+
+/* hypnogram */
+.chart-box{overflow-x:auto}
+#hyp{display:block;width:100%;min-width:320px;height:auto}
+.control{display:grid;gap:8px}
+.control label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.control .row{display:flex;align-items:center;gap:14px}
+#hrs{flex:1;min-width:0;accent-color:var(--lamp);height:28px}
+#hrsOut{font-family:var(--f-display);font-size:1.6rem;min-width:4.2em;text-align:right;font-variant-numeric:tabular-nums}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.meter{display:grid;gap:6px;min-width:0}
+.m-label{font-size:.9rem;color:var(--dim);display:flex;align-items:center;gap:8px}
+.m-val{font-family:var(--f-display);font-size:1.8rem;line-height:1;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:4px;background:var(--sky-3);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:4px;transition:width .3s}
+#deepBar{background:var(--deep)} #dreamBar{background:var(--dream)}
+
+/* skip a shift */
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 12px}
+@media (min-width:560px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{display:grid;justify-items:center;gap:4px;text-align:center}
+.tile svg{width:84px;height:84px}
+.tile span{font-weight:700;font-size:1rem}
+.tile small{font-size:.8rem;color:var(--dim);line-height:1.3}
+.equals{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding-block:18px;border-block:1px solid var(--line)}
+.equals div{display:grid;justify-items:center;text-align:center}
+.big{font-family:var(--f-display);font-size:clamp(2.2rem,11vw,3.4rem);line-height:1}
+.equals small{color:var(--dim);font-size:.9rem}
+.approx{font-family:var(--f-display);font-size:2.4rem;color:var(--lamp)}
+.long{display:flex;gap:14px;align-items:center}
+.long svg{width:56px;height:56px;flex:none}
+.long p{min-width:0}
+
+/* how much */
+.need{display:grid;gap:14px}
+.need .row{display:grid;grid-template-columns:5.6em 1fr 4.4em;align-items:center;gap:10px}
+.who{font-size:.95rem;line-height:1.2}
+.who small{display:block;color:var(--dim);font-size:.78rem}
+.track{position:relative;height:22px;border-radius:11px;background:var(--sky-2);background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(25% - 1px),var(--line) calc(25% - 1px),var(--line) 25%)}
+.fill{position:absolute;top:0;bottom:0;border-radius:11px;background:var(--lamp)}
+.hrs{font-family:var(--f-display);font-size:1.25rem;text-align:right;font-variant-numeric:tabular-nums}
+.axis{display:grid;grid-template-columns:5.6em 1fr 4.4em;gap:10px}
+.axis div{position:relative;height:16px;font-family:var(--f-mono);font-size:10px;color:var(--dim)}
+.axis span{position:absolute;transform:translateX(-50%)}
+.axis span:first-child{transform:none}
+.axis span:last-child{transform:translateX(-100%)}
+
+/* tips */
+.tips{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.tips li{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center}
+.tips svg{width:52px;height:52px}
+.tips b{display:block;font-size:1.08rem}
+.tips small{color:var(--dim);font-size:.88rem}
+
+/* dawn */
+.dawn{background:linear-gradient(to bottom,var(--sky) 0%,var(--dusk) 45%,var(--ember) 80%,var(--dawn) 100%)}
+.dawn .wrap{display:grid;gap:10px;padding-block:72px 0;text-align:center;justify-items:center}
+.dawn h2{max-width:16ch}
+.dawn svg{width:100%;max-width:420px;height:auto;display:block;margin-top:16px}
+footer{background:var(--sky-2)}
+footer .wrap{padding-block:28px 40px;display:grid;gap:8px;font-size:.8rem;color:var(--dim)}
+footer h3{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--moon)}
+footer ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+
+/* svg paint classes */
+.f-sky{fill:var(--sky)} .f-sky2{fill:var(--sky-2)} .f-sky3{fill:var(--sky-3)} .f-moon{fill:var(--moon)} .f-dim{fill:var(--dim)}
+.f-lamp{fill:var(--lamp)} .f-water{fill:var(--water)} .f-dream{fill:var(--dream)} .f-deep{fill:var(--deep)} .f-light{fill:var(--light)}
+.f-dawn{fill:var(--dawn)} .f-rose{fill:var(--rose)} .f-line{fill:var(--line)}
+.s-line{stroke:var(--line)} .s-moon{stroke:var(--moon)} .s-dim{stroke:var(--dim)} .s-lamp{stroke:var(--lamp)} .s-water{stroke:var(--water)}
+.s-dream{stroke:var(--dream)} .s-sky{stroke:var(--sky)} .s-sky2{stroke:var(--sky-2)} .s-dawn{stroke:var(--dawn)} .s-light{stroke:var(--light)} .s-rose{stroke:var(--rose)}
+.nf{fill:none}
+.lbl{font-family:var(--f-mono);font-size:11px;fill:var(--dim)}
+.lbl.dream{fill:var(--dream)}
+
+/* motion */
+@keyframes flick{0%,100%{opacity:1}50%{opacity:.2}}
+.flick{animation:flick 7s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-64}}
+.flow{stroke-dasharray:16 16;animation:flow 2.8s linear infinite}
+@keyframes drip{0%{transform:translateY(0);opacity:1}100%{transform:translateY(44px);opacity:0}}
+.drip{animation:drip 2.4s linear infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.bob{animation:bob 4s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translate(0,0) rotate(-18deg)}50%{transform:translate(4px,-4px) rotate(-10deg)}}
+.fly{transform-box:fill-box;transform-origin:center;animation:fly 3.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="stamp"><span class="dot wake"></span>10:30 PM · Lights out</p>
+    <h1>Why sleep matters</h1>
+    <svg class="pic" viewBox="0 0 320 310" role="img" aria-label="A head drawn like an office building at night, with many windows still lit: the brain keeps working while you sleep.">
+      <defs><clipPath id="headClip"><path d="M95,310 L95,238 C62,220 48,184 50,140 C53,78 102,38 162,38 C218,38 252,80 254,126 C255,140 259,148 268,166 C272,175 268,180 259,181 L257,194 C261,199 258,205 251,207 C256,214 253,223 244,225 C242,240 230,247 212,244 L195,242 L195,310 Z"/></clipPath></defs>
+      <g transform="translate(288 40)"><circle r="22" class="f-moon"/><circle cx="9" cy="-6" r="20" class="f-sky"/></g>
+      <path d="M95,310 L95,238 C62,220 48,184 50,140 C53,78 102,38 162,38 C218,38 252,80 254,126 C255,140 259,148 268,166 C272,175 268,180 259,181 L257,194 C261,199 258,205 251,207 C256,214 253,223 244,225 C242,240 230,247 212,244 L195,242 L195,310 Z" class="f-sky2 s-line" stroke-width="3"/>
+      <g id="windows" clip-path="url(#headClip)"></g>
+      <g class="bob"><text x="262" y="120" font-family="Gloock, Georgia, serif" font-size="16" class="f-dim">z</text><text x="278" y="102" font-family="Gloock, Georgia, serif" font-size="21" class="f-dim">z</text><text x="296" y="84" font-family="Gloock, Georgia, serif" font-size="14" class="f-dim">z</text></g>
+    </svg>
+    <p class="lede">You switch off. Your body doesn’t. It starts the <em>night shift</em>.</p>
+  </div>
+</header>
+
+<main>
+  <section class="shift" aria-labelledby="h-clean">
+    <div class="wrap">
+      <p class="stamp"><span class="dot deep"></span>11:30 PM · Deep sleep</p>
+      <h2 id="h-clean">The cleaners wash your brain</h2>
+      <svg class="pic" viewBox="0 0 320 232" role="img" aria-label="A brain with blue fluid flowing through it, carrying specks of waste down and out through the brain stem.">
+        <defs><clipPath id="brainClip"><path d="M70,120 C50,80 80,40 120,45 C135,25 175,22 195,40 C230,35 260,60 255,95 C275,115 260,155 228,155 C215,175 180,178 165,165 C145,180 105,178 98,158 C70,160 55,140 70,120 Z"/></clipPath></defs>
+        <path d="M160,158 C163,180 168,200 170,228 L196,228 C190,200 186,180 192,156 Z" class="f-sky2 s-line" stroke-width="3"/>
+        <path d="M70,120 C50,80 80,40 120,45 C135,25 175,22 195,40 C230,35 260,60 255,95 C275,115 260,155 228,155 C215,175 180,178 165,165 C145,180 105,178 98,158 C70,160 55,140 70,120 Z" class="f-sky2"/>
+        <g clip-path="url(#brainClip)" class="s-water nf" stroke-width="6" stroke-linecap="round" opacity=".9">
+          <path class="flow" d="M40,72 C90,56 110,92 150,78 S220,58 280,78"/>
+          <path class="flow" d="M40,110 C90,94 110,130 150,115 S220,95 280,115" style="animation-delay:-1s"/>
+          <path class="flow" d="M40,146 C90,130 110,166 150,151 S220,131 280,151" style="animation-delay:-2s"/>
+        </g>
+        <g class="s-line nf" stroke-width="4" stroke-linecap="round">
+          <path d="M110,62 C125,80 102,96 124,110"/>
+          <path d="M162,46 C150,72 176,84 160,106"/>
+          <path d="M212,60 C196,82 222,98 206,122"/>
+          <path d="M96,138 C118,126 140,148 162,136"/>
+          <path d="M186,140 C204,128 218,148 238,134"/>
+        </g>
+        <path d="M70,120 C50,80 80,40 120,45 C135,25 175,22 195,40 C230,35 260,60 255,95 C275,115 260,155 228,155 C215,175 180,178 165,165 C145,180 105,178 98,158 C70,160 55,140 70,120 Z" class="nf s-line" stroke-width="3"/>
+        <g class="f-dim">
+          <circle cx="98" cy="92" r="3"/><circle cx="140" cy="128" r="2.5"/><circle cx="190" cy="88" r="3"/><circle cx="230" cy="112" r="2.5"/><circle cx="132" cy="64" r="2"/>
+          <circle class="drip" cx="178" cy="172" r="3.5"/>
+          <circle class="drip" cx="180" cy="172" r="3" style="animation-delay:-.8s"/>
+          <circle class="drip" cx="176" cy="172" r="3" style="animation-delay:-1.6s"/>
+        </g>
+        <text x="204" y="222" class="lbl">waste out</text>
+      </svg>
+      <p class="say">Fluid rinses away the day’s waste from between brain cells.</p>
+      <p class="fact"><b>Science</b>Seen mostly in mice (2013). A 2024 mouse study disagreed, so scientists are still checking how it works in people.</p>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-fix">
+    <div class="wrap">
+      <p class="stamp"><span class="dot deep"></span>12:30 AM · Deep sleep</p>
+      <h2 id="h-fix">The repair crew fixes your body</h2>
+      <svg class="pic" viewBox="0 0 320 222" role="img" aria-label="A person asleep in bed. Above them: a wrench for muscle repair, a shield for the immune system, and a drop for hormones.">
+        <g class="s-dim" stroke-width="2" stroke-dasharray="3 5"><path d="M120,110 L120,128"/><path d="M190,110 L190,124"/><path d="M260,110 L260,130"/></g>
+        <rect x="20" y="110" width="14" height="72" rx="4" class="f-sky3"/>
+        <rect x="20" y="160" width="280" height="22" rx="6" class="f-sky3"/>
+        <rect x="28" y="180" width="8" height="28" rx="2" class="f-sky3"/><rect x="284" y="180" width="8" height="28" rx="2" class="f-sky3"/>
+        <ellipse cx="62" cy="150" rx="30" ry="12" class="f-dim"/>
+        <circle cx="72" cy="136" r="18" class="f-dawn"/>
+        <path d="M86,162 C90,128 120,120 150,124 C190,128 230,118 260,130 C285,140 292,152 296,162 Z" class="f-deep"/>
+        <path d="M140,140 C170,136 200,134 240,140" class="s-sky2 nf" stroke-width="2" opacity=".5"/>
+        <g class="bob">
+          <circle cx="120" cy="58" r="25" class="f-sky2 s-line" stroke-width="2"/>
+          <g transform="translate(120 60) rotate(45)"><rect x="-3.5" y="-2" width="7" height="20" rx="3.5" class="f-lamp"/><circle cy="-8" r="9" class="f-lamp"/><rect x="-3.5" y="-19" width="7" height="10" class="f-sky2"/></g>
+        </g>
+        <g class="bob" style="animation-delay:-1.3s">
+          <circle cx="190" cy="58" r="25" class="f-sky2 s-line" stroke-width="2"/>
+          <path d="M190,40 L206,46 C206,62 199,72 190,77 C181,72 174,62 174,46 Z" class="f-water"/>
+          <path d="M182,58 L188,64 L199,52" class="s-sky nf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="bob" style="animation-delay:-2.6s">
+          <circle cx="260" cy="58" r="25" class="f-sky2 s-line" stroke-width="2"/>
+          <path d="M260,40 C267,50 272,57 272,64 A12,12 0 0 1 248,64 C248,57 253,50 260,40 Z" class="f-dream"/>
+        </g>
+        <text x="120" y="102" text-anchor="middle" class="lbl">muscles</text>
+        <text x="190" y="102" text-anchor="middle" class="lbl">defenses</text>
+        <text x="260" y="102" text-anchor="middle" class="lbl">hormones</text>
+      </svg>
+      <p class="say">Muscles mend. Growth hormone surges. Your immune system restocks.</p>
+      <p class="fact"><b>Science</b>People who slept under 6 hours were about 4× more likely to catch a cold when given the virus (2015).</p>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-file">
+    <div class="wrap">
+      <p class="stamp"><span class="dot light"></span>2:30 AM · Light &amp; deep sleep</p>
+      <h2 id="h-file">The librarian files your day</h2>
+      <svg class="pic" viewBox="0 0 320 230" role="img" aria-label="Loose papers on a desk labeled today, one flying along an arrow to a tidy bookshelf labeled for keeps.">
+        <rect x="14" y="150" width="128" height="9" rx="3" class="f-sky3"/>
+        <rect x="22" y="158" width="7" height="48" rx="2" class="f-sky3"/><rect x="127" y="158" width="7" height="48" rx="2" class="f-sky3"/>
+        <g class="f-moon">
+          <rect x="24" y="132" width="32" height="18" rx="2" transform="rotate(-8 40 141)"/>
+          <rect x="54" y="128" width="32" height="20" rx="2" transform="rotate(7 70 138)" opacity=".85"/>
+          <rect x="86" y="134" width="30" height="16" rx="2" transform="rotate(-14 101 142)"/>
+          <rect x="62" y="114" width="28" height="16" rx="2" transform="rotate(18 76 122)" opacity=".7"/>
+        </g>
+        <path d="M100,112 C112,62 160,40 182,60" class="s-dream nf" stroke-width="2.5" stroke-dasharray="5 6" stroke-linecap="round"/>
+        <polygon points="188,66 176,62 184,52" class="f-dream"/>
+        <rect class="f-moon fly" x="126" y="46" width="24" height="15" rx="2"/>
+        <rect x="190" y="40" width="112" height="148" rx="4" class="f-sky2 s-line" stroke-width="2"/>
+        <g id="books"></g>
+        <rect x="190" y="88" width="112" height="4" class="f-line"/><rect x="190" y="136" width="112" height="4" class="f-line"/><rect x="190" y="184" width="112" height="4" class="f-line"/>
+        <text x="78" y="224" text-anchor="middle" class="lbl">today</text>
+        <text x="246" y="208" text-anchor="middle" class="lbl">for keeps</text>
+      </svg>
+      <p class="say">Today’s messy notes get moved onto long-term shelves.</p>
+      <p class="fact"><b>Science</b>Learn something, then sleep on it, and you remember more than if you had stayed awake.</p>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-mood">
+    <div class="wrap">
+      <p class="stamp"><span class="dot dream"></span>5:00 AM · Dream sleep</p>
+      <h2 id="h-mood">The dream room softens feelings</h2>
+      <svg class="pic" viewBox="0 0 320 202" role="img" aria-label="A dark storm cloud with lightning, labeled raw, becomes a small soft cloud, labeled softer, after dream sleep.">
+        <g class="f-sky3"><circle cx="60" cy="90" r="26"/><circle cx="92" cy="72" r="32"/><circle cx="124" cy="92" r="24"/><rect x="36" y="88" width="112" height="28" rx="14"/></g>
+        <path d="M96,110 L80,146 L94,146 L84,180 L114,134 L99,134 L108,110 Z" class="f-lamp"/>
+        <path d="M162,96 L196,96" class="s-dream" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="206,96 194,89 194,103" class="f-dream"/>
+        <text x="184" y="124" text-anchor="middle" class="lbl dream" font-size="10">dream sleep</text>
+        <g class="f-light bob"><circle cx="240" cy="104" r="13"/><circle cx="256" cy="94" r="17"/><circle cx="272" cy="105" r="12"/><rect x="226" y="100" width="58" height="17" rx="8.5"/></g>
+        <circle cx="290" cy="74" r="2.5" class="f-moon"/><circle cx="222" cy="78" r="2" class="f-moon"/>
+        <text x="92" y="198" text-anchor="middle" class="lbl">raw</text>
+        <text x="256" y="144" text-anchor="middle" class="lbl">softer</text>
+      </svg>
+      <p class="say">Dreams take the sting out of hard moments.</p>
+      <p class="fact"><b>Science</b>After one night with no sleep, the brain’s alarm center reacted about 60% more strongly to upsetting pictures (2007).</p>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-night">
+    <div class="wrap">
+      <p class="stamp"><span class="dot wake"></span>The whole night</p>
+      <h2 id="h-night">Sleep comes in waves</h2>
+      <p class="say">Every ~90 minutes you dive down and float back up. Deep sleep comes early. Dream sleep comes late.</p>
+      <div class="chart-box"><svg id="hyp" viewBox="0 0 360 200" role="img" aria-label="Chart of a typical night: deep sleep blocks cluster in the first three hours, dream sleep blocks grow longer toward morning."></svg></div>
+      <div class="control">
+        <label for="hrs">Drag: how long do you sleep?</label>
+        <div class="row"><input type="range" id="hrs" min="4" max="9" step="0.5" value="8"><output id="hrsOut" for="hrs">8 h</output></div>
+      </div>
+      <div class="readout">
+        <div class="meter"><span class="m-label"><span class="dot deep"></span>Deep sleep</span><span class="m-val" id="deepVal">–</span><span class="bar"><span id="deepBar"></span></span></div>
+        <div class="meter"><span class="m-label"><span class="dot dream"></span>Dream sleep</span><span class="m-val" id="dreamVal">–</span><span class="bar"><span id="dreamBar"></span></span></div>
+      </div>
+      <p class="say" id="msg" aria-live="polite"></p>
+      <p class="fact"><b>Note</b>A typical night, simplified. Real nights vary from person to person.</p>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-skip">
+    <div class="wrap">
+      <p class="stamp"><span class="dot" style="background:var(--rose)"></span>When the shift gets cut</p>
+      <h2 id="h-skip">After one short night</h2>
+      <div class="tiles">
+        <div class="tile">
+          <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="42" r="25" class="f-dawn"/><circle cx="40" cy="42" r="19" class="f-dream"/><circle cx="40" cy="42" r="8" class="f-sky"/><g class="f-lamp"><rect x="28" y="30" width="6" height="2.5" rx="1" transform="rotate(30 31 31)"/><rect x="46" y="52" width="6" height="2.5" rx="1" transform="rotate(-20 49 53)"/><rect x="26" y="50" width="6" height="2.5" rx="1" transform="rotate(70 29 51)"/><rect x="50" y="34" width="6" height="2.5" rx="1"/></g><circle cx="63" cy="20" r="12" class="f-sky"/></svg>
+          <span>Hungrier</span><small>hunger hormone rises</small>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M14,62 C14,54 24,54 30,56 L64,56 C70,56 72,63 66,64 L20,64 C16,64 14,63 14,62 Z" class="f-light"/><path d="M20,56 L15,42 M25,56 L25,42" class="s-light" stroke-width="2.5" stroke-linecap="round"/><circle cx="15" cy="41" r="2.5" class="f-light"/><circle cx="25" cy="41" r="2.5" class="f-light"/><circle cx="46" cy="40" r="17" class="f-lamp"/><path d="M46,40 m-2,0 a2,2 0 1 1 4,0 a6,6 0 1 1 -10,0 a10,10 0 1 1 18,0" class="s-sky nf" stroke-width="2.5"/></svg>
+          <span>Slower</span><small>focus and reactions drop</small>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 80 80" aria-hidden="true"><g class="f-sky3"><circle cx="28" cy="38" r="12"/><circle cx="42" cy="30" r="15"/><circle cx="56" cy="39" r="11"/><rect x="16" y="36" width="52" height="14" rx="7"/></g><path d="M44,48 L36,64 L43,64 L38,76 L52,58 L45,58 L50,48 Z" class="f-lamp"/></svg>
+          <span>Grumpier</span><small>shorter fuse</small>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M38,12 L60,20 C60,42 51,56 38,64 C25,56 16,42 16,20 Z" class="f-water"/><path d="M38,14 L34,30 L42,38 L36,56" class="s-sky nf" stroke-width="3" stroke-linejoin="round"/><g class="s-rose" stroke-width="2.5" stroke-linecap="round"><path d="M64,54 L64,74 M54,64 L74,64 M57,57 L71,71 M71,57 L57,71"/></g><circle cx="64" cy="64" r="6" class="f-rose"/></svg>
+          <span>Sick more</span><small>defenses weaken</small>
+        </div>
+      </div>
+      <div class="equals" role="group" aria-label="17 to 19 hours awake is about the same as 0.05 percent blood alcohol">
+        <div><span class="big">17–19 h</span><small>awake</small></div>
+        <span class="approx" aria-hidden="true">≈</span>
+        <div><span class="big">0.05%</span><small>blood alcohol</small></div>
+      </div>
+      <p class="say">Your reactions slow about as much as after a couple of drinks.</p>
+      <div class="long">
+        <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28,48 C14,38 6,30 6,20 C6,12 12,7 18,7 C23,7 26,10 28,14 C30,10 33,7 38,7 C44,7 50,12 50,20 C50,30 42,38 28,48 Z" class="f-rose"/><path d="M10,26 L20,26 L24,18 L30,34 L34,26 L46,26" class="s-sky nf" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <p>Night after night of short sleep raises the risk of heart disease, diabetes and weight gain.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-need">
+    <div class="wrap">
+      <p class="stamp"><span class="dot wake"></span>How much?</p>
+      <h2 id="h-need">Hours you need each night</h2>
+      <div class="need">
+        <div class="row"><span class="who">Kids<small>age 6–12</small></span><div class="track" aria-hidden="true"><span class="fill" style="left:75%;width:25%"></span></div><span class="hrs">9–12 h</span></div>
+        <div class="row"><span class="who">Teens<small>age 13–18</small></span><div class="track" aria-hidden="true"><span class="fill" style="left:66.67%;width:16.67%"></span></div><span class="hrs">8–10 h</span></div>
+        <div class="row"><span class="who">Adults<small>18+</small></span><div class="track" aria-hidden="true"><span class="fill" style="left:58.33%;width:16.67%"></span></div><span class="hrs">7–9 h</span></div>
+        <div class="axis" aria-hidden="true"><span></span><div><span style="left:0">0</span><span style="left:25%">3</span><span style="left:50%">6</span><span style="left:75%">9</span><span style="left:100%">12 h</span></div><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shift" aria-labelledby="h-help">
+    <div class="wrap">
+      <p class="stamp"><span class="dot wake"></span>Help the night shift</p>
+      <h2 id="h-help">Five easy habits</h2>
+      <ul class="tips">
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="12" cy="12" r="6" class="f-moon"/><circle cx="36" cy="12" r="6" class="f-moon"/><circle cx="24" cy="27" r="15" class="f-sky2 s-moon" stroke-width="3"/><path d="M24,27 L24,18 M24,27 L31,31" class="s-lamp" stroke-width="3" stroke-linecap="round"/></svg><div><b>Wake at the same time</b><small>Weekends too.</small></div></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="9" class="f-lamp"/><g class="s-lamp" stroke-width="3" stroke-linecap="round"><path d="M24,5 L24,9 M24,39 L24,43 M5,24 L9,24 M39,24 L43,24 M10.5,10.5 L13.5,13.5 M34.5,34.5 L37.5,37.5 M10.5,37.5 L13.5,34.5 M34.5,13.5 L37.5,10.5"/></g></svg><div><b>Get morning daylight</b><small>It sets your body clock.</small></div></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M34,20 C42,20 42,32 32,32" class="s-dawn nf" stroke-width="3"/><path d="M9,15 L35,15 L32,40 L12,40 Z" class="f-dawn"/><path d="M17,10 C15,7 19,5 17,2 M25,10 C23,7 27,5 25,2" class="s-dim nf" stroke-width="2" stroke-linecap="round"/></svg><div><b>No coffee after 2 PM</b><small>Half of it is still in you 5 hours later.</small></div></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="7" width="34" height="34" rx="3" class="f-sky3 s-line" stroke-width="2"/><g transform="translate(29 18)"><circle r="7" class="f-moon"/><circle cx="3" cy="-2" r="6" class="f-sky3"/></g><path d="M24,7 L24,41 M7,24 L41,24" class="s-line" stroke-width="2"/></svg><div><b>Dark, cool, quiet room</b><small>Your body cools down to sleep.</small></div></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5,13 C13,9 19,11 24,15 C29,11 35,9 43,13 L43,38 C35,34 29,36 24,40 C19,36 13,34 5,38 Z" class="f-dream"/><path d="M24,15 L24,40" class="s-sky" stroke-width="2"/></svg><div><b>Wind down for an hour</b><small>Dim lights. Slow things down.</small></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="dawn" aria-labelledby="h-dawn">
+    <div class="wrap">
+      <p class="stamp"><span class="dot wake"></span>6:30 AM · Shift ends</p>
+      <h2 id="h-dawn">Every night, the night shift gets you ready for tomorrow.</h2>
+      <svg viewBox="0 0 420 120" aria-hidden="true"><circle cx="210" cy="120" r="64" class="f-lamp"/><g class="s-lamp" stroke-width="4" stroke-linecap="round" opacity=".8"><path d="M210,30 L210,44 M140,64 L150,72 M280,64 L270,72 M110,104 L124,106 M310,104 L296,106"/></g></svg>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>Where the numbers come from</h3>
+    <ul>
+      <li>Brain cleaning in mice: Xie et al., <i>Science</i>, 2013; challenged by Miao et al., <i>Nature Neuroscience</i>, 2024.</li>
+      <li>Colds and short sleep: Prather et al., <i>Sleep</i>, 2015.</li>
+      <li>Emotional brain after no sleep: Yoo et al., <i>Current Biology</i>, 2007.</li>
+      <li>Hours awake vs. alcohol: Williamson &amp; Feyer, <i>Occupational &amp; Environmental Medicine</i>, 2000.</li>
+      <li>Hours needed: American Academy of Sleep Medicine and National Sleep Foundation guidelines.</li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=11; const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};
+  const el=(tag,attrs)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;};
+
+  // windows in the head
+  const win=document.getElementById('windows');
+  for(let y=46;y<310;y+=19){for(let x=56;x<266;x+=17){
+    const lit=rnd()<.42;
+    const r=el('rect',{x:x,y:y,width:9,height:11,rx:1.5,class:lit?'f-lamp':'f-sky3'});
+    if(lit&&rnd()<.3){r.classList.add('flick');r.style.animationDelay=(-rnd()*7).toFixed(2)+'s';}
+    win.appendChild(r);
+  }}
+
+  // books on shelves
+  const books=document.getElementById('books');
+  const cols=['f-deep','f-dream','f-water','f-lamp','f-light','f-dawn'];
+  [[88,296],[136,296],[184,250]].forEach(([base,limit],s)=>{
+    let x=197;let i=s*2;
+    while(true){const w=8+Math.round(rnd()*6);if(x+w>limit)break;const h=30+Math.round(rnd()*9);
+      books.appendChild(el('rect',{x:x,y:base-h,width:w,height:h,rx:1.5,class:cols[i++%cols.length]}));x+=w+2;}
+  });
+
+  // stars
+  const cv=document.getElementById('stars');const ctx=cv.getContext('2d');let stars=[];
+  function sizeStars(){const r=cv.getBoundingClientRect();const d=window.devicePixelRatio||1;cv.width=r.width*d;cv.height=r.height*d;ctx.setTransform(d,0,0,d,0,0);
+    stars=Array.from({length:Math.round(r.width*r.height/5200)},()=>({x:Math.random()*r.width,y:Math.random()*r.height,r:Math.random()*1.3+.3,p:Math.random()*6.28}));drawStars(0);}
+  function drawStars(t){const r=cv.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);
+    const c=getComputedStyle(document.documentElement).getPropertyValue('--moon').trim()||'#eeedf8';ctx.fillStyle=c;
+    for(const s of stars){ctx.globalAlpha=.25+.45*(0.5+0.5*Math.sin(s.p+t/1400));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fill();}ctx.globalAlpha=1;}
+  sizeStars();window.addEventListener('resize',sizeStars);
+  if(!reduce){const loop=t=>{drawStars(t);requestAnimationFrame(loop);};requestAnimationFrame(loop);}
+
+  // hypnogram
+  const RAW=[['L',20],['D',50],['L',12],['R',8],['L',22],['D',38],['L',15],['R',15],['L',40],['D',15],['L',13],['R',22],['L',60],['R',30],['W',5],['L',70],['R',40],['W',5],['L',30],['R',30]];
+  let t=0;const SEG=RAW.map(([s,m])=>{const o={s,a:t,b:t+m};t+=m;return o;});
+  const T=t; // 540 min = 9 h from 10:30 PM
+  const ROW={W:34,R:72,L:110,D:148};const NAME={W:'Awake',R:'Dream',L:'Light',D:'Deep'};
+  const CLS={W:'f-lamp',R:'f-dream',L:'f-light',D:'f-deep'};
+  const x0=54,x1=350;const sx=m=>x0+m/T*(x1-x0);
+  const svg=document.getElementById('hyp');
+  Object.keys(ROW).forEach(k=>{
+    svg.appendChild(el('line',{x1:x0,x2:x1,y1:ROW[k],y2:ROW[k],class:'s-line','stroke-width':1,'stroke-dasharray':'2 4'}));
+    const tx=el('text',{x:x0-8,y:ROW[k]+4,'text-anchor':'end',class:'lbl'});tx.textContent=NAME[k];svg.appendChild(tx);
+  });
+  let d='';SEG.forEach((g,i)=>{d+=(i?'L':'M')+sx(g.a)+','+ROW[g.s]+' L'+sx(g.b)+','+ROW[g.s]+' ';});
+  svg.appendChild(el('path',{d:d,class:'s-dim nf','stroke-width':1.2,opacity:.7}));
+  SEG.forEach(g=>svg.appendChild(el('rect',{x:sx(g.a),y:ROW[g.s]-7,width:Math.max(sx(g.b)-sx(g.a),1.5),height:14,rx:2,class:CLS[g.s]})));
+  [[30,'11 PM'],[150,'1 AM'],[270,'3 AM'],[390,'5 AM'],[510,'7 AM']].forEach(([m,l])=>{
+    svg.appendChild(el('line',{x1:sx(m),x2:sx(m),y1:162,y2:168,class:'s-dim','stroke-width':1}));
+    const tx=el('text',{x:sx(m),y:184,'text-anchor':'middle',class:'lbl'});tx.textContent=l;svg.appendChild(tx);
+  });
+  const cut=el('rect',{y:16,height:152,class:'f-sky',opacity:.8});svg.appendChild(cut);
+  const cutLine=el('line',{y1:14,y2:168,class:'s-lamp','stroke-width':2,'stroke-dasharray':'4 3'});svg.appendChild(cutLine);
+  const cutTxt=el('text',{y:12,class:'lbl'});cutTxt.style.fill='var(--lamp)';svg.appendChild(cutTxt);
+
+  const sum=(min,stage)=>SEG.reduce((s,g)=>g.s===stage?s+Math.max(0,Math.min(g.b,min)-g.a):s,0);
+  const REF={D:sum(480,'D'),R:sum(480,'R')};const MAX={D:sum(T,'D'),R:sum(T,'R')};
+  const fmt=m=>Math.floor(m/60)+' h '+String(Math.round(m%60)).padStart(2,'0')+' m';
+  const clock=min=>{let tot=22*60+30+min;tot%=1440;const h=Math.floor(tot/60),m=tot%60;return ((h+11)%12+1)+':'+String(m).padStart(2,'0')+(h<12?' AM':' PM');};
+  const range=document.getElementById('hrs');
+  function update(){
+    const h=parseFloat(range.value);const min=h*60;
+    document.getElementById('hrsOut').textContent=(h%1?h.toFixed(1):h)+' h';
+    const X=sx(min);cut.setAttribute('x',X);cut.setAttribute('width',Math.max(0,x1-X));
+    cutLine.setAttribute('x1',X);cutLine.setAttribute('x2',X);
+    cutTxt.setAttribute('x',X>290?X-4:X+4);cutTxt.setAttribute('text-anchor',X>290?'end':'start');cutTxt.textContent='alarm '+clock(min);
+    const dp=sum(min,'D'),rm=sum(min,'R');
+    document.getElementById('deepVal').textContent=fmt(dp);document.getElementById('dreamVal').textContent=fmt(rm);
+    document.getElementById('deepBar').style.width=(dp/MAX.D*100)+'%';document.getElementById('dreamBar').style.width=(rm/MAX.R*100)+'%';
+    let msg;
+    if(h>=7){msg='Inside the 7–9 hours adults need.';}
+    else{const rl=Math.round((1-rm/REF.R)*100),dl=Math.round((1-dp/REF.D)*100);const early=8-h;
+      msg='Waking '+(early%1?early.toFixed(1):early)+' h early cuts '+rl+'% of your dream sleep.'+(dl<5?' Deep sleep was mostly done by then.':' And '+dl+'% of deep sleep.');}
+    document.getElementById('msg').textContent=msg;
+  }
+  range.addEventListener('input',update);update();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

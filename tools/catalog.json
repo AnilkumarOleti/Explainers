@@ -245,6 +245,12 @@
           "blurb": "Twelve weeks of training, and why you get faster by running slower than you think you should.",
           "artifact": "7532dbd3-e8d2-4c82-aabd-d2173ee91c5c",
           "ask": "Why do you get faster by running slower?"
+        },
+        {
+          "slug": "the-night-shift",
+          "title": "The Night Shift",
+          "blurb": "Why does sleep matter? While you sleep, your body cleans, repairs and files away the day.",
+          "ask": "What does your body do while you sleep?"
         }
       ]
     },
