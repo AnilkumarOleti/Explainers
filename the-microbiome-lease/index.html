@@ -1,0 +1,1530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Microbiome Lease | Explainers</title>
+<meta name="description" content="What do gut bacteria do for you? You give them fibre and a home; they pay in fuel, a sealed gut wall and a trained immune system.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-microbiome-lease/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Microbiome Lease">
+<meta property="og:description" content="What do gut bacteria do for you? You give them fibre and a home; they pay in fuel, a sealed gut wall and a trained immune system.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-microbiome-lease/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-microbiome-lease/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: specimen slides. Each section = one big figure + two magnifications (1x plain words, 1000x mechanism). Palette borrowed from the Gram stain on agar. */
+:root{
+  --gel:#EAEEE1;        /* agar plate */
+  --panel:#F5F7EE;
+  --ink:#201B2E;
+  --muted:#5A5768;
+  --rule:#C5CCB8;
+  --violet:#5B3FA8;     /* crystal violet: Gram-positive */
+  --pink:#C4325E;       /* safranin: Gram-negative */
+  --amber:#A86A0E;      /* iodine: molecules */
+  --host:#2A6E7E;       /* host tissue */
+  --o2:#2E74C0;         /* oxygen */
+  --mucus:#D4E3CB;
+  --mucus-2:#B5CFAA;
+  --cell:#EAD8D3;
+  --cell-line:#B4968F;
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --gel:#14121B; --panel:#1C1926; --ink:#ECE9F3; --muted:#A9A4B9; --rule:#363141;
+    --violet:#A891F2; --pink:#F27C9D; --amber:#E6B252; --host:#6DB9C8; --o2:#7DB6F0;
+    --mucus:#24352A; --mucus-2:#2F4836; --cell:#3A2A31; --cell-line:#6E5762;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --gel:#14121B; --panel:#1C1926; --ink:#ECE9F3; --muted:#A9A4B9; --rule:#363141;
+  --violet:#A891F2; --pink:#F27C9D; --amber:#E6B252; --host:#6DB9C8; --o2:#7DB6F0;
+  --mucus:#24352A; --mucus-2:#2F4836; --cell:#3A2A31; --cell-line:#6E5762;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--gel); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto}
+a{color:var(--violet); text-underline-offset:3px}
+a:focus-visible, button:focus-visible{outline:3px solid var(--amber); outline-offset:3px; border-radius:6px}
+code, .mono{font-family:var(--f-mono); font-size:.86em}
+code{color:var(--violet); white-space:normal}
+em{font-style:italic}
+
+/* ---------- hero ---------- */
+.hero{position:relative; padding-block:64px 40px; overflow:hidden}
+#petri{position:absolute; inset:0; width:100%; height:100%; opacity:.6;
+  -webkit-mask-image:linear-gradient(100deg, transparent 15%, #000 70%);
+  mask-image:linear-gradient(100deg, transparent 15%, #000 70%); pointer-events:none}
+.hero .wrap{position:relative}
+.eyebrow{font-family:var(--f-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--violet); font-weight:500}
+h1{font-family:var(--f-display); font-weight:400; font-size:clamp(40px, 7.4vw, 86px); line-height:1.02; letter-spacing:-.015em; margin:.25em 0 .3em; max-width:13ch; text-wrap:balance}
+h1 span{color:var(--pink)}
+.hero .lede{font-size:clamp(18px, 2.2vw, 22px); max-width:46ch; color:var(--ink)}
+.stats{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; margin-top:40px; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.stat{padding:18px 16px 16px 0; min-width:0}
+.stat + .stat{padding-left:16px; border-left:1px solid var(--rule)}
+.stat b{display:block; font-family:var(--f-display); font-weight:400; font-size:clamp(30px, 4.4vw, 48px); line-height:1; font-variant-numeric:tabular-nums}
+.stat span{display:block; font-size:14.5px; color:var(--muted); margin-top:8px}
+.stat:nth-child(1) b{color:var(--violet)}
+.stat:nth-child(2) b{color:var(--host)}
+.src{font-family:var(--f-mono); font-size:11.5px; color:var(--muted); margin-top:10px}
+@media (max-width:720px){
+  .stats{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .stat:nth-child(3){padding-left:0; border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--rule)}
+}
+
+/* contents */
+.toc{display:flex; flex-wrap:wrap; gap:8px; margin-top:28px}
+.toc a{font-family:var(--f-mono); font-size:12.5px; text-decoration:none; color:var(--ink); border:1px solid var(--rule); border-radius:999px; padding:5px 12px; background:var(--panel)}
+.toc a:hover{border-color:var(--violet); color:var(--violet)}
+.toc a b{color:var(--violet); font-weight:500}
+
+/* ---------- slides ---------- */
+.slide{padding-block:72px; border-top:1px solid var(--rule)}
+.slide h2{font-family:var(--f-display); font-weight:400; font-size:clamp(30px, 4.6vw, 52px); line-height:1.08; margin:.3em 0 .35em; max-width:20ch; text-wrap:balance; letter-spacing:-.01em}
+.slide .lede{font-size:clamp(17.5px, 2vw, 20px); max-width:58ch; color:var(--ink); margin:0}
+.pay{display:inline-flex; align-items:center; gap:10px}
+.pay .no{font-family:var(--f-display); font-size:15px; letter-spacing:0; text-transform:none; color:var(--gel); background:var(--violet); border-radius:999px; width:26px; height:26px; display:inline-grid; place-items:center}
+
+.fig{margin:32px 0 0; background:var(--panel); border:1px solid var(--rule); border-radius:16px; padding:22px}
+.fig figcaption{font-family:var(--f-mono); font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5}
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.scroll svg{display:block; width:100%; height:auto}
+.mw7{min-width:700px}
+.mw6{min-width:600px}
+.mw5{min-width:520px}
+
+/* two magnifications */
+.mags{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,8fr); gap:40px; margin-top:36px}
+@media (max-width:820px){ .mags{grid-template-columns:minmax(0,1fr); gap:28px} }
+.mag h3{font-family:var(--f-mono); font-size:12px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; display:flex; align-items:center; gap:9px}
+.lens{width:16px; height:16px; border:2px solid currentColor; border-radius:50%; position:relative; flex:none}
+.lens::after{content:""; position:absolute; width:7px; height:2px; background:currentColor; right:-6px; bottom:-3px; transform:rotate(45deg)}
+.m1 h3{color:var(--host)}
+.m2 h3{color:var(--violet)}
+.m1 p{font-family:var(--f-display); font-size:clamp(21px, 2.4vw, 26px); line-height:1.32; margin:0; text-wrap:pretty}
+.m2 ul{list-style:none; padding:0; margin:0; display:grid; gap:12px; font-size:15.5px; line-height:1.55}
+.m2 li{padding-left:18px; position:relative}
+.m2 li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:7px; border-radius:50%; background:var(--violet); opacity:.7}
+.m2 li b{font-weight:700}
+.cite{font-family:var(--f-mono); font-size:11.5px; color:var(--muted); white-space:nowrap}
+
+/* ---------- SVG text & shapes ---------- */
+svg .t{font-family:var(--f-body); font-size:15px; fill:var(--ink)}
+svg .tb{font-weight:700}
+svg .tl{font-family:var(--f-display); font-size:22px; fill:var(--ink)}
+svg .tm{font-family:var(--f-mono); font-size:12px; fill:var(--muted)}
+svg .tmi{font-family:var(--f-mono); font-size:12px; fill:var(--ink)}
+svg .tv{fill:var(--violet)} svg .tp{fill:var(--pink)} svg .ta{fill:var(--amber)} svg .th{fill:var(--host)} svg .to{fill:var(--o2)}
+svg .box{fill:var(--gel); stroke:var(--rule); stroke-width:1.5}
+svg .box-v{fill:color-mix(in srgb, var(--violet) 12%, var(--panel)); stroke:var(--violet); stroke-width:1.5}
+svg .box-p{fill:color-mix(in srgb, var(--pink) 12%, var(--panel)); stroke:var(--pink); stroke-width:1.5}
+svg .box-a{fill:color-mix(in srgb, var(--amber) 14%, var(--panel)); stroke:var(--amber); stroke-width:1.5}
+svg .box-h{fill:color-mix(in srgb, var(--host) 12%, var(--panel)); stroke:var(--host); stroke-width:1.5}
+svg .ln{stroke:var(--muted); stroke-width:2; fill:none}
+svg .ln-v{stroke:var(--violet); stroke-width:2; fill:none}
+svg .ln-p{stroke:var(--pink); stroke-width:2; fill:none}
+svg .ln-a{stroke:var(--amber); stroke-width:2.2; fill:none}
+svg .dash{stroke-dasharray:6 5}
+svg .grid{stroke:var(--rule); stroke-width:1}
+svg .track{fill:var(--rule); opacity:.45}
+svg .fv{fill:var(--violet)} svg .fp{fill:var(--pink)} svg .fa{fill:var(--amber)} svg .fh{fill:var(--host)} svg .fo{fill:var(--o2)} svg .fm{fill:var(--muted)} svg .fpanel{fill:var(--panel)} svg .fgel{fill:var(--gel)}
+svg .mk-m{fill:var(--muted)} svg .mk-v{fill:var(--violet)} svg .mk-p{fill:var(--pink)} svg .mk-a{fill:var(--amber)}
+
+/* ---------- ledger ---------- */
+.ledger{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:0; border:1px solid var(--rule); border-radius:16px; overflow:hidden; margin-top:32px; background:var(--panel)}
+.ledger > div{min-width:0}
+.ledger .col + .col{border-left:1px dashed var(--rule)}
+.ledger h4{margin:0; padding:16px 22px; font-family:var(--f-mono); font-weight:500; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; border-bottom:2px solid var(--ink)}
+.ledger .col:first-child h4{color:var(--host)}
+.ledger .col:last-child h4{color:var(--violet)}
+.ledger ol{list-style:none; margin:0; padding:0}
+.ledger li{display:grid; grid-template-columns:44px minmax(0,1fr); gap:10px; align-items:baseline; padding:14px 22px; border-bottom:1px solid var(--rule)}
+.ledger li:last-child{border-bottom:0}
+.ledger .k{font-family:var(--f-display); font-size:22px; color:var(--muted)}
+.ledger .col:last-child .k{color:var(--violet)}
+.ledger strong{font-size:17.5px; display:block; line-height:1.3}
+.ledger small{display:block; color:var(--muted); font-size:14px; line-height:1.4; margin-top:2px}
+.ledger a{text-decoration:none; color:inherit}
+.ledger a:hover strong{color:var(--violet)}
+@media (max-width:680px){ .ledger{grid-template-columns:minmax(0,1fr)} .ledger .col + .col{border-left:0; border-top:2px solid var(--rule)} }
+
+/* phyla bar */
+.phyla{display:flex; height:64px; border-radius:10px; overflow:hidden; border:1px solid var(--rule)}
+.phyla div{min-width:0}
+.ph-legend{display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:14px 24px; margin-top:18px}
+.ph-legend > div{display:grid; grid-template-columns:14px minmax(0,1fr); gap:10px; align-items:start}
+.sw{width:14px; height:14px; border-radius:3px; margin-top:4px}
+.ph-legend b{display:block; font-size:15.5px}
+.ph-legend span{display:block; font-size:13.5px; color:var(--muted); line-height:1.4}
+.ph-legend .mono{color:var(--ink)}
+.gram{display:flex; flex-wrap:wrap; gap:18px; margin-top:20px; padding-top:16px; border-top:1px dashed var(--rule); font-size:14px; color:var(--muted)}
+.gram span{display:inline-flex; align-items:center; gap:8px}
+.residents{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px; margin-top:22px}
+.res{border:1px solid var(--rule); border-radius:12px; padding:12px 14px; background:var(--gel); min-width:0}
+.res i{display:block; font-size:15.5px; font-weight:700}
+.res span{display:block; font-size:13.5px; color:var(--muted); line-height:1.4; margin-top:2px}
+.res.gp{box-shadow:inset 3px 0 0 var(--violet)}
+.res.gn{box-shadow:inset 3px 0 0 var(--pink)}
+.res.ar{box-shadow:inset 3px 0 0 var(--amber)}
+
+/* ---------- colon wall interactive ---------- */
+.switch{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px}
+.switch button{font:inherit; font-size:15px; font-weight:700; padding:9px 16px; border-radius:999px; border:1.5px solid var(--rule); background:var(--gel); color:var(--ink); cursor:pointer; transition:background .2s, border-color .2s, color .2s}
+.switch button:hover{border-color:var(--violet)}
+.switch button[aria-pressed="true"]{background:var(--ink); color:var(--gel); border-color:var(--ink)}
+.wall-grid{display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:22px; align-items:start}
+@media (max-width:900px){ .wall-grid{grid-template-columns:minmax(0,1fr)} }
+#wall .state{opacity:0; transition:opacity .6s ease}
+#wall .state.on{opacity:1}
+#wall .lumen{fill:var(--gel)}
+#wall .mo{fill:var(--mucus)}
+#wall .mi{fill:var(--mucus-2)}
+#wall .cell{fill:var(--cell); stroke:var(--cell-line); stroke-width:1.5}
+#wall .nuc{fill:var(--cell-line); opacity:.55}
+#wall .blood{fill:var(--host); opacity:.22}
+#wall .hot{fill:var(--pink); opacity:.32}
+#wall .path-b{fill:var(--pink); stroke:var(--ink); stroke-width:1.6}
+#wall .flag{stroke:var(--ink); stroke-width:1.2; fill:none}
+#wall .spore{fill:var(--panel); stroke:var(--violet); stroke-width:1.5}
+.bug{animation:jig 3.2s ease-in-out infinite alternate}
+@keyframes jig{from{transform:translate(0,0)} to{transform:translate(3px,-2px)}}
+.readout{display:grid; gap:14px}
+.meter{display:grid; gap:6px}
+.meter .lab{font-size:14px; display:flex; justify-content:space-between; gap:8px}
+.meter .lab span:last-child{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
+.segs{display:grid; grid-template-columns:repeat(3,1fr); gap:4px}
+.segs i{height:10px; border-radius:3px; background:var(--rule); transition:background .4s}
+.meter[data-good="1"] .segs i.on{background:var(--host)}
+.meter[data-good="0"] .segs i.on{background:var(--pink)}
+.state-cap{font-size:15.5px; line-height:1.5; margin:4px 0 0; padding-top:14px; border-top:1px dashed var(--rule)}
+.legend{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px; font-size:13.5px; color:var(--muted)}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.legend svg{width:26px; height:14px; flex:none}
+
+/* immune rows */
+.sig{display:grid; gap:0; margin-top:22px; border-top:1px solid var(--rule)}
+.sig-row{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.2fr); gap:14px; padding:14px 0; border-bottom:1px solid var(--rule); align-items:start}
+.sig-row > div{min-width:0; font-size:14.5px; line-height:1.4}
+.sig-row b{display:block; font-size:15.5px}
+.sig-head{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.sig-row .arrowed{position:relative}
+.tag{display:inline-block; font-family:var(--f-mono); font-size:11.5px; padding:2px 8px; border-radius:999px; margin-top:4px}
+.tag.calm{background:color-mix(in srgb, var(--violet) 15%, transparent); color:var(--violet)}
+.tag.alert{background:color-mix(in srgb, var(--pink) 15%, transparent); color:var(--pink)}
+@media (max-width:720px){
+  .sig-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .sig-row.sig-head-row{display:none}
+}
+
+/* cards */
+.cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; margin-top:28px}
+.card{border:1px solid var(--rule); border-radius:14px; padding:18px; background:var(--panel); display:flex; flex-direction:column; gap:10px; min-width:0}
+.card .kind{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.chain{display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-family:var(--f-display); font-size:19px; line-height:1.25}
+.chain .ar{color:var(--muted); font-family:var(--f-body); font-size:16px}
+.chain .out{color:var(--violet)}
+.card.bad .chain .out{color:var(--pink)}
+.card .by{font-family:var(--f-mono); font-size:12.5px; color:var(--ink); background:var(--gel); border-radius:8px; padding:6px 9px; align-self:flex-start}
+.card p{margin:0; font-size:14.5px; line-height:1.5; color:var(--muted)}
+.card p b{color:var(--ink)}
+.chip{font-family:var(--f-mono); font-size:11.5px; font-weight:500; padding:3px 9px; border-radius:999px; align-self:flex-start}
+.ev-strong{background:color-mix(in srgb, var(--host) 18%, transparent); color:var(--host)}
+.ev-mod{background:color-mix(in srgb, var(--amber) 18%, transparent); color:var(--amber)}
+.ev-early{background:color-mix(in srgb, var(--violet) 15%, transparent); color:var(--violet)}
+.ev-mixed{background:color-mix(in srgb, var(--pink) 15%, transparent); color:var(--pink)}
+.card h4{margin:0; font-family:var(--f-display); font-weight:400; font-size:21px; line-height:1.2}
+
+/* timeline legend */
+.steps{list-style:none; padding:0; margin:18px 0 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:12px 24px; counter-reset:s}
+.steps li{display:grid; grid-template-columns:28px minmax(0,1fr); gap:10px; font-size:14.5px; line-height:1.45}
+.steps li::before{counter-increment:s; content:counter(s); width:24px; height:24px; border-radius:50%; background:var(--violet); color:var(--gel); font-family:var(--f-display); font-size:14px; display:grid; place-items:center}
+.steps b{display:block; font-size:15.5px}
+
+/* pipeline */
+.pipe{display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:10px; margin-top:6px}
+.pipe > div{border:1px solid var(--rule); border-radius:12px; padding:14px; background:var(--gel); min-width:0; position:relative}
+.pipe .n{font-family:var(--f-mono); font-size:11.5px; color:var(--violet); letter-spacing:.1em}
+.pipe b{display:block; font-family:var(--f-display); font-weight:400; font-size:19px; margin:2px 0 6px; line-height:1.2}
+.pipe p{margin:0; font-size:13.5px; color:var(--muted); line-height:1.45}
+@media (max-width:860px){ .pipe{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (max-width:480px){ .pipe{grid-template-columns:minmax(0,1fr)} }
+.traps{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:14px; margin-top:22px}
+.trap{border-left:3px solid var(--pink); padding:4px 0 4px 14px}
+.trap b{display:block; font-size:16px}
+.trap p{margin:4px 0 0; font-size:14.5px; color:var(--muted); line-height:1.5}
+
+/* closing */
+.closing{padding-block:80px 64px; border-top:1px solid var(--rule)}
+.closing blockquote{margin:0; font-family:var(--f-display); font-size:clamp(26px, 3.6vw, 40px); line-height:1.25; max-width:30ch; text-wrap:balance}
+.closing blockquote span{color:var(--violet)}
+.chainline{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:28px; font-family:var(--f-mono); font-size:13px}
+.chainline span{border:1px solid var(--rule); border-radius:999px; padding:5px 12px; background:var(--panel)}
+.chainline i{font-style:normal; color:var(--muted)}
+.refs{margin-top:56px; columns:2 340px; column-gap:40px; font-size:13px; color:var(--muted); line-height:1.5}
+.refs h3{column-span:all; font-family:var(--f-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); font-weight:500; margin:0 0 14px}
+.refs p{margin:0 0 6px; break-inside:avoid}
+.foot{font-size:13px; color:var(--muted); margin-top:28px; padding-top:18px; border-top:1px solid var(--rule); max-width:72ch}
+
+@media (prefers-reduced-motion: reduce){
+  .bug{animation:none}
+  #wall .state{transition:none}
+}
+</style>
+<!-- shared arrowheads -->
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-m"/></marker>
+    <marker id="ahv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-v"/></marker>
+    <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-p"/></marker>
+    <marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-a"/></marker>
+  </defs>
+</svg>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <canvas id="petri" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">The gut microbiome, explained from zero</div>
+    <h1>You rent out your gut. The tenants pay in <span>molecules.</span></h1>
+    <p class="lede">Trillions of bacteria live in your large intestine. You give them a warm, dark home and food you can't digest. In return they do chemistry your own genes can't.</p>
+    <div class="stats" role="list">
+      <div class="stat" role="listitem"><b>38 trillion</b><span>bacterial cells in you</span></div>
+      <div class="stat" role="listitem"><b>30 trillion</b><span>of your own human cells</span></div>
+      <div class="stat" role="listitem"><b>0.2 kg</b><span>their total weight</span></div>
+      <div class="stat" role="listitem"><b>~150×</b><span>more genes than your genome</span></div>
+    </div>
+    <div class="src">Sender, Fuchs &amp; Milo 2016 · Qin et al. 2010 (3.3 million microbial genes vs ~20,000 human)</div>
+    <nav class="toc" aria-label="Sections">
+      <a href="#lease">The deal</a>
+      <a href="#map">Where</a>
+      <a href="#who">Who</a>
+      <a href="#fuel"><b>1</b> Fuel</a>
+      <a href="#wall-sec"><b>2</b> Wall</a>
+      <a href="#guard"><b>3</b> Security</a>
+      <a href="#immune"><b>4</b> Training</a>
+      <a href="#chem"><b>5</b> Chemistry</a>
+      <a href="#signals"><b>6</b> Messages</a>
+      <a href="#sour">Fine print</a>
+      <a href="#life">Lifetime</a>
+      <a href="#method">How we know</a>
+      <a href="#keep">What helps</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= LEASE ================= -->
+<section class="slide" id="lease">
+  <div class="wrap">
+    <div class="eyebrow">The deal</div>
+    <h2>A lease, not an infection</h2>
+    <p class="lede">Almost all of these microbes are tenants with a contract. Each side gives the other something it can't make itself.</p>
+
+    <div class="ledger">
+      <div class="col">
+        <h4>You provide</h4>
+        <ol>
+          <li><span class="k">°C</span><div><strong>A steady 37 °C</strong><small>No winters, no droughts</small></div></li>
+          <li><span class="k">O₂</span><div><strong>Darkness with almost no oxygen</strong><small>Most of them die in air</small></div></li>
+          <li><span class="k">m</span><div><strong>About 1.5 m of colon</strong><small>Slow-moving, 20 to 40 hours per trip</small></div></li>
+          <li><span class="k">g</span><div><strong>Food you can't digest</strong><small>Plant fibre, plus a little leftover protein</small></div></li>
+          <li><span class="k">µm</span><div><strong>A mucus home</strong><small>A sugary gel lining they can live in</small></div></li>
+          <li><span class="k">∞</span><div><strong>A ride to the next host</strong><small>Every bowel movement spreads them</small></div></li>
+        </ol>
+      </div>
+      <div class="col">
+        <h4>They pay</h4>
+        <ol>
+          <li><span class="k">1</span><a href="#fuel"><strong>Fuel</strong><small>Fibre turned into fatty acids you can burn</small></a></li>
+          <li><span class="k">2</span><a href="#wall-sec"><strong>A sealed wall</strong><small>Thick mucus and an oxygen-free surface</small></a></li>
+          <li><span class="k">3</span><a href="#guard"><strong>Security</strong><small>No room or food left for invaders</small></a></li>
+          <li><span class="k">4</span><a href="#immune"><strong>Immune training</strong><small>Teaching calm versus attack</small></a></li>
+          <li><span class="k">5</span><a href="#chem"><strong>Chemistry</strong><small>Vitamins, plant compounds, your medicines</small></a></li>
+          <li><span class="k">6</span><a href="#signals"><strong>Messages</strong><small>Signals to brain, appetite and fat</small></a></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>You can't break down most plant fibre. They can. Almost everything on this page grows out of that one fact.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>The host holds the leash.</b> Mutualism here is enforced, not friendly. You control tenants with mucus, secretory IgA, antimicrobial peptides (<code>defensins</code>, <code>RegIIIγ</code>) and by keeping the wall surface oxygen-poor, which filters for strict anaerobes that can't invade tissue well.</li>
+          <li><b>Gene arithmetic.</b> Your genome has ~20,000 protein-coding genes. The first gut gene catalogue found 3.3 million non-redundant microbial genes <span class="cite">Qin 2010</span>; later catalogues reach ~10 million. That's the "extended genome" you borrow.</li>
+          <li><b>Germ-free animals prove the deal.</b> Mice born and raised in sterile isolators survive, but they have enlarged caeca full of undigested fibre, immature gut immunity, altered stress hormones and lower body fat on the same diet <span class="cite">Bäckhed 2004</span>.</li>
+          <li><b>Ratio reality.</b> The old "10 microbes per human cell" figure was wrong. The best estimate is ~1.3 : 1, and one bowel movement can shift it noticeably <span class="cite">Sender 2016</span>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<section class="slide" id="map">
+  <div class="wrap">
+    <div class="eyebrow">Where they live</div>
+    <h2>Almost all of them crowd into the last 1.5 metres</h2>
+    <p class="lede">Acid, bile and fast flow keep the upper gut thinly populated. The colon is slow, dark and oxygen-poor, so a billion times more microbes live there.</p>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg class="mw7" viewBox="0 0 840 350" role="img" aria-labelledby="mapT mapD">
+          <title id="mapT">Microbes per millilitre along the gut</title>
+          <desc id="mapD">Log-scale bars. Stomach and duodenum: 10 to 1,000 per mL. Jejunum: 10 thousand to 10 million. Ileum: 10 to 100 million. Colon: 10 billion to 1 trillion per gram. pH and oxygen shown at right.</desc>
+          <!-- grid: x0=160, 40px per factor of 10, 0..12 -->
+          <g>
+            <line class="grid" x1="160" y1="52" x2="160" y2="312"/>
+            <line class="grid" x1="280" y1="52" x2="280" y2="312"/>
+            <line class="grid" x1="400" y1="52" x2="400" y2="312"/>
+            <line class="grid" x1="520" y1="52" x2="520" y2="312"/>
+            <line class="grid" x1="640" y1="52" x2="640" y2="312"/>
+            <text class="tm" x="160" y="332" text-anchor="middle">1</text>
+            <text class="tm" x="280" y="332" text-anchor="middle">1 thousand</text>
+            <text class="tm" x="400" y="332" text-anchor="middle">1 million</text>
+            <text class="tm" x="520" y="332" text-anchor="middle">1 billion</text>
+            <text class="tm" x="640" y="332" text-anchor="middle">1 trillion</text>
+            <text class="tm" x="160" y="30">microbes per mL of contents (each gridline = ×1,000)</text>
+            <text class="tm" x="700" y="30" text-anchor="middle">pH</text>
+            <text class="tm" x="790" y="30" text-anchor="middle">oxygen</text>
+          </g>
+          <!-- rows: y = 60,112,164,216,268 ; h=30 -->
+          <g>
+            <text class="t tb" x="148" y="80" text-anchor="end">Stomach</text>
+            <rect class="track" x="160" y="60" width="480" height="30" rx="4"/>
+            <rect class="fv" x="160" y="60" width="120" height="30" rx="4" opacity=".28"/>
+            <rect class="fv" x="200" y="60" width="80" height="30" rx="4"/>
+            <text class="tmi" x="288" y="80">10–1,000</text>
+            <text class="t" x="700" y="80" text-anchor="middle">1.5–3.5</text>
+            <circle class="fo" cx="776" cy="75" r="5"/><circle class="fo" cx="790" cy="75" r="5"/><circle class="fo" cx="804" cy="75" r="5"/>
+
+            <text class="t tb" x="148" y="132" text-anchor="end">Duodenum</text>
+            <rect class="track" x="160" y="112" width="480" height="30" rx="4"/>
+            <rect class="fv" x="160" y="112" width="120" height="30" rx="4" opacity=".28"/>
+            <rect class="fv" x="200" y="112" width="80" height="30" rx="4"/>
+            <text class="tmi" x="288" y="132">10–1,000</text>
+            <text class="t" x="700" y="132" text-anchor="middle">~6</text>
+            <circle class="fo" cx="783" cy="127" r="5"/><circle class="fo" cx="797" cy="127" r="5"/>
+
+            <text class="t tb" x="148" y="184" text-anchor="end">Jejunum</text>
+            <rect class="track" x="160" y="164" width="480" height="30" rx="4"/>
+            <rect class="fv" x="160" y="164" width="280" height="30" rx="4" opacity=".28"/>
+            <rect class="fv" x="320" y="164" width="120" height="30" rx="4"/>
+            <text class="tmi" x="448" y="184">10 thousand–10 million</text>
+            <text class="t" x="700" y="184" text-anchor="middle">~6.5</text>
+            <circle class="fo" cx="783" cy="179" r="5"/><circle class="fo" cx="797" cy="179" r="5" opacity=".45"/>
+
+            <text class="t tb" x="148" y="236" text-anchor="end">Ileum</text>
+            <rect class="track" x="160" y="216" width="480" height="30" rx="4"/>
+            <rect class="fv" x="160" y="216" width="320" height="30" rx="4" opacity=".28"/>
+            <rect class="fv" x="440" y="216" width="40" height="30" rx="4"/>
+            <text class="tmi" x="488" y="236">10–100 million</text>
+            <text class="t" x="700" y="236" text-anchor="middle">~7.4</text>
+            <circle class="fo" cx="790" cy="231" r="5" opacity=".55"/>
+
+            <text class="t tb" x="148" y="288" text-anchor="end">Colon</text>
+            <rect class="track" x="160" y="268" width="480" height="30" rx="4"/>
+            <rect class="fv" x="160" y="268" width="480" height="30" rx="4" opacity=".28"/>
+            <rect class="fv" x="560" y="268" width="80" height="30" rx="4"/>
+            <text class="tmi" x="552" y="288" text-anchor="end">10 billion–1 trillion per gram</text>
+            <text class="t" x="700" y="288" text-anchor="middle">5.7–6.7</text>
+            <text class="tm" x="790" y="288" text-anchor="middle">≈ 0</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Typical ranges from intestinal sampling studies; individuals vary. Dark segment = usual range. Colon value is per gram of contents.</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Each gridline is a thousand times more microbes. Your colon is one of the densest microbial habitats ever measured.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Stomach.</b> pH 1.5–3.5 kills most arrivals. <i>Helicobacter pylori</i> is a specialist that survives by using <code>urease</code> to make a cloud of ammonia around itself.</li>
+          <li><b>Small intestine.</b> Bile acids (detergents), pancreatic enzymes, Paneth-cell antimicrobial peptides and a 3–5 hour transit keep numbers low. Residents are fast-growing, oxygen-tolerant types: <i>Streptococcus</i>, <i>Lactobacillus</i>, <i>Veillonella</i>, Enterobacteriaceae. When counts climb here, that's the disease called SIBO.</li>
+          <li><b>Colon.</b> Transit slows to roughly 20–40 hours. Luminal oxygen is close to zero, so strict anaerobes dominate. Bacteria make up about half of stool solids.</li>
+          <li><b>pH dips in the caecum.</b> Fermentation acids drop it to ~5.7, then it rises toward ~6.7 in the distal colon as those acids are absorbed. That mild acidity itself suppresses some pathogens.</li>
+          <li><b>A radial oxygen gradient.</b> Oxygen diffuses from blood through the wall, so the zone right next to the mucus holds a little O₂ and the centre holds none. Who sits where depends on oxygen tolerance. Payment No. 2 is about controlling that gradient.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO ================= -->
+<section class="slide" id="who">
+  <div class="wrap">
+    <div class="eyebrow">Who lives there</div>
+    <h2>A few hundred species per person, from two big families</h2>
+    <p class="lede">Colours here follow the Gram stain microbiologists use: violet for thick-walled bacteria, pink for those wrapped in an outer membrane.</p>
+
+    <figure class="fig">
+      <div class="phyla" role="img" aria-label="One illustrative adult: Bacillota about 55 percent, Bacteroidota 32, Actinomycetota 6, Pseudomonadota 4, Verrucomicrobiota 2, other 1">
+        <div style="width:55%; background:var(--violet)"></div>
+        <div style="width:32%; background:var(--pink)"></div>
+        <div style="width:6%; background:color-mix(in srgb, var(--violet) 55%, var(--panel))"></div>
+        <div style="width:4%; background:color-mix(in srgb, var(--pink) 55%, var(--panel))"></div>
+        <div style="width:2%; background:color-mix(in srgb, var(--pink) 30%, var(--panel))"></div>
+        <div style="width:1%; background:var(--rule)"></div>
+      </div>
+      <div class="ph-legend">
+        <div><i class="sw" style="background:var(--violet)"></i><div><b>Bacillota</b><span class="mono">~40–65%</span><span>formerly Firmicutes. Clostridia, the butyrate makers.</span></div></div>
+        <div><i class="sw" style="background:var(--pink)"></i><div><b>Bacteroidota</b><span class="mono">~20–45%</span><span>formerly Bacteroidetes. Fibre generalists.</span></div></div>
+        <div><i class="sw" style="background:color-mix(in srgb, var(--violet) 55%, var(--panel))"></i><div><b>Actinomycetota</b><span class="mono">~2–10%</span><span>Bifidobacterium. Dominant in breastfed babies.</span></div></div>
+        <div><i class="sw" style="background:color-mix(in srgb, var(--pink) 55%, var(--panel))"></i><div><b>Pseudomonadota</b><span class="mono">usually &lt;5%</span><span>E. coli and relatives. Bloom when things go wrong.</span></div></div>
+        <div><i class="sw" style="background:color-mix(in srgb, var(--pink) 30%, var(--panel))"></i><div><b>Verrucomicrobiota</b><span class="mono">~1–4%</span><span>Akkermansia, the mucus grazer.</span></div></div>
+      </div>
+      <div class="residents">
+        <div class="res gp"><i>Faecalibacterium prausnitzii</i><span>Top butyrate maker. Often ~5% of all gut bacteria. Low in Crohn's disease.</span></div>
+        <div class="res gn"><i>Bacteroides thetaiotaomicron</i><span>Carries hundreds of fibre-cutting enzymes. A model "generalist".</span></div>
+        <div class="res gp"><i>Bifidobacterium longum</i><span>Eats milk sugars in infants and inulin in adults. Makes acetate and lactate.</span></div>
+        <div class="res gn"><i>Akkermansia muciniphila</i><span>Lives on mucus. Linked to leaner, insulin-sensitive hosts.</span></div>
+        <div class="res gp"><i>Roseburia</i> &amp; <i>Eubacterium rectale</i><span>Butyrate makers that feed on starch and fibre leftovers.</span></div>
+        <div class="res ar"><i>Methanobrevibacter smithii</i><span>Not a bacterium. An archaeon that eats hydrogen gas and makes methane.</span></div>
+      </div>
+      <div class="gram">
+        <span><i class="sw" style="background:var(--violet); margin:0"></i>Gram-positive: thick wall, stains violet</span>
+        <span><i class="sw" style="background:var(--pink); margin:0"></i>Gram-negative: outer membrane with LPS, stains pink</span>
+      </div>
+      <figcaption>Bar shows one illustrative healthy adult from stool sequencing. Real people vary widely around these ranges.</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Two healthy people can share few species. What their microbes <em>do</em> is far more similar than who they are.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Functional redundancy.</b> The Human Microbiome Project found taxonomic make-up varied enormously across healthy people, while the abundance of metabolic pathways stayed remarkably stable <span class="cite">HMP 2012</span>. Many species can fill the same job.</li>
+          <li><b>Strain level is where biology lives.</b> Two <i>E. coli</i> strains can differ by hundreds of genes. One is a quiet resident; another (O157:H7) carries Shiga toxin. Species names hide this.</li>
+          <li><b>Not all LPS is equal.</b> Gram-negatives carry lipopolysaccharide, a strong <code>TLR4</code> trigger. But <i>Bacteroides</i> lipid A is penta-acylated and immunologically quiet, while <i>E. coli</i>'s hexa-acylated form is potent. Infants dominated by <i>Bacteroides</i> LPS showed weaker immune education <span class="cite">Vatanen 2016</span>.</li>
+          <li><b>Beyond bacteria.</b> Archaea (methanogens), fungi (well under 1% of microbial DNA), protists, and a large virome, mostly bacteriophages that infect the bacteria and trade genes between them.</li>
+          <li><b>Renamed in 2021.</b> Firmicutes → Bacillota, Bacteroidetes → Bacteroidota, Actinobacteria → Actinomycetota, Proteobacteria → Pseudomonadota. Older papers use the old names.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYMENT 1: FUEL ================= -->
+<section class="slide" id="fuel">
+  <div class="wrap">
+    <div class="eyebrow pay"><span class="no">1</span>Payment · Energy</div>
+    <h2>They turn fibre you can't digest into fuel you can</h2>
+    <p class="lede">Fibre passes through you untouched. In the colon, bacteria ferment it into three small fatty acids: acetate, propionate and butyrate.</p>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg class="mw7" viewBox="0 0 990 500" role="img" aria-labelledby="scfaT scfaD">
+          <title id="scfaT">From fibre to short-chain fatty acids</title>
+          <desc id="scfaD">Plant fibre is cut by bacterial enzymes into simple sugars, fermented to pyruvate, then split into acetate (about 60 percent), butyrate (about 20 percent) and propionate (about 20 percent). Acetate goes to blood and brain, butyrate feeds colon wall cells, propionate goes to the liver. Butyrate makers also eat acetate. Hydrogen gas is removed by methanogens.</desc>
+
+          <!-- fibre -->
+          <rect class="box-h" x="16" y="180" width="180" height="130" rx="12"/>
+          <text class="tl" x="34" y="214">Plant fibre</text>
+          <text class="tm" x="34" y="240">pectin</text>
+          <text class="tm" x="34" y="258">hemicellulose</text>
+          <text class="tm" x="34" y="276">inulin</text>
+          <text class="tm" x="34" y="294">resistant starch</text>
+
+          <path class="ln" d="M196 245 H246" marker-end="url(#ah)"/>
+          <text class="tmi" x="221" y="232" text-anchor="middle">enzymes</text>
+
+          <!-- sugars -->
+          <rect class="box" x="250" y="205" width="140" height="80" rx="12"/>
+          <text class="t tb" x="320" y="238" text-anchor="middle">Simple sugars</text>
+          <text class="tm" x="320" y="260" text-anchor="middle">glucose, xylose…</text>
+
+          <path class="ln" d="M390 245 H428" marker-end="url(#ah)"/>
+
+          <!-- pyruvate -->
+          <rect class="box" x="432" y="215" width="128" height="60" rx="12"/>
+          <text class="t tb" x="496" y="243" text-anchor="middle">Pyruvate</text>
+          <text class="tm" x="496" y="262" text-anchor="middle">glycolysis</text>
+
+          <!-- branches -->
+          <path class="ln-a" d="M560 236 C600 236 600 78 636 78" marker-end="url(#aha)"/>
+          <path class="ln-a" d="M560 245 H636" marker-end="url(#aha)"/>
+          <path class="ln-a" d="M560 254 C600 254 600 412 636 412" marker-end="url(#aha)"/>
+
+          <!-- molecules -->
+          <rect class="box-a" x="640" y="40" width="170" height="76" rx="12"/>
+          <text class="tl" x="656" y="72">Acetate <tspan class="tm">C2</tspan></text>
+          <text class="tmi" x="656" y="98">~60% · most bacteria</text>
+
+          <rect class="box-a" x="640" y="207" width="170" height="76" rx="12"/>
+          <text class="tl" x="656" y="239">Butyrate <tspan class="tm">C4</tspan></text>
+          <text class="tmi" x="656" y="265">~20% · Faecalibacterium</text>
+
+          <rect class="box-a" x="640" y="374" width="170" height="76" rx="12"/>
+          <text class="tl" x="656" y="406">Propionate <tspan class="tm">C3</tspan></text>
+          <text class="tmi" x="656" y="432">~20% · Bacteroides</text>
+
+          <!-- cross-feeding -->
+          <path class="ln-v dash" d="M770 116 V203" marker-end="url(#ahv)"/>
+          <text class="tm tv" x="778" y="152">cross-</text>
+          <text class="tm tv" x="778" y="168">feeding</text>
+
+          <!-- destinations -->
+          <path class="ln" d="M810 78 H836" marker-end="url(#ah)"/>
+          <path class="ln" d="M810 245 H836" marker-end="url(#ah)"/>
+          <path class="ln" d="M810 412 H836" marker-end="url(#ah)"/>
+
+          <rect class="box" x="840" y="46" width="140" height="64" rx="12"/>
+          <text class="t tb" x="910" y="72" text-anchor="middle">Blood</text>
+          <text class="tm" x="910" y="92" text-anchor="middle">muscle, fat, brain</text>
+
+          <rect class="box-h" x="840" y="213" width="140" height="64" rx="12"/>
+          <text class="t tb" x="910" y="239" text-anchor="middle">Colon wall</text>
+          <text class="tm" x="910" y="259" text-anchor="middle">its main fuel</text>
+
+          <rect class="box" x="840" y="380" width="140" height="64" rx="12"/>
+          <text class="t tb" x="910" y="406" text-anchor="middle">Liver</text>
+          <text class="tm" x="910" y="426" text-anchor="middle">makes glucose</text>
+
+          <!-- gases -->
+          <path class="ln dash" d="M496 275 V368" marker-end="url(#ah)"/>
+          <rect class="box" x="406" y="372" width="180" height="78" rx="12"/>
+          <text class="t tb" x="496" y="400" text-anchor="middle">H₂ + CO₂ gas</text>
+          <text class="tm" x="496" y="420" text-anchor="middle">eaten by methanogens</text>
+          <text class="tm" x="496" y="436" text-anchor="middle">→ CH₄ (methane)</text>
+
+          <!-- ratio bar -->
+          <text class="tm" x="16" y="370">typical molar ratio in the colon</text>
+          <rect class="fa" x="16" y="382" width="216" height="34" rx="4"/>
+          <rect class="fa" x="234" y="382" width="72" height="34" rx="4" opacity=".7"/>
+          <rect class="fa" x="308" y="382" width="72" height="34" rx="4" opacity=".45"/>
+          <text class="tmi" x="124" y="404" text-anchor="middle" style="fill:var(--panel)">acetate 60</text>
+          <text class="tmi" x="270" y="404" text-anchor="middle">but. 20</text>
+          <text class="tmi" x="344" y="404" text-anchor="middle">prop. 20</text>
+          <text class="tm" x="16" y="440">total ≈ 70–140 mM in the proximal colon</text>
+          <text class="tm" x="16" y="458">~95% absorbed, ~5% leaves in stool</text>
+        </svg>
+      </div>
+      <figcaption>Short-chain fatty acids (SCFAs). Ratio and concentrations from human sudden-death autopsy and stool studies (Cummings 1987 and later work).</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Butyrate is the colon wall's favourite food. Propionate goes to the liver. Acetate travels everywhere, even to the brain.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>The enzyme gap.</b> Your genome encodes about 17 enzymes for digesting dietary carbohydrates. <i>B. thetaiotaomicron</i> alone carries roughly 260 glycoside hydrolases and polysaccharide lyases <span class="cite">Cantarel 2012</span>, organised into <code>PULs</code> (polysaccharide utilisation loci): gene clusters that bind a specific fibre with <code>SusC/SusD</code>-like proteins, cut it at the cell surface and import the pieces.</li>
+          <li><b>Three routes.</b> Acetate comes from pyruvate via acetyl-CoA, and from acetogens through the <code>Wood–Ljungdahl</code> pathway. Propionate mostly via the <code>succinate</code> pathway (Bacteroidota), plus the acrylate and propanediol routes. Butyrate mostly via <code>butyryl-CoA:acetate CoA-transferase</code> in <i>Faecalibacterium</i>, <i>Roseburia</i>, <i>E. rectale</i> and <i>Anaerostipes</i>; a minor route uses butyrate kinase.</li>
+          <li><b>Cross-feeding.</b> That CoA-transferase step <em>consumes</em> acetate. So <i>Bifidobacterium</i> makes acetate and lactate, and butyrate producers eat them. One species' waste is another's input. Fibre feeds a food web, not a single microbe.</li>
+          <li><b>Energy budget.</b> SCFAs supply roughly 5–10% of a person's daily energy. Colonocytes get about 60–70% of their energy from butyrate <span class="cite">Roediger 1980</span>, burning it by β-oxidation.</li>
+          <li><b>They are signals too.</b> SCFAs bind <code>FFAR2</code> (GPR43), <code>FFAR3</code> (GPR41) and butyrate binds <code>HCAR2</code> (GPR109A) on gut, immune and fat cells. Butyrate also inhibits histone deacetylases (<code>HDACs</code>), changing which genes are switched on. See Payment No. 4.</li>
+          <li><b>The butyrate paradox.</b> Healthy colon cells burn butyrate. Cancerous colon cells run on glucose (the Warburg effect), so butyrate piles up inside them, where HDAC inhibition slows their growth <span class="cite">Donohoe 2012</span>.</li>
+          <li><b>Gas must go.</b> Fermentation stalls if hydrogen builds up. Methanogens, sulfate reducers (making H₂S) and acetogens act as the hydrogen sink.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYMENT 2: WALL ================= -->
+<section class="slide" id="wall-sec">
+  <div class="wrap">
+    <div class="eyebrow pay"><span class="no">2</span>Payment · The wall</div>
+    <h2>Well-fed tenants keep the walls sealed</h2>
+    <p class="lede">The colon wall is one cell thick. Mucus and oxygen chemistry keep bacteria at a safe distance. Switch between states to see what happens when the rent stops.</p>
+
+    <figure class="fig">
+      <div class="switch" role="group" aria-label="Colon state">
+        <button type="button" id="st-fed" data-s="fed" aria-pressed="true">Fed fibre</button>
+        <button type="button" id="st-starved" data-s="starved" aria-pressed="false">Fibre-starved</button>
+        <button type="button" id="st-abx" data-s="abx" aria-pressed="false">After antibiotics</button>
+      </div>
+      <div class="wall-grid">
+        <div class="scroll">
+          <svg id="wall" class="mw6" viewBox="0 0 900 420" role="img" aria-labelledby="wallT wallD">
+            <title id="wallT">Cross-section of the colon wall</title>
+            <desc id="wallD">From bottom: blood, a single row of wall cells, a dense inner mucus layer, a loose outer mucus layer, and the gut lumen full of bacteria.</desc>
+          </svg>
+        </div>
+        <div class="readout" aria-live="polite">
+          <div class="meter" data-good="1" id="m-but"><div class="lab"><span>Butyrate supply</span><span></span></div><div class="segs"><i></i><i></i><i></i></div></div>
+          <div class="meter" data-good="1" id="m-muc"><div class="lab"><span>Mucus barrier</span><span></span></div><div class="segs"><i></i><i></i><i></i></div></div>
+          <div class="meter" data-good="0" id="m-o2"><div class="lab"><span>Oxygen leaking in</span><span></span></div><div class="segs"><i></i><i></i><i></i></div></div>
+          <div class="meter" data-good="0" id="m-inv"><div class="lab"><span>Invader pressure</span><span></span></div><div class="segs"><i></i><i></i><i></i></div></div>
+          <p class="state-cap" id="wall-cap"></p>
+        </div>
+      </div>
+      <div class="legend">
+        <span><svg viewBox="0 0 26 14"><rect x="4" y="3.5" width="18" height="7" rx="3.5" style="fill:var(--violet)"/></svg>Gram-positive anaerobe</span>
+        <span><svg viewBox="0 0 26 14"><rect x="4" y="3.5" width="18" height="7" rx="3.5" style="fill:var(--pink)"/></svg>Gram-negative anaerobe</span>
+        <span><svg viewBox="0 0 26 14"><rect x="4" y="3" width="18" height="8" rx="4" style="fill:var(--pink);stroke:var(--ink);stroke-width:1.5"/></svg>Oxygen-tolerant invader</span>
+        <span><svg viewBox="0 0 26 14"><rect x="2" y="3.5" width="22" height="7" rx="3.5" style="fill:var(--violet)"/><ellipse cx="18" cy="7" rx="4" ry="3" style="fill:var(--panel);stroke:var(--violet);stroke-width:1.3"/></svg>C. difficile with spore</span>
+        <span><svg viewBox="0 0 26 14"><circle cx="13" cy="7" r="4" style="fill:var(--amber)"/></svg>Butyrate</span>
+        <span><svg viewBox="0 0 26 14"><circle cx="13" cy="7" r="4" style="fill:var(--o2)"/></svg>Oxygen</span>
+      </div>
+      <figcaption>Schematic, not to scale. Based on Johansson 2008 (mucus layers), Desai 2016 (fibre starvation) and Byndloss 2017 / Rivera-Chávez 2016 (antibiotics and oxygen).</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Fibre in, butyrate out. Wall cells burn it and use up the oxygen. With no oxygen at the surface, only friendly anaerobes thrive. Break that chain and oxygen-loving troublemakers move in.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Two mucus layers.</b> Goblet cells secrete <code>MUC2</code> mucin. The inner layer (~50–200 µm) is dense and nearly bacteria-free. Host proteases loosen it into an outer layer that bacteria live in and graze <span class="cite">Johansson 2008</span>.</li>
+          <li><b>No fibre, they eat the house.</b> In mice colonised with a defined 14-strain human community, a fibre-free diet pushed bacteria to switch to mucin glycans. Mucus-degrading enzymes rose, the layer thinned, and mice became vulnerable to the pathogen <i>Citrobacter rodentium</i> <span class="cite">Desai 2016</span>.</li>
+          <li><b>The oxygen switch.</b> Butyrate is burned by β-oxidation in mitochondria, which consumes O₂ and keeps the epithelial surface hypoxic. That stabilises <code>HIF-1α</code>, which supports barrier genes. Butyrate also activates <code>PPAR-γ</code>, which keeps this metabolism on and suppresses <code>iNOS</code> (less nitrate). Antibiotics remove butyrate makers → cells switch to glycolysis → O₂ and nitrate leak into the lumen → <i>E. coli</i> and <i>Salmonella</i> respire them and bloom <span class="cite">Byndloss 2017</span>.</li>
+          <li><b>Tight junctions.</b> <code>Claudins</code>, <code>occludin</code> and <code>ZO-1</code> seal the gaps between cells. Butyrate strengthens their assembly through <code>AMPK</code> signalling.</li>
+          <li><b>Antibody coat.</b> The gut secretes about 3 g of secretory IgA a day, more than all other antibody classes combined. It coats bacteria and keeps them in the lumen without triggering inflammation.</li>
+          <li><b>Chemical fence.</b> <code>RegIIIγ</code>, a lectin induced by microbial signals and IL-22, kills Gram-positive bacteria that approach the surface, enforcing a ~50 µm no-go zone in the mouse small intestine <span class="cite">Vaishnava 2011</span>.</li>
+          <li><b>Akkermansia.</b> A mucus specialist whose abundance tracks with leaner, insulin-sensitive mice and people. Its outer protein <code>Amuc_1100</code> signals via TLR2; pasteurised cells improved some insulin markers in a small pilot trial <span class="cite">Depommier 2019</span>. Mucus grazing is healthy when fibre keeps the gel replenished.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYMENT 3: SECURITY ================= -->
+<section class="slide" id="guard">
+  <div class="wrap">
+    <div class="eyebrow pay"><span class="no">3</span>Payment · Security</div>
+    <h2>A full house leaves no room for invaders</h2>
+    <p class="lede">Pathogens need food, space and a foothold. Residents take all three, and they make chemical weapons too. The clearest example runs through bile.</p>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg class="mw7" viewBox="0 0 940 340" role="img" aria-labelledby="bileT bileD">
+          <title id="bileT">How gut bacteria convert bile acids and block C. difficile</title>
+          <desc id="bileD">The liver makes primary bile acids. Most are recycled from the small intestine. In the colon, many bacteria remove the attached amino acid, then a rare few convert them to secondary bile acids, which stop C. difficile. If antibiotics kill the rare few, primary bile acids build up and wake C. difficile spores.</desc>
+
+          <path class="ln dash" d="M350 40 C350 6 105 6 105 40" marker-end="url(#ah)"/>
+          <text class="tm" x="228" y="20" text-anchor="middle">~95% reabsorbed, recycled 4–12× a day</text>
+
+          <rect class="box-h" x="16" y="44" width="180" height="96" rx="12"/>
+          <text class="t tb" x="106" y="74" text-anchor="middle">Liver</text>
+          <text class="tm" x="106" y="96" text-anchor="middle">cholesterol →</text>
+          <text class="tm" x="106" y="112" text-anchor="middle">primary bile acids</text>
+          <text class="tm" x="106" y="128" text-anchor="middle">+ taurine / glycine</text>
+
+          <path class="ln" d="M196 92 H256" marker-end="url(#ah)"/>
+
+          <rect class="box" x="260" y="44" width="180" height="96" rx="12"/>
+          <text class="t tb" x="350" y="74" text-anchor="middle">Small intestine</text>
+          <text class="tm" x="350" y="96" text-anchor="middle">bile acts as a</text>
+          <text class="tm" x="350" y="112" text-anchor="middle">detergent for fat</text>
+
+          <path class="ln" d="M440 92 H496" marker-end="url(#ah)"/>
+          <text class="tm" x="468" y="80" text-anchor="middle">~5%</text>
+
+          <rect class="box-v" x="500" y="44" width="190" height="96" rx="12"/>
+          <text class="tm tv" x="516" y="66">COLON · STEP 1 · MANY</text>
+          <text class="t tb" x="516" y="92">Snip off the tag</text>
+          <text class="tm" x="516" y="114">bile salt hydrolase (BSH)</text>
+
+          <path class="ln-v" d="M690 92 H726" marker-end="url(#ahv)"/>
+
+          <rect class="box-v" x="730" y="44" width="194" height="96" rx="12"/>
+          <text class="tm tv" x="746" y="66">STEP 2 · A RARE FEW</text>
+          <text class="t tb" x="746" y="92">Remove one –OH</text>
+          <text class="tm" x="746" y="114">7α-dehydroxylation</text>
+          <text class="tm" x="746" y="130">C. scindens, bai genes</text>
+
+          <path class="ln-v" d="M827 140 V206" marker-end="url(#ahv)"/>
+          <path class="ln-p dash" d="M595 140 C595 180 470 175 470 206" marker-end="url(#ahp)"/>
+          <text class="tm tp" x="600" y="186">if step 2 is missing</text>
+
+          <rect class="box-p" x="260" y="210" width="380" height="110" rx="12"/>
+          <text class="t tb tp" x="280" y="240">Antibiotics kill the rare few</text>
+          <text class="t" x="280" y="266">Primary bile acids (taurocholate) pile up.</text>
+          <text class="t" x="280" y="290">They are the alarm clock for</text>
+          <text class="t" x="280" y="310"><tspan font-style="italic">C. difficile</tspan> spores, which wake and grow.</text>
+
+          <rect class="box-v" x="672" y="210" width="252" height="110" rx="12"/>
+          <text class="t tb tv" x="690" y="240">Secondary bile acids</text>
+          <text class="t" x="690" y="266">DCA and LCA stop</text>
+          <text class="t" x="690" y="290"><tspan font-style="italic">C. difficile</tspan> from growing</text>
+          <text class="t" x="690" y="310">and making toxin.</text>
+        </svg>
+      </div>
+      <figcaption>Mechanism from Buffie et al. 2015 (Nature): restoring Clostridium scindens alone restored resistance in antibiotic-treated mice.</figcaption>
+    </figure>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg class="mw5" viewBox="0 0 620 190" role="img" aria-labelledby="fmtT fmtD">
+          <title id="fmtT">Cure rates for recurrent C. difficile infection</title>
+          <desc id="fmtD">Donor stool infusion cured 81 percent after one infusion, vancomycin 31 percent, vancomycin plus bowel washout 23 percent.</desc>
+          <!-- x0=230, 100% = 360px -->
+          <line class="grid" x1="230" y1="18" x2="230" y2="160"/>
+          <line class="grid" x1="410" y1="18" x2="410" y2="160"/>
+          <line class="grid" x1="590" y1="18" x2="590" y2="160"/>
+          <text class="tm" x="230" y="180" text-anchor="middle">0%</text>
+          <text class="tm" x="410" y="180" text-anchor="middle">50%</text>
+          <text class="tm" x="590" y="180" text-anchor="middle">100%</text>
+
+          <text class="t tb" x="218" y="46" text-anchor="end">Donor microbes</text>
+          <rect class="fv" x="230" y="26" width="291.6" height="30" rx="4"/>
+          <text class="tl" x="530" y="49">81%</text>
+
+          <text class="t" x="218" y="92" text-anchor="end">Vancomycin</text>
+          <rect class="fm" x="230" y="72" width="111.6" height="30" rx="4" opacity=".55"/>
+          <text class="tl" x="350" y="95">31%</text>
+
+          <text class="t" x="218" y="138" text-anchor="end">Vanco + bowel wash</text>
+          <rect class="fm" x="230" y="118" width="82.8" height="30" rx="4" opacity=".55"/>
+          <text class="tl" x="322" y="141">23%</text>
+        </svg>
+      </div>
+      <figcaption>Recurrent C. difficile resolved without relapse. van Nood et al. 2013, NEJM; n = 16, 13, 13. The trial stopped early because donor stool was clearly better.</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Antibiotics empty the building. That's when C. difficile, a hospital superbug, moves in. Putting a healthy community back cures most cases.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Nutrient niches.</b> A pathogen must find a nutrient no resident is already using. Commensal <i>E. coli</i> strains that use the same sugars as pathogenic <i>E. coli</i> can block their colonisation in mice. Diversity covers more niches.</li>
+          <li><b>Oxygen and acid.</b> The hypoxic wall (Payment No. 2) starves aerobic respirers. Undissociated SCFAs at low pH cross bacterial membranes and acidify the inside of susceptible pathogens like <i>Salmonella</i>.</li>
+          <li><b>Weapons.</b> Residents secrete bacteriocins and microcins, and <i>Bacteroides fragilis</i> uses a <code>type VI secretion system</code> to inject toxins into neighbours on contact.</li>
+          <li><b>Bile chemistry.</b> BSH deconjugation is widespread (<i>Lactobacillus</i>, <i>Bifidobacterium</i>, <i>Bacteroides</i>, Clostridia). 7α-dehydroxylation via the <code>bai</code> operon belongs to a tiny minority. <i>C. difficile</i> spores germinate on taurocholate plus glycine as co-germinant. Losing that minority tips the balance <span class="cite">Buffie 2015</span>.</li>
+          <li><b>The loop.</b> The ~3 g bile acid pool cycles between liver and gut several times a day. About 0.5 g a day escapes to the colon and is replaced by new synthesis, which is why microbial bile chemistry also controls cholesterol turnover.</li>
+          <li><b>From stool to medicine.</b> The U.S. FDA has approved two microbiome products for preventing recurrent C. difficile: <i>Rebyota</i> (2022, rectal) and <i>Vowst</i> (2023, oral capsules of purified Bacillota spores).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYMENT 4: IMMUNE ================= -->
+<section class="slide" id="immune">
+  <div class="wrap">
+    <div class="eyebrow pay"><span class="no">4</span>Payment · Training</div>
+    <h2>They teach your immune system calm versus attack</h2>
+    <p class="lede">The gut holds the largest collection of immune cells in your body. Specific microbes send specific signals that push it toward tolerance or toward defence.</p>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg class="mw6" viewBox="0 0 680 270" role="img" aria-labelledby="seeT seeD">
+          <title id="seeT">The immune seesaw</title>
+          <desc id="seeD">A balance with alert cells (Th17) on the left and calming cells (regulatory T cells) on the right. Microbial signals set the balance. Too far left means inflammation; too far right means weak defence.</desc>
+          <polygon class="fm" points="340,170 310,230 370,230" opacity=".7"/>
+          <rect class="fm" x="300" y="230" width="80" height="8" rx="3" opacity=".7"/>
+          <line x1="80" y1="170" x2="600" y2="170" style="stroke:var(--ink);stroke-width:5;stroke-linecap:round"/>
+          <!-- left pan -->
+          <circle class="fp" cx="130" cy="128" r="38" opacity=".9"/>
+          <text class="t tb" x="130" y="133" text-anchor="middle" style="fill:var(--panel)">Th17</text>
+          <text class="t tb tp" x="130" y="60" text-anchor="middle">Alert</text>
+          <text class="tm" x="130" y="80" text-anchor="middle">IL-17 · IL-22</text>
+          <text class="tm" x="130" y="200" text-anchor="middle">pushed by</text>
+          <text class="tmi" x="130" y="216" text-anchor="middle">segmented filamentous</text>
+          <text class="tmi" x="130" y="232" text-anchor="middle">bacteria (SFB)</text>
+          <!-- right pan -->
+          <circle class="fv" cx="550" cy="128" r="38" opacity=".9"/>
+          <text class="t tb" x="550" y="133" text-anchor="middle" style="fill:var(--panel)">Treg</text>
+          <text class="t tb tv" x="550" y="60" text-anchor="middle">Calm</text>
+          <text class="tm" x="550" y="80" text-anchor="middle">IL-10 · TGF-β</text>
+          <text class="tm" x="550" y="200" text-anchor="middle">pushed by</text>
+          <text class="tmi" x="550" y="216" text-anchor="middle">Clostridia (butyrate),</text>
+          <text class="tmi" x="550" y="232" text-anchor="middle">Bacteroides fragilis</text>
+          <text class="tm" x="340" y="258" text-anchor="middle">your microbiome sets the balance</text>
+          <text class="tm tp" x="20" y="24">too far → inflammation, autoimmunity</text>
+          <text class="tm tv" x="660" y="24" text-anchor="end">too far → weak defence</text>
+        </svg>
+      </div>
+
+      <div class="sig" role="table" aria-label="Microbial signals and immune effects">
+        <div class="sig-row sig-head-row" role="row">
+          <div class="sig-head" role="columnheader">Microbe</div>
+          <div class="sig-head" role="columnheader">Signal</div>
+          <div class="sig-head" role="columnheader">Sensed by</div>
+          <div class="sig-head" role="columnheader">Result</div>
+        </div>
+        <div class="sig-row" role="row">
+          <div role="cell"><b>Clostridia</b>clusters IV &amp; XIVa</div>
+          <div role="cell"><code>butyrate</code></div>
+          <div role="cell">HDAC inhibition at the <code>Foxp3</code> gene in naïve T cells</div>
+          <div role="cell">More colonic regulatory T cells<br><span class="tag calm">calm</span></div>
+        </div>
+        <div class="sig-row" role="row">
+          <div role="cell"><b><i>Bacteroides fragilis</i></b></div>
+          <div role="cell"><code>polysaccharide A</code></div>
+          <div role="cell"><code>TLR2</code> on T cells</div>
+          <div role="cell">IL-10; protects mice from colitis<br><span class="tag calm">calm</span></div>
+        </div>
+        <div class="sig-row" role="row">
+          <div role="cell"><b>Segmented filamentous bacteria</b></div>
+          <div role="cell">tight attachment to the wall</div>
+          <div role="cell">epithelial serum amyloid A</div>
+          <div role="cell">Th17 cells; fight <i>Citrobacter</i><br><span class="tag alert">alert</span></div>
+        </div>
+        <div class="sig-row" role="row">
+          <div role="cell"><b><i>Lactobacillus reuteri</i></b></div>
+          <div role="cell"><code>indole-3-aldehyde</code> from tryptophan</div>
+          <div role="cell"><code>AhR</code> in ILC3 cells</div>
+          <div role="cell">IL-22 → antimicrobial peptides<br><span class="tag alert">defend</span></div>
+        </div>
+        <div class="sig-row" role="row">
+          <div role="cell"><b>Whole community</b></div>
+          <div role="cell">peptidoglycan fragments</div>
+          <div role="cell"><code>NOD1</code>, systemically</div>
+          <div role="cell">Primes bone-marrow neutrophils<br><span class="tag alert">ready</span></div>
+        </div>
+      </div>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>No microbes, no training. Mice raised sterile have stunted gut immunity, and some parts of it overreact for life.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Tregs from fermentation.</b> A consortium of 17 human Clostridia strains induced colonic Foxp3⁺ Tregs in mice <span class="cite">Atarashi 2013</span>. Butyrate raises histone acetylation at the Foxp3 <code>CNS1</code> enhancer <span class="cite">Furusawa 2013; Arpaia 2013</span>, and SCFAs acting through FFAR2 expand colonic Tregs <span class="cite">Smith 2013</span>.</li>
+          <li><b>A symbiosis factor.</b> <i>B. fragilis</i> polysaccharide A signals through TLR2 on CD4⁺ T cells to drive IL-10 and protect against experimental colitis <span class="cite">Mazmanian 2008</span>.</li>
+          <li><b>One microbe, one cell type.</b> SFB alone were enough to induce intestinal Th17 cells <span class="cite">Ivanov 2009</span>. Useful against pathogens, but the same Th17 push worsened autoimmune arthritis in a susceptible mouse strain.</li>
+          <li><b>Tryptophan as a language.</b> Bacterial indoles activate the aryl hydrocarbon receptor, driving IL-22 from ILC3s and resistance to <i>Candida</i> <span class="cite">Zelante 2013</span>.</li>
+          <li><b>Reach beyond the gut.</b> Peptidoglycan fragments in blood, sensed by NOD1, prime neutrophils in bone marrow <span class="cite">Clarke 2010</span>. The gut sets the systemic baseline.</li>
+          <li><b>An early-life window.</b> Germ-free mice accumulate iNKT cells in colon and lung and develop worse colitis and allergic airway disease. Colonising them as newborns prevents this; colonising adults doesn't <span class="cite">Olszak 2012</span>.</li>
+          <li><b>The human echo.</b> C-section birth, early antibiotics and urban living are repeatedly associated with more allergy and autoimmunity. The "old friends" idea explains this as missed training. The associations are consistent; causation in humans is still being tested.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYMENT 5: CHEMISTRY ================= -->
+<section class="slide" id="chem">
+  <div class="wrap">
+    <div class="eyebrow pay"><span class="no">5</span>Payment · Chemistry</div>
+    <h2>They run a chemistry lab you were born without</h2>
+    <p class="lede">Vitamins, plant compounds and even your medicines pass through microbial hands. Same molecule in, different molecule out.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="kind">Vitamins</div>
+        <div class="chain"><span>Nothing</span><span class="ar">→</span><span class="out">Vitamin K2</span></div>
+        <div class="by">Bacteroides, E. coli · menaquinones</div>
+        <p>Bacteria also make <b>folate, biotin, riboflavin and B12</b>. Their share of your total needs is uncertain, and colonic B12 is made below where you absorb it, so you still need it from food.</p>
+      </div>
+      <div class="card">
+        <div class="kind">Plant compounds</div>
+        <div class="chain"><span>Ellagitannins</span><span class="ar">→</span><span class="out">Urolithin A</span></div>
+        <div class="by">Gordonibacter, Ellagibacter</div>
+        <p>From pomegranate, walnuts and berries. Only some people carry the right microbes, so the same food gives different people <b>different molecules</b>.</p>
+      </div>
+      <div class="card">
+        <div class="kind">Plant compounds</div>
+        <div class="chain"><span>Soy daidzein</span><span class="ar">→</span><span class="out">Equol</span></div>
+        <div class="by">Slackia, Adlercreutzia</div>
+        <p>Roughly <b>30–50% of people</b> are "equol producers". Producer status may explain mixed results in soy studies.</p>
+      </div>
+      <div class="card">
+        <div class="kind">Heart drug</div>
+        <div class="chain"><span>Digoxin</span><span class="ar">→</span><span class="out">Inactive form</span></div>
+        <div class="by">Eggerthella lenta · cgr genes</div>
+        <p>Some strains reduce digoxin and lower its effect. Dietary protein suppresses the enzyme in mice <span class="cite">Haiser 2013</span>.</p>
+      </div>
+      <div class="card">
+        <div class="kind">Parkinson's drug</div>
+        <div class="chain"><span>L-dopa</span><span class="ar">→</span><span class="out">Dopamine (wrong place)</span></div>
+        <div class="by">Enterococcus faecalis · TyrDC</div>
+        <p>Converted in the gut before reaching the brain. The standard add-on, carbidopa, doesn't block the <b>bacterial</b> enzyme <span class="cite">Maini Rekdal 2019</span>.</p>
+      </div>
+      <div class="card">
+        <div class="kind">Cancer drug</div>
+        <div class="chain"><span>Inactive SN-38G</span><span class="ar">→</span><span class="out">Toxic SN-38</span></div>
+        <div class="by">bacterial β-glucuronidases</div>
+        <p>Your liver neutralises irinotecan's active form; gut bacteria undo it, causing <b>severe diarrhoea</b>. Blocking the bacterial enzyme protected mice <span class="cite">Wallace 2010</span>.</p>
+      </div>
+    </div>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Two people swallow the same pill or the same pomegranate. Their microbes decide what actually arrives.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Scale of drug metabolism.</b> When 76 gut strains were tested against 271 oral drugs, 176 drugs were significantly metabolised by at least one strain <span class="cite">Zimmermann 2019</span>. Gene-level mapping found the responsible enzymes, enabling prediction from a metagenome.</li>
+          <li><b>Reactions microbes favour.</b> Reductions (azo and nitro groups, double bonds), hydrolysis (glucuronides, amides, esters), deconjugation, dehydroxylation and decarboxylation. The colon is anaerobic, so reductive chemistry dominates, the opposite of your liver's oxidative CYP450 system.</li>
+          <li><b>Hormone-like bile signals.</b> Microbially modified bile acids act on <code>FXR</code> in the ileum, which releases <code>FGF19</code> and tells the liver to slow bile synthesis via <code>CYP7A1</code>. They also act on <code>TGR5</code> on L-cells, raising GLP-1. Microbes are effectively editing an endocrine signal.</li>
+          <li><b>Metabotypes.</b> For urolithins, people fall into producer groups (A, B, or none), and the group shifts with age and health. The idea of a metabotype is a fair way to think about personal response to plant foods.</li>
+          <li><b>Practical consequence.</b> Long antibiotic courses can reduce vitamin K status, and drugs like digoxin show unexplained variation partly due to microbial genes. Precision dosing using microbiome data is an active research area, not routine care.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAYMENT 6: SIGNALS ================= -->
+<section class="slide" id="signals">
+  <div class="wrap">
+    <div class="eyebrow pay"><span class="no">6</span>Payment · Messages</div>
+    <h2>They send signals to your brain, appetite and fat</h2>
+    <p class="lede">Microbial molecules trigger gut hormones and nerves. The effects travel well beyond the gut.</p>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg class="mw6" viewBox="0 0 760 430" role="img" aria-labelledby="hubT hubD">
+          <title id="hubT">Signals from gut microbes to the rest of the body</title>
+          <desc id="hubD">Gut microbes at the centre connect to the brain through the vagus nerve and molecules, to appetite through GLP-1 and PYY, to the liver through propionate and bile acids, to fat through energy harvest, and to the immune system everywhere.</desc>
+          <line class="ln-v" x1="380" y1="150" x2="380" y2="86"/>
+          <line class="ln-v" x1="314" y1="200" x2="212" y2="206"/>
+          <line class="ln-v" x1="446" y1="200" x2="548" y2="206"/>
+          <line class="ln-v" x1="330" y1="260" x2="240" y2="336"/>
+          <line class="ln-v" x1="430" y1="260" x2="520" y2="336"/>
+
+          <circle cx="380" cy="214" r="72" style="fill:color-mix(in srgb, var(--violet) 16%, var(--panel));stroke:var(--violet);stroke-width:2"/>
+          <text class="tl" x="380" y="210" text-anchor="middle">Gut</text>
+          <text class="tl" x="380" y="236" text-anchor="middle">microbes</text>
+
+          <rect class="box" x="270" y="18" width="220" height="68" rx="12"/>
+          <text class="t tb" x="380" y="46" text-anchor="middle">Brain</text>
+          <text class="tm" x="380" y="68" text-anchor="middle">vagus nerve · SCFAs · GABA</text>
+
+          <rect class="box" x="10" y="172" width="202" height="68" rx="12"/>
+          <text class="t tb" x="111" y="200" text-anchor="middle">Liver</text>
+          <text class="tm" x="111" y="222" text-anchor="middle">propionate · bile acids</text>
+
+          <rect class="box" x="548" y="172" width="202" height="68" rx="12"/>
+          <text class="t tb" x="649" y="200" text-anchor="middle">Fat tissue</text>
+          <text class="tm" x="649" y="222" text-anchor="middle">energy harvest · ANGPTL4</text>
+
+          <rect class="box" x="90" y="336" width="240" height="68" rx="12"/>
+          <text class="t tb" x="210" y="364" text-anchor="middle">Appetite &amp; insulin</text>
+          <text class="tm" x="210" y="386" text-anchor="middle">GLP-1 · PYY from L-cells</text>
+
+          <rect class="box" x="430" y="336" width="240" height="68" rx="12"/>
+          <text class="t tb" x="550" y="364" text-anchor="middle">Gut serotonin</text>
+          <text class="tm" x="550" y="386" text-anchor="middle">~90% of the body's supply</text>
+        </svg>
+      </div>
+      <figcaption>Most mechanisms here come from mouse studies. In humans, most findings are associations.</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>In mice, the evidence is strong and causal. In people, we mostly see correlations so far. Keep both in mind when you read headlines.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Appetite.</b> SCFAs on FFAR2/3 in enteroendocrine L-cells release GLP-1 and PYY (satiety, insulin secretion). Colonic acetate reached the hypothalamus and reduced appetite in mice <span class="cite">Frost 2014</span>. Delivering propionate directly to the human colon reduced weight gain over 24 weeks <span class="cite">Chambers 2015</span>.</li>
+          <li><b>Serotonin.</b> About 90% of the body's serotonin is made by enterochromaffin cells. Spore-forming bacteria raise their <code>TPH1</code> expression through SCFAs and secondary bile acids <span class="cite">Yano 2015</span>. Gut serotonin doesn't cross the blood–brain barrier; it acts on motility, platelets and bone.</li>
+          <li><b>Vagus nerve.</b> <i>Lactobacillus rhamnosus</i> JB-1 changed brain GABA receptor expression and anxiety-like behaviour in mice. Cutting the vagus nerve abolished the effect <span class="cite">Bravo 2011</span>.</li>
+          <li><b>Stress axis.</b> Germ-free mice show an exaggerated cortisol-equivalent response to restraint stress, reversed by early colonisation with <i>Bifidobacterium infantis</i> <span class="cite">Sudo 2004</span>. Microglia, the brain's immune cells, stay immature without microbial SCFAs <span class="cite">Erny 2015</span>.</li>
+          <li><b>Human mood.</b> <i>Coprococcus</i> and <i>Dialister</i> were depleted in people with depression across two large cohorts, even after adjusting for antidepressants <span class="cite">Valles-Colomer 2019</span>. Association, not proof.</li>
+          <li><b>Fat storage.</b> Germ-free mice are leaner and resist Western-diet obesity. Microbes suppress gut <code>ANGPTL4</code> (FIAF), raising lipoprotein lipase activity and fat storage <span class="cite">Bäckhed 2004, 2007</span>. Microbiota from the obese twin of a discordant pair made germ-free mice fatter; lean-twin microbes invaded and protected, but only on a high-fibre diet <span class="cite">Ridaura 2013</span>.</li>
+          <li><b>Blood sugar.</b> Gut microbiome features helped predict individual post-meal glucose spikes to identical foods <span class="cite">Zeevi 2015</span>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINE PRINT ================= -->
+<section class="slide" id="sour">
+  <div class="wrap">
+    <div class="eyebrow">The fine print</div>
+    <h2>The same tenants can pay in poison</h2>
+    <p class="lede">Microbes make what their food and surroundings allow. Change the conditions and the payments change.</p>
+
+    <div class="cards">
+      <div class="card bad">
+        <div class="kind">Heart</div>
+        <div class="chain"><span>Choline, carnitine</span><span class="ar">→</span><span>TMA</span><span class="ar">→</span><span class="out">TMAO</span></div>
+        <div class="by">cutC/D lyases · liver FMO3</div>
+        <p>From red meat and eggs. Higher TMAO predicted heart attack and stroke risk <span class="cite">Tang 2013</span> and made platelets hyper-reactive in mice <span class="cite">Zhu 2016</span>.</p>
+      </div>
+      <div class="card bad">
+        <div class="kind">Gut lining</div>
+        <div class="chain"><span>Saturated fat → taurine bile</span><span class="ar">→</span><span class="out">H₂S</span></div>
+        <div class="by">Bilophila wadsworthia</div>
+        <p>Milk-fat diets bloomed this sulfite reducer and triggered colitis in genetically susceptible mice <span class="cite">Devkota 2012</span>.</p>
+      </div>
+      <div class="card bad">
+        <div class="kind">DNA</div>
+        <div class="chain"><span>pks⁺ E. coli</span><span class="ar">→</span><span class="out">Colibactin</span></div>
+        <div class="by">genotoxin · DNA cross-links</div>
+        <p>Its distinct mutation fingerprint appears in human colorectal cancer genomes <span class="cite">Pleguezuelos-Manzano 2020</span>.</p>
+      </div>
+      <div class="card bad">
+        <div class="kind">Liver &amp; colon</div>
+        <div class="chain"><span>Excess bile</span><span class="ar">→</span><span class="out">Deoxycholic acid</span></div>
+        <div class="by">7α-dehydroxylating Clostridia</div>
+        <p>Protective against C. difficile, but in excess it damages DNA. In obese mice it promoted liver cancer <span class="cite">Yoshimoto 2013</span>.</p>
+      </div>
+      <div class="card bad">
+        <div class="kind">Metabolism</div>
+        <div class="chain"><span>Leaky barrier</span><span class="ar">→</span><span class="out">LPS in blood</span></div>
+        <div class="by">TLR4 · "metabolic endotoxemia"</div>
+        <p>Low-grade LPS infusion alone caused weight gain and insulin resistance in mice, mimicking a high-fat diet <span class="cite">Cani 2007</span>.</p>
+      </div>
+      <div class="card bad">
+        <div class="kind">Tumours</div>
+        <div class="chain"><span>Oral microbe</span><span class="ar">→</span><span class="out">Colon tumours</span></div>
+        <div class="by">Fusobacterium nucleatum · FadA</div>
+        <p>Enriched inside colorectal tumours, and it travels with them into liver metastases <span class="cite">Bullman 2017</span>.</p>
+      </div>
+    </div>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>"Good bacteria" and "bad bacteria" is too simple. Context decides. Fibre-fed, the same community pays in butyrate. Fed mostly meat and fat, it pays in TMA, sulfide and harsh bile acids.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Saccharolytic vs proteolytic fermentation.</b> When carbohydrates run out in the distal colon, bacteria ferment protein instead, producing ammonia, phenols, p-cresol, indoxyl sulfate, branched-chain fatty acids and H₂S. Indoxyl sulfate and p-cresyl sulfate are uremic toxins that accumulate in kidney disease.</li>
+          <li><b>Pathobionts.</b> Organisms like pks⁺ <i>E. coli</i> or <i>Bilophila</i> live quietly in many healthy people. Disease depends on host genetics, diet, inflammation and community context.</li>
+          <li><b>TMAO caveat.</b> Fish contains preformed TMAO and fish-rich diets are linked to good heart health, and kidney function strongly drives TMAO levels. Its role as a cause rather than a marker is still debated.</li>
+          <li><b>Inflammation feeds the wrong side.</b> Gut inflammation generates nitrate and tetrathionate, which oxygen-tolerant <i>Enterobacteriaceae</i> and <i>Salmonella</i> use for respiration. Inflammation and dysbiosis can lock each other in.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIFETIME ================= -->
+<section class="slide" id="life">
+  <div class="wrap">
+    <div class="eyebrow">The lease over a lifetime</div>
+    <h2>Signed at birth, renegotiated for life</h2>
+    <p class="lede">You start out almost sterile. The first three years decide much of who moves in.</p>
+
+    <figure class="fig">
+      <div class="scroll">
+        <svg id="lifeSvg" class="mw7" viewBox="0 0 900 300" role="img" aria-labelledby="lifeT lifeD">
+          <title id="lifeT">Gut microbial diversity across a lifetime (schematic)</title>
+          <desc id="lifeD">Diversity starts low at birth, climbs through infancy, reaches an adult-like level by about age three, stays stable through adulthood with a dip after antibiotics, and tends to fall in frail old age.</desc>
+          <line class="grid" x1="40" y1="250" x2="880" y2="250"/>
+          <text class="tm" x="40" y="24">diversity (schematic, shape only)</text>
+          <g id="lifeTicks"></g>
+          <path id="lifeArea" style="fill:var(--violet);opacity:.12"/>
+          <path id="lifeLine" style="fill:none;stroke:var(--violet);stroke-width:3;stroke-linejoin:round;stroke-linecap:round"/>
+          <g id="lifeMarks"></g>
+        </svg>
+      </div>
+      <ol class="steps">
+        <li><div><b>Birth</b>Vaginal birth seeds mother's gut and vaginal microbes. C-section babies get more skin and hospital microbes and miss <i>Bacteroides</i> early on.</div></li>
+        <li><div><b>Breast milk</b>Contains sugars babies can't digest. They exist to feed <i>Bifidobacterium</i>.</div></li>
+        <li><div><b>Solid food</b>Fibre arrives, fibre-eaters follow, butyrate production climbs.</div></li>
+        <li><div><b>Age ~3</b>The community now looks adult-like and settles.</div></li>
+        <li><div><b>Antibiotics</b>Most species return within weeks; some are still missing months later.</div></li>
+        <li><div><b>Old age</b>Diversity tends to fall with frailty, diet narrowing and medicines.</div></li>
+      </ol>
+      <figcaption>Curve is a drawing of the general pattern, not measured data.</figcaption>
+    </figure>
+
+    <div class="mags">
+      <div class="mag m1"><h3><i class="lens"></i>At 1×</h3>
+        <p>Human milk carries hundreds of sugar shapes the baby can't use. Evolution spends that energy to feed the right tenants first.</p>
+      </div>
+      <div class="mag m2"><h3><i class="lens"></i>At 1000×</h3>
+        <ul>
+          <li><b>Birth mode.</b> In ~600 UK babies, C-section births showed disrupted transmission of maternal strains and more opportunistic hospital pathogens such as <i>Enterococcus</i> and <i>Klebsiella</i>; differences largely faded by weaning <span class="cite">Shao 2019</span>.</li>
+          <li><b>Human milk oligosaccharides.</b> Over 150 structures; the third-largest solid component of milk after lactose and fat. <i>B. longum</i> subsp. <i>infantis</i> carries a ~43 kb gene cluster to import and digest them <span class="cite">Sela 2008</span>. The result is an acidic, acetate-rich infant gut that resists pathogens.</li>
+          <li><b>Maturation.</b> Large cohorts (TEDDY, ~900 children) show stepwise development, with cessation of breastfeeding the biggest single shift toward an adult-like, Bacillota-rich community by ~2–3 years <span class="cite">Stewart 2018</span>.</li>
+          <li><b>Adult stability.</b> About 60% of strains in an adult gut were still present after five years, with Bacteroidetes and Actinobacteria especially stable <span class="cite">Faith 2013</span>.</li>
+          <li><b>Antibiotic recovery.</b> After a 4-day, three-drug course in healthy men, most species returned within ~1.5 months, but several common species were still undetectable at 6 months <span class="cite">Palleja 2018</span>.</li>
+          <li><b>Generational loss.</b> Mice on low-fibre diets lost taxa that did not return when fibre was restored, and the loss compounded across generations <span class="cite">Sonnenburg 2016</span>. Industrialised populations carry fewer taxa than hunter-gatherers such as the Hadza, whose microbiome also cycles with the seasons <span class="cite">Smits 2017</span>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHOD ================= -->
+<section class="slide" id="method">
+  <div class="wrap">
+    <div class="eyebrow">For the data people</div>
+    <h2>How we know, and why it's hard</h2>
+    <p class="lede">A stool sample is a snapshot of a moving river, reported as percentages. That creates statistical traps.</p>
+
+    <figure class="fig">
+      <div class="pipe">
+        <div><span class="n">STEP 1</span><b>Sample</b><p>Stool, frozen fast. Mostly reflects the distal colon lumen, not the mucus layer.</p></div>
+        <div><span class="n">STEP 2</span><b>Extract DNA</b><p>Lysis method biases results: tough Gram-positive walls break less easily.</p></div>
+        <div><span class="n">STEP 3a</span><b>16S amplicon</b><p>One gene region (often V4, ~250 bp). Cheap, genus-level. ASVs via DADA2.</p></div>
+        <div><span class="n">STEP 3b</span><b>Shotgun</b><p>All DNA. Species, strains, genes and pathways (MetaPhlAn, HUMAnN).</p></div>
+        <div><span class="n">STEP 4</span><b>Count table</b><p>Reads per taxon per sample. Sparse, overdispersed and compositional.</p></div>
+      </div>
+
+      <div class="traps">
+        <div class="trap"><b>Everything sums to 100%</b><p>If one taxon doubles, all others look smaller even if unchanged. Use log-ratio methods (CLR, ALDEx2, ANCOM-BC) instead of raw correlations <span class="cite">Gloor 2017</span>.</p></div>
+        <div class="trap"><b>Total load varies ~10×</b><p>Flow-cytometry counts showed some "disease shifts" were really lower total microbial load, invisible in relative data <span class="cite">Vandeputte 2017</span>.</p></div>
+        <div class="trap"><b>Transit time confounds</b><p>Stool consistency was the top single covariate of composition in 1,100+ Belgians <span class="cite">Falony 2016</span>. Slow transit changes who grows.</p></div>
+        <div class="trap"><b>Drugs masquerade as disease</b><p>The apparent diabetes signature was largely a metformin signature <span class="cite">Forslund 2015</span>. PPIs and laxatives do the same.</p></div>
+        <div class="trap"><b>Mice aren't people</b><p>Human-microbe transfers into germ-free mice can exaggerate effects; anatomy, diet and immunity differ. Treat them as hypothesis generators.</p></div>
+        <div class="trap"><b>Causality ladder</b><p>Cohort association → transfer to germ-free animals → defined consortia → human randomised trials. Few claims reach the top rung.</p></div>
+      </div>
+      <figcaption>Other layers: metatranscriptomics (which genes are active), metabolomics (what is actually made), and culturomics (growing the "unculturable").</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= KEEP ================= -->
+<section class="slide" id="keep">
+  <div class="wrap">
+    <div class="eyebrow">Keeping good tenants</div>
+    <h2>What actually helps, ranked by evidence</h2>
+    <p class="lede">The strongest moves are boring. Feed the fibre-eaters and avoid wiping them out.</p>
+
+    <div class="cards">
+      <div class="card">
+        <span class="chip ev-strong">STRONG</span>
+        <h4>Skip antibiotics you don't need</h4>
+        <p>Each course knocks out taxa, and some stay missing for months. When antibiotics are needed, take them; the point is avoiding the unnecessary ones.</p>
+      </div>
+      <div class="card">
+        <span class="chip ev-strong">STRONG · ONE USE</span>
+        <h4>Donor microbes for recurrent C. difficile</h4>
+        <p>Cures most recurrent cases. For obesity, IBD, autism and other conditions it remains experimental.</p>
+      </div>
+      <div class="card">
+        <span class="chip ev-mod">MODERATE</span>
+        <h4>Eat many kinds of plant fibre</h4>
+        <p>Different fibres feed different specialists. People eating <b>30+ plant types a week</b> had more diverse microbiomes than those eating 10 or fewer (observational) <span class="cite">McDonald 2018</span>. Most guidelines suggest about 25–38 g of fibre a day; most people eat less.</p>
+      </div>
+      <div class="card">
+        <span class="chip ev-early">EARLY</span>
+        <h4>Fermented foods</h4>
+        <p>In a 10-week trial of 36 adults, yogurt, kefir, kimchi and similar foods raised diversity and lowered 19 inflammatory proteins including IL-6. The high-fibre arm changed enzyme capacity but not diversity in that window <span class="cite">Wastyk 2021</span>.</p>
+      </div>
+      <div class="card">
+        <span class="chip ev-mixed">MIXED</span>
+        <h4>Probiotic supplements</h4>
+        <p>Strain-specific. Useful for some uses, such as preventing antibiotic-associated diarrhoea. After antibiotics, one probiotic <b>delayed</b> the native community's return compared with doing nothing <span class="cite">Suez 2018</span>.</p>
+      </div>
+      <div class="card">
+        <span class="chip ev-early">EARLY</span>
+        <h4>Regular exercise</h4>
+        <p>Six weeks of training raised butyrate-producing taxa in sedentary lean adults; the change reversed when training stopped <span class="cite">Allen 2018</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow">The whole thing in one sentence</div>
+    <blockquote>You rent out the dark end of your gut. Feed the tenants fibre and they pay in <span>butyrate, sealed walls and a calm immune system.</span> Starve or bomb them and squatters move in.</blockquote>
+    <div class="chainline" aria-label="Causal chain">
+      <span>fibre</span><i>→</i><span>fermentation</span><i>→</i><span>butyrate</span><i>→</i><span>O₂-free wall</span><i>→</i><span>anaerobes win</span><i>→</i><span>no room for pathogens</span><i>→</i><span>calm immunity</span>
+    </div>
+
+    <div class="refs">
+      <h3>Key studies cited</h3>
+      <p>Allen JM et al. 2018. Med Sci Sports Exerc.</p>
+      <p>Arpaia N et al. 2013. Nature.</p>
+      <p>Atarashi K et al. 2013. Nature.</p>
+      <p>Bäckhed F et al. 2004, 2007. PNAS.</p>
+      <p>Bravo JA et al. 2011. PNAS.</p>
+      <p>Buffie CG et al. 2015. Nature.</p>
+      <p>Bullman S et al. 2017. Science.</p>
+      <p>Byndloss MX et al. 2017. Science.</p>
+      <p>Cani PD et al. 2007. Diabetes.</p>
+      <p>Cantarel BL et al. 2012. Cell.</p>
+      <p>Chambers ES et al. 2015. Gut.</p>
+      <p>Clarke TB et al. 2010. Nat Med.</p>
+      <p>Cummings JH et al. 1987. Gut.</p>
+      <p>Depommier C et al. 2019. Nat Med.</p>
+      <p>Desai MS et al. 2016. Cell.</p>
+      <p>Devkota S et al. 2012. Nature.</p>
+      <p>Donohoe DR et al. 2012. Mol Cell.</p>
+      <p>Erny D et al. 2015. Nat Neurosci.</p>
+      <p>Faith JJ et al. 2013. Science.</p>
+      <p>Falony G et al. 2016. Science.</p>
+      <p>Forslund K et al. 2015. Nature.</p>
+      <p>Frost G et al. 2014. Nat Commun.</p>
+      <p>Furusawa Y et al. 2013. Nature.</p>
+      <p>Gloor GB et al. 2017. Front Microbiol.</p>
+      <p>Haiser HJ et al. 2013. Science.</p>
+      <p>Human Microbiome Project Consortium 2012. Nature.</p>
+      <p>Ivanov II et al. 2009. Cell.</p>
+      <p>Johansson MEV et al. 2008. PNAS.</p>
+      <p>Maini Rekdal V et al. 2019. Science.</p>
+      <p>Mazmanian SK et al. 2008. Nature.</p>
+      <p>McDonald D et al. 2018. mSystems.</p>
+      <p>Olszak T et al. 2012. Science.</p>
+      <p>Palleja A et al. 2018. Nat Microbiol.</p>
+      <p>Pleguezuelos-Manzano C et al. 2020. Nature.</p>
+      <p>Qin J et al. 2010. Nature.</p>
+      <p>Ridaura VK et al. 2013. Science.</p>
+      <p>Rivera-Chávez F et al. 2016. Cell Host Microbe.</p>
+      <p>Roediger WEW 1980. Gut.</p>
+      <p>Sela DA et al. 2008. PNAS.</p>
+      <p>Sender R, Fuchs S, Milo R 2016. PLoS Biol.</p>
+      <p>Shao Y et al. 2019. Nature.</p>
+      <p>Smith PM et al. 2013. Science.</p>
+      <p>Smits SA et al. 2017. Science.</p>
+      <p>Sonnenburg ED et al. 2016. Nature.</p>
+      <p>Stewart CJ et al. 2018. Nature.</p>
+      <p>Sudo N et al. 2004. J Physiol.</p>
+      <p>Suez J et al. 2018. Cell.</p>
+      <p>Tang WHW et al. 2013. NEJM.</p>
+      <p>Vaishnava S et al. 2011. Science.</p>
+      <p>Valles-Colomer M et al. 2019. Nat Microbiol.</p>
+      <p>van Nood E et al. 2013. NEJM.</p>
+      <p>Vandeputte D et al. 2017. Nature.</p>
+      <p>Vatanen T et al. 2016. Cell.</p>
+      <p>Wallace BD et al. 2010. Science.</p>
+      <p>Wastyk HC et al. 2021. Cell.</p>
+      <p>Yano JM et al. 2015. Cell.</p>
+      <p>Yoshimoto S et al. 2013. Nature.</p>
+      <p>Zeevi D et al. 2015. Cell.</p>
+      <p>Zelante T et al. 2013. Immunity.</p>
+      <p>Zhu W et al. 2016. Cell.</p>
+      <p>Zimmermann M et al. 2019. Nature.</p>
+    </div>
+    <p class="foot">An educational explainer, not medical advice. Many mechanisms here were shown in mice; human evidence is often associative.</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ---------- hero: drifting colonies on agar ---------- */
+(function(){
+  var cv = document.getElementById('petri');
+  if(!cv || !cv.getContext) return;
+  var ctx = cv.getContext('2d');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w=0, h=0, bugs=[], cols=[], running=false, raf=0;
+  function readColors(){
+    var cs = getComputedStyle(document.documentElement);
+    cols = [cs.getPropertyValue('--violet').trim()||'#5B3FA8', cs.getPropertyValue('--pink').trim()||'#C4325E', cs.getPropertyValue('--amber').trim()||'#A86A0E'];
+  }
+  function size(){
+    var dpr = Math.min(2, window.devicePixelRatio||1);
+    var r = cv.getBoundingClientRect(); w = r.width; h = r.height;
+    cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function seed(){
+    bugs = [];
+    var n = Math.max(30, Math.min(140, Math.round(w*h/7000)));
+    for(var i=0;i<n;i++){
+      var t = Math.random();
+      bugs.push({
+        x:Math.random()*w, y:Math.random()*h,
+        a:Math.random()*Math.PI*2, va:(Math.random()-.5)*.006,
+        vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.18,
+        kind: t<.12 ? 'mol' : (t<.72 ? 'rod' : 'coc'),
+        c: Math.random()<.55?0:1,
+        len: 12+Math.random()*16, r: 3+Math.random()*2.4,
+        chain: 1+Math.floor(Math.random()*3)
+      });
+    }
+  }
+  function capsule(x,y,len,r){
+    ctx.beginPath();
+    ctx.moveTo(x-len/2+r, y-r); ctx.lineTo(x+len/2-r, y-r);
+    ctx.arc(x+len/2-r, y, r, -Math.PI/2, Math.PI/2);
+    ctx.lineTo(x-len/2+r, y+r);
+    ctx.arc(x-len/2+r, y, r, Math.PI/2, Math.PI*1.5);
+    ctx.closePath(); ctx.fill();
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<bugs.length;i++){
+      var b = bugs[i];
+      ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.a);
+      if(b.kind==='mol'){ ctx.globalAlpha=.8; ctx.fillStyle=cols[2]; ctx.beginPath(); ctx.arc(0,0,2.4,0,Math.PI*2); ctx.fill(); }
+      else if(b.kind==='rod'){ ctx.globalAlpha=.7; ctx.fillStyle=cols[b.c]; capsule(0,0,b.len,b.r); }
+      else { ctx.globalAlpha=.7; ctx.fillStyle=cols[b.c];
+        for(var k=0;k<b.chain;k++){ ctx.beginPath(); ctx.arc(k*(b.r*2+1),0,b.r,0,Math.PI*2); ctx.fill(); } }
+      ctx.restore();
+    }
+  }
+  function step(){
+    for(var i=0;i<bugs.length;i++){
+      var b=bugs[i]; b.x+=b.vx; b.y+=b.vy; b.a+=b.va;
+      if(b.x<-30) b.x=w+30; if(b.x>w+30) b.x=-30;
+      if(b.y<-30) b.y=h+30; if(b.y>h+30) b.y=-30;
+    }
+    draw();
+    if(running) raf = requestAnimationFrame(step);
+  }
+  function start(){ if(reduce||running) return; running=true; raf=requestAnimationFrame(step); }
+  function stop(){ running=false; cancelAnimationFrame(raf); }
+  readColors(); size(); seed(); draw();
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?start():stop(); }); }).observe(cv);
+  } else start();
+  var to; window.addEventListener('resize', function(){ clearTimeout(to); to=setTimeout(function(){ size(); seed(); draw(); },150); });
+  if(window.matchMedia){ var mq=window.matchMedia('(prefers-color-scheme: dark)'); var f=function(){ readColors(); draw(); }; mq.addEventListener ? mq.addEventListener('change',f) : mq.addListener(f); }
+  new MutationObserver(function(){ readColors(); draw(); }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+
+/* ---------- colon wall interactive ---------- */
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var svg=document.getElementById('wall'); if(!svg) return;
+  function el(tag,attrs,parent){ var e=document.createElementNS(NS,tag); for(var k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+  function rng(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+  var X0=170, X1=895, CT=318, CB=388, NC=14, CW=(X1-X0)/NC;
+
+  // static: lumen, cells, blood
+  el('rect',{x:X0,y:0,width:X1-X0,height:CT,class:'lumen'},svg);
+  var stateLayer = el('g',{},svg);
+  for(var i=0;i<NC;i++){
+    var cx=X0+i*CW;
+    el('rect',{x:cx+1.5,y:CT,width:CW-3,height:CB-CT-4,rx:9,class:'cell'},svg);
+    el('ellipse',{cx:cx+CW/2,cy:CT+44,rx:9,ry:12,class:'nuc'},svg);
+  }
+  el('rect',{x:X0,y:CB,width:X1-X0,height:32,class:'blood'},svg);
+  var topLayer = el('g',{},svg);
+  // static labels
+  function lab(t,y,g,cls){ var e=el('text',{x:156,y:y,'text-anchor':'end',class:cls||'tm'},g); e.textContent=t; return e; }
+  lab('Lumen',60,svg,'tmi'); lab('Wall cells',CT+40,svg,'tmi'); lab('one cell thick',CT+56,svg); lab('Blood',CB+21,svg,'tmi');
+
+  var S = {
+    fed:{inner:72,outer:62,anaer:54,eaters:0,but:26,o2l:0,path:0,cdiff:0,hot:0,
+         m:[3,3,0,0], tags:['high','thick','none','low'],
+         cap:'Fibre arrives and butyrate makers ferment it. Wall cells burn the butyrate and use up the oxygen at the surface. A thick mucus layer keeps bacteria about a hair’s width away from the wall.'},
+    starved:{inner:20,outer:44,anaer:34,eaters:12,but:5,o2l:3,path:3,cdiff:0,hot:4,
+         m:[1,1,1,1], tags:['low','thin','some','rising'],
+         cap:'No fibre. Hungry bacteria start eating the mucus itself. The protective layer thins, bacteria reach the wall, and the cells signal danger.'},
+    abx:{inner:46,outer:30,anaer:8,eaters:0,but:0,o2l:24,path:20,cdiff:6,hot:6,
+         m:[0,2,3,3], tags:['gone','patchy','high','high'],
+         cap:'Antibiotics wipe out the butyrate makers. Wall cells switch to burning sugar and stop using up oxygen. Oxygen and nitrate leak into the gut and feed oxygen-tolerant invaders like E. coli and Salmonella. C. difficile spores wake up.'}
+  };
+
+  function rod(g,x,y,ang,len,cls,extra){
+    var o=el('g',{transform:'translate('+x.toFixed(1)+' '+y.toFixed(1)+') rotate('+ang.toFixed(0)+')'},g);
+    var inner=el('g',{class:'bug',style:'animation-delay:'+(-Math.random()*3).toFixed(2)+'s'},o);
+    el('rect',{x:-len/2,y:-3.6,width:len,height:7.2,rx:3.6,class:cls},inner);
+    if(extra==='flag'){ el('path',{d:'M'+(len/2)+' 0 q5 -5 9 0 t9 0',class:'flag'},inner); }
+    if(extra==='spore'){ el('ellipse',{cx:len/2-5,cy:0,rx:4.2,ry:3.2,class:'spore'},inner); }
+    return o;
+  }
+  function coccus(g,x,y,n,cls){
+    var o=el('g',{transform:'translate('+x.toFixed(1)+' '+y.toFixed(1)+')'},g);
+    var inner=el('g',{class:'bug',style:'animation-delay:'+(-Math.random()*3).toFixed(2)+'s'},o);
+    for(var k=0;k<n;k++) el('circle',{cx:k*8.5,cy:0,r:4,class:cls},inner);
+  }
+  function dot(g,x,y,cls,r){ el('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:r||3.4,class:cls},g); }
+
+  var groups={};
+  Object.keys(S).forEach(function(key,idx){
+    var s=S[key], r=rng(41+idx*97);
+    var g=el('g',{class:'state','data-s':key},stateLayer);
+    var gt=el('g',{class:'state','data-s':key},topLayer);
+    var yMo=CT-s.inner-s.outer, yMi=CT-s.inner;
+    el('rect',{x:X0,y:yMo,width:X1-X0,height:s.outer,class:'mo'},g);
+    el('rect',{x:X0,y:yMi,width:X1-X0,height:s.inner,class:'mi'},g);
+    lab('Outer mucus',yMo+s.outer/2+4,g,'tmi');
+    lab('Inner mucus',yMi+s.inner/2+4,g,'tmi');
+    // inflamed cells
+    var used={};
+    for(var h=0;h<s.hot;h++){ var ci=Math.floor(r()*NC); if(used[ci]){h--; if(Object.keys(used).length>=NC)break; continue;} used[ci]=1;
+      el('rect',{x:X0+ci*CW+1.5,y:CT,width:CW-3,height:CB-CT-4,rx:9,class:'hot'},gt); }
+    // anaerobes
+    for(var a=0;a<s.anaer;a++){
+      var x=X0+12+r()*(X1-X0-24), y=10+r()*(yMi-18), t=r();
+      if(t<.5) rod(g,x,y,r()*180,14+r()*8,'fv');
+      else if(t<.82) rod(g,x,y,r()*180,13+r()*6,'fp');
+      else coccus(g,x,y,1+Math.floor(r()*3),'fv');
+    }
+    // mucus eaters touching wall
+    for(var e=0;e<s.eaters;e++){
+      var xe=X0+14+r()*(X1-X0-28), ye=yMi+3+r()*(s.inner-2);
+      rod(g,xe,Math.min(ye,CT-5),r()*180,14,r()<.5?'fp':'fv');
+    }
+    // butyrate
+    for(var b=0;b<s.but;b++){
+      var xb=X0+10+r()*(X1-X0-20), yb=yMi+r()*(s.inner+34);
+      dot(gt,xb,yb,'fa',3.4);
+    }
+    // oxygen: baseline in blood + lower cells
+    for(var o=0;o<12;o++){ dot(g,X0+10+r()*(X1-X0-20),CB+6+r()*20,'fo',3.2); }
+    for(var o2=0;o2<(key==='fed'?4:10);o2++){ dot(gt,X0+10+r()*(X1-X0-20),CT+50+r()*28,'fo',3); }
+    for(var ol=0;ol<s.o2l;ol++){ dot(gt,X0+10+r()*(X1-X0-20),110+r()*(CT-112),'fo',3.2); }
+    // invaders
+    for(var p=0;p<s.path;p++){
+      var xp=X0+16+r()*(X1-X0-50), yp=16+r()*(CT-34);
+      var o3=rod(gt,xp,yp,r()*360,18,'path-b','flag');
+    }
+    for(var c=0;c<s.cdiff;c++){
+      rod(gt,X0+16+r()*(X1-X0-40),20+r()*(yMo-10),r()*180,22,'fv','spore');
+    }
+    groups[key]=[g,gt];
+  });
+
+  var btns=document.querySelectorAll('.switch button');
+  var meters=['m-but','m-muc','m-o2','m-inv'].map(function(id){return document.getElementById(id);});
+  var cap=document.getElementById('wall-cap');
+  function show(key){
+    Object.keys(groups).forEach(function(k){ groups[k].forEach(function(g){ g.classList.toggle('on',k===key); }); });
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-s')===key ? 'true':'false'); });
+    var s=S[key];
+    meters.forEach(function(m,i){
+      var segs=m.querySelectorAll('.segs i');
+      segs.forEach(function(sg,j){ sg.classList.toggle('on', j<s.m[i]); });
+      m.querySelector('.lab span:last-child').textContent=s.tags[i];
+    });
+    cap.textContent=s.cap;
+  }
+  btns.forEach(function(b){ b.addEventListener('click',function(){ show(b.getAttribute('data-s')); }); });
+  show('fed');
+})();
+
+/* ---------- lifetime curve ---------- */
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var pts=[[40,238],[150,206],[240,166],[350,112],[500,92],[580,90],[625,150],[690,98],[770,104],[870,146]];
+  function smooth(p){
+    var d='M'+p[0][0]+' '+p[0][1];
+    for(var i=0;i<p.length-1;i++){
+      var p0=p[i-1]||p[i], p1=p[i], p2=p[i+1], p3=p[i+2]||p2;
+      var c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+      var c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+      d+=' C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+' '+c2x.toFixed(1)+' '+c2y.toFixed(1)+' '+p2[0]+' '+p2[1];
+    }
+    return d;
+  }
+  var d=smooth(pts);
+  document.getElementById('lifeLine').setAttribute('d',d);
+  document.getElementById('lifeArea').setAttribute('d',d+' L870 250 L40 250 Z');
+  var ticks=[[40,'birth'],[150,'6 mo'],[240,'1 yr'],[350,'3 yrs'],[500,'20'],[690,'45'],[870,'85+']];
+  var tg=document.getElementById('lifeTicks');
+  ticks.forEach(function(t){
+    var l=document.createElementNS(NS,'line'); l.setAttribute('x1',t[0]); l.setAttribute('x2',t[0]); l.setAttribute('y1',250); l.setAttribute('y2',256); l.setAttribute('class','grid'); tg.appendChild(l);
+    var tx=document.createElementNS(NS,'text'); tx.setAttribute('x',t[0]); tx.setAttribute('y',274); tx.setAttribute('text-anchor', t[0]<60?'start':(t[0]>860?'end':'middle')); tx.setAttribute('class','tm'); tx.textContent=t[1]; tg.appendChild(tx);
+  });
+  var lab=document.createElementNS(NS,'text'); lab.setAttribute('x',870); lab.setAttribute('y',294); lab.setAttribute('text-anchor','end'); lab.setAttribute('class','tm'); lab.textContent='age (stretched early on)'; tg.appendChild(lab);
+  var marks=[[40,238],[150,206],[240,166],[350,112],[625,150],[870,146]];
+  var mg=document.getElementById('lifeMarks');
+  marks.forEach(function(m,i){
+    var c=document.createElementNS(NS,'circle'); c.setAttribute('cx',m[0]); c.setAttribute('cy',m[1]); c.setAttribute('r',12); c.setAttribute('class','fv'); mg.appendChild(c);
+    var t=document.createElementNS(NS,'text'); t.setAttribute('x',m[0]); t.setAttribute('y',m[1]+4.5); t.setAttribute('text-anchor','middle'); t.setAttribute('class','tmi'); t.setAttribute('style','fill:var(--panel);font-weight:500'); t.textContent=String(i+1); mg.appendChild(t);
+  });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

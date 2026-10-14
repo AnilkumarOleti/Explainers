@@ -251,6 +251,12 @@
           "title": "The Night Shift",
           "blurb": "Why does sleep matter? While you sleep, your body cleans, repairs and files away the day.",
           "ask": "What does your body do while you sleep?"
+        },
+        {
+          "slug": "the-microbiome-lease",
+          "title": "The Microbiome Lease",
+          "blurb": "What do gut bacteria do for you? You give them fibre and a home; they pay in fuel, a sealed gut wall and a trained immune system.",
+          "ask": "What do the bacteria in your gut do for you?"
         }
       ]
     },
