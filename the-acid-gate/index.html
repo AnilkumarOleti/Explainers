@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Acid Gate | Explainers</title>
+<meta name="description" content="The same germ is often harmless on an empty stomach and dangerous on a full one. One dial explains why: stomach acid.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-acid-gate/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Acid Gate">
+<meta property="og:description" content="The same germ is often harmless on an empty stomach and dangerous on a full one. One dial explains why: stomach acid.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-acid-gate/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-acid-gate/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: single-column lab field-report; a vertical pH ramp as the spine motif.
+   Color: cool paper / deep ink neutrals + one navy UI accent; a scoped pH ramp
+   (red→green) used only on pH scales, and a scoped safe/danger pair only on verdicts.
+   Type: Spectral (display serif) · Hanken Grotesque (body) · IBM Plex Mono (data). */
+:root{
+  --bg:#f5f6f3; --surface:#ffffff; --surface-2:#eef0ec;
+  --ink:#171a1d; --fg:#171a1d; --muted:#5c636b; --faint:#8b929a;
+  --line:#daded9; --line-strong:#c3c9c2;
+  --accent:#27496b; --accent-soft:#e4ebf2;
+  /* pH universal-indicator ramp (scoped to pH scales only) */
+  --ph1:#cf3b2e; --ph2:#e06a2d; --ph3:#e7a233; --ph4:#d8c23a;
+  --ph5:#9bbf45; --ph6:#4ba368; --ph7:#2f9d86;
+  /* infection-risk pair (scoped to verdicts only) */
+  --safe:#2f8f67; --warn:#c88a23; --danger:#c23a33;
+  --shadow:0 1px 2px rgba(20,24,28,.05),0 6px 22px rgba(20,24,28,.07);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101216; --surface:#191c22; --surface-2:#21252c;
+  --ink:#ecebe6; --fg:#ecebe6; --muted:#9aa1a9; --faint:#6a717a;
+  --line:#2a2e36; --line-strong:#3a3f49;
+  --accent:#7aa6d0; --accent-soft:#1d2a38;
+  --ph1:#e2544a; --ph2:#ec7f41; --ph3:#edb24c; --ph4:#dccb50;
+  --ph5:#a7cb55; --ph6:#5cb87d; --ph7:#43b39b;
+  --safe:#51b487; --warn:#d6a43f; --danger:#e2574f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#101216; --surface:#191c22; --surface-2:#21252c;
+  --ink:#ecebe6; --fg:#ecebe6; --muted:#9aa1a9; --faint:#6a717a;
+  --line:#2a2e36; --line-strong:#3a3f49;
+  --accent:#7aa6d0; --accent-soft:#1d2a38;
+  --ph1:#e2544a; --ph2:#ec7f41; --ph3:#edb24c; --ph4:#dccb50;
+  --ph5:#a7cb55; --ph6:#5cb87d; --ph7:#43b39b;
+  --safe:#51b487; --warn:#d6a43f; --danger:#e2574f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:"Hanken Grotesque",system-ui,-apple-system,sans-serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:720px; margin:0 auto;
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));}
+h1,h2,h3{font-family:"Spectral",Georgia,serif; text-wrap:balance; line-height:1.12; font-weight:600;}
+p{text-wrap:pretty}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+a{color:var(--accent)}
+
+/* ---- hero ---- */
+.hero{padding-block:clamp(44px,9vw,88px) clamp(28px,6vw,52px)}
+.kicker{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 18px; display:flex; gap:10px; align-items:center}
+.kicker::before{content:""; width:26px; height:2px; background:var(--accent); display:inline-block}
+.hero h1{font-size:clamp(2.5rem,8.5vw,4rem); font-weight:600; letter-spacing:-.015em; margin:0 0 22px}
+.hero h1 em{font-style:italic; color:var(--accent)}
+.lede{font-size:clamp(1.12rem,2.6vw,1.3rem); color:var(--muted); max-width:36ch; margin:0}
+
+/* ---- section scaffolding ---- */
+section{padding-block:clamp(30px,6vw,56px); border-top:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--faint); margin:0 0 14px}
+.eyebrow b{color:var(--accent); font-weight:600}
+h2{font-size:clamp(1.6rem,4.3vw,2.2rem); margin:0 0 18px; letter-spacing:-.01em}
+h3{font-size:1.18rem; margin:30px 0 10px}
+section p{margin:0 0 18px; color:var(--fg)}
+section p.note{color:var(--muted); font-size:.95rem}
+strong{font-weight:700}
+.hl{background:linear-gradient(transparent 60%, color-mix(in srgb,var(--accent) 22%, transparent) 0); padding:0 .05em}
+
+/* ---- pH ramp spine chip ---- */
+.phramp{display:flex; height:10px; border-radius:6px; overflow:hidden; margin:4px 0 2px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.phramp i{flex:1}
+.phscale{display:flex; justify-content:space-between; font-family:"IBM Plex Mono",monospace;
+  font-size:.66rem; color:var(--faint); letter-spacing:.04em}
+
+/* ---- figure / panel ---- */
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:16px;
+  box-shadow:var(--shadow); overflow:hidden; margin:8px 0 10px}
+.panel-head{padding:16px 20px; border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.panel-head .no{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--accent); letter-spacing:.14em}
+.panel-head h3{margin:0; font-size:1.05rem; font-family:"Spectral",serif}
+.panel-body{padding:20px}
+figcaption, .figcap{font-size:.84rem; color:var(--muted); margin-top:10px; line-height:1.5}
+
+/* ---- simulator controls ---- */
+.ctl{display:flex; flex-direction:column; gap:16px; margin-bottom:18px}
+.field{display:flex; flex-direction:column; gap:7px; min-width:0}
+.field > label, .lab{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--faint)}
+select{font:inherit; font-size:.95rem; padding:10px 12px; border-radius:10px; border:1px solid var(--line-strong);
+  background:var(--surface-2); color:var(--fg); width:100%; cursor:pointer}
+.seg{display:flex; gap:6px; background:var(--surface-2); padding:5px; border-radius:11px; border:1px solid var(--line); flex-wrap:wrap}
+.seg button{flex:1 1 90px; font:inherit; font-size:.86rem; padding:9px 8px; border-radius:8px; border:0;
+  background:transparent; color:var(--muted); cursor:pointer; transition:.18s; min-width:0; line-height:1.25}
+.seg button small{display:block; font-family:"IBM Plex Mono",monospace; font-size:.68rem; opacity:.8; margin-top:2px}
+.seg button[aria-pressed="true"]{background:var(--surface); color:var(--fg); box-shadow:var(--shadow); font-weight:600}
+input[type=range]{width:100%; accent-color:var(--accent); cursor:pointer}
+.rangerow{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.rangeval{font-family:"IBM Plex Mono",monospace; font-size:.95rem; color:var(--fg); font-weight:600}
+
+/* ---- stomach stage ---- */
+.stage{display:grid; grid-template-columns:1fr; gap:18px}
+@media(min-width:560px){.stage{grid-template-columns:1.05fr .95fr; align-items:stretch}}
+.stomach-box{background:var(--surface-2); border:1px solid var(--line); border-radius:14px; padding:12px; min-width:0}
+.stomach-box svg{width:100%; height:auto; display:block}
+.readouts{display:flex; flex-direction:column; gap:10px; min-width:0}
+.ro{display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:11px 14px;
+  background:var(--surface-2); border:1px solid var(--line); border-radius:11px}
+.ro .k{font-size:.82rem; color:var(--muted)}
+.ro .v{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:1.02rem; text-align:right}
+.verdict{border-radius:12px; padding:14px 16px; border:1px solid; font-weight:600; line-height:1.4}
+.verdict .vlab{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; display:block; opacity:.8; margin-bottom:4px; font-weight:600}
+.verdict.v-safe{background:color-mix(in srgb,var(--safe) 12%,transparent); border-color:color-mix(in srgb,var(--safe) 45%,transparent); color:var(--safe)}
+.verdict.v-warn{background:color-mix(in srgb,var(--warn) 13%,transparent); border-color:color-mix(in srgb,var(--warn) 45%,transparent); color:var(--warn)}
+.verdict.v-danger{background:color-mix(in srgb,var(--danger) 12%,transparent); border-color:color-mix(in srgb,var(--danger) 45%,transparent); color:var(--danger)}
+
+/* ---- pathogen table ---- */
+.tablewrap{overflow-x:auto; margin:6px 0 4px; border:1px solid var(--line); border-radius:14px}
+table{border-collapse:collapse; width:100%; min-width:460px; font-size:.9rem}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line)}
+thead th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); font-weight:600; background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:0}
+td.mono{font-family:"IBM Plex Mono",monospace}
+.tag{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.68rem; padding:2px 8px; border-radius:20px; letter-spacing:.04em}
+.tag.sens{background:color-mix(in srgb,var(--ph6) 20%,transparent); color:var(--ph6)}
+.tag.res{background:color-mix(in srgb,var(--ph1) 18%,transparent); color:var(--ph1)}
+.sci{font-style:italic}
+
+/* ---- two-up cards ---- */
+.cards{display:grid; grid-template-columns:1fr; gap:14px; margin:6px 0}
+@media(min-width:560px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 18px 16px; box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px; font-size:1.05rem}
+.card p{margin:0; font-size:.92rem; color:var(--muted)}
+.card .mono.big{font-size:1.5rem; color:var(--fg); display:block; margin-bottom:2px}
+
+/* ---- callout ---- */
+.callout{border-left:3px solid var(--accent); background:var(--accent-soft); border-radius:0 12px 12px 0;
+  padding:16px 18px; margin:20px 0; font-size:.96rem}
+.callout .lab{display:block; margin-bottom:6px; color:var(--accent)}
+
+/* ---- sources / footer ---- */
+.sources{font-size:.84rem; color:var(--muted)}
+.sources ol{margin:10px 0 0; padding-left:22px; display:flex; flex-direction:column; gap:7px}
+footer{padding-block:34px 60px; color:var(--faint); font-size:.82rem; border-top:1px solid var(--line)}
+
+/* theme toggle */
+.ttoggle{position:fixed; top:env(safe-area-inset-top,0px); right:env(safe-area-inset-right,0px); margin:12px;
+  z-index:20; background:var(--surface); border:1px solid var(--line-strong); color:var(--muted);
+  border-radius:50%; width:40px; height:40px; cursor:pointer; box-shadow:var(--shadow); font-size:1rem; line-height:1}
+
+/* reveal (from a visible resting state; JS only, reduced-motion & no-IO safe) */
+.reveal{opacity:1; transform:none}
+.js .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1; transform:none}
+@media(prefers-reduced-motion:reduce){.js .reveal{opacity:1!important; transform:none!important; transition:none}
+  *{scroll-behavior:auto!important}}
+
+.killable{transition:opacity .9s ease, transform .9s ease}
+</style>
+</head>
+<body>
+<button class="ttoggle" id="themeBtn" title="Toggle light / dark" aria-label="Toggle light and dark theme">◐</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Gut &amp; health · field note</p>
+    <h1>Whether a germ makes you sick can come down to <em>what else is in your stomach.</em></h1>
+    <p class="lede">The same mouthful of bacteria is often harmless on an empty stomach and dangerous on a full one. One dial explains why: acid.</p>
+  </header>
+
+  <!-- 01 the moat -->
+  <section class="reveal">
+    <p class="eyebrow"><b>01</b> &nbsp;The gate</p>
+    <h2>Your stomach is a chemical checkpoint, not a food bag</h2>
+    <p>Before anything you swallow reaches the gut — where bacteria actually set up and multiply — it has to cross the stomach. On an empty stomach that is a hostile place: a pool of hydrochloric acid sitting at roughly <strong>pH 1.5–3.5</strong>, acidic enough to denature proteins and kill most microbes within minutes. Physicians call it the <span class="hl">gastric acid barrier</span>, and for most of the last century it was treated as the body's first line of defense against swallowed pathogens.</p>
+    <p>The key number for any given germ is its <strong>infectious dose</strong>: how many organisms you have to swallow before enough survive the crossing to establish an infection. The acid barrier doesn't have to kill <em>every</em> cell. It just has to kill enough that the survivors fall below the number the gut needs to be colonised.</p>
+    <div class="phramp" aria-hidden="true"><i style="background:var(--ph1)"></i><i style="background:var(--ph2)"></i><i style="background:var(--ph3)"></i><i style="background:var(--ph4)"></i><i style="background:var(--ph5)"></i><i style="background:var(--ph6)"></i><i style="background:var(--ph7)"></i></div>
+    <div class="phscale mono" aria-hidden="true"><span>pH 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+    <p class="note">The pH scale is logarithmic: pH 2 is ten times more acidic than pH 3, and a hundred times more than pH 4. Small moves on this strip are large moves in chemistry.</p>
+  </section>
+
+  <!-- 02 food turns the dial -->
+  <section class="reveal">
+    <p class="eyebrow"><b>02</b> &nbsp;The dial</p>
+    <h2>Food turns the acid down — in two different ways</h2>
+    <p>A meal doesn't just sit on top of the acid. It changes the chemistry of the whole compartment, and it does so by two separate mechanisms that are worth keeping apart.</p>
+    <h3>1 · It buffers the acid</h3>
+    <p>Food — especially protein — soaks up hydrogen ions. A typical meal pushes gastric pH from around 2 up to <strong>4–5 within minutes</strong>, and a large protein-rich meal can briefly take it near neutral. The stomach claws its way back down over the next two to four hours as it keeps secreting acid, but during that window the barrier is far weaker. A germ swallowed with lunch meets a very different stomach than one swallowed before breakfast.</p>
+    <h3>2 · It physically shields the germs</h3>
+    <p>This one is easy to miss. Bacteria tucked inside a crumb of ground beef or a droplet of milk fat are not floating freely in acid — they sit in a <span class="hl">micro-pocket</span> that the acid penetrates slowly. In lab tests, <em class="sci">Salmonella</em> that was wiped out in acid alone survived pH 2.5 when it was riding on ground beef or inside egg white. Fat and solid protein are the best shields; watery food is the worst.</p>
+    <div class="callout">
+      <span class="lab mono">WHY IT MATTERS</span>
+      This is why fatty, protein-rich foods — undercooked meat, dairy, eggs, peanut-based sauces — are such efficient vehicles for food poisoning. They don't just carry the germs; they <strong>escort them past the acid</strong>, raising the pH and hiding the cells at the same time.
+    </div>
+  </section>
+
+  <!-- 03 the simulator -->
+  <section class="reveal">
+    <p class="eyebrow"><b>03</b> &nbsp;The crossing</p>
+    <h2>Watch the barrier work — or fail</h2>
+    <p>Pick a pathogen, set the state of your stomach, and choose how many cells you swallowed. The stomach tints to its current pH; the acid kills a fraction of the dose; the survivors drop into the gut tray. Infection happens only when enough survivors clear the gut's <strong>colonisation threshold</strong>.</p>
+
+    <figure class="panel">
+      <div class="panel-head"><span class="no">PLATE ①</span><h3 id="simh">Gastric crossing simulator</h3></div>
+      <div class="panel-body">
+        <div class="ctl">
+          <div class="field">
+            <label for="path">Pathogen</label>
+            <select id="path" aria-describedby="simh">
+              <option value="vibrio">Vibrio cholerae — cholera (acid-sensitive)</option>
+              <option value="salmonella" selected>Salmonella — food poisoning (sensitive, food-shielded)</option>
+              <option value="campylobacter">Campylobacter — gastroenteritis (moderate)</option>
+              <option value="ecoli">E. coli O157:H7 — (acid-resistant)</option>
+              <option value="shigella">Shigella — dysentery (acid-resistant)</option>
+            </select>
+          </div>
+          <div class="field">
+            <span class="lab">State of your stomach</span>
+            <div class="seg" id="state" role="group" aria-label="Stomach state">
+              <button type="button" data-state="empty" aria-pressed="false">Empty<small>pH 2.0</small></button>
+              <button type="button" data-state="meal" aria-pressed="true">After a meal<small>pH 4.5 + shield</small></button>
+              <button type="button" data-state="acid" aria-pressed="false">On antacid / PPI<small>pH 6.0</small></button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="rangerow"><span class="lab">Cells swallowed</span><span class="rangeval mono" id="doseval">1 million</span></div>
+            <input type="range" id="dose" min="1" max="9" step="0.1" value="6" aria-label="Log of cells swallowed">
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stomach-box">
+            <svg id="svg" viewBox="0 0 300 300" role="img" aria-labelledby="svgt">
+              <title id="svgt">A stomach cross-section; swallowed cells enter from the top, acid kills a fraction, survivors fall into the gut tray below.</title>
+            </svg>
+          </div>
+          <div class="readouts">
+            <div class="ro"><span class="k">Gastric pH</span><span class="v" id="roPh" style="color:var(--ph2)">2.0</span></div>
+            <div class="ro"><span class="k">Acid kill</span><span class="v" id="roKill">—</span></div>
+            <div class="ro"><span class="k">Survivors reaching gut</span><span class="v" id="roSurv">—</span></div>
+            <div class="ro"><span class="k">Colonisation threshold</span><span class="v" id="roThr">—</span></div>
+            <div class="verdict v-safe" id="verdict" aria-live="polite"><span class="vlab">Verdict</span><span id="vtext">—</span></div>
+          </div>
+        </div>
+        <p class="figcap">Numbers are illustrative orders of magnitude drawn from challenge studies and lab models, not precise constants — real kill depends on strain, transit time, meal composition and the person. The point is the <em>shape</em>: moving the stomach from empty to fed can swing the dose needed to infect you by thousands of times — for some germs, and barely at all for others.</p>
+      </div>
+    </figure>
+
+    <p>Play with it and a pattern appears. For an <strong>acid-sensitive</strong> germ like cholera, the empty stomach is a wall: you'd need to swallow an improbable number of cells to get past it, but a meal or an antacid drops that requirement by ten-thousand-fold. For an <strong>acid-resistant</strong> germ like <em class="sci">E. coli</em> O157 or <em class="sci">Shigella</em>, the dial barely matters — a dozen cells can infect you fed or fasting. Those are the bugs that spread person-to-person and through tiny contaminated doses, precisely because the acid gate was never much of an obstacle to them.</p>
+  </section>
+
+  <!-- 04 the evidence -->
+  <section class="reveal">
+    <p class="eyebrow"><b>04</b> &nbsp;The evidence</p>
+    <h2>Two numbers that made the case</h2>
+    <p>The cleanest proof came from deliberately feeding volunteers live bacteria — studies that would be hard to run today, but which pinned the effect down precisely.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="mono big">10⁸ → 10⁴</span>
+        <h3>Cholera, with a spoon of baking soda</h3>
+        <p>Volunteers needed about 100 million <em class="sci">V. cholerae</em> to reliably get sick. Give them 2 g of sodium bicarbonate to neutralise their stomach acid first, and the dose fell to around 10,000 — a <strong>10,000-fold</strong> drop from a single change to pH.</p>
+      </div>
+      <div class="card">
+        <span class="mono big">10⁵ → ~50</span>
+        <h3>Salmonella, in food vs water</h3>
+        <p>In clean buffer it can take ~100,000 <em class="sci">Salmonella</em> cells to cause illness. In real contaminated food — cheese, chocolate, fatty meat — outbreaks have been traced to as few as <strong>50–100 cells</strong>, because the food both buffers and shields them.</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:14px">The flip side is just as real. People who make too little stomach acid — through antacids, proton-pump inhibitors, surgery, or simply age — carry a measurably higher risk of <em class="sci">Salmonella</em>, cholera, <em class="sci">C. difficile</em> and traveller's diarrhoea. The barrier is protective exactly to the degree that it is acidic.</p>
+  </section>
+
+  <!-- 05 who crosses -->
+  <section class="reveal">
+    <p class="eyebrow"><b>05</b> &nbsp;The roster</p>
+    <h2>Not every germ respects the gate</h2>
+    <p>A pathogen's acid tolerance is roughly its infectious dose in disguise. Acid-sensitive bugs rely on volume or on a buffering meal to get through; acid-resistant ones evolved to survive the crossing and can infect from a tiny, food-independent dose.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Pathogen</th><th>Acid tolerance</th><th>Typical infectious dose</th><th>Gets past the gate by</th></tr></thead>
+        <tbody>
+          <tr><td class="sci">Vibrio cholerae</td><td><span class="tag sens">sensitive</span></td><td class="mono">10⁶–10⁸</td><td>Sheer numbers, or a buffered stomach</td></tr>
+          <tr><td class="sci">Salmonella</td><td><span class="tag sens">sensitive</span></td><td class="mono">10²–10⁵</td><td>Hiding in fatty, protein-rich food</td></tr>
+          <tr><td class="sci">Campylobacter</td><td><span class="tag sens">moderate</span></td><td class="mono">~500–10⁴</td><td>Food carriage; raw milk, poultry</td></tr>
+          <tr><td class="sci">E. coli O157:H7</td><td><span class="tag res">resistant</span></td><td class="mono">10–100</td><td>Built-in acid-resistance genes</td></tr>
+          <tr><td class="sci">Shigella</td><td><span class="tag res">resistant</span></td><td class="mono">10–100</td><td>Built-in acid-resistance; spreads person-to-person</td></tr>
+          <tr><td class="sci">H. pylori</td><td><span class="tag res">acid-adapted</span></td><td class="mono">low</td><td>Makes urease, neutralises its own micro-zone</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Doses are approximate ranges that vary with strain and host. Acid-resistant organisms are over-represented among the germs that cause outbreaks from barely-contaminated food and from casual contact — the gate simply isn't in their way.</p>
+  </section>
+
+  <!-- 06 takeaway -->
+  <section class="reveal">
+    <p class="eyebrow"><b>06</b> &nbsp;The model to keep</p>
+    <h2>One picture for all of it</h2>
+    <p>Hold onto the gate. The stomach is a checkpoint whose strength is set by a single dial — pH — and a meal turns that dial down while also smuggling germs through in its pockets. Whether you get sick is a race between how many cells you swallowed and how many the acid can kill before they reach the gut.</p>
+    <p>That one image ties together a surprising spread of everyday facts: why food poisoning so often follows a big fatty meal rather than a glass of water, why acid-reflux medication carries a small infection risk, why cholera spreads explosively through drinking water that dilutes stomach acid, and why a dozen <em class="sci">E. coli</em> O157 from an undercooked burger can do what a million harmless gut bacteria never would.</p>
+    <div class="callout">
+      <span class="lab mono">THE ONE LINE</span>
+      A full or neutralised stomach is a lowered drawbridge. The same germs that your acid would have turned away on an empty stomach walk straight through.
+    </div>
+  </section>
+
+  <!-- sources -->
+  <section class="reveal sources">
+    <p class="eyebrow">References</p>
+    <ol>
+      <li>Abuaita &amp; Withey (2009), <em>Infection and Immunity</em> — summarises volunteer data showing the cholera infectious dose fell from ~10⁸ to ~10⁴ cells when 2 g sodium bicarbonate was given with the inoculum.</li>
+      <li>Waterman &amp; Small (1998), <em>Applied and Environmental Microbiology</em> — acid-sensitive enteric pathogens, including <em>Salmonella</em>, survive pH 2.5 when inoculated onto solid food (ground beef, egg white).</li>
+      <li>Blaser &amp; Newman (1982), <em>Reviews of Infectious Diseases</em> — gastric acid as a barrier and the role of inoculum size / food in <em>Salmonella</em> infection.</li>
+      <li>Smith (2003), <em>Journal of Applied Microbiology</em> — review of the gastric acid barrier and host susceptibility to enteric infection.</li>
+      <li>Bavishi &amp; DuPont (2011), <em>Alimentary Pharmacology &amp; Therapeutics</em> — proton-pump inhibitors and increased risk of enteric infections.</li>
+      <li>Human volunteer challenge-model reports for <em>V. cholerae</em> (e.g. challenge dose studies using 1.33% bicarbonate buffer to neutralise gastric acid before inoculation).</li>
+    </ol>
+  </section>
+
+  <footer class="wrap" style="padding-left:0;padding-right:0">
+    An interactive explainer. Figures are illustrative orders of magnitude for teaching the mechanism, not clinical guidance.
+  </footer>
+
+</div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,600&family=Hanken+Grotesque:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.className += " js";
+
+  /* ---- theme toggle ---- */
+  var root=document.documentElement, tb=document.getElementById("themeBtn");
+  function sysDark(){return window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches;}
+  tb.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    var isDark = cur ? cur==="dark" : sysDark();
+    root.setAttribute("data-theme", isDark ? "light":"dark");
+  });
+
+  /* ---- reveal on scroll (first viewport shows at once; nothing can stay hidden) ---- */
+  var rev=[].slice.call(document.querySelectorAll(".reveal"));
+  function showAll(){rev.forEach(function(el){el.classList.add("in");});}
+  var vh=window.innerHeight||800;
+  // anything in or near the first screen is visible immediately (complete first frame)
+  rev.forEach(function(el){ if(el.getBoundingClientRect().top < vh*1.15) el.classList.add("in"); });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+    },{rootMargin:"0px 0px -6% 0px",threshold:.06});
+    rev.forEach(function(el){ if(!el.classList.contains("in")) io.observe(el); });
+    // failsafe: never leave content stuck invisible
+    setTimeout(showAll, 2600);
+  } else { showAll(); }
+
+  /* ---- simulator ---- */
+  // L = log10 reduction the acid imposes over gastric transit at this pH.
+  // required ingested dose to infect = threshold * 10^L  (survivors = ingested * 10^-L)
+  var BUGS={
+    vibrio:      {name:"V. cholerae", Lmax:4.2, pHsafe:5.0, thr:4.0, shield:0.0},
+    salmonella:  {name:"Salmonella",  Lmax:3.0, pHsafe:5.0, thr:2.0, shield:1.3},
+    campylobacter:{name:"Campylobacter",Lmax:2.4,pHsafe:5.0, thr:3.0, shield:0.6},
+    ecoli:       {name:"E. coli O157", Lmax:1.1, pHsafe:4.2, thr:1.3, shield:0.2},
+    shigella:    {name:"Shigella",    Lmax:1.0, pHsafe:4.2, thr:1.3, shield:0.1}
+  };
+  var STATES={empty:{pH:2.0,shield:false},meal:{pH:4.5,shield:true},acid:{pH:6.0,shield:false}};
+
+  var state="meal", bug="salmonella";
+  var elPath=document.getElementById("path"), elDose=document.getElementById("dose"),
+      elDoseV=document.getElementById("doseval"), svg=document.getElementById("svg"),
+      roPh=document.getElementById("roPh"), roKill=document.getElementById("roKill"),
+      roSurv=document.getElementById("roSurv"), roThr=document.getElementById("roThr"),
+      verdict=document.getElementById("verdict"), vtext=document.getElementById("vtext"),
+      segBtns=[].slice.call(document.querySelectorAll("#state button"));
+  var SVGNS="http://www.w3.org/2000/svg";
+
+  function phColor(pH){
+    // interpolate across the ramp tokens pH1..pH7
+    var cs=getComputedStyle(root);
+    var stops=[1,2,3,4,5,6,7].map(function(i){return cs.getPropertyValue("--ph"+i).trim();});
+    var x=Math.max(1,Math.min(7,pH));
+    var i=Math.floor(x-1); if(i>5)i=5;
+    return stops[Math.min(i+ (x-1-i>0.5?1:0),6)] || stops[i];
+  }
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function fmtNum(n){
+    if(n<1) return "<1";
+    if(n>=1e6){ var e=Math.round(Math.log10(n)); return "~10"+sup(e); }
+    if(n>=1000) return "~"+Math.round(n/1000)+"k";
+    return "~"+Math.round(n);
+  }
+  function sup(n){var m={"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};return (""+n).split("").map(function(c){return m[c]||c;}).join("");}
+  function fmtDose(log){
+    var n=Math.pow(10,log);
+    if(n>=1e6) return (n/1e6>=10? Math.round(n/1e6): (n/1e6).toFixed(0))+" million";
+    if(n>=1000) return Math.round(n/1000)+",000";
+    return Math.round(n).toLocaleString();
+  }
+
+  function compute(){
+    var b=BUGS[bug], s=STATES[state];
+    var L=b.Lmax*clamp((b.pHsafe-s.pH)/(b.pHsafe-2.0),0,1);
+    if(s.shield) L=Math.max(0,L-b.shield);
+    var doseLog=parseFloat(elDose.value);
+    var ingested=Math.pow(10,doseLog);
+    var survivors=ingested*Math.pow(10,-L);
+    var threshold=Math.pow(10,b.thr);
+    var killFrac=1-Math.pow(10,-L); // fraction killed
+    return {L:L,ingested:ingested,survivors:survivors,threshold:threshold,killFrac:killFrac,pH:s.pH,doseLog:doseLog};
+  }
+
+  function drawStomach(r){
+    var col=phColor(r.pH);
+    var killPct=Math.round(r.killFrac*100);
+    // survivors mapped to dot count in gut tray (log scale)
+    var survDots=clamp(Math.round(Math.log10(Math.max(r.survivors,1))/9*34),0,34);
+    var thrLog=Math.log10(r.threshold);
+    var sick=r.survivors>=r.threshold;
+    var warn=!sick && r.survivors>=r.threshold*0.1;
+
+    var acidFill="color-mix(in srgb,"+col+" 34%, transparent)";
+    var html="";
+    // defs
+    html+='<defs><clipPath id="stClip"><path d="M150 70 C 108 70 86 96 86 140 C 86 196 104 236 150 236 C 196 236 214 196 214 140 C 214 96 192 70 150 70 Z"/></clipPath></defs>';
+    // esophagus
+    html+='<rect x="140" y="20" width="20" height="56" rx="7" fill="var(--surface)" stroke="var(--line-strong)"/>';
+    // stomach body
+    html+='<path d="M150 70 C 108 70 86 96 86 140 C 86 196 104 236 150 236 C 196 236 214 196 214 140 C 214 96 192 70 150 70 Z" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2"/>';
+    // acid pool (clipped)
+    html+='<g clip-path="url(#stClip)"><rect x="60" y="150" width="180" height="120" fill="'+acidFill+'"/>';
+    // a wavy top for the acid
+    html+='<path d="M60 152 q 22 -8 44 0 t 44 0 t 44 0 t 44 0 v 100 h -180 Z" fill="'+acidFill+'" opacity="0.9"/></g>';
+    // killed haze dots inside stomach
+    for(var k=0;k<14;k++){
+      var kx=110+ (k*37%90), ky=150+(k*53%70);
+      var dead=k/14 < r.killFrac;
+      html+='<circle cx="'+kx+'" cy="'+ky+'" r="'+(dead?2:2.6)+'" fill="'+(dead?"var(--faint)":"var(--accent)")+'" opacity="'+(dead?.35:.9)+'"/>';
+    }
+    // pylorus outlet
+    html+='<path d="M196 214 q 24 6 30 26" stroke="var(--line-strong)" stroke-width="10" fill="none" stroke-linecap="round" opacity=".5"/>';
+    // gut tray
+    html+='<rect x="150" y="252" width="140" height="40" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>';
+    html+='<text x="156" y="248" font-family="IBM Plex Mono,monospace" font-size="9" fill="var(--faint)">GUT</text>';
+    // survivor dots in tray
+    var sc = sick? "var(--danger)" : (warn? "var(--warn)":"var(--safe)");
+    for(var d=0;d<survDots;d++){
+      var col2=d%12, row=Math.floor(d/12);
+      html+='<circle cx="'+(160+col2*10.5)+'" cy="'+(264+row*11)+'" r="3" fill="'+sc+'"/>';
+    }
+    if(survDots===0){
+      html+='<text x="220" y="277" font-family="IBM Plex Mono,monospace" font-size="9" fill="var(--safe)" text-anchor="middle">none</text>';
+    }
+    // pH label chip
+    html+='<rect x="90" y="86" width="56" height="20" rx="10" fill="'+col+'"/>';
+    html+='<text x="118" y="100" font-family="IBM Plex Mono,monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">pH '+r.pH.toFixed(1)+'</text>';
+    svg.innerHTML='<title id="svgt">Stomach cross-section at pH '+r.pH.toFixed(1)+'; acid kills about '+killPct+'% of the swallowed dose, survivors shown in the gut tray.</title>'+html;
+  }
+
+  function render(){
+    var r=compute();
+    roPh.textContent=r.pH.toFixed(1);
+    roPh.style.color=phColor(r.pH);
+    roKill.textContent=(r.killFrac>=0.999? "99.9"+(r.L>3?"+":"") : (r.killFrac*100).toFixed(r.killFrac<0.1?1:0))+"%";
+    roSurv.textContent=fmtNum(r.survivors)+" of "+fmtNum(r.ingested);
+    roThr.textContent="10"+sup(Math.round(Math.log10(r.threshold)))+" cells";
+    var sick=r.survivors>=r.threshold, warn=!sick && r.survivors>=r.threshold*0.1;
+    verdict.className="verdict "+(sick?"v-danger":warn?"v-warn":"v-safe");
+    vtext.textContent= sick? "Enough survive — infection likely"
+                      : warn? "Borderline — some risk"
+                      : "Survivors fall below the threshold — likely fine";
+    drawStomach(r);
+  }
+
+  elPath.addEventListener("change",function(){bug=elPath.value;render();});
+  elDose.addEventListener("input",function(){elDoseV.textContent=fmtDose(parseFloat(elDose.value));render();});
+  segBtns.forEach(function(btn){
+    btn.addEventListener("click",function(){
+      state=btn.getAttribute("data-state");
+      segBtns.forEach(function(b){b.setAttribute("aria-pressed", b===btn?"true":"false");});
+      render();
+    });
+  });
+
+  elDoseV.textContent=fmtDose(parseFloat(elDose.value));
+  render();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

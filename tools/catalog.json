@@ -271,6 +271,12 @@
           "blurb": "Resistance is not something bacteria acquire when you attack them — it is something you cultivate when you attack them badly. Antibiotic resistance at molecular and pharmacokinetic depth.",
           "artifact": "EYWJ388HKZufnpMJHRSQRv",
           "ask": "How do we breed the bacteria that beat our antibiotics?"
+        },
+        {
+          "slug": "the-acid-gate",
+          "title": "The Acid Gate",
+          "blurb": "The same germ is often harmless on an empty stomach and dangerous on a full one. One dial explains why: stomach acid.",
+          "ask": "Why is a germ harmless on an empty stomach but dangerous on a full one?"
         }
       ]
     },
