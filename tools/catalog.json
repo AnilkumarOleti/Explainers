@@ -264,6 +264,13 @@
           "title": "The Microbiome Lease",
           "blurb": "What do gut bacteria do for you? You give them fibre and a home; they pay in fuel, a sealed gut wall and a trained immune system.",
           "ask": "What do the bacteria in your gut do for you?"
+        },
+        {
+          "slug": "the-narrow-window",
+          "title": "The Narrow Window",
+          "blurb": "Resistance is not something bacteria acquire when you attack them — it is something you cultivate when you attack them badly. Antibiotic resistance at molecular and pharmacokinetic depth.",
+          "artifact": "EYWJ388HKZufnpMJHRSQRv",
+          "ask": "How do we breed the bacteria that beat our antibiotics?"
         }
       ]
     },
