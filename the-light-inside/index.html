@@ -1,0 +1,1136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Light Inside | Explainers</title>
+<meta name="description" content="Why does it feel like something to be you? Nine theories of consciousness: who backs each, how they test it, and where each one cracks.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-light-inside/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Light Inside">
+<meta property="og:description" content="Why does it feel like something to be you? Nine theories of consciousness: who backs each, how they test it, and where each one cracks.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-light-inside/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-light-inside/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a dark theatre. One question runs the page: where does the light come from? Plain picture first, then the technical layer under each. Single dark look by choice. */
+:root{
+  --stage:#16121f;      /* auditorium dark */
+  --wing:#211b30;       /* raised surfaces */
+  --wing-2:#2a2340;     /* nested surfaces */
+  --line:#3b3452;       /* rules, outlines */
+  --chalk:#efe8db;      /* main text */
+  --dim:#a59eb5;        /* secondary text */
+  --amber:#f3b544;      /* stage light: brain-wiring theories */
+  --amber-soft:rgba(243,181,68,.16);
+  --teal:#6cc4bd;       /* self-model theories */
+  --teal-soft:rgba(108,196,189,.16);
+  --velvet:#d0566a;     /* curtain red: beyond-neurons, and cracks */
+  --velvet-soft:rgba(208,86,106,.16);
+  --f-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --f-body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--stage);color:var(--chalk);font-family:var(--f-body);font-size:17px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));}
+main{max-width:740px;margin:0 auto;padding-block:28px 64px;display:flex;flex-direction:column;gap:80px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;line-height:1.05}
+h1{font-size:clamp(52px,14vw,92px);letter-spacing:-.01em}
+h2{font-size:clamp(36px,9vw,54px)}
+h3{font-size:36px}
+h4{margin:0;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+h4.crack{color:var(--velvet)}
+em{font-family:var(--f-display);font-style:italic;font-size:1.12em;color:var(--amber)}
+p{margin:0;max-width:64ch}
+a{color:var(--teal)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.lede{font-size:21px}
+.muted{color:var(--dim)}
+.small{font-size:15px}
+section{display:flex;flex-direction:column;gap:18px}
+svg{display:block;width:100%;height:auto;max-width:100%}
+.pic{background:var(--wing);border-radius:14px;padding:12px}
+.cap{font-size:14.5px;color:var(--dim);margin-top:8px}
+.cap b{color:var(--chalk);font-weight:600}
+code,.mono{font-family:var(--f-mono);font-size:.88em}
+
+/* svg drawing classes */
+.ln{stroke:var(--dim);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ln-thin{stroke:var(--line);stroke-width:1;fill:none}
+.ln-c{stroke:var(--chalk);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ln-a{stroke:var(--amber);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ln-t{stroke:var(--teal);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ln-v{stroke:var(--velvet);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.dash{stroke-dasharray:4 5}
+.f-a{fill:var(--amber)} .f-as{fill:var(--amber-soft)} .f-v{fill:var(--velvet)} .f-vs{fill:var(--velvet-soft)} .f-t{fill:var(--teal)} .f-ts{fill:var(--teal-soft)}
+.f-w{fill:var(--wing)} .f-w2{fill:var(--wing-2)} .f-s{fill:var(--stage)} .f-c{fill:var(--chalk)} .f-d{fill:var(--dim)}
+.t{font-family:var(--f-mono);font-size:10.5px;fill:var(--dim);letter-spacing:.03em}
+.t-a{font-family:var(--f-mono);font-size:10.5px;fill:var(--amber)}
+.t-t{font-family:var(--f-mono);font-size:10.5px;fill:var(--teal)}
+.t-v{font-family:var(--f-mono);font-size:10.5px;fill:var(--velvet)}
+.t-c{font-family:var(--f-body);font-size:12.5px;fill:var(--chalk);font-weight:600}
+.t-big{font-family:var(--f-display);font-size:22px;fill:var(--chalk)}
+.t-ink{font-family:var(--f-mono);font-size:12px;fill:var(--stage);font-weight:500}
+
+/* hero + toc */
+.hero{gap:22px}
+.hero .pic{background:radial-gradient(120% 90% at 50% 10%, var(--wing), var(--stage) 75%);padding:0}
+@media (prefers-reduced-motion:no-preference){
+  .flicker{animation:flick 6s ease-in-out infinite}
+  @keyframes flick{0%,100%{opacity:1}46%{opacity:1}48%{opacity:.55}50%{opacity:1}53%{opacity:.75}55%{opacity:1}}
+}
+.toc{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.toc a{display:inline-block;font-family:var(--f-mono);font-size:12.5px;color:var(--chalk);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+.toc a:hover,.toc a:focus-visible{border-color:var(--amber);color:var(--amber)}
+
+/* pairs */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair > div{min-width:0}
+@media (max-width:420px){.pair.stack{grid-template-columns:1fr}}
+
+/* concept tiles */
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.defs > div{background:var(--wing);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.defs b{font-family:var(--f-display);font-weight:400;font-size:23px;line-height:1.1}
+.defs span{font-size:15px;color:var(--dim)}
+.defs .src{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--amber)}
+
+/* flash demo */
+.demo{background:var(--wing);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.screen{height:120px;border-radius:10px;background:var(--stage);display:grid;place-items:center;
+  font-family:var(--f-mono);font-size:38px;letter-spacing:.12em;color:var(--chalk);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font-family:var(--f-mono);font-size:13px;border:1px solid var(--line);background:transparent;color:var(--dim);padding:8px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.btn{font-family:var(--f-body);font-weight:700;font-size:16px;background:var(--amber);color:var(--stage);border:0;border-radius:999px;padding:11px 20px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--chalk);border:1px solid var(--line);font-weight:600}
+button:focus-visible,a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+#result{min-height:1.5em;color:var(--dim);font-size:15px}
+
+/* technical blocks */
+.deep{display:flex;flex-direction:column;gap:14px;background:var(--wing);border-radius:14px;padding:18px}
+.deep .pic{background:var(--wing-2)}
+.deep p{font-size:16px}
+.eq{font-family:var(--f-mono);font-size:14px;background:var(--stage);border:1px solid var(--line);border-radius:10px;padding:12px 14px;overflow-x:auto;white-space:nowrap;color:var(--amber)}
+.eq span{color:var(--dim)}
+.kv{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.kv li{display:grid;grid-template-columns:minmax(92px,auto) 1fr;gap:12px;font-size:15px;align-items:baseline}
+.kv li > span:first-child{font-family:var(--f-mono);font-size:12.5px;color:var(--amber)}
+.kv li > span:last-child{min-width:0}
+.exp,.cracks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15.5px}
+.exp li{padding-left:14px;border-left:2px solid var(--line)}
+.exp b,.cracks b{font-weight:700}
+.exp .yr{font-family:var(--f-mono);font-size:12px;color:var(--amber);display:block;letter-spacing:.06em}
+.cracks li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.cracks li::before{content:"";width:10px;height:10px;margin-top:7px;background:var(--velvet);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+
+/* family headers */
+.family{display:flex;flex-direction:column;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
+.family .eyebrow{display:flex;align-items:center;gap:8px}
+.family p{font-size:15.5px;color:var(--dim)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.d-a{background:var(--amber)} .d-t{background:var(--teal)} .d-v{background:var(--velvet)}
+
+/* theory cards */
+.theories{display:flex;flex-direction:column;gap:36px}
+.card{display:flex;flex-direction:column;gap:16px;padding-bottom:36px;border-bottom:1px dashed var(--line)}
+.card:last-child{border-bottom:0}
+.oneliner{font-size:20px;font-weight:600;line-height:1.3}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:0;font-size:15.5px}
+.facts dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding-top:3px}
+.facts dd{margin:0;min-width:0}
+.where{color:var(--dim)}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-weight:500;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);background:var(--wing)}
+tr:last-child td{border-bottom:0}
+.pass{color:var(--teal);font-weight:700} .fail{color:var(--velvet);font-weight:700} .part{color:var(--amber);font-weight:700}
+
+/* ring verdict */
+.verdict{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.verdict > div{background:var(--wing);border-radius:12px;padding:14px;min-width:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.verdict h5{margin:0;font-family:var(--f-display);font-weight:400;font-size:24px}
+
+/* map */
+.line{list-style:none;margin:0;padding:0;position:relative}
+.line::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:3px;background:var(--line);border-radius:2px}
+.region{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:14px 0 6px 34px}
+.stop{position:relative;padding:8px 0 8px 34px;display:flex;flex-direction:column;gap:2px}
+.stop::before{content:"";position:absolute;left:5px;top:13px;width:15px;height:15px;border-radius:50%;background:var(--stage);border:3px solid var(--sc, var(--amber))}
+.stop .city{font-family:var(--f-display);font-size:24px;line-height:1.1}
+.stop .inst{font-size:15px;color:var(--dim)}
+.stop .ppl{font-size:15.5px}
+.s-a{--sc:var(--amber)} .s-t{--sc:var(--teal)} .s-v{--sc:var(--velvet)} .s-d{--sc:var(--dim)}
+
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.tl li{display:grid;grid-template-columns:58px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.tl li:last-child{border-bottom:0}
+.tl .y{font-family:var(--f-mono);font-size:14px;color:var(--amber);font-variant-numeric:tabular-nums}
+.tl .e{font-size:15.5px}
+.tl .e b{font-weight:700}
+
+/* AI table */
+.ai{display:flex;flex-direction:column;gap:8px}
+.ai-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--wing);border-radius:10px;padding:12px 14px}
+.ai-row .why{font-size:14px;color:var(--dim)}
+.ai-row .name{font-weight:700}
+.tag{font-family:var(--f-mono);font-size:12px;padding:5px 10px;border-radius:999px;white-space:nowrap;border:1px solid}
+.yes{color:var(--teal);border-color:var(--teal)}
+.maybe{color:var(--amber);border-color:var(--amber)}
+.no{color:var(--velvet);border-color:var(--velvet)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0;font-size:15px}
+.gloss dt{font-family:var(--f-mono);font-size:13px;color:var(--amber)}
+.gloss dd{margin:0;min-width:0}
+
+.end h2{font-size:clamp(40px,10vw,64px)}
+footer{font-size:13px;color:var(--dim);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:440px){
+  body{font-size:16px}
+  .facts,.gloss{grid-template-columns:1fr;gap:2px}
+  .facts dd,.gloss dd{margin-bottom:10px}
+  .kv li{grid-template-columns:1fr;gap:2px}
+  .deep{padding:14px}
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="eyebrow">An explainer · Consciousness science, 2026</span>
+  <h1>The light inside</h1>
+  <div class="pic" role="img" aria-label="A head in profile with a small lit stage inside it">
+    <svg viewBox="0 0 360 290">
+      <path class="ln-c" d="M118 280 L118 236 C 86 222 66 190 66 148 C 66 82 118 34 186 34 C 254 34 298 82 298 142 C 298 162 292 172 304 190 L 288 196 L 293 214 C 288 230 272 232 256 230 L 252 280"/>
+      <path class="f-v" d="M130 100 Q 150 98 158 104 L 154 176 Q 140 182 130 178 Z" opacity=".85"/>
+      <path class="f-v" d="M246 100 Q 226 98 218 104 L 222 176 Q 236 182 246 178 Z" opacity=".85"/>
+      <rect x="126" y="92" width="124" height="10" rx="3" class="f-v"/>
+      <g class="flicker">
+        <polygon points="188,104 160,176 216,176" class="f-as"/>
+        <circle cx="188" cy="104" r="5" class="f-a"/>
+        <ellipse cx="188" cy="176" rx="30" ry="5" class="f-as"/>
+      </g>
+      <rect x="126" y="176" width="124" height="8" rx="2" class="f-w"/>
+      <circle cx="188" cy="150" r="6" class="f-c"/>
+      <path class="ln-c" d="M188 156 L188 170 M180 162 L196 162"/>
+      <text x="188" y="262" text-anchor="middle" class="t">WHO IS WATCHING THE SHOW?</text>
+    </svg>
+  </div>
+  <p class="lede">Your brain is about 86 billion neurons trading electrical spikes. Somehow, it also <em>feels like something</em> to be you.</p>
+  <p class="muted">This page walks from the puzzle, to the tools scientists use, to nine theories in technical detail: mechanism, signature measurements, landmark experiments, and where each one breaks. Each section opens with a picture, then goes deeper.</p>
+  <ul class="toc" aria-label="Sections">
+    <li><a href="#puzzle">The puzzle</a></li>
+    <li><a href="#states">States</a></li>
+    <li><a href="#toolkit">Toolkit</a></li>
+    <li><a href="#frontback">Front vs back</a></li>
+    <li><a href="#gwt">Workspace</a></li>
+    <li><a href="#iit">Integrated info</a></li>
+    <li><a href="#hot">Higher-order</a></li>
+    <li><a href="#rpt">Recurrent</a></li>
+    <li><a href="#pp">Prediction</a></li>
+    <li><a href="#ast">Attention schema</a></li>
+    <li><a href="#ill">Illusionism</a></li>
+    <li><a href="#orch">Quantum</a></li>
+    <li><a href="#pan">Panpsychism</a></li>
+    <li><a href="#ring">Showdown</a></li>
+    <li><a href="#ai">AI</a></li>
+    <li><a href="#where">Who &amp; where</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+  </ul>
+</section>
+
+<!-- THE PUZZLE -->
+<section id="puzzle">
+  <span class="eyebrow">01 · The puzzle</span>
+  <h2>Easy problem, hard problem</h2>
+  <div class="pair">
+    <div>
+      <div class="pic" role="img" aria-label="A camera looks at an apple and outputs numbers">
+        <svg viewBox="0 0 160 170">
+          <circle cx="40" cy="70" r="16" class="f-v"/><path class="ln" d="M40 54 Q 44 46 50 44"/>
+          <rect x="82" y="52" width="58" height="38" rx="5" class="ln-c"/><circle cx="82" cy="71" r="10" class="ln-c"/>
+          <path class="ln dash" d="M58 71 L 70 71"/>
+          <text x="80" y="122" text-anchor="middle" class="t">R 255  G 0  B 0</text>
+          <text x="80" y="150" text-anchor="middle" class="t">nobody home</text>
+        </svg>
+      </div>
+      <p class="cap"><b>Easy problems:</b> how the brain discriminates red, routes it, remembers it, says "red". Hard engineering, but standard science.</p>
+    </div>
+    <div>
+      <div class="pic" role="img" aria-label="A person looks at an apple and feels its redness">
+        <svg viewBox="0 0 160 170">
+          <circle cx="36" cy="70" r="16" class="f-v"/><path class="ln" d="M36 54 Q 40 46 46 44"/>
+          <circle cx="112" cy="70" r="26" class="ln-c"/><circle cx="112" cy="70" r="20" class="f-as"/><circle cx="112" cy="70" r="13" class="f-v" opacity=".6"/>
+          <path class="ln dash" d="M56 70 L 82 70"/>
+          <text x="80" y="122" text-anchor="middle" class="t">"ahh, RED"</text>
+          <text x="80" y="150" text-anchor="middle" class="t">someone feels it</text>
+        </svg>
+      </div>
+      <p class="cap"><b>Hard problem:</b> why all that processing is accompanied by an inner felt quality at all.</p>
+    </div>
+  </div>
+  <p>Four distinctions do most of the work in this field. Learn them and the theories become much easier to place.</p>
+  <div class="defs">
+    <div><span class="src">Nagel · 1974</span><b>"What it is like"</b><span>A system is conscious if there is something it is like to be it. A bat's sonar world is real to the bat, even if we can't imagine it.</span></div>
+    <div><span class="src">Block · 1995</span><b>Phenomenal vs access</b><span>Phenomenal: the raw felt quality. Access: information available for reasoning, memory and report. Theories split on whether these can come apart.</span></div>
+    <div><span class="src">Clinical usage</span><b>Level vs content</b><span>Level: how conscious you are (coma to fully awake). Content: what you are conscious of (a face, a pain, a thought).</span></div>
+    <div><span class="src">Chalmers · 1995 / 2018</span><b>Hard vs meta-problem</b><span>Hard: why there is experience. Meta: why we <i>say</i> there is a hard problem. Some theories only aim at the second.</span></div>
+  </div>
+</section>
+
+<!-- STATES -->
+<section id="states">
+  <span class="eyebrow">02 · The dimmer switch</span>
+  <h2>Awake isn't the same as aware</h2>
+  <div class="pic" role="img" aria-label="Plot of wakefulness against awareness for normal and clinical states">
+    <svg viewBox="0 0 340 270">
+      <path class="ln" d="M50 226 L 322 226 M50 226 L 50 16"/>
+      <text x="186" y="252" text-anchor="middle" class="t">AROUSAL (wakefulness) →</text>
+      <text x="22" y="122" text-anchor="middle" class="t" transform="rotate(-90 22 122)">AWARENESS →</text>
+      <path class="ln-a dash" d="M70 210 L 300 36" opacity=".6"/>
+      <g class="f-a"><circle cx="72" cy="208" r="6"/><circle cx="100" cy="196" r="6"/><circle cx="132" cy="176" r="6"/><circle cx="204" cy="120" r="6"/><circle cx="296" cy="38" r="7"/></g>
+      <circle cx="120" cy="104" r="6" class="f-t"/>
+      <g class="f-v"><circle cx="288" cy="204" r="6"/><circle cx="270" cy="148" r="6"/></g>
+      <text x="80" y="222" class="t">coma</text>
+      <text x="108" y="200" class="t">anaesthesia</text>
+      <text x="140" y="180" class="t">deep sleep</text>
+      <text x="212" y="124" class="t">drowsy</text>
+      <text x="282" y="26" class="t-a" text-anchor="end">fully awake</text>
+      <text x="130" y="100" class="t-t">REM dreaming</text>
+      <text x="282" y="196" class="t-v" text-anchor="end">vegetative / UWS</text>
+      <text x="262" y="144" class="t-v" text-anchor="end">minimally conscious</text>
+    </svg>
+  </div>
+  <p class="cap">After Steven Laureys (2005). Normal states fall on the diagonal. Dreaming sits above it: low arousal, rich experience. Clinical states fall below it: eyes open, sleep–wake cycles intact, but little or no sign of awareness.</p>
+  <p>This plot is why consciousness science matters outside philosophy. A patient in the <b>unresponsive wakefulness syndrome</b> (formerly "vegetative state") opens their eyes but never follows commands. Are they experiencing anything? Bedside behaviour can't tell you. Theories that predict <i>which brain signals</i> mark awareness could.</p>
+</section>
+
+<!-- TOOLKIT -->
+<section id="toolkit">
+  <span class="eyebrow">03 · The toolkit</span>
+  <h2>Switch the light on and off</h2>
+  <div class="pic" role="img" aria-label="A brain seeing compared to a brain not seeing; the difference is the clue">
+    <svg viewBox="0 0 340 150">
+      <circle cx="58" cy="66" r="38" class="ln-c"/><circle cx="58" cy="66" r="24" class="f-as"/>
+      <path class="ln-a" d="M40 60 q8 -12 18 0 t18 0 M42 76 q8 -10 16 0 t16 0"/>
+      <text x="58" y="128" text-anchor="middle" class="t">SAW IT</text>
+      <text x="124" y="74" text-anchor="middle" class="t-big">−</text>
+      <circle cx="190" cy="66" r="38" class="ln-c"/>
+      <path class="ln" d="M172 60 q8 -12 18 0 t18 0 M174 76 q8 -10 16 0 t16 0"/>
+      <text x="190" y="128" text-anchor="middle" class="t">MISSED IT</text>
+      <text x="252" y="74" text-anchor="middle" class="t-big">=</text>
+      <circle cx="296" cy="60" r="20" class="ln-a"/><path class="ln-a" d="M310 74 L 326 92"/>
+      <text x="300" y="128" text-anchor="middle" class="t">NCC CANDIDATE</text>
+    </svg>
+  </div>
+  <p><b>The contrastive method.</b> Hold the stimulus constant, let awareness vary, and subtract the brain activity. What's left is a candidate <b>neural correlate of consciousness (NCC)</b>. Crick and Koch (1990) defined the NCC as the minimal set of neural mechanisms jointly sufficient for a specific conscious percept. The difficulty is that the subtraction also catches things that merely come <i>before</i> awareness (prerequisites) or <i>after</i> it (consequences, like preparing to report).</p>
+
+  <div class="demo" aria-labelledby="demo-h">
+    <span class="eyebrow" id="demo-h">Paradigm 1 · Backward masking. Try it.</span>
+    <div class="screen" id="screen" aria-live="polite">&nbsp;</div>
+    <div class="row" role="group" aria-label="Flash duration">
+      <button class="chip" id="d17" data-ms="17" aria-pressed="true">17 ms</button>
+      <button class="chip" id="d50" data-ms="50" aria-pressed="false">50 ms</button>
+      <button class="chip" id="d150" data-ms="150" aria-pressed="false">150 ms</button>
+      <button class="chip" id="d500" data-ms="500" aria-pressed="false">500 ms</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="flash">Flash a word</button>
+      <button class="btn ghost" id="reveal" hidden>Show the word</button>
+    </div>
+    <p id="result">A word, then a pattern mask right after. Below roughly 40–50 ms the mask usually wins: your visual cortex still processes the word (it can prime later responses), but it never reaches awareness.</p>
+  </div>
+
+  <div class="pair stack">
+    <div>
+      <div class="pic" role="img" aria-label="Binocular rivalry: each eye sees a different grating and perception alternates">
+        <svg viewBox="0 0 170 160">
+          <defs>
+            <pattern id="hz" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="4" class="f-v"/></pattern>
+            <pattern id="vt" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="4" height="8" class="f-t"/></pattern>
+          </defs>
+          <rect x="14" y="16" width="56" height="56" rx="6" fill="url(#hz)"/>
+          <rect x="100" y="16" width="56" height="56" rx="6" fill="url(#vt)"/>
+          <text x="42" y="88" text-anchor="middle" class="t">left eye</text>
+          <text x="128" y="88" text-anchor="middle" class="t">right eye</text>
+          <path class="ln dash" d="M42 96 L 85 118 M128 96 L 85 118"/>
+          <text x="85" y="140" text-anchor="middle" class="t-c">red… teal… red…</text>
+        </svg>
+      </div>
+      <p class="cap"><b>Binocular rivalry.</b> Input is fixed; perception flips every few seconds. A clean way to track awareness without changing the stimulus.</p>
+    </div>
+    <div>
+      <div class="pic" role="img" aria-label="Sperling's grid of twelve letters">
+        <svg viewBox="0 0 170 160">
+          <rect x="20" y="14" width="130" height="92" rx="6" class="ln"/>
+          <g class="t-c" style="font-family:var(--f-mono);font-size:15px">
+            <text x="36" y="42">K</text><text x="66" y="42">R</text><text x="96" y="42">T</text><text x="126" y="42">F</text>
+            <text x="36" y="68">N</text><text x="66" y="68">B</text><text x="96" y="68">L</text><text x="126" y="68">Z</text>
+            <text x="36" y="94">Q</text><text x="66" y="94">S</text><text x="96" y="94">J</text><text x="126" y="94">P</text>
+          </g>
+          <text x="85" y="128" text-anchor="middle" class="t">report all: ~4 of 12</text>
+          <text x="85" y="146" text-anchor="middle" class="t-a">cue one row: ~3 of 4</text>
+        </svg>
+      </div>
+      <p class="cap"><b>Sperling (1960).</b> People seem to see the whole grid but can only report about four letters. Cue any row after it vanishes and they get most of it. Did they <i>experience</i> all twelve? This is the "overflow" debate.</p>
+    </div>
+  </div>
+
+  <div class="deep">
+    <h4>More paradigms</h4>
+    <ul class="kv">
+      <li><span>Blindsight</span><span>Damage to primary visual cortex (V1). Patients deny seeing in part of the visual field, yet point to and discriminate objects there well above chance.</span></li>
+      <li><span>Inattentional blindness</span><span>Count basketball passes and you miss a person in a gorilla suit walking through (Simons &amp; Chabris, 1999).</span></li>
+      <li><span>Attentional blink</span><span>A second target 200–500 ms after a first is often missed entirely. Awareness appears all-or-none here.</span></li>
+      <li><span>No-report</span><span>Infer the percept from eye movements or pupil size instead of a button press, so report-related activity drops out (Tsuchiya, Koch and colleagues, 2015).</span></li>
+      <li><span>Mental imagery</span><span>"Imagine playing tennis" lights up supplementary motor area; "imagine walking your house" lights up parahippocampal cortex. Used to detect hidden awareness (Owen, 2006).</span></li>
+    </ul>
+    <h4>Instruments</h4>
+    <ul class="kv">
+      <li><span>fMRI</span><span>Blood-oxygen signal. Millimetre resolution, but sluggish: the haemodynamic response peaks around 5–6 s.</span></li>
+      <li><span>EEG / MEG</span><span>Electrical / magnetic fields at the scalp. Millisecond timing, centimetre-level blur.</span></li>
+      <li><span>iEEG</span><span>Electrodes inside the skull of epilepsy patients awaiting surgery. Fast and precise, but only where clinicians placed them.</span></li>
+      <li><span>TMS</span><span>A magnetic pulse that briefly perturbs a patch of cortex. Turns correlation into causation, and powers "zap and zip".</span></li>
+    </ul>
+    <h4>Measuring the level: "zap and zip"</h4>
+    <div class="pic" role="img" aria-label="Perturbational complexity index pipeline and scale with threshold 0.31">
+      <svg viewBox="0 0 340 230">
+        <path class="ln-c" d="M20 70 C 20 40 50 24 80 24 C 110 24 130 44 130 70 C 130 96 110 112 80 112 C 50 112 20 96 20 70 Z"/>
+        <path class="ln-a" d="M60 6 L 76 22 M70 4 L 84 20"/>
+        <text x="40" y="10" class="t-a">TMS</text>
+        <g class="ln-a"><path d="M150 40 l6 -10 l6 20 l6 -16 l6 12 l6 -6 l6 4"/><path d="M150 64 l6 6 l6 -18 l6 22 l6 -10 l6 4 l6 -2"/><path d="M150 88 l6 -8 l6 14 l6 -12 l6 16 l6 -8 l6 2"/></g>
+        <text x="168" y="112" text-anchor="middle" class="t">EEG echo</text>
+        <g class="f-c">
+          <rect x="216" y="34" width="8" height="8"/><rect x="236" y="34" width="8" height="8"/><rect x="246" y="34" width="8" height="8"/>
+          <rect x="226" y="46" width="8" height="8"/><rect x="246" y="46" width="8" height="8"/><rect x="256" y="46" width="8" height="8"/>
+          <rect x="216" y="58" width="8" height="8"/><rect x="226" y="58" width="8" height="8"/><rect x="256" y="58" width="8" height="8"/>
+          <rect x="236" y="70" width="8" height="8"/><rect x="246" y="70" width="8" height="8"/><rect x="216" y="82" width="8" height="8"/><rect x="256" y="82" width="8" height="8"/>
+        </g>
+        <text x="240" y="112" text-anchor="middle" class="t">binarise</text>
+        <path class="ln dash" d="M272 64 L 290 64"/>
+        <text x="312" y="62" text-anchor="middle" class="t-big">zip</text>
+        <text x="312" y="80" text-anchor="middle" class="t">LZ size</text>
+        <path class="ln" d="M30 176 L 316 176"/>
+        <g class="ln"><path d="M30 170 L30 182"/><path d="M84 170 L84 182"/><path d="M138 170 L138 182"/><path d="M192 170 L192 182"/><path d="M246 170 L246 182"/><path d="M300 170 L300 182"/></g>
+        <text x="30" y="198" text-anchor="middle" class="t">0</text><text x="84" y="198" text-anchor="middle" class="t">0.1</text><text x="138" y="198" text-anchor="middle" class="t">0.2</text><text x="192" y="198" text-anchor="middle" class="t">0.3</text><text x="246" y="198" text-anchor="middle" class="t">0.4</text><text x="300" y="198" text-anchor="middle" class="t">0.5</text>
+        <path class="ln-v" d="M197.4 146 L 197.4 186"/>
+        <text x="197.4" y="140" text-anchor="middle" class="t-v">PCI* 0.31</text>
+        <rect x="56" y="160" width="128" height="10" rx="3" class="f-vs"/>
+        <text x="120" y="156" text-anchor="middle" class="t">deep sleep · anaesthesia</text>
+        <rect x="206" y="160" width="110" height="10" rx="3" class="f-ts"/>
+        <text x="262" y="156" text-anchor="middle" class="t">awake · REM</text>
+        <text x="170" y="222" text-anchor="middle" class="t">perturbational complexity index</text>
+      </svg>
+    </div>
+    <p>Marcello Massimini's group (University of Milan), with Tononi, pulses the cortex with TMS and records the EEG reverberation. A conscious brain answers with a response that is both widespread (integrated) and varied (differentiated). They binarise the significant responses across channels and time, compress them with Lempel–Ziv, and normalise. That's the <b>PCI</b>. In a benchmark population a cut-off of 0.31 separated conscious from unconscious conditions; applied to brain-injured patients, it flagged about 95% of minimally conscious patients as conscious and found high values in some patients diagnosed as unresponsive.</p>
+    <p class="small muted">Why it matters: a 2024 multicentre study in the <i>New England Journal of Medicine</i> (Bodien and colleagues) found that roughly a quarter of patients who showed no behavioural response could still follow commands in their brain activity. That's called cognitive motor dissociation.</p>
+  </div>
+</section>
+
+<!-- FRONT VS BACK -->
+<section id="frontback">
+  <span class="eyebrow">04 · The map</span>
+  <h2>Front of the brain, or back?</h2>
+  <div class="pic" role="img" aria-label="Side view of the brain with front and back regions and the theories that favour each">
+    <svg viewBox="0 0 340 250">
+      <path class="ln-c" d="M28 122 C 26 62 90 22 170 22 C 248 22 312 56 314 112 C 316 140 300 160 272 164 L 246 166 C 236 182 212 194 190 188 L 186 176 C 154 180 120 178 98 172 C 54 166 30 150 28 122 Z"/>
+      <ellipse cx="248" cy="182" rx="32" ry="17" class="ln"/>
+      <path class="ln" d="M214 178 C 216 196 218 210 222 232"/>
+      <ellipse cx="88" cy="96" rx="58" ry="52" class="f-as"/>
+      <ellipse cx="236" cy="104" rx="72" ry="58" class="f-ts"/>
+      <path class="ln-a dash" d="M120 84 Q 170 50 220 84"/>
+      <text x="74" y="86" text-anchor="middle" class="t-a">PREFRONTAL</text>
+      <text x="74" y="102" text-anchor="middle" class="t">Workspace</text>
+      <text x="74" y="116" text-anchor="middle" class="t">Higher-order</text>
+      <text x="244" y="94" text-anchor="middle" class="t-t">POSTERIOR "HOT ZONE"</text>
+      <text x="244" y="110" text-anchor="middle" class="t">Integrated info</text>
+      <text x="244" y="124" text-anchor="middle" class="t">Recurrent</text>
+      <text x="248" y="214" text-anchor="middle" class="t">cerebellum</text>
+      <text x="170" y="246" text-anchor="middle" class="t">front ←                → back</text>
+    </svg>
+  </div>
+  <p>The sharpest empirical fight in the field is geographic. <b>Front theories</b> (workspace, higher-order) say experience needs prefrontal and parietal "higher" areas. <b>Back theories</b> (integrated information, recurrent processing) say posterior sensory cortex is enough, and prefrontal activity mostly reflects thinking about, or reporting, what you experienced.</p>
+  <p class="small muted">The report confound drives this. When rivalry is studied with button presses, frontal areas light up; when the percept is read from eye movements instead, much of that frontal activity shrinks (Frässle and colleagues, 2014). Front theorists reply that subtler prefrontal signals remain, and that large frontal lesions are rarely as clean as claimed.</p>
+</section>
+
+<!-- THE THEORIES -->
+<section>
+  <span class="eyebrow">05 · The suspects</span>
+  <h2>Nine answers to one question</h2>
+  <p>Where does the light come from? The answers fall into three camps. Each theory below has a plain summary, then a technical layer: mechanism, signatures, landmark experiments, and its cracks.</p>
+</section>
+
+<div class="theories">
+
+  <div class="family">
+    <span class="eyebrow"><span class="dot d-a"></span>Camp 1 · In the brain's wiring</span>
+    <p>Neuroscience theories that point at specific circuits and timing. These make the most testable predictions.</p>
+  </div>
+
+  <!-- GWT -->
+  <article class="card" id="gwt">
+    <div class="pic" role="img" aria-label="A spotlight on a stage broadcasts to many brain parts in the audience">
+      <svg viewBox="0 0 320 180">
+        <polygon points="160,14 128,104 192,104" class="f-as"/><circle cx="160" cy="14" r="5" class="f-a"/>
+        <rect x="112" y="104" width="96" height="10" rx="3" class="f-s"/><circle cx="160" cy="92" r="10" class="f-v"/>
+        <g class="ln-a dash"><path d="M160 108 L 44 150"/><path d="M160 108 L 116 160"/><path d="M160 108 L 204 160"/><path d="M160 108 L 276 150"/><path d="M150 96 L 40 70"/><path d="M170 96 L 280 70"/></g>
+        <g class="f-c"><circle cx="44" cy="150" r="7"/><circle cx="116" cy="160" r="7"/><circle cx="204" cy="160" r="7"/><circle cx="276" cy="150" r="7"/><circle cx="40" cy="70" r="7"/><circle cx="280" cy="70" r="7"/></g>
+        <text x="40" y="54" text-anchor="middle" class="t">memory</text><text x="280" y="54" text-anchor="middle" class="t">language</text>
+        <text x="44" y="174" text-anchor="middle" class="t">planning</text><text x="276" y="174" text-anchor="middle" class="t">motor</text>
+      </svg>
+    </div>
+    <h3>Global Neuronal Workspace</h3>
+    <p class="oneliner">Conscious = globally broadcast.</p>
+    <p>The brain runs many specialised processors in parallel, unconsciously. A limited-capacity "workspace" picks one piece of information at a time and broadcasts it to all of them. Being conscious of something just is that information being globally available.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Stanislas Dehaene</b> <span class="where">· Collège de France &amp; NeuroSpin (Saclay, near Paris)</span>, with <b>Jean-Pierre Changeux</b> and <b>Lionel Naccache</b>. Cognitive version by <b>Bernard Baars</b> (1988).</dd>
+    </dl>
+    <div class="deep">
+      <h4>Mechanism</h4>
+      <p>"Workspace neurons" are large pyramidal cells with long axons, especially in cortical layers II/III and densest in prefrontal and parietal cortex. They link distant areas in reciprocal loops. When bottom-up evidence for a stimulus crosses a threshold, these loops reinforce each other and the network snaps into a self-sustaining state. Dehaene calls this <b>ignition</b>: nonlinear, all-or-none, and late.</p>
+      <div class="pic" role="img" aria-label="Schematic time course: seen and unseen stimuli start alike, then the seen trace ignites around 300 milliseconds">
+        <svg viewBox="0 0 320 180">
+          <path class="ln" d="M36 150 L 306 150 M36 150 L 36 16"/>
+          <g class="ln-thin"><path d="M81 150 V20"/><path d="M126 150 V20"/><path d="M171 150 V20"/><path d="M216 150 V20"/><path d="M261 150 V20"/></g>
+          <text x="36" y="166" text-anchor="middle" class="t">0</text><text x="81" y="166" text-anchor="middle" class="t">100</text><text x="126" y="166" text-anchor="middle" class="t">200</text><text x="171" y="166" text-anchor="middle" class="t">300</text><text x="216" y="166" text-anchor="middle" class="t">400</text><text x="261" y="166" text-anchor="middle" class="t">500 ms</text>
+          <path class="ln-a" d="M36 146 C 70 140 90 108 112 102 C 132 98 146 98 160 70 C 172 44 190 38 220 38 C 250 38 280 40 304 42"/>
+          <path class="ln" d="M36 146 C 70 140 90 108 112 102 C 132 98 146 108 168 126 C 200 140 250 144 304 146"/>
+          <text x="300" y="34" text-anchor="end" class="t-a">seen: ignition</text>
+          <text x="300" y="138" text-anchor="end" class="t">unseen: fades</text>
+          <text x="40" y="24" class="t">activity (schematic)</text>
+        </svg>
+      </div>
+      <h4>Signatures</h4>
+      <ul class="kv">
+        <li><span>P3b</span><span>A large positive EEG wave over parietal scalp from ~300 ms, present for seen and nearly absent for unseen stimuli.</span></li>
+        <li><span>Late sustained</span><span>Content becomes decodable for longer and in more areas once seen.</span></li>
+        <li><span>Long-range sync</span><span>Beta/gamma-band coherence between distant regions.</span></li>
+        <li><span>Bimodality</span><span>Near threshold, trials split into "ignited" and "not", not a smooth gradient.</span></li>
+      </ul>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">2001 · Dehaene et al.</span>Masked words still activate the visual word form area, but only seen words trigger widespread frontal–parietal activation.</li>
+        <li><span class="yr">2004 · Sergent &amp; Dehaene</span>In the attentional blink, people rate visibility as either clearly seen or not at all. Bimodal, as ignition predicts.</li>
+        <li><span class="yr">2017 · Dehaene, Lau &amp; Kouider</span>In <i>Science</i>, argued machines could be conscious if they had global availability plus self-monitoring.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>Access, not feeling.</b> Broadcast explains availability for report. Critics like Ned Block say phenomenal experience may overflow it, as Sperling's grid suggests.</span></li>
+        <li><span><b>Report confound.</b> Prefrontal ignition may be preparing a response, not experiencing. No-report paradigms weaken frontal signals.</span></li>
+        <li><span><b>2025 adversarial test.</b> No ignition when stimuli disappeared, and stimulus orientation (clearly experienced) couldn't be decoded from prefrontal cortex. See <a href="#ring">the showdown</a>.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- IIT -->
+  <article class="card" id="iit">
+    <div class="pic" role="img" aria-label="A simple chain of nodes versus a richly interconnected web of nodes">
+      <svg viewBox="0 0 320 180">
+        <path class="ln" d="M24 90 L 64 90 L 104 90"/>
+        <g class="f-d"><circle cx="24" cy="90" r="7"/><circle cx="64" cy="90" r="7"/><circle cx="104" cy="90" r="7"/></g>
+        <text x="64" y="132" text-anchor="middle" class="t">feedforward chain · Φ = 0</text>
+        <g class="ln-a" opacity=".75">
+          <path d="M275 90 L252.5 129 L207.5 129 L185 90 L207.5 51 L252.5 51 Z"/>
+          <path d="M275 90 L207.5 129 M275 90 L185 90 M275 90 L207.5 51 M252.5 129 L185 90 M252.5 129 L207.5 51 M252.5 129 L252.5 51 M207.5 129 L207.5 51 M207.5 129 L252.5 51 M185 90 L252.5 51"/>
+          <path d="M230 90 L275 90 M230 90 L252.5 129 M230 90 L207.5 129 M230 90 L185 90 M230 90 L207.5 51 M230 90 L252.5 51"/>
+        </g>
+        <circle cx="230" cy="90" r="34" class="f-as"/>
+        <g class="f-a"><circle cx="275" cy="90" r="7"/><circle cx="252.5" cy="129" r="7"/><circle cx="207.5" cy="129" r="7"/><circle cx="185" cy="90" r="7"/><circle cx="207.5" cy="51" r="7"/><circle cx="252.5" cy="51" r="7"/><circle cx="230" cy="90" r="7"/></g>
+        <text x="230" y="160" text-anchor="middle" class="t">recurrent web · Φ high</text>
+      </svg>
+    </div>
+    <h3>Integrated Information Theory</h3>
+    <p class="oneliner">Conscious = a physical system whose whole has irreducible cause–effect power.</p>
+    <p>IIT starts from experience, not the brain. It lists properties every experience has, translates each into a requirement on the physical substrate, and arrives at a quantity, Φ ("phi"), measuring how much a system is more than the sum of its parts. Consciousness <i>is</i> that integrated structure, in brains or anywhere else.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Giulio Tononi</b> <span class="where">· Wisconsin Institute for Sleep and Consciousness, UW–Madison.</span> Champion: <b>Christof Koch</b> <span class="where">· Allen Institute, Seattle, and Tiny Blue Dot Foundation.</span> Current version: IIT 4.0 (2023).</dd>
+    </dl>
+    <div class="deep">
+      <h4>Axioms → postulates</h4>
+      <ul class="kv">
+        <li><span>0 · Existence</span><span>Experience exists, here and now. Substrate: must have cause–effect power.</span></li>
+        <li><span>Intrinsicality</span><span>Experience exists for itself. Power must be on itself, not just for an observer.</span></li>
+        <li><span>Information</span><span>Each experience is specific. Substrate must select a specific cause–effect state.</span></li>
+        <li><span>Integration</span><span>Experience is unified. Cutting the system must lose cause–effect power.</span></li>
+        <li><span>Exclusion</span><span>Experience is definite. Only the grain and borders with maximal Φ count.</span></li>
+        <li><span>Composition</span><span>Experience is structured. Its distinctions and relations form a "Φ-structure".</span></li>
+      </ul>
+      <h4>The computation, roughly</h4>
+      <div class="eq">Φ(S) = distance( CES(S), CES(S cut at MIP) )<br><span>CES = cause–effect structure · MIP = minimum information partition</span></div>
+      <p>Take the system in its current state. For every possible way of cutting it into parts, compute how much its cause–effect structure is degraded. The cut that hurts least is the <b>minimum information partition</b>; the damage there is Φ. The subset of the system with maximal Φ is the "main complex", which IIT identifies with the conscious subject. The <i>quality</i> of experience is the shape of its Φ-structure.</p>
+      <h4>Signature predictions</h4>
+      <ul class="kv">
+        <li><span>Hot zone</span><span>The grid-like, recurrent posterior cortex should be the substrate, not prefrontal cortex.</span></li>
+        <li><span>Cerebellum</span><span>Explains a real puzzle. See the chart below.</span></li>
+        <li><span>Silent neurons</span><span>Inactive but connected neurons still shape experience. Inactivated ones do not. A strange, testable claim.</span></li>
+        <li><span>Feedforward = 0</span><span>Any purely feedforward system has Φ = 0, whatever its behaviour.</span></li>
+      </ul>
+      <div class="pic" role="img" aria-label="Bar chart: cerebellum about 69 billion neurons, cerebral cortex about 16 billion">
+        <svg viewBox="0 0 320 120">
+          <text x="10" y="28" class="t-c">Cerebellum</text>
+          <rect x="10" y="36" width="276" height="16" rx="3" class="f-d"/>
+          <text x="292" y="49" class="t">69 bn</text>
+          <text x="10" y="80" class="t-c">Cerebral cortex</text>
+          <rect x="10" y="88" width="64" height="16" rx="3" class="f-a"/>
+          <text x="80" y="101" class="t">16 bn</text>
+        </svg>
+      </div>
+      <p class="cap">Neuron counts, Azevedo et al. (2009); bars to scale. Losing much of the cerebellum disturbs movement but not experience. IIT's answer: its circuitry is many parallel, weakly interacting modules, so Φ is low despite the neuron count.</p>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">2013 · Casali, Massimini et al.</span>The PCI ("zap and zip") index, inspired by IIT, separates conscious from unconscious states across sleep, anaesthesia and brain injury.</li>
+        <li><span class="yr">2025 · Cogitate Consortium</span>Pre-registered test against the workspace theory. Key IIT prediction of sustained synchronisation within posterior cortex was not found.</li>
+        <li><span class="yr">2026 · INTREPID</span>A second adversarial collaboration pitting IIT against Active Inference (Friston) and Neurorepresentationalism (Pennartz) published its joint review and planned experiments.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>Uncomputable in practice.</b> The number of partitions grows super-exponentially. Exact Φ is feasible only for systems of about a dozen elements. Brain-scale Φ is unreachable, so tests use proxies.</span></li>
+        <li><span><b>The grid objection.</b> Scott Aaronson (2014) showed simple, inactive lattices of logic gates can have enormous Φ. IIT accepts the result: such a grid would be more conscious than you.</span></li>
+        <li><span><b>The unfolding argument.</b> Any recurrent network can be "unfolded" into a feedforward one with identical input–output behaviour (Doerig et al., 2019). Same behaviour, opposite Φ. So no behavioural test can confirm IIT.</span></li>
+        <li><span><b>The pseudoscience fight.</b> In September 2023, 124 researchers signed a letter calling IIT pseudoscience. A revised version ran in <i>Nature Neuroscience</i> in 2025, with a reply from Tononi's team. Many, including Chalmers and Seth, called the label too harsh.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- HOT -->
+  <article class="card" id="hot">
+    <div class="pic" role="img" aria-label="An eye sees an apple; a second eye watches the first eye">
+      <svg viewBox="0 0 320 180">
+        <rect x="18" y="72" width="64" height="64" rx="4" class="ln"/><circle cx="50" cy="104" r="15" class="f-v"/>
+        <g transform="translate(150 104)"><path class="ln-c" d="M-24 0 Q 0 -18 24 0 Q 0 18 -24 0 Z"/><circle r="7" class="f-c"/></g>
+        <path class="ln dash" d="M120 104 L 90 104"/>
+        <text x="150" y="146" text-anchor="middle" class="t">first-order: sees</text>
+        <g transform="translate(262 52)"><path class="ln-a" d="M-24 0 Q 0 -18 24 0 Q 0 18 -24 0 Z"/><circle r="7" class="f-a"/></g>
+        <path class="ln-a dash" d="M238 62 L 178 94"/>
+        <text x="262" y="92" text-anchor="middle" class="t">higher-order:</text>
+        <text x="262" y="106" text-anchor="middle" class="t">"I'm seeing this"</text>
+      </svg>
+    </div>
+    <h3>Higher-Order Theories</h3>
+    <p class="oneliner">Conscious = a mental state that is itself represented.</p>
+    <p>A signal in visual cortex can guide behaviour without being experienced. It becomes conscious only when a higher-order system, mainly in prefrontal cortex, represents it: roughly, "this sensory state is a reliable reflection of the world right now".</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Hakwan Lau</b> <span class="where">· Institute for Basic Science, South Korea (joined 2024; previously RIKEN, UCLA, Columbia).</span> Philosopher <b>David Rosenthal</b> (CUNY) built the original higher-order thought theory. <b>Steve Fleming</b> <span class="where">· UCL</span> works on metacognition.</dd>
+    </dl>
+    <div class="deep">
+      <h4>Mechanism: perceptual reality monitoring</h4>
+      <p>Lau's version works like the discriminator in a generative adversarial network. Early sensory areas generate activity from three sources: the world, imagination, and noise. A prefrontal monitor learns to classify each pattern. When it tags a pattern "real, from outside, now", that pattern is experienced as perception. The tagging is automatic, not deliberate reflection.</p>
+      <div class="pic" role="img" aria-label="Diagram: world, imagination and noise feed sensory cortex; a prefrontal discriminator tags each as real or not">
+        <svg viewBox="0 0 320 170">
+          <g class="t"><text x="10" y="34">world</text><text x="10" y="88">imagination</text><text x="10" y="142">noise</text></g>
+          <g class="ln"><path d="M60 30 L 120 76"/><path d="M90 84 L 120 84"/><path d="M50 138 L 120 92"/></g>
+          <rect x="120" y="62" width="70" height="44" rx="8" class="ln-c"/>
+          <text x="155" y="80" text-anchor="middle" class="t-c">sensory</text><text x="155" y="96" text-anchor="middle" class="t-c">cortex</text>
+          <path class="ln-a" d="M190 84 L 214 84"/>
+          <rect x="214" y="58" width="94" height="52" rx="8" class="f-as"/>
+          <text x="261" y="80" text-anchor="middle" class="t-a">PFC monitor</text>
+          <text x="261" y="96" text-anchor="middle" class="t">"real or not?"</text>
+          <text x="261" y="136" text-anchor="middle" class="t-a">real → experienced</text>
+          <text x="261" y="152" text-anchor="middle" class="t">not → imagined / ignored</text>
+        </svg>
+      </div>
+      <h4>Signatures</h4>
+      <ul class="kv">
+        <li><span>meta-d′</span><span>Signal-detection measure of how well confidence tracks accuracy (Maniscalco &amp; Lau, 2012). Lets you separate "seeing" from "knowing you see".</span></li>
+        <li><span>Dissociation</span><span>Same task accuracy, different awareness. The difference should live in prefrontal cortex.</span></li>
+      </ul>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">1970s on · Weiskrantz</span>Blindsight patients discriminate stimuli they deny seeing. On this view: first-order vision intact, higher-order tag missing.</li>
+        <li><span class="yr">2006 · Lau &amp; Passingham</span>Masking conditions matched for accuracy but differing in reported visibility. Visibility tracked mid-dorsolateral prefrontal activity.</li>
+        <li><span class="yr">2010 · Rounis et al.</span>TMS over dorsolateral PFC reduced metacognitive sensitivity without hurting accuracy. A later replication attempt failed, a reminder of how fragile these effects are.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>The misrepresentation problem.</b> What if the higher-order state represents a red experience that isn't there? Then either you experience red with no red signal, or the theory needs patching.</span></li>
+        <li><span><b>Why would a tag feel like anything?</b> It relocates the hard problem to the monitor.</span></li>
+        <li><span><b>Frontal lesions.</b> Patients with large prefrontal damage don't obviously lose experience.</span></li>
+        <li><span><b>Animals and infants.</b> If consciousness needs sophisticated self-monitoring, how far down does it go?</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- RPT -->
+  <article class="card" id="rpt">
+    <div class="pic" role="img" aria-label="Signals sweep up through visual layers, then echo back down">
+      <svg viewBox="0 0 320 180">
+        <g class="f-c"><circle cx="70" cy="140" r="7"/><circle cx="130" cy="140" r="7"/><circle cx="190" cy="140" r="7"/><circle cx="250" cy="140" r="7"/></g>
+        <g class="f-c"><circle cx="100" cy="50" r="7"/><circle cx="160" cy="50" r="7"/><circle cx="220" cy="50" r="7"/></g>
+        <g class="ln"><path d="M72 132 L 98 58"/><path d="M132 132 L 158 58"/><path d="M192 132 L 218 58"/></g>
+        <g class="ln-a"><path d="M108 56 Q 140 96 128 132"/><path d="M168 56 Q 200 96 188 132"/><path d="M228 56 Q 262 96 248 132"/></g>
+        <text x="20" y="54" class="t">higher</text><text x="20" y="144" class="t">V1</text>
+        <text x="160" y="22" text-anchor="middle" class="t">grey: feedforward sweep · amber: feedback</text>
+      </svg>
+    </div>
+    <h3>Recurrent Processing Theory</h3>
+    <p class="oneliner">Conscious = sensory areas talking back to themselves.</p>
+    <p>The first wave of visual processing races up the hierarchy and is unconscious, however sophisticated. Experience begins when higher visual areas feed back to lower ones and the loop reverberates. No prefrontal involvement required.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Victor Lamme</b> <span class="where">· University of Amsterdam.</span></dd>
+    </dl>
+    <div class="deep">
+      <h4>Four stages</h4>
+      <ul class="kv">
+        <li><span>1 · Superficial FF</span><span>Feedforward sweep reaches V1 at ~40–60 ms, higher areas by ~100–150 ms. Features, even categories, extracted. Unconscious.</span></li>
+        <li><span>2 · Deep FF</span><span>Sweep reaches motor and frontal areas; can drive reflex-like responses. Still unconscious.</span></li>
+        <li><span>3 · Local recurrence</span><span>Feedback within visual cortex binds features, separates figure from ground. Phenomenal experience, on this theory.</span></li>
+        <li><span>4 · Global recurrence</span><span>Loops extend to frontoparietal areas. Access and report. This is where the workspace theory starts counting.</span></li>
+      </ul>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">2001 · Supèr, Spekreijse &amp; Lamme</span>In monkeys, V1 neurons fire more for a figure than its background from ~100 ms, a feedback effect. When the monkey failed to report the figure, the modulation was missing even though the feedforward response was intact.</li>
+        <li><span class="yr">Masking studies</span>A mask arriving at the right moment interrupts recurrence without blocking the feedforward sweep, which is why masked stimuli can still prime responses.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>Unreportable experience.</b> Stage 3 is conscious but may never be reported. By construction, that's very hard to verify.</span></li>
+        <li><span><b>Recurrence is everywhere.</b> Some feedback persists under anaesthesia and in unconscious processing. What's special about the conscious kind?</span></li>
+        <li><span><b>Mechanism, not explanation.</b> Even if it's the right circuit, it doesn't say why looping should feel like something.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="family">
+    <span class="eyebrow"><span class="dot d-t"></span>Camp 2 · In the brain's models of itself</span>
+    <p>Theories built on the idea that the brain runs models, of the world, the body and its own processes, and experience is tied to those models.</p>
+  </div>
+
+  <!-- Predictive -->
+  <article class="card" id="pp">
+    <div class="pic" role="img" aria-label="Noisy dots from the eyes become a clean face by the brain's guess">
+      <svg viewBox="0 0 320 180">
+        <rect x="16" y="46" width="88" height="88" rx="6" class="ln"/>
+        <g class="f-d"><circle cx="40" cy="74" r="2.5"/><circle cx="46" cy="70" r="2"/><circle cx="76" cy="72" r="2.5"/><circle cx="82" cy="76" r="2"/><circle cx="60" cy="92" r="2"/><circle cx="44" cy="110" r="2"/><circle cx="56" cy="116" r="2.5"/><circle cx="70" cy="114" r="2"/><circle cx="80" cy="106" r="2"/><circle cx="30" cy="96" r="1.5"/><circle cx="92" cy="58" r="1.5"/><circle cx="64" cy="60" r="1.5"/></g>
+        <text x="60" y="152" text-anchor="middle" class="t">what eyes get</text>
+        <path class="ln-t" d="M214 78 L 116 78"/><path class="ln-t" d="M124 72 L 116 78 L 124 84"/>
+        <text x="165" y="70" text-anchor="middle" class="t-t">prediction ↓</text>
+        <path class="ln-v" d="M116 104 L 214 104"/><path class="ln-v" d="M206 98 L 214 104 L 206 110"/>
+        <text x="165" y="124" text-anchor="middle" class="t-v">error ↑</text>
+        <circle cx="262" cy="90" r="40" class="f-ts"/><circle cx="262" cy="90" r="30" class="ln-t"/>
+        <circle cx="251" cy="82" r="3.5" class="f-t"/><circle cx="273" cy="82" r="3.5" class="f-t"/>
+        <path class="ln-t" d="M250 100 Q 262 110 274 100"/>
+        <text x="262" y="152" text-anchor="middle" class="t">what you see</text>
+      </svg>
+    </div>
+    <h3>Predictive Processing &amp; the Beast Machine</h3>
+    <p class="oneliner">Experience is the brain's best guess, rooted in keeping the body alive.</p>
+    <p>The brain never sees the world directly. It runs a generative model, predicts its sensory input, and updates on the error. What you experience is the prediction, a "controlled hallucination". The deepest predictions are about the inside of the body, and that ties consciousness to being a living organism.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Anil Seth</b> <span class="where">· Sussex Centre for Consciousness Science, University of Sussex, Brighton.</span> Mathematical backbone from <b>Karl Friston</b> <span class="where">· UCL, London</span> (free-energy principle, active inference).</dd>
+    </dl>
+    <div class="deep">
+      <h4>The maths</h4>
+      <div class="eq">p(cause | senses) ∝ p(senses | cause) · p(cause)<br><span>posterior ∝ likelihood × prior</span></div>
+      <div class="eq">F = D<sub>KL</sub>[ q(cause) ‖ p(cause) ] − E<sub>q</sub>[ ln p(senses | cause) ] ≥ −ln p(senses)<br><span>free energy = complexity − accuracy · an upper bound on surprise</span></div>
+      <p>Each cortical level sends predictions down and receives prediction errors up. Errors are weighted by <b>precision</b> (inverse variance): how much the brain trusts that signal right now. Attention, on this view, is precision-weighting. Minimising free energy can happen two ways: change the model (perception) or change the world to fit the model (<b>active inference</b>, i.e. action).</p>
+      <h4>Seth's step</h4>
+      <p><b>Interoceptive inference.</b> The brain also predicts heartbeat, blood pressure, gut and chemistry, in order to regulate them. Emotions are perceptions of these predictions. The self is a bundle of such predictions. So consciousness is less like a computer and more like a "beast machine": tied to staying alive.</p>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">Mooney images</span>A black-and-white blob is meaningless until you see the original photo. After that you can't un-see it. A prior permanently changed perception.</li>
+        <li><span class="yr">2017 · Hallucination Machine</span>Seth's lab fed panoramic VR video through a DeepDream-style network to mimic psychedelic visuals, testing "over-weighted priors" as a model of hallucination.</li>
+        <li><span class="yr">Cardiac timing</span>Stimuli presented at different points of the heartbeat are perceived differently, supporting body–perception coupling.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>A framework, not a theory.</b> With free choice of priors and precisions, almost any result can be fitted. Hard to falsify.</span></li>
+        <li><span><b>Prediction without experience.</b> Most predictive processing is unconscious, like motor control. What makes some predictions conscious?</span></li>
+        <li><span><b>Sidesteps the hard problem.</b> Seth openly aims at the "real problem": explaining the properties of experience rather than why it exists.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- AST -->
+  <article class="card" id="ast">
+    <div class="pic" role="img" aria-label="Messy wiring of attention on the left; the brain's simple glowing cartoon of it on the right">
+      <svg viewBox="0 0 320 180">
+        <circle cx="120" cy="96" r="13" class="f-v"/>
+        <g class="ln"><path d="M20 50 L 40 70 L 30 82 L 62 90 L 50 106 L 104 96"/><path d="M18 140 L 46 124 L 40 112 L 76 118 L 104 102"/><path d="M30 30 L 60 46 L 56 62 L 92 70 L 108 88"/></g>
+        <text x="64" y="166" text-anchor="middle" class="t">attention: messy competition</text>
+        <rect x="186" y="28" width="118" height="118" rx="8" class="ln-t dash"/>
+        <circle cx="245" cy="104" r="10" class="ln-c"/><path class="ln-c" d="M245 114 L 245 134 M233 122 L 257 122"/>
+        <circle cx="245" cy="68" r="20" class="f-ts"/><circle cx="245" cy="68" r="11" class="f-t" opacity=".75"/>
+        <text x="245" y="166" text-anchor="middle" class="t">the model: "a glowing mind"</text>
+      </svg>
+    </div>
+    <h3>Attention Schema Theory</h3>
+    <p class="oneliner">Awareness is the brain's simplified model of its own attention.</p>
+    <p>Control engineering says a good controller needs a model of what it controls. The brain controls attention, so it builds a model of attention: the attention schema. Like the body schema, it's a sketch, not a wiring diagram. The sketch describes attention as an invisible inner essence that grabs things. That description is what we report as awareness.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Michael Graziano</b> <span class="where">· Princeton Neuroscience Institute, Princeton University.</span></dd>
+    </dl>
+    <div class="deep">
+      <h4>Mechanism</h4>
+      <ul class="kv">
+        <li><span>Attention</span><span>Biased competition among signals for limited processing. A physical, mechanistic process.</span></li>
+        <li><span>Schema</span><span>A predictive, simplified model of that process, proposed to involve the temporoparietal junction and superior temporal sulcus.</span></li>
+        <li><span>Use 1</span><span>Endogenous control of your own attention.</span></li>
+        <li><span>Use 2</span><span>Modelling other people's attention (gaze following, theory of mind). Why we attribute minds to others.</span></li>
+      </ul>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">2016 · Webb, Kean &amp; Graziano</span>When a cue is unseen, attention is still drawn to it, but people are worse at controlling that attention. Prediction: awareness = control model.</li>
+        <li><span class="yr">2021 · Wilterson &amp; Graziano</span>A reinforcement-learning agent given an attention schema learned to control its visual attention better than one without.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>Explains the claim, not the feeling.</b> It's a theory of the meta-problem. If you think the felt quality is real, AST deflates it rather than explains it.</span></li>
+        <li><span><b>Attention ≠ consciousness.</b> Koch and Tsuchiya (2007) argued each can occur without the other, loosening the tie AST depends on.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Illusionism -->
+  <article class="card" id="ill">
+    <div class="pic" role="img" aria-label="Müller-Lyer illusion: two equal lines that look different lengths">
+      <svg viewBox="0 0 320 180">
+        <g class="ln-c">
+          <path d="M100 56 L 220 56"/><path d="M100 56 L 114 42 M100 56 L 114 70 M220 56 L 206 42 M220 56 L 206 70"/>
+          <path d="M100 124 L 220 124"/><path d="M100 124 L 86 110 M100 124 L 86 138 M220 124 L 234 110 M220 124 L 234 138"/>
+        </g>
+        <g class="ln-t dash"><path d="M100 28 L 100 152"/><path d="M220 28 L 220 152"/></g>
+        <text x="160" y="170" text-anchor="middle" class="t">same length. your eyes refuse to agree.</text>
+      </svg>
+    </div>
+    <h3>Illusionism</h3>
+    <p class="oneliner">Phenomenal consciousness, in the mysterious sense, doesn't exist. It only seems to.</p>
+    <p>The brain really processes information and really represents itself. But it represents its own states as having ineffable, private "qualia". Those representations are wrong, like the Müller-Lyer lines. Explain why the brain misrepresents itself and nothing is left over.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Daniel Dennett</b> <span class="where">· Tufts University (1942–2024).</span> <b>Keith Frankish</b> <span class="where">· University of Sheffield</span>, who named the view in 2016.</dd>
+    </dl>
+    <div class="deep">
+      <h4>Core moves</h4>
+      <ul class="kv">
+        <li><span>No theatre</span><span>Dennett rejected the "Cartesian theatre", a single place where it all comes together for a viewer. Yes, that's this page's metaphor. He'd object.</span></li>
+        <li><span>Multiple drafts</span><span>Many parallel content-fixations compete. "Consciousness" is whichever ones win influence: fame in the brain.</span></li>
+        <li><span>Heterophenomenology</span><span>Treat people's reports as data about what seems to them, not as infallible facts about their inner life.</span></li>
+        <li><span>Meta-problem</span><span>Solve why we're convinced there's a hard problem, and you've solved it.</span></li>
+      </ul>
+      <h4>Supporting evidence</h4>
+      <ul class="exp">
+        <li><span class="yr">Peripheral vision</span>Your visual field feels rich and coloured to the edges. Colour and detail vision actually collapse a few degrees from where you look.</li>
+        <li><span class="yr">Change blindness</span>Large changes in a scene go unnoticed across a brief flicker. We see far less than we think.</li>
+        <li><span class="yr">2005 · Choice blindness</span>Johansson and Hall swapped photos people had chosen; most didn't notice and confidently justified the choice they never made.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>The illusion problem.</b> An illusion is something seeming a certain way. Seeming is the very thing to be explained.</span></li>
+        <li><span><b>Too costly.</b> Philosopher Galen Strawson called denying experience the silliest claim ever made. Many find pain-as-illusion unacceptable.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="family">
+    <span class="eyebrow"><span class="dot d-v"></span>Camp 3 · Beyond ordinary neurons</span>
+    <p>Views holding that standard neuroscience can't get there alone: either new physics is needed, or consciousness is built into matter itself.</p>
+  </div>
+
+  <!-- Orch OR -->
+  <article class="card" id="orch">
+    <div class="pic" role="img" aria-label="A microtubule inside a brain cell with a quantum wave above it">
+      <svg viewBox="0 0 320 180">
+        <path class="ln-v" d="M50 40 Q 75 18 100 40 T 150 40 T 200 40 T 250 40"/>
+        <text x="270" y="44" class="t-v">ψ</text>
+        <path class="ln-c" d="M60 74 L 260 74 M60 126 L 260 126"/>
+        <ellipse cx="60" cy="100" rx="10" ry="26" class="ln-c"/><ellipse cx="260" cy="100" rx="10" ry="26" class="ln-c"/>
+        <g class="f-d">
+          <circle cx="84" cy="86" r="4"/><circle cx="104" cy="86" r="4"/><circle cx="124" cy="86" r="4"/><circle cx="144" cy="86" r="4"/><circle cx="164" cy="86" r="4"/><circle cx="184" cy="86" r="4"/><circle cx="204" cy="86" r="4"/><circle cx="224" cy="86" r="4"/>
+          <circle cx="94" cy="100" r="4"/><circle cx="114" cy="100" r="4"/><circle cx="134" cy="100" r="4"/><circle cx="174" cy="100" r="4"/><circle cx="194" cy="100" r="4"/><circle cx="214" cy="100" r="4"/><circle cx="234" cy="100" r="4"/>
+          <circle cx="84" cy="114" r="4"/><circle cx="104" cy="114" r="4"/><circle cx="124" cy="114" r="4"/><circle cx="144" cy="114" r="4"/><circle cx="164" cy="114" r="4"/><circle cx="184" cy="114" r="4"/><circle cx="204" cy="114" r="4"/><circle cx="224" cy="114" r="4"/>
+        </g>
+        <circle cx="154" cy="100" r="14" class="f-vs"/><circle cx="154" cy="100" r="6" class="f-v"/>
+        <text x="160" y="160" text-anchor="middle" class="t">microtubule: tubulin dimers in a hollow tube</text>
+      </svg>
+    </div>
+    <h3>Orchestrated Objective Reduction</h3>
+    <p class="oneliner">Moments of awareness are quantum-state collapses inside neurons.</p>
+    <p>Penrose argued, from Gödel's incompleteness theorem, that human understanding isn't computable, so no algorithm (and no ordinary neural network) can explain it. He proposed a new physical process. Hameroff supplied the place: microtubules, the protein scaffolding inside every neuron.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Sir Roger Penrose</b> <span class="where">· Mathematical Institute, University of Oxford (Nobel Prize in Physics, 2020, for black-hole work).</span> <b>Stuart Hameroff</b> <span class="where">· anaesthesiologist, Center for Consciousness Studies, University of Arizona, Tucson.</span></dd>
+    </dl>
+    <div class="deep">
+      <h4>Mechanism</h4>
+      <div class="eq">τ ≈ ħ / E<sub>G</sub><br><span>a superposition self-collapses after time τ · E<sub>G</sub> = gravitational self-energy of the mass separation</span></div>
+      <p>In ordinary quantum mechanics, superpositions collapse on measurement, and nobody agrees what that means. Penrose proposes <b>objective reduction</b>: a superposition of different mass arrangements becomes unstable in spacetime and collapses on its own after τ. Hameroff proposes tubulin proteins enter superpositions, "orchestrated" by synaptic inputs. Each collapse is a discrete conscious moment, roughly every 25 ms, matching 40 Hz gamma rhythms.</p>
+      <h4>The decoherence fight, to scale</h4>
+      <div class="pic" role="img" aria-label="Log-scale timeline from ten to the minus twenty seconds to one second, showing decoherence estimates and the time Orch OR needs">
+        <svg viewBox="0 0 320 170">
+          <path class="ln" d="M20 120 L 300 120"/>
+          <g class="ln"><path d="M20 114 V126"/><path d="M90 114 V126"/><path d="M160 114 V126"/><path d="M230 114 V126"/><path d="M300 114 V126"/></g>
+          <text x="20" y="142" text-anchor="middle" class="t">10⁻²⁰</text><text x="90" y="142" text-anchor="middle" class="t">10⁻¹⁵</text><text x="160" y="142" text-anchor="middle" class="t">10⁻¹⁰</text><text x="230" y="142" text-anchor="middle" class="t">10⁻⁵</text><text x="300" y="142" text-anchor="middle" class="t">1 s</text>
+          <rect x="20" y="88" width="98" height="14" rx="3" class="f-v"/>
+          <text x="69" y="80" text-anchor="middle" class="t-v">Tegmark 2000</text>
+          <rect x="230" y="88" width="14" height="14" rx="3" class="f-a"/>
+          <text x="237" y="80" text-anchor="middle" class="t-a">Hagan 2002</text>
+          <path class="ln-t" d="M277.6 44 L 277.6 120"/>
+          <text x="277.6" y="36" text-anchor="middle" class="t-t">25 ms needed</text>
+          <path class="ln dash" d="M258 58 L 258 120"/>
+          <text x="252" y="54" text-anchor="end" class="t">1 ms spike</text>
+          <text x="160" y="164" text-anchor="middle" class="t">seconds, log scale · 14 px per decade</text>
+        </svg>
+      </div>
+      <p class="cap">Max Tegmark calculated that microtubule superpositions would decohere in 10⁻²⁰ to 10⁻¹³ s, around ten orders of magnitude too fast. Hameroff's group recalculated 10⁻⁵ to 10⁻⁴ s with shielding assumptions. Orch OR needs ~25 ms.</p>
+      <h4>Key experiments</h4>
+      <ul class="exp">
+        <li><span class="yr">2022 · Gran Sasso, Italy</span>Catalina Curceanu's team used an underground radiation experiment to bound gravity-related collapse. The simplest Diósi–Penrose model came out highly implausible for Orch OR; more complex variants survive.</li>
+        <li><span class="yr">2024 · Anaesthesia in rats</span>A drug that stabilises microtubules delayed loss of consciousness under isoflurane by about a minute. Supporters read it as a microtubule role in anaesthesia; it doesn't show quantum effects.</li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>Warm, wet and noisy.</b> Decoherence estimates above. The brain is a terrible place to keep a quantum state.</span></li>
+        <li><span><b>The Gödel argument.</b> Most logicians reject the step from incompleteness to non-computable minds.</span></li>
+        <li><span><b>Explanatory gap stays.</b> Even if collapses happen, why would a collapse feel like anything?</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Panpsychism -->
+  <article class="card" id="pan">
+    <div class="pic" role="img" aria-label="An atom with a speck of feeling, a rock with many specks, a head with specks merged into one">
+      <svg viewBox="0 0 320 180">
+        <circle cx="50" cy="84" r="5" class="f-v"/>
+        <ellipse cx="50" cy="84" rx="26" ry="10" class="ln"/><ellipse cx="50" cy="84" rx="26" ry="10" class="ln" transform="rotate(60 50 84)"/><ellipse cx="50" cy="84" rx="26" ry="10" class="ln" transform="rotate(-60 50 84)"/>
+        <text x="50" y="146" text-anchor="middle" class="t">1 speck</text>
+        <path class="ln-c" d="M122 116 L 132 70 L 160 56 L 194 66 L 204 106 L 186 122 L 140 124 Z"/>
+        <g class="f-v" opacity=".8"><circle cx="146" cy="82" r="2.5"/><circle cx="168" cy="74" r="2.5"/><circle cx="184" cy="90" r="2.5"/><circle cx="150" cy="104" r="2.5"/><circle cx="174" cy="110" r="2.5"/><circle cx="162" cy="92" r="2.5"/><circle cx="192" cy="104" r="2.5"/></g>
+        <text x="163" y="146" text-anchor="middle" class="t">many, no "one"</text>
+        <circle cx="266" cy="84" r="34" class="ln-c"/><circle cx="266" cy="84" r="18" class="f-vs"/><circle cx="266" cy="84" r="8" class="f-v"/>
+        <text x="266" y="146" text-anchor="middle" class="t">one mind?</text>
+      </svg>
+    </div>
+    <h3>Panpsychism</h3>
+    <p class="oneliner">Experience is a fundamental feature of matter.</p>
+    <p>Physics tells us what matter <i>does</i>: mass, charge, how things push and pull. It's silent on what matter <i>is</i> intrinsically. Panpsychists propose that intrinsic nature is experiential. Electrons have something unimaginably simple; brains organise vast amounts of it into a mind.</p>
+    <dl class="facts">
+      <dt>Who</dt><dd><b>Philip Goff</b> <span class="where">· Durham University.</span> Roots in Bertrand Russell and Arthur Eddington (1920s). Koch is sympathetic; IIT has a panpsychist streak.</dd>
+    </dl>
+    <div class="deep">
+      <h4>The argument (Russellian monism)</h4>
+      <ul class="kv">
+        <li><span>Premise 1</span><span>Physics describes only structure and dispositions, not intrinsic natures.</span></li>
+        <li><span>Premise 2</span><span>Dispositions need something to be dispositions <i>of</i>.</span></li>
+        <li><span>Premise 3</span><span>The only intrinsic nature we know directly is our own experience.</span></li>
+        <li><span>Conclusion</span><span>Simplest hypothesis: matter's intrinsic nature is experiential, everywhere.</span></li>
+      </ul>
+      <h4 class="crack">Cracks</h4>
+      <ul class="cracks">
+        <li><span><b>The combination problem.</b> William James (1890): take twelve people, give each one word of a sentence, and nowhere is the whole sentence experienced. How do micro-subjects sum into one subject? Goff has proposed "phenomenal bonding"; no answer is widely accepted.</span></li>
+        <li><span><b>Untestable.</b> Panpsychism makes no prediction a brain scan could check. It reframes the hard problem rather than solving it.</span></li>
+        <li><span><b>Why not rocks?</b> It must explain why some aggregates (brains) combine into minds and others (rocks) don't. That's the same question neuroscience faces.</span></li>
+      </ul>
+    </div>
+  </article>
+</div>
+
+<!-- THE SHOWDOWN -->
+<section id="ring">
+  <span class="eyebrow">06 · The showdown</span>
+  <h2>Rivals in one ring</h2>
+  <div class="pic" role="img" aria-label="A boxing ring with Integrated Information on one side and Global Workspace on the other, neutral labs as referee">
+    <svg viewBox="0 0 340 170">
+      <rect x="40" y="30" width="260" height="110" rx="4" class="ln"/>
+      <path class="ln" d="M40 58 L 300 58 M40 86 L 300 86 M40 114 L 300 114" opacity=".5"/>
+      <circle cx="90" cy="78" r="22" class="f-a"/><text x="90" y="82" text-anchor="middle" class="t-ink">IIT</text>
+      <circle cx="250" cy="78" r="22" class="f-a"/><text x="250" y="82" text-anchor="middle" class="t-ink">GNWT</text>
+      <circle cx="170" cy="96" r="10" class="f-c"/><path class="ln-c" d="M170 106 L 170 128 M158 116 L 182 116"/>
+      <text x="170" y="160" text-anchor="middle" class="t">pre-registered: rules set before any data</text>
+      <path class="ln-v" d="M70 50 l10 10 m0 -10 l-10 10 M230 50 l10 10 m0 -10 l-10 10"/>
+    </svg>
+  </div>
+  <p>The <b>Cogitate Consortium</b> brought theory proponents and theory-neutral labs together. Before collecting data, both camps signed off on the design, their divergent predictions, and what results would count against them. An approach first championed by Daniel Kahneman. Seven years later it appeared in <i>Nature</i> (online 30 April 2025).</p>
+  <div class="deep">
+    <h4>Design</h4>
+    <ul class="kv">
+      <li><span>People</span><span>256 participants across fMRI, MEG and intracranial EEG (epilepsy patients), in several labs.</span></li>
+      <li><span>Stimuli</span><span>Clearly visible faces, objects, letters and false fonts at different orientations, shown for 0.5, 1.0 or 1.5 s. Some were task targets, most weren't, so report could be separated from experience.</span></li>
+      <li><span>Logic</span><span>Both theories agree these stimuli are consciously seen. They disagree on <i>where</i>, <i>when</i> and <i>how connected</i> the conscious content should be.</span></li>
+    </ul>
+    <h4>Predictions and results</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Question</th><th>IIT predicted</th><th>GNWT predicted</th><th>Found</th></tr></thead>
+        <tbody>
+          <tr><td><b>Where</b> is conscious content?</td><td>Posterior cortex</td><td>Prefrontal cortex holds all content features</td><td>Content in visual, ventrotemporal and inferior frontal cortex. Orientation <span class="fail">not decodable</span> in PFC: a hit to GNWT.</td></tr>
+          <tr><td><b>When</b>: how does it track duration?</td><td>Sustained posterior activity for as long as the stimulus is seen</td><td>Ignition at onset <i>and</i> again at offset; nothing sustained needed</td><td>Sustained responses in occipital/lateral temporal cortex tracked duration: <span class="part">partial IIT support</span>. Offset ignition <span class="fail">largely absent</span>.</td></tr>
+          <tr><td><b>Connectivity</b></td><td>Sustained synchronisation within posterior cortex</td><td>Long-range frontal–posterior synchrony at ignition</td><td>Posterior sync <span class="fail">not found</span>: a hit to IIT. Content-specific frontal–early visual sync <span class="part">found</span>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">The authors also flagged a field-wide issue: support for a theory often depended on the analysis choices made, a sign of confirmation bias that pre-registration is meant to fix.</p>
+  </div>
+  <div class="verdict">
+    <div><h5>IIT</h5><span>Got its "where" and partly its "when". Lost its core connectivity claim.</span></div>
+    <div><h5>Workspace</h5><span>Got onset ignition. Lost offset ignition and full prefrontal content.</span></div>
+  </div>
+  <p>Fallout followed. Media coverage of the 2023 preliminary results called IIT a leading, tested theory, which helped prompt the 124-signature pseudoscience letter. The field's response was more adversarial collaborations, not fewer: <b>INTREPID</b> now pits IIT against Friston's active inference and Pennartz's neurorepresentationalism, with a joint review published in 2026 laying out planned multi-site experiments.</p>
+</section>
+
+<!-- AI -->
+<section id="ai">
+  <span class="eyebrow">07 · Why it matters now</span>
+  <h2>Could an AI feel?</h2>
+  <p>In 2023, 19 researchers including Patrick Butlin, Robert Long and Yoshua Bengio turned five of these theories (recurrent processing, global workspace, higher-order, predictive processing, attention schema) into a checklist of computational "indicator properties", then audited AI systems. Their conclusion: no current system is a strong candidate, but no obvious technical barrier stops building one that ticks the boxes. IIT was left out because it denies that computation alone is enough.</p>
+  <p class="muted small">Same machine, nine verdicts:</p>
+  <div class="ai">
+    <div class="ai-row"><div><div class="name">Global Workspace</div><div class="why">Add a limited-capacity broadcast hub with ignition-like dynamics and, in principle, yes.</div></div><span class="tag yes">Possible</span></div>
+    <div class="ai-row"><div><div class="name">Higher-Order</div><div class="why">Needs a monitor that models its own perceptual states as real or not.</div></div><span class="tag yes">Possible</span></div>
+    <div class="ai-row"><div><div class="name">Attention Schema</div><div class="why">An attention schema can be built in. Graziano's lab already has toy versions.</div></div><span class="tag yes">Possible</span></div>
+    <div class="ai-row"><div><div class="name">Illusionism</div><div class="why">If it models itself the way we do, it has whatever we have.</div></div><span class="tag yes">Possible</span></div>
+    <div class="ai-row"><div><div class="name">Recurrent Processing</div><div class="why">Transformers process each token feedforward; recurrence in the right sense is debated.</div></div><span class="tag maybe">Unclear</span></div>
+    <div class="ai-row"><div><div class="name">Panpsychism</div><div class="why">The chips have micro-experience; whether it combines into one subject is the open question.</div></div><span class="tag maybe">Unclear</span></div>
+    <div class="ai-row"><div><div class="name">Beast Machine</div><div class="why">Experience is rooted in a living body regulating itself. Silicon has nothing at stake.</div></div><span class="tag no">Unlikely</span></div>
+    <div class="ai-row"><div><div class="name">Integrated Information</div><div class="why">Conventional digital hardware has a near-zero Φ causal structure, whatever software runs on it.</div></div><span class="tag no">No</span></div>
+    <div class="ai-row"><div><div class="name">Orch OR</div><div class="why">Consciousness is non-computable by definition.</div></div><span class="tag no">No</span></div>
+  </div>
+</section>
+
+<!-- WHERE -->
+<section id="where">
+  <span class="eyebrow">08 · Who &amp; where</span>
+  <h2>The hunt, west to east</h2>
+  <p class="muted small">Dot colour shows the camp. Grey marks method-builders and philosophers who don't belong to one theory.</p>
+  <ol class="line">
+    <li class="region">North America</li>
+    <li class="stop s-a"><span class="city">Seattle</span><span class="inst">Allen Institute · Tiny Blue Dot Foundation (Santa Monica)</span><span class="ppl">Christof Koch · Integrated Information, NCC pioneer</span></li>
+    <li class="stop s-v"><span class="city">Tucson</span><span class="inst">University of Arizona, Center for Consciousness Studies</span><span class="ppl">Stuart Hameroff · Orch OR</span></li>
+    <li class="stop s-a"><span class="city">Madison</span><span class="inst">University of Wisconsin–Madison</span><span class="ppl">Giulio Tononi · Integrated Information</span></li>
+    <li class="stop s-d"><span class="city">London, Ontario</span><span class="inst">Western University</span><span class="ppl">Adrian Owen · covert awareness in unresponsive patients</span></li>
+    <li class="stop s-t"><span class="city">Princeton</span><span class="inst">Princeton Neuroscience Institute</span><span class="ppl">Michael Graziano · Attention Schema</span></li>
+    <li class="stop s-d"><span class="city">New York</span><span class="inst">New York University · CUNY</span><span class="ppl">David Chalmers, Ned Block · the hard problem, access vs phenomenal; David Rosenthal · higher-order thought</span></li>
+    <li class="region">United Kingdom</li>
+    <li class="stop s-v"><span class="city">Durham</span><span class="inst">Durham University</span><span class="ppl">Philip Goff · Panpsychism</span></li>
+    <li class="stop s-t"><span class="city">Sheffield</span><span class="inst">University of Sheffield</span><span class="ppl">Keith Frankish · Illusionism</span></li>
+    <li class="stop s-v"><span class="city">Oxford</span><span class="inst">University of Oxford</span><span class="ppl">Roger Penrose · Orch OR</span></li>
+    <li class="stop s-t"><span class="city">London</span><span class="inst">University College London</span><span class="ppl">Karl Friston · free energy &amp; active inference; Steve Fleming · metacognition</span></li>
+    <li class="stop s-t"><span class="city">Brighton</span><span class="inst">University of Sussex</span><span class="ppl">Anil Seth · Predictive processing, Beast Machine</span></li>
+    <li class="region">Europe &amp; Middle East</li>
+    <li class="stop s-a"><span class="city">Amsterdam</span><span class="inst">University of Amsterdam</span><span class="ppl">Victor Lamme · Recurrent Processing; Cyriel Pennartz · Neurorepresentationalism</span></li>
+    <li class="stop s-a"><span class="city">Paris (Saclay)</span><span class="inst">Collège de France · NeuroSpin</span><span class="ppl">Stanislas Dehaene · Global Workspace</span></li>
+    <li class="stop s-d"><span class="city">Milan</span><span class="inst">University of Milan</span><span class="ppl">Marcello Massimini · PCI, "zap and zip"</span></li>
+    <li class="stop s-d"><span class="city">Tel Aviv</span><span class="inst">Tel Aviv University</span><span class="ppl">Liad Mudrik · co-designed the Cogitate adversarial collaboration</span></li>
+    <li class="region">Asia</li>
+    <li class="stop s-a"><span class="city">South Korea</span><span class="inst">Institute for Basic Science</span><span class="ppl">Hakwan Lau · Higher-Order, perceptual reality monitoring</span></li>
+  </ol>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <span class="eyebrow">09 · Timeline</span>
+  <h2>Fifty years of the hunt</h2>
+  <ol class="tl">
+    <li><span class="y">1974</span><span class="e">Thomas Nagel, <b>"What is it like to be a bat?"</b> Defines the target.</span></li>
+    <li><span class="y">1988</span><span class="e">Bernard Baars proposes the <b>global workspace</b>.</span></li>
+    <li><span class="y">1989</span><span class="e">Roger Penrose, <b>The Emperor's New Mind</b>: minds aren't computable.</span></li>
+    <li><span class="y">1990</span><span class="e">Francis Crick and Christof Koch launch the search for the <b>neural correlates of consciousness</b>.</span></li>
+    <li><span class="y">1991</span><span class="e">Daniel Dennett, <b>Consciousness Explained</b>: multiple drafts, no theatre.</span></li>
+    <li><span class="y">1995</span><span class="e">David Chalmers names the <b>hard problem</b>. Ned Block separates access from phenomenal consciousness.</span></li>
+    <li><span class="y">2000</span><span class="e">Max Tegmark's decoherence calculation challenges quantum brain theories. Victor Lamme sets out <b>recurrent processing</b>.</span></li>
+    <li><span class="y">2004</span><span class="e">Giulio Tononi publishes the first version of <b>integrated information theory</b>.</span></li>
+    <li><span class="y">2006</span><span class="e">Adrian Owen's "tennis" study finds a behaviourally unresponsive patient following commands in fMRI.</span></li>
+    <li><span class="y">2011</span><span class="e">Graziano and Kastner introduce the <b>attention schema</b>.</span></li>
+    <li><span class="y">2013</span><span class="e">Casali, Massimini and colleagues publish the <b>perturbational complexity index</b>.</span></li>
+    <li><span class="y">2016</span><span class="e">Keith Frankish names <b>illusionism</b> as a theory.</span></li>
+    <li><span class="y">2021</span><span class="e">Anil Seth, <b>Being You</b>: the controlled-hallucination view goes mainstream.</span></li>
+    <li><span class="y">2023</span><span class="e">IIT 4.0 published. Butlin, Long and colleagues release the <b>AI indicator</b> report. 124 researchers call IIT pseudoscience.</span></li>
+    <li><span class="y">2024</span><span class="e">Dennett dies. A multicentre <i>NEJM</i> study finds about a quarter of unresponsive patients show <b>covert command-following</b>.</span></li>
+    <li><span class="y">2025</span><span class="e"><b>Cogitate</b> results in <i>Nature</i>: both leading theories take hits. Revised pseudoscience letter and replies in <i>Nature Neuroscience</i>.</span></li>
+    <li><span class="y">2026</span><span class="e"><b>INTREPID</b> consortium (IIT vs active inference vs neurorepresentationalism) publishes its adversarial review and test plan.</span></li>
+  </ol>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary">
+  <span class="eyebrow">10 · Glossary</span>
+  <h2>Terms of art</h2>
+  <dl class="gloss">
+    <dt>Qualia</dt><dd>The felt qualities of experience: the redness of red, the hurt of pain.</dd>
+    <dt>NCC</dt><dd>Neural correlate of consciousness: minimal neural mechanisms jointly sufficient for a specific percept.</dd>
+    <dt>Contrastive method</dt><dd>Compare seen vs unseen with the stimulus held constant.</dd>
+    <dt>Report confound</dt><dd>Brain activity caused by deciding and responding, mistaken for activity of experiencing.</dd>
+    <dt>Ignition</dt><dd>GNWT's sudden, self-sustaining, brain-wide activation when content becomes conscious.</dd>
+    <dt>P3b</dt><dd>Late positive EEG wave (~300 ms+) linked to conscious access.</dd>
+    <dt>Φ (phi)</dt><dd>IIT's measure of integrated information: cause–effect power lost under the least damaging cut.</dd>
+    <dt>MIP</dt><dd>Minimum information partition: the cut of a system that loses least.</dd>
+    <dt>PCI</dt><dd>Perturbational complexity index: compressibility of the brain's response to a TMS pulse.</dd>
+    <dt>meta-d′</dt><dd>How well a person's confidence tracks whether they were right. A measure of metacognition.</dd>
+    <dt>Precision</dt><dd>In predictive processing, inverse variance: how much a signal is trusted.</dd>
+    <dt>Free energy</dt><dd>An upper bound on surprise that organisms are said to minimise by perceiving and acting.</dd>
+    <dt>Decoherence</dt><dd>Loss of a quantum superposition through interaction with the environment.</dd>
+    <dt>Overflow</dt><dd>The claim that we experience more than we can access or report.</dd>
+    <dt>UWS</dt><dd>Unresponsive wakefulness syndrome: eyes open, no reliable sign of awareness.</dd>
+    <dt>Cognitive motor dissociation</dt><dd>Following commands in brain activity while unable to show it in behaviour.</dd>
+  </dl>
+</section>
+
+<section class="end">
+  <span class="eyebrow">Where it stands</span>
+  <h2>Nobody has found the switch.</h2>
+  <p class="muted">The front-versus-back fight is unresolved, the deepest theories are the hardest to test, and the most testable ones may only explain access, not feeling. What has changed is method: theories now commit to predictions in advance and accept the score.</p>
+</section>
+
+<footer>
+  <span>Key sources: Cogitate Consortium, <i>Nature</i> 642 (2025); Albantakis et al., IIT 4.0, <i>PLoS Comp Biol</i> (2023); Butlin et al., "Consciousness in AI" (arXiv 2308.08708, 2023); Corcoran et al., INTREPID review, <i>Neurosci Biobehav Rev</i> (2026); Laureys, <i>Trends Cogn Sci</i> (2005); Casali et al., <i>Sci Transl Med</i> (2013); Bodien et al., <i>NEJM</i> (2024); institutional profiles.</span>
+  <span>Affiliations as of October 2026. Diagrams marked schematic are illustrative; charts with numbers are drawn to scale.</span>
+</footer>
+</main>
+
+<script>
+(function(){
+  var words=["TIGER","LEMON","CHAIR","RIVER","CLOUD","PIANO","HORSE","CANDLE","MANGO","ROBOT"];
+  var screen=document.getElementById("screen"), flash=document.getElementById("flash"),
+      reveal=document.getElementById("reveal"), result=document.getElementById("result");
+  var chips=[].slice.call(document.querySelectorAll(".chip"));
+  var ms=17, current="", busy=false;
+  chips.forEach(function(c){c.addEventListener("click",function(){
+    chips.forEach(function(x){x.setAttribute("aria-pressed","false")});
+    c.setAttribute("aria-pressed","true"); ms=+c.dataset.ms;
+  })});
+  function wait(t){return new Promise(function(r){setTimeout(r,t)})}
+  function showFor(text,dur){
+    return new Promise(function(res){
+      requestAnimationFrame(function(){
+        screen.textContent=text; var start=performance.now();
+        function tick(now){ if(now-start>=dur-4){res();} else requestAnimationFrame(tick); }
+        requestAnimationFrame(tick);
+      });
+    });
+  }
+  flash.addEventListener("click",async function(){
+    if(busy) return; busy=true; reveal.hidden=true;
+    current=words[Math.floor(Math.random()*words.length)];
+    result.textContent="Watch the centre…";
+    screen.textContent="+"; await wait(700);
+    await showFor(current,ms);
+    await showFor("#&%@#&",350);
+    screen.innerHTML="&nbsp;";
+    result.textContent="Did you catch it? Say it out loud, then check.";
+    reveal.hidden=false; busy=false;
+  });
+  reveal.addEventListener("click",function(){
+    screen.textContent=current; reveal.hidden=true;
+    result.textContent= ms<=50
+      ? "Missed it? The word still reached your visual cortex. The mask cut off the feedback loop before it could ignite. That gap between processing and awareness is what the whole field studies."
+      : "Easy at this speed: enough time for recurrent processing and ignition. Now try 17 ms.";
+  });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
