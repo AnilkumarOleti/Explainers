@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Liver Refinery | Explainers</title>
+<meta name="description" content="Everything you swallow passes through it first. Thirteen jobs of the liver, from sugar banking and ammonia disposal to drug metabolism, bile and regrowing after surgery.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-liver-refinery/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Liver Refinery">
+<meta property="og:description" content="Everything you swallow passes through it first. Thirteen jobs of the liver, from sugar banking and ammonia disposal to drug metabolism, bile and regrowing after surgery.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-liver-refinery/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-liver-refinery/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a long anatomical field guide — each "job" is a chapter with one big drawing and a thin mono "under the hood" strip. */
+:root{
+  --bg:#f3ecec; --paper:#fbf7f6; --ink:#2b1619; --muted:#735e5e; --line:#e0d2d1;
+  --liver:#8c2f33; --liver2:#b4575a; --on-liver:#fff4f2;
+  --bile:#62731a; --amber:#c4861a; --portal:#5b4a8c; --artery:#c9323b; --vein:#3b5b8e;
+  --z1:#8c2f33; --z2:#b8686c; --z3:#e0b0b2; --fat:#e8c45a; --scar:#efe2d0;
+  --display:"Gloock", "Georgia", "Times New Roman", serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#170e10; --paper:#21161a; --ink:#f2e7e6; --muted:#ae9a9a; --line:#3b2b2e;
+  --liver:#d6595f; --liver2:#e98b8e; --on-liver:#1c0b0d;
+  --bile:#b7c75c; --amber:#e9b34f; --portal:#a797e2; --artery:#f2636c; --vein:#86aae2;
+  --z1:#e2656b; --z2:#a8495a; --z3:#5e2e39; --fat:#d9b34c; --scar:#cdbfae; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#170e10; --paper:#21161a; --ink:#f2e7e6; --muted:#ae9a9a; --line:#3b2b2e;
+  --liver:#d6595f; --liver2:#e98b8e; --on-liver:#1c0b0d;
+  --bile:#b7c75c; --amber:#e9b34f; --portal:#a797e2; --artery:#f2636c; --vein:#86aae2;
+  --z1:#e2656b; --z2:#a8495a; --z3:#5e2e39; --fat:#d9b34c; --scar:#cdbfae; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.02}
+p{margin:0}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--liver)}
+/* SVG paint classes */
+.f-liver{fill:var(--liver)} .f-liver2{fill:var(--liver2)} .f-bile{fill:var(--bile)} .f-amber{fill:var(--amber)}
+.f-portal{fill:var(--portal)} .f-artery{fill:var(--artery)} .f-vein{fill:var(--vein)} .f-ink{fill:var(--ink)}
+.f-muted{fill:var(--muted)} .f-bg{fill:var(--bg)} .f-paper{fill:var(--paper)} .f-fat{fill:var(--fat)} .f-on{fill:var(--on-liver)}
+.f-line{fill:var(--line)} .f-none{fill:none}
+.s-liver{stroke:var(--liver)} .s-bile{stroke:var(--bile)} .s-portal{stroke:var(--portal)} .s-artery{stroke:var(--artery)}
+.s-vein{stroke:var(--vein)} .s-ink{stroke:var(--ink)} .s-muted{stroke:var(--muted)} .s-bg{stroke:var(--bg)} .s-line{stroke:var(--line)}
+.s-amber{stroke:var(--amber)} .s-paper{stroke:var(--paper)}
+svg text{font-family:var(--mono);font-size:12.5px;fill:var(--ink)}
+svg .lbl{fill:var(--muted);font-size:11.5px}
+svg .big{font-family:var(--display);font-size:46px}
+svg .tag{font-size:10.5px;letter-spacing:.08em}
+.flow{stroke-dasharray:2 14;stroke-linecap:round;animation:flow 1.6s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes flow{to{stroke-dashoffset:-32}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}}
+/* HERO */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:32px;align-items:center;padding-block:56px 40px}
+.hero h1{font-size:clamp(3rem,8vw,6.2rem);letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--liver)}
+.hero .lede{font-size:1.3rem;max-width:30ch;margin-top:18px}
+.hero .sub{color:var(--muted);margin-top:14px;max-width:44ch}
+.hero svg{width:100%;height:auto;display:block}
+/* INDEX */
+.index{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;padding-block:8px 48px}
+.index a{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--paper)}
+.index a:hover,.index a:focus-visible{border-color:var(--liver);outline:none}
+.index a b{font-family:var(--display);font-weight:400;font-size:1.25rem}
+.index a span{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+/* CHAPTERS */
+.chap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:72px;border-top:1px solid var(--line)}
+.chap.flip > figure{order:2}
+.chap figure{margin:0;min-width:0}
+.chap figure svg{width:100%;height:auto;display:block}
+.chap .txt{display:flex;flex-direction:column;gap:16px;min-width:0}
+.chap h2{font-size:clamp(2.2rem,5vw,3.5rem)}
+.chap .lede{font-size:1.22rem;max-width:34ch}
+.hood{border-top:1px solid var(--line);padding-top:12px}
+.hood h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bile);margin-bottom:8px}
+.hood ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.hood li{font-family:var(--mono);font-size:.8rem;line-height:1.5;color:var(--ink);padding-left:16px;position:relative}
+.hood li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--liver)}
+.hood li b{font-weight:500;color:var(--liver)}
+.wide{grid-column:1 / -1}
+/* Controls */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-family:var(--mono);font-size:.78rem;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--liver);border-color:var(--liver);color:var(--on-liver)}
+.seg button:focus-visible,input[type=range]:focus-visible,input[type=checkbox]:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--liver)}
+.readout{font-family:var(--display);font-size:2rem;line-height:1}
+.small{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.note{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+/* zone card */
+.zonecard h4{margin:0;font-family:var(--display);font-weight:400;font-size:1.6rem}
+.zonecard p{font-size:.98rem}
+.zonecard .o2{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-family:var(--mono);font-size:.72rem;padding:4px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
+.tags span.bad{border-color:var(--artery);color:var(--artery)}
+/* fasting */
+.fast{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;align-items:end}
+.tank{height:220px;border:2px solid var(--ink);border-radius:18px 18px 22px 22px;position:relative;overflow:hidden;background:var(--bg)}
+.tank i{position:absolute;left:0;right:0;bottom:0;background:var(--amber);transition:height .5s ease}
+.tank em{position:absolute;inset:auto 0 8px 0;text-align:center;font-family:var(--mono);font-style:normal;font-size:.72rem;color:var(--ink)}
+.bars{display:flex;flex-direction:column;gap:12px;min-width:0}
+.bar .lab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.track{height:14px;border-radius:7px;background:var(--bg);border:1px solid var(--line);overflow:hidden;display:flex}
+.track i{display:block;height:100%;transition:width .5s ease}
+/* paracetamol */
+.gsh{height:28px;border-radius:8px;background:var(--bg);border:1px solid var(--line);position:relative;overflow:hidden}
+.gsh i{position:absolute;left:0;top:0;bottom:0;background:var(--bile);transition:width .4s ease, background .4s}
+.gsh .line{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--artery);left:30%}
+.status{font-family:var(--mono);font-size:.84rem;padding:10px 12px;border-radius:8px;border:1px solid var(--line)}
+.status.ok{border-color:var(--bile);color:var(--bile)}
+.status.warn{border-color:var(--amber);color:var(--amber)}
+.status.bad{border-color:var(--artery);color:var(--artery)}
+label.chk{display:flex;gap:8px;align-items:center;font-family:var(--mono);font-size:.78rem;cursor:pointer}
+/* swatches */
+.swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:6px}
+.sw{display:flex;flex-direction:column;gap:6px;min-width:0}
+.sw i{display:block;height:64px;border-radius:10px;border:1px solid var(--line)}
+.sw b{font-family:var(--mono);font-weight:500;font-size:.72rem}
+.sw span{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+/* pantry */
+.pantry{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.jar{background:var(--paper);border:1px solid var(--line);border-radius:28px 28px 14px 14px;padding:22px 16px 16px;display:flex;flex-direction:column;gap:6px;position:relative}
+.jar::before{content:"";position:absolute;top:-7px;left:22%;right:22%;height:12px;border-radius:5px;background:var(--line)}
+.jar .n{font-family:var(--display);font-size:2.1rem;line-height:1;color:var(--liver)}
+.jar b{font-weight:600}
+.jar span{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+/* hormone board */
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.plug{border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.plug .in{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.plug .out{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+.plug p{font-size:.88rem;color:var(--muted)}
+/* disease */
+.stage-txt h4{margin:0;font-family:var(--display);font-weight:400;font-size:1.7rem}
+.rev{font-family:var(--mono);font-size:.74rem;padding:4px 10px;border-radius:999px;border:1px solid currentColor;align-self:flex-start}
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.fact{border-top:3px solid var(--liver);padding:16px 4px 4px;display:flex;flex-direction:column;gap:8px}
+.fact .n{font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--liver)}
+.fact p{font-size:.95rem}
+.fact span{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.end{padding-block:72px 96px;border-top:1px solid var(--line);text-align:left}
+.end h2{font-size:clamp(2.2rem,6vw,4.4rem);max-width:18ch}
+.end h2 em{font-style:normal;color:var(--liver)}
+.end p{margin-top:18px;max-width:58ch;color:var(--muted)}
+@media (max-width: 900px){
+  .hero,.chap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .chap.flip > figure{order:0}
+  .pantry,.board,.facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width: 460px){
+  .fast{grid-template-columns:80px minmax(0,1fr)}
+  .tank{height:180px}
+  .chap{padding-block:52px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div>
+    <div class="eyebrow">Organ field guide · the liver</div>
+    <h1>The refinery <em>under your ribs</em></h1>
+    <p class="lede">Everything you swallow passes through it before it reaches the rest of you.</p>
+    <p class="sub">It sorts, stores, builds, burns, cleans and recycles. Over 500 separate jobs, in one organ the size of a rugby ball.</p>
+  </div>
+  <svg viewBox="0 0 680 470" role="img" aria-label="Front view of the liver with its two incoming blood vessels, outgoing veins and bile duct">
+    <!-- IVC & hepatic veins -->
+    <rect x="332" y="0" width="28" height="140" rx="8" class="f-vein"/>
+    <path d="M346 120 C300 130 260 150 230 180 M346 128 L346 190 M346 120 C390 130 430 145 455 175" class="s-vein f-none" stroke-width="11" stroke-linecap="round"/>
+    <path d="M346 120 L346 6" class="s-paper f-none flow rev" stroke-width="5"/>
+    <!-- liver -->
+    <path d="M78 178 C70 104 158 66 282 68 C414 70 516 80 584 124 C614 144 604 170 562 184 C494 208 432 226 372 266 C312 306 246 362 180 358 C110 354 84 270 78 178 Z" class="f-liver"/>
+    <path d="M110 160 C120 112 190 90 280 90 C230 104 160 120 130 190 Z" class="f-liver2" opacity=".45"/>
+    <path d="M366 76 C358 146 364 206 374 262" class="s-bg f-none" stroke-width="3" opacity=".7"/>
+    <ellipse cx="266" cy="326" rx="22" ry="40" transform="rotate(-25 266 326)" class="f-bile"/>
+    <!-- incoming -->
+    <path d="M330 470 C330 400 324 330 318 274" class="s-portal f-none" stroke-width="24" stroke-linecap="round"/>
+    <path d="M330 470 C330 400 324 330 318 280" class="s-paper f-none flow" stroke-width="5"/>
+    <path d="M372 470 C368 400 354 330 334 278" class="s-artery f-none" stroke-width="8" stroke-linecap="round"/>
+    <path d="M292 470 C294 410 290 368 276 352" class="s-bile f-none" stroke-width="7" stroke-linecap="round"/>
+    <!-- big numbers -->
+    <text x="140" y="200" class="big f-on">1.5 kg</text>
+    <text x="142" y="226" class="f-on" style="font-size:12px;letter-spacing:.1em">LARGEST INTERNAL ORGAN</text>
+    <text x="410" y="150" class="big f-on" style="font-size:34px">500+ jobs</text>
+    <!-- callouts -->
+    <text x="372" y="22">Hepatic veins → heart</text>
+    <text x="372" y="40" class="lbl">≈1.5 L of blood leaves every minute</text>
+    <line x1="318" y1="420" x2="196" y2="420" class="s-muted" stroke-width="1"/>
+    <text x="20" y="414">Portal vein</text>
+    <text x="20" y="432" class="lbl">75% of inflow · from the gut</text>
+    <line x1="372" y1="430" x2="430" y2="430" class="s-muted" stroke-width="1"/>
+    <text x="438" y="424">Hepatic artery</text>
+    <text x="438" y="442" class="lbl">25% of inflow · fresh oxygen</text>
+    <line x1="290" y1="458" x2="196" y2="458" class="s-muted" stroke-width="1"/>
+    <text x="20" y="462" class="lbl" style="fill:var(--bile)">Bile duct · out to the gut</text>
+    <text x="196" y="388" class="lbl">gallbladder</text>
+  </svg>
+</header>
+
+<nav class="index" aria-label="Jobs of the liver">
+  <a href="#blood"><b>Gatekeeper</b><span>two rivers in</span></a>
+  <a href="#lobule"><b>Hexagons</b><span>the assembly line</span></a>
+  <a href="#cells"><b>The crew</b><span>five cell types</span></a>
+  <a href="#sugar"><b>Sugar bank</b><span>glucose on demand</span></a>
+  <a href="#fat"><b>Fat logistics</b><span>burn, pack, ship</span></a>
+  <a href="#urea"><b>Ammonia</b><span>poison → urea</span></a>
+  <a href="#detox"><b>Chemical plant</b><span>drugs &amp; toxins</span></a>
+  <a href="#protein"><b>Protein factory</b><span>clotting, albumin</span></a>
+  <a href="#bile"><b>Bile</b><span>soap + bin bag</span></a>
+  <a href="#pantry"><b>Pantry</b><span>vitamins, iron</span></a>
+  <a href="#hormones"><b>Switchboard</b><span>hormones, immunity</span></a>
+  <a href="#regen"><b>Regrowth</b><span>cut it, it returns</span></a>
+  <a href="#silent"><b>Silence</b><span>how it fails</span></a>
+  <a href="#crazy"><b>Crazy facts</b><span>the highlight reel</span></a>
+</nav>
+
+<!-- ================= 1. BLOOD SUPPLY ================= -->
+<section class="chap" id="blood">
+  <figure>
+    <svg viewBox="0 0 600 470" role="img" aria-label="Blood from the gut travels through the portal vein to the liver before reaching the heart">
+      <!-- heart -->
+      <path d="M470 40 C470 18 500 14 510 34 C520 14 552 18 550 42 C548 70 510 92 510 92 C510 92 472 70 470 40 Z" class="f-artery"/>
+      <text x="598" y="40" class="lbl" text-anchor="end">heart</text>
+      <!-- IVC from liver to heart -->
+      <path d="M300 128 L300 60 C300 50 310 46 320 46 L466 46" class="s-vein f-none" stroke-width="14" stroke-linecap="round"/>
+      <path d="M300 128 L300 60 C300 50 310 46 320 46 L466 46" class="s-paper f-none flow" stroke-width="4"/>
+      <!-- aorta -->
+      <path d="M520 92 L520 440" class="s-artery f-none" stroke-width="14" stroke-linecap="round"/>
+      <path d="M520 190 L392 190" class="s-artery f-none" stroke-width="6" stroke-linecap="round"/>
+      <path d="M520 400 L440 400" class="s-artery f-none" stroke-width="6" stroke-linecap="round"/>
+      <!-- liver -->
+      <path d="M140 170 C136 132 196 116 290 118 C380 120 430 126 446 150 C456 170 420 186 380 200 C330 220 290 250 240 256 C180 262 144 220 140 170 Z" class="f-liver"/>
+      <text x="200" y="182" class="f-on" style="font-family:var(--display);font-size:30px">liver</text>
+      <!-- gut -->
+      <path d="M150 380 C150 350 200 350 210 380 C220 410 270 410 280 380 C290 350 340 350 350 380 C360 410 410 410 420 380 C430 350 470 360 470 390" class="s-amber f-none" stroke-width="22" stroke-linecap="round"/>
+      <text x="150" y="440">Gut</text>
+      <text x="150" y="458" class="lbl">food, drugs, microbe fragments</text>
+      <!-- portal -->
+      <path d="M300 360 L300 236" class="s-portal f-none" stroke-width="20" stroke-linecap="round"/>
+      <path d="M300 360 L300 240" class="s-paper f-none flow" stroke-width="5"/>
+      <text x="318" y="300">PORTAL VEIN</text>
+      <text x="318" y="316" class="lbl">all absorbed, unfiltered</text>
+      <text x="400" y="216" class="lbl">hepatic artery</text>
+      <text x="318" y="72" class="lbl">cleaned blood → heart</text>
+      <!-- badge -->
+      <rect x="20" y="20" width="220" height="62" rx="10" class="f-paper s-line" stroke-width="1"/>
+      <text x="36" y="46" style="font-size:13px">FIRST-PASS EFFECT</text>
+      <text x="36" y="66" class="lbl">liver gets the first bite</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 1 · Gatekeeper</div>
+    <h2>Gut blood doesn't go to your heart. It goes here first.</h2>
+    <p class="lede">The liver sits on the only road out of your gut, and inspects every delivery.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Dual supply:</b> portal vein ≈75% of flow but only ~50% of oxygen; hepatic artery ≈25% of flow, the other ~50% of O₂.</li>
+      <li><b>~25% of cardiac output</b> (~1.5 L/min) for an organ that is ~2% of body weight.</li>
+      <li><b>First-pass effect:</b> swallow morphine and only ~⅓ survives the liver. That's why IV doses are smaller and nitroglycerin goes under the tongue (skips the portal vein).</li>
+      <li><b>Arterial buffer response:</b> if portal flow drops, adenosine builds up and the hepatic artery dilates to compensate.</li>
+      <li><b>Portal pressure gradient</b> normally 1–5 mmHg. ≥10 mmHg = portal hypertension → blood detours into fragile varices in the oesophagus.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 2. LOBULE ================= -->
+<section class="chap flip" id="lobule">
+  <figure>
+    <svg id="lobuleSvg" viewBox="0 0 460 430" role="img" aria-label="A hexagonal liver lobule: blood enters at the six corners and drains to the central vein; bile flows the opposite way">
+      <g class="zone" data-z="1" style="cursor:pointer"><polygon points="410,210 320,365.9 140,365.9 50,210 140,54.1 320,54.1" style="fill:var(--z1)"/></g>
+      <g class="zone" data-z="2" style="cursor:pointer"><polygon points="350,210 290,313.9 170,313.9 110,210 170,106.1 290,106.1" style="fill:var(--z2)"/></g>
+      <g class="zone" data-z="3" style="cursor:pointer"><polygon points="290,210 260,262 200,262 170,210 200,158 260,158" style="fill:var(--z3)"/></g>
+      <!-- sinusoid flow lines (corner → centre) -->
+      <g class="s-paper f-none" stroke-width="2.5" opacity=".9" pointer-events="none">
+        <path class="flow" d="M410 210 L244 210"/><path class="flow" d="M320 365.9 L237 222"/><path class="flow" d="M140 365.9 L223 222"/>
+        <path class="flow" d="M50 210 L216 210"/><path class="flow" d="M140 54.1 L223 198"/><path class="flow" d="M320 54.1 L237 198"/>
+      </g>
+      <!-- bile counterflow (centre → mid edges) -->
+      <g class="s-bile f-none" stroke-width="2" stroke-dasharray="5 6" pointer-events="none">
+        <path d="M244 220 L365 288"/><path d="M216 200 L95 132"/><path d="M230 226 L230 364"/>
+      </g>
+      <circle cx="230" cy="210" r="15" class="f-vein"/>
+      <!-- triads -->
+      <g pointer-events="none">
+        <g transform="translate(410 210)"><circle r="9" class="f-portal"/><circle cx="12" cy="-8" r="4.5" class="f-artery"/><circle cx="12" cy="8" r="4.5" class="f-bile"/></g>
+        <g transform="translate(320 365.9)"><circle r="9" class="f-portal"/><circle cx="12" cy="-8" r="4.5" class="f-artery"/><circle cx="12" cy="8" r="4.5" class="f-bile"/></g>
+        <g transform="translate(140 365.9)"><circle r="9" class="f-portal"/><circle cx="-12" cy="-8" r="4.5" class="f-artery"/><circle cx="-12" cy="8" r="4.5" class="f-bile"/></g>
+        <g transform="translate(50 210)"><circle r="9" class="f-portal"/><circle cx="-12" cy="-8" r="4.5" class="f-artery"/><circle cx="-12" cy="8" r="4.5" class="f-bile"/></g>
+        <g transform="translate(140 54.1)"><circle r="9" class="f-portal"/><circle cx="-12" cy="-8" r="4.5" class="f-artery"/><circle cx="-12" cy="8" r="4.5" class="f-bile"/></g>
+        <g transform="translate(320 54.1)"><circle r="9" class="f-portal"/><circle cx="12" cy="-8" r="4.5" class="f-artery"/><circle cx="12" cy="8" r="4.5" class="f-bile"/></g>
+      </g>
+      <text x="230" y="20" text-anchor="middle" class="lbl">portal triad at every corner</text>
+      <text x="230" y="410" text-anchor="middle" class="lbl">blood → centre · bile → corners (dashed)</text>
+      <text x="230" y="246" text-anchor="middle" style="font-size:11px">central vein</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 2 · The assembly line</div>
+    <h2>Hundreds of thousands of tiny hexagons</h2>
+    <p class="lede">Blood trickles in from the corners and drains out the middle. Cells along the way do different jobs.</p>
+    <div class="panel zonecard" aria-live="polite">
+      <div class="seg" role="group" aria-label="Pick a zone">
+        <button type="button" data-z="1" aria-pressed="true">Zone 1 · edge</button>
+        <button type="button" data-z="2" aria-pressed="false">Zone 2 · middle</button>
+        <button type="button" data-z="3" aria-pressed="false">Zone 3 · centre</button>
+      </div>
+      <h4 id="zTitle">Periportal: first in line</h4>
+      <div class="o2" id="zO2">Oxygen: highest · ~60–65 mmHg</div>
+      <p id="zBody">Gets blood first, so it gets the most oxygen and the freshest nutrients. Runs the energy-expensive jobs.</p>
+      <div class="tags" id="zTags"><span>Making glucose</span><span>Burning fat (β-oxidation)</span><span>Urea cycle</span><span>Bile acid uptake</span><span>Cholesterol synthesis</span></div>
+    </div>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Lobule:</b> ~1 mm hexagon; a human liver has on the order of 10⁵–10⁶ of them.</li>
+      <li><b>Portal triad</b> = branch of portal vein + hepatic artery + bile duct (plus lymphatics &amp; nerves).</li>
+      <li><b>Zonation</b> is set by a Wnt/β-catenin signal from the central vein and the oxygen gradient: same cell, different job by address.</li>
+      <li><b>Countercurrent:</b> blood flows inward, bile flows outward in sealed channels between the cells.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 3. CELLS ================= -->
+<section class="chap" id="cells">
+  <figure>
+    <svg viewBox="0 0 640 440" role="img" aria-label="Cross-section of a liver sinusoid showing hepatocytes, the space of Disse, a stellate cell, the leaky endothelial lining and a Kupffer cell">
+      <!-- top hepatocytes -->
+      <g>
+        <rect x="10" y="20" width="148" height="104" rx="14" class="f-liver"/>
+        <rect x="166" y="20" width="148" height="104" rx="14" class="f-liver"/>
+        <rect x="322" y="20" width="148" height="104" rx="14" class="f-liver"/>
+        <rect x="478" y="20" width="152" height="104" rx="14" class="f-liver"/>
+        <circle cx="84" cy="62" r="16" class="f-liver2"/><circle cx="240" cy="62" r="16" class="f-liver2"/><circle cx="268" cy="80" r="12" class="f-liver2"/>
+        <circle cx="396" cy="62" r="16" class="f-liver2"/><circle cx="554" cy="62" r="16" class="f-liver2"/>
+        <circle cx="162" cy="72" r="6" class="f-bile"/><circle cx="318" cy="72" r="6" class="f-bile"/><circle cx="474" cy="72" r="6" class="f-bile"/>
+        <text x="26" y="108" class="f-on tag">HEPATOCYTE</text>
+        <text x="184" y="108" class="f-on tag">TWO NUCLEI</text>
+      </g>
+      <!-- microvilli -->
+      <path d="M20 124 v10 M34 124 v10 M48 124 v10 M62 124 v10 M76 124 v10 M90 124 v10 M104 124 v10 M118 124 v10 M132 124 v10 M146 124 v10 M176 124 v10 M190 124 v10 M204 124 v10 M218 124 v10 M232 124 v10 M246 124 v10 M260 124 v10 M274 124 v10 M288 124 v10 M302 124 v10 M332 124 v10 M346 124 v10 M360 124 v10 M488 124 v10 M502 124 v10 M516 124 v10 M530 124 v10 M544 124 v10 M558 124 v10 M572 124 v10 M586 124 v10 M600 124 v10 M614 124 v10" class="s-liver" stroke-width="2"/>
+      <!-- Disse -->
+      <text x="20" y="150" class="lbl">space of Disse</text>
+      <!-- stellate cell -->
+      <path d="M372 140 C392 128 438 128 458 140 C476 150 456 158 414 158 C376 158 356 150 372 140 Z" class="f-amber" opacity=".9"/>
+      <circle cx="398" cy="143" r="4" class="f-fat"/><circle cx="414" cy="146" r="4" class="f-fat"/><circle cx="430" cy="142" r="4" class="f-fat"/>
+      <!-- LSEC top with fenestrae -->
+      <path d="M10 164 H120 M134 164 H220 M232 164 H360 M372 164 H500 M512 164 H630" class="s-vein" stroke-width="6" stroke-linecap="round"/>
+      <!-- lumen -->
+      <rect x="10" y="170" width="620" height="92" class="f-paper"/>
+      <g class="f-artery">
+        <ellipse cx="80" cy="200" rx="18" ry="8"/><ellipse cx="160" cy="232" rx="18" ry="8"/><ellipse cx="300" cy="200" rx="18" ry="8"/>
+        <ellipse cx="380" cy="236" rx="18" ry="8"/><ellipse cx="470" cy="206" rx="18" ry="8"/><ellipse cx="560" cy="238" rx="18" ry="8"/>
+      </g>
+      <!-- Kupffer -->
+      <path d="M210 262 C200 236 214 214 236 216 C246 200 270 206 268 224 C290 228 292 252 276 262 Z" class="f-portal"/>
+      <path d="M268 224 l16 -14 M214 228 l-16 -10" class="s-portal" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="244" cy="240" r="7" class="f-bile"/>
+      <path d="M40 216 H600" class="s-ink f-none" stroke-width="1.2" stroke-dasharray="3 6" opacity=".4"/>
+      <path d="M588 210 l14 6 l-14 6" class="s-ink f-none" stroke-width="1.5" opacity=".6"/>
+      <text x="420" y="256" class="lbl">blood → central vein</text>
+      <!-- LSEC bottom -->
+      <path d="M10 268 H90 M102 268 H250 M262 268 H420 M432 268 H630" class="s-vein" stroke-width="6" stroke-linecap="round"/>
+      <!-- bottom hepatocytes -->
+      <g>
+        <rect x="10" y="296" width="200" height="104" rx="14" class="f-liver"/>
+        <rect x="218" y="296" width="200" height="104" rx="14" class="f-liver"/>
+        <rect x="426" y="296" width="204" height="104" rx="14" class="f-liver"/>
+        <circle cx="110" cy="348" r="16" class="f-liver2"/><circle cx="318" cy="348" r="16" class="f-liver2"/><circle cx="528" cy="348" r="16" class="f-liver2"/>
+        <circle cx="214" cy="340" r="6" class="f-bile"/><circle cx="422" cy="340" r="6" class="f-bile"/>
+      </g>
+      <path d="M20 286 v10 M34 286 v10 M48 286 v10 M62 286 v10 M76 286 v10 M90 286 v10 M104 286 v10 M118 286 v10 M132 286 v10 M146 286 v10 M160 286 v10 M174 286 v10 M188 286 v10 M228 286 v10 M242 286 v10 M256 286 v10 M270 286 v10 M284 286 v10 M298 286 v10 M312 286 v10 M326 286 v10 M340 286 v10 M354 286 v10 M368 286 v10 M382 286 v10 M396 286 v10 M436 286 v10 M450 286 v10 M464 286 v10 M478 286 v10 M492 286 v10 M506 286 v10 M520 286 v10 M534 286 v10 M548 286 v10 M562 286 v10 M576 286 v10 M590 286 v10 M604 286 v10 M618 286 v10" class="s-liver" stroke-width="2"/>
+      <!-- labels -->
+      <text x="10" y="424">● <tspan style="fill:var(--vein)">LSEC lining</tspan> <tspan class="lbl">with holes</tspan>   <tspan style="fill:var(--portal)">● Kupffer</tspan>   <tspan style="fill:var(--amber)">● Stellate</tspan>   <tspan style="fill:var(--bile)">● bile channel</tspan></text>
+      <text x="476" y="150" class="lbl" style="fill:var(--amber)">vitamin A droplets</text>
+      <text x="126" y="186" class="lbl" style="font-size:10.5px">↑ fenestra</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 3 · The crew</div>
+    <h2>Five cell types, one sieve</h2>
+    <p class="lede">The blood channels here are deliberately leaky, so plasma touches the workers directly.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Hepatocytes:</b> ~60% of cells, ~80% of volume. Each packs ~1,000–2,000 mitochondria. Many carry doubled genomes (polyploid) or two nuclei.</li>
+      <li><b>LSECs</b> (sinusoidal endothelium): sieve plates with 50–150 nm holes and no basement membrane. They also make most of your clotting factor VIII.</li>
+      <li><b>Kupffer cells:</b> the body's largest macrophage population (~80% of fixed tissue macrophages). They eat gut bacteria, endotoxin and worn-out red cells.</li>
+      <li><b>Stellate (Ito) cells:</b> sit in the space of Disse holding vitamin A. On injury they turn into myofibroblasts and lay down collagen: the origin of scarring.</li>
+      <li><b>Bile canaliculi:</b> ~1 µm channels between hepatocytes, sealed by tight junctions, draining toward the corners.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 4. SUGAR ================= -->
+<section class="chap flip" id="sugar">
+  <figure>
+    <div class="panel">
+      <div class="small">Drag the clock: time since your last meal</div>
+      <input type="range" id="fastR" min="0" max="4" step="1" value="1" aria-label="Hours since last meal">
+      <div class="readout" id="fastT">12 hours · overnight</div>
+      <div class="fast">
+        <div class="tank" aria-label="Liver glycogen level"><i id="glyFill" style="height:50%"></i><em id="glyTxt">glycogen 50%</em></div>
+        <div class="bars">
+          <div class="bar"><div class="lab"><span>Where blood glucose comes from</span></div>
+            <div class="track" id="srcTrack"><i id="sGut" style="width:0%;background:var(--amber)"></i><i id="sGly" style="width:55%;background:var(--liver)"></i><i id="sGng" style="width:45%;background:var(--bile)"></i></div>
+            <div class="lab"><span style="color:var(--amber)">■ food</span><span style="color:var(--liver)">■ glycogen</span><span style="color:var(--bile)">■ made new</span></div>
+          </div>
+          <div class="bar"><div class="lab"><span>Blood ketones</span><span id="ketV">0.2 mmol/L</span></div>
+            <div class="track"><i id="ketB" style="width:3%;background:var(--portal)"></i></div></div>
+          <div class="bar"><div class="lab"><span>Brain fuel from ketones</span><span id="brainV">~0%</span></div>
+            <div class="track"><i id="brainB" style="width:1%;background:var(--vein)"></i></div></div>
+        </div>
+      </div>
+      <p id="fastNote" style="font-size:.98rem">Liver is slowly breaking down glycogen and starting to build glucose from scratch.</p>
+      <p class="note">Approximate values for a healthy adult.</p>
+    </div>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 4 · Sugar bank</div>
+    <h2>Your blood sugar never hits zero. That's the liver.</h2>
+    <p class="lede">It saves sugar after meals and pays it back between them, minute by minute, for life.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Glycogen:</b> ~80–100 g stored in the liver. Muscles hold ~4× more but can't share it: they lack <b>glucose-6-phosphatase</b>, the enzyme that lets glucose out.</li>
+      <li><b>Target:</b> blood glucose held around 4–6 mmol/L (70–110 mg/dL), fed or fasted.</li>
+      <li><b>Gluconeogenesis</b> builds glucose from lactate (Cori cycle), alanine from muscle (glucose–alanine cycle) and glycerol from fat.</li>
+      <li><b>Switches:</b> glucagon → cAMP → PKA → release; insulin → store. The liver also clears roughly half of the insulin the pancreas releases on first pass.</li>
+      <li><b>Fructose</b> is taken up almost entirely by the liver and skips glycolysis's main brake (PFK-1), so excess flows straight into fat production.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 5. FAT ================= -->
+<section class="chap" id="fat">
+  <figure>
+    <svg viewBox="0 0 620 420" role="img" aria-label="Fatty acids entering a liver cell are either burned into ketones, packed into VLDL particles, or stored as droplets">
+      <rect x="150" y="60" width="300" height="300" rx="40" class="f-liver"/>
+      <text x="172" y="92" class="f-on tag">ONE HEPATOCYTE</text>
+      <!-- in -->
+      <path d="M20 210 H150" class="s-amber f-none" stroke-width="12" stroke-linecap="round"/>
+      <path d="M20 210 H146" class="s-paper f-none flow" stroke-width="3"/>
+      <text x="16" y="190">Fatty acids</text>
+      <text x="16" y="240" class="lbl">from fat tissue</text>
+      <text x="16" y="256" class="lbl">&amp; diet</text>
+      <!-- mitochondrion -->
+      <ellipse cx="260" cy="160" rx="70" ry="34" class="f-paper"/>
+      <path d="M204 160 c10 -18 20 18 30 0 c10 -18 20 18 30 0 c10 -18 20 18 30 0 c10 -18 20 18 22 0" class="s-liver f-none" stroke-width="2"/>
+      <text x="216" y="214" class="f-on" style="font-size:12px">β-oxidation</text>
+      <!-- droplets -->
+      <circle cx="230" cy="290" r="26" class="f-fat"/><circle cx="276" cy="306" r="16" class="f-fat"/><circle cx="196" cy="320" r="12" class="f-fat"/>
+      <text x="300" y="290" class="f-on" style="font-size:12px">stored</text>
+      <text x="300" y="306" class="f-on" style="font-size:11px;opacity:.85">excess → fatty liver</text>
+      <!-- out: ketones -->
+      <path d="M330 160 C420 160 470 110 560 110" class="s-portal f-none" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round"/>
+      <circle cx="560" cy="110" r="6" class="f-portal"/><circle cx="540" cy="98" r="5" class="f-portal"/><circle cx="586" cy="102" r="5" class="f-portal"/>
+      <text x="470" y="64">Ketones</text>
+      <text x="470" y="80" class="lbl">→ brain, heart, muscle</text>
+      <!-- out: VLDL -->
+      <path d="M420 250 H520" class="s-ink f-none" stroke-width="2"/>
+      <circle cx="552" cy="250" r="30" class="f-paper s-ink" stroke-width="2"/>
+      <circle cx="546" cy="244" r="12" class="f-fat"/><circle cx="562" cy="258" r="8" class="f-amber"/>
+      <text x="476" y="306">VLDL</text>
+      <text x="476" y="322" class="lbl">fat + cholesterol</text>
+      <!-- cannot use ketones -->
+      <rect x="168" y="368" width="420" height="40" rx="8" class="f-paper s-line" stroke-width="1"/>
+      <text x="184" y="393" style="font-size:12px">Liver makes ketones but can't burn them itself (no SCOT)</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 5 · Fat logistics</div>
+    <h2>Burn it, pack it, or park it</h2>
+    <p class="lede">Every fat molecule that reaches the liver gets one of three fates. When the "park it" option wins too often, you get fatty liver.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Ketogenesis:</b> β-oxidation → acetyl-CoA → HMG-CoA synthase 2 → acetoacetate &amp; β-hydroxybutyrate. Altruistic: the liver lacks the enzyme SCOT, so it can't eat its own ketones.</li>
+      <li><b>VLDL</b> export needs apoB-100 and the MTP protein. Block it and fat gets trapped inside.</li>
+      <li><b>Cholesterol:</b> the liver is a main producer (rate step: HMG-CoA reductase). Statins block it → cells sense low cholesterol (SREBP2) → more LDL receptors → LDL pulled out of blood.</li>
+      <li><b>PCSK9</b> destroys LDL receptors; drugs that block PCSK9 cut LDL by ~50–60%.</li>
+      <li><b>Alcohol's trick:</b> metabolising it floods the cell with NADH, which halts fat burning and favours fat building.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 6. UREA ================= -->
+<section class="chap flip" id="urea">
+  <figure>
+    <svg viewBox="0 0 540 460" role="img" aria-label="The urea cycle: ammonia and carbon dioxide enter, urea leaves for the kidneys">
+      <circle cx="270" cy="250" r="130" class="f-none s-liver" stroke-width="16" opacity=".85"/>
+      <circle cx="270" cy="250" r="130" class="f-none s-paper flow" stroke-width="3"/>
+      <!-- nodes -->
+      <circle cx="147.8" cy="205.5" r="10" class="f-ink"/><text x="40" y="196">Ornithine</text>
+      <circle cx="314.5" cy="127.8" r="10" class="f-ink"/><text x="330" y="112">Citrulline</text>
+      <circle cx="392.2" cy="294.5" r="10" class="f-ink"/><text x="408" y="300">Arginino-</text><text x="408" y="316">succinate</text>
+      <circle cx="225.5" cy="372.2" r="10" class="f-ink"/><text x="160" y="408">Arginine</text>
+      <!-- enzymes -->
+      <text x="212" y="166" class="lbl" style="fill:var(--liver)">OTC</text>
+      <text x="330" y="212" class="lbl" style="fill:var(--liver)">ASS1</text>
+      <text x="296" y="338" class="lbl" style="fill:var(--liver)">ASL</text>
+      <text x="168" y="290" class="lbl" style="fill:var(--liver)">ARG1</text>
+      <!-- inputs -->
+      <path d="M150 52 C190 70 205 100 215 126" class="s-portal f-none" stroke-width="3"/>
+      <path d="M208 118 l8 10 l3 -13" class="s-portal f-none" stroke-width="3"/>
+      <text x="30" y="34" style="fill:var(--portal)">NH₃ + CO₂ + 2 ATP</text>
+      <text x="30" y="52" class="lbl">CPS1 → carbamoyl phosphate</text>
+      <path d="M500 150 C450 160 410 170 388 186" class="s-ink f-none" stroke-width="2"/>
+      <text x="430" y="140" class="lbl">aspartate in</text>
+      <path d="M318 360 C360 400 400 420 460 432" class="s-ink f-none" stroke-width="2"/>
+      <text x="400" y="452" class="lbl">fumarate out</text>
+      <!-- urea out -->
+      <path d="M150 292 C110 320 80 350 60 380" class="s-bile f-none" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="56" cy="390" r="12" class="f-bile"/>
+      <text x="20" y="430" style="fill:var(--bile)">UREA → kidneys → urine</text>
+      <!-- centre -->
+      <text x="270" y="244" text-anchor="middle" style="font-family:var(--display);font-size:28px">urea cycle</text>
+      <text x="270" y="268" text-anchor="middle" class="lbl">~25–30 g urea a day</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 6 · Poison disposal</div>
+    <h2>Turning brain poison into pee</h2>
+    <p class="lede">Every protein you digest leaves ammonia behind. The liver spins it into urea, which is harmless and water-soluble.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Five enzymes, two compartments:</b> CPS1 and OTC in mitochondria; ASS1, ASL, ARG1 in cytosol. NAGS is the on-switch for CPS1.</li>
+      <li><b>Cost:</b> 4 high-energy phosphate bonds per urea molecule. Detox isn't free.</li>
+      <li><b>Safety net:</b> zone 3 cells carry glutamine synthetase, mopping up any ammonia that slipped past zone 1.</li>
+      <li><b>Normal blood ammonia</b> &lt; ~35–50 µmol/L. When the liver fails it rises, brain astrocytes swell → <b>hepatic encephalopathy</b>: confusion, sleep reversal, a "flapping" tremor (asterixis).</li>
+      <li><b>Lactulose</b> treats it by acidifying the colon, trapping ammonia as NH₄⁺ so it leaves in stool.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 7. DETOX ================= -->
+<section class="chap" id="detox">
+  <figure>
+    <svg viewBox="0 0 640 270" role="img" aria-label="Three-step drug processing: phase one adds a handle, phase two attaches a water-soluble tag, phase three pumps it out">
+      <path d="M10 130 H630" class="s-line" stroke-width="22" stroke-linecap="round"/>
+      <path d="M10 130 H630" class="s-muted f-none flow" stroke-width="2"/>
+      <!-- molecule 1 -->
+      <polygon points="40,130 55,104 85,104 100,130 85,156 55,156" class="f-amber"/>
+      <text x="22" y="190" class="lbl">oily drug</text><text x="22" y="206" class="lbl">(fat-soluble)</text>
+      <!-- phase 1 -->
+      <rect x="140" y="30" width="130" height="40" rx="8" class="f-paper s-liver" stroke-width="2"/>
+      <text x="152" y="55">PHASE I · CYP</text>
+      <polygon points="175,130 190,104 220,104 235,130 220,156 190,156" class="f-amber"/>
+      <rect x="233" y="124" width="22" height="12" rx="4" class="f-artery"/>
+      <text x="150" y="190" class="lbl">add a handle (–OH)</text>
+      <!-- phase 2 -->
+      <rect x="300" y="30" width="140" height="40" rx="8" class="f-paper s-liver" stroke-width="2"/>
+      <text x="312" y="55">PHASE II · TAG</text>
+      <polygon points="320,130 335,104 365,104 380,130 365,156 335,156" class="f-amber"/>
+      <rect x="378" y="124" width="14" height="12" rx="4" class="f-artery"/>
+      <circle cx="412" cy="130" r="22" class="f-bile"/>
+      <text x="306" y="190" class="lbl">clip on a water tag</text>
+      <text x="306" y="206" class="lbl">(glucuronide etc.)</text>
+      <!-- phase 3 -->
+      <rect x="480" y="30" width="140" height="40" rx="8" class="f-paper s-liver" stroke-width="2"/>
+      <text x="492" y="55">PHASE III · PUMP</text>
+      <rect x="520" y="92" width="16" height="76" rx="6" class="f-portal"/>
+      <rect x="556" y="92" width="16" height="76" rx="6" class="f-portal"/>
+      <circle cx="546" cy="130" r="12" class="f-bile"/>
+      <path d="M546 168 V236" class="s-bile" stroke-width="3"/><path d="M538 226 l8 12 l8 -12" class="s-bile f-none" stroke-width="3"/>
+      <text x="486" y="258" style="fill:var(--bile)">out → bile / urine</text>
+    </svg>
+    <div class="panel" style="margin-top:20px">
+      <div class="eyebrow" style="color:var(--artery)">Try it · the paracetamol tightrope</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <div class="readout" id="pDose">4 g</div><div class="small">taken in 24 h · 70 kg adult</div>
+      </div>
+      <input type="range" id="pR" min="0.5" max="15" step="0.5" value="4" aria-label="Paracetamol dose in grams">
+      <div class="bar"><div class="lab"><span>Glutathione shield left in liver cells</span><span id="pG">70%</span></div>
+        <div class="gsh"><i id="pBar" style="width:70%"></i><span class="line" title="danger line"></span></div>
+        <div class="lab"><span style="color:var(--artery)">↑ ~30%: shield fails</span><span></span></div></div>
+      <label class="chk"><input type="checkbox" id="pRisk"> fasting / heavy regular drinking</label>
+      <div class="status ok" id="pStatus">Shield holding. ~90% leaves safely as glucuronide &amp; sulfate; the 5–10% turned into NAPQI is neutralised.</div>
+      <p class="note">Illustrative model of the mechanism. Not dosing advice.</p>
+    </div>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 7 · Chemical plant</div>
+    <h2>Making oily things washable</h2>
+    <p class="lede">Most drugs and toxins dissolve in fat, so you can't pee them out. The liver bolts on handles and tags until they dissolve in water.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>CYP450:</b> 57 human genes. <b>CYP3A4</b> alone handles roughly a third to a half of all drugs.</li>
+      <li><b>Genes matter:</b> CYP2D6 ranges from "poor" to "ultra-rapid"; ultra-rapid people turn codeine into dangerous amounts of morphine. NAT2 makes you a fast or slow "acetylator".</li>
+      <li><b>Phase II tags:</b> glucuronic acid (UGT), sulfate (SULT), glutathione (GST), acetyl (NAT), methyl groups.</li>
+      <li><b>Phase III pumps:</b> MRP2 and P-glycoprotein push conjugates into bile.</li>
+      <li><b>Induction:</b> smoking revs up CYP1A2, rifampicin and St John's wort rev up CYP3A4. Grapefruit inhibits CYP3A4 in the gut wall and raises some drug levels.</li>
+      <li><b>Paracetamol:</b> its toxic by-product NAPQI is cleaned by glutathione. Run out, and zone 3 cells die. Antidote <b>N-acetylcysteine</b> refills glutathione; best within ~8 h.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- alcohol strip -->
+<section class="chap flip" id="alcohol" style="padding-top:24px;border-top:none">
+  <figure>
+    <svg viewBox="0 0 640 200" role="img" aria-label="Alcohol is converted to acetaldehyde by ADH, then to acetate by ALDH2">
+      <rect x="10" y="60" width="150" height="70" rx="12" class="f-amber"/>
+      <text x="85" y="102" text-anchor="middle" class="f-on" style="font-size:15px">ethanol</text>
+      <path d="M160 95 H230" class="s-ink" stroke-width="2"/><path d="M222 88 l10 7 l-10 7" class="s-ink f-none" stroke-width="2"/>
+      <text x="172" y="82" class="lbl">ADH</text>
+      <rect x="240" y="60" width="170" height="70" rx="12" class="f-artery"/>
+      <text x="325" y="96" text-anchor="middle" class="f-on" style="font-size:15px">acetaldehyde</text>
+      <text x="325" y="116" text-anchor="middle" class="f-on" style="font-size:11px">toxic · flush · hangover</text>
+      <path d="M410 95 H480" class="s-ink" stroke-width="2"/><path d="M472 88 l10 7 l-10 7" class="s-ink f-none" stroke-width="2"/>
+      <text x="420" y="82" class="lbl">ALDH2</text>
+      <rect x="490" y="60" width="140" height="70" rx="12" class="f-bile"/>
+      <text x="560" y="102" text-anchor="middle" class="f-on" style="font-size:15px">acetate</text>
+      <text x="10" y="170">~7–10 g alcohol per hour, flat rate</text>
+      <text x="10" y="190" class="lbl">enzymes saturate early: coffee, water and sleep don't speed it up</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 7b · Alcohol</div>
+    <h3 style="font-size:2.2rem">One drink an hour, no shortcuts</h3>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Zero-order kinetics:</b> above low levels the rate stays fixed, regardless of how much you drank.</li>
+      <li><b>ALDH2*2 variant</b> (common in East Asia) stalls step 2 → acetaldehyde builds → red face, racing heart.</li>
+      <li><b>Heavy drinking</b> induces CYP2E1 (MEOS), which makes more free radicals and more NAPQI from paracetamol.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 8. PROTEIN ================= -->
+<section class="chap" id="protein">
+  <figure>
+    <svg viewBox="0 0 600 300" role="img" aria-label="Half-lives of liver-made proteins on a log scale: factor VII about 5 hours, prothrombin about 65 hours, fibrinogen about 100 hours, albumin about 20 days">
+      <text x="10" y="22" class="lbl">How long each liver-made protein lasts in blood (log scale)</text>
+      <g class="s-line" stroke-width="1">
+        <line x1="150" y1="40" x2="150" y2="250"/><line x1="290" y1="40" x2="290" y2="250"/>
+        <line x1="430" y1="40" x2="430" y2="250"/><line x1="570" y1="40" x2="570" y2="250"/>
+      </g>
+      <text x="150" y="272" text-anchor="middle" class="lbl">1 h</text><text x="290" y="272" text-anchor="middle" class="lbl">10 h</text>
+      <text x="430" y="272" text-anchor="middle" class="lbl">100 h</text><text x="570" y="272" text-anchor="middle" class="lbl">1000 h</text>
+      <rect x="150" y="56" width="98" height="30" rx="4" class="f-artery"/>
+      <text x="10" y="76">Factor VII</text><text x="256" y="76" class="lbl">~5 h</text>
+      <rect x="150" y="106" width="254" height="30" rx="4" class="f-amber"/>
+      <text x="10" y="126">Prothrombin</text><text x="412" y="126" class="lbl">~3 days</text>
+      <rect x="150" y="156" width="280" height="30" rx="4" class="f-portal"/>
+      <text x="10" y="176">Fibrinogen</text><text x="438" y="176" class="lbl">~4 days</text>
+      <rect x="150" y="206" width="375" height="30" rx="4" class="f-liver"/>
+      <text x="10" y="226">Albumin</text><text x="533" y="226" class="lbl">~20 d</text>
+    </svg>
+    <p class="note" style="margin-top:8px">Short half-life = first to vanish. That's why doctors watch clotting time (INR), not albumin, to catch acute liver failure within hours.</p>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 8 · Protein factory</div>
+    <h2>Most proteins in your blood were built here</h2>
+    <p class="lede">The stuff that makes blood clot, holds water inside your vessels, and ferries drugs around.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Albumin:</b> ~10–15 g made daily, ~55–60% of plasma protein. Creates most of the oncotic pull holding water in vessels; low albumin → swollen legs, fluid in the belly (ascites). Also carries bilirubin, fatty acids, calcium, drugs.</li>
+      <li><b>Clotting:</b> fibrinogen and factors II, V, VII, IX, X, XI, XIII, plus anticoagulants protein C, S and antithrombin. II, VII, IX, X need <b>vitamin K</b> (γ-carboxylation): what warfarin blocks.</li>
+      <li><b>Acute phase:</b> in infection, CRP can rise ~1000×; hepcidin locks iron away from bacteria.</li>
+      <li><b>Also:</b> angiotensinogen (blood pressure), IGF-1, thrombopoietin (platelets), transferrin, ceruloplasmin, α1-antitrypsin (protects lungs), complement proteins.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 9. BILE ================= -->
+<section class="chap" id="bile">
+  <figure>
+    <svg viewBox="0 0 600 400" role="img" aria-label="Enterohepatic circulation: bile acids flow from liver to gallbladder to intestine and are reabsorbed back to the liver">
+      <path d="M40 90 C40 50 110 30 200 32 C280 34 320 46 326 72 C330 96 290 110 250 124 C200 142 150 170 110 168 C64 166 40 130 40 90 Z" class="f-liver"/>
+      <text x="80" y="96" class="f-on" style="font-family:var(--display);font-size:24px">liver</text>
+      <text x="80" y="118" class="f-on" style="font-size:11px">cholesterol → bile acid</text>
+      <ellipse cx="180" cy="200" rx="22" ry="36" class="f-bile"/>
+      <text x="212" y="196" class="lbl">gallbladder</text><text x="212" y="212" class="lbl">concentrates ~5–10×</text>
+      <path d="M180 150 V164 M180 236 V290" class="s-bile" stroke-width="6" stroke-linecap="round"/>
+      <!-- gut -->
+      <path d="M120 300 H500 C540 300 560 320 560 350" class="s-amber f-none" stroke-width="30" stroke-linecap="round"/>
+      <path d="M130 300 H500" class="s-paper f-none flow" stroke-width="3"/>
+      <text x="200" y="345">small intestine</text><text x="200" y="362" class="lbl">bile emulsifies fat</text>
+      <text x="420" y="380" class="lbl">ileum: ~95% reabsorbed</text>
+      <!-- portal back -->
+      <path d="M520 290 C520 200 460 120 326 80" class="s-portal f-none" stroke-width="8" stroke-linecap="round"/>
+      <path d="M520 290 C520 200 460 120 330 82" class="s-paper f-none flow" stroke-width="2"/>
+      <text x="470" y="150">portal vein</text><text x="470" y="166" class="lbl">back to liver</text>
+      <rect x="360" y="20" width="220" height="56" rx="10" class="f-paper s-line" stroke-width="1"/>
+      <text x="374" y="44">6–10 laps a day</text><text x="374" y="62" class="lbl">same ~3 g pool, recycled</text>
+      <text x="100" y="396" class="lbl">~5% lost in stool → main way cholesterol leaves the body</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 9 · Bile</div>
+    <h2>Soap for fat, and a rubbish chute</h2>
+    <p class="lede">Bile breaks fat into droplets you can absorb, and carries out waste that's too big for the kidneys.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>0.5–1 L of bile a day.</b> Bile acids are made from cholesterol by CYP7A1, then conjugated to glycine or taurine.</li>
+      <li><b>Enterohepatic circulation:</b> the ileum's ASBT transporter reclaims ~95%; only ~0.5 g/day is replaced.</li>
+      <li><b>Bile acids are hormones too:</b> via FXR they make the gut release FGF19 (telling the liver to stop making more); via TGR5 they trigger GLP-1 and energy use.</li>
+      <li><b>Waste out:</b> bilirubin, excess cholesterol, copper, some drugs. Copper can't leave → <b>Wilson disease</b>.</li>
+    </ul></div>
+  </div>
+  <div class="wide">
+    <div class="eyebrow" style="margin-bottom:6px">The colour journey of an old red blood cell</div>
+    <div class="swatches">
+      <div class="sw"><i style="background:#9b1c24"></i><b>Haemoglobin</b><span>fresh bruise</span></div>
+      <div class="sw"><i style="background:#3f7a52"></i><b>Biliverdin</b><span>bruise turns green</span></div>
+      <div class="sw"><i style="background:#e0a21c"></i><b>Bilirubin</b><span>yellow bruise · jaundice</span></div>
+      <div class="sw"><i style="background:#f1ebd8"></i><b>Urobilinogen</b><span>gut bacteria make it</span></div>
+      <div class="sw"><i style="background:#6b4423"></i><b>Stercobilin</b><span>why stool is brown</span></div>
+      <div class="sw"><i style="background:#ecd24a"></i><b>Urobilin</b><span>why urine is yellow</span></div>
+    </div>
+    <div class="hood" style="margin-top:16px;border-top:none"><ul>
+      <li><b>~250–300 mg bilirubin a day</b>, ~80% from ~120-day-old red cells. Unconjugated bilirubin rides albumin to the liver, gets tagged by <b>UGT1A1</b>, and is pumped into bile by MRP2.</li>
+      <li><b>Jaundice</b> shows when blood bilirubin passes ~2.5–3 mg/dL (normal &lt; ~1.2). <b>Gilbert syndrome</b> (~5% of people): a lazy UGT1A1, mild yellowing when fasting or ill, harmless and possibly protective (bilirubin is an antioxidant).</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 10. PANTRY ================= -->
+<section class="chap" id="pantry" style="grid-template-columns:minmax(0,1fr)">
+  <div class="txt">
+    <div class="eyebrow">Job 10 · The pantry</div>
+    <h2>It stocks years of supplies</h2>
+    <p class="lede">Vitamins, iron and even spare blood, released on demand.</p>
+  </div>
+  <div class="pantry">
+    <div class="jar"><div class="n">~100 g</div><b>Glycogen</b><span>≈ a day's glucose buffer</span></div>
+    <div class="jar"><div class="n">~80%</div><b>Vitamin A</b><span>of the body's store, in stellate cells</span></div>
+    <div class="jar"><div class="n">3–5 yrs</div><b>Vitamin B12</b><span>why deficiency appears so slowly</span></div>
+    <div class="jar"><div class="n">~⅓</div><b>Iron reserves</b><span>as ferritin; also sets iron policy via hepcidin</span></div>
+    <div class="jar"><div class="n">D → 25-OH</div><b>Vitamin D</b><span>first activation step (CYP2R1); kidney does the second</span></div>
+    <div class="jar"><div class="n">Months</div><b>Folate, vit K, E</b><span>shorter-term buffers</span></div>
+    <div class="jar"><div class="n">Cu</div><b>Copper</b><span>stored, then exported via bile &amp; ceruloplasmin</span></div>
+    <div class="jar"><div class="n">~450 mL</div><b>Blood</b><span>~10% of blood volume; squeezed out after bleeding</span></div>
+  </div>
+</section>
+
+<!-- ================= 11. HORMONES & IMMUNE ================= -->
+<section class="chap" id="hormones" style="grid-template-columns:minmax(0,1fr)">
+  <div class="txt">
+    <div class="eyebrow">Job 11 · Switchboard</div>
+    <h2>It edits your hormones and calms your immune system</h2>
+    <p class="lede">Signals pass through the liver and come out amplified, converted, or switched off.</p>
+  </div>
+  <div class="board">
+    <div class="plug"><div class="in">insulin from pancreas</div><div class="out">~50% removed</div><p>on first pass, so the body sees a measured dose.</p></div>
+    <div class="plug"><div class="in">thyroid T4</div><div class="out">→ active T3</div><p>deiodinase enzymes switch the hormone on.</p></div>
+    <div class="plug"><div class="in">growth hormone</div><div class="out">→ IGF-1</div><p>the liver makes the actual growth signal.</p></div>
+    <div class="plug"><div class="in">fasting</div><div class="out">→ FGF21</div><p>a "we're starving" hormone sent to fat and brain.</p></div>
+    <div class="plug"><div class="in">blood pressure</div><div class="out">angiotensinogen</div><p>raw material for the renin–angiotensin system.</p></div>
+    <div class="plug"><div class="in">platelets</div><div class="out">thrombopoietin</div><p>low in cirrhosis → low platelet count.</p></div>
+    <div class="plug"><div class="in">estrogen, aldosterone</div><div class="out">broken down</div><p>failure → spider veins, red palms, breast growth in men, fluid retention.</p></div>
+    <div class="plug" style="border-color:var(--portal)"><div class="in">gut bacteria &amp; food antigens</div><div class="out">tolerated</div><p>Kupffer cells filter microbes but default to calm. Liver transplants are rejected less than any other organ.</p></div>
+  </div>
+</section>
+
+<!-- ================= 12. REGEN ================= -->
+<section class="chap flip" id="regen">
+  <figure>
+    <svg viewBox="0 0 520 380" role="img" aria-label="Liver regrowing after two thirds are removed">
+      <g transform="translate(260 190)">
+        <path d="M-220 -2 C-226 -70 -150 -100 -40 -98 C80 -96 170 -88 228 -48 C254 -30 246 -8 210 4 C150 26 96 42 44 78 C-8 114 -66 164 -124 160 C-186 156 -214 82 -220 -2 Z" class="f-none s-muted" stroke-width="2" stroke-dasharray="6 6"/>
+        <g id="regenLiver" transform="scale(.548)">
+          <path d="M-220 -2 C-226 -70 -150 -100 -40 -98 C80 -96 170 -88 228 -48 C254 -30 246 -8 210 4 C150 26 96 42 44 78 C-8 114 -66 164 -124 160 C-186 156 -214 82 -220 -2 Z" class="f-liver"/>
+        </g>
+        <text x="0" y="10" text-anchor="middle" class="big f-on" id="regenPct" style="font-size:40px">30%</text>
+      </g>
+      <text x="10" y="370" class="lbl">dashed = original size</text>
+    </svg>
+    <div class="panel">
+      <div class="small">Weeks after surgeons remove ~70%</div>
+      <input type="range" id="rR" min="0" max="12" step="1" value="0" aria-label="Weeks after surgery">
+      <div class="readout" id="rT">Day of surgery</div>
+      <p id="rNote" style="font-size:.98rem">30% of the liver is left. Within hours, the survivors receive the signal to divide.</p>
+      <p class="note">Approximate human timeline; mice do it in ~7–10 days.</p>
+    </div>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 12 · Regrowth</div>
+    <h2>Cut off two-thirds. It grows back.</h2>
+    <p class="lede">The only human internal organ that can rebuild its own mass. The Greeks had a myth about it: Prometheus's liver regrew every night.</p>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>Not a new lobe:</b> the remaining lobes enlarge (compensatory hyperplasia). Shape is lost, mass and function return.</li>
+      <li><b>Priming:</b> TNF-α and IL-6 wake hepatocytes from G0. <b>Growth:</b> HGF (via c-Met) and EGF drive 1–2 rounds of division. Mostly existing hepatocytes do it, not stem cells.</li>
+      <li><b>Hepatostat:</b> growth stops when liver mass returns to ~2–2.5% of body weight, via the Hippo/YAP pathway and TGF-β.</li>
+      <li><b>Living donation</b> works because of this: donor and recipient each end up with a near full-sized liver. A child's graft grows with the child; an oversized graft shrinks.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 13. SILENT ================= -->
+<section class="chap" id="silent">
+  <figure>
+    <svg viewBox="0 0 520 360" role="img" aria-label="The liver's appearance through stages of disease">
+      <g id="dLiver" transform="translate(260 175)">
+        <path id="dShape" d="M-220 -2 C-226 -70 -150 -100 -40 -98 C80 -96 170 -88 228 -48 C254 -30 246 -8 210 4 C150 26 96 42 44 78 C-8 114 -66 164 -124 160 C-186 156 -214 82 -220 -2 Z" class="f-liver" style="transition:fill .4s"/>
+        <g id="dFat" opacity="0" style="transition:opacity .4s">
+          <circle cx="-150" cy="-30" r="16" class="f-fat"/><circle cx="-90" cy="10" r="12" class="f-fat"/><circle cx="-40" cy="-50" r="18" class="f-fat"/>
+          <circle cx="30" cy="-20" r="14" class="f-fat"/><circle cx="100" cy="-50" r="12" class="f-fat"/><circle cx="-120" cy="70" r="14" class="f-fat"/>
+          <circle cx="-60" cy="60" r="10" class="f-fat"/><circle cx="160" cy="-30" r="10" class="f-fat"/><circle cx="-180" cy="20" r="10" class="f-fat"/>
+        </g>
+        <g id="dInfl" opacity="0" style="transition:opacity .4s">
+          <circle cx="-110" cy="-50" r="5" class="f-artery"/><circle cx="-20" cy="20" r="5" class="f-artery"/><circle cx="70" cy="-40" r="5" class="f-artery"/>
+          <circle cx="-160" cy="50" r="5" class="f-artery"/><circle cx="10" cy="-70" r="5" class="f-artery"/>
+        </g>
+        <g id="dScar" opacity="0" class="f-none" style="stroke:var(--scar);transition:opacity .4s" stroke-width="3">
+          <path d="M-200 0 L-120 -40 L-40 -10 L40 -60 L140 -40 L210 -20"/><path d="M-120 -40 L-140 60 L-60 40 L-40 -10"/>
+          <path d="M-60 40 L20 20 L40 -60"/><path d="M20 20 L-10 90"/><path d="M-140 60 L-120 140"/><path d="M-200 0 L-170 90"/>
+        </g>
+        <g id="dNod" opacity="0" style="transition:opacity .4s">
+          <circle cx="-170" cy="0" r="22" class="f-liver2"/><circle cx="-120" cy="-50" r="24" class="f-liver2"/><circle cx="-60" cy="-70" r="22" class="f-liver2"/>
+          <circle cx="0" cy="-60" r="24" class="f-liver2"/><circle cx="70" cy="-60" r="22" class="f-liver2"/><circle cx="140" cy="-50" r="20" class="f-liver2"/>
+          <circle cx="-120" cy="10" r="24" class="f-liver2"/><circle cx="-60" cy="-10" r="22" class="f-liver2"/><circle cx="0" cy="0" r="22" class="f-liver2"/>
+          <circle cx="60" cy="0" r="18" class="f-liver2"/><circle cx="-130" cy="80" r="22" class="f-liver2"/><circle cx="-70" cy="60" r="20" class="f-liver2"/>
+          <circle cx="-10" cy="60" r="16" class="f-liver2"/><circle cx="-110" cy="130" r="18" class="f-liver2"/><circle cx="190" cy="-20" r="14" class="f-liver2"/>
+        </g>
+      </g>
+      <text x="10" y="350" class="lbl">no pain fibres inside · only the outer capsule can hurt</text>
+    </svg>
+  </figure>
+  <div class="txt">
+    <div class="eyebrow">Job 13 · Silence</div>
+    <h2>It doesn't complain until it's late</h2>
+    <p class="lede">No pain nerves inside and huge spare capacity. Damage can build for years with no symptoms.</p>
+    <div class="panel" aria-live="polite">
+      <div class="seg" role="group" aria-label="Disease stage">
+        <button type="button" data-s="0" aria-pressed="true">Healthy</button>
+        <button type="button" data-s="1" aria-pressed="false">Fatty</button>
+        <button type="button" data-s="2" aria-pressed="false">MASH</button>
+        <button type="button" data-s="3" aria-pressed="false">Fibrosis</button>
+        <button type="button" data-s="4" aria-pressed="false">Cirrhosis</button>
+      </div>
+      <div class="stage-txt" style="display:flex;flex-direction:column;gap:8px">
+        <h4 id="sTitle">Healthy</h4>
+        <span class="rev" id="sRev" style="color:var(--bile)">baseline</span>
+        <p id="sBody" style="font-size:.98rem">Smooth, soft, red-brown. Fat under 5% of cells.</p>
+      </div>
+    </div>
+    <div class="hood"><h3>Under the hood</h3><ul>
+      <li><b>MASLD</b> (formerly NAFLD) affects roughly 1 in 3 adults worldwide.</li>
+      <li><b>Weight loss works:</b> ~7–10% body weight loss can resolve MASH; ≥10% can shrink fibrosis.</li>
+      <li><b>Checks:</b> FIB-4 score (age, AST, ALT, platelets) and FibroScan (liver stiffness, kPa) find scarring long before symptoms.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= CRAZY FACTS ================= -->
+<section class="chap" id="crazy" style="grid-template-columns:minmax(0,1fr)">
+  <div class="txt">
+    <div class="eyebrow">The highlight reel</div>
+    <h2>Genuinely crazy things your liver does</h2>
+  </div>
+  <div class="facts">
+    <div class="fact"><div class="n">3–4 min</div><p>Your entire blood volume passes through it in this time.</p><span>~5 L ÷ ~1.5 L/min</span></div>
+    <div class="fact"><div class="n">~20%</div><p>of your resting oxygen use, from ~2% of your weight.</p><span>a major source of body heat at rest</span></div>
+    <div class="fact"><div class="n">Pre-birth</div><p>It was your bone marrow. The fetal liver makes blood cells for months.</p><span>~week 6 to the third trimester</span></div>
+    <div class="fact"><div class="n">1 → 2</div><p>One donor liver can be split to save two people.</p><span>split-liver transplant</span></div>
+    <div class="fact"><div class="n">Resizes</div><p>A transplanted liver grows or shrinks to fit its new body.</p><span>the hepatostat at work</span></div>
+    <div class="fact"><div class="n">Cures</div><p>A liver transplant can cure haemophilia A, because its lining makes factor VIII.</p><span>LSECs are the main source</span></div>
+    <div class="fact"><div class="n">Own clock</div><p>Meal timing can reset the liver's daily rhythm, separate from your brain's clock.</p><span>food-entrainable circadian genes</span></div>
+    <div class="fact"><div class="n">Brown &amp; yellow</div><p>The colours of your poop and pee are liver by-products.</p><span>stercobilin &amp; urobilin</span></div>
+  </div>
+</section>
+
+<footer class="end">
+  <div class="eyebrow">The one-line version</div>
+  <h2>A refinery, a bank, a factory and a bin, <em>all in one wet organ.</em></h2>
+  <p>It sits between your gut and the rest of you. It decides what gets in, keeps your blood sugar steady, makes your clotting and carrier proteins, turns poisons into things you can pee or poop out, stores years of vitamins, and rebuilds itself when damaged. It does all of this silently, which is why looking after it matters before it complains.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // ---- Lobule zones
+  const Z = {
+    1:{t:"Periportal: first in line",o:"Oxygen: highest · ~60–65 mmHg",b:"Gets blood first, so it gets the most oxygen and the freshest nutrients. Runs the energy-expensive jobs.",
+       g:["Making glucose","Burning fat (β-oxidation)","Urea cycle","Bile acid uptake","Cholesterol synthesis"],bad:[]},
+    2:{t:"Midzonal: the overlap",o:"Oxygen: falling",b:"A blend of both neighbours. When zone 1 or 3 is hurt, cells here pick up the slack. Main source of new cells in everyday renewal.",
+       g:["Mixed metabolism","Cell renewal"],bad:["Yellow fever damages here"]},
+    3:{t:"Pericentral: last in line",o:"Oxygen: lowest · ~30–35 mmHg",b:"Gets leftover blood. Runs the low-oxygen jobs and most drug metabolism, so it gets hurt first by drug toxicity and low blood pressure.",
+       g:["Glycolysis","Fat building (lipogenesis)","CYP450 drug metabolism","Glutamine synthetase"],bad:["Paracetamol","Alcohol","Shock (\"ischaemic hepatitis\")"]}
+  };
+  const lob = document.getElementById('lobuleSvg');
+  const zBtns = document.querySelectorAll('#lobule .seg button');
+  function setZone(z){
+    const d=Z[z];
+    document.getElementById('zTitle').textContent=d.t;
+    document.getElementById('zO2').textContent=d.o;
+    document.getElementById('zBody').textContent=d.b;
+    const tags=document.getElementById('zTags'); tags.innerHTML='';
+    d.g.forEach(x=>{const s=document.createElement('span');s.textContent=x;tags.appendChild(s)});
+    d.bad.forEach(x=>{const s=document.createElement('span');s.className='bad';s.textContent='Vulnerable: '+x;tags.appendChild(s)});
+    zBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.z==z));
+    lob.querySelectorAll('g.zone').forEach(g=>{g.style.opacity = g.dataset.z==z ? 1 : .35});
+  }
+  zBtns.forEach(b=>b.addEventListener('click',()=>setZone(b.dataset.z)));
+  lob.querySelectorAll('g.zone').forEach(g=>g.addEventListener('click',()=>setZone(g.dataset.z)));
+  setZone(1);
+
+  // ---- Fasting
+  const F=[
+    {t:"1 hour · just ate",gly:80,src:[85,15,0],ket:0.1,brain:0,n:"Glucose floods in via the portal vein. Insulin tells the liver to soak up about a third of it and pack it into glycogen."},
+    {t:"12 hours · overnight",gly:50,src:[0,55,45],ket:0.2,brain:1,n:"No food coming in. Glycogen is being broken down, and the liver has started building glucose from scratch."},
+    {t:"24 hours",gly:15,src:[0,20,80],ket:0.5,brain:5,n:"Glycogen nearly gone. Most glucose is now newly made from lactate, amino acids and glycerol. Fat burning ramps up."},
+    {t:"3 days",gly:3,src:[0,3,97],ket:2.5,brain:30,n:"The liver is now a ketone factory. Kidneys start chipping in glucose too. The brain begins switching fuel."},
+    {t:"1 week+",gly:3,src:[0,3,97],ket:5,brain:65,n:"Ketones supply most of the brain's energy, so the liver can make less glucose and spare your muscle protein."}
+  ];
+  const fr=document.getElementById('fastR');
+  function setFast(i){
+    const d=F[i];
+    document.getElementById('fastT').textContent=d.t;
+    document.getElementById('glyFill').style.height=d.gly+'%';
+    document.getElementById('glyTxt').textContent='glycogen '+d.gly+'%';
+    document.getElementById('sGut').style.width=d.src[0]+'%';
+    document.getElementById('sGly').style.width=d.src[1]+'%';
+    document.getElementById('sGng').style.width=d.src[2]+'%';
+    document.getElementById('ketV').textContent=d.ket+' mmol/L';
+    document.getElementById('ketB').style.width=Math.max(2,d.ket/7*100)+'%';
+    document.getElementById('brainV').textContent='~'+d.brain+'%';
+    document.getElementById('brainB').style.width=Math.max(1,d.brain)+'%';
+    document.getElementById('fastNote').textContent=d.n;
+  }
+  fr.addEventListener('input',()=>setFast(+fr.value)); setFast(+fr.value);
+
+  // ---- Paracetamol
+  const pR=document.getElementById('pR'), pRisk=document.getElementById('pRisk');
+  function setP(){
+    const dose=+pR.value, risky=pRisk.checked;
+    const start=risky?75:100, k=risky?9:7.5;
+    const left=Math.max(0,Math.round(start-dose*k));
+    document.getElementById('pDose').textContent=(dose%1?dose.toFixed(1):dose)+' g';
+    document.getElementById('pG').textContent=left+'%';
+    const bar=document.getElementById('pBar'); bar.style.width=left+'%';
+    const st=document.getElementById('pStatus');
+    if(left>50){st.className='status ok';st.textContent='Shield holding. ~90% leaves safely as glucuronide & sulfate; the 5–10% turned into NAPQI is neutralised.';bar.style.background='var(--bile)';}
+    else if(left>30){st.className='status warn';st.textContent='Shield strained. Glutathione is being used faster than cells can rebuild it.';bar.style.background='var(--amber)';}
+    else{st.className='status bad';st.textContent='Shield breached. Spare NAPQI binds cell proteins and mitochondria; zone 3 hepatocytes die. Emergency: N-acetylcysteine.';bar.style.background='var(--artery)';}
+  }
+  pR.addEventListener('input',setP); pRisk.addEventListener('change',setP); setP();
+
+  // ---- Regeneration
+  const rR=document.getElementById('rR');
+  const RN=[[0,"30% of the liver is left. Within hours, the survivors receive the signal to divide."],
+            [1,"Cell division peaks in the first days. Blood tests (bilirubin, INR) usually normalise within 1–2 weeks."],
+            [4,"Most of the lost mass is back. Lobules are being rebuilt with new blood vessels."],
+            [8,"Close to full size. Growth slows as the hepatostat senses the target."],
+            [12,"Essentially restored. Growth stops on its own: no tumour, no overshoot."]];
+  function setR(){
+    const w=+rR.value, v=Math.round(100-70*Math.exp(-w/3.2));
+    document.getElementById('regenLiver').setAttribute('transform','scale('+Math.sqrt(v/100).toFixed(3)+')');
+    document.getElementById('regenPct').textContent=v+'%';
+    document.getElementById('rT').textContent= w===0?'Day of surgery': w+(w===1?' week':' weeks');
+    let n=RN[0][1]; RN.forEach(r=>{if(w>=r[0]) n=r[1]});
+    document.getElementById('rNote').textContent=n;
+  }
+  rR.addEventListener('input',setR); setR();
+
+  // ---- Disease stages
+  const S=[
+    {t:"Healthy",r:"baseline",c:"var(--bile)",b:"Smooth, soft, red-brown. Fat under 5% of cells.",fat:0,inf:0,scar:0,nod:0,fill:"var(--liver)"},
+    {t:"Fatty liver (MASLD)",r:"fully reversible",c:"var(--bile)",b:"Over 5% of hepatocytes hold fat droplets. Usually from excess calories, fructose, insulin resistance or alcohol. No symptoms.",fat:1,inf:0,scar:0,nod:0,fill:"var(--liver2)"},
+    {t:"MASH: fat + inflammation",r:"reversible",c:"var(--bile)",b:"Fat-stressed cells swell (\"ballooning\") and die; immune cells move in. Liver enzymes (ALT) may rise. Still mostly silent.",fat:1,inf:1,scar:0,nod:0,fill:"var(--liver2)"},
+    {t:"Fibrosis (F1–F3)",r:"often reversible",c:"var(--amber)",b:"Stellate cells turn into scar-makers and lay collagen bands. Stiffness rises. Fibrosis stage is the strongest predictor of outcome.",fat:1,inf:1,scar:1,nod:0,fill:"var(--liver2)"},
+    {t:"Cirrhosis (F4)",r:"largely permanent",c:"var(--artery)",b:"Scar bands wall off regenerating nodules. Blood can't flow through easily → portal hypertension, varices, fluid build-up, confusion. Liver cancer risk rises by a few % a year.",fat:0,inf:0,scar:1,nod:1,fill:"var(--liver)"}
+  ];
+  const sBtns=document.querySelectorAll('#silent .seg button');
+  function setS(i){
+    const d=S[i];
+    document.getElementById('sTitle').textContent=d.t;
+    const r=document.getElementById('sRev'); r.textContent=d.r; r.style.color=d.c;
+    document.getElementById('sBody').textContent=d.b;
+    document.getElementById('dFat').setAttribute('opacity',d.fat);
+    document.getElementById('dInfl').setAttribute('opacity',d.inf);
+    document.getElementById('dScar').setAttribute('opacity',d.scar);
+    document.getElementById('dNod').setAttribute('opacity',d.nod);
+    document.getElementById('dShape').style.fill=d.fill;
+    document.getElementById('dLiver').setAttribute('transform', i==4 ? 'translate(260 175) scale(.82)' : 'translate(260 175)');
+    sBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.s==i));
+  }
+  sBtns.forEach(b=>b.addEventListener('click',()=>setS(+b.dataset.s)));
+  setS(0);
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
