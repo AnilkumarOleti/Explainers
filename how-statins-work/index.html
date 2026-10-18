@@ -124,6 +124,35 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 #app.is-on .band{opacity:1}
 .scale{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .artery-wall{fill:var(--vessel);stroke:var(--blood);stroke-width:4;stroke-opacity:.55}
+.result{grid-template-columns:1fr}
+.artery-fig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;padding:20px}
+.adv{fill:var(--cell);stroke:var(--cell-edge);stroke-width:3}
+.media{fill:none;stroke:var(--blood);stroke-width:14;opacity:.35}
+.intima{fill:var(--vessel)}
+.plaque-body{fill:var(--amber-soft);stroke:var(--amber);stroke-width:2;stroke-opacity:.5}
+.core{fill:var(--amber);transform-box:fill-box;transform-origin:center;transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+#app.is-on .core{transform:scale(.62)}
+.crystal{fill:var(--cell-edge);opacity:.55;transition:opacity .8s}
+#app.is-on .crystal.extra{opacity:0}
+.cap-ring{fill:none;stroke:var(--teal);stroke-width:3;stroke-dasharray:140 220;stroke-dashoffset:-200;transition:stroke-width 1.2s cubic-bezier(.6,0,.2,1)}
+#app.is-on .cap-ring{stroke-width:26}
+.lumen2{fill:var(--blood)}
+.mac{fill:var(--plum);transition:opacity .8s}
+#app.is-on .mac.extra{opacity:0}
+.tear{stroke:var(--surface);stroke-width:3;stroke-linecap:round;fill:none;transition:opacity .4s}
+#app.is-on .tear{opacity:0}
+.lumen-ldl{fill:var(--amber);stroke:var(--surface);stroke-width:1.5;transition:opacity .8s}
+#app.is-on .lumen-ldl.extra{opacity:0}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.legend li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:12px;align-items:start}
+.sw{width:18px;height:18px;border-radius:50%;margin-top:3px}
+.legend b{display:block;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.04em}
+.legend span.t{font-size:15px;display:block}
+.chip{justify-self:start;display:inline-block;padding:6px 12px;border-radius:999px;font:700 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase}
+.chip.bad{background:var(--blood);color:var(--surface)}
+.chip.good{background:var(--teal);color:var(--surface)}
+.artery-side{display:grid;gap:16px;min-width:0}
+@media (max-width:640px){.artery-fig{grid-template-columns:1fr}.artery-fig svg{max-width:320px;margin:0 auto}}
 .plaque{fill:var(--amber)}
 .lumen{fill:var(--blood);transform-box:fill-box;transform-origin:center;transition:transform 1.1s cubic-bezier(.6,0,.2,1);transform:translateY(26px) scale(.78)}
 #app.is-on .lumen{transform:translateY(12px) scale(1.08)}
@@ -670,13 +699,50 @@ td:first-child{font-weight:700}
         <div class="scale"><span>0</span><span>50%</span><span>100%</span></div>
         <p class="muted" style="font-size:16px">Higher dose, bigger drop.</p>
       </div>
-      <div class="fig">
-        <svg viewBox="0 0 300 300" role="img" aria-label="Cross-section of an artery. Yellow plaque narrows the red channel. With the statin on, the channel opens up a little.">
-          <circle class="artery-wall" cx="150" cy="150" r="128"/>
-          <circle class="plaque" cx="150" cy="150" r="104"/>
-          <circle class="lumen" cx="150" cy="150" r="72"/>
-          <text class="lbl t-ink" x="96" y="290" style="font-size:13px">Artery, sliced</text>
+    </div>
+    <div class="sub">
+      <h3>Inside the artery wall</h3>
+      <div class="fig artery-fig">
+        <svg viewBox="0 0 400 360" role="img" aria-label="Cross-section of an artery with plaque. A yellow fat-rich core sits in the wall above the red blood channel, separated by a fibrous cap, with purple immune cells at its edges. Without a statin the cap is thin and cracked and many LDL particles circulate. With the statin on, the cap thickens, the core shrinks, the immune cells thin out and fewer LDL particles remain.">
+          <circle class="adv" cx="200" cy="180" r="150"/>
+          <circle class="media" cx="200" cy="180" r="128"/>
+          <defs><clipPath id="intimaClip"><circle cx="200" cy="180" r="117"/></clipPath></defs>
+          <circle class="intima" cx="200" cy="180" r="118"/>
+          <ellipse class="plaque-body" cx="200" cy="150" rx="112" ry="92" clip-path="url(#intimaClip)"/>
+          <ellipse class="core" cx="200" cy="135" rx="62" ry="30"/>
+          <g>
+            <rect class="crystal" x="172" y="126" width="16" height="4" rx="1" transform="rotate(-20 180 128)"/>
+            <rect class="crystal extra" x="204" y="138" width="18" height="4" rx="1" transform="rotate(15 213 140)"/>
+            <rect class="crystal extra" x="222" y="120" width="12" height="4" rx="1" transform="rotate(-35 228 122)"/>
+            <rect class="crystal extra" x="160" y="142" width="12" height="4" rx="1" transform="rotate(25 166 144)"/>
+          </g>
+          <circle class="cap-ring" cx="200" cy="232" r="60" pathLength="360"/>
+          <circle class="lumen2" cx="200" cy="232" r="58"/>
+          <path class="tear" d="M196,168 l5,6 l-4,5"/>
+          <circle class="mac" cx="140" cy="168" r="9"/>
+          <circle class="mac extra" cx="152" cy="148" r="8"/>
+          <circle class="mac extra" cx="250" cy="148" r="8"/>
+          <circle class="mac extra" cx="262" cy="170" r="9"/>
+          <g>
+            <circle class="lumen-ldl" cx="182" cy="216" r="7"/>
+            <circle class="lumen-ldl extra" cx="216" cy="248" r="7"/>
+            <circle class="lumen-ldl extra" cx="194" cy="264" r="7"/>
+            <circle class="lumen-ldl" cx="226" cy="220" r="7"/>
+            <circle class="lumen-ldl extra" cx="170" cy="246" r="7"/>
+            <circle class="lumen-ldl extra" cx="206" cy="236" r="7"/>
+          </g>
         </svg>
+        <div class="artery-side">
+          <span class="chip bad s-off">Unstable plaque</span>
+          <span class="chip good s-on">Stabilised plaque</span>
+          <ul class="legend">
+            <li><span class="sw" style="background:var(--teal)"></span><div><b>Fibrous cap</b><span class="t s-off">Thin and fraying. If it tears, a clot forms on it and blocks the artery. That is most heart attacks.</span><span class="t s-on">Thickens with collagen. Far less likely to tear.</span></div></li>
+            <li><span class="sw" style="background:var(--amber)"></span><div><b>Lipid core</b><span class="t s-off">A soft pool of oxidised LDL and cholesterol crystals.</span><span class="t s-on">Shrinks a little as new LDL stops arriving.</span></div></li>
+            <li><span class="sw" style="background:var(--plum)"></span><div><b>Immune cells</b><span class="t s-off">Inflamed macrophages eat away at the cap's edges.</span><span class="t s-on">Fewer and calmer.</span></div></li>
+            <li><span class="sw" style="background:var(--blood)"></span><div><b>Blood channel</b><span class="t s-off">Crowded with LDL particles that keep seeping into the wall.</span><span class="t s-on">Fewer LDL particles to seep in.</span></div></li>
+            <li><span class="sw" style="background:var(--cell);border:2px solid var(--cell-edge)"></span><div><b>Artery wall</b><span class="t">Muscle layer and outer coat. The plaque grows inside its inner lining.</span></div></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="cap">
