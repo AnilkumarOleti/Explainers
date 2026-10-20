@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Singing Branch | Explainers</title>
+<meta name="description" content="What does each bird really sound like? Tap 20 birds from four continents and watch their songs draw.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/singing-branch/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Singing Branch">
+<meta property="og:description" content="What does each bird really sound like? Tap 20 birds from four continents and watch their songs draw.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/singing-branch/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/singing-branch/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sticky listening bar (who is singing + a live sonogram) above a dawn-sky panel where every grid cell is one length of branch, so rows read as continuous boughs. */
+:root{
+  --bg:#edf1ec; --surface:#fbfcf9; --ink:#1b2621; --muted:#5b6a62; --line:#d2dad3;
+  --accent:#0f6d63; --accent-ink:#ffffff; --good:#2e8b4a; --bad:#c2412d;
+  --sky-top:#c6dde8; --sky-bottom:#f3dfc8; --sun:rgba(255,206,140,.8); --star:rgba(255,255,255,0);
+  --branch:#6c4d35; --branch-hi:#8f6c4c; --leaf:#5d8d4c; --water:#5f9fb3; --wave:#d6edf2;
+  --sono-bg:#fbfcf9; --sono-ink:#15201b; --sono-grid:rgba(27,38,33,.12);
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1416; --surface:#151d20; --ink:#e5ece7; --muted:#93a39b; --line:#26332f;
+    --accent:#53c6b4; --accent-ink:#06201c; --good:#5cc97b; --bad:#ef7a62;
+    --sky-top:#07101b; --sky-bottom:#1b2b3d; --sun:rgba(215,228,255,.22); --star:rgba(255,255,255,.8);
+    --branch:#4d3828; --branch-hi:#6a4f39; --leaf:#3d6a3a; --water:#2a5a69; --wave:#6aa1b0;
+    --sono-bg:#0c1214; --sono-ink:#8ff0d4; --sono-grid:rgba(229,236,231,.09);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1416; --surface:#151d20; --ink:#e5ece7; --muted:#93a39b; --line:#26332f;
+  --accent:#53c6b4; --accent-ink:#06201c; --good:#5cc97b; --bad:#ef7a62;
+  --sky-top:#07101b; --sky-bottom:#1b2b3d; --sun:rgba(215,228,255,.22); --star:rgba(255,255,255,.8);
+  --branch:#4d3828; --branch-hi:#6a4f39; --leaf:#3d6a3a; --water:#2a5a69; --wave:#6aa1b0;
+  --sono-bg:#0c1214; --sono-ink:#8ff0d4; --sono-grid:rgba(229,236,231,.09);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 40px;display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{margin:0;color:var(--muted);font-size:1rem}
+.sub b{color:var(--ink);font-weight:600}
+
+/* listening bar */
+.band{background:var(--bg);padding-block:6px;z-index:6}
+@media (min-height:600px){.band{position:sticky;top:env(safe-area-inset-top,0px)}}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:16px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:18px;padding:14px 16px;box-shadow:0 6px 18px -14px rgba(0,0,0,.4)}
+.info{min-width:0;display:flex;flex-direction:column;gap:4px;justify-content:center}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.region{border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--ink)}
+.verdict{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-weight:700;font-size:.8rem;border-radius:99px;padding:1px 9px}
+.verdict.ok{background:var(--good);color:var(--surface)}
+.verdict.no{background:var(--bad);color:var(--surface)}
+.info h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.35rem,3vw,1.9rem);line-height:1.1;margin:2px 0 0;display:flex;align-items:center;gap:10px}
+.info h2::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--nc,var(--accent));flex:none}
+.mn{margin:0;font-size:1.05rem;font-style:italic;color:var(--ink)}
+.fact{margin:0;color:var(--muted);font-size:.9rem;max-width:46ch}
+.gamebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+.score{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.sono{position:relative;min-width:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--sono-bg);height:132px}
+.sono canvas{display:block;width:100%;height:100%}
+.grid-lines{position:absolute;inset:0;pointer-events:none}
+.grid-lines span{position:absolute;left:0;right:0;border-top:1px dashed var(--sono-grid)}
+.grid-lines i{position:absolute;left:6px;transform:translateY(-50%);font-style:normal;font-family:var(--f-mono);font-size:.62rem;color:var(--muted);background:var(--sono-bg);padding:0 3px;border-radius:3px}
+.sono-cap{position:absolute;right:8px;bottom:5px;font-family:var(--f-mono);font-size:.62rem;color:var(--muted);letter-spacing:.04em;background:var(--sono-bg);padding:0 4px;border-radius:3px}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.chips,.acts{display:flex;flex-wrap:wrap;gap:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px;font-size:.88rem;font-weight:500;display:inline-flex;gap:6px;align-items:center}
+.chip small{font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] small{color:inherit;opacity:.7}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 14px;font-weight:600;font-size:.9rem}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.sm{padding:4px 10px;font-size:.82rem;border-radius:8px}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* sky + branches */
+.sky{border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  background:
+    radial-gradient(1.3px 1.3px at 8% 14%,var(--star),transparent 70%),
+    radial-gradient(1px 1px at 23% 6%,var(--star),transparent 70%),
+    radial-gradient(1.5px 1.5px at 41% 19%,var(--star),transparent 70%),
+    radial-gradient(1px 1px at 57% 9%,var(--star),transparent 70%),
+    radial-gradient(1.2px 1.2px at 69% 27%,var(--star),transparent 70%),
+    radial-gradient(1px 1px at 93% 33%,var(--star),transparent 70%),
+    radial-gradient(1.3px 1.3px at 33% 44%,var(--star),transparent 70%),
+    radial-gradient(1px 1px at 77% 52%,var(--star),transparent 70%),
+    radial-gradient(circle at 86% 9%,var(--sun) 0 34px,transparent 140px),
+    linear-gradient(var(--sky-top),var(--sky-bottom));
+}
+.aviary{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(108px,22vw,170px),1fr));column-gap:0;row-gap:2px;padding-block:18px 10px}
+.perch{position:relative;background:none;border:0;padding:0;margin:0;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-width:0;-webkit-tap-highlight-color:transparent}
+.perch .art{position:relative;display:block}
+.perch svg{display:block;width:100%;height:auto;overflow:hidden}
+.nm{font-size:.8rem;font-weight:600;line-height:1.2;padding:2px 6px 8px;color:var(--ink);text-wrap:balance;min-height:2.4em}
+.filler{pointer-events:none}
+.perch:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:12px}
+.br{fill:var(--branch)} .brh{fill:none;stroke:var(--branch-hi);stroke-width:1.6;stroke-linecap:round}
+.tw{fill:none;stroke:var(--branch);stroke-width:1.8;stroke-linecap:round}
+.lf{fill:var(--leaf)}
+.bark{fill:var(--branch)} .barkline{fill:none;stroke:var(--branch-hi);stroke-width:1.2;stroke-linecap:round}
+.water{fill:var(--water);opacity:.92} .wave{fill:none;stroke:var(--wave);stroke-width:1.4;stroke-linecap:round;opacity:.8}
+
+/* bird motion */
+.bird{transform-box:fill-box;transform-origin:50% 100%;animation:idle var(--idur,4s) ease-in-out var(--idel,0s) infinite}
+.kind-loon .bird{animation-name:float}
+.head{transform-box:fill-box;transform-origin:25% 85%;transition:transform .18s ease}
+.perch:hover .head{transform:rotate(-9deg)}
+.jaw{transform-box:fill-box;transform-origin:0 0;transition:transform .05s}
+.throat{transform-box:fill-box;transform-origin:50% 30%;transition:transform .06s}
+.eye{transform-box:fill-box;transform-origin:50% 50%;transition:transform .08s}
+.perch.blink .eye{transform:scaleY(.12)}
+.perch.singing .bird{animation:sing .42s ease-in-out infinite alternate}
+.kind-loon.singing .bird{animation:float 1.6s ease-in-out infinite}
+.perch.singing .head{transform:rotate(-7deg)}
+.perch.open .jaw{transform:rotate(24deg)}
+.kind-owl.open .jaw{transform:translateY(2.4px)}
+.perch.open .throat{transform:scale(1.28)}
+.kind-wood .head{transition:transform .03s}
+.kind-wood.singing .head{transform:none}
+.kind-wood.open .head{transform:translateX(3px) rotate(3deg)}
+.fan{opacity:0;transform-box:fill-box;transform-origin:50% 100%;transform:scale(.25);transition:opacity .35s,transform .5s cubic-bezier(.3,1.4,.5,1)}
+.train{transition:opacity .3s}
+.perch.singing .fan{opacity:1;transform:scale(1)}
+.perch.singing .train{opacity:0}
+.lyre{transform-box:fill-box;transform-origin:100% 80%;transition:transform .55s cubic-bezier(.3,1.3,.5,1)}
+.perch.singing .lyre{transform:rotate(30deg)}
+.perch.right .art{animation:hop .55s ease}
+.perch.wrong .art{animation:shake .42s ease}
+.perch.hint .art::after{content:"";position:absolute;inset:6% 10% 4%;border-radius:50%;border:3px solid var(--good);animation:pulse 1s ease-in-out infinite;pointer-events:none}
+.perch.target-done .nm{color:var(--good)}
+.note{position:absolute;pointer-events:none;z-index:4;font-size:clamp(1rem,2.4vw,1.35rem);font-weight:700;color:var(--nc);line-height:1;animation:rise 1.5s ease-out forwards;text-shadow:0 1px 0 rgba(0,0,0,.18)}
+@keyframes idle{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-.9px) rotate(-1.2deg)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-1.5deg)}}
+@keyframes sing{from{transform:rotate(0) translateY(0)}to{transform:rotate(-4deg) translateY(-1.5px)}}
+@keyframes hop{0%,100%{transform:translateY(0)}40%{transform:translateY(-16px)}70%{transform:translateY(2px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(.96)}50%{opacity:1;transform:scale(1.02)}}
+@keyframes rise{0%{opacity:0;transform:translate(-50%,0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),-74px) rotate(var(--rot)) scale(1.15)}}
+@media (prefers-reduced-motion: reduce){
+  .bird,.perch.singing .bird{animation:none}
+  .perch.right .art,.perch.wrong .art{animation:none}
+  .note{animation-duration:.9s}
+}
+@media (max-width:640px){
+  .stage{grid-template-columns:1fr;gap:10px;padding:12px}
+  .sono{height:74px}
+  .fact{font-size:.82rem}
+  .mn{font-size:.95rem}
+  .nm{font-size:.72rem;padding-inline:3px}
+}
+@media (max-width:640px) and (max-height:820px){ .fact{display:none} }
+footer{color:var(--muted);font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Singing Branch</h1>
+    <p class="sub"><b>Tap any bird</b> to hear it sing · 20 birds, 4 continents</p>
+  </header>
+
+  <div class="band">
+    <section class="stage" aria-live="polite">
+      <div class="info" id="info">
+        <div class="tagrow"><span class="region" id="region">20 birds</span><span id="khz">pitch shows on the sonogram</span><span class="verdict" id="verdict" hidden></span></div>
+        <h2 id="bname">Tap a bird</h2>
+        <p class="mn" id="mn">Every one sings its own song.</p>
+        <p class="fact" id="fact">Or wake the whole branch with Dawn chorus.</p>
+        <div class="gamebar" id="gamebar" hidden>
+          <button class="btn sm" id="again" type="button">Hear again</button>
+          <button class="btn sm" id="skip" type="button">Skip</button>
+          <span class="score" id="score">Score 0 · Streak 0</span>
+        </div>
+      </div>
+      <div class="sono">
+        <canvas id="sono" aria-label="Live sonogram: pitch over time"></canvas>
+        <div class="grid-lines" aria-hidden="true">
+          <span style="top:25%"></span><span style="top:50%"></span><span style="top:75%"></span>
+          <i style="top:25%">6 kHz</i><i style="top:50%">4 kHz</i><i style="top:75%">2 kHz</i>
+        </div>
+        <span class="sono-cap">pitch ↑ · time →</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div class="chips" id="chips" role="group" aria-label="Show birds from"></div>
+    <div class="acts">
+      <button class="btn primary" id="chorus" type="button">Dawn chorus</button>
+      <button class="btn" id="quiz" type="button" aria-pressed="false">Who’s singing?</button>
+      <button class="btn" id="stop" type="button">Stop</button>
+    </div>
+  </div>
+
+  <div class="sky"><div class="aviary" id="aviary"></div></div>
+  <footer>Songs are synthesized in your browser to sound like each species. Turn your sound on.</footer>
+</div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const H1=[[1,1],[2,.12]];
+const REG={india:'India',americas:'Americas',europe:'Europe',australia:'Australia'};
+
+/* ---------------- birds ---------------- */
+const BIRDS=[
+{id:'koel',name:'Asian Koel',region:'india',mn:'ku-OO, ku-OO, ku-OO…',khz:'0.6–1.3 kHz',fact:'The sound of Indian summer. Each call climbs a little higher.',note:'#e05263',
+ look:{body:'#16181d',belly:'#1c1f25',wing:'#262a32',head:'#16181d',neck:'#16181d',tail:'#16181d',tailLen:44,tailAng:-24,beak:'#b8c79a',beakType:'thin',beakS:1.1,eye:'#c0242b'},
+ song(p){let f=700,t=0;for(let i=0;i<5;i++){p.n(t,.13,[f*.94,f],{vol:.32,h:H1});p.n(t+.17,.36,[f*.95,f*1.12,f*1.25],{vol:.38,h:H1});t+=.82;f*=1.07;}}},
+{id:'cardinal',name:'Northern Cardinal',region:'americas',mn:'cheer cheer cheer, birdie birdie',khz:'1.8–4 kHz',fact:'Both males and females sing.',note:'#d62839',
+ look:{body:'#c8102e',belly:'#dc3a4e',wing:'#a10c24',head:'#cf1530',neck:'#cf1530',crest:'#cf1530',crestType:'point',faceMask:'#151515',tail:'#a10c24',tailLen:32,beak:'#f26b2a',beakType:'cone',scale:.9},
+ song(p){for(let i=0;i<3;i++)p.n(i*.34,.26,[3800,2900,2100],{vol:.26});for(let i=0;i<6;i++)p.n(1.15+i*.16,.11,[2300,3500,2300],{vol:.24});}},
+{id:'peacock',name:'Indian Peafowl',region:'india',mn:'may-AWE! may-AWE!',khz:'0.8–1.3 kHz',fact:'India’s national bird. That famous “tail” is really long back feathers.',note:'#1e9fa0',extra:'peacock',
+ look:{body:'#1f5fbf',belly:'#1a55ad',wing:'#c9b28a',wingSpots:'#6b5a3e',head:'#2369cf',neck:'#2369cf',longNeck:true,cx:104,cy:50,headR:10,rx:26,ry:19,crest:'#2369cf',crestType:'fan',faceLines:'#ffffff',tailType:'none',beak:'#cdbfa8',beakType:'short',legs:'#8a8270'},
+ song(p){for(let i=0;i<3;i++){const t=i*1.1;p.n(t,.22,[850,1050],{type:'sawtooth',bp:1100,q:2.5,vol:.4,h:[[1,1],[2,.4]]});p.n(t+.26,.55,[1250,1150,800],{type:'sawtooth',bp:1100,q:2.5,vol:.45,vib:[7,25]});}}},
+{id:'chickadee',name:'Black-capped Chickadee',region:'americas',mn:'fee-bee',khz:'3.3–4 kHz',fact:'Remembers where it hid thousands of seeds.',note:'#4f86b0',
+ look:{body:'#8e979c',belly:'#ece3cf',wing:'#6c757b',wingbar:'#e9ece9',head:'#f5f4ee',neck:'#8e979c',cap:'#141414',capH:.92,throat:'#141414',tail:'#6c757b',tailLen:28,beak:'#141414',beakType:'short',headR:16,scale:.8},
+ song(p){for(let r=0;r<2;r++){const t=r*1.3;p.n(t,.38,[3950,3930],{vol:.22});p.n(t+.46,.42,[3450,3350,3400],{vol:.22});}}},
+{id:'kooka',name:'Laughing Kookaburra',region:'australia',mn:'koo-koo-ka-ka-KA-KA-KA!',khz:'0.5–1.8 kHz',fact:'Families laugh together at dawn to claim their patch.',note:'#3f97c9',
+ look:{body:'#7a5636',belly:'#efe7d6',wing:'#6b4a2e',wingSpots:'#5aa7d4',head:'#efe7d6',neck:'#efe7d6',cap:'#cbb69a',capH:.5,mask:'#4a3222',headR:18,rx:30,ry:22,tail:'#b4612b',tailBars:'#3a2416',tailLen:30,beak:'#2a2420',beakLo:'#d9ccb5',beakType:'long',scale:.97},
+ song(p){const N=34;for(let i=0;i<N;i++){const x=i/N;const f=560+1150*Math.sin(Math.PI*Math.min(1,x*1.25))+(Math.random()-.5)*160;const t=i*.095+(x>.8?(x-.8)*.6:0);p.n(t,.075,[f*.88,f*1.12,f*.85],{type:'sawtooth',bp:Math.max(900,f*1.1),q:1.4,vol:.12+.32*Math.sin(Math.PI*x),a:.008,r:.03});}}},
+{id:'barbet',name:'Coppersmith Barbet',region:'india',mn:'tuk… tuk… tuk…',khz:'≈0.7 kHz',fact:'Named for a call like a smith tapping metal, over and over.',note:'#e0453a',
+ look:{body:'#5c9a3d',belly:'#e3e6a8',streaks:'#5c9a3d',wing:'#4d8833',head:'#5c9a3d',neck:'#5c9a3d',cap:'#d11f2d',capH:.5,mask:'#16181a',cheek:'#f2d13b',throat:'#f2d13b',tail:'#4d8833',tailLen:16,beak:'#222',beakType:'cone',rx:27,ry:22,scale:.86},
+ song(p){for(let i=0;i<10;i++)p.n(i*.3,.07,[720,640],{vol:.5,type:'triangle',a:.004,r:.04,h:[[1,1],[.5,.3]]});}},
+{id:'owl',name:'Great Horned Owl',region:'americas',mn:'hoo, h’HOO, hoo, hoo',khz:'≈0.3 kHz',fact:'Its deep hoots carry far through a quiet night.',note:'#e0a526',kind:'owl',
+ song(p){const o={vol:.5,a:.06,r:.14,h:[[1,1],[2,.45],[3,.18]]};p.n(0,.36,[330,318],o);p.n(.62,.1,[300,330],o);p.n(.75,.42,[345,325],o);p.n(1.5,.45,[322,305],o);p.n(2.15,.48,[318,300],o);}},
+{id:'canary',name:'Atlantic Canary',region:'europe',mn:'rolling, bubbling trills',khz:'1.8–4.2 kHz',fact:'Wild ones live on the Canary Islands, Madeira and the Azores.',note:'#d9a800',
+ look:{body:'#f2cc2f',belly:'#fbe27a',wing:'#d9b21f',wingbar:'#a8952a',head:'#f6d53b',neck:'#f6d53b',tail:'#cfa91c',tailType:'fork',tailLen:26,beak:'#e8b9a0',beakType:'cone',scale:.8},
+ song(p){for(let i=0;i<16;i++)p.n(i*.06,.045,[2600,3100],{vol:.18});for(let i=0;i<10;i++)p.n(1.1+i*.08,.06,[4200,2600],{vol:.2});for(let i=0;i<20;i++)p.n(2+i*.045,.035,[1900,2100],{vol:.18,type:'triangle'});for(let i=0;i<6;i++)p.n(2.98+i*.11,.09,[2800,3700,3200],{vol:.2});}},
+{id:'woodpecker',name:'Great Spotted Woodpecker',region:'europe',mn:'drrrrrrr! (a drum, not a song)',khz:'broadband taps',fact:'Drums on hollow wood instead of singing.',note:'#d0202a',kind:'wood',
+ song(p){for(const R of [0,1.3]){for(let i=0;i<17;i++){const t=R+i*.05;p.x(t,.022,{f:1100,q:1.3,vol:.6});p.n(t,.03,[170,110],{vol:.4,a:.002,r:.02});}}}},
+{id:'bulbul',name:'Red-vented Bulbul',region:'india',mn:'be-care-ful',khz:'1.5–2.1 kHz',fact:'A cheerful regular in Indian gardens.',note:'#d23a2a',
+ look:{body:'#4b3f35',belly:'#8b7d6e',wing:'#43372d',head:'#17140f',neck:'#2a231d',crest:'#17140f',crestType:'tuft',throat:'#17140f',tail:'#2a231d',tailLen:32,tailTip:'#e9e4dc',vent:'#c4161c',beak:'#111',beakType:'thin',scale:.88},
+ song(p){const ph=(t,k)=>{p.n(t,.12,[1500*k,1900*k],{vol:.3,h:H1});p.n(t+.15,.14,[2000*k,1700*k],{vol:.3,h:H1});p.n(t+.33,.2,[1600*k,2100*k,1800*k],{vol:.32,h:H1});};ph(0,1);ph(1.1,.95);ph(2.1,1.04);}},
+{id:'loon',name:'Common Loon',region:'americas',mn:'ooo-AH-ooo (the wail)',khz:'0.6–1.2 kHz',fact:'Mates wail across the lake to find each other.',note:'#3f8fb0',kind:'loon',
+ song(p){p.n(0,1.1,[620,900,880],{vol:.35,a:.15,r:.2,h:[[1,1],[2,.2]],vib:[5,8]});p.n(1.15,1.4,[880,1200,1150,1000],{vol:.35,a:.1,r:.3,h:[[1,1],[2,.2]],vib:[5,8]});p.n(2.7,.9,[1000,900],{trem:[11,.8],vol:.3,h:[[1,1],[2,.15]]});}},
+{id:'cuckoo',name:'Common Cuckoo',region:'europe',mn:'cuck-oo',khz:'0.5–0.7 kHz',fact:'Lays its eggs in other birds’ nests.',note:'#6b8fd6',
+ look:{body:'#7d8691',belly:'#f1efe8',bellyBars:'#4b525c',wing:'#5d6570',head:'#7d8691',neck:'#7d8691',tail:'#4c535d',tailLen:40,tailAng:-26,tailTip:'#f1efe8',beak:'#2b2b2b',beakType:'short',eye:'#1a1a1a',eyeRing:'#e9b52a',scale:.96},
+ song(p){for(let r=0;r<3;r++){const t=r*.95;p.n(t,.2,[700,665],{vol:.4,h:H1,a:.02});p.n(t+.28,.34,[575,545],{vol:.4,h:H1,a:.02});}}},
+{id:'parakeet',name:'Rose-ringed Parakeet',region:'india',mn:'kee-ak! kee-ak!',khz:'2.6–3.4 kHz',fact:'Escaped flocks now thrive in London’s parks too.',note:'#3fae49',
+ look:{body:'#5fb847',belly:'#8fd16c',wing:'#4fa63b',head:'#73cb55',neck:'#73cb55',collar:'#161616',collar2:'#f29bb6',tail:'#3f9f8a',tailType:'wedge',tailLen:56,tailAng:-34,tailW:.8,beak:'#d42b2b',beakLo:'#8f1c1c',beakType:'hook',eyeRing:'#e05a3a',scale:.94},
+ song(p){[0,.28,.62,.9].forEach(t=>p.n(t,.17,[2600,3400,3000],{type:'square',bp:3000,q:3,vol:.25,vib:[60,200]}));}},
+{id:'dove',name:'Mourning Dove',region:'americas',mn:'coo-OO-oo, oo, oo',khz:'0.4–0.65 kHz',fact:'Its wings whistle when it takes off.',note:'#c08a5a',
+ look:{body:'#b8a48c',belly:'#d9c1ab',wing:'#a8937c',wingSpots:'#2a2420',head:'#c4b19a',neck:'#c4b19a',headR:11,tail:'#8f8070',tailType:'wedge',tailLen:42,beak:'#2a2420',beakType:'short',eyeRing:'#8ec3e6',scale:.95},
+ song(p){const o={vol:.45,a:.08,r:.14,h:[[1,1],[2,.35],[3,.1]]};p.n(0,.45,[520,600,640],o);p.n(.45,.5,[640,560,470],o);for(let i=0;i<3;i++)p.n(1.3+i*.65,.5,[470,450,440],o);}},
+{id:'magpie',name:'Oriental Magpie-Robin',region:'india',mn:'never the same tune twice',khz:'1.5–4 kHz',fact:'Bangladesh’s national bird. Tap again for a new song.',note:'#5a8fd6',
+ look:{body:'#15171a',belly:'#f3f3f1',wing:'#15171a',wingbar:'#f3f3f1',wingbarW:4,head:'#15171a',neck:'#15171a',tail:'#15171a',tailAng:42,tailLen:38,beak:'#111',beakType:'thin',scale:.9},
+ song(p){let t=0;for(let i=0;i<11;i++){const d=.08+Math.random()*.22,f1=1500+Math.random()*2500,f2=1500+Math.random()*2500,f3=(f1+f2)/2+(Math.random()-.5)*800;p.n(t,d,[f1,f3,f2],{vol:.25,vib:Math.random()<.3?[30,120]:null});t+=d+.05+Math.random()*.12;}}},
+{id:'lyre',name:'Superb Lyrebird',region:'australia',mn:'whatever it hears',khz:'0.5–4 kHz',fact:'Copies other birds, and even camera shutters.',note:'#9a6bd1',extra:'lyre',
+ look:{body:'#6b5644',belly:'#9a8672',wing:'#5e4a39',head:'#6b5644',neck:'#6b5644',tailType:'none',beak:'#1d1a17',beakType:'thin',legs:'#2a2420',scale:.96},
+ song(p){const pool=BIRDS.filter(x=>!['lyre','woodpecker','magpie'].includes(x.id));const picks=[];while(picks.length<3){const c=pool[Math.floor(Math.random()*pool.length)];if(!picks.includes(c))picks.push(c);}let off=0;for(const o of picks){o.song({n:(t,d,c,op)=>{if(t<1.1)p.n(off+t,d,c,op);},x:(t,d,op)=>{if(t<1.1)p.x(off+t,d,op);}});off+=1.35;}p.x(off,.03,{f:3000,q:.8,vol:.55});p.x(off+.1,.04,{f:2200,q:.8,vol:.5});p.copied='Just copied: '+picks.map(x=>x.name).join(', ')+', and a camera.';}},
+{id:'crow',name:'House Crow',region:'india',mn:'kaaw! kaaw!',khz:'0.5–1.5 kHz, harsh',fact:'Lives almost everywhere people do.',note:'#8a7fd1',
+ look:{body:'#1d1e22',belly:'#74777e',wing:'#26282e',head:'#1b1c20',neck:'#7a7d84',throat:'#1b1c20',tail:'#1f2025',tailLen:32,beak:'#141416',beakType:'heavy',eye:'#0b0b0b',scale:1.03},
+ song(p){for(let i=0;i<3;i++){const t=i*.55;p.n(t,.38,[720,650,560],{type:'sawtooth',bp:1300,q:1.4,vol:.32,vib:[38,40],a:.02});p.x(t,.38,{f:1500,q:1,vol:.1});}}},
+{id:'nightingale',name:'Common Nightingale',region:'europe',mn:'piu piu piu… chook… trrrr',khz:'0.9–4.3 kHz',fact:'Unpaired males sing right through the night.',note:'#b5652d',
+ look:{body:'#88694b',belly:'#d8cab5',wing:'#7c5e41',head:'#88694b',neck:'#88694b',eyeRing:'#e9dfcd',tail:'#a8552e',tailLen:34,beak:'#5a4636',beakType:'thin',scale:.84},
+ song(p){for(let i=0;i<6;i++)p.n(i*.17,.1,[1700,1800],{vol:.1+i*.05});for(let i=0;i<5;i++){p.n(1.15+i*.14,.05,[1400,900],{type:'triangle',vol:.3});p.x(1.15+i*.14,.04,{f:1600,q:2,vol:.08});}for(let i=0;i<18;i++)p.n(2+i*.04,.03,[3600,4300],{vol:.22});p.n(2.85,.4,[2200,3400,1800],{vol:.3,vib:[25,80]});}},
+{id:'tailor',name:'Common Tailorbird',region:'india',mn:'to-wit to-wit to-wit',khz:'1.7–3.2 kHz',fact:'Stitches leaves into a cup with spider silk to hold its nest.',note:'#c7702e',
+ look:{body:'#8fae55',belly:'#efeee4',wing:'#7f9f47',head:'#9fb862',neck:'#9fb862',cap:'#c76a2a',capH:.55,cheek:'#ebe7d6',tail:'#7f9f47',tailAng:48,tailLen:30,tailW:.6,beak:'#3a3530',beakType:'thin',beakS:1.2,scale:.76},
+ song(p){for(let i=0;i<7;i++){const t=i*.32;p.n(t,.07,[2300,2200],{vol:.35});p.n(t+.1,.13,[1700,3200],{vol:.4});}}},
+{id:'whip',name:'Eastern Whip-poor-will',region:'americas',mn:'whip-poor-WILL',khz:'1.1–2.5 kHz',fact:'Calls its own name, hundreds of times in a row.',note:'#a07a50',
+ look:{body:'#87694b',belly:'#a1845f',bellyBars:'#5d4630',wing:'#6e553c',wingSpots:'#d8c39d',head:'#7b5f43',neck:'#7b5f43',collar:'#efe9dc',tail:'#6e553c',tailLen:30,tailBars:'#4c3a28',beak:'#2a2018',beakType:'short',beakS:.6,eyeScale:1.35,rx:31,ry:19,scale:.9},
+ song(p){for(let i=0;i<4;i++){const t=i*.9;p.n(t,.1,[1500,1700],{vol:.3});p.n(t+.13,.09,[1150,1100],{vol:.25});p.n(t+.25,.22,[1250,1900,2500],{vol:.38});}}},
+];
+
+/* ---------------- drawing ---------------- */
+const legs=c=>`<g stroke="${c}" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M76 106 L73 119.5 M69 120.5 L77 120.5 M86 105 L87 119.5 M83 120.5 L91 120.5"/></g>`;
+
+function beakPaths(type,bx,by,k){
+  const L=n=>(n*k).toFixed(1);
+  switch(type){
+    case 'heavy':return[`M${bx} ${by-6} Q${bx+10*k} ${by-5} ${bx+18*k} ${by+1} L${bx} ${by+1}Z`,`M${bx} ${by+1} L${bx+16*k} ${by+1} L${bx} ${by+5.5}Z`];
+    case 'thin': return[`M${bx} ${by-2.6} L${bx+13*k} ${by+.3} L${bx} ${by+.8}Z`,`M${bx} ${by+.8} L${bx+11.5*k} ${by+.8} L${bx} ${by+2.8}Z`];
+    case 'short':return[`M${bx} ${by-2.6} L${bx+8*k} ${by+.3} L${bx} ${by+.8}Z`,`M${bx} ${by+.8} L${bx+7*k} ${by+.8} L${bx} ${by+2.6}Z`];
+    case 'long': return[`M${bx} ${by-6} L${bx+27*k} ${by+1} L${bx} ${by+1}Z`,`M${bx} ${by+1} L${bx+25*k} ${by+1} L${bx} ${by+6}Z`];
+    case 'hook': return[`M${bx-1} ${by-6} Q${bx+11} ${by-8} ${bx+10} ${by+5} Q${bx+6} ${by+1} ${bx} ${by+1}Z`,`M${bx} ${by+1} L${bx+6} ${by+2} L${bx} ${by+5}Z`];
+    default:     return[`M${bx} ${by-5} L${bx+12*k} ${by+.5} L${bx} ${by+1}Z`,`M${bx} ${by+1} L${bx+10*k} ${by+1} L${bx} ${by+5}Z`];
+  }
+}
+
+function tailSVG(o,id){
+  const L=o.tailLen,w=6*o.tailW;let d;
+  if(o.tailType==='fork') d=`M8 ${-w} L${-L} ${-w*1.4} L${-L+9} 0 L${-L} ${w*1.4} L8 ${w}Z`;
+  else if(o.tailType==='wedge') d=`M8 ${-w} L${-L*.65} ${-w*1.05} L${-L} 0 L${-L*.65} ${w*1.05} L8 ${w}Z`;
+  else d=`M8 ${-w} L${-L} ${-w*1.35} Q${-L-4} 0 ${-L} ${w*1.35} L8 ${w}Z`;
+  let ex='';
+  if(o.tailBars) for(let x=-L+5;x<0;x+=6) ex+=`<path d="M${x} ${-w*1.5} L${x} ${w*1.5}" stroke="${o.tailBars}" stroke-width="2" opacity=".55"/>`;
+  if(o.tailTip) ex+=`<rect x="${-L-5}" y="${-w*1.6}" width="10" height="${w*3.2}" fill="${o.tailTip}"/>`;
+  return `<g transform="translate(58 102) rotate(${o.tailAng})"><clipPath id="tl-${id}"><path d="${d}"/></clipPath><path d="${d}" fill="${o.tail}"/><g clip-path="url(#tl-${id})">${ex}</g></g>`;
+}
+
+function peacockBack(){
+  let fan=`<g class="fan"><path d="M2 102 A58 58 0 0 1 118 102Z" fill="#2c7a4b"/>`;
+  for(let a=185;a<=355;a+=10){const r=a*Math.PI/180;fan+=`<path d="M60 102 L${(60+58*Math.cos(r)).toFixed(1)} ${(102+58*Math.sin(r)).toFixed(1)}" stroke="#1f5c38" stroke-width="1"/>`;}
+  for(const [R,step,start] of [[49,15,192],[33,22,200]]) for(let a=start;a<=348;a+=step){const r=a*Math.PI/180,x=(60+R*Math.cos(r)).toFixed(1),y=(102+R*Math.sin(r)).toFixed(1);fan+=`<ellipse cx="${x}" cy="${y}" rx="5" ry="6" fill="#d9b13b"/><ellipse cx="${x}" cy="${y}" rx="3.6" ry="4.4" fill="#1f9aa6"/><ellipse cx="${x}" cy="${y}" rx="1.9" ry="2.5" fill="#14306e"/>`;}
+  fan+=`</g>`;
+  let train=`<g class="train"><path d="M66 96 C44 96 18 102 0 114 L0 126 C22 118 44 112 68 108Z" fill="#2c7a4b"/>`;
+  for(const [x,y] of [[44,104],[30,108],[16,115],[6,121],[37,109],[22,114]]) train+=`<ellipse cx="${x}" cy="${y}" rx="2.6" ry="2.1" fill="#d9b13b"/><circle cx="${x}" cy="${y}" r="1.2" fill="#14306e"/>`;
+  return fan+train+`</g>`;
+}
+function lyreBack(){
+  let s=`<g class="lyre" fill="none" stroke-linecap="round">`;
+  for(let i=0;i<7;i++){const ex=12+i*6,ey=66+i*6;s+=`<path d="M60 101 C ${40-i*2} ${104-i}, ${ex-8} ${ey+10}, ${ex} ${ey}" stroke="#a3907a" stroke-width="1"/>`;}
+  s+=`<path d="M60 100 C30 104 6 92 10 64 C12 50 24 48 21 58" stroke="#4a3424" stroke-width="4"/>`;
+  s+=`<path d="M60 102 C34 112 4 112 2 88 C1 76 12 72 13 82" stroke="#5a412c" stroke-width="4"/>`;
+  s+=`<path d="M20 74 l5 3 M16 84 l5 3 M12 94 l5 2" stroke="#e8dccb" stroke-width="2"/>`;
+  return s+`</g>`;
+}
+
+function drawGeneric(b){
+  const o=Object.assign({headR:15,rx:30,ry:21,tailLen:30,tailAng:-28,tailType:'normal',tailW:1,beakType:'cone',beakS:1,legs:'#5b4a3b',eye:'#111',eyeScale:1,scale:1,cx:100,cy:64,capH:.8},b.look);
+  const id=b.id,r=o.headR,cx=o.cx,cy=o.cy,neck=o.neck||o.body;
+  const ex=cx+r*.35,ey=cy-r*.15,er=3.2*o.eyeScale;
+  const bx=+(cx+r*.92).toFixed(1),by=cy+1;
+  let s='';
+  if(b.extra==='peacock') s+=peacockBack();
+  if(b.extra==='lyre') s+=lyreBack();
+  s+=legs(o.legs);
+  if(o.tailType!=='none') s+=tailSVG(o,id);
+  // body (drawn in body-local frame, rotated into a perched posture)
+  let marks='';
+  if(o.bellyBars) for(let y=86;y<=118;y+=4) marks+=`<path d="M50 ${y} Q86 ${y+2} 122 ${y}" stroke="${o.bellyBars}" stroke-width="1.3" fill="none" opacity=".75"/>`;
+  if(o.streaks) for(let x=66;x<=110;x+=7) for(let y=92;y<=112;y+=7) marks+=`<path d="M${x+(y%2)*3} ${y} l1 4" stroke="${o.streaks}" stroke-width="2" stroke-linecap="round"/>`;
+  let wing=`<path d="M102 86 C100 74 76 70 56 77 L36 92 C58 99 92 101 102 86Z" fill="${o.wing}"/>`;
+  if(o.wingbar) wing+=`<path d="M62 85 C74 89 88 90 98 86" stroke="${o.wingbar}" stroke-width="${o.wingbarW||2.4}" fill="none" stroke-linecap="round"/>`;
+  if(o.wingSpots) for(const [x,y] of [[60,81],[70,78],[81,79],[91,81],[66,87],[78,86],[89,88],[52,86]]) wing+=`<circle cx="${x}" cy="${y}" r="1.8" fill="${o.wingSpots}"/>`;
+  s+=`<g transform="rotate(-28 80 92)">
+    <clipPath id="bd-${id}"><ellipse cx="80" cy="92" rx="${o.rx}" ry="${o.ry}"/></clipPath>
+    <clipPath id="bl-${id}"><ellipse cx="86" cy="101" rx="${o.rx*.78}" ry="${o.ry*.62}"/></clipPath>
+    <ellipse cx="80" cy="92" rx="${o.rx}" ry="${o.ry}" fill="${o.body}"/>
+    <g clip-path="url(#bd-${id})"><g clip-path="url(#bl-${id})"><rect x="40" y="70" width="100" height="60" fill="${o.belly}"/>${marks}</g></g>
+    ${wing}
+  </g>`;
+  if(o.vent) s+=`<ellipse cx="61" cy="110" rx="6" ry="4.5" fill="${o.vent}"/>`;
+  // neck
+  if(o.longNeck) s+=`<path d="M86 88 Q92 72 ${cx-7} ${cy+3} L${cx+7} ${cy+5} Q106 78 104 92Z" fill="${neck}"/>`;
+  else s+=`<ellipse cx="${cx-6}" cy="${cy+10}" rx="${r*.8}" ry="${r*.7}" fill="${neck}"/>`;
+  // head
+  let h='';
+  if(o.crest){
+    if(o.crestType==='point') h+=`<path d="M${cx-4} ${cy-r+4} L${cx-16} ${cy-r-11} L${cx+5} ${cy-r+1}Z" fill="${o.crest}"/>`;
+    else if(o.crestType==='tuft') h+=`<path d="M${cx-9} ${cy-r+5} Q${cx-13} ${cy-r-10} ${cx+1} ${cy-r-7} Q${cx+5} ${cy-r-2} ${cx+4} ${cy-r+4}Z" fill="${o.crest}"/>`;
+    else if(o.crestType==='fan') for(const a of [-118,-104,-90,-76]){const rr=a*Math.PI/180,x=(cx-1+14*Math.cos(rr)).toFixed(1),y=(cy-r+1+14*Math.sin(rr)).toFixed(1);h+=`<path d="M${cx-1} ${cy-r+1} L${x} ${y}" stroke="${o.crest}" stroke-width="1"/><circle cx="${x}" cy="${y}" r="1.9" fill="${o.crest}"/>`;}
+  }
+  h+=`<clipPath id="hc-${id}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath><circle cx="${cx}" cy="${cy}" r="${r}" fill="${o.head}"/>`;
+  let hc='';
+  if(o.cap) hc+=`<rect x="${cx-r}" y="${cy-r}" width="${2*r}" height="${r*o.capH}" fill="${o.cap}"/>`;
+  if(o.cheek) hc+=`<ellipse cx="${cx-r*.05}" cy="${cy+r*.42}" rx="${r*.62}" ry="${r*.38}" fill="${o.cheek}"/>`;
+  if(o.mask) hc+=`<rect x="${cx-r}" y="${ey-r*.16}" width="${2*r}" height="${r*.32}" fill="${o.mask}"/>`;
+  if(o.faceMask) hc+=`<ellipse cx="${cx+r*.78}" cy="${cy+2}" rx="${r*.5}" ry="${r*.55}" fill="${o.faceMask}"/>`;
+  h+=`<g clip-path="url(#hc-${id})">${hc}</g>`;
+  h+=`<ellipse class="throat" cx="${cx+r*.35}" cy="${cy+r*.82}" rx="${r*.45}" ry="${r*.38}" fill="${o.throat||o.head}"/>`;
+  if(o.collar2) h+=`<path d="M${cx-r*.85} ${cy+r*.2} Q${cx-r*.2} ${cy+r*.95} ${cx+r*.35} ${cy+r*1.05}" stroke="${o.collar2}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+  if(o.collar) h+=`<path d="M${cx-r*.8} ${cy+r*.45} Q${cx} ${cy+r*1.25} ${cx+r*.75} ${cy+r*.65}" stroke="${o.collar}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`;
+  h+=`<g class="eye"><circle cx="${ex}" cy="${ey}" r="${er}" fill="${o.eye}" ${o.eyeRing?`stroke="${o.eyeRing}" stroke-width="1.6"`:''}/><circle cx="${ex+er*.35}" cy="${ey-er*.35}" r="${er*.32}" fill="#fff" opacity=".85"/></g>`;
+  if(o.faceLines) h+=`<path d="M${ex-4} ${ey-3.5} Q${ex} ${ey-6} ${ex+4} ${ey-3.5} M${ex-4} ${ey+3.5} Q${ex} ${ey+6} ${ex+3} ${ey+3.5}" stroke="${o.faceLines}" stroke-width="1.4" fill="none"/>`;
+  const [up,lo]=beakPaths(o.beakType,bx,by,o.beakS);
+  h+=`<g class="jaw"><path d="${lo}" fill="${o.beakLo||o.beak}"/></g><path d="${up}" fill="${o.beak}"/>`;
+  s+=`<g class="head">${h}</g>`;
+  b.noteAt=[bx+8,by-10];
+  return wrap(s,o.scale,b);
+}
+
+function drawOwl(b){
+  let bars='';for(let y=82;y<=118;y+=5) bars+=`<path d="M56 ${y} Q80 ${y+3} 104 ${y}" stroke="#6b4a2f" stroke-width="1.4" fill="none" opacity=".8"/>`;
+  const s=`<g fill="#c9b38f"><ellipse cx="72" cy="118" rx="6" ry="3.5"/><ellipse cx="88" cy="118" rx="6" ry="3.5"/></g>
+  <path d="M69 120 l-2 3 M73 121 l0 3 M86 121 l0 3 M90 120 l2 3" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round"/>
+  <clipPath id="ob"><ellipse cx="80" cy="99" rx="18" ry="19"/></clipPath>
+  <ellipse cx="80" cy="91" rx="27" ry="29" fill="#7a5a3c"/>
+  <g clip-path="url(#ob)"><rect x="56" y="76" width="50" height="46" fill="#d9c4a3"/>${bars}</g>
+  <path d="M56 78 Q46 104 62 120 Q64 100 66 82Z" fill="#5e4430"/><path d="M104 78 Q114 104 98 120 Q96 100 94 82Z" fill="#5e4430"/>
+  <g class="head">
+    <path d="M62 44 L55 21 L73 37Z M98 44 L105 21 L87 37Z" fill="#5e4430"/>
+    <ellipse cx="80" cy="54" rx="25" ry="21" fill="#6e5036"/>
+    <ellipse cx="80" cy="57" rx="19.5" ry="14.5" fill="#c9925b" stroke="#4a3322" stroke-width="1.5"/>
+    <ellipse class="throat" cx="80" cy="73" rx="9" ry="3.5" fill="#f3eee2"/>
+    <g class="eye"><circle cx="71" cy="55" r="6.5" fill="#f2b705" stroke="#3a2a1a" stroke-width="1"/><circle cx="71" cy="55" r="3.4" fill="#111"/><circle cx="72.3" cy="53.7" r="1.1" fill="#fff"/></g>
+    <g class="eye"><circle cx="89" cy="55" r="6.5" fill="#f2b705" stroke="#3a2a1a" stroke-width="1"/><circle cx="89" cy="55" r="3.4" fill="#111"/><circle cx="90.3" cy="53.7" r="1.1" fill="#fff"/></g>
+    <g class="jaw"><path d="M77.5 63 L82.5 63 L80 68.5Z" fill="#262626"/></g>
+    <path d="M76.5 59 L83.5 59 L80 66.5Z" fill="#3d3d3d"/>
+  </g>`;
+  b.noteAt=[96,30];
+  return wrap(s,1,b);
+}
+
+function drawWood(){
+  let bark=`<rect class="bark" x="124" y="-4" width="24" height="124" rx="3"/><path class="barkline" d="M130 10 l1 18 M139 4 l-1 22 M133 44 l1 20 M142 60 l-1 18 M129 82 l1 16 M140 92 l0 16"/><ellipse cx="136" cy="36" rx="3" ry="4.5" fill="none" stroke="var(--branch-hi)" stroke-width="1.4"/>`;
+  const s=`<path d="M100 90 L117 118 L123 116 L108 88Z" fill="#17181a"/>
+  <ellipse cx="106" cy="74" rx="13" ry="25" transform="rotate(16 106 74)" fill="#17181a"/>
+  <ellipse cx="112" cy="79" rx="7" ry="18" transform="rotate(16 112 79)" fill="#efeee8"/>
+  <ellipse cx="114" cy="97" rx="5" ry="6" fill="#d0202a"/>
+  <ellipse cx="101" cy="66" rx="4" ry="9" transform="rotate(16 101 66)" fill="#efeee8"/>
+  <g fill="#efeee8"><circle cx="97" cy="80" r="1.6"/><circle cx="100" cy="85" r="1.6"/><circle cx="96" cy="89" r="1.6"/><circle cx="101" cy="92" r="1.6"/><circle cx="98" cy="96" r="1.4"/></g>
+  <path d="M115 68 L125 64 M117 84 L125 82" stroke="#6a6a6a" stroke-width="2" stroke-linecap="round"/>
+  <g class="head">
+    <clipPath id="wh"><circle cx="112" cy="46" r="11"/></clipPath>
+    <circle cx="112" cy="46" r="11" fill="#17181a"/>
+    <g clip-path="url(#wh)"><ellipse cx="114" cy="50" rx="7.5" ry="4.5" fill="#efeee8"/><circle cx="102" cy="46" r="4.5" fill="#d0202a"/></g>
+    <ellipse class="throat" cx="117" cy="56" rx="4" ry="3" fill="#efeee8"/>
+    <g class="eye"><circle cx="116" cy="43.5" r="2.5" fill="#111" stroke="#555" stroke-width=".8"/><circle cx="116.8" cy="42.8" r=".8" fill="#fff"/></g>
+    <g class="jaw"><path d="M121 47.6 L128 47.6 L121 50Z" fill="#2b2b2b"/></g>
+    <path d="M121 44.5 L130 47 L121 47.8Z" fill="#3a3a3a"/>
+  </g>`;
+  return bark+wrapRaw(s,1);
+}
+
+function drawLoon(){
+  let dots='';for(let y=99;y<=107;y+=4) for(let x=44+(y%8?3:0);x<=104;x+=6) dots+=`<rect x="${x}" y="${y}" width="1.8" height="1.8" fill="#f3f3f1"/>`;
+  let neckl='';for(let x=105;x<=114;x+=2.2) neckl+=`<path d="M${x} 92 l.6 4" stroke="#f3f3f1" stroke-width="1"/>`;
+  const s=`<clipPath id="lb"><ellipse cx="74" cy="108" rx="42" ry="13"/></clipPath>
+  <ellipse cx="74" cy="108" rx="42" ry="13" fill="#16191b"/>
+  <g clip-path="url(#lb)">${dots}</g>
+  <path d="M98 106 Q106 96 104 84 L119 84 Q119 98 114 110Z" fill="#14201d"/>
+  ${neckl}
+  <g class="head">
+    <circle cx="112" cy="80" r="11" fill="#14201d"/>
+    <ellipse class="throat" cx="116" cy="89" rx="4" ry="3" fill="#14201d"/>
+    <g class="eye"><circle cx="115.5" cy="78" r="2.4" fill="#c2222a"/><circle cx="116.2" cy="77.3" r=".7" fill="#fff"/></g>
+    <g class="jaw"><path d="M121 83.4 L138 83.4 L121 86Z" fill="#111"/></g>
+    <path d="M121 80 L140 83 L121 83.6Z" fill="#1e1e1e"/>
+  </g>`;
+  const water=`<rect class="water" x="8" y="111" width="144" height="29" rx="10"/><path class="wave" d="M16 118 q6 -3 12 0 t12 0 M58 124 q6 -3 12 0 t12 0 M100 119 q6 -3 12 0 t12 0 M30 131 q6 -3 12 0 t12 0 M118 130 q6 -3 12 0"/>`;
+  return wrapRaw(s,1)+water;
+}
+
+function wrap(inner,s,b){
+  if(b&&b.noteAt){const [x,y]=b.noteAt;b.noteAt=[80+(x-80)*s,120+(y-120)*s];}
+  return wrapRaw(inner,s);
+}
+function wrapRaw(inner,s){return `<g transform="translate(80 120) scale(${s}) translate(-80 -120)"><g class="bird">${inner}</g></g>`;}
+
+function branchSVG(w,i){
+  let s=`<path class="br" d="M0 117.5 Q80 ${117.5+w} 160 117.5 L160 126.5 Q80 ${126.5+w} 0 126.5Z"/><path class="brh" d="M0 119 Q80 ${119+w} 160 119"/>`;
+  if(i%3!==1){const x=22+((i*41)%112),y=125+w*.5;s+=`<path class="tw" d="M${x} ${y} q3 5 -1 9"/><ellipse class="lf" cx="${x-1}" cy="${y+11}" rx="2.8" ry="5.2" transform="rotate(18 ${x-1} ${y+11})"/><ellipse class="lf" cx="${x+4}" cy="${y+7}" rx="2.4" ry="4.6" transform="rotate(-30 ${x+4} ${y+7})"/>`;}
+  return s;
+}
+const stubs=`<path class="br" d="M0 117.5 L16 120 L16 124 L0 126.5Z"/><path class="br" d="M160 117.5 L144 120 L144 124 L160 126.5Z"/>`;
+
+/* ---------------- build page ---------------- */
+const aviary=$('aviary');
+const cells=new Map();
+BIRDS.forEach((b,i)=>{
+  const w=((i*37)%5)-2;
+  let art,ground;
+  if(b.kind==='owl'){art=drawOwl(b);ground=branchSVG(w,i);}
+  else if(b.kind==='wood'){art=drawWood();ground=branchSVG(w,i);b.noteAt=[120,30];}
+  else if(b.kind==='loon'){art=drawLoon();ground=stubs;b.noteAt=[128,68];}
+  else {art=drawGeneric(b);ground=branchSVG(w,i);}
+  const el=document.createElement('button');
+  el.type='button';
+  el.className=`perch kind-${b.kind||'song'}`;
+  el.dataset.id=b.id;el.dataset.region=b.region;
+  el.style.cssText=`--nc:${b.note};--idel:${-((i*.73)%4).toFixed(2)}s;--idur:${(3.4+(i%5)*.35).toFixed(2)}s`;
+  el.setAttribute('aria-label',`${b.name}. Play its song`);
+  el.innerHTML=`<span class="art"><svg viewBox="0 0 160 140" aria-hidden="true">${ground}${art}</svg></span><span class="nm">${b.name}</span>`;
+  aviary.appendChild(el);
+  cells.set(b.id,el);b.el=el;
+});
+
+function refillFillers(){
+  aviary.querySelectorAll('.filler').forEach(f=>f.remove());
+  const cols=getComputedStyle(aviary).gridTemplateColumns.split(' ').filter(Boolean).length||1;
+  const n=BIRDS.filter(b=>!b.el.hidden).length;
+  const extra=(cols-(n%cols))%cols;
+  for(let k=0;k<extra;k++){
+    const f=document.createElement('div');f.className='perch filler';f.setAttribute('aria-hidden','true');
+    f.innerHTML=`<span class="art"><svg viewBox="0 0 160 140">${branchSVG(((k*3)%5)-2,k*2)}</svg></span><span class="nm">&nbsp;</span>`;
+    aviary.appendChild(f);
+  }
+}
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(refillFillers,120);});
+
+/* region chips */
+const chipsEl=$('chips');let region='all';
+const counts={all:BIRDS.length};BIRDS.forEach(b=>counts[b.region]=(counts[b.region]||0)+1);
+[['all','All'],['india','India'],['americas','Americas'],['europe','Europe'],['australia','Australia']].forEach(([k,label])=>{
+  const c=document.createElement('button');c.type='button';c.className='chip';c.dataset.r=k;
+  c.setAttribute('aria-pressed',k==='all'?'true':'false');
+  c.innerHTML=`${label} <small>${counts[k]}</small>`;
+  chipsEl.appendChild(c);
+});
+chipsEl.addEventListener('click',e=>{
+  const c=e.target.closest('.chip');if(!c)return;
+  region=c.dataset.r;
+  chipsEl.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===c)));
+  BIRDS.forEach(b=>{b.el.hidden=!(region==='all'||b.region===region);});
+  refillFillers();
+  if(game.on&&game.target&&game.target.el.hidden) nextRound();
+});
+const visible=()=>BIRDS.filter(b=>!b.el.hidden);
+
+/* ---------------- audio ---------------- */
+let ctx,master,analyser,noiseBuf;const voices=new Set();let lastEnd=0;
+function audio(){
+  if(!ctx){
+    const AC=window.AudioContext||window.webkitAudioContext;ctx=new AC();
+    const comp=ctx.createDynamicsCompressor();comp.threshold.value=-18;comp.ratio.value=5;
+    master=ctx.createGain();master.gain.value=.8;
+    analyser=ctx.createAnalyser();analyser.fftSize=1024;analyser.smoothingTimeConstant=.1;analyser.minDecibels=-92;analyser.maxDecibels=-22;
+    master.connect(comp);comp.connect(ctx.destination);comp.connect(analyser);
+    noiseBuf=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+    freq=new Uint8Array(analyser.frequencyBinCount);
+  }
+  if(ctx.state==='suspended')ctx.resume();
+  return ctx;
+}
+function env(g,t,d,vol,a,r){g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+Math.min(a,d/3));g.gain.setValueAtTime(vol,t+Math.max(d-r,d*.6));g.gain.linearRampToValueAtTime(0,t+d);}
+function note(out,t,d,curve,o={}){
+  const g=ctx.createGain();env(g,t,d,o.vol??.3,o.a??.012,o.r??.04);g.connect(out);
+  let dest=g;
+  if(o.trem){const tg=ctx.createGain();tg.gain.value=1-o.trem[1]/2;const l=ctx.createOscillator();l.frequency.value=o.trem[0];const lg=ctx.createGain();lg.gain.value=o.trem[1]/2;l.connect(lg);lg.connect(tg.gain);tg.connect(dest);dest=tg;l.start(t);l.stop(t+d+.05);}
+  if(o.bp){const f=ctx.createBiquadFilter();f.type='bandpass';f.frequency.value=o.bp;f.Q.value=o.q??2;f.connect(dest);dest=f;}
+  for(const [k,amp] of (o.h||[[1,1]])){
+    const osc=ctx.createOscillator();osc.type=o.type||'sine';
+    const arr=Float32Array.from(curve,x=>x*k);
+    if(arr.length<2)osc.frequency.setValueAtTime(arr[0],t);else osc.frequency.setValueCurveAtTime(arr,t,d);
+    let node=osc;if(amp!==1){const hg=ctx.createGain();hg.gain.value=amp;osc.connect(hg);node=hg;}
+    node.connect(dest);
+    if(o.vib){const l=ctx.createOscillator();l.frequency.value=o.vib[0];const lg=ctx.createGain();lg.gain.value=o.vib[1]*k;l.connect(lg);lg.connect(osc.frequency);l.start(t);l.stop(t+d+.05);}
+    osc.start(t);osc.stop(t+d+.05);
+  }
+}
+function burst(out,t,d,o={}){
+  const src=ctx.createBufferSource();src.buffer=noiseBuf;
+  const f=ctx.createBiquadFilter();f.type='bandpass';f.frequency.value=o.f||1500;f.Q.value=o.q??1;
+  const g=ctx.createGain();env(g,t,d,o.vol??.3,.003,Math.min(.02,d/2));
+  src.connect(f);f.connect(g);g.connect(out);src.start(t,Math.random()*.5);src.stop(t+d+.02);
+}
+
+/* ---------------- singing ---------------- */
+function setSinging(b,delta){
+  const n=Math.max(0,(+b.el.dataset.sing||0)+delta);b.el.dataset.sing=n;
+  b.el.classList.toggle('singing',n>0);
+  if(!n)b.el.classList.remove('open');
+}
+let noteGate=new WeakMap();
+function mouth(b,d){
+  const el=b.el;el.classList.add('open');
+  clearTimeout(el._mt);el._mt=setTimeout(()=>el.classList.remove('open'),Math.max(40,Math.min(d*1000,420)));
+  const now=performance.now();if(now-(noteGate.get(b)||0)<200)return;noteGate.set(b,now);
+  if(el.hidden)return;
+  const n=document.createElement('span');n.className='note';n.textContent=Math.random()<.5?'♪':'♫';
+  const [x,y]=b.noteAt||[118,54];
+  n.style.left=(x/160*100)+'%';n.style.top=(y/140*100)+'%';
+  n.style.setProperty('--dx',((Math.random()-.3)*40).toFixed(0)+'px');n.style.setProperty('--rot',((Math.random()-.5)*50).toFixed(0)+'deg');
+  n.addEventListener('animationend',()=>n.remove());
+  el.querySelector('.art').appendChild(n);
+}
+function play(b,opts={}){
+  audio();
+  const {vol=1,delay=0,hidden=false,reveal=true}=opts;
+  for(const v of [...voices]) if(v.bird===b&&!opts.keep) stopVoice(v);
+  const t0=ctx.currentTime+.06+delay;
+  const out=ctx.createGain();out.gain.value=vol;out.connect(master);
+  const marks=[];
+  const api={n:(t,d,c,o)=>{note(out,t0+t,d,c,o);marks.push([t,d]);},x:(t,d,o)=>{burst(out,t0+t,d,o);marks.push([t,d]);}};
+  b.song(api);
+  const dur=Math.max(...marks.map(m=>m[0]+m[1]));
+  const v={out,bird:b,timers:[],hidden,started:false};
+  const ms=(t0-ctx.currentTime)*1000;
+  if(!hidden){
+    v.timers.push(setTimeout(()=>{v.started=true;setSinging(b,1);if(reveal)showBird(b,null,api.copied);},ms));
+    marks.forEach(([t,d])=>v.timers.push(setTimeout(()=>mouth(b,d),ms+t*1000)));
+  }
+  v.timers.push(setTimeout(()=>finish(v),ms+dur*1000+150));
+  voices.add(v);
+  lastEnd=Math.max(lastEnd,t0+dur);
+  kick();
+  return dur+delay;
+}
+function finish(v){if(!voices.has(v))return;voices.delete(v);if(v.started)setSinging(v.bird,-1);setTimeout(()=>{try{v.out.disconnect()}catch(e){}},400);}
+function stopVoice(v){
+  v.timers.forEach(clearTimeout);
+  try{v.out.gain.setTargetAtTime(0,ctx.currentTime,.03);}catch(e){}
+  voices.delete(v);if(v.started)setSinging(v.bird,-1);
+  setTimeout(()=>{try{v.out.disconnect()}catch(e){}},300);
+}
+function stopAll(){[...voices].forEach(stopVoice);BIRDS.forEach(b=>{b.el.dataset.sing=0;b.el.classList.remove('singing','open');});}
+
+/* ---------------- sonogram ---------------- */
+const cv=$('sono'),sx=cv.getContext('2d');let freq,running=false,col={};
+function readColors(){const cs=getComputedStyle(document.documentElement);col.bg=cs.getPropertyValue('--sono-bg').trim()||'#fff';col.ink=cs.getPropertyValue('--sono-ink').trim()||'#000';}
+function sizeCanvas(){const r=cv.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);cv.width=Math.max(10,Math.round(r.width*dpr));cv.height=Math.max(10,Math.round(r.height*dpr));readColors();sx.fillStyle=col.bg;sx.fillRect(0,0,cv.width,cv.height);}
+new ResizeObserver(sizeCanvas).observe(cv);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(sizeCanvas,30));
+new MutationObserver(()=>setTimeout(sizeCanvas,30)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+function kick(){if(!running){running=true;readColors();requestAnimationFrame(frame);}}
+function frame(){
+  const w=cv.width,h=cv.height,dpr=Math.min(2,devicePixelRatio||1),step=Math.max(2,Math.round(2*dpr));
+  sx.drawImage(cv,step,0,w-step,h,0,0,w-step,h);
+  sx.fillStyle=col.bg;sx.fillRect(w-step,0,step,h);
+  analyser.getByteFrequencyData(freq);
+  const binHz=ctx.sampleRate/analyser.fftSize,rows=Math.min(h,170),rh=h/rows;
+  sx.fillStyle=col.ink;
+  for(let i=0;i<rows;i++){
+    const f=(1-(i+.5)/rows)*8000,v=freq[Math.round(f/binHz)]/255;
+    if(v>.3){sx.globalAlpha=Math.min(1,Math.pow((v-.3)/.7,1.2)*1.2);sx.fillRect(w-step,i*rh,step,Math.ceil(rh)+.5);}
+  }
+  sx.globalAlpha=1;
+  if(voices.size||ctx.currentTime<lastEnd+.8)requestAnimationFrame(frame);else running=false;
+}
+
+/* ---------------- info panel ---------------- */
+const info=$('info');
+function setVerdict(txt,kind){const v=$('verdict');if(!txt){v.hidden=true;return;}v.hidden=false;v.textContent=txt;v.className='verdict '+kind;}
+function showBird(b,verdict,factOverride){
+  info.style.setProperty('--nc',b.note);
+  $('region').textContent=REG[b.region];$('khz').textContent=b.khz;
+  $('bname').textContent=b.name;$('mn').textContent=`“${b.mn}”`;$('fact').textContent=factOverride||b.fact;
+  if(verdict!==undefined&&verdict!==null)setVerdict(verdict[0],verdict[1]);else if(!game.on)setVerdict(null);
+}
+function showText(region,khz,name,mn,fact,nc){info.style.setProperty('--nc',nc||'var(--accent)');$('region').textContent=region;$('khz').textContent=khz;$('bname').textContent=name;$('mn').textContent=mn;$('fact').textContent=fact;}
+
+/* ---------------- game ---------------- */
+const game={on:false,target:null,score:0,streak:0,miss:0,locked:false,timer:null};
+const quizBtn=$('quiz');
+function updScore(){$('score').textContent=`Score ${game.score} · Streak ${game.streak}`;}
+function startGame(){stopAll();game.on=true;game.score=0;game.streak=0;game.target=null;quizBtn.setAttribute('aria-pressed','true');quizBtn.textContent='End game';$('gamebar').hidden=false;updScore();nextRound();}
+function endGame(){if(!game.on)return;game.on=false;clearTimeout(game.timer);clearMarks();quizBtn.setAttribute('aria-pressed','false');quizBtn.textContent='Who’s singing?';$('gamebar').hidden=true;setVerdict(null);showText('Game over',`${game.score} found`,'Tap a bird','Every one sings its own song.','Or start a new round of Who’s singing?');}
+function clearMarks(){BIRDS.forEach(b=>b.el.classList.remove('hint','right','wrong'));}
+function nextRound(){
+  clearTimeout(game.timer);stopAll();clearMarks();
+  const pool=visible();if(!pool.length)return;
+  let t;do{t=pool[Math.floor(Math.random()*pool.length)];}while(pool.length>1&&t===game.target);
+  game.target=t;game.miss=0;game.locked=false;
+  setVerdict(null);
+  showText('Listen','watch the sonogram','Who’s singing?','Listen, then tap the bird you hear.','Two wrong guesses and the answer shows itself.');
+  setTimeout(()=>play(t,{hidden:true}),250);
+}
+function guess(b){
+  if(game.locked)return;
+  if(b===game.target){
+    game.locked=true;game.score++;game.streak++;updScore();
+    b.el.classList.remove('wrong');b.el.classList.add('right');
+    stopAll();const d=play(b,{reveal:false});showBird(b,['Correct!','ok']);
+    game.timer=setTimeout(nextRound,Math.min(4200,d*1000+900));
+  }else{
+    game.miss++;game.streak=0;updScore();
+    b.el.classList.remove('wrong');void b.el.offsetWidth;b.el.classList.add('wrong');
+    setVerdict('Not that one','no');
+    if(game.miss>=2){
+      game.locked=true;const t=game.target;t.el.classList.add('hint');
+      stopAll();const d=play(t,{reveal:false});showBird(t,['It was this one','no']);
+      t.el.scrollIntoView({block:'nearest',behavior:'smooth'});
+      game.timer=setTimeout(nextRound,Math.min(4800,d*1000+1400));
+    }
+  }
+}
+quizBtn.addEventListener('click',()=>game.on?endGame():startGame());
+$('again').addEventListener('click',()=>{if(game.on&&game.target&&!game.locked){stopAll();play(game.target,{hidden:true});}});
+$('skip').addEventListener('click',()=>{if(game.on)nextRound();});
+
+/* ---------------- chorus + stop ---------------- */
+$('chorus').addEventListener('click',()=>{
+  endGame();stopAll();
+  const list=visible().sort(()=>Math.random()-.5);
+  list.forEach((b,i)=>play(b,{vol:.42,delay:i*.42+Math.random()*1.4,reveal:false,keep:true}));
+  setVerdict(null);
+  showText('Dawn chorus',`${list.length} birds`,'Everyone at once','The whole branch wakes up together.','Watch the sonogram fill with overlapping songs.');
+});
+$('stop').addEventListener('click',()=>{stopAll();if(game.on){clearTimeout(game.timer);}});
+
+/* ---------------- taps ---------------- */
+aviary.addEventListener('click',e=>{
+  const el=e.target.closest('.perch[data-id]');if(!el)return;
+  const b=BIRDS.find(x=>x.id===el.dataset.id);
+  if(game.on){guess(b);return;}
+  play(b);
+});
+
+/* idle blinking */
+setInterval(()=>{const v=visible();if(!v.length)return;const b=v[Math.floor(Math.random()*v.length)];b.el.classList.add('blink');setTimeout(()=>b.el.classList.remove('blink'),150);},650);
+
+refillFillers();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
