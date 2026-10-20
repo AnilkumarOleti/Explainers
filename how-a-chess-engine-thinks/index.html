@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How a Chess Engine Thinks | Explainers</title>
+<meta name="description" content="A grandmaster shines a flashlight down a few lines. An engine floods the whole tree with light.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/how-a-chess-engine-thinks/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="How a Chess Engine Thinks">
+<meta property="og:description" content="A grandmaster shines a flashlight down a few lines. An engine floods the whole tree with light.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/how-a-chess-engine-thinks/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/how-a-chess-engine-thinks/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&text=%E2%99%9A%E2%99%9B%E2%99%9C%E2%99%9D%E2%99%9E%E2%99%9F&display=swap">
+<style>
+/* Layout: a club-tournament analysis sheet. Green-and-buff board colors, amber = the human mind, blue = the engine. One central image: the same tree of moves, lit by a flashlight vs a floodlight. */
+:root{
+  --paper:#eceee7; --card:#f7f8f3; --ink:#1c2420; --muted:#5a675f; --line:#cdd5cb;
+  --human:#c46f17; --engine:#2563c9; --opp:#3a3f3c;
+  --sq-l:#ebe9cf; --sq-d:#6e8f68; --pw:#fbfaf2; --pb:#1d1f1c; --pstroke:#1d1f1c;
+  --night:#0d1512; --night-ink:#e7ede8; --night-muted:#8fa197; --night-line:#25332c;
+  --glow-human:#f3a64f; --glow-engine:#66a6ff;
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-piece:"Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", "DejaVu Sans", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111815; --card:#18211d; --ink:#e5ebe6; --muted:#97a69d; --line:#2b3731;
+    --human:#f0a04b; --engine:#6aa7ff; --opp:#c9d1cb;
+    --sq-l:#cfcdb4; --sq-d:#5b7a56;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111815; --card:#18211d; --ink:#e5ebe6; --muted:#97a69d; --line:#2b3731;
+  --human:#f0a04b; --engine:#6aa7ff; --opp:#c9d1cb;
+  --sq-l:#cfcdb4; --sq-d:#5b7a56;
+  color-scheme:dark;
+}
+:root{color-scheme:light; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:17px; line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+main{max-width:1040px; margin:0 auto; padding-block:40px 72px; display:flex; flex-direction:column; gap:88px}
+h1,h2,h3{font-family:var(--f-display); font-weight:400; text-wrap:balance; margin:0; letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem, 7vw, 4.6rem); line-height:1.02}
+h2{font-size:clamp(1.8rem, 4.6vw, 2.8rem); line-height:1.08}
+h3{font-size:1.25rem; line-height:1.2}
+p{margin:0}
+.kicker{font-family:var(--f-mono); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.lede{font-size:1.15rem; color:var(--muted); max-width:56ch}
+.head{display:flex; flex-direction:column; gap:12px; margin-bottom:28px}
+.h-c{color:var(--human)} .e-c{color:var(--engine)}
+.mono{font-family:var(--f-mono)}
+section{display:flex; flex-direction:column}
+/* Hero */
+.hero-boards{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:32px}
+.bfig{margin:0; display:flex; flex-direction:column; gap:14px; min-width:0}
+.bfig-top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.who{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.05rem}
+.who svg{width:30px; height:30px}
+.chip{font-family:var(--f-mono); font-size:.8rem; padding:4px 10px; border-radius:999px; border:1.5px solid currentColor; white-space:nowrap}
+.board{width:100%; height:auto; display:block; border-radius:6px; box-shadow:0 0 0 1px var(--line)}
+.sq-l{fill:var(--sq-l)} .sq-d{fill:var(--sq-d)}
+.coord{font-family:var(--f-mono); font-size:7px; fill:var(--pb); opacity:.55}
+.pc{font-family:var(--f-piece); font-size:41px; text-anchor:middle; dominant-baseline:central}
+.pc.w{fill:var(--pw); stroke:var(--pstroke); stroke-width:1.3; paint-order:stroke}
+.pc.b{fill:var(--pb)}
+.ar-h{stroke:var(--human); stroke-width:9; stroke-linecap:round; opacity:.88}
+.ar-e{stroke:var(--engine); stroke-width:2.6; stroke-linecap:round; opacity:.62}
+.ah-h{fill:var(--human)} .ah-e{fill:var(--engine)}
+.thought{font-size:1.05rem; color:var(--muted)}
+.thought b{color:var(--ink); font-weight:600}
+/* Panels */
+.panel{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:18px}
+.bignum{font-family:var(--f-display); font-size:clamp(2.6rem, 9vw, 4.4rem); line-height:1; color:var(--engine); font-variant-numeric:tabular-nums}
+.ctrl{display:flex; flex-wrap:wrap; align-items:center; gap:14px}
+.ctrl label{font-weight:600}
+input[type=range]{flex:1 1 240px; accent-color:var(--engine); min-width:0; height:28px}
+input[type=range]:focus-visible, button:focus-visible{outline:3px solid var(--engine); outline-offset:3px}
+.canvas-wrap{width:100%; position:relative}
+canvas{display:block; width:100%}
+/* Night panel (central image) */
+.night{background:var(--night); color:var(--night-ink); border-radius:18px; padding:22px; display:flex; flex-direction:column; gap:18px}
+.night .kicker{color:var(--night-muted)}
+.toggle{display:inline-flex; gap:6px; background:var(--night-line); padding:5px; border-radius:999px; flex-wrap:wrap}
+.toggle button{font:600 .95rem var(--f-body); border:0; border-radius:999px; padding:9px 16px; cursor:pointer; background:transparent; color:var(--night-muted)}
+.toggle button[aria-pressed="true"][data-mode="human"]{background:var(--glow-human); color:#1b1408}
+.toggle button[aria-pressed="true"][data-mode="engine"]{background:var(--glow-engine); color:#081325}
+.night input[type=range]{accent-color:var(--glow-engine)}
+.night-ctrl{display:flex; flex-wrap:wrap; gap:16px 24px; align-items:center; justify-content:space-between}
+.time{display:flex; align-items:center; gap:12px; flex:1 1 300px; min-width:0}
+.time span{font-family:var(--f-mono); font-size:.85rem; color:var(--night-muted); white-space:nowrap}
+.time output{font-family:var(--f-mono); color:var(--glow-engine); min-width:4.5ch; text-align:right}
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.stat{border-top:1px solid var(--night-line); padding-top:10px; display:flex; flex-direction:column; gap:4px; min-width:0}
+.stat .v{font-family:var(--f-display); font-size:clamp(1.4rem, 4vw, 2rem); line-height:1.1; font-variant-numeric:tabular-nums}
+.stat .k{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--night-muted)}
+.night .note{color:var(--night-muted); font-size:.95rem}
+#treeCanvas{max-width:620px; margin:0 auto; aspect-ratio:1/1; height:auto}
+/* Minimax */
+.mm-svg{width:100%; height:auto; display:block}
+.mm-edge{stroke:var(--line); stroke-width:3; fill:none; transition:stroke .3s, stroke-width .3s}
+.mm-node{fill:var(--card); stroke:var(--muted); stroke-width:2}
+.mm-root{fill:var(--engine); stroke:none}
+.mm-t{font-family:var(--f-mono); font-size:19px; font-weight:600; fill:var(--ink); text-anchor:middle; dominant-baseline:central}
+.mm-lab{font-family:var(--f-body); font-size:15px; font-weight:600; fill:var(--muted); text-anchor:middle}
+.mm-side{font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; fill:var(--muted)}
+.mm-svg .s2,.mm-svg .s3,.mm-svg .s4{opacity:0; transition:opacity .35s}
+.mm-svg[data-step="2"] .s2, .mm-svg[data-step="3"] .s2, .mm-svg[data-step="4"] .s2{opacity:1}
+.mm-svg[data-step="3"] .s3, .mm-svg[data-step="4"] .s3{opacity:1}
+.mm-svg[data-step="4"] .s4{opacity:1}
+.mm-svg[data-step="2"] .opp-pick, .mm-svg[data-step="3"] .opp-pick, .mm-svg[data-step="4"] .opp-pick{stroke:var(--opp); stroke-width:5}
+.mm-svg[data-step="3"] .me-pick, .mm-svg[data-step="4"] .me-pick{stroke:var(--engine); stroke-width:7}
+.mm-svg[data-step="4"] .pruned{opacity:.25}
+.mm-cross{stroke:var(--human); stroke-width:4; stroke-linecap:round}
+.mm-bubble{fill:var(--human)}
+.mm-bubble-t{font-family:var(--f-body); font-size:14px; font-weight:600; fill:#fff; text-anchor:middle}
+.steps{display:flex; gap:8px; flex-wrap:wrap}
+.steps button{font:600 .95rem var(--f-body); border:1.5px solid var(--line); background:transparent; color:var(--ink); border-radius:999px; padding:8px 14px; cursor:pointer; display:flex; gap:8px; align-items:center}
+.steps button .n{font-family:var(--f-mono); font-size:.8rem; color:var(--muted)}
+.steps button[aria-pressed="true"]{border-color:var(--engine); background:var(--engine); color:var(--card)}
+.steps button[aria-pressed="true"] .n{color:var(--card)}
+.caption{font-family:var(--f-display); font-size:clamp(1.3rem, 3.4vw, 1.75rem); line-height:1.2; min-height:2.5em; text-wrap:balance}
+/* Eval */
+.eval-svg{width:100%; height:auto; display:block}
+.ev-t{font-family:var(--f-mono); fill:var(--muted); font-size:13px; text-anchor:middle}
+.ev-big{font-family:var(--f-display); fill:var(--engine); font-size:64px}
+.ev-lab{font-family:var(--f-body); fill:var(--ink); font-size:15px; font-weight:600; text-anchor:middle}
+.ev-line{stroke:var(--muted); stroke-width:1.5}
+.ev-sq-l{fill:var(--sq-l)} .ev-sq-d{fill:var(--sq-d)}
+.nn-l{stroke:var(--engine); stroke-width:1; opacity:.35}
+.nn-n{fill:var(--engine)}
+.ev-arrow{stroke:var(--muted); stroke-width:2.5; fill:none}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+.two > div{display:flex; flex-direction:column; gap:6px; min-width:0}
+.tag{font-family:var(--f-mono); font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+/* Compare */
+.cmp{display:flex; flex-direction:column}
+.cmp-head{display:grid; grid-template-columns:1fr 1fr; gap:16px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.cmp-head div{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.1rem}
+.cmp-head svg{width:28px; height:28px}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; padding-block:16px; border-bottom:1px solid var(--line)}
+.row .q{grid-column:1/-1; font-family:var(--f-mono); font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.row .a{font-size:1.12rem; font-weight:500; min-width:0}
+.row .a.h{color:var(--human)} .row .a.e{color:var(--engine)}
+/* Tiles */
+.tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.tile{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.tile svg{width:52px; height:52px; color:var(--engine)}
+.tile p{color:var(--muted); font-size:.98rem}
+/* Ladder */
+.ladder{width:100%; height:auto; display:block}
+.ld-lab{font-family:var(--f-body); font-size:15px; font-weight:600; fill:var(--ink)}
+.ld-v{font-family:var(--f-mono); font-size:14px; fill:var(--muted)}
+.ld-h{fill:var(--human)} .ld-e{fill:var(--engine)}
+.ld-grid{stroke:var(--line); stroke-width:1}
+.ld-ax{font-family:var(--f-mono); font-size:12px; fill:var(--muted); text-anchor:middle}
+.small{font-size:.9rem; color:var(--muted)}
+/* Close */
+.close{text-align:left; display:flex; flex-direction:column; gap:16px; padding-top:24px; border-top:2px solid var(--ink)}
+.close h2{font-size:clamp(2.2rem, 7vw, 4rem)}
+@media (max-width:760px){
+  .hero-boards,.two{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats .stat:last-child{grid-column:1/-1}
+  main{gap:72px}
+  .panel,.night{padding:16px}
+}
+@media (max-width:460px){
+  .tiles{grid-template-columns:1fr}
+  .row .a{font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<section aria-labelledby="t-hero">
+  <p class="kicker">White to move</p>
+  <h1 id="t-hero" style="margin-top:10px">How a chess engine thinks</h1>
+  <p class="lede" style="margin-top:14px">Same board. Two very different minds.</p>
+
+  <div class="hero-boards">
+    <figure class="bfig">
+      <div class="bfig-top">
+        <div class="who h-c"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="6" fill="currentColor"/><path d="M5 29c1-7 5-10 11-10s10 3 11 10z" fill="currentColor"/></svg>A grandmaster</div>
+        <span class="chip h-c">3 ideas</span>
+      </div>
+      <svg class="board" id="boardHuman" viewBox="0 0 400 400" role="img" aria-label="Chess board with three thick amber arrows: castle, push the d-pawn, take on e5"></svg>
+      <p class="thought"><b>“Castle? d3? Nxe5 looks fun…”</b><br>Picks a few moves by feel.</p>
+    </figure>
+    <figure class="bfig">
+      <div class="bfig-top">
+        <div class="who e-c"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="11" y="13" width="10" height="6" fill="currentColor"/><path d="M10 3v4M16 3v4M22 3v4M10 25v4M16 25v4M22 25v4" stroke="currentColor" stroke-width="2.5"/></svg>The engine</div>
+        <span class="chip e-c">36 moves · every one</span>
+      </div>
+      <svg class="board" id="boardEngine" viewBox="0 0 400 400" role="img" aria-label="Chess board covered in thin blue arrows, one for every legal move"></svg>
+      <p class="thought"><b>“All 36. Then every reply. Score: +0.3”</b><br>Checks everything, then trusts a number.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- TREE EXPLODES -->
+<section aria-labelledby="t-tree">
+  <div class="head">
+    <p class="kicker">The problem</p>
+    <h2 id="t-tree">Every move splits into more moves</h2>
+    <p class="lede">A typical position has about 35 moves. Each has about 35 replies. It explodes.</p>
+  </div>
+  <div class="panel">
+    <div class="ctrl">
+      <label for="depth">Look ahead</label>
+      <input type="range" id="depth" min="1" max="6" value="3" step="1">
+      <span class="mono" id="depthLab" style="min-width:7ch">3 turns</span>
+    </div>
+    <div class="canvas-wrap"><canvas id="fanCanvas" role="img" aria-label="A tree of moves fanning out, getting denser with each turn"></canvas></div>
+    <div>
+      <div class="bignum" id="fanNum">42,875</div>
+      <p style="margin-top:6px; font-size:1.1rem">positions <span class="small" id="fanCmp">≈ people in a packed stadium</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- CENTRAL IMAGE -->
+<section aria-labelledby="t-light">
+  <div class="head">
+    <p class="kicker">The big picture</p>
+    <h2 id="t-light">Same tree. Different light.</h2>
+    <p class="lede">Picture every possible future as a tree in the dark. A human shines a <span class="h-c">flashlight</span> down a few paths. An engine switches on a <span class="e-c">floodlight</span>.</p>
+  </div>
+  <div class="night">
+    <div class="night-ctrl">
+      <div class="toggle" role="group" aria-label="Whose thinking to show">
+        <button type="button" data-mode="human" aria-pressed="true">Human</button>
+        <button type="button" data-mode="engine" aria-pressed="false">Engine</button>
+      </div>
+      <div class="time">
+        <span>Engine time</span>
+        <input type="range" id="ttime" min="0" max="4" value="2" step="1" aria-label="Engine thinking time">
+        <output id="ttimeOut" for="ttime">1 s</output>
+      </div>
+    </div>
+    <canvas id="treeCanvas" role="img" aria-label="Radial tree of chess moves"></canvas>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><span class="k">Positions checked</span><span class="v" id="stPos">~100</span></div>
+      <div class="stat"><span class="k">Sees ahead</span><span class="v" id="stDepth">4–10 turns</span></div>
+      <div class="stat"><span class="k">Lines explored</span><span class="v" id="stWide">2–3</span></div>
+    </div>
+    <p class="note" id="treeNote">Deep on a few lines that feel important. The rest stays dark.</p>
+  </div>
+</section>
+
+<!-- MINIMAX -->
+<section aria-labelledby="t-mm">
+  <div class="head">
+    <p class="kicker">Inside the engine</p>
+    <h2 id="t-mm">Four steps, repeated millions of times</h2>
+  </div>
+  <div class="panel">
+    <div class="steps" role="group" aria-label="Steps">
+      <button type="button" data-step="1" aria-pressed="true"><span class="n">1</span>Score</button>
+      <button type="button" data-step="2" aria-pressed="false"><span class="n">2</span>Worst case</button>
+      <button type="button" data-step="3" aria-pressed="false"><span class="n">3</span>Choose</button>
+      <button type="button" data-step="4" aria-pressed="false"><span class="n">4</span>Skip</button>
+    </div>
+    <p class="caption" id="mmCap" aria-live="polite">Imagine every move and reply. Put a score on where each line ends.</p>
+    <svg class="mm-svg" id="mm" data-step="1" viewBox="0 0 720 440" role="img" aria-label="A small game tree: three of your moves, two opponent replies each, with scores">
+      <text class="mm-side" x="14" y="44">YOU</text>
+      <text class="mm-side" x="14" y="184">THEM</text>
+      <text class="mm-side" x="14" y="334">SCORE</text>
+      <!-- edges root -> moves -->
+      <line class="mm-edge me-pick" x1="360" y1="44" x2="140" y2="170"/>
+      <line class="mm-edge" x1="360" y1="44" x2="360" y2="170"/>
+      <line class="mm-edge" x1="360" y1="44" x2="580" y2="170"/>
+      <!-- edges moves -> replies -->
+      <line class="mm-edge" x1="140" y1="170" x2="85" y2="320"/>
+      <line class="mm-edge opp-pick" x1="140" y1="170" x2="195" y2="320"/>
+      <line class="mm-edge opp-pick" x1="360" y1="170" x2="305" y2="320"/>
+      <line class="mm-edge pruned" x1="360" y1="170" x2="415" y2="320"/>
+      <line class="mm-edge" x1="580" y1="170" x2="525" y2="320"/>
+      <line class="mm-edge opp-pick" x1="580" y1="170" x2="635" y2="320"/>
+      <!-- root -->
+      <circle class="mm-root" cx="360" cy="44" r="28"/>
+      <text class="mm-t" x="360" y="44" style="fill:#fff" opacity="1">?</text>
+      <g class="s3"><circle class="mm-root" cx="360" cy="44" r="28"/><text class="mm-t" x="360" y="44" style="fill:#fff">+1</text></g>
+      <!-- move nodes -->
+      <g><circle class="mm-node" cx="140" cy="170" r="26"/><text class="mm-lab" x="140" y="222">Castle</text></g>
+      <g><circle class="mm-node" cx="360" cy="170" r="26"/><text class="mm-lab" x="360" y="222">Push pawn</text></g>
+      <g><circle class="mm-node" cx="580" cy="170" r="26"/><text class="mm-lab" x="580" y="222">Grab queen</text></g>
+      <g class="s2">
+        <text class="mm-t" x="140" y="170">+1</text>
+        <text class="mm-t" x="360" y="170">0</text>
+        <text class="mm-t" x="580" y="170">−6</text>
+      </g>
+      <!-- leaves -->
+      <g><rect class="mm-node" x="58" y="296" width="54" height="48" rx="10"/><text class="mm-t" x="85" y="320">+2</text></g>
+      <g><rect class="mm-node" x="168" y="296" width="54" height="48" rx="10"/><text class="mm-t" x="195" y="320">+1</text></g>
+      <g><rect class="mm-node" x="278" y="296" width="54" height="48" rx="10"/><text class="mm-t" x="305" y="320">0</text></g>
+      <g class="pruned"><rect class="mm-node" x="388" y="296" width="54" height="48" rx="10"/><text class="mm-t" x="415" y="320">+3</text></g>
+      <g><rect class="mm-node" x="498" y="296" width="54" height="48" rx="10"/><text class="mm-t" x="525" y="320">+9</text></g>
+      <g><rect class="mm-node" x="608" y="296" width="54" height="48" rx="10"/><text class="mm-t" x="635" y="320">−6</text></g>
+      <!-- step 3 human callout -->
+      <g class="s3">
+        <rect class="mm-bubble" x="440" y="372" width="270" height="54" rx="12"/>
+        <path class="mm-bubble" d="M515 372 L525 350 L540 372 Z"/>
+        <text class="mm-bubble-t" x="575" y="394">Human: “+9! I win a queen!”</text>
+        <text class="mm-bubble-t" x="575" y="414">Engine: “They won’t let you. −6.”</text>
+      </g>
+      <!-- step 4 prune marks -->
+      <g class="s4">
+        <line class="mm-cross" x1="398" y1="300" x2="432" y2="340"/>
+        <line class="mm-cross" x1="432" y1="300" x2="398" y2="340"/>
+        <text class="mm-lab" x="415" y="372" style="fill:var(--human)">never checked</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- EVAL -->
+<section aria-labelledby="t-eval">
+  <div class="head">
+    <p class="kicker">The score</p>
+    <h2 id="t-eval">Every position becomes one number</h2>
+    <p class="lede">Plus means White is better. 1 point ≈ one extra pawn.</p>
+  </div>
+  <div class="panel">
+    <svg class="eval-svg" viewBox="0 0 720 190" role="img" aria-label="A board goes into a neural network and comes out as the number plus 1.3">
+      <g id="miniBoard" transform="translate(20,25)"></g>
+      <path class="ev-arrow" d="M175 95 H230 M220 85 L232 95 L220 105"/>
+      <g id="nn" transform="translate(250,20)"></g>
+      <path class="ev-arrow" d="M480 95 H535 M525 85 L537 95 L525 105"/>
+      <text class="ev-big" x="550" y="118">+1.3</text>
+      <text class="ev-t" x="96" y="182">a position</text>
+      <text class="ev-t" x="360" y="182">a trained “gut feel”</text>
+      <text class="ev-t" x="615" y="182">White ≈ a pawn better</text>
+    </svg>
+    <svg class="eval-svg" viewBox="0 0 720 120" role="img" aria-label="Number line from Black winning to White winning, marker at plus 1.3">
+      <defs><linearGradient id="evg" x1="0" x2="1"><stop offset="0" stop-color="#1d1f1c"/><stop offset="1" stop-color="#f6f5ee"/></linearGradient></defs>
+      <rect x="40" y="30" width="640" height="26" rx="13" fill="url(#evg)" stroke="var(--line)"/>
+      <g id="evTicks"></g>
+      <g id="evMark"></g>
+    </svg>
+    <div class="two">
+      <div><span class="tag">Old engines</span><p>Hand-written rules. Knight ≈ 3 pawns, rook ≈ 5, queen ≈ 9. Safe king, active pieces.</p></div>
+      <div><span class="tag">Modern engines</span><p>A neural network that learned from billions of positions. Intuition, checked by brute calculation.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section aria-labelledby="t-cmp">
+  <div class="head">
+    <p class="kicker">Side by side</p>
+    <h2 id="t-cmp">Two ways of thinking</h2>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head">
+      <div class="h-c"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="6" fill="currentColor"/><path d="M5 29c1-7 5-10 11-10s10 3 11 10z" fill="currentColor"/></svg>Human</div>
+      <div class="e-c"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="11" y="13" width="10" height="6" fill="currentColor"/></svg>Engine</div>
+    </div>
+    <div class="row"><span class="q">What it looks at</span><span class="a h">2–3 moves that feel right</span><span class="a e">Every move, then cuts by math</span></div>
+    <div class="row"><span class="q">How it judges a position</span><span class="a h">A story: “my attack is coming”</span><span class="a e">A number: +1.3</span></div>
+    <div class="row"><span class="q">What it expects from the opponent</span><span class="a h">Maybe a mistake</span><span class="a e">The best possible reply</span></div>
+    <div class="row"><span class="q">After five hours</span><span class="a h">Tired, nervous, short on time</span><span class="a e">Exactly the same</span></div>
+    <div class="row"><span class="q">Memory of lines it checked</span><span class="a h">Fuzzy, can mix them up</span><span class="a e">Perfect</span></div>
+    <div class="row"><span class="q">Learned from</span><span class="a h">Thousands of games</span><span class="a e">Billions of positions</span></div>
+  </div>
+</section>
+
+<!-- WHY ENGINES WIN -->
+<section aria-labelledby="t-why">
+  <div class="head">
+    <p class="kicker">Why engines win</p>
+    <h2 id="t-why">Six unfair advantages</h2>
+  </div>
+  <div class="tiles">
+    <div class="tile">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><path d="M8 38a20 20 0 1 1 36 0" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="M26 34 L38 18" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><circle cx="26" cy="34" r="4" fill="currentColor"/></svg>
+      <h3>Raw speed</h3>
+      <p>Tens of millions of positions a second on a home PC. In 1997, Deep Blue checked 200 million a second to beat Kasparov.</p>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6 L44 13 V26 C44 37 36 44 26 47 C16 44 8 37 8 26 V13 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M18 26 L24 32 L35 20" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>No hope chess</h3>
+      <p>Always assumes the opponent finds the best reply. Traps don’t work on it.</p>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="16" width="36" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="3.5"/><rect x="42" y="22" width="4" height="8" rx="1" fill="currentColor"/><rect x="11" y="21" width="26" height="10" rx="1.5" fill="currentColor"/></svg>
+      <h3>No nerves</h3>
+      <p>No fatigue, no fear, no ego. Move 80 gets the same care as move 1.</p>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><text x="26" y="34" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" fill="currentColor">+1.3</text><rect x="4" y="12" width="44" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+      <h3>Pure objectivity</h3>
+      <p>No favourite plans. It drops an idea the moment the number says so.</p>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><path d="M8 10 H22 C25 10 26 12 26 14 V44 C26 42 24 41 22 41 H8 Z M44 10 H30 C27 10 26 12 26 14 V44 C26 42 28 41 30 41 H44 Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/></svg>
+      <h3>Solved endings</h3>
+      <p>Every position with 7 or fewer pieces is already solved. It just looks up the answer.</p>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><path d="M40 18 A16 16 0 1 0 42 30" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="M33 17 L41 18 L42 10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Endless practice</h3>
+      <p>Learns by playing itself, millions of games. In 2017, AlphaZero taught itself chess this way in hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LADDER -->
+<section aria-labelledby="t-ladder">
+  <div class="head">
+    <p class="kicker">The result</p>
+    <h2 id="t-ladder">Strength, on one ruler</h2>
+    <p class="lede">Chess ratings. Every 400 points ≈ the stronger side scores about 90%.</p>
+  </div>
+  <div class="panel">
+    <svg class="ladder" id="ladder" viewBox="0 0 720 340" role="img" aria-label="Bar chart of chess ratings: beginner 800, club player 1500, master 2200, grandmaster 2500, world champion about 2850, top engine about 3600"></svg>
+    <p class="small">Engine ratings come from engine-vs-engine games, so the gap is an estimate. Top humans no longer play top engines; the result isn’t in doubt.</p>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close" aria-labelledby="t-close">
+  <p class="kicker">In one line</p>
+  <h2 id="t-close">Humans ask <span class="h-c">“what’s the plan?”</span><br>Engines ask <span class="e-c">“what’s the number?”</span></h2>
+  <p class="lede">And more computer power means more light on the tree. That’s the whole edge.</p>
+</section>
+
+</main>
+
+<script>
+(function(){
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+/* ---------- Boards ---------- */
+const FEN = "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R";
+const GLYPH = {k:"♚", q:"♛", r:"♜", b:"♝", n:"♞", p:"♟"};
+function sqC(s){ const f = s.charCodeAt(0) - 97, r = +s[1]; return [f*50+25, (8-r)*50+25]; }
+function drawBoard(svg, arrows, kind){
+  const id = svg.id;
+  const defs = el("defs", {}, svg);
+  const m = el("marker", {id:id+"-ah", viewBox:"0 0 10 10", refX:"5", refY:"5", markerWidth: kind==="h"?"3":"4.2", markerHeight: kind==="h"?"3":"4.2", orient:"auto-start-reverse"}, defs);
+  el("path", {d:"M0 0 L10 5 L0 10 Z", class: kind==="h"?"ah-h":"ah-e"}, m);
+  for (let r=0;r<8;r++) for (let f=0;f<8;f++) el("rect", {x:f*50, y:r*50, width:50, height:50, class: (r+f)%2 ? "sq-d":"sq-l"}, svg);
+  "abcdefgh".split("").forEach((c,i)=>{ const t = el("text", {x:i*50+44, y:396, class:"coord"}, svg); t.textContent = c; });
+  for (let r=1;r<=8;r++){ const t = el("text", {x:3, y:(8-r)*50+10, class:"coord"}, svg); t.textContent = r; }
+  const rows = FEN.split("/");
+  rows.forEach((row, ri)=>{ let f = 0; for (const ch of row){ if (/\d/.test(ch)) { f += +ch; continue; }
+    const t = el("text", {x:f*50+25, y:ri*50+27, class:"pc " + (ch===ch.toUpperCase() ? "w":"b")}, svg);
+    t.textContent = GLYPH[ch.toLowerCase()] + "︎"; f++; } });
+  const g = el("g", {}, svg);
+  arrows.forEach(a=>{
+    const [x1,y1] = sqC(a.slice(0,2)), [x2,y2] = sqC(a.slice(2,4));
+    const dx = x2-x1, dy = y2-y1, L = Math.hypot(dx,dy), cut = kind==="h" ? 14 : 9;
+    el("line", {x1, y1, x2: x2 - dx/L*cut, y2: y2 - dy/L*cut, class: kind==="h"?"ar-h":"ar-e", "marker-end":"url(#"+id+"-ah)"}, g);
+  });
+}
+drawBoard(document.getElementById("boardHuman"), ["e1g1","d2d3","f3e5"], "h");
+drawBoard(document.getElementById("boardEngine"), ["a2a3","a2a4","b2b3","b2b4","d2d3","d2d4","g2g3","g2g4","h2h3","h2h4","c3b1","c3a4","c3b5","c3d5","c3e2","f3e5","f3g5","f3h4","f3d4","f3g1","c4b3","c4d3","c4e2","c4f1","c4b5","c4a6","c4d5","c4e6","c4f7","a1b1","h1g1","h1f1","e1f1","e1e2","e1g1","d1e2"], "e");
+
+/* ---------- HiDPI canvas helper ---------- */
+function fit(canvas, w, h){ const d = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(w*d); canvas.height = Math.round(h*d); canvas.style.height = h + "px"; const c = canvas.getContext("2d"); c.setTransform(d,0,0,d,0,0); return c; }
+
+/* ---------- Fan (explosion) ---------- */
+const COUNTS = [35, 1225, 42875, 1500625, 52521875, 1838265625];
+const NUMS = ["35","1,225","42,875","1.5 million","53 million","1.8 billion"];
+const CMPS = ["≈ a classroom of people","≈ a big school","≈ a packed stadium","≈ a big city","≈ a whole country","≈ more than everyone in India"];
+const fanC = document.getElementById("fanCanvas"), depthIn = document.getElementById("depth");
+function drawFan(){
+  const n = +depthIn.value, W = fanC.parentElement.clientWidth, H = Math.max(260, Math.min(380, W*0.48));
+  const c = fit(fanC, W, H), eng = css("--engine"), ink = css("--ink"), card = css("--card"), muted = css("--muted");
+  c.clearRect(0,0,W,H);
+  const top = 22, gap = (H - top - 18) / 6, b = 35;
+  const yOf = l => top + l*gap;
+  const pad = 70; const x0 = 8, x1 = W - pad;
+  // level 1..min(n,3) drawn as lines; deeper as solid bands
+  let parents = [{x:(x0+x1)/2, a:x0, b:x1}];
+  for (let l=1; l<=Math.min(n,3); l++){
+    const kids = []; c.beginPath();
+    for (const p of parents){ const span = (p.b - p.a)/b;
+      for (let i=0;i<b;i++){ const a = p.a + i*span, x = a + span/2; c.moveTo(p.x, yOf(l-1)); c.lineTo(x, yOf(l)); if (l<3) kids.push({x, a, b:a+span}); } }
+    c.strokeStyle = eng; c.globalAlpha = [0,0.9,0.28,0.06][l]; c.lineWidth = [0,1.6,0.8,0.5][l]; c.stroke();
+    parents = kids;
+  }
+  c.globalAlpha = 1;
+  for (let l=4; l<=n; l++){ c.fillStyle = eng; c.globalAlpha = 0.18 + 0.12*(l-3); c.fillRect(x0, yOf(l)-gap*0.42, x1-x0, gap*0.84); }
+  c.globalAlpha = 1;
+  // root
+  c.fillStyle = ink; c.beginPath(); c.arc((x0+x1)/2, yOf(0), 6, 0, 7); c.fill();
+  // labels
+  c.font = "600 12px " + css("--f-mono"); c.textAlign = "left"; c.textBaseline = "middle";
+  for (let l=1; l<=n; l++){ c.fillStyle = l===n ? eng : muted; c.fillText(NUMS[l-1].replace(" million","M").replace(" billion","B"), x1 + 8, yOf(l)); }
+  document.getElementById("fanNum").textContent = NUMS[n-1];
+  document.getElementById("fanCmp").textContent = CMPS[n-1];
+  document.getElementById("depthLab").textContent = n + (n===1 ? " turn" : " turns");
+}
+depthIn.addEventListener("input", drawFan);
+
+/* ---------- Radial tree (central image) ---------- */
+function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const BR = [6,4,4,3,3,3,3,3], MAXL = 8;
+const R = rng(11), nodes = [];
+const root = {lvl:0, a:0, a0:0, a1:Math.PI*2, kids:[], p:null};
+(function grow(n){ nodes.push(n); if (n.lvl >= MAXL) return; const b = BR[n.lvl], span = (n.a1 - n.a0)/b;
+  for (let i=0;i<b;i++){ const a0 = n.a0 + i*span, c = {lvl:n.lvl+1, a0, a1:a0+span, a: a0 + span*(0.5 + (R()-0.5)*0.45), kids:[], p:n};
+    c.cut = c.lvl >= 3 && R() < 0.34; c.blocked = n.blocked || n.cut; n.kids.push(c); grow(c); } })(root);
+// Human flashlight: 3 candidates, each with its own depth
+const HR = rng(5);
+const cand = [0,2,4].map(i=>root.kids[i]); const candDepth = [8,6,4];
+root.h = true;
+cand.forEach((k,ci)=>{ (function walk(n){ n.h = true; if (n.lvl >= candDepth[ci]) return; const order = n.kids.map((_,i)=>i).sort(()=>HR()-0.5); const take = HR() < (n.lvl < 3 ? 0.55 : 0.2) ? 2 : 1; for (let i=0;i<take;i++) walk(n.kids[order[i]]); })(k); });
+
+const TIMES = [0.01, 0.1, 1, 10, 60], TLAB = ["0.01 s","0.1 s","1 s","10 s","1 min"], NPS = 5e7;
+const treeC = document.getElementById("treeCanvas"), tIn = document.getElementById("ttime");
+let mode = "human";
+function fmtBig(x){ if (x >= 1e9) return "~" + (x/1e9).toFixed(x>=1e10?0:1).replace(/\.0$/,"") + " billion"; if (x >= 1e6) return "~" + Math.round(x/1e6) + " million"; return "~" + Math.round(x/1e3) + ",000"; }
+function drawTree(){
+  const par = treeC.parentElement, ps = getComputedStyle(par); const S = Math.min(620, par.clientWidth - parseFloat(ps.paddingLeft) - parseFloat(ps.paddingRight)); const c = fit(treeC, S, S); treeC.style.width = S + "px";
+  const cx = S/2, cy = S/2, Rmax = S/2 - 10, rad = l => Rmax * Math.pow(l/MAXL, 0.82);
+  const pos = n => n.lvl === 0 ? [cx,cy] : [cx + rad(n.lvl)*Math.cos(n.a), cy + rad(n.lvl)*Math.sin(n.a)];
+  c.fillStyle = css("--night"); c.fillRect(0,0,S,S);
+  const ti = +tIn.value, depth = 4 + ti; // drawing depth 4..8
+  const isLit = mode === "human" ? (n => !!n.h) : (n => n.lvl <= depth && !n.blocked);
+  const glow = mode === "human" ? css("--glow-human") : css("--glow-engine");
+  // light wash
+  if (mode === "engine"){
+    const g = c.createRadialGradient(cx,cy,0,cx,cy,rad(depth)); g.addColorStop(0, glow + "55"); g.addColorStop(1, glow + "08");
+    c.fillStyle = g; c.beginPath(); c.arc(cx,cy,rad(depth),0,7); c.fill();
+  } else {
+    cand.forEach((k,ci)=>{ const r = rad(candDepth[ci]), g = c.createRadialGradient(cx,cy,0,cx,cy,r); g.addColorStop(0, glow+"40"); g.addColorStop(1, glow+"00");
+      c.fillStyle = g; c.beginPath(); c.moveTo(cx,cy); c.arc(cx,cy,r,k.a0+0.08,k.a1-0.08); c.closePath(); c.fill(); });
+  }
+  // dark edges
+  c.beginPath(); for (const n of nodes){ if (!n.p || isLit(n)) continue; const [x1,y1] = pos(n.p), [x2,y2] = pos(n); c.moveTo(x1,y1); c.lineTo(x2,y2); }
+  c.strokeStyle = css("--night-line"); c.lineWidth = 0.6; c.globalAlpha = 0.9; c.stroke();
+  // lit edges (glow pass + core)
+  c.beginPath(); let litCount = 0;
+  for (const n of nodes){ if (!n.p || !isLit(n)) continue; litCount++; const [x1,y1] = pos(n.p), [x2,y2] = pos(n); c.moveTo(x1,y1); c.lineTo(x2,y2); }
+  c.strokeStyle = glow; c.globalAlpha = 0.22; c.lineWidth = mode==="human" ? 7 : 3; c.stroke();
+  c.globalAlpha = 1; c.lineWidth = mode==="human" ? 2.2 : 0.9; c.stroke();
+  // horizon ring
+  if (mode === "engine"){
+    c.setLineDash([4,6]); c.strokeStyle = glow; c.globalAlpha = 0.7; c.lineWidth = 1.2; c.beginPath(); c.arc(cx,cy,rad(depth),0,7); c.stroke(); c.setLineDash([]); c.globalAlpha = 1;
+    c.font = "500 11px " + css("--f-mono"); c.fillStyle = glow; c.textAlign = "center"; c.fillText("HORIZON", cx, cy - rad(depth) - 8 < 12 ? cy - rad(depth) + 16 : cy - rad(depth) - 8);
+  }
+  // root
+  c.globalAlpha = 1; c.fillStyle = css("--night-ink"); c.beginPath(); c.arc(cx,cy,9,0,7); c.fill();
+  c.fillStyle = css("--night"); c.font = "13px " + css("--f-piece"); c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("♞︎", cx, cy+1);
+  // stats
+  const $ = id => document.getElementById(id);
+  if (mode === "human"){
+    $("stPos").textContent = "~50–300"; $("stDepth").textContent = "4–10 turns"; $("stWide").textContent = "2–3 lines";
+    $("treeNote").textContent = "Deep on a few lines that feel important. The rest stays dark.";
+    treeC.setAttribute("aria-label", "Tree of moves in the dark, with three amber paths lit: the human's few candidate lines");
+  } else {
+    const nodesSeen = TIMES[ti] * NPS, plies = Math.round(1.49 * Math.log2(nodesSeen) - 14.2);
+    $("stPos").textContent = fmtBig(nodesSeen); $("stDepth").textContent = "~" + plies + " turns"; $("stWide").textContent = "Almost all";
+    $("treeNote").textContent = "More time → the light reaches further → stronger moves. Approximate, for a good home PC.";
+    treeC.setAttribute("aria-label", "Tree of moves lit in blue out to a horizon ring; more thinking time pushes the ring outward");
+  }
+  $("ttimeOut").textContent = TLAB[ti];
+}
+document.querySelectorAll(".toggle button").forEach(b => b.addEventListener("click", () => { mode = b.dataset.mode; document.querySelectorAll(".toggle button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true":"false")); drawTree(); }));
+tIn.addEventListener("input", () => { mode = "engine"; document.querySelectorAll(".toggle button").forEach(x => x.setAttribute("aria-pressed", x.dataset.mode === "engine" ? "true":"false")); drawTree(); });
+
+/* ---------- Minimax stepper ---------- */
+const CAPS = {
+  1: "Imagine every move and reply. Put a score on where each line ends.",
+  2: "Assume the opponent picks the reply that’s worst for you.",
+  3: "Pick the move whose worst case is best. Castle: +1.",
+  4: "Shortcut: once “Push pawn” can only be 0 or less, stop. It can’t beat +1."
+};
+const mm = document.getElementById("mm");
+document.querySelectorAll(".steps button").forEach(b => b.addEventListener("click", () => {
+  const s = b.dataset.step; mm.setAttribute("data-step", s); document.getElementById("mmCap").textContent = CAPS[s];
+  document.querySelectorAll(".steps button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true":"false"));
+}));
+
+/* ---------- Eval pictures ---------- */
+(function(){
+  const mb = document.getElementById("miniBoard");
+  for (let r=0;r<8;r++) for (let f=0;f<8;f++) el("rect", {x:f*17, y:r*17, width:17, height:17, class:(r+f)%2?"ev-sq-d":"ev-sq-l"}, mb);
+  const nn = document.getElementById("nn"); const layers = [6,8,8,4,1], W = 210, H = 140, pts = [];
+  layers.forEach((k,li)=>{ const x = li * W/(layers.length-1), arr = []; for (let i=0;i<k;i++) arr.push([x, k===1 ? H/2 : 8 + i*(H-16)/(k-1)]); pts.push(arr); });
+  for (let li=0; li<pts.length-1; li++) for (const a of pts[li]) for (const b of pts[li+1]) el("line", {x1:a[0], y1:a[1], x2:b[0], y2:b[1], class:"nn-l"}, nn);
+  pts.flat().forEach(p => el("circle", {cx:p[0], cy:p[1], r:5, class:"nn-n"}, nn));
+  // number line −5..+5 mapped to 60..660
+  const X = v => 360 + v*60; const tk = document.getElementById("evTicks");
+  [[-5,"Mate"],[-3,"−3"],[-1,"−1"],[0,"0"],[1,"+1"],[3,"+3"],[5,"Mate"]].forEach(([v,l])=>{ el("line",{x1:X(v),y1:24,x2:X(v),y2:62,class:"ev-line"},tk); const t = el("text",{x:X(v),y:80,class:"ev-t"},tk); t.textContent = l; });
+  [[-3,"Black up a piece"],[0,"equal"],[3,"White up a piece"]].forEach(([v,l])=>{ const t = el("text",{x:X(v),y:100,class:"ev-t"},tk); t.textContent = l; });
+  const mk = document.getElementById("evMark"), x = X(1.3);
+  el("path",{d:`M${x-9} 10 L${x+9} 10 L${x} 24 Z`, fill:"var(--engine)"}, mk);
+  el("line",{x1:x,y1:24,x2:x,y2:62,stroke:"var(--engine)","stroke-width":4}, mk);
+})();
+
+/* ---------- Ladder ---------- */
+(function(){
+  const s = document.getElementById("ladder"); const L = 170, Rr = 660, max = 3800, X = v => L + v/max*(Rr-L);
+  [0,1000,2000,3000].forEach(v=>{ el("line",{x1:X(v),y1:10,x2:X(v),y2:300,class:"ld-grid"},s); const t = el("text",{x:X(v),y:326,class:"ld-ax"},s); t.textContent = v; });
+  const rows = [["Beginner",800,"h"],["Club player",1500,"h"],["Master",2200,"h"],["Grandmaster",2500,"h"],["World champion",2850,"h"],["Top engine",3600,"e"]];
+  rows.forEach(([n,v,k],i)=>{ const y = 18 + i*47; el("rect",{x:L,y,width:X(v)-L,height:30,rx:5,class:k==="h"?"ld-h":"ld-e"},s);
+    const a = el("text",{x:L-12,y:y+20,class:"ld-lab","text-anchor":"end"},s); a.textContent = n;
+    const b = el("text",{x:X(v)+8,y:y+20,class:"ld-v"},s); b.textContent = (k==="e"||v===2850 ? "~" : "") + v; });
+})();
+
+/* ---------- Redraw on resize / theme ---------- */
+function redraw(){ drawFan(); drawTree(); }
+let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(redraw, 120); });
+try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw); } catch(e){}
+new MutationObserver(redraw).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+redraw();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>

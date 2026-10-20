@@ -537,6 +537,12 @@
           "ask": "How do twenty people change four tyres in two seconds?"
         },
         {
+          "slug": "how-a-chess-engine-thinks",
+          "title": "How a Chess Engine Thinks",
+          "blurb": "A grandmaster shines a flashlight down a few lines. An engine floods the whole tree with light.",
+          "ask": "How does a chess engine pick its move?"
+        },
+        {
           "slug": "chemistry-of-breaking-bad",
           "title": "The Chemistry of Breaking Bad",
           "blurb": "Walter White called chemistry the study of change. The whole show, read that way.",
