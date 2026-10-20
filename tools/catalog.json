@@ -434,6 +434,13 @@
           "blurb": "Your atoms and cells keep getting replaced. So what exactly is you? The Ship of Theseus, in your body.",
           "artifact": "Ebjsq5Xi1offpu8AxruMp8",
           "ask": "If your atoms keep changing, what is “you”?"
+        },
+        {
+          "slug": "the-drake-equation",
+          "title": "The Drake Equation",
+          "blurb": "Seven sieves that turn the galaxy's stars into alien voices we could hear. Slide your own guesses and count the dots.",
+          "artifact": "G7aZAeX44cKe9nB46dDYv7",
+          "ask": "How many alien civilisations could we hear right now?"
         }
       ]
     },

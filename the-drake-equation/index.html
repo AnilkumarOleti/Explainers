@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Drake Equation | Explainers</title>
+<meta name="description" content="Seven sieves that turn the galaxy&#x27;s stars into alien voices we could hear. Slide your own guesses and count the dots.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-drake-equation/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Drake Equation">
+<meta property="og:description" content="Seven sieves that turn the galaxy&#x27;s stars into alien voices we could hear. Slide your own guesses and count the dots.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-drake-equation/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-drake-equation/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Cabin+Sketch:wght@400;700&family=Kalam:wght@400;700&display=swap">
+<style>
+/* Layout: one long chalkboard. Big chalk pictures, a few chalk notes, one board you can play with. */
+:root {
+  --slate: #1d2925;
+  --slate-2: #24322d;
+  --slate-line: #3a4a44;
+  --chalk: #eeede6;
+  --chalk-dim: #a7b2ab;
+  --yellow: #f2d86f;
+  --blue: #9dd0e4;
+  --pink: #f1a3a9;
+  --green: #b5dca1;
+  --f-display: "Cabin Sketch", "Chalkboard SE", "Comic Sans MS", cursive;
+  --f-hand: "Kalam", "Chalkboard SE", "Comic Sans MS", cursive;
+  --f-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(238,237,230,.05), transparent 45%),
+    radial-gradient(ellipse at 80% 60%, rgba(238,237,230,.04), transparent 50%),
+    var(--slate);
+  color: var(--chalk);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 80px;
+  display: grid;
+  gap: 96px;
+}
+h1, h2 { font-family: var(--f-display); font-weight: 700; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(48px, 10vw, 104px); }
+h2 { font-size: clamp(34px, 6vw, 58px); }
+p { margin: 0; max-width: 60ch; }
+.hand { font-family: var(--f-hand); }
+.dim { color: var(--chalk-dim); }
+.eyebrow { font-family: var(--f-hand); color: var(--yellow); font-size: 20px; letter-spacing: .02em; }
+svg .ln { fill: none; stroke: var(--chalk); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln.y { stroke: var(--yellow); } svg .ln.b { stroke: var(--blue); } svg .ln.p { stroke: var(--pink); } svg .ln.g { stroke: var(--green); } svg .ln.d { stroke: var(--chalk-dim); }
+svg .ln.thin { stroke-width: 2; } svg .ln.dash { stroke-dasharray: 6 7; }
+svg .fy { fill: var(--yellow); } svg .fb { fill: var(--blue); } svg .fp { fill: var(--pink); } svg .fc { fill: var(--chalk); } svg .fd { fill: var(--chalk-dim); } svg .fg { fill: var(--green); }
+svg text { font-family: var(--f-hand); fill: var(--chalk); }
+.chalk { filter: url(#chalk); }
+
+/* ---------- hero ---------- */
+.hero { display: grid; gap: 28px; padding-top: 24px; }
+.eq {
+  font-family: var(--f-display); font-size: clamp(30px, 6.4vw, 66px); line-height: 1.2;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .12em .3em;
+}
+.eq a { color: inherit; text-decoration: none; border-bottom: 3px dashed transparent; padding: 0 .04em; border-radius: 4px; }
+.eq a:hover, .eq a:focus-visible { border-bottom-color: currentColor; outline: none; }
+.eq .known { color: var(--blue); } .eq .rough { color: var(--green); } .eq .guess { color: var(--pink); }
+.eq .op { color: var(--chalk-dim); font-size: .7em; }
+.eq sub { font-size: .5em; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 24px; font-family: var(--f-hand); font-size: 19px; }
+.legend span::before { content: ""; display: inline-block; width: 22px; height: 6px; border-radius: 3px; background: currentColor; margin-right: 8px; vertical-align: middle; }
+.legend .k { color: var(--blue); } .legend .r { color: var(--green); } .legend .g { color: var(--pink); }
+.note { border-left: 3px solid var(--slate-line); padding-left: 16px; font-family: var(--f-hand); font-size: 19px; color: var(--chalk-dim); max-width: 52ch; }
+
+/* ---------- funnel ---------- */
+.block { display: grid; gap: 24px; }
+.funnel-fig { overflow-x: auto; }
+.funnel-fig svg { width: 100%; max-width: 760px; height: auto; display: block; margin: 0 auto; min-width: 340px; }
+
+/* ---------- steps ---------- */
+.steps { display: grid; gap: 0; }
+.step {
+  display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 28px; align-items: center;
+  padding-block: 26px;
+}
+.times { font-family: var(--f-display); font-size: 44px; color: var(--chalk-dim); text-align: center; line-height: 1; }
+.step svg { width: 100%; max-width: 260px; height: auto; display: block; }
+.step .txt { display: grid; gap: 8px; min-width: 0; }
+.sym { font-family: var(--f-display); font-size: 46px; line-height: 1; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.sym small { font-family: var(--f-hand); font-size: 22px; color: var(--chalk); font-weight: 400; }
+.sym.known { color: var(--blue); } .sym.rough { color: var(--green); } .sym.guess { color: var(--pink); }
+.q { font-size: 21px; font-weight: 700; }
+.ans { font-family: var(--f-hand); font-size: 19px; color: var(--chalk-dim); }
+.tag { justify-self: start; font-family: var(--f-hand); font-size: 15px; padding: 1px 10px; border-radius: 999px; border: 2px solid currentColor; letter-spacing: .04em; text-transform: uppercase; }
+.tag.known { color: var(--blue); } .tag.rough { color: var(--green); } .tag.guess { color: var(--pink); }
+
+/* ---------- play ---------- */
+.board {
+  background: var(--slate-2); border: 2px solid var(--slate-line); border-radius: 14px;
+  padding: 22px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: start;
+}
+.presets { display: flex; flex-wrap: wrap; gap: 10px; grid-column: 1 / -1; }
+.presets button {
+  font-family: var(--f-hand); font-size: 18px; color: var(--chalk); background: transparent;
+  border: 2px dashed var(--slate-line); border-radius: 999px; padding: 4px 16px; cursor: pointer;
+}
+.presets button:hover { border-color: var(--chalk-dim); }
+.presets button[aria-pressed="true"] { border-style: solid; border-color: var(--yellow); color: var(--yellow); }
+.presets button:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.sliders { display: grid; gap: 14px; min-width: 0; }
+.sl { display: grid; grid-template-columns: 52px minmax(0, 1fr) 84px; gap: 10px; align-items: center; }
+.sl label { font-family: var(--f-display); font-size: 26px; line-height: 1; }
+.sl label.known { color: var(--blue); } .sl label.rough { color: var(--green); } .sl label.guess { color: var(--pink); }
+.sl label span { display: block; font-family: var(--f-hand); font-size: 12px; color: var(--chalk-dim); margin-top: 2px; }
+.sl input { width: 100%; accent-color: var(--yellow); }
+.sl output { font-family: var(--f-hand); font-size: 18px; text-align: right; font-variant-numeric: tabular-nums; }
+.result { display: grid; gap: 10px; justify-items: center; text-align: center; min-width: 0; }
+.result canvas { width: 100%; max-width: 420px; aspect-ratio: 1; height: auto; display: block; }
+.bigN { font-family: var(--f-display); font-size: clamp(54px, 9vw, 88px); line-height: 1; color: var(--yellow); font-variant-numeric: tabular-nums; }
+.bigN-sub { font-family: var(--f-hand); font-size: 20px; max-width: 30ch; }
+.cap { font-family: var(--f-hand); font-size: 15px; color: var(--chalk-dim); }
+
+/* ---------- time ---------- */
+.time-fig { overflow-x: auto; }
+.time-fig svg { width: 100%; height: auto; display: block; min-width: 520px; }
+
+/* ---------- fermi + end ---------- */
+.fermi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; align-items: center; }
+.fermi svg { width: 100%; max-width: 380px; height: auto; display: block; }
+.questions { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-family: var(--f-hand); font-size: 22px; }
+.questions li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.questions b { font-family: var(--f-display); font-size: 28px; }
+
+@media (max-width: 720px) {
+  .wrap { gap: 72px; }
+  .step { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .step svg { max-width: 220px; }
+  .board { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  .fermi { grid-template-columns: minmax(0, 1fr); }
+  .sl { grid-template-columns: 46px minmax(0, 1fr) 72px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+<!-- shared drawing bits -->
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="chalk" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0-10Q0 0 10 0Q0 0 0 10Q0 0-10 0Q0 0 0-10Z"/></symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">Green Bank, West Virginia · 1961</div>
+    <h1>Is anyone out there?</h1>
+    <div class="eq" aria-label="N equals R star times f p times n e times f l times f i times f c times L">
+      <span>N =</span>
+      <a href="#t-R" class="known">R<sub>★</sub></a><span class="op">×</span>
+      <a href="#t-fp" class="known">f<sub>p</sub></a><span class="op">×</span>
+      <a href="#t-ne" class="rough">n<sub>e</sub></a><span class="op">×</span>
+      <a href="#t-fl" class="guess">f<sub>l</sub></a><span class="op">×</span>
+      <a href="#t-fi" class="guess">f<sub>i</sub></a><span class="op">×</span>
+      <a href="#t-fc" class="guess">f<sub>c</sub></a><span class="op">×</span>
+      <a href="#t-L" class="guess">L</a>
+    </div>
+    <div class="legend"><span class="k">we've measured it</span><span class="r">rough estimate</span><span class="g">pure guess</span></div>
+    <p class="note">Astronomer Frank Drake chalked this on a board before the first-ever meeting about listening for alien radio. N is the number of alien civilisations in our galaxy we could hear right now.</p>
+  </header>
+
+  <!-- FUNNEL -->
+  <section class="block" aria-labelledby="h-funnel">
+    <div class="eyebrow">The whole idea in one picture</div>
+    <h2 id="h-funnel">Pour in stars. Strain seven times.</h2>
+    <p class="dim">Each line of the equation is a sieve. Whatever drips out the bottom is N.</p>
+    <div class="funnel-fig">
+      <svg id="funnel" viewBox="0 0 760 600" role="img" aria-label="A funnel with seven layers. Many dots enter at the top, fewer survive each layer, and only a few drip out the bottom."></svg>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="block" aria-labelledby="h-steps">
+    <div class="eyebrow">Seven questions, multiplied</div>
+    <h2 id="h-steps">One sieve at a time</h2>
+
+    <div class="steps">
+
+      <article class="step" id="t-R">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <path class="ln d" d="M28 112C14 84 52 60 76 74C86 42 140 40 152 66C182 56 210 90 188 116C204 142 152 154 130 136C110 158 58 152 52 130C28 142 12 124 28 112Z"/>
+          <path class="ln d thin" d="M60 104c14-10 30-6 40 2M120 86c16-8 32 0 38 12"/>
+          <use href="#spark" class="fy" x="78" y="76" width="34" height="34"/>
+          <use href="#spark" class="fy" x="128" y="96" width="22" height="22"/>
+          <use href="#spark" class="fy" x="112" y="56" width="16" height="16"/>
+          <text x="110" y="164" text-anchor="middle" font-size="17">new stars, every year</text>
+        </svg>
+        <div class="txt">
+          <div class="sym known">R<sub style="font-size:.5em">★</sub> <small>new stars</small></div>
+          <div class="q">How many stars does our galaxy make each year?</div>
+          <div class="ans">A handful. Roughly 1 to 7, depending on how you count.</div>
+          <span class="tag known">measured</span>
+        </div>
+      </article>
+      <div class="times" aria-hidden="true">×</div>
+
+      <article class="step" id="t-fp">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <ellipse class="ln d thin" cx="110" cy="82" rx="42" ry="15"/>
+          <ellipse class="ln d thin" cx="110" cy="82" rx="68" ry="25"/>
+          <ellipse class="ln d thin" cx="110" cy="82" rx="98" ry="38"/>
+          <circle cx="110" cy="82" r="15" class="fy"/>
+          <circle cx="148" cy="88" r="6" class="fp"/>
+          <circle cx="50" cy="94" r="8" class="fb"/>
+          <circle cx="172" cy="56" r="10" class="fc"/>
+          <text x="110" y="164" text-anchor="middle" font-size="17">almost every star has planets</text>
+        </svg>
+        <div class="txt">
+          <div class="sym known">f<sub style="font-size:.5em">p</sub> <small>have planets</small></div>
+          <div class="q">What share of stars have planets?</div>
+          <div class="ans">Nearly all. Telescopes have found thousands of planets since the 1990s.</div>
+          <span class="tag known">measured</span>
+        </div>
+      </article>
+      <div class="times" aria-hidden="true">×</div>
+
+      <article class="step" id="t-ne">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <circle cx="18" cy="76" r="26" class="fy"/>
+          <rect x="102" y="34" width="56" height="84" rx="10" class="ln g thin dash"/>
+          <circle cx="72" cy="76" r="11" class="fp"/>
+          <circle cx="130" cy="76" r="13" class="fb"/>
+          <circle cx="130" cy="72" r="4" class="fg"/>
+          <circle cx="194" cy="76" r="12" class="ln d"/>
+          <text x="72" y="134" text-anchor="middle" font-size="16">too hot</text>
+          <text x="130" y="134" text-anchor="middle" font-size="16" style="fill:var(--green)">just right</text>
+          <text x="194" y="134" text-anchor="middle" font-size="16">too cold</text>
+          <text x="110" y="164" text-anchor="middle" font-size="17">water stays liquid here</text>
+        </svg>
+        <div class="txt">
+          <div class="sym rough">n<sub style="font-size:.5em">e</sub> <small>could hold life</small></div>
+          <div class="q">How many of those planets sit in the warm, watery zone?</div>
+          <div class="ans">Maybe 1 in 5 Sun-like stars has an Earth-sized planet there.</div>
+          <span class="tag rough">rough estimate</span>
+        </div>
+      </article>
+      <div class="times" aria-hidden="true">×</div>
+
+      <article class="step" id="t-fl">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <circle cx="98" cy="74" r="52" class="ln"/>
+          <path class="ln" d="M136 112l40 38"/>
+          <path class="ln g" d="M70 74c0-14 14-22 30-20c18 2 26 14 22 26c-4 12-20 16-34 12C76 88 70 82 70 74Z"/>
+          <path class="ln g thin" d="M122 80c8 4 10 12 4 16s-2 10 4 12"/>
+          <circle cx="88" cy="70" r="3" class="fg"/><circle cx="102" cy="76" r="3" class="fg"/><circle cx="96" cy="64" r="2.5" class="fg"/>
+          <text x="110" y="164" text-anchor="middle" font-size="17">does life actually start?</text>
+        </svg>
+        <div class="txt">
+          <div class="sym guess">f<sub style="font-size:.5em">l</sub> <small>life starts</small></div>
+          <div class="q">On a good planet, how often does life begin?</div>
+          <div class="ans">Could be "always". Could be "almost never". We have one example: us.</div>
+          <span class="tag guess">pure guess</span>
+        </div>
+      </article>
+      <div class="times" aria-hidden="true">×</div>
+
+      <article class="step" id="t-fi">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <circle cx="60" cy="58" r="14" class="ln"/>
+          <path class="ln" d="M60 72v42M60 86l-20 14M60 86l22-12M60 114l-16 30M60 114l16 30"/>
+          <circle cx="92" cy="50" r="4" class="ln thin"/>
+          <circle cx="104" cy="38" r="6" class="ln thin"/>
+          <path class="ln y" d="M120 30c-6-18 20-26 28-14c8-14 36-8 34 8c16 2 16 26-2 26c-2 14-26 16-32 4c-12 8-32 0-28-12c-12-2-10-14 0-12Z"/>
+          <text x="152" y="44" text-anchor="middle" font-size="24" style="fill:var(--yellow)">E=mc²</text>
+          <text x="110" y="164" text-anchor="middle" font-size="17">does life get clever?</text>
+        </svg>
+        <div class="txt">
+          <div class="sym guess">f<sub style="font-size:.5em">i</sub> <small>gets smart</small></div>
+          <div class="q">How often does life turn into thinkers?</div>
+          <div class="ans">Earth had only microbes for billions of years. Smart came very late.</div>
+          <span class="tag guess">pure guess</span>
+        </div>
+      </article>
+      <div class="times" aria-hidden="true">×</div>
+
+      <article class="step" id="t-fc">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <path class="ln" d="M34 46c18 52 70 74 112 54"/>
+          <path class="ln" d="M34 46c26 8 70 30 112 54"/>
+          <path class="ln d thin" d="M90 76l26-36"/>
+          <circle cx="118" cy="38" r="4" class="fc"/>
+          <path class="ln" d="M84 84l-12 54M96 86l16 52M60 138h66"/>
+          <path class="ln y thin" d="M140 28c10 6 12 18 6 26M156 18c16 10 20 30 10 44M172 8c22 14 28 42 14 62"/>
+          <text x="110" y="164" text-anchor="middle" font-size="17">sends signals into space</text>
+        </svg>
+        <div class="txt">
+          <div class="sym guess">f<sub style="font-size:.5em">c</sub> <small>makes noise</small></div>
+          <div class="q">How many thinkers build something we could detect, like radio?</div>
+          <div class="ans">We did. Would dolphins? Would they want to be heard?</div>
+          <span class="tag guess">pure guess</span>
+        </div>
+      </article>
+      <div class="times" aria-hidden="true">×</div>
+
+      <article class="step" id="t-L">
+        <svg viewBox="0 0 220 170" class="chalk" aria-hidden="true">
+          <path class="ln" d="M70 18h80M70 138h80"/>
+          <path class="ln" d="M78 18c0 40 28 44 28 60s-28 20-28 60M142 18c0 40-28 44-28 60s28 20 28 60"/>
+          <path class="fy" d="M88 36h44c-4 18-18 26-22 36c-4-10-18-18-22-36Z"/>
+          <path class="fy" d="M110 82v20" stroke="var(--yellow)" stroke-width="2" stroke-dasharray="2 4"/>
+          <path class="fy" d="M90 134c4-14 14-22 20-24c6 2 16 10 20 24Z"/>
+          <text x="110" y="164" text-anchor="middle" font-size="17">how long do they last?</text>
+        </svg>
+        <div class="txt">
+          <div class="sym guess">L <small>years on air</small></div>
+          <div class="q">How long does a talking civilisation keep talking?</div>
+          <div class="ans">Our score so far: about 100 years of radio.</div>
+          <span class="tag guess">pure guess</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PLAY -->
+  <section class="block" aria-labelledby="h-play">
+    <div class="eyebrow">Your turn</div>
+    <h2 id="h-play">Pick your guesses</h2>
+    <p class="dim">Slide the pink ones. Nobody can prove you wrong.</p>
+
+    <div class="board">
+      <div class="presets" role="group" aria-label="Preset guesses">
+        <button type="button" data-preset="gloomy" aria-pressed="false">Gloomy</button>
+        <button type="button" data-preset="middle" aria-pressed="true">Middle</button>
+        <button type="button" data-preset="hopeful" aria-pressed="false">Hopeful</button>
+      </div>
+      <div class="sliders" id="sliders"></div>
+      <div class="result" aria-live="polite">
+        <canvas id="galaxy" width="840" height="840" aria-label="A spiral galaxy. Bright yellow dots mark civilisations we could hear."></canvas>
+        <div class="bigN" id="bigN">4</div>
+        <div class="bigN-sub" id="bigNsub">civilisations talking right now</div>
+        <div class="cap" id="cap">yellow dots = them · ring = us</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIME -->
+  <section class="block" aria-labelledby="h-time">
+    <div class="eyebrow">The sneaky one</div>
+    <h2 id="h-time">L matters most</h2>
+    <p class="dim">The galaxy is 13 billion years old. If civilisations only talk for a blink, they'd rarely be talking at the same time as us.</p>
+    <div class="time-fig">
+      <svg id="timeline" viewBox="0 0 760 300" role="img" aria-label="Two timelines. Short-lived civilisations are tiny ticks, and none touch the 'now' line. Long-lived ones are long bars, and several cross 'now'."></svg>
+    </div>
+  </section>
+
+  <!-- FERMI -->
+  <section class="fermi" aria-labelledby="h-fermi">
+    <svg viewBox="0 0 380 300" class="chalk" aria-hidden="true">
+      <circle cx="120" cy="190" r="70" class="ln b"/>
+      <path class="ln g thin" d="M78 160c18-10 30 6 46-2s22 18 40 10M70 206c22 8 40-8 62 4"/>
+      <path class="ln" d="M172 132c30-40 70-56 110-52"/>
+      <text x="292" y="72" font-size="56" text-anchor="middle" style="fill:var(--yellow)">?</text>
+      <use href="#spark" class="fd" x="230" y="170" width="12" height="12"/>
+      <use href="#spark" class="fd" x="320" y="140" width="10" height="10"/>
+      <use href="#spark" class="fd" x="300" y="230" width="14" height="14"/>
+      <use href="#spark" class="fd" x="40" y="40" width="10" height="10"/>
+      <use href="#spark" class="fd" x="190" y="30" width="12" height="12"/>
+      <text x="190" y="290" text-anchor="middle" font-size="20" class="dim" style="fill:var(--chalk-dim)">silence, so far</text>
+    </svg>
+    <div class="block" style="gap:14px">
+      <div class="eyebrow">Enrico Fermi, over lunch, 1950</div>
+      <h2 id="h-fermi">"So where is everybody?"</h2>
+      <p class="dim">Plug in hopeful numbers and the sky should be buzzing. We've listened for over 60 years and heard nothing clear. That gap is called the Fermi paradox.</p>
+    </div>
+  </section>
+
+  <!-- END -->
+  <section class="block" aria-labelledby="h-end">
+    <div class="eyebrow">What it really is</div>
+    <h2 id="h-end">Not an answer. A to-do list.</h2>
+    <ul class="questions">
+      <li><b style="color:var(--blue)">R★</b><span>How fast are stars born? <span class="dim">Done.</span></span></li>
+      <li><b style="color:var(--blue)">f<small>p</small></b><span>Do they have planets? <span class="dim">Done.</span></span></li>
+      <li><b style="color:var(--green)">n<small>e</small></b><span>Are any Earth-like? <span class="dim">Getting there.</span></span></li>
+      <li><b style="color:var(--pink)">f<small>l</small></b><span>Find life on Mars, Europa or a far planet's air.</span></li>
+      <li><b style="color:var(--pink)">f<small>i</small> f<small>c</small> L</b><span>Keep listening.</span></li>
+    </ul>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  // tiny seeded random so pictures stay the same on every load
+  function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }; }
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  /* ---------- funnel ---------- */
+  (function () {
+    var svg = document.getElementById("funnel");
+    var g = el("g", { "class": "chalk" }, svg);
+    var layers = [
+      { s: "R★", n: "stars born", c: "b", dots: 60 },
+      { s: "fp", n: "have planets", c: "b", dots: 52 },
+      { s: "ne", n: "warm & watery", c: "g", dots: 26 },
+      { s: "fl", n: "life starts", c: "p", dots: 15 },
+      { s: "fi", n: "gets smart", c: "p", dots: 8 },
+      { s: "fc", n: "makes noise", c: "p", dots: 4 },
+      { s: "L", n: "still on air", c: "p", dots: 2 }
+    ];
+    var top = 30, h = 66, cx = 470, wTop = 280, wBot = 36;
+    var r = rng(7);
+    for (var i = 0; i < layers.length; i++) {
+      var y0 = top + i * h, y1 = y0 + h;
+      var hw0 = wTop - (wTop - wBot) * (i / layers.length);
+      var hw1 = wTop - (wTop - wBot) * ((i + 1) / layers.length);
+      el("path", { d: "M" + (cx - hw0) + " " + y0 + "L" + (cx - hw1) + " " + y1 + "M" + (cx + hw0) + " " + y0 + "L" + (cx + hw1) + " " + y1, "class": "ln" }, g);
+      el("path", { d: "M" + (cx - hw1) + " " + y1 + "H" + (cx + hw1), "class": "ln d thin dash" }, g);
+      var L = layers[i];
+      for (var k = 0; k < L.dots; k++) {
+        var t = 0.15 + r() * 0.75;
+        var yy = y0 + t * h;
+        var hw = hw0 + (hw1 - hw0) * t - 12;
+        el("circle", { cx: cx + (r() * 2 - 1) * hw, cy: yy, r: 4.2, "class": i === layers.length - 1 ? "fy" : "fc", opacity: i === layers.length - 1 ? 1 : 0.85 }, g);
+      }
+      var lab = el("text", { x: 20, y: y0 + h / 2 + 4, "font-size": 30, style: "font-family:var(--f-display);fill:var(--" + ({ b: "blue", g: "green", p: "pink" })[L.c] + ")" }, svg);
+      lab.textContent = L.s;
+      var lab2 = el("text", { x: 72, y: y0 + h / 2 + 4, "font-size": 20, style: "fill:var(--chalk-dim)" }, svg);
+      lab2.textContent = L.n;
+    }
+    var yb = top + layers.length * h;
+    el("path", { d: "M" + cx + " " + yb + "v26", "class": "ln y dash thin" }, g);
+    el("circle", { cx: cx, cy: yb + 44, r: 9, "class": "fy" }, g);
+    var t1 = el("text", { x: cx + 26, y: yb + 52, "font-size": 30, style: "font-family:var(--f-display);fill:var(--yellow)" }, svg);
+    t1.textContent = "= N";
+    var t2 = el("text", { x: cx + 90, y: yb + 52, "font-size": 20, style: "fill:var(--chalk-dim)" }, svg);
+    t2.textContent = "voices we could hear";
+  })();
+
+  /* ---------- sliders + galaxy ---------- */
+  var FR = [0.000001, 0.0001, 0.01, 0.1, 0.5, 1];
+  var params = [
+    { k: "R", label: "R★", name: "stars/yr", cls: "known", steps: [0.5, 1, 1.5, 2, 3, 5, 7] },
+    { k: "fp", label: "fp", name: "planets", cls: "known", steps: [0.2, 0.5, 0.8, 1] },
+    { k: "ne", label: "ne", name: "warm", cls: "rough", steps: [0.01, 0.05, 0.1, 0.2, 0.4, 1] },
+    { k: "fl", label: "fl", name: "life", cls: "guess", steps: FR },
+    { k: "fi", label: "fi", name: "smart", cls: "guess", steps: FR },
+    { k: "fc", label: "fc", name: "noisy", cls: "guess", steps: [0.01, 0.1, 0.2, 0.5, 1] },
+    { k: "L", label: "L", name: "years", cls: "guess", steps: [100, 1000, 10000, 100000, 1000000, 100000000] }
+  ];
+  var presets = {
+    gloomy:  { R: 1, fp: 0.5, ne: 0.05, fl: 0.0001, fi: 0.01, fc: 0.1, L: 1000 },
+    middle:  { R: 2, fp: 1, ne: 0.2, fl: 0.1, fi: 0.1, fc: 0.1, L: 10000 },
+    hopeful: { R: 3, fp: 1, ne: 0.4, fl: 1, fi: 0.5, fc: 0.5, L: 1000000 }
+  };
+  function compact(v) {
+    if (v >= 1000000) return (v / 1000000) + "M";
+    if (v >= 1000) return (v / 1000) + "k";
+    return String(v);
+  }
+  function fmtVal(v) {
+    if (v < 1 && v <= 0.01) return "1 in " + compact(Math.round(1 / v));
+    return compact(v);
+  }
+  var box = document.getElementById("sliders");
+  var inputs = {};
+  params.forEach(function (p) {
+    var row = document.createElement("div"); row.className = "sl";
+    var id = "sl-" + p.k;
+    row.innerHTML = '<label for="' + id + '" class="' + p.cls + '">' + p.label + '<span>' + p.name + '</span></label>' +
+      '<input type="range" id="' + id + '" min="0" max="' + (p.steps.length - 1) + '" step="1">' +
+      '<output for="' + id + '" id="o-' + p.k + '"></output>';
+    box.appendChild(row);
+    inputs[p.k] = row.querySelector("input");
+    inputs[p.k].addEventListener("input", function () { markPreset(null); update(); });
+  });
+  function setPreset(name) {
+    var pr = presets[name];
+    params.forEach(function (p) { var idx = p.steps.indexOf(pr[p.k]); inputs[p.k].value = idx < 0 ? 0 : idx; });
+    markPreset(name); update();
+  }
+  function markPreset(name) {
+    document.querySelectorAll(".presets button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.preset === name ? "true" : "false"); });
+  }
+  document.querySelectorAll(".presets button").forEach(function (b) { b.addEventListener("click", function () { setPreset(b.dataset.preset); }); });
+
+  // galaxy stars (fixed)
+  var cvs = document.getElementById("galaxy"), ctx = cvs.getContext("2d");
+  var W = cvs.width, C = W / 2, stars = [];
+  (function () {
+    var r = rng(42);
+    for (var i = 0; i < 2600; i++) {
+      var arm = i % 2, d = Math.pow(r(), 0.7);
+      var ang = d * 4.2 + arm * Math.PI + (r() - 0.5) * (0.9 - d * 0.4);
+      var rad = d * C * 0.9 + (r() - 0.5) * 22;
+      var x = C + Math.cos(ang) * rad, y = C + Math.sin(ang) * rad * 0.92;
+      stars.push({ x: x, y: y, s: 0.8 + r() * 1.6, a: 0.25 + r() * 0.5 });
+    }
+    for (var j = 0; j < 500; j++) { // bulge
+      var a = r() * Math.PI * 2, rr = Math.pow(r(), 2) * C * 0.22;
+      stars.push({ x: C + Math.cos(a) * rr, y: C + Math.sin(a) * rr, s: 0.8 + r() * 1.4, a: 0.35 + r() * 0.5 });
+    }
+    // shuffle a copy for beacon order, skipping the crowded core
+    var order = stars.map(function (s, i) { return i; }).filter(function (i) { var s = stars[i]; return Math.hypot(s.x - C, s.y - C) > C * 0.18; });
+    for (var k = order.length - 1; k > 0; k--) { var m = Math.floor(r() * (k + 1)); var t = order[k]; order[k] = order[m]; order[m] = t; }
+    stars.order = order;
+  })();
+  var earth = { x: C + C * 0.52, y: C - C * 0.18 };
+
+  function drawGalaxy(N) {
+    var chalk = css("--chalk"), yellow = css("--yellow"), blue = css("--blue");
+    ctx.clearRect(0, 0, W, W);
+    ctx.fillStyle = chalk;
+    stars.forEach(function (s) { ctx.globalAlpha = s.a; ctx.beginPath(); ctx.arc(s.x, s.y, s.s, 0, 6.283); ctx.fill(); });
+    ctx.globalAlpha = 1;
+    var show = Math.min(Math.round(N), 700);
+    ctx.fillStyle = yellow;
+    for (var i = 0; i < show; i++) {
+      var s = stars[stars.order[i]];
+      ctx.globalAlpha = 0.25; ctx.beginPath(); ctx.arc(s.x, s.y, 12, 0, 6.283); ctx.fill();
+      ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(s.x, s.y, 5, 0, 6.283); ctx.fill();
+    }
+    // us
+    ctx.strokeStyle = blue; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(earth.x, earth.y, 16, 0, 6.283); ctx.stroke();
+    ctx.fillStyle = blue; ctx.beginPath(); ctx.arc(earth.x, earth.y, 5, 0, 6.283); ctx.fill();
+    ctx.font = "28px Kalam, cursive"; ctx.fillText("us", earth.x + 22, earth.y + 9);
+    return show < Math.round(N);
+  }
+
+  function update() {
+    var N = 1;
+    params.forEach(function (p) {
+      var v = p.steps[+inputs[p.k].value];
+      document.getElementById("o-" + p.k).textContent = fmtVal(v);
+      N *= v;
+    });
+    var big = document.getElementById("bigN"), sub = document.getElementById("bigNsub"), cap = document.getElementById("cap");
+    if (N < 1) {
+      big.textContent = "Just us";
+      var odds = Math.round(1 / N);
+      sub.textContent = "Chance anyone else is talking right now: about 1 in " + (odds >= 1e6 ? (odds / 1e6).toLocaleString("en-US", { maximumFractionDigits: 0 }) + " million" : odds.toLocaleString("en-US"));
+    } else {
+      big.textContent = Math.round(N).toLocaleString("en-US");
+      sub.textContent = Math.round(N) === 1 ? "other civilisation talking right now" : "civilisations talking right now";
+    }
+    var capped = drawGalaxy(N);
+    cap.textContent = capped ? "yellow dots = them (showing 700, too many to draw) · ring = us" : "yellow dots = them · ring = us";
+  }
+  setPreset("middle");
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+
+  /* ---------- timeline ---------- */
+  (function () {
+    var svg = document.getElementById("timeline");
+    var x0 = 30, x1 = 730, nowX = 560;
+    function row(y, label, len, seed) {
+      var g = el("g", {}, svg);
+      var t = el("text", { x: x0, y: y - 22, "font-size": 20 }, g); t.textContent = label;
+      el("path", { d: "M" + x0 + " " + y + "H" + x1, "class": "ln d thin", opacity: 0.5 }, g);
+      var r = rng(seed), hits = 0;
+      for (var i = 0; i < 34; i++) {
+        var a = x0 + r() * (x1 - x0 - len);
+        if (len < 10 && Math.abs(a - nowX) < 8) a += 20; // tiny ones: keep them visibly apart from "now"
+        var b = a + len, yy = y + (i % 3 - 1) * 9;
+        var hit = a <= nowX && b >= nowX;
+        if (hit) hits++;
+        el("path", { d: "M" + a + " " + yy + "H" + Math.max(b, a + 3), stroke: hit ? css("--yellow") : css("--chalk"), "stroke-width": hit ? 6 : 4, "stroke-linecap": "round", opacity: hit ? 1 : 0.65 }, g);
+      }
+      var t2 = el("text", { x: nowX + 14, y: y + 40, "font-size": 18, style: "fill:var(--yellow)" }, g);
+      t2.textContent = hits === 0 ? "nobody at the same time" : hits + " talking at the same time";
+    }
+    el("path", { d: "M" + nowX + " 20V270", "class": "ln y dash thin" }, svg);
+    var nt = el("text", { x: nowX, y: 292, "font-size": 20, "text-anchor": "middle", style: "fill:var(--yellow)" }, svg); nt.textContent = "now";
+    var lt = el("text", { x: x0, y: 292, "font-size": 16, style: "fill:var(--chalk-dim)" }, svg); lt.textContent = "← 13 billion years of galaxy history →";
+    row(90, "Short-lived talkers (small L)", 3, 11);
+    row(200, "Long-lived talkers (big L)", 110, 23);
+  })();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
