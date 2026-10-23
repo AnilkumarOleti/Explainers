@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Range Field Guide | Explainers</title>
+<meta name="description" content="David Epstein&#x27;s Range as a trail map: why a wandering start so often beats a head start, with games and real stories.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/range-field-guide/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Range Field Guide">
+<meta property="og:description" content="David Epstein&#x27;s Range as a trail map: why a wandering start so often beats a head start, with games and real stories.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/range-field-guide/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/range-field-guide/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a topographic trail map. Each big idea in Range is one waypoint on a single trail down the page. */
+:root{
+  --paper:#ECEEE4; --paper-2:#E0E4D5; --card:#F6F7F1; --ink:#1D2621; --ink-soft:#55605A; --line:#C2C7B7;
+  --contour:#C7B68F; --trail:#E2611B; --trail-ink:#A6430C; --on-trail:#1A0F06;
+  --kind:#2C6A4A; --wicked:#5B5C86; --burn:#C2372B; --flag-white:#FFFFFF;
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111714; --paper-2:#18201C; --card:#1A231F; --ink:#E3E8DC; --ink-soft:#A1AB9E; --line:#313B35;
+    --contour:#433E2D; --trail:#F07A34; --trail-ink:#F7A36E; --kind:#76C69C; --wicked:#AAABD8; --burn:#FF7064;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111714; --paper-2:#18201C; --card:#1A231F; --ink:#E3E8DC; --ink-soft:#A1AB9E; --line:#313B35;
+  --contour:#433E2D; --trail:#F07A34; --trail-ink:#F7A36E; --kind:#76C69C; --wicked:#AAABD8; --burn:#FF7064;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1060px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;line-height:1.08}
+h2{font-size:clamp(2rem,5.4vw,3.4rem)}
+h3{font-size:1.35rem}
+p{margin:0}
+.lede{font-size:clamp(1.1rem,2.3vw,1.3rem);max-width:40ch;color:var(--ink)}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.small{font-size:.92rem;color:var(--ink-soft);max-width:62ch}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--trail);outline-offset:2px}
+
+/* sticky trail nav */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--line)}
+.topnav .wrap{display:flex;align-items:center;gap:14px;padding-block:8px}
+.brand{font-family:var(--f-display);font-size:1.15rem;flex:none}
+.navscroll{overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.navscroll::-webkit-scrollbar{display:none}
+.navscroll ol{display:flex;gap:4px;list-style:none;margin:0;padding:0;white-space:nowrap}
+.navscroll a{display:block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);text-decoration:none;padding:6px 9px;border-radius:3px}
+.navscroll a.on{background:var(--trail);color:var(--on-trail)}
+.progress{height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 13px)}
+.progress i{display:block;height:100%;width:0;background:var(--trail)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;padding-block:48px 40px;display:grid;gap:22px}
+.hero h1{font-size:clamp(4.6rem,17vw,10.5rem);letter-spacing:-.02em;line-height:.9}
+.dict{font-family:var(--f-mono);font-size:.9rem;color:var(--ink-soft);display:grid;gap:2px}
+.dict b{color:var(--ink);font-weight:500}
+.map-card{background:color-mix(in srgb,var(--card) 82%,transparent);border:1px solid var(--line);border-radius:6px;padding:14px;display:grid;gap:14px}
+.map-svg{width:100%;height:auto;display:block}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.03em;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);padding:.6em 1em;border-radius:4px;cursor:pointer;transition:transform .12s, background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--trail);border-color:var(--trail);color:var(--on-trail)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.logbook{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px}
+.logbook h3{font-size:1.1rem;display:flex;gap:8px;align-items:center}
+.logbook ol{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px;counter-reset:s}
+.logbook li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-size:.95rem;padding:4px 6px;border-radius:4px;transition:background .3s}
+.logbook li::before{content:counter(s);font-family:var(--f-mono);font-size:.72rem;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;border:1.5px solid currentColor;margin-top:1px}
+.logbook li.on{background:var(--paper-2)}
+.log-t li::before{content:counter(s,upper-alpha)}
+.key{width:26px;height:0;border-top:3px dashed var(--ink-soft);display:inline-block}
+.key.r{border-top:3px solid var(--trail)}
+.verdict{font-family:var(--f-display);font-size:clamp(1.3rem,3vw,1.7rem);max-width:30ch}
+
+/* waypoint sections */
+.wp{padding-block:76px;border-bottom:1px dashed var(--line)}
+.wp .wrap{display:grid;gap:26px}
+.wp-head{display:grid;gap:12px}
+.tag{display:flex;align-items:center;gap:10px}
+.flag{width:22px;height:22px;flex:none;border:1.5px solid var(--ink);background:linear-gradient(135deg,var(--flag-white) 50%,var(--trail) 50%)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:clamp(14px,3vw,26px)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.two > *{min-width:0}
+.fig{width:100%;height:auto;display:block}
+.facts{display:grid;gap:8px;margin-top:12px}
+.facts div{display:grid;grid-template-columns:86px 1fr;gap:10px;font-size:.95rem}
+.facts span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:3px}
+.story{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.story .big{font-family:var(--f-display);font-size:clamp(2.6rem,7vw,4rem);line-height:1;color:var(--trail-ink)}
+@media (max-width:520px){.story{grid-template-columns:1fr}}
+.pull{font-family:var(--f-display);font-size:clamp(1.4rem,3.4vw,2rem);max-width:28ch;line-height:1.2}
+.pull em{font-style:normal;color:var(--trail-ink)}
+
+/* sorter */
+.sorter{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:12px}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px;display:grid;gap:10px;align-content:start;position:relative}
+.sc h4{margin:0;font-family:var(--f-display);font-weight:400;font-size:1.2rem}
+.sc .row{display:flex;gap:6px}
+.sc .row .btn{flex:1;padding:.5em .4em}
+.sc .why{font-size:.88rem;color:var(--ink-soft)}
+.stamp{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border:1.5px solid currentColor;border-radius:3px;justify-self:start;transform:rotate(-3deg)}
+.stamp.k{color:var(--kind)} .stamp.w{color:var(--wicked)}
+.score{font-family:var(--f-mono);font-size:.85rem}
+
+/* chart */
+.slider-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+input[type=range]{accent-color:var(--trail);width:min(100%,320px)}
+.readout{font-family:var(--f-display);font-size:1.25rem}
+.chart-scroll{overflow-x:auto}
+.axis{stroke:var(--line);stroke-width:1}
+.axlab{fill:var(--ink-soft);font-family:var(--f-mono);font-size:11px}
+
+/* late bloomers */
+.bloom{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.bl{border-top:3px solid var(--ink);padding-top:10px;display:grid;gap:6px}
+.bl .age{font-family:var(--f-display);font-size:2.4rem;line-height:1;color:var(--trail-ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--f-mono);font-size:.72rem;padding:3px 7px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft)}
+.chip.end{border-color:var(--trail);color:var(--trail-ink)}
+
+/* test & learn */
+.picker{display:flex;flex-wrap:wrap;gap:8px}
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin-top:16px}
+.vs > div{border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:8px;align-content:start}
+.vs .plan{background:var(--paper-2)}
+.vs .test{background:var(--card);border-color:var(--trail)}
+.vs p.big{font-size:1.15rem}
+
+/* bars */
+.bars{display:flex;gap:28px;align-items:flex-end;height:240px;padding:10px 6px 0;border-bottom:2px solid var(--ink)}
+.bar{flex:1;max-width:150px;display:grid;gap:6px;align-content:end;height:100%;text-align:center}
+.bar .fill{height:0;border-radius:4px 4px 0 0;transition:height .7s cubic-bezier(.2,.8,.2,1)}
+.bar .val{font-family:var(--f-display);font-size:1.8rem}
+.bar.b .fill{background:var(--wicked)} .bar.m .fill{background:var(--trail)}
+.barlabels{display:flex;gap:28px;padding:8px 6px 0}
+.barlabels div{flex:1;max-width:150px;text-align:center;font-family:var(--f-mono);font-size:.75rem}
+.seq{font-family:var(--f-mono);letter-spacing:.2em}
+.ex-list{display:grid;gap:10px}
+.ex{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;padding:12px 0;border-top:1px solid var(--line);font-size:.95rem}
+.ex b{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.ex .bad{color:var(--ink-soft)}
+
+/* tumour */
+.step-hidden{display:none}
+.burnt{stroke:var(--burn)}
+.flip{perspective:900px;cursor:pointer;border:0;background:none;padding:0;text-align:left;width:100%}
+.flip-in{position:relative;display:grid;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);border-radius:6px;padding:18px;background:var(--card);display:grid;gap:8px;align-content:start}
+.face.back{transform:rotateY(180deg);background:var(--paper-2)}
+@media (prefers-reduced-motion: reduce){.flip-in{transition:none}}
+
+/* options */
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:6px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.opt:hover{border-color:var(--ink)}
+.opt .lt{font-family:var(--f-mono);font-size:.75rem;width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;flex:none}
+.opt.right{border-color:var(--kind);background:color-mix(in srgb,var(--kind) 12%,var(--card))}
+.opt.wrong{border-color:var(--burn);opacity:.75}
+.reveal{border-left:3px solid var(--trail);padding:6px 0 6px 14px;display:grid;gap:6px}
+
+/* handhelds */
+.hh{display:grid;gap:10px;justify-items:start}
+.batt{width:100%;height:22px;border:2px solid var(--ink);border-radius:4px;position:relative;padding:2px}
+.batt::after{content:"";position:absolute;right:-6px;top:5px;width:4px;height:8px;background:var(--ink);border-radius:0 2px 2px 0}
+.batt i{display:block;height:100%;background:var(--kind);border-radius:2px}
+.batt.low i{background:var(--burn)}
+
+/* pack */
+.pack{display:flex;flex-wrap:wrap;gap:10px;min-height:60px}
+.tool{border:2px solid var(--ink);background:var(--card);border-radius:6px;padding:10px 14px;cursor:pointer;font-weight:600;transition:transform .6s cubic-bezier(.5,0,.8,.4),opacity .6s}
+.tool.dropped{transform:translateY(46px) rotate(-14deg);opacity:.3;pointer-events:none}
+@media (prefers-reduced-motion: reduce){.tool{transition:none}}
+.meter{height:14px;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.meter i{display:block;height:100%;width:100%;background:var(--trail);transition:width .5s}
+
+/* quiz */
+.quiz{display:grid;gap:22px}
+.q{display:grid;gap:10px}
+.q h4{margin:0;font-family:var(--f-display);font-weight:400;font-size:1.25rem}
+.q .note{font-size:.9rem;color:var(--ink-soft)}
+.packlist{display:grid;gap:0;counter-reset:p}
+.packlist li{list-style:none;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
+.packlist li::before{counter-increment:p;content:counter(p);font-family:var(--f-display);font-size:1.6rem;color:var(--trail-ink)}
+.packlist b{font-family:var(--f-display);font-weight:400;font-size:1.3rem}
+.careful{background:var(--paper-2);border-radius:6px;padding:18px;display:grid;gap:8px}
+footer{padding-block:40px 60px}
+</style>
+</head>
+<body>
+<header class="topnav" aria-label="Waypoints">
+  <div class="wrap">
+    <span class="brand">Range</span>
+    <nav class="navscroll"><ol id="navlist">
+      <li><a href="#trails">01 Two trails</a></li>
+      <li><a href="#worlds">02 Kind &amp; wicked</a></li>
+      <li><a href="#sample">03 Sample first</a></li>
+      <li><a href="#test">04 Test &amp; learn</a></li>
+      <li><a href="#practice">05 Hard practice</a></li>
+      <li><a href="#analogy">06 Analogies</a></li>
+      <li><a href="#outsiders">07 Outsiders</a></li>
+      <li><a href="#oldtech">08 Old tech</a></li>
+      <li><a href="#tools">09 Drop tools</a></li>
+      <li><a href="#foxes">10 Foxes</a></li>
+      <li><a href="#pack">11 Pack list</a></li>
+    </ol></nav>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+</header>
+
+<!-- 01 HERO -->
+<section class="hero" id="trails">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">A field guide to David Epstein's book · 2019</span></div>
+    <h1>Range</h1>
+    <div class="dict">
+      <span><b>range</b> (n.)</span>
+      <span>1. a line of mountains.</span>
+      <span>2. how widely you have wandered before you climb.</span>
+    </div>
+    <p class="lede">Two famous athletes. Same summit. Very different trails. Press play.</p>
+
+    <div class="map-card">
+      <svg class="map-svg" id="heroMap" viewBox="0 0 800 430" role="img" aria-label="Map with two trails from Start to Summit: a straight dashed line for Tiger Woods and a long winding line for Roger Federer.">
+        <path d="M470 230 L590 110 L640 150 L740 50 L800 120" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M560 260 L640 190 L700 230" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <line x1="740" y1="50" x2="740" y2="14" stroke="var(--ink)" stroke-width="2"/>
+        <rect x="740" y="14" width="22" height="22" fill="var(--flag-white)" stroke="var(--ink)" stroke-width="1.5"/>
+        <polygon points="740,36 762,14 762,36" fill="var(--trail)"/>
+        <text x="700" y="80" class="axlab" text-anchor="end">SUMMIT</text>
+        <path id="tPath" d="M50 400 L740 50" fill="none" stroke="var(--ink-soft)" stroke-width="3" stroke-dasharray="9 7"/>
+        <path id="rPath" d="M50 400 C120 425 150 330 210 322 S300 385 350 332 S320 232 395 222 S520 290 540 212 S560 140 620 150 S705 110 740 50" fill="none" stroke="var(--trail)" stroke-width="4" stroke-linecap="round"/>
+        <g id="stops"></g>
+        <circle cx="50" cy="400" r="8" fill="var(--ink)"/>
+        <text x="64" y="418" class="axlab">START · AGE 0</text>
+        <text x="300" y="196" class="axlab" transform="rotate(-27 300 196)" font-weight="500">TIGER</text>
+        <text x="372" y="392" class="axlab" fill="var(--trail-ink)" style="fill:var(--trail-ink)" font-weight="500">ROGER</text>
+        <circle id="tDot" r="9" fill="var(--ink)" stroke="var(--paper)" stroke-width="3" cx="50" cy="400"/>
+        <circle id="rDot" r="9" fill="var(--trail)" stroke="var(--paper)" stroke-width="3" cx="50" cy="400"/>
+      </svg>
+      <div class="controls">
+        <button class="btn primary" id="walk">▶ Walk both trails</button>
+        <span class="mono" id="walkNote">Legend: <span class="key"></span> Tiger &nbsp; <span class="key r"></span> Roger</span>
+      </div>
+      <div class="logbook">
+        <div>
+          <h3><span class="key"></span> Tiger Woods · golf</h3>
+          <ol class="log-t" id="logT">
+            <li>Before he can walk: a putter in his hands</li>
+            <li>Age 2: putting on national TV</li>
+            <li>Childhood: drilled on golf, and golf only</li>
+            <li>Age 21: best golfer in the world</li>
+          </ol>
+        </div>
+        <div>
+          <h3><span class="key r"></span> Roger Federer · tennis</h3>
+          <ol id="logR">
+            <li>Skiing, wrestling, swimming</li>
+            <li>Skateboarding, squash, basketball</li>
+            <li>Handball, table tennis, badminton, football</li>
+            <li>Mum is a tennis coach. She declines to coach him.</li>
+            <li>Teens: finally narrows to tennis</li>
+            <li>One of the greatest players ever</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <p class="verdict">Tiger's story is the one we tell kids. Roger's is the one that usually happens.</p>
+    <p class="small">When researchers study elite athletes, most had a <b>sampling period</b>: years of many sports and light structure, then a late focus. The rest of the book asks where else that pattern holds.</p>
+  </div>
+</section>
+
+<!-- 02 KIND & WICKED -->
+<section class="wp" id="worlds">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 02 · the master key</span></div>
+      <h2>Two kinds of terrain</h2>
+      <p class="lede">Whether early focus wins depends on the world you are learning in.</p>
+    </div>
+    <div class="two">
+      <figure class="panel" style="margin:0">
+        <svg class="fig" viewBox="0 0 320 190" role="img" aria-label="A kind world: a putting green with a clear hole and a short, direct feedback arrow.">
+          <ellipse cx="160" cy="130" rx="140" ry="48" fill="var(--kind)" opacity=".22"/>
+          <ellipse cx="160" cy="130" rx="140" ry="48" fill="none" stroke="var(--kind)" stroke-width="2"/>
+          <ellipse cx="236" cy="128" rx="9" ry="4" fill="var(--ink)"/>
+          <line x1="236" y1="128" x2="236" y2="52" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="236,52 270,62 236,72" fill="var(--trail)"/>
+          <circle cx="80" cy="140" r="7" fill="var(--flag-white)" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M92 138 L222 129" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+          <path d="M226 110 C200 70 120 70 90 118" fill="none" stroke="var(--kind)" stroke-width="2.5" marker-end="url(#ahk)"/>
+          <text x="160" y="62" text-anchor="middle" class="axlab" style="fill:var(--kind)">FEEDBACK: INSTANT</text>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--ink)"/></marker>
+            <marker id="ahk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--kind)"/></marker>
+            <marker id="ahw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--wicked)"/></marker>
+          </defs>
+        </svg>
+        <figcaption>
+          <h3 style="color:var(--kind)">Kind world</h3>
+          <div class="facts">
+            <div><span>Rules</span><span>Clear and fixed</span></div>
+            <div><span>Feedback</span><span>Fast and accurate</span></div>
+            <div><span>Patterns</span><span>Repeat again and again</span></div>
+            <div><span>Examples</span><span>Chess, golf, typing, classical piano</span></div>
+          </div>
+        </figcaption>
+      </figure>
+      <figure class="panel" style="margin:0">
+        <svg class="fig" viewBox="0 0 320 190" role="img" aria-label="A wicked world: foggy forest, unclear target, and a long looping feedback arrow that arrives late.">
+          <g fill="var(--wicked)" opacity=".5">
+            <polygon points="40,150 60,90 80,150"/><polygon points="90,160 115,80 140,160"/><polygon points="190,155 212,95 234,155"/><polygon points="250,160 275,70 300,160"/>
+          </g>
+          <rect x="0" y="100" width="320" height="30" fill="var(--paper-2)" opacity=".75"/>
+          <rect x="0" y="60" width="320" height="16" fill="var(--paper-2)" opacity=".6"/>
+          <text x="166" y="66" text-anchor="middle" font-family="Young Serif, Georgia, serif" font-size="34" style="fill:var(--wicked)">?</text>
+          <circle cx="40" cy="176" r="7" fill="var(--flag-white)" stroke="var(--ink)" stroke-width="1.5"/>
+          <path d="M50 172 C140 172 120 120 165 112" fill="none" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4"/>
+          <path d="M180 110 C330 60 330 200 200 186 C120 180 120 200 58 182" fill="none" stroke="var(--wicked)" stroke-width="2.5" stroke-dasharray="2 6" marker-end="url(#ahw)"/>
+          <text x="210" y="30" text-anchor="middle" class="axlab" style="fill:var(--wicked)">FEEDBACK: LATE, OR WRONG</text>
+        </svg>
+        <figcaption>
+          <h3 style="color:var(--wicked)">Wicked world</h3>
+          <div class="facts">
+            <div><span>Rules</span><span>Hidden, or changing</span></div>
+            <div><span>Feedback</span><span>Slow, missing, misleading</span></div>
+            <div><span>Patterns</span><span>Rarely repeat exactly</span></div>
+            <div><span>Examples</span><span>Business, policy, research, careers</span></div>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <p class="pull">Kind worlds reward <em>early, narrow drilling</em>. That is also exactly where computers now beat us. Most of real life is wicked.</p>
+
+    <div class="panel" style="display:grid;gap:14px">
+      <div class="slider-row" style="justify-content:space-between">
+        <h3>Your turn: sort the terrain</h3>
+        <span class="score" id="sortScore">0 / 8 sorted</span>
+      </div>
+      <div class="sorter" id="sorter"></div>
+    </div>
+
+    <div class="panel story">
+      <div class="big" aria-hidden="true">1900s</div>
+      <div style="display:grid;gap:8px">
+        <h3>The tongue doctor</h3>
+        <p>A New York doctor became famous for spotting typhoid early by feeling patients' tongues with his bare hands. His predictions kept coming true. He was right because <b>his hands were carrying the disease</b> from patient to patient.</p>
+        <p class="small">That is wicked feedback: each "success" taught him the wrong lesson more firmly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SAMPLE -->
+<section class="wp" id="sample">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 03 · match quality</span></div>
+      <h2>Sample first, then focus</h2>
+      <p class="lede">A head start feels like winning. A good <b>fit</b> is what wins over a career.</p>
+    </div>
+    <div class="panel" style="display:grid;gap:14px">
+      <div class="slider-row">
+        <label for="sampleYears" class="mono">Years spent sampling</label>
+        <input type="range" id="sampleYears" min="0" max="6" step="1" value="4">
+        <span class="readout" id="sampleOut">4 years</span>
+      </div>
+      <div class="chart-scroll">
+        <svg class="fig" id="matchChart" viewBox="0 0 640 320" role="img" aria-label="Illustrative chart of skill times fit over age for an early specialist and a sampler."></svg>
+      </div>
+      <p id="matchNote" class="readout"></p>
+      <p class="small">Illustrative shape, not real data. It sketches a real finding: economist Ofer Malamud compared students in England, who pick a subject before university, with students in Scotland, who sample for two years first. The early choosers were <b>more likely to switch careers later</b>. Choosing before you know yourself produces more bad fits.</p>
+    </div>
+
+    <h3>Late starts that turned out fine</h3>
+    <div class="bloom">
+      <div class="bl">
+        <span class="age">27</span>
+        <b>Vincent van Gogh</b>
+        <div class="chips"><span class="chip">art dealer</span><span class="chip">teacher</span><span class="chip">bookseller</span><span class="chip">preacher</span><span class="chip end">painter</span></div>
+        <p class="small">Started painting seriously near 27. Kept switching styles until one was unmistakably his.</p>
+      </div>
+      <div class="bl">
+        <span class="age">54</span>
+        <b>Frances Hesselbein</b>
+        <div class="chips"><span class="chip">volunteer</span><span class="chip">troop leader</span><span class="chip end">CEO</span></div>
+        <p class="small">First professional job at 54. Went on to run the Girl Scouts of the USA and turn it around.</p>
+      </div>
+      <div class="bl">
+        <span class="age">~12</span>
+        <b>Roger Federer</b>
+        <div class="chips"><span class="chip">10+ sports</span><span class="chip end">tennis</span></div>
+        <p class="small">Chose tennis over football only around age 12, late by prodigy standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 TEST & LEARN -->
+<section class="wp" id="test">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 04 · be a scientist of yourself</span></div>
+      <h2>Don't plan who you are. Test it.</h2>
+      <p class="lede">You find your path by trying things, not by thinking harder about it. Small experiments beat a 10-year plan.</p>
+    </div>
+    <div class="panel">
+      <p class="mono" style="margin-bottom:10px">Pick a curiosity</p>
+      <div class="picker" id="picker" role="group" aria-label="Curiosities"></div>
+      <div class="vs" id="vsBox"></div>
+    </div>
+    <p class="pull">Compare yourself with <em>yourself last year</em>, not with a younger person who started earlier.</p>
+    <p class="small">This idea comes from Herminia Ibarra's research on career changers, which Epstein leans on: people discover who they are by doing, then reflecting. Introspection alone rarely gets there.</p>
+  </div>
+</section>
+
+<!-- 05 HARD PRACTICE -->
+<section class="wp" id="practice">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 05 · desirable difficulties</span></div>
+      <h2>Practice that feels worse works better</h2>
+      <p class="lede">Easy practice gives quick wins that fade. Messy, mixed practice feels slow and sticks.</p>
+    </div>
+    <div class="two">
+      <div class="panel" style="display:grid;gap:14px">
+        <div class="controls" role="group" aria-label="Choose moment">
+          <button class="btn" id="phPrac" aria-pressed="true">During practice</button>
+          <button class="btn" id="phTest" aria-pressed="false">Test, a week later</button>
+        </div>
+        <div>
+          <div class="bars" aria-live="polite">
+            <div class="bar b"><span class="val" id="vB">89%</span><div class="fill" id="fB"></div></div>
+            <div class="bar m"><span class="val" id="vM">60%</span><div class="fill" id="fM"></div></div>
+          </div>
+          <div class="barlabels">
+            <div>Blocked<br><span class="seq">AAA BBB CCC</span></div>
+            <div>Mixed<br><span class="seq">ABC CAB BCA</span></div>
+          </div>
+        </div>
+        <p class="small">Approximate scores from a classic maths study (Rohrer &amp; Taylor). Same problems, only the order changed.</p>
+      </div>
+      <div class="panel" style="display:grid;gap:12px;align-content:start">
+        <h3>Why?</h3>
+        <p>Mixed practice forces you to ask <b>"what kind of problem is this?"</b> every time. Blocked practice answers that for you, so you never learn it.</p>
+        <p>At the US Air Force Academy, professors whose students did best in Calculus I, and who got the best ratings, had students who did <b>worse in Calculus II</b>. Hand-holding helped today and hurt later.</p>
+      </div>
+    </div>
+    <div class="ex-list">
+      <div class="ex"><b>Cricket nets</b><span class="bad">Same delivery from the bowling machine, 50 times</span><span>Pace, spin and bouncers, shuffled</span></div>
+      <div class="ex"><b>Interview prep</b><span class="bad">20 "two-pointer" problems in a row</span><span>Random problems, no topic label</span></div>
+      <div class="ex"><b>A new language</b><span class="bad">One tense a day</span><span>Mixed sentences, guess before checking</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 ANALOGY -->
+<section class="wp" id="analogy">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 06 · far transfer</span></div>
+      <h2>Borrow solutions from far away</h2>
+      <p class="lede">Try the most famous puzzle in this field. Only about 1 in 10 people solve it cold.</p>
+    </div>
+    <div class="panel" style="display:grid;gap:16px">
+      <div class="story">
+        <svg width="90" height="90" viewBox="0 0 90 90" aria-hidden="true"><circle cx="45" cy="45" r="40" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="2"/><circle cx="45" cy="45" r="9" fill="var(--wicked)"/></svg>
+        <div style="display:grid;gap:6px">
+          <h3>The puzzle</h3>
+          <p>A patient has a tumour deep inside. A ray strong enough to destroy it also destroys the healthy tissue it passes through. A weak ray is safe, but does nothing to the tumour. <b>What do you do?</b></p>
+          <div class="controls"><button class="btn" id="hintBtn">I'm stuck. Tell me a story.</button></div>
+        </div>
+      </div>
+      <div id="fortress" class="step-hidden" style="display:grid;gap:14px">
+        <div class="two" style="align-items:center">
+          <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="A fortress at the centre with six roads. Small groups of soldiers march in on every road at once.">
+            <g stroke="var(--line)" stroke-width="6" stroke-linecap="round">
+              <line x1="160" y1="120" x2="160" y2="8"/><line x1="160" y1="120" x2="160" y2="232"/>
+              <line x1="160" y1="120" x2="62" y2="64"/><line x1="160" y1="120" x2="258" y2="64"/>
+              <line x1="160" y1="120" x2="62" y2="176"/><line x1="160" y1="120" x2="258" y2="176"/>
+            </g>
+            <g id="marchers"></g>
+            <rect x="140" y="100" width="40" height="40" fill="var(--ink)"/>
+            <rect x="136" y="96" width="10" height="10" fill="var(--ink)"/><rect x="174" y="96" width="10" height="10" fill="var(--ink)"/>
+          </svg>
+          <div style="display:grid;gap:8px">
+            <h3>The fortress</h3>
+            <p>A general must take a fortress. Every road is mined: a big army would set the mines off. So he splits his army into small groups, one per road. Each is light enough to pass safely. They all arrive at once.</p>
+            <div class="controls"><button class="btn primary" id="tryBtn">Now try the tumour again</button></div>
+          </div>
+        </div>
+      </div>
+      <div id="tumourBox" class="step-hidden" style="display:grid;gap:14px">
+        <div class="two" style="align-items:center">
+          <svg class="fig" id="tumour" viewBox="0 0 360 360" role="img" aria-label="Body cross-section with rays aimed at a tumour."></svg>
+          <div style="display:grid;gap:12px">
+            <label for="beams" class="mono">Number of rays (same total power)</label>
+            <input type="range" id="beams" min="1" max="8" value="1">
+            <p class="readout" id="tumourOut"></p>
+            <p class="small">With the fortress story, far more people solve it. The two problems look nothing alike on the surface. Underneath, they share one structure: <b>split the force, converge on the target.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two">
+      <button class="flip" id="flip1" aria-label="Flip card: what do a dog and a rabbit have in common?">
+        <div class="flip-in">
+          <div class="face"><span class="mono">Tap to flip</span><h3>What do a dog and a rabbit have in common?</h3></div>
+          <div class="face back"><span class="mono">Two answers, a century apart</span><p><b>Remote villager, 1930s:</b> "You use a dog to hunt rabbits."</p><p><b>Most people today:</b> "Both are mammals."</p><p class="small">Modern life trained us to think in categories and abstractions. That is what lets an idea jump from one field to another.</p></div>
+        </div>
+      </button>
+      <div class="panel" style="display:grid;gap:8px;align-content:start">
+        <h3>Kepler's habit</h3>
+        <p>To explain why planets move, Johannes Kepler kept reaching for analogies: light, smells, boats in a river, magnets. Most were wrong. Collectively they led him to the idea of a force from the Sun.</p>
+        <p class="small">Practical move: when stuck, ask "where else does a problem shaped like this show up?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 OUTSIDERS -->
+<section class="wp" id="outsiders">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 07 · outsider advantage</span></div>
+      <h2>The answer often comes from next door</h2>
+      <p class="lede">Companies post problems their own experts couldn't crack. Strangers from other fields solve a surprising share.</p>
+    </div>
+    <div class="panel" style="display:grid;gap:14px">
+      <span class="mono">The case · Alaska, after the 1989 Exxon Valdez spill</span>
+      <h3>Spilled oil mixed with icy water and turned to a thick sludge. It froze inside the recovery barges and couldn't be pumped out. Oil experts were stuck for years. Who cracked it?</h3>
+      <div class="opts" id="outOpts"></div>
+      <div id="outReveal" class="reveal" hidden>
+        <p><b>A chemist from the concrete industry.</b> He knew that concrete stays liquid as long as you keep vibrating it. Put a vibrating tool in the sludge and it flows. It worked.</p>
+        <p class="small">He wasn't smarter than the oil experts. He carried a tool from a different world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 OLD TECH -->
+<section class="wp" id="oldtech">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 08 · lateral thinking with withered technology</span></div>
+      <h2>Old parts, new uses</h2>
+      <p class="lede">A Nintendo engineer with no elite training had a rule: take cheap, well-understood tech and use it in a way no one has. Guess which handheld sold more.</p>
+    </div>
+    <div class="two">
+      <div class="panel hh">
+        <svg class="fig" viewBox="0 0 240 150" style="max-width:260px" aria-hidden="true">
+          <rect x="10" y="10" width="220" height="130" rx="18" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="2.5"/>
+          <rect x="70" y="26" width="100" height="72" rx="4" fill="var(--kind)" opacity=".5" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="34" y="62" width="10" height="30" fill="var(--ink)"/><rect x="24" y="72" width="30" height="10" fill="var(--ink)"/>
+          <circle cx="196" cy="70" r="8" fill="var(--ink)"/><circle cx="208" cy="88" r="8" fill="var(--ink)"/>
+        </svg>
+        <span class="mono">Handheld A</span>
+        <p>Old, cheap screen. Green-and-black, no backlight.</p>
+        <div class="batt" aria-label="Battery life up to about 30 hours"><i style="width:100%"></i></div>
+        <p class="small">Up to ~30 hours on 4 AA batteries. Cheap. Survives being dropped.</p>
+        <button class="btn" data-pick="A">This one sold more</button>
+      </div>
+      <div class="panel hh">
+        <svg class="fig" viewBox="0 0 240 150" style="max-width:260px" aria-hidden="true">
+          <rect x="10" y="10" width="220" height="130" rx="18" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="2.5"/>
+          <defs><linearGradient id="col" x1="0" x2="1"><stop offset="0" stop-color="#E2611B"/><stop offset=".5" stop-color="#3D8FB8"/><stop offset="1" stop-color="#7A4FB5"/></linearGradient></defs>
+          <rect x="70" y="26" width="100" height="72" rx="4" fill="url(#col)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="34" y="62" width="10" height="30" fill="var(--ink)"/><rect x="24" y="72" width="30" height="10" fill="var(--ink)"/>
+          <circle cx="196" cy="70" r="8" fill="var(--ink)"/><circle cx="208" cy="88" r="8" fill="var(--ink)"/>
+        </svg>
+        <span class="mono">Handheld B</span>
+        <p>Newest tech. Full-colour, backlit screen.</p>
+        <div class="batt low" aria-label="Battery life about 3 to 5 hours"><i style="width:15%"></i></div>
+        <p class="small">About 3–5 hours on 6 AA batteries. Pricier.</p>
+        <button class="btn" data-pick="B">This one sold more</button>
+      </div>
+    </div>
+    <div id="hhReveal" class="reveal" hidden>
+      <p><b>A was the Nintendo Game Boy (1989).</b> B was the Sega Game Gear. Gunpei Yokoi's "withered" tech beat flashier rivals and became one of the best-selling consoles ever. Kids cared about playing all trip long, not pixels.</p>
+      <p class="small">Same idea elsewhere: Nintendo's Wii had weaker graphics than its rivals but controls anyone's grandparent could use. M-Pesa in Kenya ran mobile money over plain SMS on basic phones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 DROP TOOLS -->
+<section class="wp" id="tools">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 09 · drop your familiar tools</span></div>
+      <h2>Know when to drop your tools</h2>
+      <p class="lede">The habits that made you good can trap you when the situation changes.</p>
+    </div>
+    <div class="two">
+      <div class="panel story">
+        <div class="big" aria-hidden="true">1949</div>
+        <div style="display:grid;gap:8px">
+          <h3>Mann Gulch, Montana</h3>
+          <p>A wildfire raced uphill at a crew of smokejumpers. Their foreman shouted to drop their heavy tools and run. Some kept carrying them. Thirteen men died.</p>
+          <p class="small">Researcher Karl Weick's reading: for a firefighter, the tools are part of who you are. Letting go felt like no longer being a firefighter.</p>
+        </div>
+      </div>
+      <div class="panel story">
+        <div class="big" aria-hidden="true">1986</div>
+        <div style="display:grid;gap:8px">
+          <h3>The Challenger launch</h3>
+          <p>Engineers feared the cold would weaken the rocket's seals. They had a strong hunch but no clean chart. NASA's culture accepted only hard numbers, so the hunch lost. Numbers were the tool no one could put down.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="display:grid;gap:14px">
+      <h3>Your pack. Tap a tool to drop it.</h3>
+      <div style="display:grid;gap:6px"><span class="mono">Pack weight</span><div class="meter"><i id="meter"></i></div></div>
+      <div class="pack" id="pack"></div>
+      <div class="reveal" id="toolNote" aria-live="polite"><p class="small">Each tool is useful. Each becomes dead weight when the ground changes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 FOXES -->
+<section class="wp" id="foxes">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 10 · foxes and hedgehogs</span></div>
+      <h2>The fox beats the hedgehog</h2>
+      <p class="lede">Psychologist Philip Tetlock tracked tens of thousands of expert predictions over about 20 years. On average, the experts barely beat chance.</p>
+    </div>
+    <div class="two" style="align-items:center">
+      <div class="panel" style="display:grid;gap:12px">
+        <div class="controls" role="group" aria-label="Choose forecaster">
+          <button class="btn" id="fxH" aria-pressed="true">Hedgehog</button>
+          <button class="btn" id="fxF" aria-pressed="false">Fox</button>
+        </div>
+        <svg class="fig" id="board" viewBox="0 0 300 300" role="img" aria-label="Dartboard showing forecast darts and their average."></svg>
+        <span class="mono">◎ bullseye = what actually happened · ✕ = average of the darts</span>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div class="panel" id="fxText" aria-live="polite"></div>
+        <p class="pull">A fox is an <em>ensemble model</em>. Many weak, different views, averaged, beat one confident view.</p>
+        <p class="small">Later, Tetlock's forecasting tournament found ordinary people with fox-like habits who outperformed professional intelligence analysts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 PACK LIST -->
+<section class="wp" id="pack">
+  <div class="wrap">
+    <div class="wp-head">
+      <div class="tag"><span class="flag" aria-hidden="true"></span><span class="mono">Waypoint 11 · summit check</span></div>
+      <h2>Five questions before the summit</h2>
+    </div>
+    <div class="panel quiz" id="quiz"></div>
+    <p class="score" id="quizScore" aria-live="polite"></p>
+
+    <h2 style="margin-top:20px">Pack list</h2>
+    <ol class="packlist" style="padding:0;margin:0">
+      <li><span><b>Don't feel behind.</b> A late, well-fitted start often overtakes an early, poor fit.</span></li>
+      <li><span><b>Check the terrain.</b> Kind world? Drill. Wicked world? Widen.</span></li>
+      <li><span><b>Run small experiments.</b> Try, reflect, adjust. Skip the 10-year plan.</span></li>
+      <li><span><b>Make practice harder.</b> Mix it, space it, guess before you look.</span></li>
+      <li><span><b>Collect analogies.</b> Read and wander outside your field on purpose.</span></li>
+      <li><span><b>Hold tools loosely.</b> Your methods are not your identity.</span></li>
+    </ol>
+
+    <div class="careful">
+      <span class="mono">Where the book is careful</span>
+      <p>Epstein does not say specialists are useless. In kind worlds like chess, golf or classical performance, early deep practice works. His claim is that most of life is wicked, and there range is the better default. Critics add a fair warning: breadth without depth anywhere can slide into dabbling.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="small">Concepts from <i>Range: Why Generalists Triumph in a Specialized World</i> by David Epstein (2019), paraphrased. Charts marked illustrative show the shape of a finding, not real data.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+  const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+  /* ---------- Topographic contours (marching squares) ---------- */
+  const cv = $('#topo');
+  function drawTopo(){
+    if (!cv) return;
+    const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = w * dpr; cv.height = h * dpr;
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+    const S = Math.max(w,h);
+    const hills = [
+      {x:.84*w,y:.16*h,s:.2*S,a:1},{x:.12*w,y:.9*h,s:.16*S,a:.65},
+      {x:.5*w,y:.55*h,s:.24*S,a:.42},{x:.98*w,y:.78*h,s:.14*S,a:.55},{x:.3*w,y:.15*h,s:.12*S,a:.35}
+    ];
+    const f = (x,y) => { let v = 0; for (const hl of hills){ const dx=x-hl.x, dy=y-hl.y; v += hl.a*Math.exp(-(dx*dx+dy*dy)/(2*hl.s*hl.s)); } return v + .035*Math.sin(x*.012)*Math.cos(y*.016); };
+    const cs = 9, cols = Math.ceil(w/cs)+1, rows = Math.ceil(h/cs)+1;
+    const F = new Float32Array(cols*rows);
+    for (let j=0;j<rows;j++) for (let i=0;i<cols;i++) F[j*cols+i] = f(i*cs,j*cs);
+    const T = {1:[[3,2]],2:[[2,1]],3:[[3,1]],4:[[0,1]],5:[[0,3],[2,1]],6:[[0,2]],7:[[0,3]],8:[[0,3]],9:[[0,2]],10:[[0,1],[3,2]],11:[[0,1]],12:[[3,1]],13:[[2,1]],14:[[3,2]]};
+    const col = cssv('--contour') || '#C7B68F';
+    let n = 0;
+    for (let L = .08; L < 1.1; L += .065, n++){
+      ctx.beginPath(); ctx.strokeStyle = col; ctx.lineWidth = (n % 5 === 4) ? 1.8 : .9;
+      for (let j=0;j<rows-1;j++) for (let i=0;i<cols-1;i++){
+        const tl=F[j*cols+i], tr=F[j*cols+i+1], br=F[(j+1)*cols+i+1], bl=F[(j+1)*cols+i];
+        const idx = (tl>L?8:0)|(tr>L?4:0)|(br>L?2:0)|(bl>L?1:0);
+        const segs = T[idx]; if (!segs) continue;
+        const x=i*cs, y=j*cs;
+        const pt = e => {
+          if (e===0){ const t=(L-tl)/(tr-tl); return [x+t*cs,y]; }
+          if (e===1){ const t=(L-tr)/(br-tr); return [x+cs,y+t*cs]; }
+          if (e===2){ const t=(L-br)/(bl-br); return [x+cs-t*cs,y+cs]; }
+          const t=(L-bl)/(tl-bl); return [x,y+cs-t*cs];
+        };
+        for (const [a,b] of segs){ const p=pt(a), q=pt(b); ctx.moveTo(p[0],p[1]); ctx.lineTo(q[0],q[1]); }
+      }
+      ctx.stroke();
+    }
+  }
+  drawTopo();
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawTopo, 150); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawTopo);
+  new MutationObserver(drawTopo).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawTopo);
+
+  /* ---------- Nav progress + active waypoint ---------- */
+  const links = [...document.querySelectorAll('#navlist a')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  function onScroll(){
+    const max = document.documentElement.scrollHeight - innerHeight;
+    $('#prog').style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + '%';
+    let cur = 0; secs.forEach((s,i) => { if (s && s.getBoundingClientRect().top < innerHeight*.35) cur = i; });
+    links.forEach((a,i) => a.classList.toggle('on', i===cur));
+    const on = links[cur]; const sc = on && on.closest('.navscroll');
+    if (sc){ const l = on.offsetLeft - sc.clientWidth/2 + on.clientWidth/2; if (Math.abs(sc.scrollLeft - l) > 40) sc.scrollLeft = l; }
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---------- Hero walk ---------- */
+  const tP = $('#tPath'), rP = $('#rPath'), stops = $('#stops');
+  const tL = tP.getTotalLength(), rL = rP.getTotalLength();
+  const tMarks = [.04,.3,.62,1], rMarks = [.1,.28,.47,.66,.84,1];
+  const letters = 'ABCD';
+  tMarks.forEach((m,i) => { if (m===1) return; const p = tP.getPointAtLength(m*tL); el('circle',{cx:p.x,cy:p.y,r:10,fill:'var(--card)',stroke:'var(--ink-soft)','stroke-width':1.5},stops); const t=el('text',{x:p.x,y:p.y+4,'text-anchor':'middle',class:'axlab'},stops); t.textContent=letters[i]; });
+  rMarks.forEach((m,i) => { if (m===1) return; const p = rP.getPointAtLength(m*rL); el('circle',{cx:p.x,cy:p.y,r:10,fill:'var(--card)',stroke:'var(--trail)','stroke-width':1.5},stops); const t=el('text',{x:p.x,y:p.y+4,'text-anchor':'middle',class:'axlab'},stops); t.textContent=i+1; });
+  const tItems = [...document.querySelectorAll('#logT li')], rItems = [...document.querySelectorAll('#logR li')];
+  function place(dot, path, len, t){ const p = path.getPointAtLength(t*len); dot.setAttribute('cx',p.x); dot.setAttribute('cy',p.y); }
+  function mark(items, marks, t){ let k=-1; marks.forEach((m,i)=>{ if (t >= m - .001) k = i; }); items.forEach((li,i)=>li.classList.toggle('on', i===k)); }
+  let walking = false;
+  $('#walk').addEventListener('click', () => {
+    if (walking) return; walking = true;
+    const tDot = $('#tDot'), rDot = $('#rDot');
+    if (reduce){ place(tDot,tP,tL,1); place(rDot,rP,rL,1); mark(tItems,tMarks,1); mark(rItems,rMarks,1); walking=false; return; }
+    const t0 = performance.now(), TD = 2600, RD = 5200;
+    function step(now){
+      const e = now - t0, tt = Math.min(1, e/TD), rt = Math.min(1, e/RD);
+      const ease = x => x<.5 ? 2*x*x : 1-Math.pow(-2*x+2,2)/2;
+      place(tDot,tP,tL,ease(tt)); place(rDot,rP,rL,ease(rt));
+      mark(tItems,tMarks,ease(tt)); mark(rItems,rMarks,ease(rt));
+      if (rt < 1) requestAnimationFrame(step); else { walking = false; $('#walk').textContent = '↺ Walk again'; }
+    }
+    requestAnimationFrame(step);
+  });
+
+  /* ---------- Sorter ---------- */
+  const cards = [
+    ['Chess','k','Fixed rules, instant feedback, patterns repeat. Computers now crush humans here.'],
+    ['Hiring','w','You never see how the people you rejected would have done.'],
+    ['Golf putting','k','Same ball, same hole. You see the result in seconds.'],
+    ['Investing','w','Feedback is slow and noisy. Luck looks a lot like skill.'],
+    ['Typing','k','Every wrong key shows up right away.'],
+    ['Launching a product','w','Markets shift. No two launches are the same game.'],
+    ['Tomorrow’s weather','k','You learn tomorrow whether you were right, every day. Forecasters get well-calibrated.'],
+    ['Parenting','w','Feedback arrives 20 years later, tangled with everything else.']
+  ];
+  const sorter = $('#sorter'); let sorted = 0, right = 0;
+  cards.forEach(([name, ans, why]) => {
+    const c = document.createElement('div'); c.className = 'sc';
+    c.innerHTML = `<h4>${name}</h4><div class="row"><button class="btn" data-a="k">Kind</button><button class="btn" data-a="w">Wicked</button></div>`;
+    c.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      const ok = b.dataset.a === ans; sorted++; if (ok) right++;
+      c.innerHTML = `<h4>${name}</h4><span class="stamp ${ans}">${ans==='k'?'Kind':'Wicked'} · ${ok?'you got it':'not quite'}</span><p class="why">${why}</p>`;
+      $('#sortScore').textContent = `${right} right · ${sorted} / ${cards.length} sorted`;
+    }));
+    sorter.appendChild(c);
+  });
+
+  /* ---------- Match-quality chart ---------- */
+  const mc = $('#matchChart');
+  const X = a => 54 + (a-15)/(45-15)*560, Y = v => 272 - v/100*244;
+  const spec = a => a<15?0:72*(1-Math.exp(-(a-15)/5));
+  function samp(a,s){
+    const Fa = 15+s, cap = Math.min(100, 72+5*s);
+    const pre = x => 18*(1-Math.exp(-(x-15)/4));
+    if (s===0) return spec(a);
+    if (a<Fa) return pre(a);
+    const b = pre(Fa); return b + (cap-b)*(1-Math.exp(-(a-Fa)/5));
+  }
+  function drawChart(){
+    const s = +$('#sampleYears').value;
+    $('#sampleOut').textContent = s + (s===1?' year':' years');
+    mc.innerHTML = '';
+    for (let a=15;a<=45;a+=10){ el('line',{x1:X(a),x2:X(a),y1:28,y2:272,class:'axis','stroke-dasharray':'2 4'},mc); const t=el('text',{x:X(a),y:292,'text-anchor':'middle',class:'axlab'},mc); t.textContent='age '+a; }
+    el('line',{x1:54,x2:614,y1:272,y2:272,stroke:'var(--ink)','stroke-width':1.5},mc);
+    const yl = el('text',{x:16,y:150,class:'axlab',transform:'rotate(-90 16 150)','text-anchor':'middle'},mc); yl.textContent='SKILL × FIT';
+    const path = fn => { let d=''; for (let a=15;a<=45;a+=.25){ d += (d?'L':'M') + X(a).toFixed(1)+' '+Y(fn(a)).toFixed(1); } return d; };
+    el('path',{d:path(spec),fill:'none',stroke:'var(--ink-soft)','stroke-width':3,'stroke-dasharray':'8 6'},mc);
+    el('path',{d:path(a=>samp(a,s)),fill:'none',stroke:'var(--trail)','stroke-width':4,'stroke-linecap':'round'},mc);
+    if (s>0){
+      el('line',{x1:X(15+s),x2:X(15+s),y1:40,y2:272,stroke:'var(--trail)','stroke-width':1,'stroke-dasharray':'3 3'},mc);
+      const ft=el('text',{x:X(15+s)+6,y:52,class:'axlab'},mc); ft.style.fill='var(--trail-ink)'; ft.textContent='sampler picks a lane';
+    }
+    let cross = null;
+    if (s>0) for (let a=15+s;a<=45;a+=.1){ if (samp(a,s) > spec(a)){ cross = a; break; } }
+    const l1=el('text',{x:X(44),y:Y(spec(44))+20,class:'axlab','text-anchor':'end'},mc); l1.textContent='early specialist';
+    const l2=el('text',{x:X(44),y:Y(samp(44,s))-10,class:'axlab','text-anchor':'end'},mc); l2.style.fill='var(--trail-ink)'; l2.textContent='sampler';
+    if (cross){ el('circle',{cx:X(cross),cy:Y(spec(cross)),r:7,fill:'var(--card)',stroke:'var(--trail)','stroke-width':3},mc); }
+    $('#matchNote').textContent = s===0 ? 'No sampling: the two paths are the same.'
+      : cross ? `Behind for a while, then the sampler overtakes around age ${Math.round(cross)}, and keeps climbing higher.`
+      : 'The sampler never quite catches up in this sketch.';
+  }
+  $('#sampleYears').addEventListener('input', drawChart); drawChart();
+
+  /* ---------- Test & learn picker ---------- */
+  const tests = [
+    ['Product management','Quit, do an MBA, then apply for PM roles.','Own one small feature end to end at your current job for a quarter. Notice what energises you.'],
+    ['Teaching','Get a teaching degree, then look for a school.','Run one free Saturday workshop. See if you want to run a second.'],
+    ['Opening a café','Take a loan and lease a space.','Run a weekend pop-up stall for a month. Count repeat customers.'],
+    ['Writing','Wait for the big book idea to arrive.','Publish four short posts in four weeks. See which one you enjoyed writing.'],
+    ['Data science','Finish three certificates first.','Answer one real question with real data this week. Share it with someone.']
+  ];
+  const picker = $('#picker'), vs = $('#vsBox');
+  function showTest(i){
+    [...picker.children].forEach((b,j)=>b.setAttribute('aria-pressed', j===i));
+    const [n,plan,test] = tests[i];
+    vs.innerHTML = `<div class="plan"><span class="mono">Plan-then-do</span><p class="big">${plan}</p><p class="small">Big bet, made before you know if you'll like it.</p></div><div class="test"><span class="mono" style="color:var(--trail-ink)">Test-and-learn</span><p class="big">${test}</p><p class="small">Cheap, fast, and you learn something about yourself either way.</p></div>`;
+  }
+  tests.forEach((t,i)=>{ const b=document.createElement('button'); b.className='btn'; b.textContent=t[0]; b.addEventListener('click',()=>showTest(i)); picker.appendChild(b); });
+  showTest(0);
+
+  /* ---------- Interleaving bars ---------- */
+  const data = {p:{b:89,m:60}, t:{b:20,m:63}};
+  function setPhase(ph){
+    $('#phPrac').setAttribute('aria-pressed', ph==='p'); $('#phTest').setAttribute('aria-pressed', ph==='t');
+    $('#fB').style.height = data[ph].b*1.8 + 'px'; $('#fM').style.height = data[ph].m*1.8 + 'px';
+    $('#vB').textContent = data[ph].b + '%'; $('#vM').textContent = data[ph].m + '%';
+  }
+  $('#phPrac').addEventListener('click',()=>setPhase('p')); $('#phTest').addEventListener('click',()=>setPhase('t'));
+  setPhase('p');
+
+  /* ---------- Fortress + tumour ---------- */
+  const marchers = $('#marchers');
+  [[160,8],[160,232],[62,64],[258,64],[62,176],[258,176]].forEach(([x,y],i)=>{
+    const g = el('g',{},marchers);
+    for (let k=0;k<3;k++){
+      const c = el('circle',{r:4,fill:'var(--trail)',cx:x,cy:y},g);
+      if (!reduce){
+        const a = el('animate',{attributeName:'cx',values:`${x};${160+(x-160)*.25}`,dur:'2.6s',begin:`${k*.4+i*.05}s`,repeatCount:'indefinite'},c);
+        el('animate',{attributeName:'cy',values:`${y};${120+(y-120)*.25}`,dur:'2.6s',begin:`${k*.4+i*.05}s`,repeatCount:'indefinite'},c);
+      } else { c.setAttribute('cx', x+(160-x)*(.3+k*.2)); c.setAttribute('cy', y+(120-y)*(.3+k*.2)); }
+    }
+  });
+  $('#hintBtn').addEventListener('click',()=>{ $('#fortress').classList.remove('step-hidden'); $('#hintBtn').disabled = true; $('#fortress').scrollIntoView({behavior: reduce?'auto':'smooth', block:'nearest'}); });
+  $('#tryBtn').addEventListener('click',()=>{ $('#tumourBox').classList.remove('step-hidden'); drawTumour(); $('#tumourBox').scrollIntoView({behavior: reduce?'auto':'smooth', block:'nearest'}); });
+  const tu = $('#tumour');
+  function drawTumour(){
+    const n = +$('#beams').value, per = 100/n, safe = per < 34;
+    tu.innerHTML = '';
+    el('circle',{cx:180,cy:180,r:140,fill:'var(--paper-2)',stroke:'var(--ink)','stroke-width':2.5},tu);
+    for (let k=0;k<n;k++){
+      const ang = -Math.PI/2 + k*2*Math.PI/n + .35;
+      const sx = 180+Math.cos(ang)*172, sy = 180+Math.sin(ang)*172;
+      const ex = 180+Math.cos(ang)*20, ey = 180+Math.sin(ang)*20;
+      el('line',{x1:sx,y1:sy,x2:ex,y2:ey,stroke: safe?'var(--trail)':'var(--burn)','stroke-width':2+per*.16,'stroke-linecap':'round',opacity: safe ? .85 : .9},tu);
+      el('rect',{x:sx-9,y:sy-9,width:18,height:18,fill:'var(--ink)',transform:`rotate(${ang*180/Math.PI} ${sx} ${sy})`},tu);
+      if (!safe){ for (let r=50;r<=130;r+=26){ el('circle',{cx:180+Math.cos(ang)*r,cy:180+Math.sin(ang)*r,r:7,fill:'none',stroke:'var(--burn)','stroke-width':2},tu); } }
+    }
+    const dead = safe;
+    el('circle',{cx:180,cy:180,r: dead?10:18,fill: dead?'none':'var(--wicked)',stroke: dead?'var(--kind)':'none','stroke-width':3,'stroke-dasharray': dead?'4 3':'0'},tu);
+    const lab = el('text',{x:180,y:345,'text-anchor':'middle',class:'axlab'},tu);
+    lab.textContent = `${n} ray${n>1?'s':''} × ${Math.round(per)}% power each`;
+    $('#tumourOut').textContent = n===1 ? 'One strong ray: the tumour dies, and so does everything in its path.'
+      : !safe ? 'Two half-strength rays: still strong enough to burn the tissue they cross.'
+      : 'Solved. Each ray is too weak to harm healthy tissue. Only where they meet does the tumour get the full dose.';
+  }
+  $('#beams').addEventListener('input', drawTumour);
+  $('#flip1').addEventListener('click',e=>e.currentTarget.classList.toggle('on'));
+
+  /* ---------- Outsider quiz ---------- */
+  const outOpts = [['A senior petroleum engineer',false],['An Arctic marine biologist',false],['A chemist who worked with concrete',true]];
+  const oo = $('#outOpts');
+  outOpts.forEach(([t,ok],i)=>{
+    const b=document.createElement('button'); b.className='opt'; b.innerHTML=`<span class="lt">${'ABC'[i]}</span><span>${t}</span>`;
+    b.addEventListener('click',()=>{ [...oo.children].forEach((x,j)=>{ x.disabled=true; if (outOpts[j][1]) x.classList.add('right'); }); if(!ok) b.classList.add('wrong'); $('#outReveal').hidden=false; });
+    oo.appendChild(b);
+  });
+
+  /* ---------- Handheld guess ---------- */
+  document.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{
+    const ok = b.dataset.pick==='A';
+    document.querySelectorAll('[data-pick]').forEach(x=>{ x.disabled=true; x.textContent = x.dataset.pick==='A' ? 'Winner: Game Boy' : 'Sega Game Gear'; if (x.dataset.pick==='A') x.classList.add('primary'); });
+    const r = $('#hhReveal'); r.hidden=false; r.firstElementChild.insertAdjacentHTML('afterbegin', ok ? '<b>Right. </b>' : '<b>Most people pick B. </b>');
+  }));
+
+  /* ---------- Drop tools ---------- */
+  const tools = [
+    ['Only trust the data','Challenger: the engineers closest to the seals had a warning. It didn’t fit the accepted format, so it lost.'],
+    ['How we’ve always done it','A routine built for the old problem becomes dead weight on a new one.'],
+    ['My job title','If "I’m an analyst" is who you are, you’ll avoid the work that would stretch you.'],
+    ['My favourite framework','A hammer you love makes every problem look like a nail.'],
+    ['Being the expert in the room','Experts often defend a view harder than they test it.']
+  ];
+  const pack = $('#pack'); let left = tools.length;
+  tools.forEach(([n,why])=>{
+    const b=document.createElement('button'); b.className='tool'; b.textContent=n;
+    b.addEventListener('click',()=>{
+      b.classList.add('dropped'); b.setAttribute('aria-disabled','true'); left--;
+      $('#meter').style.width = (left/tools.length*100)+'%';
+      $('#toolNote').innerHTML = `<p><b>Dropped: ${n}.</b> ${why}</p>` + (left===0 ? '<p class="small">Pack empty. You still know everything you knew. You just aren’t carrying it as armour.</p>' : '');
+    });
+    pack.appendChild(b);
+  });
+
+  /* ---------- Foxes dartboard ---------- */
+  function rng(seed){ return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function gauss(r){ return Math.sqrt(-2*Math.log(r()+1e-9))*Math.cos(2*Math.PI*r()); }
+  const mk = (cx,cy,sd,seed) => { const r=rng(seed); return Array.from({length:9},()=>[cx+gauss(r)*sd, cy+gauss(r)*sd]); };
+  const darts = { h: mk(204,100,8,7), f: mk(150,150,40,23) };
+  // recentre fox darts so their mean sits close to the bullseye
+  (function(){ const d=darts.f; const mx=d.reduce((s,p)=>s+p[0],0)/d.length, my=d.reduce((s,p)=>s+p[1],0)/d.length; darts.f = d.map(p=>[p[0]-mx+153, p[1]-my+146]); })();
+  const texts = {
+    h: '<h3>Hedgehog: one big idea</h3><p>Tight, confident cluster, in the wrong place. Hedgehogs see every question through one theory. Tetlock found they did worst, and were often worst inside their own speciality.</p>',
+    f: '<h3>Fox: many small ideas</h3><p>Each guess is rough and scattered. Averaged, they land near the truth. Foxes borrow from many fields, update often and are comfortable saying "it depends".</p>'
+  };
+  function drawBoard(mode){
+    $('#fxH').setAttribute('aria-pressed', mode==='h'); $('#fxF').setAttribute('aria-pressed', mode==='f');
+    const b = $('#board'); b.innerHTML='';
+    [130,98,66,34].forEach((r,i)=>el('circle',{cx:150,cy:150,r,fill: i%2? 'var(--card)':'var(--paper-2)',stroke:'var(--line)','stroke-width':1.5},b));
+    el('circle',{cx:150,cy:150,r:8,fill:'var(--kind)'},b);
+    const d = darts[mode];
+    d.forEach(([x,y])=>{ el('circle',{cx:x,cy:y,r:5,fill: mode==='h'?'var(--wicked)':'var(--trail)',stroke:'var(--ink)','stroke-width':1},b); });
+    const mx = d.reduce((s,p)=>s+p[0],0)/d.length, my = d.reduce((s,p)=>s+p[1],0)/d.length;
+    el('path',{d:`M${mx-10} ${my-10} L${mx+10} ${my+10} M${mx+10} ${my-10} L${mx-10} ${my+10}`,stroke:'var(--ink)','stroke-width':3.5,'stroke-linecap':'round'},b);
+    $('#fxText').innerHTML = texts[mode];
+  }
+  $('#fxH').addEventListener('click',()=>drawBoard('h')); $('#fxF').addEventListener('click',()=>drawBoard('f'));
+  drawBoard('h');
+
+  /* ---------- Final quiz ---------- */
+  const Q = [
+    ['A field with clear rules and instant, accurate feedback is…',['Kind','Wicked','Random'],0,'Kind worlds reward early, focused drilling.'],
+    ['Your practice feels easy and your scores are great. What should worry you?',['Nothing, keep going','It may be blocked practice: strong today, forgotten later','You need more hours'],1,'Smooth practice can hide shallow learning. Mix it up.'],
+    ['Stuck on a hard problem. What does Range suggest?',['Ask more people in your own niche','Look for a problem with the same shape in another field','Push harder with the same method'],1,'Far analogies, like the fortress and the tumour, unlock it.'],
+    ['Why did the Game Boy beat flashier rivals?',['Better graphics','Cheap, proven tech used cleverly: battery life and price','A bigger ad budget'],1,'Lateral thinking with withered technology.'],
+    ['Who forecasts messy, real-world events better?',['Hedgehogs, with one big theory','Foxes, with many small ideas'],1,'Many perspectives, averaged, beat one confident lens.']
+  ];
+  const quiz = $('#quiz'); let qDone=0, qRight=0;
+  Q.forEach(([q,opts,ans,note],qi)=>{
+    const box=document.createElement('div'); box.className='q';
+    box.innerHTML=`<span class="mono">Question ${qi+1} of ${Q.length}</span><h4>${q}</h4><div class="opts"></div><p class="note" hidden></p>`;
+    const o = box.querySelector('.opts');
+    opts.forEach((t,i)=>{
+      const b=document.createElement('button'); b.className='opt'; b.innerHTML=`<span class="lt">${'ABC'[i]}</span><span>${t}</span>`;
+      b.addEventListener('click',()=>{
+        [...o.children].forEach((x,j)=>{ x.disabled=true; if(j===ans) x.classList.add('right'); });
+        if (i!==ans) b.classList.add('wrong'); else qRight++;
+        qDone++; const n=box.querySelector('.note'); n.hidden=false; n.textContent=note;
+        if (qDone===Q.length) $('#quizScore').textContent = `Summit reached: ${qRight} / ${Q.length}. ` + (qRight===Q.length ? 'A fox in the making.' : 'Mixed results feel bad and stick better. That was interleaving.');
+      });
+      o.appendChild(b);
+    });
+    quiz.appendChild(box);
+  });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
