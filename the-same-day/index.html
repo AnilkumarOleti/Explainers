@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Same Day | Explainers</title>
+<meta name="description" content="Your ordinary day, set beside the documented day of a registered prisoner at Auschwitz. Every fact is sourced.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/the-same-day/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Same Day">
+<meta property="og:description" content="Your ordinary day, set beside the documented day of a registered prisoner at Auschwitz. Every fact is sourced.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/the-same-day/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/the-same-day/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+<style>
+/* Layout: one quiet reading column (~40rem) under a slim sticky movement bar.
+   Movement II widens into a three-track clock table: time | your day (clean, cool) | their day (archival paper).
+   The contrast between the two lives is carried by surface, typeface and spacing only. */
+:root{
+  --page:#f3f4f2;          /* page ground: neutral, faintly warm */
+  --surface:#fcfdfd;       /* "your day": clean, cool */
+  --line:#d9dde0;
+  --text:#262b30;          /* reader's own entries, controls */
+  --muted:#5b6268;
+  --paper:#e9e2d2;         /* archival paper: the prisoner's record */
+  --paper-deep:#ddd3bf;
+  --paper-line:#c4b79c;
+  --ink:#1e1a15;           /* historical text */
+  --ink-muted:#62584a;
+  --accent:#2c4a63;        /* museum-label blue-grey, for controls */
+  --accent-soft:#dfe7ee;
+  --on-accent:#ffffff;
+  --focus:#2a6aa0;
+  --serif:"Spectral", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --navh:52px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#131517; --surface:#1b1e22; --line:#2f353b; --text:#e2e5e8; --muted:#9aa2a9;
+    --paper:#27221b; --paper-deep:#322b22; --paper-line:#4d4334; --ink:#ebe3d3; --ink-muted:#b5a88f;
+    --accent:#a8c0d6; --accent-soft:#223140; --on-accent:#0f151b; --focus:#8cc0ee;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#131517; --surface:#1b1e22; --line:#2f353b; --text:#e2e5e8; --muted:#9aa2a9;
+  --paper:#27221b; --paper-deep:#322b22; --paper-line:#4d4334; --ink:#ebe3d3; --ink-muted:#b5a88f;
+  --accent:#a8c0d6; --accent-soft:#223140; --on-accent:#0f151b; --focus:#8cc0ee;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+body{margin:0;background:var(--page);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--page)}
+a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));margin-inline:auto;width:100%}
+.narrow{max-width:44rem}
+.wide{max-width:62rem}
+
+/* ---- Movement bar (progress, not a score) ---- */
+.mvbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--page);border-bottom:1px solid var(--line)}
+.mvbar-in{display:flex;gap:6px;max-width:44rem;padding-block:8px 0}
+.mvbar a{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:5px;padding:2px 2px 0;text-decoration:none;color:var(--muted);font-size:.74rem;line-height:1.25;letter-spacing:.01em}
+.mvbar .n{font-family:var(--serif);font-size:.8rem;letter-spacing:.06em}
+.mvbar .l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mvbar .bar{display:block;height:2px;background:var(--line);margin-bottom:-1px;transition:background-color .8s ease}
+.mvbar a[aria-current="step"]{color:var(--text)}
+.mvbar a[aria-current="step"] .bar{background:var(--accent)}
+.mvbar a.done .bar{background:var(--muted)}
+
+/* ---- Sections ---- */
+section,.opening{scroll-margin-top:calc(var(--navh) + env(safe-area-inset-top,0px) + 4px)}
+.band{padding-block:clamp(3.5rem,11vw,6.5rem)}
+.band + .band{border-top:1px solid var(--line)}
+.mv{margin:0 0 .6rem;font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink);text-wrap:balance;margin:0}
+h1{font-weight:300;font-size:clamp(2.7rem,10vw,4.4rem);line-height:1.02;letter-spacing:-.012em}
+h2{font-size:clamp(1.75rem,5.6vw,2.4rem);line-height:1.12;letter-spacing:-.005em}
+h3{font-size:1.25rem;line-height:1.25}
+.serif{font-family:var(--serif);font-size:1.0625rem;line-height:1.62;color:var(--ink)}
+.instr{font-size:.95rem;color:var(--muted);max-width:36rem;margin:.9rem 0 0}
+.coda{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,4.4vw,1.6rem);line-height:1.35;color:var(--ink);margin:2.75rem 0 0;text-wrap:balance}
+
+/* ---- Footnote markers + source sheet ---- */
+.fns{white-space:nowrap}
+.fn{all:unset;cursor:pointer;display:inline-block;vertical-align:super;font-family:var(--sans);font-size:.62rem;line-height:1;font-weight:500;color:var(--accent);padding:3px 3px;margin-left:1px;border-radius:3px;font-variant-numeric:tabular-nums}
+.fn:hover{background:var(--accent-soft)}
+.fn:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -8px 30px rgba(0,0,0,.12);padding:1rem max(16px,env(safe-area-inset-right,0px)) calc(1rem + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet-in{max-width:44rem;margin-inline:auto;display:grid;gap:.5rem}
+.sheet-k{margin:0;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sheet-t{margin:0;font-family:var(--serif);font-size:1rem;line-height:1.45;color:var(--ink)}
+.sheet-row{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;font-size:.9rem}
+.sheet .close{margin-left:auto}
+@media (prefers-reduced-motion: no-preference){ .sheet:not([hidden]){animation:rise .45s ease both} }
+@keyframes rise{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+
+/* ---- Buttons & controls ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:500 1rem/1 var(--sans);padding:.95rem 1.9rem;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);border-radius:2px;text-decoration:none;cursor:pointer;letter-spacing:.02em;transition:background-color .4s ease,color .4s ease}
+.btn:hover{background:transparent;color:var(--accent)}
+.btn.quiet{background:transparent;color:var(--accent);padding:.6rem 1rem;font-size:.9rem}
+.btn.quiet:hover{background:var(--accent-soft)}
+.link-btn{all:unset;cursor:pointer;color:var(--accent);font-size:.92rem;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.link-btn:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+/* ---- Opening ---- */
+.opening{padding-block:clamp(3rem,12vw,7rem) clamp(3.5rem,11vw,6rem)}
+.opening .eyebrow{margin:0 0 1.4rem}
+.opening .lede{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.2rem,4.2vw,1.45rem);line-height:1.4;color:var(--ink);margin:1.2rem 0 0;max-width:34rem}
+.opening .serif{margin:1.6rem 0 0;max-width:36rem}
+.label-card{margin:2.2rem 0 0;background:var(--paper);color:var(--ink);padding:1.15rem 1.25rem 1.2rem;border:1px solid var(--paper-line);border-radius:1px;font-family:var(--serif);font-size:1rem;line-height:1.58;max-width:36rem}
+.label-card p{margin:0}
+.label-card p + p{margin-top:.7rem}
+.label-card .k{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.55rem}
+.duration{margin:2.2rem 0 1.4rem;font-size:.95rem;color:var(--muted)}
+
+/* ---- Movement I: checklist ---- */
+.checklist{list-style:none;margin:2rem 0 0;padding:0;border-top:1px solid var(--line)}
+.item{border-bottom:1px solid var(--line)}
+.item label{display:flex;gap:.9rem;align-items:flex-start;padding:.95rem .15rem;cursor:pointer;font-size:1.02rem;line-height:1.45;color:var(--text)}
+.item input{appearance:none;-webkit-appearance:none;flex:none;width:1.3rem;height:1.3rem;margin:.08rem 0 0;border:1.5px solid var(--muted);border-radius:3px;background:var(--surface);display:grid;place-content:center;cursor:pointer;transition:background-color .35s ease,border-color .35s ease}
+.item input::after{content:"";width:.36rem;height:.66rem;border:solid var(--on-accent);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px) scale(0);transition:transform .25s ease}
+.item input:checked{background:var(--accent);border-color:var(--accent)}
+.item input:checked::after{transform:rotate(45deg) translate(-1px,-1px) scale(1)}
+.item input:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.reveal{margin:0 0 1.1rem 2.2rem;padding:.9rem 1.05rem 1rem;background:var(--paper);color:var(--ink);border-radius:1px}
+.reveal p{margin:0;font-family:var(--serif);font-size:1rem;line-height:1.58}
+.reveal .rk{font-family:var(--sans);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.4rem}
+.reveal a{color:inherit}
+@media (prefers-reduced-motion: no-preference){ .reveal.in{animation:fadein 1.1s ease both} }
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.m1-foot{margin-top:1.4rem}
+
+/* ---- Movement II: the day ---- */
+.m2-head{max-width:44rem}
+.controls{display:grid;gap:1.1rem;margin-top:1.8rem;max-width:44rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:2px;padding:3px;gap:3px;margin:0;background:var(--surface);width:max-content}
+.seg legend{padding:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{padding:.5rem 1.1rem;font-size:.9rem;cursor:pointer;color:var(--muted);border-radius:1px;transition:background-color .4s ease,color .4s ease}
+.seg input:checked + label{background:var(--accent);color:var(--on-accent)}
+.seg input:focus-visible + label{outline:2px solid var(--focus);outline-offset:2px}
+.seg-row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem}
+.seg-row .hint{font-size:.85rem;color:var(--muted)}
+.adjust{border:1px solid var(--line);background:var(--surface);border-radius:2px}
+.adjust summary{cursor:pointer;padding:.8rem 1rem;font-size:.92rem;font-weight:500;color:var(--text);list-style-position:inside}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.2rem,1fr));gap:.9rem 1rem;padding:.2rem 1rem 1.1rem}
+.fields label{display:grid;gap:.3rem;font-size:.8rem;color:var(--muted);min-width:0}
+.fields input,.fields select{font:inherit;font-size:.98rem;color:var(--text);background:var(--page);border:1px solid var(--line);border-radius:2px;padding:.45rem .5rem;min-width:0;width:100%;font-variant-numeric:tabular-nums}
+.winter-note{margin:1.6rem 0 0;max-width:44rem;background:var(--paper);color:var(--ink);border:1px solid var(--paper-line);padding:.9rem 1.05rem;font-family:var(--serif);font-size:1rem;line-height:1.55}
+.winter-note .k{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.35rem}
+
+.tl{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;margin-top:1.8rem}
+.tl col.c-time{width:3.3rem}
+.tl col.c-you{width:42%}
+.tl thead th{position:sticky;top:calc(var(--navh) + env(safe-area-inset-top,0px));z-index:3;text-align:left;font-weight:500;vertical-align:bottom;padding:.7rem .7rem .6rem;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+.tl thead th.t{background:var(--page);padding-left:0}
+.tl thead th.you{background:var(--surface);color:var(--muted)}
+.tl thead th.them{background:var(--paper);color:var(--ink-muted);border-bottom-color:var(--paper-line)}
+.tl tbody th{font-weight:400;text-align:right;vertical-align:top;padding:.62rem .55rem 0 0;border-right:1px solid var(--line);font-size:.86rem;color:var(--muted);font-variant-numeric:tabular-nums;line-height:1.15}
+.tl tbody th .ap{display:block;font-size:.66rem;letter-spacing:.06em}
+.tl tbody th .c{font-family:var(--serif);font-style:italic}
+.tl td{vertical-align:top;padding:.6rem .7rem .7rem;overflow-wrap:anywhere}
+.tl td.you{background:var(--surface);color:var(--text)}
+.tl td.them{background:var(--paper);color:var(--ink);font-family:var(--serif)}
+.tl tr + tr td.you{border-top:1px dashed var(--line)}
+.tl tr + tr td.them{border-top:1px dashed var(--paper-line)}
+.ev + .ev{margin-top:.6rem}
+.ev-t{display:block;font-size:.95rem;line-height:1.3;font-weight:500}
+.them .ev-t{font-weight:500;font-size:1rem}
+.ev-n{display:block;margin-top:.2rem;font-size:.84rem;line-height:1.45;color:var(--muted)}
+.them .ev-n{font-size:.9rem;line-height:1.5;color:var(--ink-muted)}
+.cont{display:block;font-size:.8rem;line-height:1.35;font-style:italic;color:var(--muted)}
+.them .cont{color:var(--ink-muted);font-size:.86rem}
+.own{margin:2.6rem auto 0;max-width:44rem;font-family:var(--serif);font-size:clamp(1.3rem,4.4vw,1.6rem);font-weight:300;line-height:1.38;color:var(--ink);text-wrap:balance}
+.own strong{font-weight:500}
+.own .them-line{display:block;font-style:italic;margin-top:.35rem}
+
+/* ---- Movement III: plates ---- */
+.example{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;margin-top:1.6rem;padding:.7rem .9rem;border:1px dashed var(--line);border-radius:2px;font-size:.88rem;color:var(--muted);background:var(--surface)}
+.picker{margin-top:1.4rem;display:grid;gap:1.1rem}
+.grp{margin:0 0 .5rem;font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{font:inherit;font-size:.88rem;line-height:1.2;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.45rem .8rem;cursor:pointer;display:inline-flex;gap:.45rem;align-items:baseline;transition:border-color .3s ease,background-color .3s ease}
+.chip:hover{border-color:var(--accent)}
+.chip .q{font-size:.75rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.chip.on{border-color:var(--accent);background:var(--accent-soft)}
+.other{display:flex;flex-wrap:wrap;gap:.5rem;align-items:end}
+.other label{display:grid;gap:.25rem;font-size:.78rem;color:var(--muted);min-width:0}
+.other input{font:inherit;font-size:.95rem;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:.45rem .55rem;min-width:0}
+.other .nm{flex:1 1 10rem}
+.other .nm input{width:100%}
+.other .kc input{width:6.5rem}
+
+.plates{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:2.2rem}
+@media (min-width:600px){ .plates{grid-template-columns:1fr 1fr} }
+.plate{margin:0;padding:1.1rem 1.15rem 1.2rem;border-radius:1px;min-width:0}
+.plate.you{background:var(--surface);border:1px solid var(--line)}
+.plate.them{background:var(--paper);border:1px solid var(--paper-line);color:var(--ink)}
+.plate figcaption{font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+.plate.them figcaption{color:var(--ink-muted)}
+.plate-list{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+.plate-list li{display:grid;grid-template-columns:1fr auto auto;gap:.5rem;align-items:center;font-size:.92rem;padding:.25rem 0;border-bottom:1px solid var(--line)}
+.plate-list .pk{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.plate-list .pn{min-width:0}
+.plate-list .pq{color:var(--muted);font-variant-numeric:tabular-nums}
+.step{display:inline-flex;gap:2px}
+.step button{font:inherit;width:1.9rem;height:1.9rem;border:1px solid var(--line);background:var(--page);color:var(--text);border-radius:2px;cursor:pointer;line-height:1}
+.step button:hover{border-color:var(--accent)}
+.empty{font-size:.9rem;color:var(--muted);font-style:italic;margin:0}
+.total{margin:.9rem 0 0;font-size:.95rem;color:var(--text)}
+.total strong{font-variant-numeric:tabular-nums}
+.them .total{font-family:var(--serif);color:var(--ink)}
+.ration{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;align-items:end}
+.ration figure{margin:0;display:grid;gap:.45rem;justify-items:center;text-align:center}
+.ration svg{width:100%;max-width:92px;height:auto;color:var(--ink)}
+.ration figcaption{font-family:var(--serif);font-size:.86rem;line-height:1.35;color:var(--ink);letter-spacing:0;text-transform:none;margin:0}
+
+.cal{margin-top:2.4rem}
+.cal h3{font-size:1.1rem;margin-bottom:1rem}
+.bars{display:grid;gap:1rem;margin:0;padding:0;list-style:none}
+.bar-row{display:grid;gap:.35rem}
+.bar-lab{display:flex;justify-content:space-between;gap:.75rem;font-size:.86rem;color:var(--text);flex-wrap:wrap}
+.bar-lab .v{font-variant-numeric:tabular-nums;color:var(--muted)}
+.track{position:relative;height:14px;background:transparent}
+.track .f{position:absolute;left:0;top:0;bottom:0;border-radius:1px}
+.k-you .f.a{background:var(--accent)}
+.k-paper .f.a{background:var(--ink-muted)}
+.k-paper .f.b{background:var(--paper-line)}
+.k-real .f.a{background:var(--ink)}
+.k-real .f.b{background:var(--ink-muted);opacity:.55}
+.k-need .f.a{background:transparent;border:1.5px solid var(--ink-muted)}
+@media (prefers-reduced-motion: no-preference){ .track .f{transition:width 1.2s cubic-bezier(.2,.7,.2,1),left 1.2s cubic-bezier(.2,.7,.2,1)} }
+.axis{position:relative;height:1.4rem;margin-top:.3rem;border-top:1px solid var(--line);font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.axis span{position:absolute;top:.25rem;transform:translateX(-50%);white-space:nowrap}
+.axis span:first-child{transform:none}
+.axis span.last{transform:translateX(-100%)}
+.axis-k{font-size:.72rem;color:var(--muted);margin:.2rem 0 0;text-align:right}
+.facts{margin:2.4rem 0 0;padding:0;list-style:none;display:grid;gap:1rem;max-width:40rem}
+.facts li{font-family:var(--serif);font-size:1.02rem;line-height:1.6;color:var(--ink);padding-left:1.1rem;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:.75em;width:.4rem;height:1px;background:var(--ink-muted)}
+
+/* ---- Closing ---- */
+.closing p.serif{max-width:38rem;margin:1.2rem 0 0}
+.frankl{margin:2rem 0 0;max-width:38rem;font-family:var(--serif);font-size:1.15rem;line-height:1.55;color:var(--ink);font-style:italic;font-weight:300}
+.frankl + .serif{margin-top:1rem}
+.note-form{margin-top:2.6rem;display:grid;gap:.6rem;max-width:38rem}
+.note-form label{font-family:var(--serif);font-size:1.25rem;color:var(--ink)}
+.note-form textarea{font:inherit;font-size:1rem;line-height:1.5;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:.8rem .9rem;min-height:6.5rem;resize:vertical;width:100%}
+.note-row{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
+.note-row .hint{font-size:.84rem;color:var(--muted)}
+.status{font-size:.88rem;color:var(--muted);min-height:1.3em;margin:0}
+.notes{list-style:none;margin:1.4rem 0 0;padding:0;max-width:38rem;display:grid;gap:.6rem}
+.notes li{border-top:1px solid var(--line);padding-top:.6rem;font-size:.95rem}
+.notes time{display:block;font-size:.75rem;color:var(--muted);letter-spacing:.04em}
+.notes-tools{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;font-size:.88rem;color:var(--muted)}
+.remember{margin-top:3.2rem;max-width:38rem}
+.remember ul{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.85rem}
+.remember li a{font-family:var(--serif);font-size:1.08rem}
+.remember li span{display:block;font-size:.86rem;color:var(--muted)}
+.sources{margin-top:3.2rem;max-width:44rem}
+.sources ol{margin:1rem 0 0;padding-left:1.6rem;display:grid;gap:.55rem;font-size:.86rem;line-height:1.5;color:var(--muted)}
+.sources li{padding-left:.25rem;overflow-wrap:anywhere}
+.sources li:target{background:var(--accent-soft)}
+.sources .org{color:var(--text)}
+.sources .why{display:block;font-size:.8rem}
+.foot{padding-block:2.5rem 3.5rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+
+@media (max-width:420px){
+  .tl col.c-time{width:2.9rem}
+  .tl td{padding:.55rem .5rem .65rem}
+  .tl thead th{padding:.6rem .5rem .55rem;font-size:.7rem}
+  .ev-t{font-size:.9rem}
+  .them .ev-t{font-size:.95rem}
+  .ev-n{font-size:.8rem}
+  .them .ev-n{font-size:.85rem}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<nav class="mvbar" aria-label="Movements">
+  <div class="wrap mvbar-in">
+    <a href="#m1" data-m="m1"><span class="n">I</span><span class="l">Things you did</span><span class="bar" aria-hidden="true"></span></a>
+    <a href="#m2" data-m="m2"><span class="n">II</span><span class="l">Side by side</span><span class="bar" aria-hidden="true"></span></a>
+    <a href="#m3" data-m="m3"><span class="n">III</span><span class="l">Two plates</span><span class="bar" aria-hidden="true"></span></a>
+  </div>
+</nav>
+
+<main>
+<header class="opening" id="top">
+  <div class="wrap narrow">
+    <p class="mv eyebrow">A reflection in three movements</p>
+    <h1>The Same Day</h1>
+    <p class="lede">Your day today, set beside the documented day of a registered prisoner at Auschwitz, 1940–1945.</p>
+    <p class="serif">This is a way to notice what you had today, and to remember the people from whom all of it was taken. Every statement here about the camp comes from the Auschwitz-Birkenau Memorial, the United States Holocaust Memorial Museum or Yad Vashem, and carries a small numbered marker you can tap to see its source.</p>
+    <aside class="label-card" aria-label="Before you begin">
+      <span class="k">Before you begin</span>
+      <p><strong>Most people deported to Auschwitz never lived a day there.</strong> Of about 1.3 million people deported, a little over 400,000 were registered as prisoners. Most Jewish deportees were murdered in the gas chambers on arrival. Around 1.1 million people were killed at Auschwitz in total.<span data-fn="victimsResearch deportees victims ramp"></span></p>
+      <p>The day described here is that of a registered prisoner, which was itself the exception.</p>
+    </aside>
+    <p class="duration">This takes about 10 minutes. There is nothing to win.</p>
+    <a class="btn" href="#m1" id="begin">Begin</a>
+  </div>
+</header>
+
+<section class="band" id="m1" aria-labelledby="m1h">
+  <div class="wrap narrow">
+    <p class="mv">Movement I</p>
+    <h2 id="m1h" tabindex="-1">Things You Did Today</h2>
+    <p class="instr">Tick what you did or had today. Under each tick you’ll read what it meant for a registered prisoner. Nothing here is counted.</p>
+    <ul class="checklist" id="checklist"></ul>
+    <p class="m1-foot"><button type="button" class="link-btn" id="showAll" aria-pressed="false">Read what every item meant</button></p>
+    <p class="coda">Almost everything you ticked was taken from them on their first day.</p>
+  </div>
+</section>
+
+<section class="band" id="m2" aria-labelledby="m2h">
+  <div class="wrap wide">
+    <div class="m2-head">
+      <p class="mv">Movement II</p>
+      <h2 id="m2h" tabindex="-1">A Day, Side by Side</h2>
+      <p class="instr">Set your day roughly as it went. The prisoner’s day is fixed; it follows the Memorial’s records and survivors’ accounts, and it varied by year, season and work detail. Times marked <em>c.</em> are approximate.</p>
+    </div>
+    <div class="controls">
+      <div class="seg-row">
+        <fieldset class="seg">
+          <legend class="sr-only">Season in the camp</legend>
+          <input type="radio" name="season" id="sSummer" value="summer" checked><label for="sSummer">Summer</label>
+          <input type="radio" name="season" id="sWinter" value="winter"><label for="sWinter">Winter</label>
+        </fieldset>
+        <span class="hint">Season in the camp</span>
+      </div>
+      <details class="adjust" open>
+        <summary>Adjust your day</summary>
+        <div class="fields">
+          <label>Wake up<input type="time" id="tWake" value="07:00"></label>
+          <label>Breakfast<input type="time" id="tBreakfast" value="08:00"></label>
+          <label>Leave for work<input type="time" id="tLeave" value="09:00"></label>
+          <label>Commute, each way
+            <select id="tCommute">
+              <option value="0">None, I work from home</option>
+              <option value="15">15 minutes</option>
+              <option value="30">30 minutes</option>
+              <option value="45" selected>45 minutes</option>
+              <option value="60">1 hour</option>
+              <option value="75">1¼ hours</option>
+              <option value="90">1½ hours</option>
+              <option value="120">2 hours</option>
+            </select>
+          </label>
+          <label>Lunch<input type="time" id="tLunch" value="13:30"></label>
+          <label>Work ends<input type="time" id="tFinish" value="18:30"></label>
+          <label>Dinner<input type="time" id="tDinner" value="20:30"></label>
+          <label>Bedtime<input type="time" id="tBed" value="23:30"></label>
+        </div>
+      </details>
+    </div>
+    <p class="winter-note" id="winterNote" hidden><span class="k">Winter in Oświęcim</span>Frost, snow and long nights. Roll call was held whatever the weather, and camp clothing did not protect against it.<span data-fn="dayPodcast"></span></p>
+
+    <table class="tl" id="timeline">
+      <caption class="sr-only">Your day and a registered prisoner’s day, aligned by clock time</caption>
+      <colgroup><col class="c-time"><col class="c-you"><col class="c-them"></colgroup>
+      <thead><tr><th scope="col" class="t"><span class="sr-only">Time</span></th><th scope="col" class="you">Your day</th><th scope="col" class="them">A registered prisoner’s day</th></tr></thead>
+      <tbody id="tlBody"></tbody>
+    </table>
+
+    <p class="own" aria-live="polite">You have about <strong id="ownHours">6 hours</strong> today that belonged entirely to you.<span class="them-line">They had almost none.</span></p>
+  </div>
+</section>
+
+<section class="band" id="m3" aria-labelledby="m3h">
+  <div class="wrap narrow">
+    <p class="mv">Movement III</p>
+    <h2 id="m3h" tabindex="-1">Your Plate, Their Plate</h2>
+    <p class="instr">Add what you ate today. Calories are rough, per typical serving.</p>
+
+    <div class="example" id="exampleBar">
+      <span id="exampleText">This is an example day. Change it to match yours.</span>
+      <button type="button" class="btn quiet" id="clearFood">Clear and start with mine</button>
+    </div>
+
+    <div class="picker" id="picker"></div>
+
+    <div class="picker">
+      <div>
+        <p class="grp">Something else</p>
+        <form class="other" id="otherForm" autocomplete="off">
+          <label class="nm">What was it?<input type="text" id="otherName" maxlength="40" placeholder="e.g. pongal"></label>
+          <label class="kc">Calories, roughly<input type="number" id="otherKcal" min="1" max="3000" step="10" inputmode="numeric" placeholder="300"></label>
+          <button type="submit" class="btn quiet">Add</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="plates">
+      <figure class="plate you">
+        <figcaption>Your plate today</figcaption>
+        <ul class="plate-list" id="plateList" tabindex="-1" aria-label="What you ate today"></ul>
+        <p class="total" aria-live="polite">About <strong id="kcalTotal">0</strong> kcal</p>
+      </figure>
+      <figure class="plate them">
+        <figcaption>Their plate, for the whole day</figcaption>
+        <div class="ration">
+          <figure>
+            <svg viewBox="0 0 90 80" aria-hidden="true" focusable="false">
+              <path d="M18 22h46v34a12 12 0 0 1-12 12H30a12 12 0 0 1-12-12z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M64 30h6a9 9 0 0 1 0 18h-6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M22 34h38" stroke="currentColor" stroke-width="1" opacity=".55"/>
+              <path d="M10 72h66" stroke="currentColor" stroke-width="1" opacity=".4"/>
+            </svg>
+            <figcaption>½ litre “coffee”, morning</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 90 80" aria-hidden="true" focusable="false">
+              <path d="M8 34h74a37 30 0 0 1-74 0z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M14 40h62" stroke="currentColor" stroke-width="1" opacity=".55"/>
+              <circle cx="36" cy="44" r="1.6" fill="currentColor" opacity=".55"/>
+              <circle cx="52" cy="46" r="1.2" fill="currentColor" opacity=".55"/>
+              <path d="M10 72h70" stroke="currentColor" stroke-width="1" opacity=".4"/>
+            </svg>
+            <figcaption>About 1 litre thin soup, noon</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 90 80" aria-hidden="true" focusable="false">
+              <path d="M26 66V36a19 15 0 0 1 38 0v30z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M10 72h70" stroke="currentColor" stroke-width="1" opacity=".4"/>
+            </svg>
+            <figcaption>About 300–350 g bread, evening</figcaption>
+          </figure>
+        </div>
+        <p class="total">About 1,300–1,700 kcal a day in practice<span data-fn="museumJVL"></span></p>
+      </figure>
+    </div>
+
+    <div class="cal">
+      <h3>Calories, drawn to scale</h3>
+      <ul class="bars" id="bars"></ul>
+      <div class="axis" id="axis" aria-hidden="true"></div>
+      <p class="axis-k">kcal per day</p>
+    </div>
+
+    <ul class="facts">
+      <li>On paper the day’s food was half a litre of ersatz “coffee” or herbal “tea” in the morning, about a litre of soup at noon (potatoes, swede, a little groats), and in the evening about 300–350 g of bread with a little margarine, sausage, marmalade or cheese.<span data-fn="nutrition dayPodcast"></span></li>
+      <li>In theory a loaf of about 1 kg was shared among four prisoners. The functionaries handing it out often cut slices for themselves first.<span data-fn="starvation"></span></li>
+      <li>Details varied. No official menu survives for the main camp or Birkenau; a menu from one sub-camp lists meat soup four times a week.<span data-fn="starvation"></span></li>
+      <li>Official norms put the day’s food at about 1,700 kcal for light work and 2,150 for heavy labour. In practice, prisoners received around 1,300 kcal for lighter work and 1,700 for hard labour.<span data-fn="gutman museumJVL"></span></li>
+      <li>The thicker part of the soup settled at the bottom of the pot and usually went to functionaries, who sometimes sold or traded it. SS guards also stole from the rations.<span data-fn="starvation wiener"></span></li>
+      <li>The evening bread was meant to last until morning. Many ate it at once, partly for fear another starving prisoner would take it in the night.<span data-fn="starvation nutrition"></span></li>
+      <li>A modern estimate for a young man of 70 kg living a heavily active life is about 3,900 kcal a day. After several weeks on camp rations, most prisoners began to waste away, a state that often ended in death or in selection for the gas chambers.<span data-fn="fao museumJVL nutrition"></span></li>
+    </ul>
+
+    <p class="coda">You chose what you ate today. That choice is the difference.</p>
+  </div>
+</section>
+
+<section class="band closing" id="closing" aria-labelledby="clh">
+  <div class="wrap narrow">
+    <h2 id="clh">What will you do with today?</h2>
+    <p class="serif">Nothing here was a test, and nothing was added up. The comforts on this page are ordinary on purpose. They were taken from real people, each with a name, a family, work and plans, and most of those deported to Auschwitz were not given even one of these days.</p>
+    <p class="frankl">Viktor Frankl, a psychiatrist who survived Auschwitz and other camps, wrote that a person can be stripped of almost everything except one freedom: to choose the attitude they bring to what happens to them.<span data-fn="frankl"></span></p>
+    <p class="serif">He did not claim that attitude decided who survived. It is a reminder of what is still yours today, along with everything you ticked above.</p>
+
+    <form class="note-form" id="noteForm">
+      <label for="gratitude">Write one thing you are grateful for today.</label>
+      <textarea id="gratitude" maxlength="600"></textarea>
+      <div class="note-row">
+        <button type="submit" class="btn">Keep it in this browser</button>
+        <span class="hint">Saved only on this device. Nothing is sent anywhere.</span>
+      </div>
+      <p class="status" id="noteStatus" role="status"></p>
+    </form>
+    <ul class="notes" id="notes" aria-label="Your earlier notes"></ul>
+    <div class="notes-tools" id="notesTools" hidden>
+      <button type="button" class="link-btn" id="clearNotes">Remove my notes</button>
+      <span id="confirmClear" hidden>Remove all notes from this browser? <button type="button" class="link-btn" id="confirmYes">Remove</button> · <button type="button" class="link-btn" id="confirmNo">Keep them</button></span>
+    </div>
+
+    <div class="remember">
+      <h3>Learn more and remember</h3>
+      <ul>
+        <li><a href="https://www.auschwitz.org/en/" target="_blank" rel="noopener">Auschwitz-Birkenau Memorial and Museum</a><span>The Memorial’s history pages, prisoner records and online lessons.</span></li>
+        <li><a href="https://encyclopedia.ushmm.org/" target="_blank" rel="noopener">USHMM Holocaust Encyclopedia</a><span>Articles, testimonies and documents from the US Holocaust Memorial Museum.</span></li>
+        <li><a href="https://collections.yadvashem.org/en/names" target="_blank" rel="noopener">Yad Vashem: Central Database of Shoah Victims’ Names</a><span>Search for the names, and the lives, of those who were murdered.</span></li>
+      </ul>
+    </div>
+
+    <div class="sources" id="sources">
+      <h3>Sources</h3>
+      <ol id="srcList"></ol>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap narrow">No tracking and no analytics. Nothing you enter on this page leaves your browser.</div>
+</footer>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="false" aria-labelledby="sheetTitle" hidden>
+  <div class="sheet-in">
+    <p class="sheet-k" id="sheetNum">Source</p>
+    <p class="sheet-t" id="sheetTitle"></p>
+    <div class="sheet-row">
+      <a id="sheetLink" href="#" target="_blank" rel="noopener">Open source</a>
+      <a id="sheetAll" href="#sources">All sources</a>
+      <button type="button" class="btn quiet close" id="sheetClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(s,r){ return (r||document).querySelector(s); };
+var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+/* ---------- Sources (numbered roughly in order of first appearance) ---------- */
+var SOURCES = [
+  ['victimsResearch','Auschwitz-Birkenau Memorial','The research on the number of victims of the camp (podcast transcript): about 1.3 million deported, about 1.1 million victims, slightly over 400,000 prisoner numbers issued','https://www.auschwitz.org/en/education/e-learning/podcast/the-research-on-the-number-of-victims-of-the-camp/'],
+  ['deportees','Auschwitz-Birkenau Memorial','Number of deportees by ethnicity','https://www.auschwitz.org/en/history/the-number-of-victims/number-of-deportees-by-ethnicity/'],
+  ['victims','Auschwitz-Birkenau Memorial','Auschwitz and Shoah: the number of victims','https://www.auschwitz.org/en/history/auschwitz-and-shoah/the-number-of-victims'],
+  ['ramp','Auschwitz-Birkenau Memorial','The unloading ramps and selections','https://www.auschwitz.org/en/history/auschwitz-and-shoah/the-unloading-ramps-and-selections'],
+  ['tattoo','USHMM Holocaust Encyclopedia','Tattoos and Numbers: The System of Identifying Prisoners at Auschwitz','https://encyclopedia.ushmm.org/content/en/article/tattoos-and-numbers-the-system-of-identifying-prisoners-at-auschwitz'],
+  ['album','Yad Vashem','The Auschwitz Album: Auschwitz-Birkenau','https://yadvashem.org/yv/en/exhibitions/album_Auschwitz/auschwitz-birkenau.asp'],
+  ['plunder','Auschwitz-Birkenau Memorial','Plunder of the property of Auschwitz victims (podcast transcript)','https://www.auschwitz.org/en/education/e-learning/podcast/plunder-of-the-property-of-auschwitz-victims/'],
+  ['triangles','Auschwitz-Birkenau Memorial','Prisoner classification: the system of triangles','https://www.auschwitz.org/en/history/prisoner-classification/system-of-triangles'],
+  ['jewishMarking','Auschwitz-Birkenau Memorial','Prisoner classification: marking of Jewish prisoners','https://www.auschwitz.org/en/history/prisoner-classification/marking-of-jewish-prisoners'],
+  ['dayPodcast','Auschwitz-Birkenau Memorial','A day of a prisoner at Auschwitz (podcast transcript)','https://www.auschwitz.org/en/education/e-learning/podcast/day-of-a-prisoner-at-auschwitz/'],
+  ['living','Auschwitz-Birkenau Memorial','Life in the camp: living conditions','https://www.auschwitz.org/en/history/life-in-the-camp/'],
+  ['epidemics','Auschwitz-Birkenau Memorial','Camp hospitals: sicknesses and epidemics','https://www.auschwitz.org/en/history/camp-hospitals/sicknesses-and-epidemics'],
+  ['nutrition','Auschwitz-Birkenau Memorial','Life in the camp: nutrition','https://www.auschwitz.org/en/history/life-in-the-camp/nutrition'],
+  ['museumJVL','State Museum Auschwitz-Birkenau','“Living Conditions, Labor & Executions”, reprinted with permission by the Jewish Virtual Library','https://www.jewishvirtuallibrary.org/living-conditions-labor-and-executions-at-auschwitz-birkenau'],
+  ['mail','Auschwitz-Birkenau Memorial','Official correspondence of Auschwitz prisoners (podcast transcript)','https://www.auschwitz.org/en/education/e-learning/podcast/official-correspondence-of-auschwitz-prisoners/'],
+  ['order','Auschwitz-Birkenau Memorial','Life in the camp: the order of the day','https://www.auschwitz.org/en/history/life-in-the-camp/the-order-of-the-day/'],
+  ['starvation','Auschwitz-Birkenau Memorial','Starvation and slave labour of Auschwitz prisoners (podcast transcript)','https://www.auschwitz.org/en/education/e-learning/podcast/starvation-and-slave-labour-of-auschwitz-prisoners/'],
+  ['gutman','Y. Gutman & M. Berenbaum (eds.)','Anatomy of the Auschwitz Death Camp (Indiana University Press, published in association with the USHMM, 1994), pp. 24–25: official ration values. Quoted in J. Wallace, “Nutrition”','https://www.spectacle.org/695/food.html'],
+  ['wiener','The Holocaust Explained (Wiener Holocaust Library)','Meals in the concentration camps','https://www.theholocaustexplained.org/the-camps/ss-concentration-camp-system/meals/'],
+  ['fao','FAO / WHO / UNU','Human energy requirements (2001), chapter 5: physical activity levels; worked example of a vigorously active 70 kg man','https://www.fao.org/4/Y5686e/y5686e07.htm'],
+  ['frankl','Viktor E. Frankl','Man’s Search for Meaning (1946; English edition 1959). Paraphrased here, not quoted.',null]
+];
+var SRC = {};
+SOURCES.forEach(function(s,i){ SRC[s[0]] = {n:i+1, org:s[1], title:s[2], url:s[3]}; });
+
+function fn(keys){
+  if (typeof keys === 'string') keys = keys.split(/\s+/);
+  return '<span class="fns">' + keys.map(function(k){
+    var s = SRC[k]; if(!s) return '';
+    return '<button type="button" class="fn" data-src="'+k+'" aria-label="Source '+s.n+': '+esc(s.org)+', '+esc(s.title)+'">'+s.n+'</button>';
+  }).join('') + '</span>';
+}
+function fillMarkers(root){
+  $$('[data-fn]', root).forEach(function(el){ el.outerHTML = fn(el.getAttribute('data-fn')); });
+}
+
+/* ---------- Movement I ---------- */
+var ITEMS = [
+  {you:'Someone called you by your name.', them:'On registration each prisoner was given a serial number, sewn onto the uniform. From then on, the number was how the camp identified them.', src:'tattoo'},
+  {you:'There is no number on your skin.', them:'Auschwitz was the only concentration camp where prisoners were tattooed. From 1943 almost every newly registered prisoner had the number tattooed, usually on the left forearm. Those sent straight to the gas chambers were never registered, and never given a number.', src:'tattoo'},
+  {you:'You still have your hair.', them:'Those selected for labour were taken to quarantine, where their hair was shaved off.', src:'album'},
+  {you:'You chose what to wear.', them:'At admission prisoners had to surrender their belongings and were given striped camp uniforms. A serial number and a coloured triangle marking their category were sewn on; for Jewish prisoners, at first, two triangles forming a Star of David.', src:'plunder album tattoo triangles jewishMarking'},
+  {you:'Your clothes kept you warm and dry.', them:'Camp clothing did not protect against the weather. In spring 1942 many newly arrived Jewish prisoners were issued the old uniforms of Soviet prisoners of war, almost all of whom died at Auschwitz.', src:'dayPodcast plunder deportees victims'},
+  {you:'You used a toilet with a door.', them:'In sector BI of Birkenau, a latrine barrack was a sewer under a concrete lid with 58 openings. There were four of them, and two barracks with toilets and sinks, for 62 barracks of prisoners.', src:'living'},
+  {you:'You washed when you wanted to.', them:'The brick barracks had no sinks or toilets until 1944. Washrooms were few and time was short. To bathe, prisoners undressed in their barracks and walked naked to the bathhouse, whatever the weather.', src:'living dayPodcast'},
+  {you:'You slept in a bed of your own.', them:'In Birkenau’s wooden barracks each three-tier stall was meant for 15 people, and each barrack for more than 400. In the brick barracks each sleeping place was meant for four.', src:'living'},
+  {you:'You slept on a mattress.', them:'In the brick barracks prisoners slept on straw spread over the boards. In the wooden barracks, on paper mattresses stuffed with wood wool.', src:'living'},
+  {you:'Your room has a window.', them:'Birkenau’s wooden barracks were built to a design for horse stables. They had no windows, only skylights along the top, and they were often damp.', src:'living'},
+  {you:'You were warm indoors.', them:'Each brick barrack had two iron stoves, which were not enough to heat it. The wooden barracks were heated in winter by a chimney duct running through them.', src:'living'},
+  {you:'Nothing bit you in the night.', them:'Lice and rats were an enormous problem. Epidemics broke out often; in 1942–1943, louse-borne typhus claimed the greatest number of lives.', src:'living epidemics'},
+  {you:'You had a hot drink you liked.', them:'Morning brought half a litre of “coffee”, boiled water with a grain substitute, or a bitter herbal “tea”. It was usually unsweetened.', src:'nutrition dayPodcast'},
+  {you:'You ate when you were hungry.', them:'The rations gave roughly 1,300 to 1,700 kcal a day, to people forced into long hours of labour. <a href="#m3">Movement III</a> sets their plate beside yours.', src:'museumJVL'},
+  {you:'You know where your family is.', them:'On the unloading ramp, families were divided: men and older boys in one column, women and children in the other. On average about one in five people was selected for labour. Most of the others were killed in the gas chambers immediately.', src:'ramp'},
+  {you:'You sent a message to someone you love.', them:'Jewish prisoners and Soviet prisoners of war were generally not allowed to write. Those who could, mainly non-Jewish political prisoners, wrote about once every two weeks, in German, on camp forms, under censorship.', src:'mail'},
+  {you:'You stood still only when you chose to.', them:'At roll call prisoners stood motionless and silent in rows of ten, whatever the weather. Extended roll calls could last hours, even half a day.', src:'album order dayPodcast'},
+  {you:'Nobody counted you today.', them:'Prisoners were counted at morning and evening roll call. If one person was missing, perhaps an escape, perhaps someone who had fallen asleep at work, roll call dragged on for everyone.', src:'order dayPodcast'},
+  {you:'If you felt ill, you could rest.', them:'Prisoners with fever still had to stand at roll call; admission to the camp hospital required a temperature of 39.5°C. Starvation brought diarrhoea and swollen legs, and the weakest risked selection for the gas chambers.', src:'dayPodcast epidemics nutrition'},
+  {you:'You own a photograph of someone you love.', them:'At admission prisoners had to surrender their personal belongings. The property of the murdered was sorted in warehouses that prisoners called “Canada”.', src:'plunder'},
+  {you:'Your evening is your own.', them:'After evening roll call there might be one to three hours, depending on the season and how long roll call ran, spent inside the camp. At 9 pm a gong announced nighttime silence.', src:'dayPodcast order'}
+];
+var list = $('#checklist');
+list.innerHTML = ITEMS.map(function(it,i){
+  return '<li class="item"><label for="c'+i+'"><input type="checkbox" id="c'+i+'" aria-controls="r'+i+'"><span>'+it.you+'</span></label>'+
+    '<div class="reveal" id="r'+i+'" hidden><p class="rk">For a registered prisoner</p><p>'+it.them+fn(it.src)+'</p></div></li>';
+}).join('');
+var showAll = false;
+function syncReveal(i, animate){
+  var cb = $('#c'+i), r = $('#r'+i);
+  var show = cb.checked || showAll;
+  if (show && r.hidden){ r.hidden = false; if (animate){ r.classList.remove('in'); void r.offsetWidth; r.classList.add('in'); } }
+  else if (!show && !r.hidden){ r.hidden = true; r.classList.remove('in'); }
+}
+list.addEventListener('change', function(e){
+  if (e.target.matches('input[type=checkbox]')) syncReveal(e.target.id.slice(1), true);
+});
+$('#showAll').addEventListener('click', function(){
+  showAll = !showAll;
+  this.setAttribute('aria-pressed', String(showAll));
+  this.textContent = showAll ? 'Show only what you ticked' : 'Read what every item meant';
+  ITEMS.forEach(function(_,i){ syncReveal(i, showAll); });
+});
+
+/* ---------- Movement II ---------- */
+function hm(s){ var p = s.split(':'); return (+p[0])*60 + (+p[1]); }
+function clock(min){
+  min = ((min % 1440) + 1440) % 1440;
+  var h = Math.floor(min/60), m = min % 60, ap = h < 12 ? 'am' : 'pm';
+  var h12 = h % 12 === 0 ? 12 : h % 12;
+  return {t: h12 + ':' + (m<10?'0':'') + m, ap: ap};
+}
+var PRISONER = {
+  summer: [
+    {t:'4:30', title:'Wake-up gong', note:'Make the bunk exactly as ordered, queue for the latrine and washroom, drink half a litre of ersatz “coffee” or herbal “tea”. About 75 to 90 minutes until the work details formed.', cont:'Queuing, washing if they could', src:'order dayPodcast nutrition'},
+    {t:'5:45', c:1, title:'Second gong: roll call', note:'Rows of ten, block by block, counted. If the numbers did not add up, everyone stood until they did. Morning roll call was abolished in February 1944, to lengthen the working day.', cont:'Standing, being counted', src:'order dayPodcast'},
+    {t:'6:00', c:1, title:'Marched out to forced labour', note:'Often past a prisoner orchestra at the gate. From March 1942 the minimum working day was 11 hours, longer in summer.', cont:'At forced labour', src:'order dayPodcast'},
+    {t:'12:00', title:'Midday soup', note:'About a litre: potatoes, swede, a little groats. The break was meant to be an hour; it could be cut to half an hour.', cont:'The midday break', src:'nutrition order'},
+    {t:'13:00', title:'Back to work', note:'', cont:'At forced labour'},
+    {t:'18:00', c:1, title:'Work ends; the march back', note:'Between 6 and 7 pm in summer, back through the gate in columns.', cont:'Marching back', src:'dayPodcast'},
+    {t:'19:00', title:'Evening roll call', note:'Counted again. If anyone was missing, it could last for hours.', cont:'Standing, being counted', src:'order dayPodcast'},
+    {t:'20:00', c:1, title:'Evening bread', note:'About 300–350 g, with a little margarine, sausage or marmalade. Meant to last until morning; many ate it at once.', cont:'In the barrack', src:'nutrition dayPodcast starvation'},
+    {t:'20:30', c:1, title:'Queues; an hour or so', note:'Few latrines and washrooms for thousands. Perhaps an hour or two to themselves in summer, inside the camp.', cont:'Inside the camp', src:'living dayPodcast'},
+    {t:'21:00', title:'Gong: nighttime silence', note:'Lights out (9:30 in Birkenau in summer). Sleep in a three-tier stall meant for 15 people.', cont:'Asleep, crowded on a bunk', src:'order dayPodcast living'}
+  ],
+  winter: [
+    {t:'5:30', title:'Wake-up gong', note:'Often in the dark. Make the bunk exactly as ordered, queue for the latrine and washroom, drink half a litre of ersatz “coffee” or herbal “tea”.', cont:'Queuing, washing if they could', src:'order dayPodcast nutrition'},
+    {t:'6:45', c:1, title:'Second gong: roll call', note:'Rows of ten, counted until the numbers matched, whatever the weather. Morning roll call was abolished in February 1944.', cont:'Standing, being counted', src:'order dayPodcast'},
+    {t:'7:00', c:1, title:'Marched out to forced labour', note:'The winter working day was shorter, because night fell earlier.', cont:'At forced labour', src:'dayPodcast order'},
+    {t:'12:00', title:'Midday soup', note:'About a litre of thin soup. In winter the break lasted from half an hour to an hour and a half.', cont:'The midday break', src:'nutrition dayPodcast'},
+    {t:'12:30', c:1, title:'Back to work', note:'', cont:'At forced labour'},
+    {t:'16:30', c:1, title:'Work ends; evening roll call', note:'Work ended between 4 and 5:30 pm. Then the march back and roll call, often in the dark.', cont:'Standing, being counted', src:'dayPodcast order'},
+    {t:'18:00', c:1, title:'Evening bread', note:'About 300–350 g, with a little margarine, sausage or marmalade. Meant to last until morning; many ate it at once.', cont:'In the barrack', src:'nutrition dayPodcast starvation'},
+    {t:'18:30', c:1, title:'Queues; two or three hours', note:'If roll call went quickly, two or three hours to themselves, inside the camp.', cont:'Inside the camp', src:'dayPodcast living'},
+    {t:'21:00', title:'Gong: nighttime silence', note:'Lights out. Sleep crowded on a bunk, in a damp, barely heated barrack.', cont:'Asleep, crowded on a bunk', src:'order living'}
+  ]
+};
+var F = {wake:$('#tWake'), breakfast:$('#tBreakfast'), leave:$('#tLeave'), commute:$('#tCommute'), lunch:$('#tLunch'), finish:$('#tFinish'), dinner:$('#tDinner'), bed:$('#tBed')};
+var DEFAULTS = {wake:'07:00', breakfast:'08:00', leave:'09:00', lunch:'13:30', finish:'18:30', dinner:'20:30', bed:'23:30'};
+function val(k){ var v = F[k].value; return hm(/^\d{1,2}:\d{2}/.test(v) ? v : DEFAULTS[k]); }
+
+function yourDay(){
+  var w = val('wake');
+  var norm = function(x){ return x < w ? x + 1440 : x; };
+  var b = norm(val('breakfast')), l = norm(val('leave')), c = +F.commute.value || 0;
+  var lu = norm(val('lunch')), f = norm(val('finish')), d = norm(val('dinner')), bed = norm(val('bed'));
+  if (f < l) f = l;
+  var ev = [];
+  ev.push({t:w, title:'You wake up', note:'Your own alarm, in your own room.', cont:'Getting ready'});
+  ev.push({t:b, title:'Breakfast', note:'What you felt like eating.', cont:'At home'});
+  if (c > 0){
+    ev.push({t:l, title:'You leave for work', note:'About '+(c>=60 ? (c/60===1?'an hour':(c/60)+' hours') : c+' minutes')+' on the way.', cont:'On the way'});
+    ev.push({t:l+c, title:'Work begins', note:'', cont:'At work'});
+  } else {
+    ev.push({t:l, title:'Work begins, at home', note:'', cont:'At work'});
+  }
+  ev.push({t:lu, title:'Lunch', note:'When you were hungry.', cont:'At work'});
+  ev.push({t:f, title:'Work ends', note: c>0 ? 'Then the way home.' : '', cont: c>0 ? 'On the way home' : 'Your own time'});
+  if (c > 0) ev.push({t:f+c, title:'Home', note:'The evening is yours.', cont:'Your own time'});
+  ev.push({t:d, title:'Dinner', note:'', cont:'Your own time'});
+  ev.push({t:bed, title:'Bed', note:'Your own bed, your own blanket.', cont:'Asleep'});
+  ev.sort(function(a,b){ return a.t - b.t; });
+  var own = (bed - w) - (f + c - l);
+  return {ev:ev, own:Math.max(0, own)};
+}
+function stateAt(evs, t, before){
+  var cur = null;
+  for (var i=0;i<evs.length;i++){ if (evs[i].t <= t) cur = evs[i]; }
+  return cur ? cur.cont : before;
+}
+function evHTML(e, isThem){
+  return '<div class="ev"><span class="ev-t">'+esc(e.title)+'</span>'+
+    (e.note ? '<span class="ev-n">'+e.note+(isThem && e.src ? fn(e.src) : '')+'</span>' : (isThem && e.src ? fn(e.src) : ''))+'</div>';
+}
+function renderDay(){
+  var season = $('input[name=season]:checked').value;
+  $('#winterNote').hidden = season !== 'winter';
+  var them = PRISONER[season].map(function(e){ return Object.assign({}, e, {t: hm(e.t)}); });
+  var mine = yourDay();
+  var you = mine.ev;
+  var times = [];
+  you.concat(them).forEach(function(e){ if (times.indexOf(e.t) < 0) times.push(e.t); });
+  times.sort(function(a,b){ return a-b; });
+  var html = times.map(function(t,i){
+    var y = you.filter(function(e){ return e.t === t; });
+    var p = them.filter(function(e){ return e.t === t; });
+    var next = times[i+1];
+    var gap = next != null ? next - t : 60;
+    var h = Math.round(Math.min(190, Math.max(46, gap * 0.55)));
+    var ck = clock(t);
+    var approx = p.some(function(e){ return e.c; }) && !y.length;
+    var label = (approx ? '<span class="c">c.</span> ' : '') + ck.t + '<span class="ap">'+ck.ap+'</span>';
+    var yCell = y.length ? y.map(function(e){ return evHTML(e,false); }).join('') : '<span class="cont">'+esc(stateAt(you, t, 'Asleep'))+'</span>';
+    var pCell = p.length ? p.map(function(e){ return evHTML(e,true); }).join('') : '<span class="cont">'+esc(stateAt(them, t, 'Asleep, crowded on a bunk'))+'</span>';
+    return '<tr><th scope="row" style="height:'+h+'px">'+label+'</th><td class="you">'+yCell+'</td><td class="them">'+pCell+'</td></tr>';
+  }).join('');
+  $('#tlBody').innerHTML = html;
+  var hrs = Math.round(mine.own / 60);
+  $('#ownHours').textContent = hrs === 1 ? '1 hour' : hrs + ' hours';
+}
+Object.keys(F).forEach(function(k){ F[k].addEventListener('change', renderDay); F[k].addEventListener('input', renderDay); });
+$$('input[name=season]').forEach(function(r){ r.addEventListener('change', renderDay); });
+
+/* ---------- Movement III ---------- */
+var GROUPS = [
+  ['Morning and tiffin', [['idli','Idli, 2 with sambar',200],['dosa','Plain dosa',220],['masala','Masala dosa',350],['upma','Upma or poha',250],['paratha','Paratha',250],['toast','Toast and butter, 2 slices',250],['eggs','Eggs, 2',180]]],
+  ['Meals', [['rice','Rice, 1 cup',200],['dal','Dal, 1 bowl',150],['roti','Roti, 2',200],['sabzi','Sabzi, 1 bowl',150],['curd','Curd, 1 bowl',100],['curry','Chicken or fish curry',300],['paneer','Paneer dish',350],['biryani','Biryani, 1 plate',600],['salad','Salad',80]]],
+  ['Drinks', [['chai','Chai',100],['coffee','Coffee',90],['milk','Milk, 1 glass',150],['juice','Juice or soft drink',130]]],
+  ['In between', [['fruit','Fruit, 1 piece',80],['biscuits','Biscuits, 4',150],['snack','Samosa, namkeen or chips',250],['sweet','A sweet',150],['nuts','Nuts, a handful',170]]]
+];
+var FOOD = {}, ORDER = [];
+GROUPS.forEach(function(g){ g[1].forEach(function(f){ FOOD[f[0]] = {name:f[1], kcal:f[2]}; ORDER.push(f[0]); }); });
+var EXAMPLE = {chai:2, idli:1, coffee:1, rice:1, dal:2, sabzi:2, curd:1, roti:1, biscuits:1, fruit:1};
+var plate = Object.assign({}, EXAMPLE), others = [], isExample = true, otherSeq = 0;
+
+$('#picker').innerHTML = GROUPS.map(function(g){
+  return '<div><p class="grp">'+esc(g[0])+'</p><div class="chips">'+g[1].map(function(f){
+    return '<button type="button" class="chip" data-id="'+f[0]+'" aria-label="Add one serving: '+esc(f[1])+', about '+f[2]+' kcal"><span>'+esc(f[1])+'</span><span class="q" aria-hidden="true"></span></button>';
+  }).join('')+'</div></div>';
+}).join('');
+
+function fmtN(n){ return Math.round(n).toLocaleString('en-US'); }
+function totalKcal(){
+  var t = 0;
+  Object.keys(plate).forEach(function(k){ t += FOOD[k].kcal * plate[k]; });
+  others.forEach(function(o){ t += o.kcal * o.q; });
+  return t;
+}
+function touched(){
+  if (isExample){ isExample = false; }
+  $('#exampleText').textContent = 'Your plate today.';
+  $('#clearFood').textContent = 'Clear';
+}
+function renderPlate(){
+  $$('.chip').forEach(function(ch){
+    var q = plate[ch.dataset.id] || 0;
+    ch.classList.toggle('on', q > 0);
+    ch.querySelector('.q').textContent = q > 0 ? '×' + q : '';
+  });
+  var rows = [];
+  ORDER.forEach(function(k){ if (plate[k]) rows.push({key:'f:'+k, name:FOOD[k].name, q:plate[k], kcal:FOOD[k].kcal}); });
+  others.forEach(function(o){ rows.push({key:'o:'+o.id, name:o.name, q:o.q, kcal:o.kcal}); });
+  $('#plateList').innerHTML = rows.length ? rows.map(function(r){
+    return '<li><span class="pn">'+esc(r.name)+' <span class="pq">×'+r.q+'</span></span><span class="pk">'+fmtN(r.kcal*r.q)+'</span>'+
+      '<span class="step"><button type="button" data-k="'+r.key+'" data-d="-1" aria-label="Remove one: '+esc(r.name)+'">−</button><button type="button" data-k="'+r.key+'" data-d="1" aria-label="Add one more: '+esc(r.name)+'">+</button></span></li>';
+  }).join('') : '<li class="empty" style="border:0">Nothing yet. Tap what you ate above.</li>';
+  var t = totalKcal();
+  $('#kcalTotal').textContent = fmtN(t);
+  renderBars(t);
+}
+function renderBars(you){
+  var max = Math.max(4000, Math.ceil(you / 1000) * 1000);
+  var pct = function(v){ return (v / max * 100).toFixed(2) + '%'; };
+  var rows = [
+    {k:'you', label:'You, today (approx.)', a:you, b:you, v: you ? fmtN(you) : 'Add what you ate', src:''},
+    {k:'paper', label:'Their ration on paper', a:1700, b:2150, v:'1,700–2,150', src:'gutman'},
+    {k:'real', label:'Their ration in practice', a:1300, b:1700, v:'1,300–1,700', src:'museumJVL'},
+    {k:'need', label:'Needed for a day of heavy labour (modern estimate)', a:3900, b:3900, v:'about 3,900', src:'fao'}
+  ];
+  $('#bars').innerHTML = rows.map(function(r){
+    return '<li class="bar-row k-'+r.k+'"><div class="bar-lab"><span>'+esc(r.label)+(r.src?fn(r.src):'')+'</span><span class="v">'+r.v+'</span></div>'+
+      '<div class="track" role="img" aria-label="'+esc(r.label)+': '+esc(r.v)+' kcal"><span class="f a" style="width:'+pct(r.a)+'"></span>'+
+      (r.b > r.a ? '<span class="f b" style="left:'+pct(r.a)+';width:'+pct(r.b - r.a)+'"></span>' : '')+'</div></li>';
+  }).join('');
+  var ax = '';
+  for (var v = 0; v <= max; v += 1000){
+    ax += '<span'+(v===max?' class="last"':'')+' style="left:'+pct(v)+'">'+fmtN(v)+'</span>';
+  }
+  $('#axis').innerHTML = ax;
+}
+$('#picker').addEventListener('click', function(e){
+  var ch = e.target.closest('.chip'); if (!ch) return;
+  plate[ch.dataset.id] = (plate[ch.dataset.id] || 0) + 1;
+  touched(); renderPlate();
+});
+$('#plateList').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-k]'); if (!b) return;
+  var key = b.dataset.k, d = +b.dataset.d;
+  if (key.indexOf('f:') === 0){
+    var id = key.slice(2); plate[id] = (plate[id] || 0) + d; if (plate[id] <= 0) delete plate[id];
+  } else {
+    var oid = +key.slice(2);
+    others = others.map(function(o){ if (o.id === oid) o.q += d; return o; }).filter(function(o){ return o.q > 0; });
+  }
+  touched(); renderPlate();
+  var again = $('#plateList button[data-k="'+key+'"][data-d="'+d+'"]');
+  if (again) again.focus(); else $('#plateList').focus();
+});
+$('#clearFood').addEventListener('click', function(){
+  plate = {}; others = []; touched(); renderPlate();
+});
+$('#otherForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = $('#otherName').value.trim() || 'Something else';
+  var k = Math.round(+$('#otherKcal').value);
+  if (!k || k < 1){ $('#otherKcal').focus(); return; }
+  others.push({id: ++otherSeq, name:name, kcal:Math.min(k, 3000), q:1});
+  $('#otherName').value = ''; $('#otherKcal').value = '';
+  touched(); renderPlate();
+});
+
+/* ---------- Closing: gratitude notes (this browser only) ---------- */
+var KEY = 'the-same-day:notes';
+function loadNotes(){ try { var s = localStorage.getItem(KEY); var a = s ? JSON.parse(s) : []; return Array.isArray(a) ? a : []; } catch(e){ return null; } }
+function saveNotes(a){ try { localStorage.setItem(KEY, JSON.stringify(a)); return true; } catch(e){ return false; } }
+function renderNotes(){
+  var a = loadNotes() || [];
+  $('#notes').innerHTML = a.slice().reverse().map(function(n){
+    var d = new Date(n.d);
+    var ds = isNaN(d) ? '' : d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+    return '<li><time datetime="'+esc(n.d)+'">'+esc(ds)+'</time>'+esc(n.t)+'</li>';
+  }).join('');
+  $('#notesTools').hidden = a.length === 0;
+}
+$('#noteForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var t = $('#gratitude').value.trim();
+  var st = $('#noteStatus');
+  if (!t){ st.textContent = 'Write a few words first.'; $('#gratitude').focus(); return; }
+  var a = loadNotes();
+  if (a === null){ st.textContent = 'This browser is not allowing pages to save, so the note could not be kept. You can copy it somewhere of your own.'; return; }
+  a.push({d: new Date().toISOString(), t: t.slice(0,600)});
+  if (saveNotes(a)){ st.textContent = 'Kept in this browser.'; $('#gratitude').value = ''; renderNotes(); }
+  else { st.textContent = 'This browser is not allowing pages to save, so the note could not be kept. You can copy it somewhere of your own.'; }
+});
+$('#clearNotes').addEventListener('click', function(){ $('#confirmClear').hidden = false; this.hidden = true; $('#confirmNo').focus(); });
+$('#confirmNo').addEventListener('click', function(){ $('#confirmClear').hidden = true; $('#clearNotes').hidden = false; $('#clearNotes').focus(); });
+$('#confirmYes').addEventListener('click', function(){
+  try { localStorage.removeItem(KEY); } catch(e){}
+  $('#confirmClear').hidden = true; $('#clearNotes').hidden = false;
+  renderNotes(); $('#noteStatus').textContent = 'Your notes were removed from this browser.';
+});
+
+/* ---------- Source sheet ---------- */
+var sheet = $('#sheet'), lastMarker = null;
+function openSheet(key, marker){
+  var s = SRC[key]; if (!s) return;
+  lastMarker = marker;
+  $('#sheetNum').textContent = 'Source ' + s.n;
+  $('#sheetTitle').textContent = s.org + ' · ' + s.title;
+  var link = $('#sheetLink');
+  if (s.url){ link.hidden = false; link.href = s.url; } else { link.hidden = true; }
+  $('#sheetAll').href = '#src-' + s.n;
+  sheet.hidden = false;
+  (s.url ? link : $('#sheetClose')).focus();
+}
+function closeSheet(){ if (sheet.hidden) return; sheet.hidden = true; if (lastMarker && document.contains(lastMarker)) lastMarker.focus(); }
+document.addEventListener('click', function(e){
+  var m = e.target.closest('.fn');
+  if (m){ e.preventDefault(); e.stopPropagation(); openSheet(m.dataset.src, m); return; }
+  if (!sheet.hidden && !e.target.closest('#sheet')) closeSheet();
+});
+$('#sheetClose').addEventListener('click', closeSheet);
+$('#sheetAll').addEventListener('click', function(){ sheet.hidden = true; });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSheet(); });
+
+$('#srcList').innerHTML = SOURCES.map(function(s,i){
+  return '<li id="src-'+(i+1)+'"><span class="org">'+esc(s[1])+'</span>. '+esc(s[2])+(s[3] ? '. <a href="'+esc(s[3])+'" target="_blank" rel="noopener">'+esc(s[3].replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''))+'</a>' : (/\.$/.test(s[2]) ? '' : '.'))+'</li>';
+}).join('');
+
+/* ---------- Movement bar ---------- */
+var nav = $('.mvbar');
+function setNavH(){ document.documentElement.style.setProperty('--navh', nav.offsetHeight + 'px'); }
+setNavH(); window.addEventListener('resize', setNavH);
+var links = $$('.mvbar a');
+var secs = ['m1','m2','m3'].map(function(id){ return document.getElementById(id); });
+function updateNav(){
+  var y = window.innerHeight * 0.35, active = -1;
+  secs.forEach(function(s,i){ if (s.getBoundingClientRect().top <= y) active = i; });
+  var closing = document.getElementById('closing').getBoundingClientRect().top <= y;
+  links.forEach(function(a,i){
+    if (i === active && !closing) a.setAttribute('aria-current','step'); else a.removeAttribute('aria-current');
+    a.classList.toggle('done', i < active || (closing && i <= 2));
+  });
+}
+var ticking = false;
+window.addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; updateNav(); }); } }, {passive:true});
+
+/* Focus the heading after in-page jumps, for keyboard and screen-reader users */
+$$('a[href^="#m"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    var h = document.getElementById(a.getAttribute('href').slice(1));
+    var head = h && h.querySelector('h2');
+    if (head) setTimeout(function(){ head.focus({preventScroll:true}); }, 400);
+  });
+});
+
+fillMarkers(document);
+renderDay();
+renderPlate();
+renderNotes();
+updateNav();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
