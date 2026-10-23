@@ -392,8 +392,8 @@
         {
           "slug": "godels-incompleteness-theorem",
           "title": "Gödel's Incompleteness Theorem",
-          "blurb": "A true sentence that no rulebook can prove, explained with an office and one rubber stamp.",
-          "artifact": "6653ef2f-b542-49c2-a4cf-bcb62919246f",
+          "blurb": "A true sentence that no rulebook can prove, explained with a truth machine and the one card it can never stamp.",
+          "artifact": "5nT2t934sf3vvn9dGURVZK",
           "ask": "How can a sentence be true and impossible to prove?"
         },
         {
