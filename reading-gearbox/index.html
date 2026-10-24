@@ -1,0 +1,1395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Reading Gearbox | Explainers</title>
+<meta name="description" content="Inner voice, active reading and skimming are gears. Where reading&#x27;s speed limit really lives, and ten habits for reading faster and deeper.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/reading-gearbox/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="The Reading Gearbox">
+<meta property="og:description" content="Inner voice, active reading and skimming are gears. Where reading&#x27;s speed limit really lives, and ten habits for reading faster and deeper.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/reading-gearbox/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/reading-gearbox/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+<style>
+/* Layout: a reading-lab notebook. One narrow reading column with wide figure plates (white sheets on a cool lilac desk).
+   Every diagram speaks the eye tracker's grammar: dots are stops (fixations), lines are jumps (saccades).
+   Gears use one ordered ramp, deep violet for slow-and-deep through amber for fast-and-shallow. */
+:root{
+  --paper:#F3F2F7;
+  --plate:#FFFFFF;
+  --ink:#1B1730;
+  --ink-soft:#5E5873;
+  --rule:#DDD9E8;
+  --slot:#E9E6F1;
+  --g1:#33209A;
+  --g2:#6E24A8;
+  --g3:#B02A7E;
+  --g4:#C9473E;
+  --g5:#D68012;
+  --on-deep:#FFFFFF;
+  --on-bright:#1B1730;
+  --wash:rgba(176,42,126,.12);
+  --shadow:0 1px 0 rgba(27,23,48,.05),0 22px 44px -32px rgba(27,23,48,.45);
+  --font-display:"Newsreader","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#131121;--plate:#1C192E;--ink:#EDEAF7;--ink-soft:#A8A2C0;--rule:#332D4C;--slot:#2A2541;
+    --g1:#9182FF;--g2:#B873F2;--g3:#F25CA4;--g4:#FF7D68;--g5:#FFB54F;
+    --on-deep:#131121;--on-bright:#131121;
+    --wash:rgba(242,92,164,.17);
+    --shadow:0 1px 0 rgba(0,0,0,.3),0 22px 44px -30px rgba(0,0,0,.8);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131121;--plate:#1C192E;--ink:#EDEAF7;--ink-soft:#A8A2C0;--rule:#332D4C;--slot:#2A2541;
+  --g1:#9182FF;--g2:#B873F2;--g3:#F25CA4;--g4:#FF7D68;--g5:#FFB54F;
+  --on-deep:#131121;--on-bright:#131121;
+  --wash:rgba(242,92,164,.17);
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 22px 44px -30px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--wash)}
+p,ul,ol,dl,dd,figure,h1,h2,h3,fieldset{margin:0}
+a{color:inherit;text-decoration-color:var(--g3);text-decoration-thickness:1.5px;text-underline-offset:3px}
+a:hover{color:var(--g3)}
+:focus-visible{outline:3px solid var(--g3);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Type */
+h1,h2,h3{font-family:var(--font-display);font-weight:500;letter-spacing:-.012em;text-wrap:balance}
+h2{font-size:clamp(2rem,4.8vw,3.2rem);line-height:1.04;max-width:20ch}
+h3{font-size:clamp(1.35rem,2.6vw,1.7rem);line-height:1.15;font-weight:550}
+.eyebrow{font:500 .75rem/1.3 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.lede{font-size:clamp(1.12rem,2.1vw,1.32rem);line-height:1.45;max-width:40ch}
+.copy{max-width:60ch}
+.small{font-size:.875rem;line-height:1.45;color:var(--ink-soft)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* Sections, plates, captions */
+.sec{padding-block:clamp(72px,11vw,136px) 0}
+.sec-head{display:grid;gap:14px;margin-bottom:clamp(28px,4vw,44px)}
+.sub{display:grid;gap:10px;margin:clamp(44px,6vw,72px) 0 22px}
+.fig{display:grid;gap:14px;min-width:0}
+.fig figcaption{font-size:.95rem;line-height:1.5;color:var(--ink-soft);max-width:66ch}
+.plate{background:var(--plate);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;min-width:0}
+.plate-body{padding:clamp(16px,3vw,32px)}
+.strip{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;justify-content:space-between;padding:10px clamp(16px,3vw,32px);border-bottom:1px solid var(--rule);font:500 .7rem/1.4 var(--font-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.rec{display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.rec::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--g4)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.two{display:grid;gap:clamp(24px,4vw,40px);grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Buttons */
+.btn{font:700 .92rem/1 var(--font-body);color:var(--ink);background:transparent;border:1.5px solid var(--ink);border-radius:999px;padding:.7rem 1.15rem;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:background-color .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:var(--g3);border-color:var(--g3);color:var(--paper)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+
+/* Hero */
+.hero{padding-block:clamp(36px,6vw,84px) 0}
+.hero-grid{display:grid;gap:clamp(32px,5vw,64px);grid-template-columns:minmax(0,1fr);align-items:center}
+@media (min-width:980px){.hero-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}
+.hero-text{display:grid;gap:22px;min-width:0}
+.title{font-size:clamp(3rem,8.4vw,5.6rem);line-height:.98;font-weight:450;letter-spacing:-.025em;padding-top:.3em}
+.title em{font-style:italic;font-weight:400;white-space:nowrap}
+.fxt{position:relative;display:inline-block}
+.fxt::before{content:"";position:absolute;left:var(--fx,42%);top:56%;width:.42em;height:.42em;border-radius:50%;background:var(--wash);border:2px solid var(--g3);transform:translate(-50%,-50%);pointer-events:none}
+.fxt::after{content:attr(data-n);position:absolute;left:var(--fx,42%);top:56%;font:600 .15em/1 var(--font-mono);color:var(--g3);transform:translate(-50%,calc(-100% - 1.6em));letter-spacing:0;pointer-events:none}
+.key{border-top:2px solid var(--ink);padding-top:14px;display:grid;gap:10px;max-width:470px}
+.key-h{font:500 .72rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.key ul{list-style:none;padding:0;display:grid;gap:6px}
+.key li{display:flex;align-items:baseline;gap:8px}
+.key .lead{flex:1;min-width:16px;border-bottom:2px dotted var(--rule);transform:translateY(-4px)}
+.kg{font:600 .82rem/1.4 var(--font-mono);border:2px solid var(--c);border-radius:99px;padding:0 .55rem;white-space:nowrap}
+.key-a{font-size:1rem;line-height:1.5;color:var(--ink-soft)}
+.key-a strong{color:var(--ink)}
+
+/* Gear selector */
+.shifter{container-type:inline-size}
+.sh-body{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@container (min-width:520px){.sh-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}}
+.gate{display:block;width:100%;max-width:300px;height:auto;margin-inline:auto;overflow:visible}
+.gate .slot{fill:none;stroke:var(--slot);stroke-width:20;stroke-linecap:round;stroke-linejoin:round}
+.gate .node{cursor:pointer}
+.gate .node circle{fill:var(--plate);stroke:var(--c);stroke-width:2.5;transition:fill .15s}
+.gate .node:hover circle{fill:var(--wash)}
+.gate .node text{font:600 14px var(--font-mono);fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.gate .node .nl{font:500 11px var(--font-mono);fill:var(--ink-soft);letter-spacing:.08em}
+.gate .node.on .nl{fill:var(--ink);font-weight:600}
+.knob{pointer-events:none}
+.knob-ring{fill:none;stroke:var(--c,var(--g3));stroke-width:5}
+.knob-body{fill:var(--ink)}
+.knob-t{font:600 16px var(--font-mono);fill:var(--paper);text-anchor:middle;dominant-baseline:central}
+.gears{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:14px}
+.gear-btn{font:600 .78rem/1 var(--font-mono);color:var(--ink);background:var(--plate);border:1.5px solid var(--rule);border-radius:999px;padding:.38rem .6rem .38rem .38rem;cursor:pointer;display:inline-flex;gap:.4rem;align-items:center}
+.gear-btn .k{display:inline-grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;border:2px solid var(--c)}
+.gear-btn:hover{border-color:var(--c)}
+.gear-btn[aria-pressed="true"]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);background:var(--wash)}
+.readout{display:grid;gap:12px;min-width:0;--c:var(--g3)}
+.ro-head{display:flex;align-items:center;gap:10px}
+.ro-badge{font:600 .85rem/1 var(--font-mono);border:2.5px solid var(--c);border-radius:50%;min-width:2.1rem;height:2.1rem;display:inline-grid;place-items:center}
+.ro-name{font:500 1.9rem/1 var(--font-display)}
+.ro-speed{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.ro-num{font:500 clamp(2.5rem,6vw,3.3rem)/1 var(--font-display);font-variant-numeric:tabular-nums lining-nums}
+.ro-unit{font:500 .72rem var(--font-mono);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+.meters{display:grid;gap:8px}
+.meter{display:grid;grid-template-columns:4.4rem minmax(0,1fr);align-items:center;gap:10px;font:500 .7rem var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+.bar{height:8px;border-radius:99px;background:var(--slot);overflow:hidden}
+.bar i{display:block;height:100%;width:50%;background:var(--c);border-radius:inherit;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.pips{display:flex;gap:6px}
+.pips b{width:13px;height:13px;border-radius:50%;border:2px solid var(--c)}
+.pips b.on{background:var(--c)}
+.ro-note{font-size:.95rem;color:var(--ink-soft)}
+.ro-dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:.98rem;line-height:1.4}
+.ro-dl dt{font:500 .68rem/1.9 var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+
+/* Scanpath */
+.sp-stage{position:relative;padding-block:clamp(26px,4vw,44px) clamp(30px,5vw,52px)}
+.sp-text{font:400 clamp(1.25rem,4.4vw,2.55rem)/2.5 var(--font-display);word-spacing:.06em}
+.sp-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.sp-svg .fx-c{fill:var(--wash);stroke:var(--g3);stroke-width:2}
+.sp-svg .fx-n{font:600 12px var(--font-mono);fill:var(--g3);text-anchor:middle}
+.sp-svg .sac{stroke:var(--g3);stroke-width:1.2;opacity:.32}
+.sp-svg .reg{fill:none;stroke:var(--g4);stroke-width:2;stroke-dasharray:6 5}
+.sp-svg .reg-head{fill:var(--g4)}
+.sp-svg .reg-lbl{font:600 11px var(--font-mono);fill:var(--g4);text-anchor:middle;letter-spacing:.1em}
+.clock{font-variant-numeric:tabular-nums;color:var(--ink)}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:18px;margin-top:22px}
+.chip{border-top:3px solid var(--c,var(--g3));padding-top:10px;display:grid;gap:2px}
+.chip .v{font:500 1.75rem/1.1 var(--font-display)}
+.chip .k{font:500 .72rem/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft)}
+
+/* Moving window */
+.win-text{font:400 clamp(.92rem,2.3vw,1.28rem)/2 var(--font-mono);overflow-wrap:anywhere;min-height:6em}
+.win-text span.m{color:var(--ink-soft);opacity:.5}
+.win-text span.fx{background:var(--wash);box-shadow:inset 0 -3px 0 var(--g3);border-radius:2px}
+.win-ctl{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 14px;align-items:center;margin-top:18px}
+.win-ctl label{font:500 .72rem var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+input[type="range"]{width:100%;accent-color:var(--g3)}
+@media (max-width:560px){.win-ctl{grid-template-columns:minmax(0,1fr)}}
+
+/* Time bar */
+.tbar{display:grid;gap:10px}
+.tb-row{display:flex;height:64px;border-radius:8px;overflow:hidden}
+.tb-f{flex:0 0 22.5%;background:var(--g3);color:var(--on-deep);display:grid;place-items:center;font:600 .7rem var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+.tb-s{flex:0 0 2.5%;background:repeating-linear-gradient(-45deg,var(--g5) 0 3px,var(--plate) 3px 6px)}
+.tb-axis{position:relative;height:1.2rem;font:500 .72rem var(--font-mono);color:var(--ink-soft)}
+.tb-axis span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.tb-axis span:first-child{transform:none}
+.tb-axis span:last-child{transform:translateX(-100%)}
+.tb-legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.92rem}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:8px}
+.sw.f{background:var(--g3)}
+.sw.s{background:repeating-linear-gradient(-45deg,var(--g5) 0 3px,var(--plate) 3px 6px);outline:1px solid var(--g5)}
+.big-stat{font:500 clamp(2.4rem,6vw,3.6rem)/1 var(--font-display)}
+
+/* Speed sign */
+.limit{display:grid;gap:clamp(20px,4vw,48px);grid-template-columns:minmax(0,1fr);align-items:center}
+@media (min-width:860px){.limit{grid-template-columns:minmax(0,420px) minmax(0,1fr)}}
+.sign-svg{display:block;width:100%;max-width:400px;height:auto;margin-inline:auto}
+.sign-svg .lane{fill:none;stroke:var(--slot);stroke-width:16;stroke-linecap:round}
+.sign-svg .lane-mid{fill:none;stroke:var(--ink-soft);stroke-width:1.5;stroke-dasharray:6 7}
+.sign-svg .ico path,.sign-svg .ico circle{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.sign-svg .ico .pupil{fill:var(--ink);stroke:none}
+.sign-svg .f-k{font:600 12px var(--font-mono);fill:var(--ink-soft);text-anchor:middle;letter-spacing:.1em}
+.sign-svg .f-v{font:500 16px var(--font-body);fill:var(--ink);text-anchor:middle}
+.sign-svg .sign{fill:var(--plate);stroke:var(--g4);stroke-width:11}
+.sign-svg .sign-n{font:600 38px var(--font-display);fill:var(--ink);text-anchor:middle}
+.sign-svg .sign-u{font:600 9.5px var(--font-mono);fill:var(--ink-soft);text-anchor:middle;letter-spacing:.1em}
+.sign-svg .mbox{fill:var(--ink)}
+.sign-svg .mbox-t{font:500 22px var(--font-display);fill:var(--paper);text-anchor:middle}
+.limit-text{display:grid;gap:16px;max-width:52ch}
+</style>
+<style>
+/* Horizontal bars (inner voice, speed reading) */
+.hbars{display:grid;gap:16px}
+.hb{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 3.2rem;gap:12px;align-items:center}
+.hb-l{font-size:.95rem;line-height:1.25}
+.hb-t{height:26px;background:var(--slot);border-radius:6px;overflow:hidden}
+.hb-t i{display:block;height:100%;width:var(--w);background:var(--c,var(--g3));border-radius:6px}
+.hb-v{font:600 1rem var(--font-mono);font-variant-numeric:tabular-nums;text-align:right}
+.hb-n{grid-column:2 / 4;font-size:.85rem;color:var(--ink-soft);margin-top:-8px}
+.hb-axis{display:flex;justify-content:space-between;font:500 .68rem var(--font-mono);color:var(--ink-soft);margin-left:calc(min(9.5rem,32%) + 12px);margin-right:calc(3.2rem + 12px)}
+@media (max-width:560px){
+  .hb{grid-template-columns:minmax(0,1fr) 3rem}
+  .hb-l{grid-column:1 / -1}
+  .hb-n{grid-column:1 / -1}
+  .hb-axis{margin-left:0;margin-right:calc(3rem + 12px)}
+}
+
+/* Mute grid */
+.mute{display:grid;grid-template-columns:minmax(0,.8fr) repeat(2,minmax(0,1fr));gap:8px}
+.mute .h{font:500 .7rem/1.3 var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);align-self:end;padding:0 4px 4px}
+.mute .rh{font-family:var(--font-display);font-size:1.15rem;align-self:center}
+.mute .cell{border-radius:10px;padding:14px 12px;display:grid;gap:6px;justify-items:start;font-size:.92rem;line-height:1.3;min-height:92px;align-content:center}
+.mute .cell svg{width:26px;height:26px;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.mute .ok{background:var(--slot)}
+.mute .ok svg{stroke:var(--g1)}
+.mute .meh{background:var(--slot)}
+.mute .meh svg{stroke:var(--ink-soft)}
+.mute .bad{background:var(--g4);color:var(--on-deep)}
+.mute .bad svg{stroke:var(--on-deep)}
+@media (max-width:480px){
+  .mute{grid-template-columns:minmax(0,.55fr) repeat(2,minmax(0,1fr));gap:6px}
+  .mute .rh{font-size:1rem}
+  .mute .cell{padding:12px 10px;font-size:.85rem}
+}
+
+/* Phone version of the compare chart */
+.ladder{display:none;gap:16px}
+.lad{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 10px;align-items:center}
+.lad b{font:600 1.1rem/1.2 var(--font-display)}
+.lad-v{font:600 .85rem var(--font-mono);font-variant-numeric:tabular-nums}
+.lad-t{grid-column:1 / -1;height:10px;background:var(--slot);border-radius:99px;overflow:hidden}
+.lad-t i{display:block;height:100%;width:var(--w);background:var(--c);border-radius:inherit}
+.lad-g{grid-column:1 / -1;font-size:.9rem;line-height:1.35;color:var(--ink-soft)}
+.lad-g em{font-style:normal;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em}
+.lad-note{font:italic 500 1.05rem/1.35 var(--font-display);color:var(--g4);border-top:1px solid var(--rule);padding-top:12px}
+@media (max-width:640px){.chart-wrap{display:none}.ladder{display:grid}}
+
+/* Word flasher */
+.rs-screen{height:clamp(120px,22vw,170px);display:grid;place-items:center;border:1px dashed var(--rule);border-radius:10px;margin-bottom:18px;background:var(--paper)}
+.rs-word{font:500 clamp(2rem,6vw,3rem)/1 var(--font-display)}
+.rs-q,.rs-fb{display:grid;gap:12px;margin-top:20px}
+.rs-q p{font-family:var(--font-display);font-size:1.3rem}
+.rs-fb{border-left:3px solid var(--g4);padding-left:16px}
+.rs-fb .rs-verdict{font-weight:700}
+.rs-sent{font:400 clamp(1.1rem,2.6vw,1.4rem)/1.5 var(--font-display)}
+.rs-sent mark{background:var(--wash);color:inherit;box-shadow:inset 0 -3px 0 var(--g3);padding:0 .1em}
+
+/* Logic chain + route */
+.route{list-style:none;padding:0;display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr))}
+.route li{position:relative;display:grid;gap:8px;align-content:start;padding-right:22px}
+.route li::after{content:"";position:absolute;top:27px;left:62px;right:6px;height:2px;background:var(--g3);opacity:.55}
+.route li:last-child::after{display:none}
+.route .bub{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;border:2.5px solid var(--c,var(--g3));background:var(--wash);font:600 .95rem var(--font-mono)}
+.route b{font-family:var(--font-display);font-size:1.28rem;font-weight:600;line-height:1.2}
+.route p{font-size:.97rem;color:var(--ink-soft);line-height:1.45}
+@media (max-width:760px){
+  .route{grid-template-columns:minmax(0,1fr);gap:22px}
+  .route li{grid-template-columns:56px minmax(0,1fr);column-gap:14px;padding-right:0}
+  .route li .bub{grid-row:span 2}
+  .route li::after{top:62px;bottom:-18px;left:27px;right:auto;width:2px;height:auto}
+}
+
+/* Compare chart */
+.chart{display:block;width:100%;min-width:640px;height:auto}
+.chart .gridl{stroke:var(--rule);stroke-dasharray:2 5}
+.chart .ylab{font:500 15px var(--font-body);fill:var(--ink);text-anchor:end}
+.chart .axis{stroke:var(--ink);stroke-width:1.5}
+.chart .xlab{font:500 12px var(--font-mono);fill:var(--ink-soft);text-anchor:middle}
+.chart .xtitle{font:500 12px var(--font-mono);fill:var(--ink-soft);text-anchor:middle;letter-spacing:.08em}
+.chart .zone{fill:url(#hatch-ch)}
+.chart .hatch-l{stroke:var(--g4);stroke-width:2;opacity:.3}
+.chart .zone-t{font:600 19px var(--font-display);fill:var(--g4);text-anchor:middle}
+.chart .zone-t2{font:500 14px var(--font-body);fill:var(--ink-soft);text-anchor:middle}
+.chart .avg{stroke:var(--ink-soft);stroke-dasharray:4 4;stroke-width:1.2}
+.chart .avg-t{font:500 12px var(--font-mono);fill:var(--ink-soft);text-anchor:middle}
+.chart .front{fill:none;stroke:var(--ink);stroke-width:2}
+.chart .pt circle{fill:var(--c);stroke:var(--plate);stroke-width:3}
+.chart .pl{font:700 15px var(--font-body);fill:var(--ink);paint-order:stroke;stroke:var(--plate);stroke-width:6px;stroke-linejoin:round}
+.chart .ps{font:500 11.5px var(--font-mono);fill:var(--ink-soft);letter-spacing:.05em;paint-order:stroke;stroke:var(--plate);stroke-width:6px;stroke-linejoin:round}
+.chart .claim line{stroke:var(--g4);stroke-width:2}
+.chart .claim path{fill:var(--g4)}
+.chart .claim text{font:600 12px var(--font-mono);fill:var(--g4);text-anchor:end;letter-spacing:.04em}
+
+/* Verdict cards */
+.ways{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));margin-top:clamp(28px,4vw,40px)}
+.way{background:var(--plate);border:1px solid var(--rule);border-top:5px solid var(--c);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;box-shadow:var(--shadow)}
+.way header{display:flex;align-items:center;gap:12px}
+.way h3{font-size:1.45rem}
+.way-s{font:500 .78rem var(--font-mono);color:var(--ink-soft);letter-spacing:.04em}
+.way dl{display:grid;gap:8px}
+.way dt{font:500 .68rem var(--font-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft)}
+.way dd{font-size:.97rem;line-height:1.45;margin-top:-4px}
+.way .ev{font-size:.88rem;color:var(--ink-soft)}
+.way-v{font:italic 500 1.15rem/1.3 var(--font-display);border-top:1px solid var(--rule);padding-top:10px}
+
+/* Leaks */
+.mins{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;max-width:460px}
+.mins i{aspect-ratio:1;border-radius:4px;background:var(--slot)}
+.mins i.w{background:var(--g4)}
+.mins i.m{background:repeating-linear-gradient(45deg,var(--g4) 0 2px,transparent 2px 6px);box-shadow:inset 0 0 0 1.5px var(--g4)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.9rem;margin-top:14px}
+.legend .sw.w{background:var(--g4)}
+.legend .sw.m{background:repeating-linear-gradient(45deg,var(--g4) 0 2px,transparent 2px 6px);box-shadow:inset 0 0 0 1.5px var(--g4)}
+.legend .sw.f{background:var(--slot)}
+.screen-note{display:grid;gap:14px;align-content:center}
+.pvs{display:flex;align-items:flex-end;gap:18px}
+.pvs svg{width:64px;height:64px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pvs .gt{font:500 2.2rem/1 var(--font-display);color:var(--g3);padding-bottom:12px}
+
+/* Engine */
+.bubs{display:grid;gap:4px;isolation:isolate}
+.bubs .lbl{font:500 .7rem var(--font-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft);margin-top:6px}
+.bubs .s{font:400 clamp(1.3rem,3.6vw,2.05rem)/2.3 var(--font-display)}
+.bw{position:relative;display:inline-block}
+.bw::before{content:"";position:absolute;left:50%;top:55%;width:calc(var(--s)*1em);height:calc(var(--s)*1em);transform:translate(-50%,-50%);border-radius:50%;background:var(--wash);border:2px solid var(--g3);z-index:-1}
+.bb{display:grid;grid-template-columns:auto repeat(2,minmax(0,1fr));gap:6px}
+.bb .h{font:500 .68rem/1.3 var(--font-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);align-self:end;padding:0 4px 4px}
+.bb .rh{font:500 .68rem/1.3 var(--font-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);align-self:center;padding-right:6px}
+.bb .cell{border-radius:8px;padding:12px;min-height:76px;display:grid;align-content:center;font-size:.92rem;line-height:1.3}
+.bb .hi{background:var(--g1);color:var(--on-deep)}
+.bb .lo{background:var(--slot)}
+.bb .star{box-shadow:0 0 0 3px var(--plate),0 0 0 5px var(--g5)}
+.dots50{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;max-width:320px}
+.dots50 i{aspect-ratio:1;border-radius:50%;background:var(--ink);opacity:.85}
+.dots50 i.u{background:transparent;box-shadow:inset 0 0 0 2.5px var(--g4);opacity:1}
+.engine{display:grid;gap:clamp(24px,4vw,36px)}
+.takeaway{font:500 clamp(1.35rem,3vw,1.9rem)/1.25 var(--font-display);max-width:30ch;border-left:4px solid var(--g1);padding-left:18px}
+
+/* Playbook */
+.phases{display:grid;gap:clamp(24px,4vw,44px) clamp(24px,4vw,56px);grid-template-columns:minmax(0,1fr)}
+@media (min-width:780px){.phases{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.phase h3{font:600 .75rem/1.3 var(--font-mono);text-transform:uppercase;letter-spacing:.12em;color:var(--ink);padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.tip{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.tip svg{width:32px;height:32px;fill:none;stroke:var(--g3);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.tip b{display:block;font:600 1.2rem/1.2 var(--font-display)}
+.tip p{font-size:.96rem;line-height:1.45;color:var(--ink-soft);margin-top:4px}
+
+/* Test */
+.test-intro{display:grid;gap:16px;max-width:60ch}
+.passage{display:grid;gap:14px;max-width:62ch}
+.passage h3{font-size:1.6rem}
+.passage p{font:400 1.18rem/1.65 var(--font-display)}
+.passage:focus{outline:none}
+.quiz{display:grid;gap:18px}
+.quiz fieldset{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px}
+.quiz legend{font:600 1.08rem/1.3 var(--font-display);padding:0 6px}
+.quiz label{display:flex;gap:10px;align-items:center;font-size:.98rem;padding:4px 0;cursor:pointer}
+.quiz input{accent-color:var(--g3);width:18px;height:18px}
+.quiz fieldset.right{border-color:var(--g1);box-shadow:inset 3px 0 0 var(--g1)}
+.quiz fieldset.wrong{border-color:var(--g4);box-shadow:inset 3px 0 0 var(--g4)}
+.quiz .fb{font-size:.88rem;color:var(--ink-soft)}
+.res-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.res-nums div{display:grid;gap:2px;border-top:3px solid var(--c,var(--g3));padding-top:8px}
+.res-nums .v{font:500 clamp(1.8rem,5vw,2.8rem)/1 var(--font-display);font-variant-numeric:tabular-nums lining-nums}
+.res-nums .k{font:500 .68rem/1.3 var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+.gwrap{position:relative;margin-top:30px;padding-block:30px}
+.gstrip{display:flex;height:30px;border-radius:6px;overflow:hidden;position:relative}
+.gstrip span{flex:0 0 var(--w);background:var(--c);display:grid;place-items:center;font:600 .78rem var(--font-mono);color:var(--on-deep)}
+.gstrip span.br{color:var(--on-bright)}
+.gstrip .avgl{position:absolute;top:-5px;bottom:-5px;width:0;border-left:2px dashed var(--ink)}
+.pin{position:absolute;transform:translateX(-50%);white-space:nowrap;font:600 .75rem var(--font-mono);display:grid;justify-items:center}
+.pin.up{top:0}
+.pin.down{bottom:0}
+.pin b{background:var(--ink);color:var(--paper);padding:2px 7px;border-radius:4px;font-weight:600}
+.pin.down b{background:var(--plate);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.r-msg{font-size:1.02rem;max-width:62ch}
+.result{display:grid;gap:16px}
+.form-msg{font-size:.92rem;color:var(--g4);font-weight:700}
+
+/* Sources + footer */
+.sources{list-style:none;padding:0;display:grid;gap:10px;font-size:.92rem;line-height:1.45;columns:1}
+@media (min-width:860px){.sources{display:block;columns:2;column-gap:48px}.sources li{break-inside:avoid;margin-bottom:12px}}
+.sources span{color:var(--ink-soft)}
+.foot{padding-block:clamp(56px,8vw,96px) clamp(40px,6vw,64px);font-size:.88rem;color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">A visual guide to reading speed</p>
+      <h1 class="title">The <span class="fxt" data-n="1">Reading</span> <em><span class="fxt" data-n="2" style="--fx:46%">Gear</span><span class="fxt" data-n="3" style="--fx:52%">box</span></em></h1>
+      <p class="lede">Inner voice, active reading, skimming. Which one is best? Each is a gear, and good readers shift between them.</p>
+      <div class="key">
+        <p class="key-h">Your three ways, as gears</p>
+        <ul>
+          <li><span>Inner-voice reading</span><span class="lead"></span><span class="kg" style="--c:var(--g3)">3</span></li>
+          <li><span>Active reading</span><span class="lead"></span><span class="kg" style="--c:var(--g2)">1–2</span></li>
+          <li><span>Skimming &amp; scanning</span><span class="lead"></span><span class="kg" style="--c:var(--g4)">4–5</span></li>
+        </ul>
+        <p class="key-a"><strong>Short answer.</strong> Read with your inner voice by default. Skim to decide what deserves it. Read actively when it has to stick.</p>
+      </div>
+    </div>
+
+    <figure class="fig">
+      <div class="plate shifter">
+        <div class="strip"><span>Gear selector</span><span>Tap a gear</span></div>
+        <div class="plate-body sh-body">
+          <div>
+            <svg class="gate" viewBox="0 0 320 272" role="img" aria-labelledby="gate-t">
+              <title id="gate-t">Gear-shift gate with five reading gears and reverse</title>
+              <path class="slot" d="M60 56V216M160 56V216M260 56V216M60 136H260"/>
+              <g class="node" data-g="1" style="--c:var(--g1)"><circle cx="60" cy="56" r="19"/><text x="60" y="56">1</text><text class="nl" x="60" y="20">MEMORIZE</text></g>
+              <g class="node" data-g="2" style="--c:var(--g2)"><circle cx="60" cy="216" r="19"/><text x="60" y="216">2</text><text class="nl" x="60" y="256">LEARN</text></g>
+              <g class="node on" data-g="3" style="--c:var(--g3)"><circle cx="160" cy="56" r="19"/><text x="160" y="56">3</text><text class="nl" x="160" y="20">READ</text></g>
+              <g class="node" data-g="4" style="--c:var(--g4)"><circle cx="160" cy="216" r="19"/><text x="160" y="216">4</text><text class="nl" x="160" y="256">SKIM</text></g>
+              <g class="node" data-g="5" style="--c:var(--g5)"><circle cx="260" cy="56" r="19"/><text x="260" y="56">5</text><text class="nl" x="260" y="20">SCAN</text></g>
+              <g class="node" data-g="R" style="--c:var(--ink-soft)"><circle cx="260" cy="216" r="19"/><text x="260" y="216">R</text><text class="nl" x="260" y="256">RE-READ</text></g>
+              <g id="knob" class="knob" style="transform:translate(160px,56px);--c:var(--g3)"><circle class="knob-ring" r="27"/><circle class="knob-body" r="21"/><text class="knob-t" id="knob-t">3</text></g>
+            </svg>
+            <div class="gears" role="group" aria-label="Choose a reading gear">
+              <button class="gear-btn" type="button" id="gb-1" data-g="1" style="--c:var(--g1)" aria-pressed="false"><span class="k">1</span>Memorize</button>
+              <button class="gear-btn" type="button" id="gb-2" data-g="2" style="--c:var(--g2)" aria-pressed="false"><span class="k">2</span>Learn</button>
+              <button class="gear-btn" type="button" id="gb-3" data-g="3" style="--c:var(--g3)" aria-pressed="true"><span class="k">3</span>Read</button>
+              <button class="gear-btn" type="button" id="gb-4" data-g="4" style="--c:var(--g4)" aria-pressed="false"><span class="k">4</span>Skim</button>
+              <button class="gear-btn" type="button" id="gb-5" data-g="5" style="--c:var(--g5)" aria-pressed="false"><span class="k">5</span>Scan</button>
+              <button class="gear-btn" type="button" id="gb-R" data-g="R" style="--c:var(--ink-soft)" aria-pressed="false"><span class="k">R</span>Re-read</button>
+            </div>
+          </div>
+          <div class="readout" id="readout" aria-live="polite">
+            <div class="ro-head"><span class="ro-badge" id="ro-badge">3</span><span class="ro-name" id="ro-name">Read</span></div>
+            <div class="ro-speed"><span class="ro-num" id="ro-num">300</span><span class="ro-unit" id="ro-unit">words / min</span></div>
+            <div class="meters" id="ro-meters">
+              <div class="meter"><span>Speed</span><span class="bar"><i id="ro-bar" style="width:50%"></i></span></div>
+              <div class="meter"><span>Depth</span><span class="pips" id="ro-pips"><b class="on"></b><b class="on"></b><b class="on"></b><b></b><b></b></span></div>
+            </div>
+            <p class="ro-note" id="ro-note" hidden>Not a speed. A repair move you use in every gear.</p>
+            <dl class="ro-dl">
+              <dt>You get</dt><dd id="ro-get">Every sentence understood</dd>
+              <dt>Use it for</dt><dd id="ro-use">Articles, books, most of what you read</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <figcaption>Speeds are Carver’s typical rates for skilled college readers. The average adult reads about 238 words a minute.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<section class="sec" id="eyes" aria-labelledby="eyes-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What your eyes do</p>
+      <h2 id="eyes-h">Your eyes hop. They never glide.</h2>
+      <p class="lede">Reading is a chain of stops and jumps. Here is one sentence the way an eye tracker sees it.</p>
+    </div>
+    <figure class="fig">
+      <div class="plate">
+        <div class="strip"><span class="rec">Gaze replay</span><span>10 stops · 1 jump back</span><span class="clock" id="sp-clock">2.71 s</span></div>
+        <div class="plate-body">
+          <div class="sp-stage" id="sp-stage">
+            <p class="sp-text" id="sp-text"><span class="w">While</span> <span class="w">the</span> <span class="w">man</span> <span class="w">hunted</span> <span class="w">the</span> <span class="w">deer</span> <span class="w">ran</span> <span class="w">into</span> <span class="w">the</span> <span class="w">woods.</span></p>
+            <svg class="sp-svg" id="sp-svg" aria-hidden="true"></svg>
+          </div>
+          <div class="row"><button class="btn" id="sp-replay" type="button">Replay</button><span class="small">Played at half speed. Circle size shows how long each stop lasts.</span></div>
+          <div class="chips">
+            <div class="chip"><span class="v">≈ ¼ second</span><span class="k">each stop (200–250 ms)</span></div>
+            <div class="chip" style="--c:var(--g5)"><span class="v">7–9 letters</span><span class="k">each jump, in 20–40 ms</span></div>
+            <div class="chip" style="--c:var(--g4)"><span class="v">10–15%</span><span class="k">of jumps go backward</span></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Illustration built from typical lab values. Short words like “the” are often skipped. At “ran” the sentence stops making sense, so the eyes jump back to “hunted” and repair it.</figcaption>
+    </figure>
+
+    <div class="sub">
+      <h3>Each stop takes in about 20 letters</h3>
+      <p class="copy">This box copies a classic lab test. Letters outside your eye’s window turn into x’s. Hover over the text or drag the slider.</p>
+    </div>
+    <figure class="fig">
+      <div class="plate">
+        <div class="strip"><span class="rec">Moving window</span><span>4 letters back · 15 ahead</span></div>
+        <div class="plate-body">
+          <p class="win-text" id="win-text" aria-hidden="true">Speed-reading courses say you can take in a whole line, or even a whole page, in one glance. This box shows what a single glance really gives you. Only a few letters behind your eye and about fifteen ahead are clear.</p>
+          <p class="sr-only">Demonstration: only about 4 letters before and 15 letters after the point you look at are readable; the rest of the line is replaced with x's.</p>
+          <div class="win-ctl">
+            <label for="win-pos">Eye position</label>
+            <input id="win-pos" type="range" min="0" max="210" value="30">
+            <button class="btn" id="win-play" type="button" aria-pressed="false">Read it for me</button>
+          </div>
+        </div>
+      </div>
+      <figcaption>Skilled readers use about 3–4 letters behind each stop and 14–15 ahead. Taking in a whole line, let alone a page, in one glance is out of reach.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="limit" aria-labelledby="limit-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Where the speed limit lives</p>
+      <h2 id="limit-h">The limit is in your head, not your eyes.</h2>
+    </div>
+    <figure class="fig">
+      <div class="plate">
+        <div class="strip"><span>One second of reading</span><span>Drawn to scale</span></div>
+        <div class="plate-body">
+          <div class="tbar" role="img" aria-label="One second of reading: four stops of about 225 milliseconds each, separated by jumps of about 25 milliseconds.">
+            <div class="tb-row"><span class="tb-f">Stop</span><span class="tb-s"></span><span class="tb-f">Stop</span><span class="tb-s"></span><span class="tb-f">Stop</span><span class="tb-s"></span><span class="tb-f">Stop</span><span class="tb-s"></span></div>
+            <div class="tb-axis num"><span style="left:0">0</span><span style="left:25%">0.25 s</span><span style="left:50%">0.5 s</span><span style="left:75%">0.75 s</span><span style="left:100%">1 s</span></div>
+            <div class="tb-legend"><span><i class="sw f"></i>Stop, about 225 ms. Words are taken in.</span><span><i class="sw s"></i>Jump, about 25 ms. You see almost nothing.</span></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>About nine-tenths of reading time is spent stopped while the brain works on the words. Faster eyes could only trim the thin slivers.</figcaption>
+    </figure>
+
+    <div class="limit" style="margin-top:clamp(40px,6vw,64px)">
+      <svg class="sign-svg" viewBox="0 0 400 430" role="img" aria-label="Reading and listening feed one language system whose top speed is about 270 words per minute.">
+        <path class="lane" d="M100 172 C100 205 200 195 200 222"/>
+        <path class="lane" d="M300 172 C300 205 200 195 200 222"/>
+        <path class="lane" d="M200 322 V362"/>
+        <path class="lane-mid" d="M100 172 C100 205 200 195 200 222"/>
+        <path class="lane-mid" d="M300 172 C300 205 200 195 200 222"/>
+        <path class="lane-mid" d="M200 322 V362"/>
+        <g class="ico" transform="translate(100 58)">
+          <path d="M-46 0 Q0 -40 46 0 Q0 40 -46 0Z"/><circle r="15"/><circle class="pupil" r="6"/>
+        </g>
+        <g class="ico" transform="translate(300 58)">
+          <path d="M-12 28 C-22 16 -24 -12 -6 -24 C8 -33 30 -26 30 -4 C30 10 18 14 16 24 C14 32 6 36 -2 32"/>
+          <path d="M0 6 C-6 -6 4 -16 14 -10 C20 -6 18 2 12 4"/>
+        </g>
+        <text class="f-k" x="100" y="114">READING</text>
+        <text class="f-v" x="100" y="136">≈ 269 wpm</text>
+        <text class="f-k" x="300" y="114">LISTENING</text>
+        <text class="f-v" x="300" y="136">clear to 270,</text>
+        <text class="f-v" x="300" y="156">falls by 315</text>
+        <g transform="translate(200 268)">
+          <circle class="sign" r="54"/>
+          <text class="sign-n" y="8">270</text>
+          <text class="sign-u" y="30">WORDS / MIN</text>
+        </g>
+        <g transform="translate(120 362)">
+          <rect class="mbox" width="160" height="56" rx="28"/>
+          <text class="mbox-t" x="80" y="36">Meaning</text>
+        </g>
+      </svg>
+      <div class="limit-text">
+        <p class="big-stat num">≈ 270</p>
+        <p class="lede">Eyes and ears feed one language system, and it has one top speed.</p>
+        <p class="copy small">Speed up recorded speech and it stays clear to about 270 words a minute, then understanding falls steeply by 315. People read the same texts silently at about 269. Language skill, not eye speed, sets the pace.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="voice" aria-labelledby="voice-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The voice in your head</p>
+      <h2 id="voice-h">Your inner voice is a tool. Keep it.</h2>
+      <p class="lede">Speed-reading courses call it a bad habit. The research says it helps you hold a sentence together.</p>
+    </div>
+    <div class="two">
+      <figure class="fig">
+        <div class="plate">
+          <div class="strip"><span>Average adult, English</span><span>Words per minute</span></div>
+          <div class="plate-body">
+            <div class="hbars" role="img" aria-label="Average adult reading rates: aloud 183, silent non-fiction 238, silent fiction 260 words per minute.">
+              <div class="hb"><span class="hb-l">Reading aloud</span><span class="hb-t"><i style="--w:61%;--c:var(--ink-soft)"></i></span><span class="hb-v">183</span></div>
+              <div class="hb"><span class="hb-l">Silent, non-fiction</span><span class="hb-t"><i style="--w:79.3%"></i></span><span class="hb-v">238</span></div>
+              <div class="hb"><span class="hb-l">Silent, fiction</span><span class="hb-t"><i style="--w:86.7%"></i></span><span class="hb-v">260</span></div>
+              <div class="hb-axis num" aria-hidden="true"><span>0</span><span>100</span><span>200</span><span>300</span></div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Silent reading already runs about 30% faster than reading aloud. The inner voice is a compressed voice, not a slow mouth.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="plate">
+          <div class="strip"><span>When people are trained to mute it</span></div>
+          <div class="plate-body">
+            <div class="mute" role="table" aria-label="Effect of muting the inner voice">
+              <div role="row" style="display:contents">
+                <span class="h" role="columnheader"></span>
+                <span class="h" role="columnheader">Inner voice on</span>
+                <span class="h" role="columnheader">Inner voice muted</span>
+              </div>
+              <div role="row" style="display:contents">
+                <span class="rh" role="rowheader">Easy text</span>
+                <span class="cell ok" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Understood</span>
+                <span class="cell meh" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>Little effect found</span>
+              </div>
+              <div role="row" style="display:contents">
+                <span class="rh" role="rowheader">Hard text</span>
+                <span class="cell ok" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Understood</span>
+                <span class="cell bad" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Understanding drops</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Muting inner speech hurts understanding when the text is hard or asks you to infer. Even readers flashed words at 720 a minute still form their sounds.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="speed" aria-labelledby="speed-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Speed-reading claims</p>
+      <h2 id="speed-h">Speed reading is mostly skimming.</h2>
+    </div>
+    <figure class="fig">
+      <div class="plate">
+        <div class="strip"><span>One classic test</span><span>Words per minute</span></div>
+        <div class="plate-body">
+          <div class="hbars" role="img" aria-label="Normal readers 240 words per minute, untrained skimmers 600, trained speed readers 700.">
+            <div class="hb"><span class="hb-l">Normal readers</span><span class="hb-t"><i style="--w:30%;--c:var(--g3)"></i></span><span class="hb-v">240</span><span class="hb-n">Understood the most</span></div>
+            <div class="hb"><span class="hb-l">Untrained skimmers</span><span class="hb-t"><i style="--w:75%;--c:var(--g4)"></i></span><span class="hb-v">600</span><span class="hb-n">Got the gist, lost the details</span></div>
+            <div class="hb"><span class="hb-l">Trained speed readers</span><span class="hb-t"><i style="--w:87.5%;--c:var(--g5)"></i></span><span class="hb-v">700</span><span class="hb-n">Beat skimmers only on the gist of easy text. On details or hard text, no better.</span></div>
+            <div class="hb-axis num" aria-hidden="true"><span>0</span><span>200</span><span>400</span><span>600</span><span>800</span></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>A major review of this research found no way to double or triple reading speed while keeping full understanding. Trained speed readers mostly learn to skim well.</figcaption>
+    </figure>
+
+    <div class="sub">
+      <h3>Try a word-flashing app</h3>
+      <p class="copy">Some apps flash one word at a time, so your eyes never move. That also removes your jumps back.</p>
+    </div>
+    <div class="plate">
+      <div class="strip"><span class="rec">Word flasher</span><span>400 words / min · one word every 150 ms</span></div>
+      <div class="plate-body">
+        <div class="rs-screen"><span class="rs-word" id="rs-word" aria-live="off">+</span></div>
+        <button class="btn primary" id="rs-go" type="button">Flash a sentence</button>
+        <div class="rs-q" id="rs-q" hidden>
+          <p>In that sentence, what is “houses”?</p>
+          <div class="row">
+            <button class="btn" type="button" id="rs-a1" data-a="noun" aria-pressed="false">Buildings</button>
+            <button class="btn" type="button" id="rs-a2" data-a="verb" aria-pressed="false">Gives homes to</button>
+          </div>
+        </div>
+        <div class="rs-fb" id="rs-fb" hidden aria-live="polite">
+          <p class="rs-verdict" id="rs-fb-t"></p>
+          <p class="rs-sent">The complex <mark>houses</mark> married and single soldiers and their families.</p>
+          <p class="small">“Houses” is the verb. The complex provides homes for the soldiers and their families. On a page, your eyes would jump back to fix the first reading. When an experiment blocked those jumps back, understanding dropped.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="compare" aria-labelledby="compare-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Your three ways, compared</p>
+      <h2 id="compare-h">Every gear trades depth for speed.</h2>
+    </div>
+
+    <ol class="route" style="--n:3" aria-label="The logic in three steps">
+      <li style="--c:var(--g1)"><span class="bub">1</span><b>A speed limit</b><p>Your brain builds meaning at roughly 250–300 words a minute.</p></li>
+      <li style="--c:var(--g3)"><span class="bub">2</span><b>Faster means fewer words</b><p>Going past it means processing fewer of the words. That is skimming.</p></li>
+      <li style="--c:var(--g5)"><span class="bub">3</span><b>So choose</b><p>Save time by choosing what to read deeply, not by pushing your eyes.</p></li>
+    </ol>
+
+    <figure class="fig" style="margin-top:clamp(36px,5vw,56px)">
+      <div class="plate">
+        <div class="strip"><span>Speed vs. what you keep</span><span>Carver’s five gears</span></div>
+        <div class="plate-body">
+          <div class="ladder" role="list" aria-label="Each gear's speed and what it gives you">
+            <div class="lad" role="listitem" style="--c:var(--g1);--w:19.7%"><span class="kg">1</span><b>Memorize</b><span class="lad-v">138 wpm</span><span class="lad-t"><i></i></span><span class="lad-g">Recall it in your words · <em>active reading</em></span></div>
+            <div class="lad" role="listitem" style="--c:var(--g2);--w:28.6%"><span class="kg">2</span><b>Learn</b><span class="lad-v">200 wpm</span><span class="lad-t"><i></i></span><span class="lad-g">Answer questions on it · <em>active reading</em></span></div>
+            <div class="lad" role="listitem" style="--c:var(--g3);--w:42.9%"><span class="kg">3</span><b>Read</b><span class="lad-v">300 wpm</span><span class="lad-t"><i></i></span><span class="lad-g">Understand each sentence · <em>inner-voice reading</em></span></div>
+            <div class="lad" role="listitem" style="--c:var(--g4);--w:64.3%"><span class="kg">4</span><b>Skim</b><span class="lad-v">450 wpm</span><span class="lad-t"><i></i></span><span class="lad-g">Get the gist · <em>skimming</em></span></div>
+            <div class="lad" role="listitem" style="--c:var(--g5);--w:85.7%"><span class="kg">5</span><b>Scan</b><span class="lad-v">600 wpm</span><span class="lad-t"><i></i></span><span class="lad-g">Find one word · <em>scanning</em></span></div>
+            <p class="lad-note">No study finds readers who are both fast and deep. Ads claim 1,000+ wpm.</p>
+          </div>
+          <div class="chart-wrap scroll-x">
+          <svg class="chart" viewBox="0 0 760 470" role="img" aria-labelledby="ch-t ch-d">
+            <title id="ch-t">Reading speed against what you get from it</title>
+            <desc id="ch-d">Memorize at 138 words per minute lets you recall the text; learn at 200 lets you answer questions; read at 300 gives understanding of each sentence; skim at 450 gives the gist; scan at 600 finds one word. The fast-and-deep corner is empty.</desc>
+            <defs>
+              <pattern id="hatch-ch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatch-l" x1="0" y1="0" x2="0" y2="10"/></pattern>
+            </defs>
+            <line class="gridl" x1="210" y1="60" x2="730" y2="60"/>
+            <line class="gridl" x1="210" y1="137.5" x2="730" y2="137.5"/>
+            <line class="gridl" x1="210" y1="215" x2="730" y2="215"/>
+            <line class="gridl" x1="210" y1="292.5" x2="730" y2="292.5"/>
+            <line class="gridl" x1="210" y1="370" x2="730" y2="370"/>
+            <text class="ylab" x="196" y="65">Recall it in your words</text>
+            <text class="ylab" x="196" y="142.5">Answer questions on it</text>
+            <text class="ylab" x="196" y="220">Understand each sentence</text>
+            <text class="ylab" x="196" y="297.5">Get the gist</text>
+            <text class="ylab" x="196" y="375">Find one word</text>
+            <polygon class="zone" points="312.5,60 358.6,137.5 432.9,215 544.3,292.5 655.7,370 730,370 730,60"/>
+            <text class="zone-t" x="612" y="126">Fast and deep</text>
+            <text class="zone-t2" x="612" y="148">No study finds</text>
+            <text class="zone-t2" x="612" y="167">readers here</text>
+            <line class="avg" x1="386.8" y1="44" x2="386.8" y2="400"/>
+            <text class="avg-t" x="386.8" y="36">average adult · 238</text>
+            <line class="axis" x1="210" y1="400" x2="730" y2="400"/>
+            <text class="xlab" x="210" y="422">0</text>
+            <text class="xlab" x="284.3" y="422">100</text>
+            <text class="xlab" x="358.6" y="422">200</text>
+            <text class="xlab" x="432.9" y="422">300</text>
+            <text class="xlab" x="507.1" y="422">400</text>
+            <text class="xlab" x="581.4" y="422">500</text>
+            <text class="xlab" x="655.7" y="422">600</text>
+            <text class="xlab" x="730" y="422">700</text>
+            <text class="xtitle" x="470" y="456">SPEED, WORDS PER MINUTE</text>
+            <polyline class="front" points="312.5,60 358.6,137.5 432.9,215 544.3,292.5 655.7,370"/>
+            <g class="pt" style="--c:var(--g1)"><circle cx="312.5" cy="60" r="10"/><text class="pl" x="328" y="57">Memorize · 138</text><text class="ps" x="328" y="76">active reading</text></g>
+            <g class="pt" style="--c:var(--g2)"><circle cx="358.6" cy="137.5" r="10"/><text class="pl" x="374" y="134.5">Learn · 200</text><text class="ps" x="374" y="153.5">active reading</text></g>
+            <g class="pt" style="--c:var(--g3)"><circle cx="432.9" cy="215" r="10"/><text class="pl" x="448" y="212">Read · 300</text><text class="ps" x="448" y="231">inner-voice reading</text></g>
+            <g class="pt" style="--c:var(--g4)"><circle cx="544.3" cy="292.5" r="10"/><text class="pl" x="559" y="289.5">Skim · 450</text><text class="ps" x="559" y="308.5">skimming</text></g>
+            <g class="pt" style="--c:var(--g5)"><circle cx="655.7" cy="370" r="10"/><text class="pl" x="645" y="352" style="text-anchor:end">Scan · 600</text><text class="ps" x="645" y="388" style="text-anchor:end">scanning</text></g>
+            <g class="claim"><line x1="700" y1="22" x2="744" y2="22"/><path d="M752 22 l-10 -5.5 v11z"/><text x="692" y="26">ADS CLAIM 1,000+</text></g>
+          </svg>
+          </div>
+        </div>
+      </div>
+      <figcaption>Typical speed for each kind of reading (Carver). Speed-reading ads promise the fast-and-deep corner, which no tested reader reaches.</figcaption>
+    </figure>
+
+    <div class="ways">
+      <article class="way" style="--c:var(--g3)">
+        <header><span class="kg" style="--c:var(--g3)">3</span><h3>Inner-voice reading</h3></header>
+        <p class="way-s">≈ 240–300 words / min</p>
+        <dl>
+          <dt>Keeps</dt><dd>Every sentence and the author’s line of argument</dd>
+          <dt>Loses</dt><dd>Little, as long as your mind stays on the page</dd>
+          <dt>Best for</dt><dd>Most articles, books and reports</dd>
+          <dt>Evidence</dt><dd class="ev">Silent reading settles near 270, the same ceiling as listening.</dd>
+        </dl>
+        <p class="way-v">Your default gear.</p>
+      </article>
+      <article class="way" style="--c:var(--g2)">
+        <header><span class="kg" style="--c:var(--g2)">1–2</span><h3>Active reading</h3></header>
+        <p class="way-s">≈ 140–200 words / min, plus recall</p>
+        <dl>
+          <dt>Keeps</dt><dd>Ideas you can explain and use a week later</dd>
+          <dt>Loses</dt><dd>Pages per hour</dd>
+          <dt>Best for</dt><dd>Anything you must remember, apply or decide on</dd>
+          <dt>Evidence</dt><dd class="ev">Students who read once and practised recalling kept 61% after a week. Re-readers kept 40%.</dd>
+        </dl>
+        <p class="way-v">Slowest per page, best for what must stick.</p>
+      </article>
+      <article class="way" style="--c:var(--g4)">
+        <header><span class="kg" style="--c:var(--g4)">4–5</span><h3>Skimming &amp; scanning</h3></header>
+        <p class="way-s">≈ 450–600 words / min</p>
+        <dl>
+          <dt>Keeps</dt><dd>The map, the gist, one fact you hunted for</dd>
+          <dt>Loses</dt><dd>Details and nuance. Skimmers also accept more claims the text never made.</dd>
+          <dt>Best for</dt><dd>Choosing what to read, reviewing, searching</dd>
+          <dt>Evidence</dt><dd class="ev">With time for only half a text, skimming caught more main ideas than reading half. Minor points did not improve.</dd>
+        </dl>
+        <p class="way-v">A filter, not a replacement.</p>
+      </article>
+    </div>
+
+    <div class="sub">
+      <h3>Best of all, shift in this order</h3>
+    </div>
+    <ol class="route" style="--n:4" aria-label="A four-step reading routine">
+      <li style="--c:var(--g4)"><span class="bub">4</span><b>Skim to map it</b><p>Title, headings, first lines, figures and the ending. About two minutes.</p></li>
+      <li style="--c:var(--ink-soft)"><span class="bub">?</span><b>Ask what you need</b><p>Write the one question this text should answer for you.</p></li>
+      <li style="--c:var(--g3)"><span class="bub">3·2</span><b>Read where it counts</b><p>Read or study only the parts that answer it. Shift to R when lost.</p></li>
+      <li style="--c:var(--g1)"><span class="bub">1</span><b>Close it and recall</b><p>Write the answer from memory, then check what you missed.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="leaks" aria-labelledby="leaks-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Where reading time leaks</p>
+      <h2 id="leaks-h">The biggest leak is a wandering mind.</h2>
+    </div>
+    <div class="two">
+      <figure class="fig">
+        <div class="plate">
+          <div class="strip"><span>One hour of reading</span><span>Each square is a minute</span></div>
+          <div class="plate-body">
+            <div class="mins" role="img" aria-label="Sixty squares, one per minute. Twelve are solid and six more are hatched, showing that the mind is elsewhere for roughly 20 to 30 percent of reading time.">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i class="w"></i><i class="w"></i><i class="m"></i><i></i>
+              <i></i><i></i><i></i><i></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="m"></i><i></i><i></i>
+              <i></i><i></i><i></i><i class="w"></i><i class="m"></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i class="w"></i><i class="w"></i><i class="m"></i><i></i><i></i><i></i><i></i><i></i>
+              <i class="w"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="w"></i><i class="w"></i><i class="m"></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i class="w"></i><i class="m"></i><i></i><i></i>
+            </div>
+            <div class="legend"><span><i class="sw f"></i>On the page</span><span><i class="sw w"></i>Mind elsewhere (20%)</span><span><i class="sw m"></i>Up to 30%</span></div>
+          </div>
+        </div>
+        <figcaption>Studies put mind-wandering at about 20–30% of reading time. The eyes keep moving after the mind has left, which is why a page can pass with nothing taken in.</figcaption>
+      </figure>
+      <div class="screen-note">
+        <div class="pvs" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="M14 6h26l12 12v40H14z"/><path d="M40 6v12h12M22 30h22M22 38h22M22 46h14"/></svg>
+          <span class="gt">›</span>
+          <svg viewBox="0 0 64 64"><rect x="18" y="4" width="28" height="56" rx="5"/><path d="M28 52h8"/></svg>
+        </div>
+        <h3>Screens widen the leak</h3>
+        <p class="copy">For informational text, people understand more on paper than on screens, and the gap grows when they are rushed. Screen readers also overrate how much they understood.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="engine" aria-labelledby="engine-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What actually makes you faster</p>
+      <h2 id="engine-h">Knowing more makes you read faster.</h2>
+    </div>
+    <div class="engine">
+      <figure class="fig">
+        <div class="plate">
+          <div class="strip"><span>Illustration</span><span>Bigger circle, longer stop</span></div>
+          <div class="plate-body">
+            <div class="bubs" aria-hidden="true">
+              <span class="lbl">Familiar words</span>
+              <p class="s">The <span class="bw" style="--s:.7">dog</span> <span class="bw" style="--s:.7">ran</span> to the <span class="bw" style="--s:.8">gate.</span></p>
+              <span class="lbl">Rare words</span>
+              <p class="s"><span class="bw" style="--s:.6">The</span> <span class="bw" style="--s:1.25">ocelot</span> <span class="bw" style="--s:1.05">vaulted</span> the <span class="bw" style="--s:1.4">palisade.</span></p>
+            </div>
+            <p class="sr-only">Familiar words get short stops and short words are often skipped; rare words get long stops.</p>
+          </div>
+        </div>
+        <figcaption>Common, expected words get short stops, and short ones are often skipped altogether. Rare words get long stops.</figcaption>
+      </figure>
+      <div class="two">
+        <figure class="fig">
+          <div class="plate">
+            <div class="strip"><span>The baseball study</span><span>Recht &amp; Leslie, 1988</span></div>
+            <div class="plate-body">
+              <div class="bb" role="table" aria-label="Understanding of a baseball story by reading skill and baseball knowledge">
+                <div role="row" style="display:contents"><span role="columnheader"></span><span class="h" role="columnheader">Knows baseball</span><span class="h" role="columnheader">Doesn’t</span></div>
+                <div role="row" style="display:contents"><span class="rh" role="rowheader">Strong reader</span><span class="cell hi" role="cell">Understood well</span><span class="cell lo" role="cell">Understood poorly</span></div>
+                <div role="row" style="display:contents"><span class="rh" role="rowheader">Weak reader</span><span class="cell hi star" role="cell">Understood well</span><span class="cell lo" role="cell">Understood poorly</span></div>
+              </div>
+            </div>
+          </div>
+          <figcaption>Teenagers read a baseball story. Weak readers who knew the game understood it better than strong readers who didn’t.</figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="plate">
+            <div class="strip"><span>Word coverage</span><span>1 unknown in 50</span></div>
+            <div class="plate-body">
+              <div class="dots50" role="img" aria-label="Fifty dots, one of them hollow, standing for one unknown word in fifty.">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="u"></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+          </div>
+          <figcaption>Studies of language learners suggest you need to know about 49 of every 50 words to read a text without help.</figcaption>
+        </figure>
+      </div>
+      <p class="takeaway">Vocabulary and background knowledge are the engine. Grow them and every gear gets faster.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="playbook" aria-labelledby="play-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Playbook</p>
+      <h2 id="play-h">Ten habits for faster, deeper reading</h2>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <h3>Before you read</h3>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M12 9v10M18 5v14M6 12h12"/><circle cx="12" cy="5.5" r="3"/></svg><div><b>Pick the gear</b><p>Ask what you need: a fact, the gist, full understanding, or something to keep.</p></div></div>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><div><b>Map it first</b><p>Spend two minutes on the title, headings, first lines, figures and ending.</p></div></div>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 11h6M9 14.5h6M9 18h4"/></svg><div><b>Put hard text on paper</b><p>Print it or use a distraction-free reader, and give it unhurried time.</p></div></div>
+      </div>
+      <div class="phase">
+        <h3>While you read</h3>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4M8 7v10M12 4v16M16 7v10M20 10v4"/></svg><div><b>Let the inner voice talk</b><p>Don’t try to silence it. It speeds up on easy text by itself.</p></div></div>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><div><b>Reverse on purpose</b><p>Go back the moment a sentence stops making sense, and fix it right then.</p></div></div>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h9M4 16h12"/><path d="M12.5 11h7a2.6 2.6 0 0 0 .2-5.2 4 4 0 0 0-7.6.9 2.2 2.2 0 0 0 .4 4.3z"/></svg><div><b>Catch the drift</b><p>When you notice your mind has left, go back to the last line you remember.</p></div></div>
+      </div>
+      <div class="phase">
+        <h3>After you read</h3>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg><div><b>Close it and recall</b><p>Write the main point, the evidence and why it matters from memory. Then check.</p></div></div>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M8 14h2M14 14h2"/></svg><div><b>Space it, skip the highlighter</b><p>Recall again a few days later. Re-reading and highlighting teach little.</p></div></div>
+      </div>
+      <div class="phase">
+        <h3>The long game</h3>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4v16H4zM9.5 4h4v16h-4z"/><path d="M15 5.5l3.7-1 4 15-3.7 1z"/></svg><div><b>Grow the engine</b><p>Read widely, and read an overview before a hard book. Knowledge speeds up every gear.</p></div></div>
+        <div class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4.5-5"/><circle cx="12" cy="17" r="1.2"/></svg><div><b>Track effective speed</b><p>Words per minute × share understood. Speed without understanding is a loss.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="test" aria-labelledby="test-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Find your number</p>
+      <h2 id="test-h">Measure your effective speed</h2>
+      <p class="lede">Read a short passage at your normal pace, then answer four questions.</p>
+    </div>
+    <div class="plate">
+      <div class="strip"><span class="rec">Reading test</span><span id="t-status">Ready</span></div>
+      <div class="plate-body">
+        <div class="test-intro" id="t-intro">
+          <p>About <span id="t-count" class="num">260</span> words on honeybees. Read as you normally would. No clock is shown while you read.</p>
+          <p class="small">Example result: 280 words / min × 75% understood = 210 effective words / min.</p>
+          <div class="row"><button class="btn primary" id="t-start" type="button">Start reading</button></div>
+        </div>
+
+        <article class="passage" id="t-passage" hidden tabindex="-1" aria-labelledby="t-ph">
+          <h3 id="t-ph">How bees give directions</h3>
+          <div id="t-body">
+            <p>A honeybee that finds a rich patch of flowers has a problem. It cannot point, and the hive is dark. Yet soon after it returns, dozens of its sisters arrive at the same flowers, sometimes kilometres away.</p>
+            <p>The answer is a dance. On the vertical wall of the comb, the scout runs a short straight line while shaking its body from side to side. Then it loops back and repeats the run, again and again. Researchers call this the waggle dance.</p>
+            <p>The straight run carries two pieces of information. Its angle gives the direction. If the bee runs straight up the comb, the food lies toward the sun. If it runs at an angle to the left of straight up, the flowers lie that many degrees to the left of the sun. Inside the hive, straight up stands in for the sun.</p>
+            <p>The length of the waggle gives the distance. A longer waggle run means a longer flight. Followers crowd close and take in the dance through touch and vibration, since there is too little light to watch it.</p>
+            <p>The Austrian scientist Karl von Frisch spent decades decoding this language, using marked bees and dishes of sugar water set at known distances. The work earned him a share of the Nobel Prize in 1973.</p>
+            <p>The dance is not perfect. Each run points in a slightly different direction, so recruits spread out around the target. Some researchers think this scatter helps, because a cloud of searching bees is more likely to cover a whole patch than a single tight line.</p>
+          </div>
+          <div class="row"><button class="btn primary" id="t-done" type="button">I’m done reading</button></div>
+        </article>
+
+        <form class="quiz" id="t-quiz" hidden novalidate>
+          <fieldset id="fs-q1"><legend>1. Inside the dark hive, what stands in for the sun?</legend>
+            <label><input type="radio" name="q1" id="q1a" value="a"> The hive entrance</label>
+            <label><input type="radio" name="q1" id="q1b" value="b"> Straight up, against gravity</label>
+            <label><input type="radio" name="q1" id="q1c" value="c"> The queen’s position</label>
+            <label><input type="radio" name="q1" id="q1d" value="d"> The warmest part of the comb</label>
+            <p class="fb" hidden></p>
+          </fieldset>
+          <fieldset id="fs-q2"><legend>2. What does a longer waggle run tell the other bees?</legend>
+            <label><input type="radio" name="q2" id="q2a" value="a"> The flowers are sweeter</label>
+            <label><input type="radio" name="q2" id="q2b" value="b"> The flowers are to the left</label>
+            <label><input type="radio" name="q2" id="q2c" value="c"> The flowers are farther away</label>
+            <label><input type="radio" name="q2" id="q2d" value="d"> More helpers are needed</label>
+            <p class="fb" hidden></p>
+          </fieldset>
+          <fieldset id="fs-q3"><legend>3. How do follower bees take in the dance?</legend>
+            <label><input type="radio" name="q3" id="q3a" value="a"> By touch and vibration</label>
+            <label><input type="radio" name="q3" id="q3b" value="b"> By watching closely</label>
+            <label><input type="radio" name="q3" id="q3c" value="c"> By scent alone</label>
+            <label><input type="radio" name="q3" id="q3d" value="d"> By the scout’s colour</label>
+            <p class="fb" hidden></p>
+          </fieldset>
+          <fieldset id="fs-q4"><legend>4. Why might the dance’s scatter be useful?</legend>
+            <label><input type="radio" name="q4" id="q4a" value="a"> It hides the patch from rival colonies</label>
+            <label><input type="radio" name="q4" id="q4b" value="b"> It saves the scout energy</label>
+            <label><input type="radio" name="q4" id="q4c" value="c"> It warns of predators</label>
+            <label><input type="radio" name="q4" id="q4d" value="d"> It spreads recruits across the whole patch</label>
+            <p class="fb" hidden></p>
+          </fieldset>
+          <p class="form-msg" id="t-formmsg" hidden>Answer all four questions first.</p>
+          <div class="row"><button class="btn primary" id="t-submit" type="submit">See my result</button></div>
+        </form>
+
+        <div class="result" id="t-result" hidden aria-live="polite">
+          <div class="res-nums">
+            <div style="--c:var(--g3)"><span class="v" id="r-wpm">0</span><span class="k">Words / min</span></div>
+            <div style="--c:var(--g5)"><span class="v" id="r-pct">0%</span><span class="k">Understood</span></div>
+            <div style="--c:var(--g1)"><span class="v" id="r-eff">0</span><span class="k">Effective words / min</span></div>
+          </div>
+          <div class="gwrap" aria-hidden="true">
+            <span class="pin up" id="pin-you" style="left:40%"><b>You · <span id="pin-you-v">0</span></b></span>
+            <div class="gstrip">
+              <span style="--w:24.14%;--c:var(--g1)">1</span>
+              <span style="--w:11.57%;--c:var(--g2)">2</span>
+              <span style="--w:17.86%;--c:var(--g3)">3</span>
+              <span class="br" style="--w:21.43%;--c:var(--g4)">4</span>
+              <span class="br" style="--w:25%;--c:var(--g5)">5</span>
+              <i class="avgl" style="left:34%"></i>
+            </div>
+            <span class="pin down" id="pin-eff" style="left:30%"><b>Effective · <span id="pin-eff-v">0</span></b></span>
+          </div>
+          <p class="small">Coloured bands are gears 1–5 on a 0–700 words / min scale. The dashed line marks the average adult, 238.</p>
+          <p class="r-msg" id="r-msg"></p>
+          <div class="row"><button class="btn" id="t-again" type="button">Try again</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="sources" aria-labelledby="src-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Sources</p>
+      <h2 id="src-h">Where the numbers come from</h2>
+    </div>
+    <ul class="sources">
+      <li><a href="https://journals.sagepub.com/doi/10.1177/1529100615623267" target="_blank" rel="noopener">Rayner, Schotter, Masson, Potter &amp; Treiman (2016)</a> <span>So much to read, so little time. Speed–accuracy trade-off, inner speech, speed-reading claims.</span></li>
+      <li><a href="https://doi.org/10.1016/j.jml.2019.104047" target="_blank" rel="noopener">Brysbaert (2019)</a> <span>Meta-analysis of 190 studies. Silent 238 (non-fiction) and 260 (fiction), aloud 183 words / min.</span></li>
+      <li><a href="https://ypir.lib.yamaguchi-u.ac.jp/yp/1521/files/144707" target="_blank" rel="noopener">Carver (1990, 1992)</a> <span>Five reading gears and their typical rates; table reproduced in Tanaka (2019, in Japanese).</span></li>
+      <li><a href="https://dx.doi.org/10.3758/BF03198682" target="_blank" rel="noopener">Rayner, Well &amp; Pollatsek (1980)</a> <span>Moving-window experiments on the size of the perceptual span.</span></li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3543826" target="_blank" rel="noopener">Rayner, Slattery, Drieghe &amp; Liversedge (2011)</a> <span>Word skipping and fixation times by word length, frequency and predictability.</span></li>
+      <li><a href="https://experts.mcmaster.ca/scholarly-works/2127220" target="_blank" rel="noopener">Kuperman, Kyröläinen, Porretta, Brysbaert &amp; Yang (2021)</a> <span>Reading rate matches the most efficient listening rate.</span></li>
+      <li><a href="https://journals.sagepub.com/doi/abs/10.1177/0956797614531148" target="_blank" rel="noopener">Schotter, Tran &amp; Rayner (2014)</a> <span>Blocking jumps back hurts comprehension, a problem for word-flashing apps.</span></li>
+      <li><a href="https://www.straightdope.com/21342029/does-speed-reading-really-work" target="_blank" rel="noopener">Just, Carpenter &amp; Masson (1982), as summarised by The Straight Dope</a> <span>Speed readers vs. skimmers vs. normal readers.</span></li>
+      <li><a href="https://researchportal.bath.ac.uk/en/publications/text-skimming-the-process-and-effectiveness-of-foraging-through-t/" target="_blank" rel="noopener">Duggan &amp; Payne (2009)</a> <span>Skimming under time pressure: more main ideas than reading half.</span></li>
+      <li><a href="https://researchportal.bath.ac.uk/en/publications/how-much-do-we-understand-when-skim-reading/fingerprints/" target="_blank" rel="noopener">Duggan &amp; Payne (2006)</a> <span>Skimmers over-accept claims as consistent with the text.</span></li>
+      <li><a href="https://par.nsf.gov/servlets/purl/10284385" target="_blank" rel="noopener">D’Mello &amp; Mills (2021)</a> <span>Review: mind-wandering in roughly 20–30% of reading time.</span></li>
+      <li><a href="https://www.uv.es/lasalgon/papers/Delgado%202018%20dont%20throw%20away%20your%20printed%20books.pdf" target="_blank" rel="noopener">Delgado, Vargas, Ackerman &amp; Salmerón (2018)</a> <span>Paper beats screens for informational text, more so under time pressure.</span></li>
+      <li><a href="https://en.wikipedia.org/wiki/Baseball_Study" target="_blank" rel="noopener">Recht &amp; Leslie (1988)</a> <span>Prior knowledge vs. reading skill: the baseball study.</span></li>
+      <li><a href="https://www.wgtn.ac.nz/__data/assets/pdf_file/0018/1626120/2006-How-large-a-vocab.pdf" target="_blank" rel="noopener">Hu &amp; Nation (2000), discussed in Nation (2006)</a> <span>About 98% word coverage for unassisted reading.</span></li>
+      <li><a href="https://www.psychologicalscience.org/observer/test-enhanced-learning" target="_blank" rel="noopener">Roediger &amp; Karpicke (2006)</a> <span>Recall practice: 61% vs. 40% remembered a week later.</span></li>
+      <li><a href="https://www.psychologicalscience.org/news/releases/which-study-strategies-make-the-grade.html" target="_blank" rel="noopener">Dunlosky et al. (2013)</a> <span>Practice testing and spacing rated high; re-reading and highlighting low.</span></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Diagrams marked “illustration” are schematic. Every number on this page comes from the sources above.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  var reduced = function () { return !!(mq && mq.matches); };
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  /* ---------- 1. Gearbox ---------- */
+  var GEARS = {
+    '1': { name: 'Memorize', num: '138', unit: 'words / min', speed: 138 / 600, depth: 5, get: 'Recall it later, in your own words', use: 'Exam material, a talk, a formula you must keep', x: 60, y: 56, c: '--g1' },
+    '2': { name: 'Learn', num: '200', unit: 'words / min', speed: 200 / 600, depth: 4, get: 'Answers to questions about it', use: 'Textbooks, documentation, contracts', x: 60, y: 216, c: '--g2' },
+    '3': { name: 'Read', num: '300', unit: 'words / min', speed: 300 / 600, depth: 3, get: 'Every sentence understood', use: 'Articles, books, most of what you read', x: 160, y: 56, c: '--g3' },
+    '4': { name: 'Skim', num: '450', unit: 'words / min', speed: 450 / 600, depth: 2, get: 'The gist and the main points', use: 'Choosing what to read, catching up, reviewing', x: 160, y: 216, c: '--g4' },
+    '5': { name: 'Scan', num: '600', unit: 'words / min', speed: 1, depth: 1, get: 'One target: a name, a date, a number', use: 'Search. On screens, Ctrl+F scans fastest.', x: 260, y: 56, c: '--g5' },
+    'R': { name: 'Re-read', num: '10–15%', unit: 'of eye jumps go back', speed: 0, depth: 0, get: 'A sentence you misread, repaired', use: 'The moment something stops making sense', x: 260, y: 216, c: '--ink-soft' }
+  };
+  var knob = $('#knob'), knobT = $('#knob-t'), ro = $('#readout');
+  var cur = '3';
+
+  function moveKnob(g, animate) {
+    var a = GEARS[cur], b = GEARS[g];
+    var pts = [[a.x, a.y], [a.x, 136], [b.x, 136], [b.x, b.y]];
+    if (animate && !reduced() && knob.animate && g !== cur) {
+      var d = [0];
+      for (var i = 1; i < pts.length; i++) {
+        d.push(d[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+      }
+      var tot = d[d.length - 1] || 1;
+      var frames = pts.map(function (p, i) {
+        return { transform: 'translate(' + p[0] + 'px,' + p[1] + 'px)', offset: d[i] / tot };
+      });
+      try { knob.animate(frames, { duration: 200 + tot * 1.3, easing: 'cubic-bezier(.45,0,.2,1)' }); } catch (e) { /* ignore */ }
+    }
+    knob.style.transform = 'translate(' + b.x + 'px,' + b.y + 'px)';
+  }
+
+  function setGear(g, animate) {
+    var G = GEARS[g];
+    if (!G) return;
+    moveKnob(g, animate);
+    cur = g;
+    var cv = 'var(' + G.c + ')';
+    knob.style.setProperty('--c', cv);
+    ro.style.setProperty('--c', cv);
+    knobT.textContent = g;
+    $('#ro-badge').textContent = g;
+    $('#ro-name').textContent = G.name;
+    $('#ro-num').textContent = G.num;
+    $('#ro-unit').textContent = G.unit;
+    var isR = g === 'R';
+    $('#ro-meters').hidden = isR;
+    $('#ro-note').hidden = !isR;
+    $('#ro-bar').style.width = (G.speed * 100).toFixed(1) + '%';
+    $$('#ro-pips b').forEach(function (b, i) { b.classList.toggle('on', i < G.depth); });
+    $('#ro-get').textContent = G.get;
+    $('#ro-use').textContent = G.use;
+    $$('.gear-btn').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.g === g)); });
+    $$('.gate .node').forEach(function (n) { n.classList.toggle('on', n.dataset.g === g); });
+  }
+  $$('.gear-btn').forEach(function (b) { b.addEventListener('click', function () { setGear(b.dataset.g, true); }); });
+  $$('.gate .node').forEach(function (n) { n.addEventListener('click', function () { setGear(n.dataset.g, true); }); });
+  setGear('3', false);
+
+  /* ---------- 2. Gaze replay ---------- */
+  var spStage = $('#sp-stage'), spText = $('#sp-text'), spSvg = $('#sp-svg'), spClock = $('#sp-clock');
+  var words = $$('.w', spText);
+  // [word index, stop duration in ms]; illustrative values in the typical range
+  var FIX = [[0, 210], [2, 230], [3, 250], [5, 240], [6, 380], [3, 260], [5, 220], [6, 200], [7, 190], [9, 260]];
+  var SACC = 30, SLOW = 2;
+  var TOTAL = FIX.reduce(function (s, f) { return s + f[1]; }, 0) + SACC * (FIX.length - 1);
+  var spRun = 0, spPlaying = false;
+  function fmt(ms) { return (ms / 1000).toFixed(2) + ' s'; }
+
+  function spLayout() {
+    var sr = spStage.getBoundingClientRect();
+    var fs = parseFloat(getComputedStyle(spText).fontSize) || 32;
+    var visits = {};
+    return FIX.map(function (f, k) {
+      var wi = f[0], dur = f[1];
+      var r = words[wi].getBoundingClientRect();
+      var v = visits[wi] = (visits[wi] || 0) + 1;
+      return {
+        k: k, wi: wi, dur: dur, v: v, fs: fs,
+        x: r.left - sr.left + r.width * (v === 1 ? 0.42 : 0.6),
+        y: r.top - sr.top + r.height * 0.52,
+        rad: fs * (0.2 + dur / 1500)
+      };
+    });
+  }
+  function spClear() { while (spSvg.firstChild) spSvg.removeChild(spSvg.firstChild); }
+  function drawSac(a, b) {
+    if (b.wi < a.wi) {
+      var fs = a.fs;
+      var sx = a.x, sy = a.y + a.rad, ex = b.x, ey = b.y + b.rad;
+      var cx = (sx + ex) / 2, cy = Math.max(sy, ey) + fs * 0.8;
+      svgEl('path', { d: 'M' + sx + ' ' + sy + ' Q' + cx + ' ' + cy + ' ' + ex + ' ' + ey, 'class': 'reg' }, spSvg);
+      var ang = Math.atan2(ey - cy, ex - cx), L = 10, W = 5;
+      var p2x = ex - L * Math.cos(ang) + W * Math.sin(ang), p2y = ey - L * Math.sin(ang) - W * Math.cos(ang);
+      var p3x = ex - L * Math.cos(ang) - W * Math.sin(ang), p3y = ey - L * Math.sin(ang) + W * Math.cos(ang);
+      svgEl('path', { d: 'M' + ex + ' ' + ey + ' L' + p2x + ' ' + p2y + ' L' + p3x + ' ' + p3y + ' Z', 'class': 'reg-head' }, spSvg);
+      var lowY = 0.25 * sy + 0.5 * cy + 0.25 * ey;
+      var t = svgEl('text', { x: cx, y: lowY + 15, 'class': 'reg-lbl' }, spSvg);
+      t.textContent = 'BACK';
+    } else {
+      svgEl('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, 'class': 'sac' }, spSvg);
+    }
+  }
+  function drawFix(p, animate) {
+    var c = svgEl('circle', { cx: p.x, cy: p.y, r: p.rad, 'class': 'fx-c' }, spSvg);
+    var t = svgEl('text', { x: p.x, y: p.y - p.rad - 6 - (p.v - 1) * 14, 'class': 'fx-n' }, spSvg);
+    t.textContent = String(p.k + 1);
+    if (animate && c.animate) {
+      c.style.transformOrigin = p.x + 'px ' + p.y + 'px';
+      try { c.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 160, easing: 'ease-out' }); } catch (e) { /* ignore */ }
+    }
+  }
+  function spStatic() {
+    spRun++; spPlaying = false;
+    var pts = spLayout();
+    spClear();
+    for (var k = 1; k < pts.length; k++) drawSac(pts[k - 1], pts[k]);
+    pts.forEach(function (p) { drawFix(p, false); });
+    spClock.textContent = fmt(TOTAL);
+  }
+  function runClock(a, b, ms, id) {
+    return new Promise(function (res) {
+      var start = performance.now();
+      function f(now) {
+        if (id !== spRun) return res();
+        var u = Math.min(1, (now - start) / ms);
+        spClock.textContent = fmt(a + (b - a) * u);
+        if (u < 1) requestAnimationFrame(f); else res();
+      }
+      requestAnimationFrame(f);
+    });
+  }
+  async function spPlay() {
+    var id = ++spRun;
+    spPlaying = true;
+    var pts = spLayout();
+    spClear();
+    var t = 0;
+    spClock.textContent = fmt(0);
+    await sleep(350);
+    for (var k = 0; k < pts.length; k++) {
+      if (id !== spRun) return;
+      if (k > 0) {
+        drawSac(pts[k - 1], pts[k]);
+        t += SACC;
+        spClock.textContent = fmt(t);
+        await sleep(SACC * SLOW);
+        if (id !== spRun) return;
+      }
+      drawFix(pts[k], true);
+      var t0 = t;
+      t += pts[k].dur;
+      await runClock(t0, t, pts[k].dur * SLOW, id);
+    }
+    if (id === spRun) { spPlaying = false; spClock.textContent = fmt(TOTAL); }
+  }
+  $('#sp-replay').addEventListener('click', function () { if (reduced()) spStatic(); else spPlay(); });
+  spStatic();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { if (!spPlaying) spStatic(); });
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { io.unobserve(e.target); if (!reduced()) spPlay(); }
+      });
+    }, { threshold: 0.6 });
+    io.observe(spStage);
+  }
+  var rt = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(spStatic, 150);
+  });
+
+  /* ---------- 3. Moving window ---------- */
+  var winEl = $('#win-text'), winRange = $('#win-pos'), winBtn = $('#win-play');
+  var WIN_TXT = winEl.textContent.trim().replace(/\s+/g, ' ');
+  var chars = Array.from(WIN_TXT);
+  winEl.textContent = '';
+  var spans = chars.map(function (ch, i) {
+    var s = document.createElement('span');
+    s.textContent = ch;
+    s.dataset.i = String(i);
+    winEl.appendChild(s);
+    return s;
+  });
+  winRange.max = String(chars.length - 1);
+  function maskCh(ch) {
+    if (ch >= 'a' && ch <= 'z') return 'x';
+    if (ch >= 'A' && ch <= 'Z') return 'X';
+    return ch;
+  }
+  var winPos = 30, winTimer = null;
+  function setWin(pos) {
+    winPos = Math.max(0, Math.min(chars.length - 1, pos));
+    for (var i = 0; i < spans.length; i++) {
+      var inside = i >= winPos - 4 && i <= winPos + 15;
+      var ch = inside ? chars[i] : maskCh(chars[i]);
+      if (spans[i].textContent !== ch) spans[i].textContent = ch;
+      spans[i].className = i === winPos ? 'fx' : (inside ? '' : 'm');
+    }
+    winRange.value = String(winPos);
+  }
+  function stopWin() {
+    if (winTimer) { clearTimeout(winTimer); winTimer = null; }
+    winBtn.textContent = 'Read it for me';
+    winBtn.setAttribute('aria-pressed', 'false');
+  }
+  function stepWin() {
+    if (winPos >= chars.length - 1) { stopWin(); return; }
+    setWin(winPos + 8);
+    winTimer = setTimeout(stepWin, 260);
+  }
+  winEl.addEventListener('pointermove', function (e) {
+    var s = e.target && e.target.closest ? e.target.closest('span') : null;
+    if (s && s.dataset.i) { if (winTimer) stopWin(); setWin(+s.dataset.i); }
+  });
+  winRange.addEventListener('input', function () { if (winTimer) stopWin(); setWin(+winRange.value); });
+  winBtn.addEventListener('click', function () {
+    if (winTimer) { stopWin(); return; }
+    if (winPos >= chars.length - 9) setWin(0);
+    winBtn.textContent = 'Stop';
+    winBtn.setAttribute('aria-pressed', 'true');
+    winTimer = setTimeout(stepWin, 260);
+  });
+  setWin(winPos);
+
+  /* ---------- 4. Word flasher ---------- */
+  var RS = 'The complex houses married and single soldiers and their families.'.split(' ');
+  var rsWord = $('#rs-word'), rsGo = $('#rs-go'), rsQ = $('#rs-q'), rsFb = $('#rs-fb');
+  var rsBusy = false;
+  rsGo.addEventListener('click', async function () {
+    if (rsBusy) return;
+    rsBusy = true; rsGo.disabled = true; rsQ.hidden = true; rsFb.hidden = true;
+    $$('#rs-q button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    rsWord.textContent = '+';
+    await sleep(700);
+    for (var i = 0; i < RS.length; i++) { rsWord.textContent = RS[i]; await sleep(150); }
+    rsWord.textContent = '+';
+    rsQ.hidden = false;
+    rsGo.disabled = false;
+    rsGo.textContent = 'Flash it again';
+    rsBusy = false;
+  });
+  $$('#rs-q button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      $$('#rs-q button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var right = b.dataset.a === 'verb';
+      $('#rs-fb-t').textContent = right ? 'Right. Most people need a second look to get there.' : 'That is the trap most readers fall into.';
+      rsFb.hidden = false;
+    });
+  });
+
+  /* ---------- 5. Reading test ---------- */
+  var tIntro = $('#t-intro'), tPass = $('#t-passage'), tQuiz = $('#t-quiz'), tRes = $('#t-result'), tStatus = $('#t-status');
+  var tWords = $('#t-body').textContent.trim().split(/\s+/).length;
+  $('#t-count').textContent = String(tWords);
+  var ANS = { q1: 'b', q2: 'c', q3: 'a', q4: 'd' };
+  var ANS_TXT = { q1: 'Straight up, against gravity', q2: 'The flowers are farther away', q3: 'By touch and vibration', q4: 'It spreads recruits across the whole patch' };
+  var t0 = 0, t1 = 0;
+  $('#t-start').addEventListener('click', function () {
+    tIntro.hidden = true; tPass.hidden = false; tStatus.textContent = 'Timing';
+    try { tPass.focus({ preventScroll: true }); } catch (e) { tPass.focus(); }
+    t0 = performance.now();
+  });
+  $('#t-done').addEventListener('click', function () {
+    t1 = performance.now();
+    tPass.hidden = true; tQuiz.hidden = false; tStatus.textContent = 'Questions';
+    var first = $('#q1a'); if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+  });
+  tQuiz.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var score = 0, missing = false;
+    Object.keys(ANS).forEach(function (q) {
+      var picked = tQuiz.querySelector('input[name="' + q + '"]:checked');
+      if (!picked) missing = true;
+    });
+    if (missing) { $('#t-formmsg').hidden = false; return; }
+    $('#t-formmsg').hidden = true;
+    Object.keys(ANS).forEach(function (q) {
+      var picked = tQuiz.querySelector('input[name="' + q + '"]:checked');
+      var fs = $('#fs-' + q), fb = fs.querySelector('.fb');
+      var ok = picked.value === ANS[q];
+      if (ok) score++;
+      fs.classList.toggle('right', ok);
+      fs.classList.toggle('wrong', !ok);
+      fb.hidden = false;
+      fb.textContent = ok ? 'Correct.' : 'Answer: ' + ANS_TXT[q] + '.';
+    });
+    var secs = Math.max(1, (t1 - t0) / 1000);
+    var wpm = Math.round(tWords / (secs / 60));
+    var pct = score / 4;
+    var eff = Math.round(wpm * pct);
+    $('#r-wpm').textContent = String(wpm);
+    $('#r-pct').textContent = Math.round(pct * 100) + '%';
+    $('#r-eff').textContent = String(eff);
+    $('#pin-you-v').textContent = String(wpm);
+    $('#pin-eff-v').textContent = String(eff);
+    tRes.hidden = false;
+    var gw = $('.gwrap').getBoundingClientRect().width || 300;
+    var placePin = function (el, v) {
+      var half = (el.getBoundingClientRect().width || 120) / 2 + 2;
+      var x = Math.max(half, Math.min(gw - half, Math.min(v, 700) / 700 * gw));
+      el.style.left = x + 'px';
+    };
+    placePin($('#pin-you'), wpm);
+    placePin($('#pin-eff'), eff);
+    var msg;
+    if (secs < 15) msg = 'That was very quick. If you skimmed, this is a skim score.';
+    else if (pct >= 0.75 && wpm <= 400) msg = 'Solid third-gear reading: a normal pace with good understanding.';
+    else if (pct >= 0.75) msg = 'Fast and accurate on an easy, story-like passage. Dense text will slow you down, and it should.';
+    else if (wpm > 350) msg = 'Your pace was in skim range and some details slipped. Drop a gear when details matter.';
+    else msg = 'Your pace was normal, but some details slipped. Check for distractions and try again another day.';
+    $('#r-msg').textContent = msg + ' One short passage is a noisy test, so compare a few tries.';
+    tRes.hidden = false; tStatus.textContent = 'Result';
+    $$('#t-quiz input').forEach(function (i) { i.disabled = true; });
+    $('#t-submit').hidden = true;
+  });
+  $('#t-again').addEventListener('click', function () {
+    tQuiz.reset();
+    $$('#t-quiz input').forEach(function (i) { i.disabled = false; });
+    $$('#t-quiz fieldset').forEach(function (f) { f.classList.remove('right', 'wrong'); f.querySelector('.fb').hidden = true; });
+    $('#t-submit').hidden = false;
+    tRes.hidden = true; tQuiz.hidden = true; tIntro.hidden = false; tStatus.textContent = 'Ready';
+  });
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
