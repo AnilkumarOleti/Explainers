@@ -254,6 +254,13 @@
           "artifact": "5dd2b15a-6a09-4d23-b0d1-3d60861bc79d"
         },
         {
+          "slug": "metabolic-twin",
+          "title": "The Metabolic Twin",
+          "blurb": "Feed a working model a day of meals, runs, short nights and stress, then race a half marathon and see where the fuel runs out.",
+          "artifact": "EN1pMYWDHqkkA5MTcY9Zho",
+          "ask": "Where does your fuel run out in a half marathon?"
+        },
+        {
           "slug": "half-marathon-build",
           "title": "Half-Marathon Build",
           "blurb": "Twelve weeks of training, and why you get faster by running slower than you think you should.",
