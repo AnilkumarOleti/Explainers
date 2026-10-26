@@ -462,6 +462,13 @@
           "blurb": "David Epstein's Range as a trail map: why a wandering start so often beats a head start, with games and real stories.",
           "artifact": "Nv81mQw9CRRs6xfFzYoiYq",
           "ask": "Is it too late to start something new?"
+        },
+        {
+          "slug": "emergence-lab",
+          "title": "Emergence Lab",
+          "blurb": "A glider travels though none of its squares move. Play with Life, break its rules, watch an ant build a highway and a flock fly with no leader, then ask whether a self is a pattern too.",
+          "artifact": "Pt5n9bzkMBJYFHof45yspD",
+          "ask": "How do simple rules build complex things?"
         }
       ]
     },
