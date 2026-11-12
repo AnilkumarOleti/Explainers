@@ -185,6 +185,14 @@
           "blurb": "Noise-cancelling headphones play a mirror image of the noise, so every push meets a pull and the air at your ear stays still.",
           "artifact": "NJSgaUr8n2L2P8gNEccdoJ",
           "ask": "How do headphones make silence by adding sound?"
+        },
+        {
+          "slug": "quantum-computing-for-data-people",
+          "title": "Quantum Computing, for Data People",
+          "blurb": "Quantum computing makes wrong answers cancel out. What that buys an analyst, and what it doesn't.",
+          "artifact": "75355f17-92b8-426f-887e-dd11e5a1a77a",
+          "ask": "What would quantum computing actually change for someone who works with data?",
+          "note": "As of November 2026"
         }
       ]
     },

@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quantum Computing, for Data People | Explainers</title>
+<meta name="description" content="Quantum computing makes wrong answers cancel out. What that buys an analyst, and what it doesn&#x27;t.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/quantum-computing-for-data-people/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Quantum Computing, for Data People">
+<meta property="og:description" content="Quantum computing makes wrong answers cancel out. What that buys an analyst, and what it doesn&#x27;t.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/quantum-computing-for-data-people/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/quantum-computing-for-data-people/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0e19; --tank:#0f1626; --panel:#141c30; --line:#24304d;
+  --text:#e9e6dc; --muted:#9aa3b8; --brass:#d8a957; --cyan:#6fd6ea; --rose:#ec7f95; --green:#7fd8a0;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:17px/1.68 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--cyan)}
+::selection{background:var(--brass);color:var(--ink)}
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
+#tank{position:absolute;inset:0;width:100%;height:100%;image-rendering:auto;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,25,.15) 0%,rgba(10,14,25,.55) 55%,var(--ink) 100%)}
+.hero-inner{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:0 28px 9vh;width:100%}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+h1{font:300 clamp(44px,7.5vw,92px)/1.02 var(--serif);margin:.35em 0 .3em;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--cyan);font-weight:500}
+.lede{font-size:clamp(18px,2vw,22px);max-width:640px;color:#cfd3dd}
+.meta{margin-top:22px;font:13px var(--mono);color:var(--muted)}
+/* ---------- layout ---------- */
+nav.toc{position:sticky;top:0;z-index:20;background:rgba(10,14,25,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.toc ol{list-style:none;margin:0 auto;padding:0 20px;max-width:1100px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;padding:13px 12px;font:500 13px var(--sans);color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
+nav.toc a:hover,nav.toc a.on{color:var(--text);border-color:var(--brass)}
+main{max-width:860px;margin:0 auto;padding:0 24px}
+section{padding:90px 0 30px;border-bottom:1px solid var(--line)}
+.secnum{font:600 13px var(--mono);color:var(--brass);letter-spacing:.12em}
+h2{font:400 clamp(32px,4.4vw,48px)/1.1 var(--serif);margin:.25em 0 .5em;letter-spacing:-.01em}
+h3{font:500 24px/1.25 var(--serif);margin:2.2em 0 .5em;color:#f3efe3}
+h4{font:600 14px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--brass);margin:1.6em 0 .4em}
+p{margin:0 0 1.05em}
+.big{font-size:20px;color:#d9dce4}
+strong{color:#fff;font-weight:600}
+.term{border-bottom:1px dotted var(--cyan);color:#fff}
+code{font:14px var(--mono);background:#1a2238;padding:1px 6px;border-radius:4px;color:#f0d9a8}
+/* evidence tags */
+.tag{display:inline-block;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:3px;vertical-align:2px;margin-right:4px}
+.proven{background:rgba(127,216,160,.15);color:var(--green);border:1px solid rgba(127,216,160,.4)}
+.plausible{background:rgba(216,169,87,.14);color:var(--brass);border:1px solid rgba(216,169,87,.4)}
+.spec{background:rgba(236,127,149,.13);color:var(--rose);border:1px solid rgba(236,127,149,.4)}
+.legend{display:flex;flex-wrap:wrap;gap:14px 22px;padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:14px;color:var(--muted);margin:28px 0}
+/* panels */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;margin:26px 0}
+.analogy{border-left:3px solid var(--cyan);background:linear-gradient(90deg,rgba(111,214,234,.07),transparent);padding:16px 20px;border-radius:0 10px 10px 0;margin:22px 0}
+.analogy b{color:var(--cyan);font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+.takeaways{margin:44px 0 20px;border:1px solid rgba(216,169,87,.45);border-radius:14px;padding:22px 26px;background:linear-gradient(160deg,rgba(216,169,87,.10),rgba(216,169,87,.02))}
+.takeaways h4{margin:0 0 10px}
+.takeaways ul{margin:0;padding-left:20px}
+.takeaways li{margin:6px 0}
+/* concept grid */
+.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.concept{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.concept svg{width:100%;height:96px;display:block;margin-bottom:12px}
+.concept h5{font:500 20px var(--serif);margin:0 0 6px}
+.concept p{font-size:15px;color:#c9cdd8;margin:0}
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:620px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--brass);background:#111829}
+tr:last-child td{border-bottom:0}
+td:first-child{color:#fff;font-weight:500;white-space:nowrap}
+/* fields */
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:22px 0}
+.field{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;position:relative}
+.field .ic{font:500 26px var(--serif);color:var(--cyan)}
+.field h5{font:600 16px var(--sans);margin:6px 0 6px}
+.field p{font-size:14.5px;color:#c6cad6;margin:0 0 10px}
+/* grover widget */
+.widget{background:#0d1424;border:1px solid #2c3a5c;border-radius:16px;padding:22px;margin:28px 0;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.widget-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.widget-h h5{font:500 21px var(--serif);margin:0}
+.widget-h span{font:12px var(--mono);color:var(--muted)}
+#bars{width:100%;height:240px;display:block;cursor:pointer}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+button{font:600 13px var(--sans);padding:9px 14px;border-radius:8px;border:1px solid #3a4a70;background:#18223a;color:var(--text);cursor:pointer;transition:background .15s,border-color .15s}
+button:hover{background:#22304f;border-color:var(--cyan)}
+button.primary{background:var(--brass);color:#1a1405;border-color:var(--brass)}
+button.primary:hover{background:#e8bd6c}
+button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.readout div{background:#121b30;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.readout small{display:block;font:11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.readout b{font:600 20px var(--mono);color:#fff}
+.hint{font-size:14px;color:var(--muted);margin-top:12px}
+#narr{min-height:48px;font-size:15px;color:#d6dae3;margin-top:12px;padding:10px 14px;border-left:3px solid var(--brass);background:rgba(216,169,87,.06);border-radius:0 8px 8px 0}
+/* checker */
+.check{display:grid;gap:10px;margin:16px 0}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#111a2d;cursor:pointer;font-size:15px}
+.check input{margin-top:5px;accent-color:var(--brass);width:16px;height:16px;flex:none}
+#verdict{margin-top:14px;padding:14px 16px;border-radius:10px;font-size:15.5px;border:1px solid var(--line)}
+/* code */
+.code-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+@media(max-width:820px){.code-pair{grid-template-columns:1fr}}
+.code{background:#0b111f;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.code header{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;color:var(--brass)}
+.code pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.6 var(--mono);color:#d7dcea}
+.c-k{color:#e5a0f2}.c-s{color:#a8e0a0}.c-c{color:#6d7895;font-style:italic}.c-f{color:var(--cyan)}.c-n{color:#f2c277}
+/* diagram */
+.diagram{width:100%;height:auto;display:block}
+.diagram text{font-family:var(--sans)}
+/* timeline */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+@media(max-width:760px){.timeline{grid-template-columns:1fr}}
+.era{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;border-top:3px solid var(--c)}
+.era .when{font:600 12px var(--mono);letter-spacing:.1em;color:var(--c);text-transform:uppercase}
+.era h5{font:500 21px var(--serif);margin:6px 0 10px}
+.era ul{margin:0;padding-left:18px;font-size:14.5px;color:#cdd1dc}
+.era li{margin:6px 0}
+/* scales */
+.scale{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:22px 0}
+@media(max-width:760px){.scale{grid-template-columns:1fr}}
+.case{border-radius:12px;padding:20px;border:1px solid var(--line);background:var(--panel)}
+.case h5{font:500 21px var(--serif);margin:0 0 10px}
+.case ul{margin:0;padding-left:18px;font-size:14.5px;color:#cdd1dc}
+.case li{margin:7px 0}
+.case.yes{border-top:3px solid var(--green)}.case.no{border-top:3px solid var(--rose)}.case.mid{border-top:3px solid var(--brass)}
+/* physical vs logical */
+#qec{width:100%;height:auto;display:block}
+/* tldr */
+.tldr{background:linear-gradient(150deg,#16213a,#0f1626);border:1px solid #33456d;border-radius:18px;padding:30px;margin:60px 0 30px}
+.tldr h2{margin-top:0}
+.tldr ol{font-size:18px;padding-left:24px}
+.tldr li{margin:8px 0}
+.qs{display:grid;gap:12px;margin-top:22px}
+.qs div{padding:14px 16px;border:1px dashed #3d4f78;border-radius:10px;color:#d6dae4}
+.qs b{color:var(--cyan);font-family:var(--mono);font-size:13px;margin-right:8px}
+.sources{font-size:14px;color:var(--muted);padding:40px 0 80px}
+.sources ol{padding-left:20px}
+.sources li{margin:5px 0}
+.sources a{color:#a9c6d6}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <canvas id="tank" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="kicker">Explainer · for SQL, stats &amp; ML people</div>
+    <h1>Quantum computing is the art of making <em>wrong answers cancel out.</em></h1>
+    <p class="lede">The background is a ripple tank: two sources whose waves add up in some places and cancel in others. Keep that picture in mind. Nearly everything a quantum computer does, and everything it can't do, comes from it.</p>
+    <div class="meta">Facts current as of 11 November 2026 · ~35 min read · IBM's developer conference starts today, so watch for new announcements this week</div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <ol>
+    <li><a href="#big-picture">1 · Big picture</a></li>
+    <li><a href="#analytics">2 · Quantum vs classical analytics</a></li>
+    <li><a href="#quantum-sql">3 · SQL vs quantum code</a></li>
+    <li><a href="#roles">4 · Your job</a></li>
+    <li><a href="#wild">5 · Why it's wild</a></li>
+    <li><a href="#after-ai">6 · After AI?</a></li>
+    <li><a href="#tldr">TL;DR</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<div class="legend reveal" role="note">
+  <span><span class="tag proven">Proven</span> demonstrated on hardware or mathematically established</span>
+  <span><span class="tag plausible">Plausible</span> strong theory and a credible roadmap, not yet delivered</span>
+  <span><span class="tag spec">Speculation</span> possible, but depends on things nobody has shown</span>
+</div>
+
+<!-- ================= 1 ================= -->
+<section id="big-picture">
+  <div class="secnum">01 — THE BIG PICTURE · ~5 MIN</div>
+  <h2>A computer that calculates with waves, not switches</h2>
+
+  <p class="big">A normal computer stores information in <span class="term">bits</span>, tiny switches that are either 0 or 1. A quantum computer stores information in <span class="term">qubits</span> (quantum bits). A qubit is still read out as 0 or 1 in the end, but while the computation runs it behaves more like a wave than a switch.</p>
+
+  <p>For a data person, the most useful way to think about it is this: <strong>a quantum computer is a machine for engineering probability distributions.</strong> You don't get an answer printed out. You set up a process so the distribution you sample from at the end puts most of its mass on the right answer. The four ideas below explain how.</p>
+
+  <div class="concepts">
+    <div class="concept reveal">
+      <svg viewBox="0 0 240 96" aria-hidden="true"><circle cx="40" cy="48" r="24" fill="none" stroke="#9aa3b8" stroke-width="2"/><text x="40" y="54" text-anchor="middle" fill="#e9e6dc" font-family="JetBrains Mono" font-size="18">0</text><circle cx="110" cy="48" r="24" fill="none" stroke="#9aa3b8" stroke-width="2"/><text x="110" y="54" text-anchor="middle" fill="#e9e6dc" font-family="JetBrains Mono" font-size="18">1</text><g transform="translate(195,48)"><ellipse rx="10" ry="26" fill="none" stroke="#6fd6ea" stroke-width="2.5"><animate attributeName="rx" values="26;3;26" dur="1.6s" repeatCount="indefinite"/></ellipse></g><text x="195" y="92" text-anchor="middle" fill="#6fd6ea" font-size="10" font-family="JetBrains Mono">spinning</text></svg>
+      <h5>Qubit</h5>
+      <p>A bit is a coin lying on the table, heads or tails. A qubit is a coin <em>still spinning</em>. It carries information about both faces, and it settles to one face only when you look (<span class="term">measurement</span>).</p>
+    </div>
+    <div class="concept reveal">
+      <svg viewBox="0 0 240 96" aria-hidden="true"><path d="M10 48 Q 40 10 70 48 T 130 48 T 190 48 T 250 48" fill="none" stroke="#6fd6ea" stroke-width="2.5"/><path d="M10 48 Q 25 70 40 48 T 70 48 T 100 48 T 130 48 T 160 48 T 190 48 T 220 48" fill="none" stroke="#d8a957" stroke-width="2" opacity=".8"/></svg>
+      <h5>Superposition</h5>
+      <p>A qubit can be in a blend of 0 and 1, the way a musical chord is a blend of notes. Each possibility carries an <span class="term">amplitude</span>, a number like a probability except that it <strong>can be negative</strong>. That one difference is where everything below comes from.</p>
+    </div>
+    <div class="concept reveal">
+      <svg viewBox="0 0 240 96" aria-hidden="true"><circle cx="60" cy="48" r="20" fill="none" stroke="#6fd6ea" stroke-width="2.5"/><circle cx="180" cy="48" r="20" fill="none" stroke="#6fd6ea" stroke-width="2.5"/><path d="M80 48 C 110 20, 130 76, 160 48" fill="none" stroke="#d8a957" stroke-width="2" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></path></svg>
+      <h5>Entanglement</h5>
+      <p>Two qubits can share one joint state that can't be split into “qubit A's state” and “qubit B's state”. Think of a pair of gloves sent to two cities: open one box, and you know what's in the other. With n qubits, the joint state has 2<sup>n</sup> amplitudes. That's a table of 2<sup>n</sup> numbers that you can never read in full.</p>
+    </div>
+    <div class="concept reveal">
+      <svg viewBox="0 0 240 96" aria-hidden="true"><path d="M10 30 Q 30 10 50 30 T 90 30 T 130 30" fill="none" stroke="#6fd6ea" stroke-width="2"/><path d="M10 30 Q 30 50 50 30 T 90 30 T 130 30" fill="none" stroke="#ec7f95" stroke-width="2"/><line x1="150" y1="30" x2="230" y2="30" stroke="#9aa3b8" stroke-width="1.5" stroke-dasharray="3 4"/><path d="M10 72 Q 30 52 50 72 T 90 72 T 130 72" fill="none" stroke="#6fd6ea" stroke-width="2"/><path d="M150 72 Q 170 42 190 72 T 230 72" fill="none" stroke="#d8a957" stroke-width="3"/><text x="190" y="22" fill="#9aa3b8" font-size="10" font-family="JetBrains Mono" text-anchor="middle">cancel</text><text x="190" y="94" fill="#d8a957" font-size="10" font-family="JetBrains Mono" text-anchor="middle">amplify</text></svg>
+      <h5>Interference</h5>
+      <p>This is the one that matters most. Amplitudes add like waves. A +0.5 and a −0.5 for the same outcome cancel to zero, and two +0.5s reinforce. A quantum algorithm is a carefully choreographed set of steps that makes <strong>wrong answers cancel and right answers reinforce</strong>, so measurement lands on the right one with high probability.</p>
+    </div>
+  </div>
+
+  <div class="analogy"><b>The one mental model to keep</b>
+  Noise-cancelling headphones don't “listen harder”. They play an inverted wave so the noise disappears. A quantum computer doesn't try every answer and pick the best (that's the myth). It sets up waves so the bad answers erase each other. If a problem has no structure you can use to arrange that cancellation, quantum gives you nothing.</div>
+
+  <h3>“Just a faster computer”? No. It's a different kind of instrument.</h3>
+  <p>The common myth is that because n qubits hold 2<sup>n</sup> possibilities at once, a quantum computer “tries every answer in parallel”. Here's the catch: <strong>when you measure, you get one sample.</strong> One row out of a 2<sup>n</sup>-row distribution. All that hidden parallelism is useless unless interference has already concentrated the probability on the answer you want. Only some problems have the mathematical structure that allows this.</p>
+
+  <p>A better analogy than “faster CPU” is “<strong>GPU, but much narrower</strong>”. A GPU doesn't speed up your SQL query parser. It speeds up one shape of work, dense parallel linear algebra. A quantum processor (QPU) is a coprocessor for an even narrower shape: problems about quantum systems, plus a few mathematical problems with hidden periodic or algebraic structure.</p>
+
+  <div class="tbl-wrap reveal"><table>
+    <thead><tr><th></th><th>Classical computer</th><th>Quantum computer</th></tr></thead>
+    <tbody>
+      <tr><td>Basic unit</td><td>Bit: 0 or 1</td><td>Qubit: amplitudes over 0 and 1, read out as 0 or 1</td></tr>
+      <tr><td>Output</td><td>Deterministic value</td><td>A sample from a distribution; repeat thousands of times (“shots”)</td></tr>
+      <tr><td>Clock speed</td><td>GHz, billions of ops/sec</td><td>Much slower per operation (roughly kHz–MHz for error-corrected logical steps)</td></tr>
+      <tr><td>Memory</td><td>Terabytes, cheap, persistent</td><td>Tens to ~100 usable qubits today; state decays in milliseconds to seconds</td></tr>
+      <tr><td>Great at</td><td>Almost everything: storage, I/O, business logic, aggregation, ML training</td><td>Simulating molecules and materials; factoring (breaks RSA); some sampling problems</td></tr>
+      <tr><td>Bad at</td><td>Exact simulation of large quantum systems (cost grows exponentially)</td><td>Big data, I/O, anything with lots of input or output, general-purpose work</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>A quick tour of the fields it could affect</h3>
+  <p>The tags show how solid each example is. Notice the pattern: the further you get from “simulate nature”, the weaker the evidence.</p>
+  <div class="fields">
+    <div class="field reveal"><div class="ic">⌬</div><h5>Drug discovery</h5><p>Simulating how a drug candidate binds to an enzyme, for example the cytochrome P450 enzymes that metabolise most drugs. Their electron behaviour is hard to approximate classically. In 2025 Google ran a proof-of-principle “molecular ruler” study on molecules of 15 and 28 atoms using NMR data.</p><span class="tag plausible">Plausible</span></div>
+    <div class="field reveal"><div class="ic">◈</div><h5>Materials &amp; chemistry</h5><p>Designing battery electrolytes, catalysts or high-temperature superconductors by simulating electrons directly instead of running lab trial and error. This is the field's home turf: quantum hardware simulating quantum matter.</p><span class="tag plausible">Plausible · strongest case</span></div>
+    <div class="field reveal"><div class="ic">⚿</div><h5>Cryptography</h5><p>Shor's algorithm (1994) would break RSA and elliptic-curve encryption, which secure HTTPS, banking and crypto wallets. The maths is proven. The machine big enough to run it doesn't exist yet. That's why the world is migrating to post-quantum cryptography now.</p><span class="tag proven">Proven in theory</span> <span class="tag plausible">Machine: plausible</span></div>
+    <div class="field reveal"><div class="ic">⇄</div><h5>Optimization &amp; logistics</h5><p>Vehicle routing, airline crew scheduling, warehouse slotting. Very popular in vendor decks. In practice, the known speedups are modest or heuristic, and classical solvers (Gurobi, OR-Tools) are very hard to beat.</p><span class="tag spec">Speculation for real advantage</span></div>
+    <div class="field reveal"><div class="ic">∿</div><h5>Finance</h5><p>Faster Monte Carlo for derivatives pricing and risk (a quadratic speedup in theory). In 2025 HSBC and IBM reported up to a 34% improvement in predicting bond-trade fills using quantum-generated features. Notably, the authors themselves did not claim quantum advantage.</p><span class="tag plausible">Plausible, small</span></div>
+    <div class="field reveal"><div class="ic">❄</div><h5>Climate &amp; energy</h5><p>Understanding nitrogenase's FeMoco cofactor could point to lower-energy fertiliser production than the Haber–Bosch process, which uses a few percent of the world's energy. Better catalysts for carbon capture are another target.</p><span class="tag plausible">Plausible, long-dated</span></div>
+    <div class="field reveal"><div class="ic">◎</div><h5>AI / ML</h5><p>“Quantum ML” on ordinary tabular or text data has mostly failed to show a provable speedup (see Section 2). The more credible link runs the other way: AI is already helping run quantum computers, for example by tuning error correction in real time.</p><span class="tag spec">QML speedups: speculative</span> <span class="tag proven">AI→quantum: proven</span></div>
+  </div>
+
+  <div class="takeaways reveal"><h4>Key takeaways · Section 1</h4><ul>
+    <li>Qubits carry <strong>amplitudes</strong>, and amplitudes can be negative. That allows <strong>interference</strong>: wrong answers can cancel out.</li>
+    <li>You only ever get <strong>one sample per run</strong>. The hidden parallelism helps only when interference can concentrate probability on the answer.</li>
+    <li>Think of it as a narrow <strong>coprocessor</strong>, not a faster computer. Its home turf is simulating nature.</li>
+  </ul></div>
+</section>
+
+<!-- ================= 2 ================= -->
+<section id="analytics">
+  <div class="secnum">02 — QUANTUM VS CLASSICAL DATA PROCESSING</div>
+  <h2>Why your warehouse isn't going quantum</h2>
+
+  <p class="big">Here's the uncomfortable fact for analytics: <strong>quantum computers are good at heavy computation on small inputs, and analytics is mostly light computation on huge inputs.</strong> Those two shapes don't overlap much.</p>
+
+  <h3>Bottleneck 1: getting data in</h3>
+  <p>Before a quantum algorithm can process your 1-billion-row table, the data has to be encoded into qubit amplitudes. That's called <span class="term">state preparation</span> or data loading. Writing N numbers into a quantum state takes about N operations on a generic device. Many textbook quantum ML speedups quietly assume a device called <span class="term">QRAM</span> (quantum random-access memory) that would load data almost instantly. QRAM at scale has never been built, and it's an open question whether it ever will be.</p>
+  <p>If loading costs N steps, an algorithm that then runs in √N or log N steps doesn't matter: you've already paid N. It's like a supersonic jet that takes three days to board.</p>
+
+  <h3>Bottleneck 2: no storage, and you can't read the answer out</h3>
+  <p>Qubits are not storage. They hold their state for milliseconds to seconds and then decohere (more in Section 5). There's no “quantum disk”. Reading out is also lossy: each run gives one bitstring, so estimating a vector of N output values takes many repeated runs. A quantum computer can “hold” a 2<sup>50</sup>-entry vector, but you can only ever learn a few summary numbers about it per run.</p>
+
+  <div class="analogy"><b>Rule of thumb</b>
+  Quantum wins when the <strong>input is small, the output is small, and the hard part in between grows exponentially</strong> for classical machines. Example: a molecule's description is a few kilobytes, the answer is one energy number, and the classical cost in between blows up. A <code>GROUP BY</code> over 4 TB is the exact opposite.</div>
+
+  <div class="panel reveal" id="checker">
+    <h4 style="margin-top:0">Try it: is my workload quantum-shaped?</h4>
+    <p style="font-size:15px;color:var(--muted)">Tick whatever is true for a workload you have in mind.</p>
+    <div class="check">
+      <label><input type="checkbox" data-w="2"> The <b>input</b> can be described compactly (kilobytes to megabytes, or a formula), not a big table.</label>
+      <label><input type="checkbox" data-w="2"> I need only a <b>few numbers back</b> (an energy, a probability, a yes/no), not millions of rows.</label>
+      <label><input type="checkbox" data-w="3"> The best <b>classical</b> method's cost grows <b>exponentially</b> with problem size, not just “it's slow”.</label>
+      <label><input type="checkbox" data-w="2"> The problem is <b>physical or chemical</b> by nature (molecules, materials, spins), or has hidden algebraic structure.</label>
+      <label><input type="checkbox" data-w="1"> An approximate, <b>probabilistic</b> answer is acceptable.</label>
+      <label><input type="checkbox" data-w="-3"> It mainly involves scanning, joining or aggregating <b>large stored datasets</b>.</label>
+    </div>
+    <div id="verdict" aria-live="polite"></div>
+  </div>
+
+  <h3>The algorithm families, and what each could plausibly speed up</h3>
+  <p>Speedups come in two flavours. A <span class="term">quadratic</span> speedup turns N steps into √N: a million becomes a thousand. An <span class="term">exponential</span> speedup turns 2<sup>n</sup> into something like n<sup>3</sup>, which is the difference between “never” and “Tuesday”. The catch is that error correction makes every quantum step thousands of times slower than a classical step. In 2021 a Google team argued that quadratic speedups therefore probably won't produce real advantage on early fault-tolerant machines.</p>
+
+  <div class="tbl-wrap reveal"><table>
+    <thead><tr><th>Family</th><th>What it does</th><th>Speedup</th><th>Analytics relevance</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Grover's search &amp; amplitude amplification</td><td>Finds a marked item among N in ~√N checks</td><td>Quadratic</td><td>Sounds like a database lookup, but isn't one in practice (see Section 3). Indexes already give classical log N.</td><td><span class="tag proven">Math</span> <span class="tag spec">Useful</span></td></tr>
+      <tr><td>Amplitude estimation</td><td>Estimates a mean or probability with error ε in ~1/ε samples, versus 1/ε² for classical Monte Carlo</td><td>Quadratic</td><td>Risk, VaR, option pricing, simulation-heavy forecasting</td><td><span class="tag plausible">Plausible, long-dated</span></td></tr>
+      <tr><td>Quantum linear algebra (HHL, QSVT)</td><td>Solves Ax=b or transforms matrices on amplitude-encoded data</td><td>Exponential <em>on paper</em></td><td>Regression, PCA, recommendations. Many results have been <span class="term">dequantized</span>: matching classical algorithms were found once the same data-access assumptions were granted.</td><td><span class="tag spec">For classical data</span></td></tr>
+      <tr><td>Quantum optimization (QAOA, annealing)</td><td>Heuristic search for low-cost solutions to combinatorial problems</td><td>Unknown / heuristic</td><td>Scheduling, routing, portfolio selection, join ordering</td><td><span class="tag spec">No clear advantage yet</span></td></tr>
+      <tr><td>Quantum ML (kernels, variational circuits)</td><td>Uses a quantum circuit as a feature map or a trainable model</td><td>Unproven for classical data</td><td>Feature engineering, as in the HSBC experiment; classification</td><td><span class="tag plausible">Niche</span></td></tr>
+      <tr><td>Quantum sampling</td><td>Draws samples from distributions that are hard to reproduce classically</td><td>Exponential, for those distributions</td><td>Generating synthetic data for physics-based models; benchmarking</td><td><span class="tag proven">Hardware demos</span></td></tr>
+      <tr><td>Hamiltonian simulation</td><td>Simulates how a quantum system evolves</td><td>Exponential</td><td>Indirect: produces scientific data (molecular properties) that analysts then model</td><td><span class="tag plausible">Strongest case</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>A data scientist knows the dequantization story already. In 2018 an undergraduate, Ewin Tang, showed that a celebrated “exponentially faster” quantum recommendation algorithm had a classical counterpart. The trick was that the quantum version assumed a data structure which, if you actually had it, also lets a classical computer do <span class="term">length-squared sampling</span>: random sampling of rows in proportion to their size. Same idea as importance sampling. Much of quantum ML's apparent advantage on classical data disappeared in a similar way.</p>
+
+  <h3>What a quantum-assisted analytics stack would actually look like</h3>
+  <p>In any realistic design, the QPU is a <strong>remote accelerator called for one small, expensive subproblem</strong>, like calling a GPU kernel or an external solver API. Everything else stays classical. Data loading happens once, on a compressed problem description, never on the raw table.</p>
+
+  <figure class="panel reveal" style="padding:16px">
+  <svg class="diagram" viewBox="0 0 820 470" role="img" aria-labelledby="archT archD">
+    <title id="archT">Hybrid classical plus quantum analytics architecture</title>
+    <desc id="archD">Data flows from the warehouse through classical feature engineering and problem reduction to a small problem encoding, which is compiled to a quantum circuit and run on a QPU via cloud. Shot samples return to classical post-processing, error mitigation and a downstream model or dashboard. An optimizer loop updates circuit parameters.</desc>
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#9aa3b8"/></marker>
+    <marker id="arq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#6fd6ea"/></marker></defs>
+    <rect x="10" y="10" width="520" height="450" rx="14" fill="#101828" stroke="#2a3757"/>
+    <text x="28" y="38" fill="#d8a957" font-size="12" font-family="JetBrains Mono" letter-spacing="2">CLASSICAL (≈99% OF THE WORK)</text>
+    <rect x="565" y="10" width="245" height="450" rx="14" fill="#0e1c2a" stroke="#2d5a6a"/>
+    <text x="583" y="38" fill="#6fd6ea" font-size="12" font-family="JetBrains Mono" letter-spacing="2">QUANTUM (CLOUD QPU)</text>
+
+    <g font-size="14" fill="#e9e6dc">
+      <rect x="30" y="60" width="210" height="58" rx="9" fill="#18223a" stroke="#3a4a70"/><text x="45" y="84">Warehouse / lakehouse</text><text x="45" y="104" font-size="12" fill="#9aa3b8">SQL, Spark — TBs of rows</text>
+      <rect x="30" y="148" width="210" height="58" rx="9" fill="#18223a" stroke="#3a4a70"/><text x="45" y="172">Feature eng. &amp; reduction</text><text x="45" y="192" font-size="12" fill="#9aa3b8">pandas / PySpark / dbt</text>
+      <rect x="30" y="236" width="210" height="64" rx="9" fill="#2a2412" stroke="#d8a957"/><text x="45" y="260">Problem encoding</text><text x="45" y="280" font-size="12" fill="#d8b878">tiny: a Hamiltonian, a QUBO</text><text x="45" y="294" font-size="12" fill="#d8b878">matrix, ~10–1000 variables</text>
+
+      <rect x="295" y="236" width="210" height="64" rx="9" fill="#18223a" stroke="#3a4a70"/><text x="310" y="260">Compile / transpile</text><text x="310" y="280" font-size="12" fill="#9aa3b8">Qiskit · Cirq · PennyLane</text><text x="310" y="294" font-size="12" fill="#9aa3b8">map to the chip's gates</text>
+
+      <rect x="590" y="226" width="195" height="84" rx="9" fill="#11313b" stroke="#6fd6ea"/><text x="605" y="252">QPU executes circuit</text><text x="605" y="272" font-size="12" fill="#9fdbe8">thousands of shots</text><text x="605" y="290" font-size="12" fill="#9fdbe8">via job queue (IBM, AWS</text><text x="605" y="304" font-size="12" fill="#9fdbe8">Braket, Azure, Quantinuum)</text>
+
+      <rect x="295" y="340" width="210" height="58" rx="9" fill="#18223a" stroke="#3a4a70"/><text x="310" y="364">Post-process &amp; mitigate</text><text x="310" y="384" font-size="12" fill="#9aa3b8">histograms → estimates ± CI</text>
+      <rect x="295" y="60" width="210" height="58" rx="9" fill="#18223a" stroke="#3a4a70"/><text x="310" y="84">Classical optimizer</text><text x="310" y="104" font-size="12" fill="#9aa3b8">updates circuit params θ</text>
+      <rect x="30" y="340" width="210" height="58" rx="9" fill="#13261d" stroke="#7fd8a0"/><text x="45" y="364">Downstream model / BI</text><text x="45" y="384" font-size="12" fill="#9fd8b4">feature, forecast, decision</text>
+    </g>
+    <g fill="none" stroke="#9aa3b8" stroke-width="1.6">
+      <path d="M135 118 V146" marker-end="url(#ar)"/>
+      <path d="M135 206 V234" marker-end="url(#ar)"/>
+      <path d="M240 268 H293" marker-end="url(#ar)"/>
+      <path d="M295 369 H242" marker-end="url(#ar)"/>
+      <path d="M490 340 V326 H520 V89 H507" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+      <path d="M400 118 V234" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+    </g>
+    <path d="M505 262 H588" fill="none" stroke="#6fd6ea" stroke-width="2" marker-end="url(#arq)"/>
+    <path d="M688 310 C 688 370 600 369 507 369" fill="none" stroke="#6fd6ea" stroke-width="2" marker-end="url(#arq)"/>
+    <text x="530" y="254" fill="#6fd6ea" font-size="11" font-family="JetBrains Mono">circuit</text>
+    <text x="560" y="392" fill="#6fd6ea" font-size="11" font-family="JetBrains Mono">bitstring samples</text>
+    <text x="410" y="172" fill="#9aa3b8" font-size="11" font-family="JetBrains Mono">variational</text>
+    <text x="410" y="186" fill="#9aa3b8" font-size="11" font-family="JetBrains Mono">loop (repeat)</text>
+    <text x="30" y="440" fill="#9aa3b8" font-size="12.5">The gold box is where all the skill goes: shrinking a big data problem into a tiny, quantum-friendly one.</text>
+  </svg>
+  </figure>
+
+  <p>That's the pattern in the HSBC–IBM bond experiment. Historical data was passed through a quantum feature map <em>offline</em>, and the live trading system used the enriched dataset with no quantum computer in the loop. For the foreseeable future, quantum shows up in analytics as <strong>one more column in your feature store</strong>, not as a new database.</p>
+
+  <div class="takeaways reveal"><h4>Key takeaways · Section 2</h4><ul>
+    <li>The <strong>data-loading bottleneck</strong> and the lack of quantum storage rule out quantum for most scan/join/aggregate work. <span class="tag proven">Proven</span> in the sense that no workaround exists today.</li>
+    <li>Most quantum ML speedups on classical data were <strong>dequantized</strong> or assume QRAM, which hasn't been built.</li>
+    <li>Quadratic speedups (Grover, amplitude estimation) probably need <strong>much better error correction</strong> before they beat classical hardware.</li>
+    <li>The realistic stack is <strong>hybrid</strong>: the classical side compresses the problem, the QPU handles a tiny hard core, and the results come back as features or estimates with confidence intervals.</li>
+  </ul></div>
+</section>
+
+<!-- ================= 3 ================= -->
+<section id="quantum-sql">
+  <div class="secnum">03 — SQL VS QUANTUM PROGRAMMING</div>
+  <h2>Where quantum meets the database</h2>
+
+  <p class="big">SQL declares operations over <em>stored</em> relations, and quantum computers don't store relations (Section 2). So quantum work touches databases at three points that sit next to SQL, not inside it: search over computable spaces, optimization sub-steps such as query planning, and quantum programs written in Python SDKs.</p>
+
+  <h3>1. Grover-style “database search”</h3>
+  <p>Grover's algorithm is often described as “searching an unsorted database of N items in √N steps.” The word “database” is misleading. Grover searches an <span class="term">oracle</span>, a circuit that can <em>compute</em> whether a candidate is the answer. If your “database” is a real table on disk, building that oracle means encoding the whole table into the circuit, which costs N operations. The √N advantage is gone before you start. And SQL already wins with indexes: a B-tree lookup is log N, far better than √N.</p>
+  <p>Grover is genuinely useful when the search space is <strong>implicit</strong>: “find the input x where f(x) is true”, with f cheap to compute and the space of x astronomically large (cryptographic keys, constraint satisfaction). That's a search over possibilities, not over records.</p>
+
+  <div class="widget reveal" id="grover">
+    <div class="widget-h"><h5>Interactive: watch Grover amplify one “row”</h5><span>16 candidates · 4 qubits · real amplitude maths</span></div>
+    <canvas id="bars" aria-label="Bar chart of the amplitudes of 16 candidate answers" role="img"></canvas>
+    <div class="controls">
+      <button id="bOracle">① Oracle: flip the target's sign</button>
+      <button id="bDiff">② Diffuse: reflect about the mean</button>
+      <button id="bStep" class="primary">Full Grover step (① + ②)</button>
+      <button id="bMeasure">Measure 100 shots</button>
+      <button id="bReset">Reset</button>
+    </div>
+    <div class="readout">
+      <div><small>Grover steps</small><b id="rSteps">0</b></div>
+      <div><small>P(target)</small><b id="rP">6.3%</b></div>
+      <div><small>Optimal steps</small><b>3</b></div>
+      <div><small>Classical avg checks</small><b>8</b></div>
+    </div>
+    <div id="narr" aria-live="polite">Every candidate starts with equal amplitude ¼, so a measurement now is a uniform random guess (1 in 16). Click any bar to choose the target, then press <b>Full Grover step</b>.</div>
+    <p class="hint">Bars above the line are positive amplitudes, below are negative. Probability = amplitude². Keep stepping past 3 and watch it <em>overshoot</em>: the wave keeps rotating, which is very unlike a classical search.</p>
+  </div>
+
+  <h3>2. Quantum-accelerated sub-steps: joins, query planning, optimization</h3>
+  <p>The most serious “quantum for databases” research doesn't run queries. It targets the <strong>query optimizer</strong>. Choosing a join order is an NP-hard combinatorial problem (the number of possible orders grows explosively with the number of tables), so it can be rewritten as a <span class="term">QUBO</span> (quadratic unconstrained binary optimization), the input format for quantum annealers and QAOA. Researchers have mapped join ordering, index selection and multi-query optimization onto quantum hardware. One group even built a PostgreSQL plugin where a trained variational circuit suggests join orders, though experiments covered only four tables on a simulator. A 2025 review of the area says plainly that a clear quantum advantage for database problems is still an open question.</p>
+  <p>Note the shape again: the optimizer's search space is huge, but its <em>input</em> (table statistics, a query graph) is tiny. That's why this is the right place to look, even though nobody has found a win yet. <span class="tag spec">No advantage shown</span></p>
+
+  <h3>3. How developers write quantum programs today</h3>
+  <p>Quantum code today is written at roughly the level of <strong>assembly language</strong>: you place individual gates on individual qubits, usually from Python.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Framework</th><th>From</th><th>Flavour</th></tr></thead>
+    <tbody>
+      <tr><td>Qiskit</td><td>IBM</td><td>The most widely used. Circuits, transpiler, “primitives” (Sampler / Estimator), and runs on IBM hardware via the cloud.</td></tr>
+      <tr><td>Cirq</td><td>Google</td><td>Lower-level and hardware-aware. Used for Google's research devices and simulators.</td></tr>
+      <tr><td>PennyLane</td><td>Xanadu</td><td>“PyTorch for quantum”. Differentiable circuits that plug into PyTorch/JAX. The most natural choice for ML people.</td></tr>
+      <tr><td>Others</td><td>—</td><td>Amazon Braket SDK, Quantinuum's Guppy/TKET, Microsoft Q#, and NVIDIA CUDA-Q for GPU-accelerated simulation and hybrid workflows.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Side by side: “find the one listing that matches”</h3>
+  <p>The same intent written two ways. The quantum version is a toy: the “table” has 8 rows, and the matching row (<code>101</code>) is hard-coded into the oracle. That is exactly the point. You have to build the answer-checker into the circuit.</p>
+
+  <div class="code-pair">
+    <div class="code"><header><span>Classical · SQL</span><span>declarative</span></header>
+<pre><span class="c-k">SELECT</span> listing_id
+<span class="c-k">FROM</span>   listings
+<span class="c-k">WHERE</span>  seller_id  = <span class="c-n">5</span>
+  <span class="c-k">AND</span>  category   = <span class="c-s">'watches'</span>
+  <span class="c-k">AND</span>  price_usd  <span class="c-k">BETWEEN</span> <span class="c-n">200</span> <span class="c-k">AND</span> <span class="c-n">250</span>;
+
+<span class="c-c">-- Engine picks a plan (index seek),</span>
+<span class="c-c">-- reads stored rows, returns the exact</span>
+<span class="c-c">-- same answer every time. Done.</span></pre></div>
+    <div class="code"><header><span>Quantum · Qiskit (Python)</span><span>imperative, gate-level</span></header>
+<pre><span class="c-k">from</span> qiskit <span class="c-k">import</span> QuantumCircuit
+<span class="c-k">from</span> qiskit.circuit.library <span class="c-k">import</span> grover_operator
+<span class="c-k">from</span> qiskit.primitives <span class="c-k">import</span> StatevectorSampler
+
+<span class="c-c"># Oracle: flip the sign of |101⟩, the "row" we want</span>
+oracle = QuantumCircuit(<span class="c-n">3</span>)
+oracle.<span class="c-f">x</span>(<span class="c-n">1</span>)                       <span class="c-c"># 101 → 111</span>
+oracle.<span class="c-f">h</span>(<span class="c-n">2</span>); oracle.<span class="c-f">ccx</span>(<span class="c-n">0</span>, <span class="c-n">1</span>, <span class="c-n">2</span>); oracle.<span class="c-f">h</span>(<span class="c-n">2</span>)
+oracle.<span class="c-f">x</span>(<span class="c-n">1</span>)                       <span class="c-c"># undo</span>
+
+qc = QuantumCircuit(<span class="c-n">3</span>)
+qc.<span class="c-f">h</span>([<span class="c-n">0</span>, <span class="c-n">1</span>, <span class="c-n">2</span>])    <span class="c-c"># superpose all 8 rows</span>
+G = grover_operator(oracle)
+qc.<span class="c-f">compose</span>(G, inplace=<span class="c-k">True</span>)   <span class="c-c"># 2 steps ≈ optimal</span>
+qc.<span class="c-f">compose</span>(G, inplace=<span class="c-k">True</span>)   <span class="c-c"># for N = 8</span>
+qc.<span class="c-f">measure_all</span>()
+
+job = StatevectorSampler().<span class="c-f">run</span>([qc], shots=<span class="c-n">1000</span>)
+<span class="c-f">print</span>(job.result()[<span class="c-n">0</span>].data.meas.<span class="c-f">get_counts</span>())
+<span class="c-c"># ≈ {'101': 945, '000': 8, '110': 7, ...}</span></pre></div>
+  </div>
+
+  <div class="tbl-wrap reveal"><table>
+    <thead><tr><th>Dimension</th><th>Classical SQL</th><th>Quantum equivalent (today)</th></tr></thead>
+    <tbody>
+      <tr><td>Programming model</td><td>Declarative: say <em>what</em> you want, and the optimizer decides how</td><td>Imperative and gate-level: you specify every operation on every qubit. Closer to writing assembly than SQL.</td></tr>
+      <tr><td>Data model</td><td>Stored relations: typed rows and columns on disk, persistent</td><td>No stored data. “Data” is either baked into the circuit (the oracle) or loaded as amplitudes at O(N) cost, and it vanishes after each run.</td></tr>
+      <tr><td>Scale</td><td>Billions of rows</td><td>Toy sizes. With n qubits you can index 2<sup>n</sup> candidates, but each must be checkable by a circuit.</td></tr>
+      <tr><td>Determinism</td><td>Same query, same data, same result</td><td>Probabilistic. You get a histogram of samples, need many shots, and report an estimate with sampling error (≈94.5% here, not 100%).</td></tr>
+      <tr><td>Correctness check</td><td>Trust the engine; unit-test with known rows</td><td>Verify classically when you can (e.g., check the returned row). Large results may be impossible to check at all, which is a live research problem.</td></tr>
+      <tr><td>Error handling</td><td>Exceptions, constraints, transactions, rollback</td><td>Errors are <em>physical noise</em>, not exceptions. Handled by error mitigation (statistical correction), error-correcting codes and repeated shots. There's no ROLLBACK and no stack trace; you just get a noisier distribution.</td></tr>
+      <tr><td>Optimization</td><td>Cost-based optimizer, indexes, statistics</td><td>Transpiler maps gates to the chip's layout; you tune iteration counts yourself. Too many Grover steps makes the answer <em>worse</em>.</td></tr>
+      <tr><td>Execution</td><td>Milliseconds, local or warehouse</td><td>Queued cloud job; seconds to hours including the queue. Billed per shot or per second.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="takeaways reveal"><h4>Key takeaways · Section 3</h4><ul>
+    <li>Quantum computing sits <strong>next to the database, not inside it</strong>: there's no persistent quantum storage, and loading data is costly.</li>
+    <li>Grover searches <strong>computable spaces</strong>, not tables. Against a real table, a classical index beats it easily.</li>
+    <li>The most credible database use is <strong>query optimization</strong> (join ordering as a QUBO). Still no demonstrated advantage. <span class="tag spec">Speculation</span></li>
+    <li>Programming today means <strong>Python SDKs at gate level</strong>: Qiskit, Cirq, PennyLane. Probabilistic outputs, physical noise instead of exceptions.</li>
+  </ul></div>
+</section>
+
+<!-- ================= 4 ================= -->
+<section id="roles">
+  <div class="secnum">04 — HOW ANALYTICS WORK WOULD CHANGE</div>
+  <h2>Mostly the same job, with one new skill</h2>
+  <p class="big">Quantum won't replace the analytics stack. The bigger change is that analysts may become <strong>consumers of quantum outputs</strong> (simulation results, features, risk estimates) and a few will become <strong>translators</strong> who can tell which business problem has a quantum-shaped core.</p>
+
+  <div class="tbl-wrap reveal"><table>
+    <thead><tr><th>Stays the same</th><th>Changes</th><th>New</th></tr></thead>
+    <tbody>
+      <tr>
+        <td style="white-space:normal;font-weight:400;color:#d6dae4">
+          • SQL, dbt, warehouses, dashboards<br>• Experimentation, A/B tests, causal inference<br>• Metric design, stakeholder work<br>• Most ML training and serving (GPUs stay king)<br>• Data quality, governance, lineage</td>
+        <td style="color:#d6dae4">
+          • <b>Security and data retention</b>: post-quantum crypto migration touches every pipeline that encrypts data (“harvest now, decrypt later”)<br>• <b>Uncertainty-first thinking</b>: quantum outputs are shot-noisy estimates; CIs and bootstrap become routine for them<br>• <b>Optimization teams</b>: benchmark quantum and quantum-inspired solvers against Gurobi / OR-Tools<br>• <b>Simulation data</b> as a new input for pricing, materials and pharma models</td>
+        <td style="color:#d6dae4">
+          • <b>Problem reduction</b>: turning a business problem into a small QUBO or Hamiltonian<br>• <b>Quantum-advantage skepticism</b>: auditing vendor claims against the strongest classical baseline<br>• <b>Hybrid workflow orchestration</b>: QPU jobs as pipeline steps, with cost and queue management<br>• <b>Resource estimation</b>: “how many logical qubits and hours would this need?”</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <p>For a C2C marketplace specifically: search ranking, pricing models, fraud detection, demand forecasting and recommendations are all big-data, I/O-heavy workloads. Nothing in today's evidence suggests quantum helps them. The things that will actually touch a marketplace analytics team first are <strong>cryptography migration</strong> (payments and identity) and maybe <strong>logistics optimization</strong> on the shipping side. Even the latter is <span class="tag spec">speculative</span>.</p>
+
+  <h3>A realistic timeline</h3>
+  <div class="timeline">
+    <div class="era reveal" style="--c:var(--green)"><div class="when">Now · 2026–2028</div><h5>Learn and secure</h5><ul>
+      <li>Early, contested “quantum advantage” claims on scientific benchmarks, not business workloads. <span class="tag proven">Proven</span> for narrow tasks</li>
+      <li>Logical qubits in the dozens; error rates falling fast</li>
+      <li><b>Action:</b> inventory where your org uses RSA/ECC; follow the PQC migration (NIST standards finalised in 2024)</li>
+      <li><b>Action:</b> one person learns Qiskit or PennyLane on free cloud tiers; run toy hybrid experiments</li>
+    </ul></div>
+    <div class="era reveal" style="--c:var(--brass)"><div class="when">3–5 years · ~2029–2031</div><h5>First fault-tolerant machines</h5><ul>
+      <li>IBM (Starling: 200 logical qubits, 100M gates) and Quantinuum (Apollo) both target 2029. <span class="tag plausible">Plausible</span>, as roadmaps</li>
+      <li>First useful advantage likely in <b>chemistry and materials</b>, delivered through pharma, chemical and battery R&amp;D partners</li>
+      <li>Analysts see it as <b>new simulation datasets and features</b>, not new tools</li>
+      <li>Cryptographically relevant machine: no longer unthinkable; migration deadlines (around 2030) bite</li>
+    </ul></div>
+    <div class="era reveal" style="--c:var(--rose)"><div class="when">10+ years · 2036+</div><h5>A real compute tier, maybe</h5><ul>
+      <li>Thousands of logical qubits (IBM's Blue Jay target: 2,000 logical, 1B gates, 2033+). <span class="tag spec">Speculation</span></li>
+      <li>QPUs as a standard cloud/HPC accelerator next to GPUs, called by orchestration code</li>
+      <li>Optimization and finance advantages <i>if</i> error correction gets far cheaper</li>
+      <li>Mainstream analytics (SQL, BI, most ML) still classical. <span class="tag plausible">Very likely</span></li>
+    </ul></div>
+  </div>
+
+  <div class="takeaways reveal"><h4>Key takeaways · Section 4</h4><ul>
+    <li>Day-to-day analytics <strong>doesn't change</strong>. Quantum arrives as data products and as a security migration first.</li>
+    <li>The valuable new skill is <strong>problem reduction plus skepticism</strong>: spotting a quantum-shaped core and benchmarking honestly against classical.</li>
+    <li>Watch <strong>2029</strong>, when several vendors target their first fault-tolerant machines. Treat those dates as goals, not commitments.</li>
+  </ul></div>
+</section>
+
+<!-- ================= 5 ================= -->
+<section id="wild">
+  <div class="secnum">05 — WHY THIS IS SUCH A WILD TECHNOLOGY</div>
+  <h2>Counterintuitive physics, brutal engineering</h2>
+
+  <h3>The physics that breaks your intuition</h3>
+  <p><strong>Negative probabilities, sort of.</strong> In ordinary statistics, probabilities only add up: two ways to reach an outcome always make it more likely. In quantum mechanics, amplitudes can cancel, so two paths to an outcome can make it <em>impossible</em>. Nothing in classical probability theory works like this, and it's the core resource.</p>
+  <p><strong>Looking changes things.</strong> Measuring a qubit forces it to a definite 0 or 1 and destroys the superposition. So you can't “peek” at intermediate results to debug, and you can't copy a qubit's state either (the <span class="term">no-cloning theorem</span>). No print statements, no backups.</p>
+  <p><strong>Exponential bookkeeping.</strong> Describing 300 entangled qubits fully would take 2<sup>300</sup> numbers, more than there are atoms in the observable universe. Nature tracks this for free. That's why simulating nature on classical machines is so hard, and why Richard Feynman proposed building computers out of quantum parts in 1981.</p>
+
+  <h3>The engineering that makes it hard</h3>
+  <p><strong>Decoherence.</strong> Any stray interaction (heat, a vibration, a cosmic ray, a neighbouring qubit) leaks quantum information into the environment and turns waves back into ordinary coin flips. Superconducting qubits are kept at around 10–15 millikelvin, colder than deep space, inside the familiar gold “chandelier” dilution refrigerators. Trapped-ion and neutral-atom machines hold single atoms in place with lasers in ultra-high vacuum.</p>
+  <p><strong>Error correction.</strong> Today's best physical operations fail roughly once per thousand. Useful algorithms need billions of operations. The fix is to spread one <span class="term">logical qubit</span> (reliable) across many <span class="term">physical qubits</span> (noisy), and keep checking parities to detect errors without measuring the data directly. It's like RAID or a checksum, except you can't copy the data. The key milestone is being <span class="term">below threshold</span>: adding more physical qubits makes the logical qubit <em>better</em> rather than worse. Google showed this on its Willow chip in late 2024.</p>
+
+  <figure class="panel reveal" style="padding:18px">
+    <svg id="qec" viewBox="0 0 760 210" role="img" aria-labelledby="qecT"><title id="qecT">Many noisy physical qubits combine into one reliable logical qubit</title></svg>
+    <figcaption style="font-size:14px;color:var(--muted);margin-top:8px">Physical qubits (dots) flicker with errors; parity checks catch them; the logical qubit (right) stays steady. The overhead varies a lot by approach: Quantinuum has reported 48 logical qubits from 98 physical (about 2:1, with error <em>detection</em>-style codes), while surface-code designs often assume hundreds to ~1,000 physical per logical.</figcaption>
+  </figure>
+
+  <p><strong>Scaling.</strong> Each qubit needs control wiring, calibration and isolation, and all of these get harder as you add qubits. Controls drift, so machines are constantly recalibrated. The roadmaps are about <em>modularity</em>: linking chips or traps together instead of building one giant chip.</p>
+
+  <h3>Where the field stands (November 2026)</h3>
+  <div class="tbl-wrap reveal"><table>
+    <thead><tr><th>Player</th><th>Approach</th><th>Recent milestones</th><th>Stated next goal</th></tr></thead>
+    <tbody>
+      <tr><td>Google Quantum AI</td><td>Superconducting (also exploring neutral atoms since Mar 2026)</td><td>Willow (105 qubits): below-threshold error correction (Dec 2024). “Quantum Echoes”: first <em>verifiable</em> advantage claim, 13,000× faster than a top supercomputer on one physics task (Nature, Oct 2025). AI agent continuously recalibrates error correction, cutting logical errors ~20% further (Nature, Jul 2026)</td><td>Commercially relevant machines by end of decade</td></tr>
+      <tr><td>IBM</td><td>Superconducting, modular</td><td>Nighthawk (120 qubits, 218 couplers) and Loon (fault-tolerance test chip) in Nov 2025. Three “quantum advantage” papers with partners (Jul 2026), all posted to an open Quantum Advantage Tracker for classical challengers</td><td>Starling: 200 logical qubits, 100M gates, 2029. Blue Jay: 2,000 logical, 2033+</td></tr>
+      <tr><td>Quantinuum</td><td>Trapped ions</td><td>Helios: 98 qubits, 99.921% two-qubit fidelity, 48 logical qubits. 99.9995% logical fidelity, about 5 errors per million operations (Oct 2026). IPO on Nasdaq (Jun 2026)</td><td>Sol (~100 logical, 2027), Apollo (fault-tolerant, 2029)</td></tr>
+      <tr><td>QuEra, Atom Computing, Pasqal, Infleqtion</td><td>Neutral atoms</td><td>QuEra reported 96 logical qubits on 448 physical (Nature, Jan 2026). Rapid scaling of atom arrays</td><td>Larger logical-qubit systems through 2027</td></tr>
+      <tr><td>Microsoft</td><td>Topological (Majorana)</td><td>Majorana 1 (Feb 2025), Majorana 2 (Jun 2026). <b>Strongly contested</b>: a peer-reviewed critique in Nature (Jun 2026) argues a working topological qubit hasn't been shown; Microsoft disputes it</td><td>Scalable machine by 2029 (company claim)</td></tr>
+      <tr><td>Others</td><td>Various</td><td>IonQ (ions), Rigetti and IQM (superconducting), Xanadu and PsiQuantum (photonics), China's Zuchongzhi programme; several IPOs in 2026</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The gap between “advantage” demos and useful machines</h3>
+  <p>“Quantum advantage” has become a crowded term, so read each claim on three axes:</p>
+  <ul>
+    <li><strong>Is the task useful?</strong> Google's 2019 random-circuit-sampling result was a benchmark with no application. Quantum Echoes and IBM's 2026 papers simulate physics, which is closer to useful but still scientific, not commercial.</li>
+    <li><strong>Is it verifiable?</strong> If no classical computer can reproduce the answer, how do you know it's right? The 2025–26 wave is mostly about building that trust: repeatable outputs, cross-checks on other quantum machines, self-certified fidelity bounds.</li>
+    <li><strong>Will it survive?</strong> Classical simulation researchers have repeatedly narrowed or erased earlier advantage claims after publication. IBM's open tracker exists so that challenge happens in public.</li>
+  </ul>
+  <p>Also check what “logical qubit” means in each announcement. IBM's July 2026 “70 logical qubits”, for instance, used error <em>detection</em> and post-selection, which is not the fully fault-tolerant kind assumed in resource estimates for breaking encryption. The honest summary: <span class="tag proven">Proven</span> quantum machines now do some scientific computations that classical computers can't easily reproduce. <span class="tag plausible">Plausible</span> fault-tolerant machines with hundreds of logical qubits arrive around 2029–2031. <span class="tag spec">Not yet shown</span> no quantum computer has beaten classical on a commercially meaningful business task.</p>
+
+  <div class="panel reveal" style="border-color:rgba(236,127,149,.45)">
+    <h4 style="margin-top:0;color:var(--rose)">The one deadline that is real: cryptography</h4>
+    <p style="margin:0">Estimates of what it takes to break RSA-2048 keep falling, mostly from better algorithms rather than better hardware: about 20 million physical qubits in 2019, under 1 million in a May 2025 Google paper (running for under a week), and a February 2026 preprint claiming under 100,000 with newer codes (not yet validated). Because encrypted data can be stolen now and decrypted later, migration to post-quantum cryptography is urgent <em>today</em>, even if the machine is years away.</p>
+  </div>
+
+  <div class="takeaways reveal"><h4>Key takeaways · Section 5</h4><ul>
+    <li>The hard part is <strong>keeping waves coherent</strong> long enough, which needs error correction with large qubit overhead.</li>
+    <li>2024–2026 brought real progress: <strong>below-threshold error correction, logical qubits in the dozens, verifiable advantage claims</strong>.</li>
+    <li>Commercial advantage is <strong>not yet shown</strong>. Read every claim for usefulness, verifiability and durability.</li>
+    <li>Crypto migration is the one place where <strong>acting now</strong> is clearly justified.</li>
+  </ul></div>
+</section>
+
+<!-- ================= 6 ================= -->
+<section id="after-ai">
+  <div class="secnum">06 — IS IT THE NEXT BIG UNLOCK AFTER AI?</div>
+  <h2>Probably a complement, not a successor</h2>
+  <p class="big">AI is a general-purpose technology: it improves almost any task that involves data or language. Quantum computing, on current evidence, is a <strong>special-purpose</strong> technology with a few potentially enormous wins. Both can be transformative, but in very different shapes.</p>
+
+  <div class="scale">
+    <div class="case yes reveal"><h5>The case for “yes”</h5><ul>
+      <li>Exponential speedups for simulating nature are mathematically grounded, and chemistry, materials and drug design underpin trillions in economic value.</li>
+      <li>Error-correction progress in 2024–26 went faster than many expected: 10× improvements within months.</li>
+      <li>Shor's algorithm alone would reshape global security.</li>
+      <li>Money and talent are pouring in: public listings, government programmes, and big-tech labs on several hardware approaches at once.</li>
+    </ul></div>
+    <div class="case no reveal"><h5>The case for “no”</h5><ul>
+      <li>The speedups that matter commercially are <b>narrow</b>; most software and data work gains nothing.</li>
+      <li>Data loading and readout limits rule out big-data and most AI workloads.</li>
+      <li>Quadratic speedups may never pay for error-correction overhead.</li>
+      <li>Classical algorithms and AI keep improving and keep eroding claimed advantages. AI models are getting good at approximating quantum chemistry too.</li>
+      <li>Fault-tolerant roadmaps have slipped before.</li>
+    </ul></div>
+    <div class="case mid reveal"><h5>The likely reality</h5><ul>
+      <li>A <b>specialised accelerator</b> in the HPC/cloud stack, next to GPUs, from the early 2030s.</li>
+      <li><b>AI → quantum</b> is already real: AI calibrates chips, decodes errors and designs circuits. <span class="tag proven">Proven</span></li>
+      <li><b>Quantum → AI</b>: quantum simulations generate high-quality training data for chemistry and materials models. <span class="tag plausible">Plausible</span></li>
+      <li>Quantum speeding up LLM training or inference: <span class="tag spec">Speculation</span>, blocked by data loading.</li>
+    </ul></div>
+  </div>
+
+  <h3>Hype vs evidence</h3>
+  <div class="tbl-wrap reveal"><table>
+    <thead><tr><th>Claim you'll hear</th><th>What the evidence says</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>“Tries all answers at once”</td><td>Superposition plus measurement gives one sample. Speedups need interference structure.</td><td><span class="tag spec">Myth</span></td></tr>
+      <tr><td>“Will supercharge AI”</td><td>No end-to-end speedup for training on classical data; many QML results dequantized</td><td><span class="tag spec">Unsupported</span></td></tr>
+      <tr><td>“Quantum advantage is here”</td><td>Yes, for specific scientific tasks, with ongoing classical challenges. Not for business workloads.</td><td><span class="tag proven">Narrowly true</span></td></tr>
+      <tr><td>“Will break encryption”</td><td>Proven algorithm; machine needed is perhaps 100k–1M physical qubits; none exists yet</td><td><span class="tag plausible">When, not if</span></td></tr>
+      <tr><td>“Will revolutionise logistics”</td><td>No demonstrated advantage over top classical solvers</td><td><span class="tag spec">Unproven</span></td></tr>
+      <tr><td>“Will transform drug and materials discovery”</td><td>Strongest theory; early hardware demos; needs fault tolerance</td><td><span class="tag plausible">Most credible</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>What would need to be true for the bold claims to hold</h3>
+  <ol>
+    <li><strong>Error correction at scale:</strong> thousands of logical qubits with error rates around one in a billion or better, running for hours, with real-time decoding.</li>
+    <li><strong>Affordable overhead:</strong> far fewer physical qubits per logical one, and faster logical gates. This is what would make quadratic speedups matter.</li>
+    <li><strong>Exponential-advantage algorithms for valuable problems</strong> that <em>survive</em> the best classical and AI methods, not just a physics benchmark.</li>
+    <li><strong>A way around data loading</strong>: practical QRAM, or a steady supply of problems whose inputs are tiny and outputs are summary statistics.</li>
+    <li><strong>Economics:</strong> cost per useful answer below the classical alternative, including queueing and the engineers needed.</li>
+  </ol>
+  <p>Items 1 and 2 are on credible, if ambitious, roadmaps. Items 3–5 are where the real uncertainty is, and they're what to watch.</p>
+
+  <div class="takeaways reveal"><h4>Key takeaways · Section 6</h4><ul>
+    <li>AI is <strong>general-purpose</strong>; quantum is <strong>special-purpose with a few huge potential wins</strong>.</li>
+    <li>The two already combine: <strong>AI helps build quantum computers</strong>, and quantum may later <strong>feed AI with simulation data</strong>.</li>
+    <li>Judge bold claims against five conditions: scale, overhead, surviving algorithms, data loading, economics.</li>
+  </ul></div>
+</section>
+
+<section id="tldr" style="border:0;padding-top:30px">
+  <div class="tldr reveal">
+    <div class="secnum">TL;DR</div>
+    <h2>Five lines</h2>
+    <ol>
+      <li>Quantum computers use <strong>interference of amplitudes</strong> so wrong answers cancel. They sample answers rather than “try everything”.</li>
+      <li>They suit <strong>small input, huge hidden computation, small output</strong>, which is mostly simulating molecules and materials, plus breaking RSA.</li>
+      <li><strong>Data loading and the lack of storage</strong> mean SQL, BI and most ML stay classical; quantum helps only with small sub-problems like query optimization.</li>
+      <li>2026 has real, contested scientific advantage demos; <strong>fault-tolerant machines are targeted for ~2029</strong>; no business-task advantage yet.</li>
+      <li>Treat it as a <strong>future coprocessor and a present-day security deadline</strong>, a complement to AI rather than its successor.</li>
+    </ol>
+    <h4>Three questions to explore next</h4>
+    <div class="qs">
+      <div><b>Q1</b>Which of my team's problems, if any, has a tiny hard core (a combinatorial optimizer, a simulation) that could be shrunk into a QUBO? Can quantum-inspired classical solvers already beat our current method?</div>
+      <div><b>Q2</b>Where do our pipelines rely on RSA or elliptic-curve crypto, and how long does that data need to stay secret? Longer than ~5 years means “harvest now, decrypt later” already applies.</div>
+      <div><b>Q3</b>How does amplitude estimation's 1/ε scaling compare with variance-reduction tricks I already use (control variates, importance sampling, quasi-Monte Carlo) once you account for error-correction overhead?</div>
+    </div>
+  </div>
+</section>
+
+<div class="sources">
+  <h4>Sources</h4>
+  <ol>
+    <li><a href="https://research.google/blog/a-verifiable-quantum-advantage/">Google Research — A verifiable quantum advantage (Oct 2025)</a></li>
+    <li><a href="https://blog.google/technology/research/quantum-echoes-willow-verifiable-quantum-advantage/">Google — Quantum Echoes on Willow</a></li>
+    <li><a href="https://research.google/blog/towards-a-quantum-computer-that-learns-from-its-errors/">Google Research — RL control of quantum error correction (Jul 2026)</a></li>
+    <li><a href="https://www.livescience.com/technology/computing/ibm-unveils-two-new-quantum-processors-including-one-that-offers-a-blueprint-for-fault-tolerant-quantum-computing-by-2029">Live Science — IBM Nighthawk &amp; Loon</a></li>
+    <li><a href="https://ibm.com/roadmaps/quantum/2026">IBM Quantum Roadmap</a></li>
+    <li><a href="https://newsroom.ibm.com/2026-07-30-ibm-and-algorithmiq-demonstrate-quantum-advantage,-establishing-a-framework-for-trusted-quantum-computation-beyond-classical-verification">IBM Newsroom — Algorithmiq advantage demo (Jul 2026)</a></li>
+    <li><a href="https://postquantum.com/industry-news/ibm-three-quantum-advantage-papers/">PostQuantum — The three IBM papers make different claims</a></li>
+    <li><a href="https://thequantuminsider.com/2026/10/19/quantinuum-reports-a-10x-reduction-in-logical-error-rate-on-helios/">The Quantum Insider — Quantinuum Helios 99.9995% logical fidelity (Oct 2026)</a></li>
+    <li><a href="https://www.sec.gov/Archives/edgar/data/0002110105/000162828026041003/quantinuum-424b4.htm">Quantinuum prospectus (SEC) — Helios specs and roadmap</a></li>
+    <li><a href="https://entangledfuture.com/guides/state-of-quantum-computing-2026/">Entangled Future — State of Quantum Computing 2026</a></li>
+    <li><a href="https://www.cio.com/article/4189626/researchers-cast-new-doubt-on-microsofts-quantum-computing-advance-3.html">CIO — New doubt on Microsoft's Majorana claims (Jun 2026)</a></li>
+    <li><a href="https://thequantuminsider.com/2026/03/31/q-day-just-got-closer-three-papers-in-three-months-are-rewriting-the-quantum-threat-timeline/">The Quantum Insider — RSA-2048 resource estimates</a></li>
+    <li><a href="https://arxiv.org/abs/2011.04149v1">Babbush et al. — Focus beyond quadratic speedups</a></li>
+    <li><a href="https://arxiv.org/pdf/2310.03011">Dalzell et al. — Quantum algorithms: end-to-end complexities</a></li>
+    <li><a href="https://arxiv.org/pdf/2405.12511">Quantum Computing for Databases: Overview and Challenges</a></li>
+    <li><a href="https://www.frontiersin.org/articles/10.3389/fcomp.2025.1649354">Uotila — Join order selection on quantum computers (2025)</a></li>
+    <li><a href="https://www.ibm.com/quantum/blog/hsbc-algorithmic-bond-trading">IBM — HSBC algorithmic bond trading</a></li>
+    <li><a href="https://postquantum.com/quantum-research/hsbc-ibm-quantum-advantage/">PostQuantum — Inside the HSBC experiment</a></li>
+    <li><a href="https://www.forbes.com/sites/chuckbrooks/2026/08/28/quantum-progress-from-the-lab-to-the-real-world/">Forbes — Quantum progress (Aug 2026)</a></li>
+  </ol>
+</div>
+</main>
+
+<script>
+(function(){
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- ripple tank hero ---------- */
+const cv=document.getElementById('tank'), cx=cv.getContext('2d');
+const W=200,H=112; cv.width=W; cv.height=H;
+const img=cx.createImageData(W,H);
+let t=0;
+function draw(){
+  const s1=[W*0.38,H*0.42], s2=[W*0.62,H*0.42];
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    const d1=Math.hypot(x-s1[0],y-s1[1]), d2=Math.hypot(x-s2[0],y-s2[1]);
+    const a=Math.sin(d1*0.42-t)/(1+d1*0.02)+Math.sin(d2*0.42-t)/(1+d2*0.02);
+    const v=a*a/4; // intensity
+    const i=(y*W+x)*4;
+    img.data[i]=10+v*90; img.data[i+1]=18+v*190; img.data[i+2]=34+v*210; img.data[i+3]=255;
+  }
+  cx.putImageData(img,0,0);
+}
+function loop(){t+=0.06;draw(); if(!reduce) requestAnimationFrame(loop);}
+loop();
+
+/* ---------- scroll reveal + toc ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const links=[...document.querySelectorAll('nav.toc a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
+
+/* ---------- workload checker ---------- */
+const boxes=[...document.querySelectorAll('#checker input')], verdict=document.getElementById('verdict');
+function judge(){
+  let s=0; boxes.forEach(b=>{if(b.checked)s+=+b.dataset.w});
+  const bigData=boxes[5].checked, exp=boxes[2].checked;
+  let msg,col;
+  if(bigData){msg='<b>Classical territory.</b> Scanning, joining and aggregating stored data is exactly where data loading wipes out any quantum gain. Use your warehouse, Spark or a GPU.';col='var(--rose)';}
+  else if(s>=8&&exp){msg='<b>Quantum-shaped.</b> Small input, small output, exponentially hard core. This is the profile of chemistry and materials simulation. Worth a resource estimate, probably for the fault-tolerant era (~2029+).';col='var(--green)';}
+  else if(s>=4){msg='<b>Maybe, with heavy caveats.</b> Some ingredients are there. First benchmark the strongest classical and quantum-inspired methods; most such cases end up with no practical quantum advantage.';col='var(--brass)';}
+  else {msg='Tick the statements that apply. Most real analytics workloads end up in the red zone, and that is the honest answer.';col='var(--line)';}
+  verdict.innerHTML=msg; verdict.style.borderColor=col;
+}
+boxes.forEach(b=>b.addEventListener('change',judge)); judge();
+
+/* ---------- Grover widget ---------- */
+const N=16, c=document.getElementById('bars'), g=c.getContext('2d');
+let amp, target=11, steps=0, counts=null, half=false;
+function reset(){amp=new Array(N).fill(1/Math.sqrt(N)); steps=0; counts=null; half=false; render(); say(`Every candidate starts at amplitude ¼ (probability 1/16). The target is row <b>${target.toString(2).padStart(4,'0')}</b>; click a bar to change it.`);}
+function oracle(){amp[target]*=-1; half=!half; counts=null;}
+function diffuse(){const m=amp.reduce((a,b)=>a+b,0)/N; amp=amp.map(a=>2*m-a); counts=null;}
+function pT(){return amp[target]*amp[target];}
+function say(h){document.getElementById('narr').innerHTML=h;}
+function size(){const r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=r.width*d;c.height=240*d;g.setTransform(d,0,0,d,0,0);}
+function render(){
+  size(); const w=c.getBoundingClientRect().width, h=240, mid=h*0.5, pad=8, bw=(w-pad*2)/N;
+  g.clearRect(0,0,w,h);
+  g.strokeStyle='#3a4a70'; g.lineWidth=1; g.beginPath(); g.moveTo(0,mid); g.lineTo(w,mid); g.stroke();
+  g.fillStyle='#9aa3b8'; g.font='10px JetBrains Mono'; g.fillText('+1',2,14); g.fillText('−1',2,h-34);
+  for(let i=0;i<N;i++){
+    const a=amp[i], x=pad+i*bw+bw*0.15, bh=a*(mid-24);
+    let col = i===target ? '#d8a957' : (a<0?'#ec7f95':'#6fd6ea');
+    g.fillStyle=col; g.globalAlpha=i===target?1:.85;
+    g.fillRect(x, a>=0?mid-bh:mid, bw*0.7, Math.abs(bh));
+    g.globalAlpha=1;
+    if(counts){g.fillStyle='#e9e6dc';g.font='11px JetBrains Mono';g.textAlign='center';g.fillText(counts[i]||'',x+bw*0.35,h-6);g.textAlign='left';}
+    else {g.fillStyle=i===target?'#d8a957':'#5d6784';g.font='9px JetBrains Mono';g.textAlign='center';g.fillText(i.toString(2).padStart(4,'0'),x+bw*0.35,h-6);g.textAlign='left';}
+  }
+  document.getElementById('rSteps').textContent=steps;
+  document.getElementById('rP').textContent=(pT()*100).toFixed(1)+'%';
+}
+c.addEventListener('click',e=>{const r=c.getBoundingClientRect(),bw=(r.width-16)/N;const i=Math.floor((e.clientX-r.left-8)/bw);if(i>=0&&i<N){target=i;reset();}});
+document.getElementById('bOracle').onclick=()=>{oracle();render();say(half?'The oracle <b>flipped the target\'s sign</b>. Probabilities haven\'t changed yet (a negative amplitude squared is still positive), but the target now stands out as the only negative bar. Now press <b>Diffuse</b>.':'The oracle flipped the sign back. On its own the oracle reveals nothing; the information is hidden in the sign.');};
+document.getElementById('bDiff').onclick=()=>{diffuse(); if(half){steps++;half=false;} render();
+  const p=pT();
+  say(steps>3&&p<0.9?`Overshoot! P(target) dropped to <b>${(p*100).toFixed(1)}%</b>. Grover is a rotation; past the optimum it rotates away again. With noisy hardware you can't simply "run longer".`
+  :`Diffusion reflected every amplitude about the mean. The negative target jumped far above the others: <b>constructive interference</b>, while the rest shrank (destructive). P(target) = <b>${(p*100).toFixed(1)}%</b>.`);};
+document.getElementById('bStep').onclick=()=>{if(half){diffuse();half=false;}else{oracle();diffuse();half=false;} steps++; render();
+  const p=pT();
+  say(steps===3?`Three steps: P(target) ≈ <b>${(p*100).toFixed(1)}%</b>. That's √16-ish work, versus ~8 checks on average classically. A real but quadratic gain, and only because checking a row was cheap for the circuit.`:
+  steps>3?`Step ${steps}: P(target) = <b>${(p*100).toFixed(1)}%</b>, overshooting. Stopping at the right moment matters.`:
+  `Step ${steps}: P(target) = <b>${(p*100).toFixed(1)}%</b>. The wrong answers are being cancelled away.`);};
+document.getElementById('bMeasure').onclick=()=>{
+  const pr=amp.map(a=>a*a), tot=pr.reduce((a,b)=>a+b,0); counts=new Array(N).fill(0);
+  for(let s=0;s<100;s++){let r=Math.random()*tot,k=0;while(k<N-1&&(r-=pr[k])>0)k++;counts[k]++;}
+  render(); say(`100 shots: the target came up <b>${counts[target]}</b> times. This is your "query result": a histogram, not a row. Counts are shown under the bars.`);};
+document.getElementById('bReset').onclick=reset;
+window.addEventListener('resize',render);
+reset();
+
+/* ---------- QEC visual ---------- */
+const q=document.getElementById('qec'), NS='http://www.w3.org/2000/svg';
+const dots=[];
+for(let r=0;r<5;r++)for(let k=0;k<7;k++){
+  const el=document.createElementNS(NS,'circle'); el.setAttribute('cx',40+k*44); el.setAttribute('cy',22+r*40); el.setAttribute('r',8);
+  el.setAttribute('fill','#6fd6ea'); el.setAttribute('opacity','.85'); q.appendChild(el); dots.push(el);
+}
+const add=(tag,attrs,txt)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(txt)e.textContent=txt;q.appendChild(e);return e;};
+add('text',{x:40,y:206,fill:'#9aa3b8','font-size':12,'font-family':'JetBrains Mono'},'35 noisy physical qubits');
+add('path',{d:'M350 105 H520',stroke:'#d8a957','stroke-width':2,fill:'none','stroke-dasharray':'6 5'});
+add('text',{x:360,y:95,fill:'#d8a957','font-size':12,'font-family':'JetBrains Mono'},'parity checks + decoder');
+const L=add('circle',{cx:620,cy:105,r:44,fill:'none',stroke:'#d8a957','stroke-width':3});
+add('text',{x:620,y:111,fill:'#e9e6dc','font-size':16,'text-anchor':'middle','font-family':'Fraunces'},'logical');
+add('text',{x:620,y:178,fill:'#9aa3b8','font-size':12,'text-anchor':'middle','font-family':'JetBrains Mono'},'1 reliable qubit');
+const caught=add('text',{x:360,y:126,fill:'#ec7f95','font-size':12,'font-family':'JetBrains Mono'},'');
+let n=0;
+function flicker(){
+  dots.forEach(d=>{d.setAttribute('fill','#6fd6ea');d.setAttribute('opacity','.85')});
+  const hits=1+Math.floor(Math.random()*3);
+  for(let i=0;i<hits;i++){const d=dots[Math.floor(Math.random()*dots.length)];d.setAttribute('fill','#ec7f95');d.setAttribute('opacity','1');}
+  n+=hits; caught.textContent=`errors caught: ${n}`;
+}
+if(!reduce) setInterval(flicker,900); else flicker();
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
