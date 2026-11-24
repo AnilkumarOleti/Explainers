@@ -136,6 +136,12 @@
           "title": "The Analyst's Cockpit",
           "blurb": "AI now writes the SQL and builds the charts. The judgment is still the analyst's job.",
           "artifact": "3906ff79-888f-4bff-8fef-8684a71d7f65"
+        },
+        {
+          "slug": "ebay-cltv-orchard",
+          "title": "eBay CLTV Orchard",
+          "blurb": "What is a customer worth? Grow an orchard of customers to see lifetime value, and where it breaks.",
+          "ask": "What is a customer worth over their whole life?"
         }
       ]
     },

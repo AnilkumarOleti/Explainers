@@ -1,0 +1,1970 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>eBay CLTV Orchard | Explainers</title>
+<meta name="description" content="What is a customer worth? Grow an orchard of customers to see lifetime value, and where it breaks.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/ebay-cltv-orchard/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="eBay CLTV Orchard">
+<meta property="og:description" content="What is a customer worth? Grow an orchard of customers to see lifetime value, and where it breaks.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/ebay-cltv-orchard/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/ebay-cltv-orchard/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&display=swap">
+<style>
+/* Layout: a long field-guide scroll. Prose sits in a ~68ch column; each chapter's "bed" (figure + controls) widens to 1080px. */
+:root{
+  --paper:#EFF3EB;
+  --surface:#FAFCF8;
+  --surface-2:#E3EAE0;
+  --ink:#14281B;
+  --ink-2:#455A4B;
+  --ink-3:#66786B;
+  --rule:#CFDACE;
+  --leaf:#2B7748;
+  --leaf-soft:#CCE3D2;
+  --mango:#D9890A;
+  --mango-ink:#8A5300;
+  --mango-soft:#F4E0B8;
+  --on-mango:#1E1405;
+  --plum:#8D3456;
+  --plum-soft:#EFD5DF;
+  --sky:#336A8C;
+  --sky-soft:#D4E4EE;
+  --soil:#7A5A3A;
+  --focus:#1D64D8;
+  --shadow:rgba(20,40,27,.16);
+  --f-display:"Young Serif","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-body:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --radius:10px;
+  --radius-sm:6px;
+  --wide:1080px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1611; --surface:#132019; --surface-2:#1B2A21; --ink:#E2ECE3; --ink-2:#A8BAAC; --ink-3:#86998C; --rule:#2A3C30;
+    --leaf:#5DC286; --leaf-soft:#1C3A28; --mango:#F0AD3A; --mango-ink:#F5C66E; --mango-soft:#3A2D12; --on-mango:#1E1405;
+    --plum:#E386AA; --plum-soft:#3B1F2C; --sky:#84B8DA; --sky-soft:#192D3A; --soil:#B98F64; --focus:#7FAAFF; --shadow:rgba(0,0,0,.55);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1611; --surface:#132019; --surface-2:#1B2A21; --ink:#E2ECE3; --ink-2:#A8BAAC; --ink-3:#86998C; --rule:#2A3C30;
+  --leaf:#5DC286; --leaf-soft:#1C3A28; --mango:#F0AD3A; --mango-ink:#F5C66E; --mango-soft:#3A2D12; --on-mango:#1E1405;
+  --plum:#E386AA; --plum-soft:#3B1F2C; --sky:#84B8DA; --sky-soft:#192D3A; --soil:#B98F64; --focus:#7FAAFF; --shadow:rgba(0,0,0,.55);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--f-body);font-kerning:normal}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+a{color:var(--leaf);text-underline-offset:2px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+b,strong{font-weight:600}
+h1,h2,h3{text-wrap:balance}
+.mono{font-family:var(--f-mono);font-size:.9em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+sub,sup{font-size:.72em;line-height:0}
+section[id],.bed[id]{scroll-margin-top:68px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font:400 1.1rem/1 var(--f-display)}
+.brand svg{width:22px;height:22px;flex:none}
+.toc{position:relative}
+.toc summary{list-style:none;cursor:pointer;font:500 .85rem/1 var(--f-body);padding:9px 14px;border:1px solid var(--rule);border-radius:999px;color:var(--ink);user-select:none;background:var(--surface)}
+.toc summary::-webkit-details-marker{display:none}
+.toc[open] summary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.toc nav{position:absolute;right:0;top:calc(100% + 8px);width:min(330px,calc(100vw - 32px));max-height:calc(100vh - 90px);overflow:auto;background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:8px;box-shadow:0 14px 34px var(--shadow)}
+.toc ol{list-style:none;margin:0;padding:0;display:grid}
+.toc a{display:flex;gap:10px;padding:8px 10px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.95rem;line-height:1.3}
+.toc a:hover{background:var(--surface-2)}
+.toc a .n{font:500 .74rem/1.75 var(--f-mono);color:var(--ink-3);min-width:2.2ch}
+.toc a.cur{background:var(--leaf-soft)}
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--mango);transform-origin:0 50%;transform:scaleX(0)}
+
+main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.col{max-width:68ch;margin-inline:auto}
+.wide{max-width:var(--wide);margin-inline:auto}
+
+/* hero */
+.hero{padding-block:clamp(26px,5vw,60px) 20px;max-width:1180px;margin-inline:auto}
+.hero-grid{display:grid;gap:clamp(16px,3vw,44px);align-items:center}
+@media(min-width:960px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}}
+.eyebrow{font:500 .75rem/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mango-ink);margin:0}
+h1{font:400 clamp(2.6rem,7vw,4.8rem)/1 var(--f-display);letter-spacing:-.015em;margin:.22em 0 .32em}
+.lede{font-size:clamp(1.08rem,1.5vw,1.24rem);line-height:1.55;color:var(--ink-2);margin:0 0 .8em;max-width:56ch}
+.lede.em{color:var(--ink)}
+.hero-fig{margin:0;min-width:0}
+.orchard{width:100%;max-width:100%;aspect-ratio:600/380}
+.orchard svg{display:block;width:100%;height:100%}
+figcaption{font-size:.86rem;color:var(--ink-3);margin-top:8px}
+.ground{fill:var(--surface-2)}
+.furrow{stroke:var(--rule);stroke-width:1}
+.tree .trunk{fill:var(--soil);transition:fill .45s,opacity .45s}
+.tree .canopy{fill:var(--leaf);transition:fill .45s,opacity .45s,stroke .45s}
+.tree .fruit{fill:var(--mango);opacity:0;transition:opacity .3s}
+.tree.fruiting .fruit{opacity:1}
+.tree.dead .canopy{fill:transparent;stroke:var(--ink-3);stroke-width:1;stroke-dasharray:2 2.5;opacity:.6}
+.tree.dead .trunk{fill:var(--ink-3);opacity:.55}
+.tree.dead .fruit{opacity:0}
+
+.path{max-width:1180px;margin:22px auto 0}
+.path h2{font:500 .74rem/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px}
+.path ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:6px}
+.path a{display:flex;gap:8px;align-items:baseline;padding:9px 12px;border:1px solid var(--rule);border-radius:10px;text-decoration:none;color:var(--ink);font-size:.9rem;line-height:1.25;background:var(--surface)}
+.path a:hover{border-color:var(--leaf)}
+.path .n{font:500 .72rem/1 var(--f-mono);color:var(--ink-3)}
+
+/* figure beds */
+.bed{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:clamp(14px,2.4vw,24px);display:grid;gap:20px;margin-block:22px;min-width:0}
+@media(min-width:880px){.bed.split{grid-template-columns:minmax(230px,290px) minmax(0,1fr);align-items:start}}
+.viz{display:grid;gap:14px;min-width:0}
+.controls{display:grid;gap:13px;align-content:start;min-width:0}
+.controls.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));column-gap:22px}
+.ctl{display:grid;gap:2px;min-width:0}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.88rem;color:var(--ink-2);line-height:1.3}
+.ctl output{font:500 .88rem/1.2 var(--f-mono);color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ctl.off{opacity:.45}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--ink-2)}
+.check input{width:18px;height:18px;accent-color:var(--leaf)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;margin:0;background:transparent;cursor:pointer;--p:50%}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--leaf) 0 var(--p),var(--rule) var(--p) 100%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--mango);border:2px solid var(--ink);margin-top:-7px}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:var(--rule)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:2px;background:var(--leaf)}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--mango);border:2px solid var(--ink)}
+input[type=range]:disabled{cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:600 .9rem/1 var(--f-body);padding:10px 15px;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{border-color:var(--leaf)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font:500 .85rem/1.15 var(--f-body);padding:8px 12px;border-radius:999px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--leaf)}
+.chip[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:var(--surface)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,128px),1fr));gap:10px 16px}
+.stat{border-top:2px solid var(--rule);padding-top:6px;min-width:0}
+.stat .k{display:block;font:500 .68rem/1.35 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.stat .v{display:block;font:600 clamp(1.22rem,2.3vw,1.55rem)/1.15 var(--f-body);font-variant-numeric:tabular-nums;color:var(--ink);margin-top:3px;overflow-wrap:anywhere}
+.stat.hl{border-top-color:var(--mango)}
+.stat.hl .v{color:var(--mango-ink)}
+.stat.good{border-top-color:var(--leaf)} .stat.good .v{color:var(--leaf)}
+.stat.bad{border-top-color:var(--plum)} .stat.bad .v{color:var(--plum)}
+.fine{font-size:.84rem;color:var(--ink-3);margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.8rem;color:var(--ink-2);margin:0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;flex:none}
+.legend i.ln{height:3px;width:16px;border-radius:2px}
+.legend i.dsh{height:3px;width:16px;background:repeating-linear-gradient(90deg,var(--sky) 0 5px,transparent 5px 9px)}
+.k-mango{background:var(--mango)} .k-mango-soft{background:var(--mango-soft);box-shadow:inset 0 0 0 1px var(--mango)} .k-leaf{background:var(--leaf)} .k-leaf-soft{background:var(--leaf-soft)} .k-plum{background:var(--plum)} .k-sky{background:var(--sky)} .k-soil{background:var(--soil)} .k-ink{background:var(--ink)}
+
+/* charts */
+.chart{width:100%;min-width:0;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.charts2{display:grid;gap:18px;min-width:0}
+@media(min-width:760px){.charts2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.ch-title{font:600 .84rem/1.3 var(--f-body);color:var(--ink-2);margin:0 0 4px}
+.grid{stroke:var(--rule);stroke-width:1}
+.zero{stroke:var(--ink-3);stroke-width:1.2}
+.axis{stroke:var(--ink-3);stroke-width:1}
+.tick{fill:var(--ink-3);font:11.5px var(--f-mono)}
+.lab{fill:var(--ink-2);font:12.5px var(--f-body)}
+.lab-b{fill:var(--ink);font:600 12.5px var(--f-body)}
+.lab-m{fill:var(--mango-ink);font:600 12.5px var(--f-body)}
+.lab-l{fill:var(--leaf);font:600 12.5px var(--f-body)}
+.lab-p{fill:var(--plum);font:600 12.5px var(--f-body)}
+.lab-s{fill:var(--sky);font:600 12.5px var(--f-body)}
+.line{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.thin{stroke-width:1.6}
+.dash{stroke-dasharray:6 5}
+.refline{stroke:var(--mango);stroke-width:1.4;stroke-dasharray:4 4;fill:none}
+.mark{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:3 3;fill:none}
+.hl-cell{fill:none;stroke:var(--ink);stroke-width:2.2}
+.f-mango{fill:var(--mango)} .f-mango-soft{fill:var(--mango-soft)} .f-leaf{fill:var(--leaf)} .f-leaf-soft{fill:var(--leaf-soft)}
+.f-plum{fill:var(--plum)} .f-plum-soft{fill:var(--plum-soft)} .f-sky{fill:var(--sky)} .f-sky-soft{fill:var(--sky-soft)}
+.f-soil{fill:var(--soil)} .f-onmango{fill:var(--on-mango)} .f-ink{fill:var(--ink)} .f-ink3{fill:var(--ink-3)} .f-surface{fill:var(--surface)} .f-surface2{fill:var(--surface-2)} .f-rule{fill:var(--rule)} .f-none{fill:none}
+.s-mango{stroke:var(--mango)} .s-leaf{stroke:var(--leaf)} .s-plum{stroke:var(--plum)} .s-sky{stroke:var(--sky)} .s-ink{stroke:var(--ink)} .s-ink3{stroke:var(--ink-3)} .s-surface{stroke:var(--surface)} .s-soil{stroke:var(--soil)}
+
+/* chapters */
+.chapter{padding-block:clamp(48px,8vw,88px) 8px;border-top:1px solid var(--rule)}
+.plot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font:500 .74rem/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--leaf);margin:0 0 4px}
+.plot .num{color:var(--ink);background:var(--leaf-soft);padding:3px 7px;border-radius:4px}
+h2{font:400 clamp(2rem,4.6vw,3.1rem)/1.05 var(--f-display);letter-spacing:-.01em;margin:.15em 0 .45em}
+h3{font:600 1.06rem/1.3 var(--f-body);margin:0 0 .4em}
+.h3big{font:400 clamp(1.35rem,2.6vw,1.75rem)/1.2 var(--f-display);margin:1.5em 0 .45em}
+p{margin:0 0 1em}
+.keys{list-style:none;padding:0;margin:18px 0;display:grid;gap:10px}
+.keys li{padding-left:22px;position:relative}
+.keys li::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--mango)}
+.note{border-top:1px solid var(--rule);padding-top:12px;margin-top:20px}
+.note p{margin:0}
+.tag{display:inline-block;font:500 .7rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mango-ink);margin-bottom:6px}
+details.deeper{margin-top:18px;border:1px dashed var(--ink-3);border-radius:var(--radius-sm);padding:10px 14px}
+details.deeper summary{cursor:pointer;font-weight:600;color:var(--leaf)}
+details.deeper[open] summary{margin-bottom:8px}
+details.deeper p:last-child{margin-bottom:0}
+.formula{font:400 .95rem/1.7 var(--f-mono);background:var(--surface-2);border-radius:var(--radius-sm);padding:10px 14px;overflow-x:auto;white-space:nowrap;margin:12px 0}
+
+.recipe{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:stretch;margin-block:22px}
+.ing{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:16px;display:grid;gap:6px;align-content:start;min-width:0}
+.ing svg{width:42px;height:42px}
+.ing b{font:400 1.2rem/1.2 var(--f-display);font-weight:400}
+.ing span{color:var(--ink-2);font-size:.92rem}
+.op{align-self:center;justify-self:center;font:400 2rem/1 var(--f-display);color:var(--ink-3)}
+.recipe .sum{grid-column:1/-1;justify-self:center;font:500 .76rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+@media(max-width:720px){.recipe{grid-template-columns:minmax(0,1fr)}.op{font-size:1.5rem}}
+
+table.quad{width:100%;border-collapse:separate;border-spacing:6px;margin-block:18px;table-layout:fixed}
+.quad th,.quad td{padding:12px 14px;border-radius:var(--radius-sm);text-align:left;vertical-align:top;font-size:.94rem;line-height:1.4}
+.quad thead th{font:500 .72rem/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-bottom:2px}
+.quad tbody th{font-weight:600;width:30%}
+.quad tbody th span{display:block;font-weight:400;color:var(--ink-3);font-size:.82rem}
+.quad td{background:var(--surface);border:1px solid var(--rule)}
+.quad td.hot{background:var(--mango-soft);border-color:var(--mango)}
+.quad td.hot b{display:block;font:500 .72rem/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mango-ink);margin-top:6px}
+@media(max-width:560px){table.quad{border-spacing:4px}.quad th,.quad td{padding:8px;font-size:.84rem}}
+
+.bg-grid{display:grid;gap:18px;min-width:0}
+@media(min-width:880px){.bg-grid{grid-template-columns:minmax(240px,300px) minmax(0,1fr)}}
+.meter{height:10px;border-radius:5px;background:var(--surface-2);overflow:hidden;margin-top:7px}
+.meter span{display:block;height:100%;background:var(--leaf);width:50%;transition:width .3s}
+.heat-legend{display:flex;align-items:center;gap:8px;font:400 .76rem var(--f-mono);color:var(--ink-3)}
+.heat-legend .ramp{width:120px;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--surface-2),var(--leaf))}
+
+/* diagnostic */
+.dx-grid{display:grid;gap:24px;min-width:0}
+@media(min-width:920px){.dx-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+.dx-q{display:grid;gap:14px;min-width:0}
+.q{border:0;margin:0;padding:0;min-width:0}
+.q legend{font:600 .92rem/1.3 var(--f-body);padding:0;margin-bottom:6px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opts label{display:inline-block;padding:7px 11px;border:1px solid var(--rule);border-radius:999px;cursor:pointer;font-size:.86rem;line-height:1.2;background:var(--paper);color:var(--ink)}
+.opts label:hover{border-color:var(--leaf)}
+.opts input:checked + label{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.opts input:focus-visible + label{outline:2px solid var(--focus);outline-offset:2px}
+.dx-out{min-width:0}
+.gauge{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.gauge .score{font:400 3.2rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.gauge .score small{font:500 1rem var(--f-mono);color:var(--ink-3)}
+.verdict{display:inline-block;font:600 .84rem/1 var(--f-body);padding:7px 11px;border-radius:999px}
+.v-strong{background:var(--leaf-soft);color:var(--leaf)} .v-good{background:var(--sky-soft);color:var(--sky)} .v-narrow{background:var(--mango-soft);color:var(--mango-ink)} .v-poor{background:var(--plum-soft);color:var(--plum)}
+.scorebar{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden;margin:6px 0 16px}
+.scorebar span{display:block;height:100%;background:var(--ink);transition:width .3s}
+.dx-out h3{margin-top:14px}
+.dx-out ol,.dx-out ul{margin:0 0 10px;padding-left:20px;display:grid;gap:8px}
+.dx-out li b{display:block;font-weight:600}
+.dx-out li span{color:var(--ink-2);font-size:.92rem}
+.dx-out details summary{cursor:pointer;font-weight:600;color:var(--leaf);margin-top:8px}
+.rank{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rank button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,2fr) 3ch;gap:10px;align-items:center;padding:6px 8px;border-radius:6px;font-size:.88rem}
+.rank button:hover{background:var(--surface-2)}
+.rank button:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.rank button[aria-pressed="true"]{background:var(--leaf-soft)}
+.rank .rb{height:10px;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.rank .rb span{display:block;height:100%}
+.rank .rs{font:500 .82rem var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.b-strong{background:var(--leaf)} .b-good{background:var(--sky)} .b-narrow{background:var(--mango)} .b-poor{background:var(--plum)}
+
+/* cards */
+.methods,.uses,.blights,.regions{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:12px;margin-block:20px}
+.mcard,.use,.region{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.mcard header{display:flex;align-items:baseline;gap:10px}
+.rung{font:500 .74rem/1 var(--f-mono);color:var(--ink-3)}
+.mcard h3,.use h3,.region h3{font:400 1.2rem/1.2 var(--f-display);margin:0}
+.mcard .what{color:var(--ink-2);font-size:.92rem;margin:0}
+.meters{display:grid;gap:4px;margin:4px 0}
+.meters div{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.meters dt{font:500 .66rem/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.meters dd{margin:0;display:flex;gap:3px}
+.meters i{width:9px;height:9px;border-radius:50%;background:var(--surface-2);border:1px solid var(--rule)}
+.meters i.on{background:var(--leaf);border-color:var(--leaf)}
+.mcard p,.use p,.region p{margin:0;font-size:.9rem;color:var(--ink-2)}
+.mcard p b,.region p b{color:var(--ink)}
+.use dl{margin:0;display:grid;gap:8px}
+.use dt{font:500 .66rem/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.use dd{margin:2px 0 0;font-size:.9rem}
+.use dd.trap{color:var(--plum)}
+.region .kicker{font:500 .68rem/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:4px}
+.blight{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:14px 16px;min-height:150px;color:var(--ink)}
+.blight:hover{border-color:var(--ink-3)}
+.blight:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.blight span{display:block}
+.blight .bn{font:500 .7rem/1 var(--f-mono);letter-spacing:.08em;color:var(--plum)}
+.blight .bt{font:400 1.12rem/1.2 var(--f-display)}
+.blight .bs,.blight .bf{font-size:.9rem;color:var(--ink-2);line-height:1.45}
+.blight .bf{display:none}
+.blight[aria-expanded="true"]{background:var(--leaf-soft);border-color:var(--leaf)}
+.blight[aria-expanded="true"] .bs{display:none}
+.blight[aria-expanded="true"] .bf{display:block;color:var(--ink)}
+.blight .cue{margin-top:auto;padding-top:8px;font:500 .7rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.blight[aria-expanded="true"] .cue{color:var(--leaf)}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:10px;margin-block:20px}
+.facts.three{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.fact{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.fact .big{font:400 1.7rem/1.1 var(--f-display);color:var(--ink)}
+.fact .txt{font-size:.9rem;color:var(--ink-2);line-height:1.4}
+.fact .src{font:400 .7rem/1.35 var(--f-mono);color:var(--ink-3);margin-top:auto;padding-top:4px}
+
+.chain{display:grid;gap:12px;margin-block:20px;min-width:0}
+@media(min-width:920px){.chain{grid-template-columns:minmax(0,1fr) 30px minmax(0,1.15fr) 30px minmax(0,1fr);align-items:start}.chain .arrow{align-self:center}}
+.chain .colm{display:grid;gap:10px;min-width:0}
+.chain .colh{font:500 .7rem/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.node{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:12px 14px;display:grid;gap:4px}
+.node.you{border-color:var(--leaf);background:var(--leaf-soft)}
+.node.inf{border-style:dashed;background:transparent}
+.node .nh{display:flex;align-items:center;gap:8px;font-weight:600;line-height:1.25}
+.node span.d{font-size:.86rem;color:var(--ink-2);line-height:1.4}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:22px;padding:0 7px;border-radius:11px;background:var(--mango);color:var(--on-mango);font:600 .72rem/1 var(--f-mono);flex:none}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--ink-3)}
+.arrow svg{width:24px;height:24px}
+@media(max-width:919px){.arrow svg{transform:rotate(90deg)}}
+.strains{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px 18px;margin-block:16px}
+.strain{border-top:2px solid var(--plum);padding-top:8px}
+.strain b{display:block;font:400 1.08rem/1.25 var(--f-display);font-weight:400;margin-bottom:2px}
+.strain span{font-size:.9rem;color:var(--ink-2)}
+
+.ew-grid{display:grid;gap:22px;min-width:0}
+@media(min-width:980px){.ew-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}}
+.preset-desc{font-size:.92rem;color:var(--ink-2);margin:0;min-height:2.6em}
+
+.matrix-wrap{overflow-x:auto;margin-block:14px;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.matrix{display:grid;grid-template-columns:minmax(150px,1.25fr) repeat(5,minmax(104px,1fr));gap:6px;min-width:700px}
+.mx-h{font:500 .7rem/1.25 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:4px;align-self:end}
+.mx-r{font-weight:600;font-size:.9rem;padding:8px 4px;align-self:center;line-height:1.25}
+.mx-r span{display:block;font-weight:400;font-size:.78rem;color:var(--ink-3)}
+.cell{all:unset;box-sizing:border-box;cursor:pointer;border-radius:var(--radius-sm);padding:9px 10px;display:flex;flex-direction:column;gap:2px;border:1px solid transparent;min-height:60px}
+.cell .lv{font:600 .8rem/1.2 var(--f-body)}
+.cell .mini{font-size:.76rem;color:var(--ink-2);line-height:1.3}
+.lv-s{background:var(--leaf-soft)} .lv-s .lv{color:var(--leaf)}
+.lv-m{background:var(--mango-soft)} .lv-m .lv{color:var(--mango-ink)}
+.lv-w{background:var(--plum-soft)} .lv-w .lv{color:var(--plum)}
+.cell:hover{border-color:var(--ink-3)}
+.cell[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.cell:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.mx-detail{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:14px 16px;margin-top:8px}
+.mx-detail h3{font:400 1.15rem/1.25 var(--f-display);margin:0 0 6px}
+.mx-detail p{margin:0;color:var(--ink-2)}
+
+.steps{counter-reset:st;list-style:none;padding:0;margin:14px 0;display:grid;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:10px;align-items:start}
+.steps li::before{content:counter(st,decimal-leading-zero);font:500 .8rem/1.9 var(--f-mono);color:var(--leaf)}
+
+.tri{display:grid;gap:10px;margin-block:20px;align-items:stretch;min-width:0}
+@media(min-width:880px){.tri{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr)}}
+.party{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.party.center{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.party.center .d{color:var(--paper);opacity:.85}
+.party h3{font:400 1.3rem/1.2 var(--f-display);margin:0}
+.party .d{font-size:.9rem;color:var(--ink-2)}
+.flows{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.flows li{font-size:.88rem;display:grid;grid-template-columns:1.1em minmax(0,1fr);gap:6px;line-height:1.4}
+.flows li::before{content:"→";color:var(--mango)}
+
+.twob{display:grid;gap:12px;margin-block:16px;min-width:0}
+@media(min-width:760px){.twob{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.buyer{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.buyer .who{font:400 1.25rem/1.2 var(--f-display)}
+.buyer .what{font-size:.92rem;color:var(--ink-2);margin:0}
+.buyer .dots{display:flex;flex-wrap:wrap;gap:3px;min-height:12px}
+.buyer .dots i{width:10px;height:10px;border-radius:50%;background:var(--mango)}
+.buyer .dots i.big{width:22px;height:22px}
+.buyer .btn{align-self:flex-start;margin-top:auto}
+.buyer .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.region.sum{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.region.sum h3{color:var(--paper)}
+.region.sum p{color:var(--paper);opacity:.9}
+.region.sum .kicker{color:var(--paper);opacity:.7}
+
+.checklist{list-style:none;padding:0;margin:14px 0;display:grid;gap:8px}
+.checklist li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius-sm)}
+.checklist input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--leaf)}
+.checklist label{cursor:pointer}
+.checklist label b{display:block}
+.checklist label span{color:var(--ink-2);font-size:.92rem}
+.checklist li.done{background:var(--leaf-soft);border-color:var(--leaf)}
+
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:0 28px;margin:16px 0}
+.gloss div{padding:10px 0;border-bottom:1px solid var(--rule)}
+.gloss dt{font-weight:600}
+.gloss dd{margin:2px 0 0;color:var(--ink-2);font-size:.94rem}
+.sources{display:grid;gap:22px;margin-top:14px}
+@media(min-width:880px){.sources{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.sources h3{font:500 .72rem/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.sources ul{padding-left:18px;margin:0;display:grid;gap:8px;font-size:.88rem;color:var(--ink-2)}
+.foot{border-top:1px solid var(--rule);margin-top:56px;padding-block:24px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));color:var(--ink-3);font-size:.85rem}
+.foot p{max-width:var(--wide);margin:0 auto}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-tree" viewBox="0 0 24 24"><rect x="10.8" y="13" width="2.4" height="8.5" rx="1" class="f-soil"/><circle cx="12" cy="9.5" r="6.6" class="f-leaf"/><circle cx="9.6" cy="10.6" r="1.25" class="f-mango"/><circle cx="14" cy="8.4" r="1.25" class="f-mango"/></symbol>
+    <symbol id="i-fruit" viewBox="0 0 24 24"><path d="M12 6.2c4.6 0 7.2 3.6 7.2 7.5S16.1 21 12 21s-7.2-3.5-7.2-7.3S7.4 6.2 12 6.2z" class="f-mango"/><path d="M12.2 6.3c.5-2.2 2.3-3.5 4.6-3.6-.4 2.2-2.1 3.5-4.6 3.6z" class="f-leaf"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" class="f-none s-ink" stroke-width="2"/><path d="M12 7v5.2l3.6 2.1" class="f-none s-ink" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h14m-5-5 5 5-5 5" class="f-none s-ink3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#hero"><svg aria-hidden="true"><use href="#i-tree"/></svg><span>eBay CLTV Orchard</span></a>
+    <details class="toc" id="toc">
+      <summary>Chapters</summary>
+      <nav aria-label="Chapters">
+        <ol>
+          <li><a href="#ch1"><span class="n">01</span>Why CLTV exists</a></li>
+          <li><a href="#ch2"><span class="n">02</span>The formula</a></li>
+          <li><a href="#ch3"><span class="n">03</span>Giants and saplings</a></li>
+          <li><a href="#ch4"><span class="n">04</span>The survivor illusion</a></li>
+          <li><a href="#ch5"><span class="n">05</span>Dead or dormant?</a></li>
+          <li><a href="#ch6"><span class="n">06</span>The toolshed: methods</a></li>
+          <li><a href="#ch7"><span class="n">07</span>Where it works and breaks</a></li>
+          <li><a href="#ch8"><span class="n">08</span>Use cases</a></li>
+          <li><a href="#ch9"><span class="n">09</span>Blights: pitfalls</a></li>
+          <li><a href="#ch10"><span class="n">10</span>E-waste</a></li>
+          <li><a href="#ch11"><span class="n">11</span>eBay examples</a></li>
+          <li><a href="#refs"><span class="n">··</span>Glossary and sources</a></li>
+        </ol>
+      </nav>
+    </details>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">A field guide to customer lifetime value for eBay analytics</p>
+      <h1 id="hero-title">What is an eBay customer worth?</h1>
+      <p class="lede">Picture every customer as a tree you planted. Each season a living tree gives fruit. Some die young, a few grow into giants, and fruit picked years from now is worth less than fruit picked today.</p>
+      <p class="lede em">Customer lifetime value (CLTV) is the harvest you expect from one planted tree, counted in today's money.</p>
+    </div>
+    <figure class="hero-fig">
+      <div id="orchard" class="orchard"></div>
+      <figcaption>100 customers acquired together. Each season, living trees fruit (margin) and some die (churn). Bigger canopies yield more.</figcaption>
+    </figure>
+  </div>
+  <div class="bed split hero-bed">
+    <div class="controls">
+      <div class="ctl">
+        <label for="hero-r">Survival per season <output for="hero-r">75%</output></label>
+        <input type="range" id="hero-r" min="0.5" max="0.95" step="0.05" value="0.75">
+      </div>
+      <div class="btns">
+        <button class="btn primary" id="hero-play" type="button">Replay 10 seasons</button>
+        <button class="btn" id="hero-replant" type="button">Plant a new orchard</button>
+      </div>
+    </div>
+    <div class="viz">
+      <div class="stats" aria-live="polite">
+        <div class="stat"><span class="k">Season</span><span class="v" id="hero-season">10 / 10</span></div>
+        <div class="stat"><span class="k">Trees standing</span><span class="v" id="hero-alive">–</span></div>
+        <div class="stat"><span class="k">Fruit picked</span><span class="v" id="hero-nominal">–</span></div>
+        <div class="stat"><span class="k">In today's money</span><span class="v" id="hero-disc">–</span></div>
+        <div class="stat hl"><span class="k">Per tree planted = CLTV</span><span class="v" id="hero-per">–</span></div>
+      </div>
+      <p class="fine" id="hero-exp">Each tree yields about $10 a season on average, and fruit is discounted 10% per season.</p>
+    </div>
+  </div>
+  <nav class="path" aria-labelledby="path-t">
+    <h2 id="path-t">How this guide grows: basics first, then the nuances</h2>
+    <ol>
+      <li><a href="#ch1"><span class="n">01</span>Why CLTV exists</a></li>
+      <li><a href="#ch2"><span class="n">02</span>The formula</a></li>
+      <li><a href="#ch3"><span class="n">03</span>Giants and saplings</a></li>
+      <li><a href="#ch4"><span class="n">04</span>The survivor illusion</a></li>
+      <li><a href="#ch5"><span class="n">05</span>Dead or dormant?</a></li>
+      <li><a href="#ch6"><span class="n">06</span>Methods</a></li>
+      <li><a href="#ch7"><span class="n">07</span>Where it works</a></li>
+      <li><a href="#ch8"><span class="n">08</span>Use cases</a></li>
+      <li><a href="#ch9"><span class="n">09</span>Pitfalls</a></li>
+      <li><a href="#ch10"><span class="n">10</span>E-waste</a></li>
+      <li><a href="#ch11"><span class="n">11</span>eBay examples</a></li>
+    </ol>
+  </nav>
+</section>
+
+<!-- 01 -->
+<section class="chapter" id="ch1" aria-labelledby="ch1-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 01</span><span>Why CLTV exists</span></p>
+    <h2 id="ch1-t">The first harvest rarely pays for the sapling</h2>
+    <p>You pay to acquire a customer today: ads, coupons, sales time. They pay you back slowly, one order at a time, for as long as they stay.</p>
+    <p>CLTV puts a number on that slow payback, so you can answer the question every growth team asks: <strong>how much can we afford to spend to win one customer?</strong></p>
+  </div>
+  <div class="bed split wide" id="pb">
+    <div class="controls">
+      <div class="ctl"><label for="pb-cac">Cost to acquire (CAC) <output for="pb-cac">$45</output></label><input type="range" id="pb-cac" min="5" max="200" step="5" value="45"></div>
+      <div class="ctl"><label for="pb-m">Margin per active month <output for="pb-m">$6.0</output></label><input type="range" id="pb-m" min="1" max="30" step="0.5" value="6"></div>
+      <div class="ctl"><label for="pb-r">Monthly retention <output for="pb-r">92%</output></label><input type="range" id="pb-r" min="0.7" max="0.99" step="0.01" value="0.92"></div>
+      <div class="ctl"><label for="pb-d">Discount rate per year <output for="pb-d">10%</output></label><input type="range" id="pb-d" min="0" max="0.25" step="0.01" value="0.1"></div>
+      <div class="ctl"><label for="pb-h">Horizon <output for="pb-h">36 months</output></label><input type="range" id="pb-h" min="12" max="120" step="6" value="36"></div>
+    </div>
+    <div class="viz">
+      <div class="stats" aria-live="polite">
+        <div class="stat"><span class="k">Payback</span><span class="v" id="pb-pay">–</span></div>
+        <div class="stat"><span class="k">LTV over horizon</span><span class="v" id="pb-ltv">–</span></div>
+        <div class="stat hl"><span class="k">LTV : CAC</span><span class="v" id="pb-ratio">–</span></div>
+      </div>
+      <div>
+        <p class="ch-title">Cumulative profit from one acquired customer, in today's money</p>
+        <div class="chart" id="pb-chart"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="note"><span class="tag">Rule of thumb</span><p>SaaS investors popularised <em>LTV at least 3 × CAC, payback under 12 months</em>. Treat it as a smell test. The ratio swings with the horizon you choose and with whether LTV is measured in revenue or margin. Stretch the horizon above and watch it move.</p></div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="chapter" id="ch2" aria-labelledby="ch2-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 02</span><span>The core formula</span></p>
+    <h2 id="ch2-t">Three ingredients of a harvest</h2>
+    <p>Every CLTV method, from a spreadsheet to a neural network, estimates the same three things.</p>
+  </div>
+  <div class="wide recipe">
+    <div class="ing"><svg aria-hidden="true"><use href="#i-fruit"/></svg><b>Fruit per season</b><span>Margin from an active customer in period t, written m<sub>t</sub>.</span></div>
+    <div class="op" aria-hidden="true">×</div>
+    <div class="ing"><svg aria-hidden="true"><use href="#i-tree"/></svg><b>Is the tree alive?</b><span>Probability they are still a customer at t, written S(t).</span></div>
+    <div class="op" aria-hidden="true">×</div>
+    <div class="ing"><svg aria-hidden="true"><use href="#i-clock"/></svg><b>Later fruit is worth less</b><span>Discount factor 1 / (1+d)<sup>t</sup> at discount rate d.</span></div>
+    <div class="sum">added up over every season</div>
+  </div>
+  <div class="col">
+    <p class="formula">CLTV = Σ<sub>t = 0 … H−1</sub>&nbsp; m<sub>t</sub> · S(t) / (1+d)<sup>t</sup></p>
+    <p>With constant margin m and retention r, survival is S(t) = r<sup>t</sup> and the expected lifetime is 1 / (1 − r) periods. With no end to the horizon the sum collapses to <span class="mono">m · (1+d) / (1+d−r)</span>.</p>
+  </div>
+  <div class="bed split wide" id="cm">
+    <div class="controls">
+      <div class="ctl"><label for="cm-m">Margin per year <output for="cm-m">$100</output></label><input type="range" id="cm-m" min="10" max="500" step="10" value="100"></div>
+      <div class="ctl"><label for="cm-r">Retention per year <output for="cm-r">80%</output></label><input type="range" id="cm-r" min="0.3" max="0.98" step="0.01" value="0.8"></div>
+      <div class="ctl"><label for="cm-d">Discount rate <output for="cm-d">10%</output></label><input type="range" id="cm-d" min="0" max="0.3" step="0.01" value="0.1"></div>
+      <div class="ctl"><label for="cm-h">Horizon <output for="cm-h">10 years</output></label><input type="range" id="cm-h" min="1" max="30" step="1" value="10"></div>
+    </div>
+    <div class="viz">
+      <div class="stats" aria-live="polite">
+        <div class="stat hl"><span class="k">CLTV over horizon</span><span class="v" id="cm-clv">–</span></div>
+        <div class="stat"><span class="k">Endless horizon</span><span class="v" id="cm-inf">–</span></div>
+        <div class="stat"><span class="k">Expected lifetime</span><span class="v" id="cm-life">–</span></div>
+      </div>
+      <div>
+        <p class="ch-title">Each year's harvest per customer</p>
+        <ul class="legend"><li><i class="k-mango-soft"></i>Fruit picked (undiscounted)</li><li><i class="k-mango"></i>In today's money</li></ul>
+        <div class="chart" id="cm-chart"></div>
+      </div>
+      <div>
+        <p class="ch-title">Which lever moves CLTV most from here?</p>
+        <div class="chart" id="cm-sens"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <ul class="keys">
+      <li><b>Use margin, not revenue.</b> For a marketplace that means take rate, ads and fees minus incentives and costs, never GMV.</li>
+      <li><b>Retention compounds.</b> The higher retention already is, the more each extra point is worth. Push retention toward 95% and watch the sensitivity bars.</li>
+      <li><b>Fix the horizon and discount rate first.</b> Many teams use 3 to 5 years and their cost of capital. Two CLTVs with different conventions can't be compared.</li>
+    </ul>
+    <details class="deeper">
+      <summary>Go deeper: the margin multiple</summary>
+      <p>Gupta and Lehmann (2003) write the constant case with margin arriving at the end of each period: CLTV = m · r / (1 + i − r). The ratio r / (1 + i − r) is a <em>margin multiple</em>. At r = 80% and i = 12%, a customer is worth 2.5 times one period's margin. At 90% retention the multiple is 4.1.</p>
+      <p>The formula gives every customer the same r. The next two chapters show what that assumption hides.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="chapter" id="ch3" aria-labelledby="ch3-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 03</span><span>Heterogeneity</span></p>
+    <h2 id="ch3-t">Giants and saplings</h2>
+    <p>Customer value is rarely bell-shaped. Many customers never come back, and a small group buys all the time. An average CLTV describes almost nobody.</p>
+  </div>
+  <div class="bed split wide" id="ht">
+    <div class="controls">
+      <div class="ctl"><label for="ht-s">How unequal is value? <output for="ht-s">1.4</output></label><input type="range" id="ht-s" min="0.3" max="2.5" step="0.1" value="1.4"><span class="fine">Spread (σ) of log-value among returning customers</span></div>
+      <div class="ctl"><label for="ht-z">Customers who never return <output for="ht-z">30%</output></label><input type="range" id="ht-z" min="0" max="0.8" step="0.05" value="0.3"></div>
+      <p class="fine">Mean CLTV is held at $100, so only the shape changes.</p>
+    </div>
+    <div class="viz">
+      <div class="stats" aria-live="polite">
+        <div class="stat"><span class="k">Mean CLTV</span><span class="v">$100</span></div>
+        <div class="stat hl"><span class="k">Median CLTV</span><span class="v" id="ht-median">–</span></div>
+        <div class="stat"><span class="k">Top 10% hold</span><span class="v" id="ht-top">–</span></div>
+        <div class="stat"><span class="k">Half the value sits with</span><span class="v" id="ht-half">–</span></div>
+        <div class="stat"><span class="k">Gini</span><span class="v" id="ht-gini">–</span></div>
+      </div>
+      <div class="charts2">
+        <div><p class="ch-title">Share of total value by customer decile</p><div class="chart" id="ht-dec"></div></div>
+        <div><p class="ch-title">Lorenz curve: customers sorted from least to most valuable</p><div class="chart" id="ht-lor"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <ul class="keys">
+      <li><b>Report the distribution.</b> Put P10, P50 and P90 and decile shares next to the mean.</li>
+      <li><b>Budget with the mean, target with the shape.</b> Totals need the mean. Deciding who to prioritise needs the distribution.</li>
+      <li><b>Heavy tails break squared-error models.</b> A few whales dominate the loss. Use log targets or zero-inflated losses such as ZILN, and judge models on decile calibration and Gini.</li>
+    </ul>
+    <details class="deeper">
+      <summary>Go deeper: the model behind these charts</summary>
+      <p>Returning customers have lognormal value with spread σ; the never-return group holds zero future value. The Lorenz curve plots the share of total value held by the bottom p% of customers. The Gini coefficient is twice the area between that curve and the diagonal: 0 means everyone is equal, 1 means one customer holds everything.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="chapter" id="ch4" aria-labelledby="ch4-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 04</span><span>Cohort sorting</span></p>
+    <h2 id="ch4-t">The survivor illusion</h2>
+    <p>Plant hardy and fragile saplings together. The fragile ones die first, so each season the surviving orchard is tougher and a larger share of it survives. No single tree changed. The mix did.</p>
+    <p>That is why cohort retention usually rises with age, and why projecting first-year retention forever undervalues a cohort.</p>
+  </div>
+  <div class="bed split wide" id="ru">
+    <div class="controls">
+      <div class="ctl"><label for="ru-h">Hardy share of the cohort <output for="ru-h">30%</output></label><input type="range" id="ru-h" min="0.05" max="0.9" step="0.05" value="0.3"></div>
+      <div class="ctl"><label for="ru-rh">Hardy survival per year <output for="ru-rh">90%</output></label><input type="range" id="ru-rh" min="0.6" max="0.98" step="0.01" value="0.9"></div>
+      <div class="ctl"><label for="ru-rf">Fragile survival per year <output for="ru-rf">40%</output></label><input type="range" id="ru-rf" min="0.05" max="0.8" step="0.05" value="0.4"></div>
+      <p class="fine">CLTV here uses $100 margin per year, a 10% discount rate and a 40-year horizon.</p>
+    </div>
+    <div class="viz">
+      <div class="stats" aria-live="polite">
+        <div class="stat good"><span class="k">CLTV, true mix</span><span class="v" id="ru-true">–</span></div>
+        <div class="stat"><span class="k">CLTV if year-1 retention held</span><span class="v" id="ru-naive">–</span></div>
+        <div class="stat bad"><span class="k">Error from the naive view</span><span class="v" id="ru-err">–</span></div>
+      </div>
+      <ul class="legend"><li><i class="ln k-leaf"></i>What the cohort really does</li><li><i class="dsh"></i>Projection using year-1 retention forever</li></ul>
+      <div class="charts2">
+        <div><p class="ch-title">Share of the cohort still active</p><div class="chart" id="ru-surv"></div></div>
+        <div><p class="ch-title">Retention rate in each year</p><div class="chart" id="ru-rate"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <p>Models built for this expect heterogeneity. The <b>shifted-beta-geometric (sBG)</b> model gives each customer their own churn probability, drawn from a beta distribution. Fader and Hardie (2007) show that fitting it to the first several periods projects later retention far better than simple curve fits.</p>
+    <details class="deeper">
+      <summary>Go deeper: sBG in one line</summary>
+      <p>If churn probabilities follow Beta(α, β), retention in period t is r<sub>t</sub> = (β + t − 1) / (α + β + t − 1). It rises with t for the same sorting reason you just saw. Fit α and β to observed survival by maximum likelihood; with continuous heterogeneity the curve flattens smoothly instead of in two steps.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="chapter" id="ch5" aria-labelledby="ch5-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 05</span><span>Non-contractual churn</span></p>
+    <h2 id="ch5-t">Dead or dormant?</h2>
+    <p>A subscriber cancels and you know it. A marketplace buyer just stops buying, and silence can mean gone for good or just a long gap. Most e-commerce and marketplace CLTV lives in this second world.</p>
+  </div>
+  <div class="wide">
+    <table class="quad">
+      <caption class="fine" style="caption-side:bottom;text-align:left;padding-top:6px">Fader and Hardie's classification of customer relationships. It decides which family of models fits.</caption>
+      <thead><tr><th scope="col"><span class="sr">Relationship</span></th><th scope="col">Can buy any time</th><th scope="col">Buys at set moments</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">You see them leave<span>contractual</span></th><td>Mobile plans, streaming, SaaS</td><td>Annual memberships, insurance renewals</td></tr>
+        <tr><th scope="row">They just go quiet<span>non-contractual</span></th><td class="hot">Marketplaces, e-commerce, food delivery<b>eBay lives here</b></td><td>Conferences, festivals, annual sale events</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col"><h3 class="h3big">Is this buyer still alive?</h3><p>The BG/NBD model reads three numbers per customer: how many repeat purchases (frequency), when the last one happened (recency) and how long you've known them. Try the examples, drag the sliders, or tap a cell in the heatmap.</p></div>
+  <div class="bed wide" id="bg">
+    <div class="chips" role="group" aria-label="Example customers">
+      <button class="chip" type="button" data-bg="steady" aria-pressed="false">Steady regular</button>
+      <button class="chip" type="button" data-bg="quiet" aria-pressed="false">Frequent, then quiet</button>
+      <button class="chip" type="button" data-bg="occasional" aria-pressed="false">Occasional</button>
+      <button class="chip" type="button" data-bg="once" aria-pressed="false">One-and-done</button>
+    </div>
+    <div class="chart" id="bg-tl"></div>
+    <div class="bg-grid">
+      <div class="controls">
+        <div class="ctl"><label for="bg-T">Weeks since first purchase <output for="bg-T">52 wks</output></label><input type="range" id="bg-T" min="26" max="78" step="1" value="52"></div>
+        <div class="ctl"><label for="bg-x">Repeat purchases <output for="bg-x">6</output></label><input type="range" id="bg-x" min="0" max="30" step="1" value="6"></div>
+        <div class="ctl" id="bg-tx-wrap"><label for="bg-tx">Week of last purchase <output for="bg-tx">week 40</output></label><input type="range" id="bg-tx" min="0" max="52" step="1" value="40"></div>
+        <div class="ctl"><label for="bg-aov">Their average repeat order <output for="bg-aov">$40</output></label><input type="range" id="bg-aov" min="5" max="300" step="5" value="40"></div>
+      </div>
+      <div class="viz">
+        <div class="stats" aria-live="polite">
+          <div class="stat hl"><span class="k">P(alive)</span><span class="v" id="bg-pa">–</span><div class="meter" aria-hidden="true"><span id="bg-pa-bar"></span></div></div>
+          <div class="stat"><span class="k">Expected purchases, next 52 weeks</span><span class="v" id="bg-ep">–</span></div>
+          <div class="stat"><span class="k">Expected order value (shrunk)</span><span class="v" id="bg-em">–</span></div>
+          <div class="stat"><span class="k">Expected spend, next 52 weeks</span><span class="v" id="bg-sp">–</span></div>
+        </div>
+        <p class="fine" id="bg-note">–</p>
+      </div>
+    </div>
+    <div>
+      <p class="ch-title">P(alive) for every frequency and recency, at this customer age</p>
+      <div class="heat-legend"><span>P(alive) 0</span><span class="ramp" aria-hidden="true"></span><span>1</span><span>· outlined cell = this customer</span></div>
+      <div class="chart" id="bg-heat"></div>
+    </div>
+    <p class="fine">Model parameters were fitted on the CDNOW sample of a 1990s online music retailer (Fader, Hardie and Lee, 2005), with time in weeks and money in US dollars. Real marketplace parameters differ; the logic transfers.</p>
+  </div>
+  <div class="col">
+    <ul class="keys">
+      <li><b>Silence means different things.</b> Ten purchases then 30 quiet weeks: probably gone. Two purchases then the same 30 quiet weeks: probably just an occasional buyer.</li>
+      <li><b>One big order doesn't make a big customer.</b> The Gamma-Gamma model pulls a customer's average order toward the population average, and trusts their own average more as orders add up. It assumes order value is independent of frequency, so check that correlation first.</li>
+      <li><b>Know the quirks.</b> BG/NBD lets customers drop out only right after a purchase, so anyone with no repeat purchase shows P(alive) = 1. Pareto/NBD and the modified BG/NBD avoid this.</li>
+    </ul>
+    <details class="deeper">
+      <summary>Go deeper: the story and the formulas</summary>
+      <p>While alive, a customer buys at a Poisson rate λ, and rates vary across customers as Gamma(r, α). After each purchase they drop out with probability p, which varies as Beta(a, b). Given x repeat purchases, last purchase at t<sub>x</sub> and age T:</p>
+      <p class="formula">P(alive) = 1 / [ 1 + a/(b+x−1) · ((α+T)/(α+t<sub>x</sub>))<sup>r+x</sup> ]&nbsp;&nbsp; for x &gt; 0</p>
+      <p>Expected purchases in the next t weeks need a Gaussian hypergeometric function (Fader, Hardie and Lee, 2005, equation 10). Gamma-Gamma's expected order value is p(γ + x·m̄) / (px + q − 1), where m̄ is the average repeat order. Parameters here: r = 0.243, α = 4.414, a = 0.793, b = 2.426; p = 6.25, q = 3.74, γ = 15.44.</p>
+      <p>In Python, <span class="mono">lifetimes</span> (now in maintenance mode) and PyMC-Marketing implement both models; the PyMC versions add uncertainty intervals.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="chapter" id="ch6" aria-labelledby="ch6-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 06</span><span>Methods</span></p>
+    <h2 id="ch6-t">The toolshed</h2>
+    <p>Methods differ in what they estimate and how much data they need. They are ordered here from simplest to most demanding. Start near the top and climb only when the decision needs it.</p>
+  </div>
+  <div class="wide methods">
+    <article class="mcard">
+      <header><span class="rung">1</span><h3>Look-back value</h3></header>
+      <p class="what">Sum of each customer's past margin.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> reporting, sanity checks, finance reconciliation.</p>
+      <p><b>Breaks:</b> it's history, not a forecast. Old customers always look best.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">2</span><h3>Simple formula</h3></header>
+      <p class="what">Margin × (1+d) / (1+d−r), or margin ÷ churn.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> back-of-envelope sizing, stable subscriptions.</p>
+      <p><b>Breaks:</b> heterogeneity (chapter 4), changing margins, non-contractual churn.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">3</span><h3>Cohort curves</h3></header>
+      <p class="what">Retention and cumulative margin per acquisition cohort, with the tail extrapolated.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> channel budgets, finance, product analytics. Easy to explain.</p>
+      <p><b>Breaks:</b> young cohorts, mix shift, and the choice of tail curve.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">4</span><h3>RFM scores</h3></header>
+      <p class="what">Rank customers by recency, frequency and monetary value.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> quick segments for CRM; strong features for other models.</p>
+      <p><b>Breaks:</b> ranks without valuing. Bins are arbitrary.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">5</span><h3>Buy-till-you-die models</h3></header>
+      <p class="what">BG/NBD or Pareto/NBD with Gamma-Gamma for non-contractual; sBG for contracts.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> needs only transactions; well calibrated at portfolio level; gives P(alive).</p>
+      <p><b>Breaks:</b> assumes stable behaviour; base models ignore seasonality, promotions and covariates.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">6</span><h3>Survival and hazard models</h3></header>
+      <p class="what">Cox, Weibull or discrete-time hazards for time to churn, with covariates.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> contractual churn timing with plan, tenure and support signals.</p>
+      <p><b>Breaks:</b> non-contractual settings, where death is never observed.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">7</span><h3>Machine-learning pLTV</h3></header>
+      <p class="what">Gradient-boosted trees or neural nets predicting future margin from rich features. Two-stage (will they buy, how much) or a ZILN loss.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> early prediction (day 1 to 30), bidding and CRM ranking.</p>
+      <p><b>Breaks:</b> labels take a full horizon to mature; leakage; calibration drifts.</p>
+    </article>
+    <article class="mcard">
+      <header><span class="rung">8</span><h3>Sequence models</h3></header>
+      <p class="what">RNNs or transformers over raw event streams.</p>
+      <dl class="meters">
+        <div><dt>Data needed</dt><dd aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></dd></div>
+        <div><dt>Interpretability</dt><dd aria-label="1 of 5"><i class="on"></i><i></i><i></i><i></i><i></i></dd></div>
+        <div><dt>Individual accuracy</dt><dd aria-label="5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></dd></div>
+        <div><dt>New customers</dt><dd aria-label="4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></dd></div>
+      </dl>
+      <p><b>Shines:</b> very large platforms with rich behavioural logs.</p>
+      <p><b>Breaks:</b> costly and opaque; gains over a strong boosted-tree baseline are often small.</p>
+    </article>
+  </div>
+  <div class="col">
+    <div class="note"><span class="tag">Evaluating a pLTV model</span><p>Compare predicted and actual value by decile (calibration), score the ranking with a Gini-style metric, and check the portfolio total. RMSE alone is dominated by a few whales.</p></div>
+    <div class="note"><span class="tag">The label-lag trap</span><p>A 12-month pLTV model needs customers acquired at least 12 months ago. It learns from last year's customers, acquired through last year's channels, so it needs monitoring as the mix moves.</p></div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="chapter" id="ch7" aria-labelledby="ch7-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 07</span><span>Fit</span></p>
+    <h2 id="ch7-t">Where CLTV works, and where it breaks</h2>
+    <p>CLTV is strongest when relationships repeat, value is mostly what the customer pays, and the past looks like the future. Load an example business or answer the seven questions for your own.</p>
+  </div>
+  <div class="bed wide" id="dx">
+    <div class="chips" role="group" aria-label="Example businesses" id="dx-presets"></div>
+    <div class="dx-grid">
+      <form class="dx-q" id="dx-form" aria-label="Business characteristics">
+        <fieldset class="q"><legend>1 · How do customers leave?</legend><div class="opts">
+          <input type="radio" name="leave" id="dq-leave-c" value="contract"><label for="dq-leave-c">They cancel a contract</label>
+          <input type="radio" name="leave" id="dq-leave-q" value="quiet" checked><label for="dq-leave-q">They just go quiet</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>2 · How often do they buy or renew?</legend><div class="opts">
+          <input type="radio" name="freq" id="dq-f-h" value="high"><label for="dq-f-h">Weekly to monthly</label>
+          <input type="radio" name="freq" id="dq-f-m" value="mid" checked><label for="dq-f-m">A few times a year</label>
+          <input type="radio" name="freq" id="dq-f-l" value="low"><label for="dq-f-l">Once every few years</label>
+          <input type="radio" name="freq" id="dq-f-o" value="once"><label for="dq-f-o">Usually once</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>3 · How much customer history do you have?</legend><div class="opts">
+          <input type="radio" name="hist" id="dq-h-s" value="short"><label for="dq-h-s">Under 6 months</label>
+          <input type="radio" name="hist" id="dq-h-m" value="mid"><label for="dq-h-m">6 to 24 months</label>
+          <input type="radio" name="hist" id="dq-h-l" value="long" checked><label for="dq-h-l">2 years or more</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>4 · How stable is the environment?</legend><div class="opts">
+          <input type="radio" name="env" id="dq-e-s" value="stable" checked><label for="dq-e-s">Stable</label>
+          <input type="radio" name="env" id="dq-e-r" value="regime"><label for="dq-e-r">Recent change in fees, pricing or rules</label>
+          <input type="radio" name="env" id="dq-e-x" value="external"><label for="dq-e-x">Driven by outside prices or subsidies</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>5 · Where does a customer's value come from?</legend><div class="opts">
+          <input type="radio" name="value" id="dq-v-d" value="direct" checked><label for="dq-v-d">What they pay us</label>
+          <input type="radio" name="value" id="dq-v-i" value="indirect"><label for="dq-v-i">A lot of indirect value: network, referrals, supply</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>6 · How many customers?</legend><div class="opts">
+          <input type="radio" name="scale" id="dq-s-f" value="few"><label for="dq-s-f">A few hundred large accounts</label>
+          <input type="radio" name="scale" id="dq-s-m" value="many" checked><label for="dq-s-m">Thousands or more</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>7 · What decision is this for?</legend><div class="opts">
+          <input type="radio" name="use" id="dq-u-b" value="budget"><label for="dq-u-b">Budget or finance</label>
+          <input type="radio" name="use" id="dq-u-s" value="segment"><label for="dq-u-s">Segment targeting</label>
+          <input type="radio" name="use" id="dq-u-i" value="individual" checked><label for="dq-u-i">Individual bidding or CRM</label>
+        </div></fieldset>
+      </form>
+      <div class="dx-out" aria-live="polite">
+        <div class="gauge"><span class="score" id="dx-score">–</span><span class="verdict" id="dx-verdict">–</span></div>
+        <div class="scorebar" aria-hidden="true"><span id="dx-bar"></span></div>
+        <h3>Recommended approach</h3>
+        <ol id="dx-methods"></ol>
+        <h3>Watch out for</h3>
+        <ul id="dx-watch"></ul>
+        <details><summary>Why this score</summary><ul id="dx-why"></ul></details>
+      </div>
+    </div>
+    <div>
+      <p class="ch-title">All examples ranked by fit. Tap one to load it.</p>
+      <ul class="rank" id="dx-rank"></ul>
+    </div>
+    <p class="fine">The score is a transparent rule of thumb built from the seven answers, not a statistical test. Open "Why this score" to see every point.</p>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="chapter" id="ch8" aria-labelledby="ch8-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 08</span><span>Use cases</span></p>
+    <h2 id="ch8-t">What growers use it for</h2>
+    <p>The same idea answers very different decisions, and each needs a different flavour of CLTV.</p>
+  </div>
+  <div class="wide uses">
+    <article class="use"><h3>Acquisition budgets</h3><dl><div><dt>Decision</dt><dd>Maximum CAC by channel</dd></div><div><dt>CLTV flavour</dt><dd>Cohort LTV by channel, 1 to 3 years</dd></div><div><dt>Trap</dt><dd class="trap">Counting customers who would have come anyway. Measure incrementality.</dd></div></dl></article>
+    <article class="use"><h3>Value-based bidding</h3><dl><div><dt>Decision</dt><dd>What to bid for each new user in ad auctions</dd></div><div><dt>CLTV flavour</dt><dd>Early pLTV (day 1 to 7) sent to ad platforms as the conversion value</dd></div><div><dt>Trap</dt><dd class="trap">Feedback loops, and inflated values that push bids up.</dd></div></dl></article>
+    <article class="use"><h3>CRM and lifecycle</h3><dl><div><dt>Decision</dt><dd>Who to nudge, and when</dd></div><div><dt>CLTV flavour</dt><dd>Individual pLTV plus P(alive) for timing</dd></div><div><dt>Trap</dt><dd class="trap">Targeting value instead of response.</dd></div></dl></article>
+    <article class="use"><h3>Retention offers</h3><dl><div><dt>Decision</dt><dd>Who gets a save offer or coupon</dd></div><div><dt>CLTV flavour</dt><dd>Predicted uplift × value</dd></div><div><dt>Trap</dt><dd class="trap">High churn risk is not the same as saveable. Try the simulator below.</dd></div></dl></article>
+    <article class="use"><h3>Service tiers</h3><dl><div><dt>Decision</dt><dd>Who gets priority support or an account manager</dd></div><div><dt>CLTV flavour</dt><dd>LTV segments</dd></div><div><dt>Trap</dt><dd class="trap">Self-fulfilling: low tiers get worse service, then churn.</dd></div></dl></article>
+    <article class="use"><h3>Category bets</h3><dl><div><dt>Decision</dt><dd>Which entry categories to grow</dd></div><div><dt>CLTV flavour</dt><dd>LTV by first-purchase category</dd></div><div><dt>Trap</dt><dd class="trap">Selection: enthusiasts choose certain categories first.</dd></div></dl></article>
+    <article class="use"><h3>Finance and valuation</h3><dl><div><dt>Decision</dt><dd>Revenue forecasts; what the customer base is worth</dd></div><div><dt>CLTV flavour</dt><dd>Cohort models rolled up (customer-based corporate valuation)</dd></div><div><dt>Trap</dt><dd class="trap">Optimistic tails and discount rates compound quietly.</dd></div></dl></article>
+    <article class="use"><h3>Risk, returns and fraud</h3><dl><div><dt>Decision</dt><dd>Limits, returns policy, promo eligibility</dd></div><div><dt>CLTV flavour</dt><dd>LTV net of returns and chargebacks, which can go negative</dd></div><div><dt>Trap</dt><dd class="trap">Fairness and legal limits on which features you may use.</dd></div></dl></article>
+  </div>
+  <div class="col">
+    <h3 class="h3big">Who should get the retention coupon?</h3>
+    <p>CLTV says who is valuable. It doesn't say who will change because of what you do. A coupon pays off only where it changes behaviour. Below, 2,000 simulated customers fall into four hidden types, and three targeting rules each pick 500 of them.</p>
+  </div>
+  <div class="bed split wide" id="cp">
+    <div class="controls">
+      <div class="ctl"><label for="cp-cost">Coupon cost per customer <output for="cp-cost">$25</output></label><input type="range" id="cp-cost" min="0" max="80" step="5" value="25"></div>
+      <div class="ctl"><label for="cp-pers">Share who are persuadable <output for="cp-pers">20%</output></label><input type="range" id="cp-pers" min="0.05" max="0.4" step="0.05" value="0.2"></div>
+      <div class="ctl"><label for="cp-noise">Noise in the uplift model <output for="cp-noise">0.5</output></label><input type="range" id="cp-noise" min="0" max="2" step="0.1" value="0.5"><span class="fine">0 = perfect; 2 = very noisy</span></div>
+      <ul class="legend" style="flex-direction:column;gap:6px">
+        <li><i class="k-sky"></i>Sure things: stay anyway, high value</li>
+        <li><i class="k-leaf"></i>Persuadables: stay only with the coupon</li>
+        <li><i class="k-soil"></i>Lost causes: leave whatever you do</li>
+        <li><i class="k-plum"></i>Sleeping dogs: the coupon reminds them to leave</li>
+      </ul>
+    </div>
+    <div class="viz">
+      <div class="chart" id="cp-chart"></div>
+      <p class="fine">Top bar in each row: who got the coupon (counts). Lower bar: incremental profit, with losses left of centre.</p>
+    </div>
+  </div>
+  <div class="col"><p>This is the retention-futility result (Ascarza, 2018): the customers most likely to churn are often not the ones a campaign can save. Rank by predicted uplift × value, and measure with randomised holdouts.</p></div>
+</section>
+
+<!-- 09 -->
+<section class="chapter" id="ch9" aria-labelledby="ch9-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 09</span><span>Pitfalls</span></p>
+    <h2 id="ch9-t">Blights</h2>
+    <p>Sixteen ways a correct formula still gives a wrong answer. Tap a card to see the fix.</p>
+  </div>
+  <div class="wide blights" id="blights">
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">01</span><span class="bt">Revenue posing as value</span><span class="bs">LTV looks huge because it is counted in GMV or revenue.</span><span class="bf">Use contribution margin: after fees, shipping subsidies, payment costs, returns and incentives.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">02</span><span class="bt">Customers who cost money</span><span class="bs">Returns abuse, promo farming and fraud get averaged away.</span><span class="bf">Let LTV go below zero, and model returns and incentive costs per customer.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">03</span><span class="bt">Young cohorts</span><span class="bs">Recent cohorts look worse, or better, simply because they are younger.</span><span class="bf">Compare cohorts at equal age and treat unfinished histories as censored.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">04</span><span class="bt">Mix shift</span><span class="bs">Blended LTV falls while every channel improves.</span><span class="bf">Report LTV per segment and the mix separately. Try it below this grid.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">05</span><span class="bt">Acquisition context</span><span class="bs">Customers won in a holiday sale or with a deep coupon retain worse.</span><span class="bf">Tag acquisition season, offer and channel, and model them as covariates.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">06</span><span class="bt">Accounts aren't people</span><span class="bs">Duplicate accounts, guest checkouts, shared logins, merged platforms.</span><span class="bf">Resolve identities first, and choose the unit: person, household, account or business.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">07</span><span class="bt">Feedback loops</span><span class="bs">pLTV-driven bidding changes who you acquire, so the model drifts.</span><span class="bf">Keep holdouts and an exploration budget, monitor cohort quality, retrain on a schedule.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">08</span><span class="bt">Goodhart's law</span><span class="bs">Once LTV is a team target, revenue gets pulled forward and cheap volume gets bought.</span><span class="bf">Pair LTV targets with incrementality and quality guardrails.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">09</span><span class="bt">Correlation posing as a lever</span><span class="bs">Users of feature X have twice the LTV, so the team pushes feature X.</span><span class="bf">Heavy users choose feature X. Test the lever with an experiment before investing.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">10</span><span class="bt">Invisible network value</span><span class="bs">A fee-free seller shows LTV near zero, yet brings buyers.</span><span class="bf">Add cross-side value explicitly and estimate it with holdouts or geo tests.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">11</span><span class="bt">Regime changes</span><span class="bs">Fee or pricing changes, launches, shocks such as pandemic-boom cohorts.</span><span class="bf">Flag regimes in the data, re-fit after breaks, shorten horizons, show scenarios.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">12</span><span class="bt">Currency and inflation</span><span class="bs">Multi-region LTV moves with exchange rates.</span><span class="bf">Model in local currency, report FX-neutral, and match the discount rate to the currency.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">13</span><span class="bt">Privacy and consent</span><span class="bs">Features you may not use or keep under GDPR or India's DPDP Act, 2023.</span><span class="bf">Minimise data, use consented features, and document lineage.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">14</span><span class="bt">False precision</span><span class="bs">One number, no range, two decimal places.</span><span class="bf">Report intervals, and show sensitivity to discount rate and horizon.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">15</span><span class="bt">Survivors in the training data</span><span class="bs">Long histories exist only for customers who stayed, so the model learns from survivors.</span><span class="bf">Train on whole cohorts, including early churners, and evaluate on cohorts the model never saw.</span><span class="cue">Show fix</span></button>
+    <button class="blight" type="button" aria-expanded="false"><span class="bn">16</span><span class="bt">Double-counted credit</span><span class="bs">Search, email and affiliates each claim the same customer's LTV.</span><span class="bf">Use one attribution rule for budgeting and incrementality tests for the truth.</span><span class="cue">Show fix</span></button>
+  </div>
+  <div class="col">
+    <h3 class="h3big">Mix shift, live</h3>
+    <p>Each channel's CLTV improves 5% every quarter. Move spend toward the cheaper paid channel and the blended number still falls.</p>
+  </div>
+  <div class="bed split wide" id="mx">
+    <div class="controls">
+      <div class="ctl"><label for="mx-share">Paid-social share of new customers by Q4 <output for="mx-share">60%</output></label><input type="range" id="mx-share" min="0.2" max="0.85" step="0.05" value="0.6"></div>
+      <p class="fine">Q1 starts at 20% paid social. Organic customers start at $120 CLTV, paid-social customers at $50.</p>
+      <ul class="legend" style="flex-direction:column;gap:6px"><li><i class="ln k-leaf"></i>Organic CLTV</li><li><i class="ln k-sky"></i>Paid-social CLTV</li><li><i class="ln k-plum"></i>Blended CLTV</li></ul>
+    </div>
+    <div class="viz"><div class="chart" id="mx-chart"></div></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="chapter" id="ch10" aria-labelledby="ch10-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 10</span><span>E-waste</span></p>
+    <h2 id="ch10-t">Trees that fruit once every few years</h2>
+    <p>Neelakurinji on the Nilgiri slopes flowers once every twelve years. An e-waste business lives with a milder version of that problem: a household hands over an old phone or laptop once every few years. CLTV can still help here, but only for some customers, in some places.</p>
+  </div>
+  <div class="wide facts three">
+    <div class="fact"><span class="big">62 Mt</span><span class="txt">E-waste generated worldwide in 2022, up 82% since 2010. About 82 Mt expected by 2030.</span><span class="src">Global E-waste Monitor 2024</span></div>
+    <div class="fact"><span class="big">22.3%</span><span class="txt">Share documented as properly collected and recycled in 2022.</span><span class="src">Global E-waste Monitor 2024</span></div>
+    <div class="fact"><span class="big">42.8% vs &lt;1%</span><span class="txt">Documented collection in Europe versus formal recycling in Africa.</span><span class="src">Global E-waste Monitor 2024</span></div>
+    <div class="fact"><span class="big">1.751 Mt</span><span class="txt">India's e-waste in FY 2023-24, third-largest after China and the US. 43% was recycled formally.</span><span class="src">CPCB data via Drishti IAS</span></div>
+    <div class="fact"><span class="big">60% → 80%</span><span class="txt">India's producer recycling targets, rising from FY 2023-24 to FY 2027-28.</span><span class="src">E-Waste (Management) Rules 2022</span></div>
+    <div class="fact"><span class="big">~4 years</span><span class="txt">Phone replacement cycles are stretching toward four years as memory costs push prices up.</span><span class="src">Counterpoint via TelecomLead, 2026</span></div>
+  </div>
+
+  <div class="col"><h3 class="h3big">One business, four kinds of customer</h3><p>Before asking whether CLTV works, ask whose lifetime you mean. The badges mark four different customers with four different relationship shapes.</p></div>
+  <div class="wide chain" aria-label="E-waste value chain">
+    <div class="colm">
+      <span class="colh">Where devices come from</span>
+      <div class="node"><span class="nh"><span class="badge">C1</span>Households</span><span class="d">Old phones, laptops, small appliances. Rare events, price-sensitive.</span></div>
+      <div class="node"><span class="nh"><span class="badge">C2</span>Businesses and institutions</span><span class="d">IT refresh cycles, bulk consumers. Contracts, data destruction.</span></div>
+    </div>
+    <div class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+    <div class="colm">
+      <span class="colh">Who handles them</span>
+      <div class="node inf"><span class="nh">Informal collectors</span><span class="d">Kabadiwalas and scrap dealers who pay cash at the door. Your competitor for C1.</span></div>
+      <div class="node you"><span class="nh">You: formal collector or recommerce platform</span><span class="d">Pickup, data wiping, grading. Then refurbish what can be resold and dismantle the rest.</span></div>
+    </div>
+    <div class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+    <div class="colm">
+      <span class="colh">Who pays for what comes out</span>
+      <div class="node"><span class="nh"><span class="badge">C3</span>Refurbished-device buyers</span><span class="d">Behave like e-commerce customers: repeat purchases, warranties.</span></div>
+      <div class="node"><span class="nh"><span class="badge">C4</span>Producers needing EPR compliance</span><span class="d">Buy recycling certificates or take-back services to meet legal targets. Annual, rule-driven.</span></div>
+      <div class="node inf"><span class="nh">Smelters and refiners</span><span class="d">Buy recovered gold, copper and palladium at commodity prices. A market, not a relationship.</span></div>
+    </div>
+  </div>
+
+  <div class="col"><h3 class="h3big">Why the formula strains</h3></div>
+  <div class="wide strains">
+    <div class="strain"><b>Rare events</b><span>Frequency is measured in years, so discounting and churn eat most of the future.</span></div>
+    <div class="strain"><b>Value is set outside</b><span>A device's worth follows resale prices and gold, copper and palladium prices.</span></div>
+    <div class="strain"><b>Cash competition</b><span>In many markets informal collectors pay cash at the door, which caps your margin and loyalty.</span></div>
+    <div class="strain"><b>Rules decide who pays</b><span>Take-back mandates, EPR targets, certificate prices and subsidies can change the economics overnight.</span></div>
+    <div class="strain"><b>The unit is fuzzy</b><span>Is the customer the person, the household, the device or the company account?</span></div>
+    <div class="strain"><b>Some items lose money</b><span>Bulky or hazardous items can cost more to collect and treat than they return.</span></div>
+  </div>
+
+  <div class="col"><h3 class="h3big">Device-cycle calculator</h3><p>Pick a market archetype, then change any number. The presets are illustrative starting points, not market data.</p></div>
+  <div class="bed wide" id="ew">
+    <div class="chips" role="group" aria-label="Market archetypes" id="ew-presets"></div>
+    <p class="preset-desc" id="ew-desc"></p>
+    <div class="ew-grid">
+      <div class="controls two">
+        <div class="ctl"><label for="ew-n" id="ew-n-l">Devices that will be replaced <output for="ew-n">3</output></label><input type="range" id="ew-n" min="1" max="10" step="0.5" value="3"></div>
+        <div class="ctl"><label for="ew-c">Replacement cycle <output for="ew-c">3.5 yrs</output></label><input type="range" id="ew-c" min="1.5" max="7" step="0.5" value="3.5"></div>
+        <div class="ctl"><label for="ew-rho" id="ew-rho-l">Chance the next disposal comes to you <output for="ew-rho">25%</output></label><input type="range" id="ew-rho" min="0.05" max="1" step="0.05" value="0.25"></div>
+        <div class="ctl"><label for="ew-s" id="ew-s-l">Customer still reachable each year <output for="ew-s">92%</output></label><input type="range" id="ew-s" min="0.5" max="0.99" step="0.01" value="0.92"></div>
+        <div class="ctl"><label for="ew-m">Net margin per device <output for="ew-m">$4.0</output></label><input type="range" id="ew-m" min="-10" max="40" step="0.5" value="4"></div>
+        <div class="ctl"><label for="ew-k">Disposals that also sell a refurbished device <output for="ew-k">8%</output></label><input type="range" id="ew-k" min="0" max="0.5" step="0.01" value="0.08"></div>
+        <div class="ctl"><label for="ew-km">Margin per refurbished sale <output for="ew-km">$12</output></label><input type="range" id="ew-km" min="0" max="80" step="1" value="12"></div>
+        <div class="ctl"><label for="ew-cac">Cost to acquire the customer <output for="ew-cac">$3</output></label><input type="range" id="ew-cac" min="0" max="60" step="1" value="3"></div>
+        <div class="ctl"><label for="ew-d">Discount rate <output for="ew-d">12%</output></label><input type="range" id="ew-d" min="0" max="0.25" step="0.01" value="0.12"></div>
+        <label class="check" for="ew-shock"><input type="checkbox" id="ew-shock">Add a one-year trade-in subsidy (pulls disposals forward)</label>
+      </div>
+      <div class="viz">
+        <div class="stats" aria-live="polite">
+          <div class="stat hl"><span class="k">10-year CLTV</span><span class="v" id="ew-clv">–</span></div>
+          <div class="stat"><span class="k">CLTV : CAC</span><span class="v" id="ew-ratio">–</span></div>
+          <div class="stat"><span class="k">From the first pickup</span><span class="v" id="ew-first">–</span></div>
+          <div class="stat"><span class="k">Devices captured</span><span class="v" id="ew-dev">–</span></div>
+        </div>
+        <div><p class="ch-title">Expected value per year, in today's money</p><ul class="legend"><li><i class="k-mango"></i>Value in the year</li><li><i class="ln k-ink"></i>Cumulative</li><li><i class="dsh"></i>Acquisition cost</li></ul><div class="chart" id="ew-chart"></div></div>
+        <div><p class="ch-title">What moves CLTV most: each input ±20%</p><div class="chart" id="ew-torn"></div><p class="fine">Red shows the move that lowers CLTV, green the move that raises it. The vertical line is today's value.</p></div>
+      </div>
+    </div>
+    <p class="fine" id="ew-read" aria-live="polite"></p>
+  </div>
+
+  <div class="col">
+    <h3 class="h3big">Does CLTV make sense? A read by region</h3>
+    <p>Fit depends more on which customer you mean than on which country. Region moves the dial through regulation, informal competition and how observable customers are. Tap a cell for the reasoning.</p>
+  </div>
+  <div class="wide">
+    <div class="matrix-wrap"><div class="matrix" id="ew-matrix" role="group" aria-label="CLTV fit by customer type and region"></div></div>
+    <ul class="legend"><li><i class="k-leaf-soft" style="box-shadow:inset 0 0 0 1px var(--leaf)"></i>Strong: repeat relationship, observable data, stable value</li><li><i class="k-mango-soft"></i>Moderate: works with care</li><li><i style="background:var(--plum-soft);box-shadow:inset 0 0 0 1px var(--plum)"></i>Weak: price each transaction instead</li></ul>
+    <div class="mx-detail" id="ew-detail" aria-live="polite"></div>
+    <p class="fine" style="margin-top:8px">A reasoned judgement from regulation, market structure and purchase frequency, not measured data.</p>
+  </div>
+
+  <div class="col">
+    <h3 class="h3big">What to keep in mind</h3>
+    <ol class="steps">
+      <li><span><b>Name the unit before you model.</b> Household, business account, producer or device. Each has its own lifetime.</span></li>
+      <li><span><b>Separate engagement from value.</b> Model whether the customer comes back apart from what the next device will be worth, then stress-test value against commodity and resale prices.</span></li>
+      <li><span><b>For households, model events, not lifetimes.</b> P(next disposal comes to us) × value per event, with survival curves on replacement cycles. Most of the value is usually the first pickup.</span></li>
+      <li><span><b>Put CLTV to work in B2B.</b> IT asset disposition contracts, bulk consumers and EPR clients renew and repeat; account-level or contractual models fit them.</span></li>
+      <li><span><b>Treat regulation as a scenario input.</b> EPR targets (India: 60% to 80%), certificate price bands, take-back mandates and subsidies.</span></li>
+      <li><span><b>Model density.</b> Pickup cost per device depends on route density, so CLTV varies by city tier and pin code.</span></li>
+      <li><span><b>Mind the calendar.</b> Festive exchange offers such as Diwali sales, phone launch seasons and subsidy windows move volumes.</span></li>
+      <li><span><b>Trust drives repeat use.</b> Certified data wiping and transparent pricing are retention levers; track them.</span></li>
+      <li><span><b>Report ranges.</b> Long cycles make point estimates fragile.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="chapter" id="ch11" aria-labelledby="ch11-t">
+  <div class="col">
+    <p class="plot"><span class="num">Plot 11</span><span>eBay examples</span></p>
+    <h2 id="ch11-t">The marketplace orchard</h2>
+    <p>eBay doesn't own the trees. It runs the market where growers and eaters meet. One person can be both, and one seller's unusual item can bring buyers for everyone. That changes how CLTV should be built.</p>
+  </div>
+  <div class="wide facts">
+    <div class="fact"><span class="big">147M</span><span class="txt">Active buyers in Q3 2026; 136M excluding Depop and Tise, up 1%.</span><span class="src">eBay Q3 2026 results</span></div>
+    <div class="fact"><span class="big">16M</span><span class="txt">Enthusiast buyers, about 12% of active buyers excluding acquisitions. Flat since Q4 2022.</span><span class="src">Value Added Resource, Q3 2026</span></div>
+    <div class="fact"><span class="big">$23.2B</span><span class="txt">Q3 2026 GMV, up 15% (16% FX-neutral). Full-year guide $91.5B to $91.9B.</span><span class="src">eBay Q3 2026 results</span></div>
+    <div class="fact"><span class="big">≈13.8%</span><span class="txt">Revenue as a share of GMV in Q3 ($3.21B ÷ $23.17B, our calculation).</span><span class="src">eBay Q3 2026 results</span></div>
+    <div class="fact"><span class="big">+27% vs +4%</span><span class="txt">US GMV growth (22% excluding acquisitions) versus international.</span><span class="src">eBay Q3 2026 results</span></div>
+    <div class="fact"><span class="big">&gt;20%</span><span class="txt">C2C GMV growth worldwide, double digits in the US, UK and Australia.</span><span class="src">Value Added Resource, Q3 2026</span></div>
+    <div class="fact"><span class="big">+24%</span><span class="txt">Focus-category growth, led by collectibles, Motors, fashion and refurbished.</span><span class="src">Value Added Resource, Q3 2026</span></div>
+    <div class="fact"><span class="big">$1.4B</span><span class="txt">Depop acquisition, closed 30 July 2026: 11M active buyers and 5M active sellers.</span><span class="src">eBay Q3 2026 results</span></div>
+  </div>
+
+  <div class="col"><h3 class="h3big">Three customers on one platform</h3></div>
+  <div class="wide tri">
+    <div class="party">
+      <h3>Buyers</h3>
+      <p class="d">Non-contractual and heavy-tailed: a small enthusiast group carries a large share of activity.</p>
+      <ul class="flows"><li>Pay for items (GMV)</li><li>Pay a buyer protection fee on UK private-seller items</li><li>Their demand is what makes listing worthwhile</li></ul>
+    </div>
+    <div class="party center">
+      <h3>eBay</h3>
+      <p class="d">Earns a slice of each sale plus ads, and spends on incentives, protection and marketing.</p>
+      <ul class="flows"><li>Revenue ≈ 13.8% of GMV (Q3 2026)</li><li>Value of a customer = margin they generate directly + what they cause others to generate</li></ul>
+    </div>
+    <div class="party">
+      <h3>Sellers</h3>
+      <p class="d">C2C private sellers clear out episodically; B2C businesses list continuously, closer to a contract.</p>
+      <ul class="flows"><li>Pay final value fees (B2C everywhere, C2C in some markets)</li><li>Buy promoted listings</li><li>Sellers buy too: selling funds the next purchase</li></ul>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3 class="h3big">Example A · Two buyers, the same $600</h3>
+    <p>Both spent $600 on eBay in the last 48 weeks. Their futures look nothing alike. Frequency and recency say who is likely to keep buying, and Gamma-Gamma refuses to believe one large order describes the next one. Load either buyer into the dead-or-dormant model.</p>
+  </div>
+  <div class="wide twob">
+    <div class="buyer">
+      <span class="who">Buyer A · car parts</span>
+      <p class="what">Two orders of $300, the second one 40 weeks ago.</p>
+      <div class="dots" aria-hidden="true"><i class="big"></i><i class="big"></i></div>
+      <div class="stats" id="bA"></div>
+      <button class="btn" type="button" data-load="A">Load into the model</button>
+    </div>
+    <div class="buyer">
+      <span class="who">Buyer B · trading cards</span>
+      <p class="what">Thirty orders of about $20, the latest two weeks ago.</p>
+      <div class="dots" aria-hidden="true" id="bB-dots"></div>
+      <div class="stats" id="bB"></div>
+      <button class="btn" type="button" data-load="B">Load into the model</button>
+    </div>
+  </div>
+  <div class="col">
+    <p>First-purchase category is one of the strongest early signals in a marketplace. A trading-card buyer joins a hobby with weekly drops and live breaks; a buyer of a $300 part may not need another for years. For CRM, a long silence from Buyer B is alarming, while the same silence from Buyer A is normal.</p>
+    <p class="fine">Predictions use the published CDNOW parameters from chapter 5, so treat them as directional, not as eBay estimates.</p>
+
+    <h3 class="h3big">Example B · What is a C2C seller worth when selling is free?</h3>
+    <p>Germany made private selling essentially free on 1 March 2023. Within a year private listings rose 20% and eBay attracted twice as many new sellers. The UK removed private-seller fees in October 2024, then added a buyer protection fee on 4 February 2025: £0.75 plus 4% of the price up to £300 and 2% from £300 to £4,000.</p>
+    <p>If seller LTV counts only seller fees, a free private seller is worth almost nothing, and you would stop acquiring the people who make the marketplace worth visiting.</p>
+  </div>
+  <div class="bed split wide" id="sv">
+    <div class="controls">
+      <div class="ctl"><label for="sv-items">Items sold per year <output for="sv-items">12</output></label><input type="range" id="sv-items" min="1" max="60" step="1" value="12"></div>
+      <div class="ctl"><label for="sv-asp">Average sale price <output for="sv-asp">$35</output></label><input type="range" id="sv-asp" min="5" max="300" step="5" value="35"></div>
+      <div class="ctl"><label for="sv-fee">Seller fee rate where sellers pay <output for="sv-fee">13%</output></label><input type="range" id="sv-fee" min="0.05" max="0.2" step="0.005" value="0.13"></div>
+      <div class="ctl"><label for="sv-ret">Seller still active next year <output for="sv-ret">50%</output></label><input type="range" id="sv-ret" min="0.2" max="0.9" step="0.05" value="0.5"></div>
+      <div class="ctl"><label for="sv-lift">Extra items sold when selling is free <output for="sv-lift">25%</output></label><input type="range" id="sv-lift" min="0" max="0.6" step="0.05" value="0.25"></div>
+      <div class="ctl"><label for="sv-spill">GMV pulled in elsewhere per $1 sold <output for="sv-spill">$0.25</output></label><input type="range" id="sv-spill" min="0" max="1" step="0.05" value="0.25"></div>
+      <div class="ctl"><label for="sv-sab">Seller's own extra buying per year <output for="sv-sab">$60</output></label><input type="range" id="sv-sab" min="0" max="500" step="10" value="60"></div>
+    </div>
+    <div class="viz">
+      <p class="ch-title">Three-year value of one C2C seller under three fee models, in today's money</p>
+      <ul class="legend"><li><i class="k-mango"></i>Seller fees</li><li><i class="k-sky"></i>Buyer protection fee</li><li><i class="k-leaf"></i>Spillover from their unique supply</li><li><i class="k-soil"></i>Their own extra buying</li></ul>
+      <div class="chart" id="sv-chart"></div>
+      <p class="fine">Indirect value is monetised at the 13.8% revenue-to-GMV ratio, with a 10% discount rate. Seller fees include $0.40 per order. The buyer-pays model applies the UK formula in the same currency units. Every input is an assumption to replace with experiment results.</p>
+    </div>
+  </div>
+  <div class="col">
+    <p>The green and brown segments are where the argument lives. In Germany, eBay reported that users who both buy and sell spend more than twice as much as buy-only users. Part of that gap is selection, since enthusiasts do both. Only a holdout or geo experiment tells you how much selling causes.</p>
+
+    <h3 class="h3big">Example C · One global model, many local truths</h3>
+    <p>Does CLTV make sense in every eBay market? Yes, but with different confidence. The last card sums it up.</p>
+  </div>
+  <div class="wide regions">
+    <article class="region"><h3>United States</h3><p>Largest market: $12.5B Q3 GMV, up 27% (22% excluding acquisitions). Company-wide growth is led by collectibles, Motors and vehicles, with Live scaling fast.</p><span class="kicker">For CLTV</span><p>Deepest history, so individual pLTV works best here. New formats bring cohorts unlike the past: tag them rather than pooling blindly.</p></article>
+    <article class="region"><h3>United Kingdom</h3><p>Private sellers fee-free since October 2024; buyer protection fee since 4 February 2025. C2C growing double digits.</p><span class="kicker">For CLTV</span><p>Two regime breaks in five months. Fee-based seller LTV is near zero for private sellers, so buyer fees and liquidity carry the value. Flag the breaks in training data.</p></article>
+    <article class="region"><h3>Germany</h3><p>Private selling essentially free since 1 March 2023. New sellers doubled; private listings up 20% in a year.</p><span class="kicker">For CLTV</span><p>The buy-and-sell loop is a core value driver. Estimate the causal share with experiments before crediting sellers with buyer spend.</p></article>
+    <article class="region"><h3>Australia</h3><p>C2C growing double digits in Q3 2026.</p><span class="kicker">For CLTV</span><p>A smaller base means noisier cohorts. Pool with other markets in a hierarchical model and let local data pull the estimate.</p></article>
+    <article class="region"><h3>France and Italy</h3><p>Fee-free private selling, buyer protection and simpler shipping are expanding, per eBay's Q3 2026 update.</p><span class="kicker">For CLTV</span><p>Short history under the new rules. Borrow priors from the UK and Germany, re-fit as cohorts mature, keep horizons short.</p></article>
+    <article class="region"><h3>Cross-border trade</h3><p>eBay International Shipping launched in the UK and Germany; UK buyers pay up to 30% less than under the old Global Shipping Program.</p><span class="kicker">For CLTV</span><p>Model in local currency, report FX-neutral. Shipping costs and duties change repeat behaviour by trade corridor.</p></article>
+    <article class="region"><h3>Depop and Tise</h3><p>Depop adds 11M active buyers and 5M active sellers in younger, fashion-led C2C.</p><span class="kicker">For CLTV</span><p>Separate apps, separate identities. Resolve identities before counting shared customers; fit separate curves first and merge later.</p></article>
+    <article class="region sum"><h3>So, by region?</h3><p>Strong where history is long and rules are stable: US buyers, UK and German buyers.</p><span class="kicker">With care</span><p>Pool and shorten horizons where rules just changed or the base is small: UK and German private sellers, Australia, France and Italy. Keep acquired apps separate until identities are resolved.</p></article>
+  </div>
+  <div class="col">
+    <h3 class="h3big">Example D · Marketing and CRM</h3>
+    <ul class="keys">
+      <li><b>Paid acquisition.</b> Send early pLTV, not first-order GMV, to bidding platforms. Check calibration by decile and keep holdout geos to measure incrementality.</li>
+      <li><b>Reactivation timing.</b> Use P(alive) rather than a fixed 12-month inactivity rule. A frequent buyer's silence is an earlier, stronger signal.</li>
+      <li><b>Coupons.</b> Rank by uplift × value. Many high-value enthusiasts are sure things who would buy anyway.</li>
+      <li><b>Concentration.</b> With 16M enthusiasts among 136M buyers, watch decile shares and the top tail, not just averages.</li>
+      <li><b>Feedback loops.</b> When pLTV drives bids, cohort mix shifts. Monitor new-cohort quality as a standing metric.</li>
+    </ul>
+
+    <h3 class="h3big">Example E · Recommerce links the two orchards</h3>
+    <p>eBay reports that pre-loved and refurbished sales avoided 1.6 million tonnes of CO₂e and 70,000 tonnes of waste in 2025. Refurbished-device buyers behave like strong e-commerce customers. Sellers of used electronics behave like the e-waste households in chapter 10: rare, cycle-driven and price-sensitive. Resell prompts in purchase history connect them, because today's buyer is a seller in a few years.</p>
+
+    <h3 class="h3big">An eBay CLTV playbook</h3>
+    <p class="fine">Tick items off as you go; your ticks stay in this browser.</p>
+    <ul class="checklist" id="playbook">
+      <li><input type="checkbox" id="pb1"><label for="pb1"><b>Value is margin.</b><span>Take rate, ads and fees minus incentives, protection and shipping subsidies. Never GMV.</span></label></li>
+      <li><input type="checkbox" id="pb2"><label for="pb2"><b>Buyers and sellers get separate models.</b><span>Then add cross-side value explicitly.</span></label></li>
+      <li><input type="checkbox" id="pb3"><label for="pb3"><b>Start from the decision.</b><span>Bidding needs early pLTV; CRM needs P(alive) and uplift; finance needs cohort LTV.</span></label></li>
+      <li><input type="checkbox" id="pb4"><label for="pb4"><b>Tag every cohort.</b><span>Channel, first category, format (Live, auction, fixed price), market and fee regime.</span></label></li>
+      <li><input type="checkbox" id="pb5"><label for="pb5"><b>Show distributions.</b><span>Deciles and P10/P50/P90 beside every mean.</span></label></li>
+      <li><input type="checkbox" id="pb6"><label for="pb6"><b>Calibrate and re-fit.</b><span>Decile calibration on holdout cohorts, refreshed every quarter.</span></label></li>
+      <li><input type="checkbox" id="pb7"><label for="pb7"><b>Experiment for incrementality.</b><span>Holdouts and geo tests for marketing, coupons and seller programs.</span></label></li>
+      <li><input type="checkbox" id="pb8"><label for="pb8"><b>Treat new orchards as new.</b><span>Depop, Tise, Live and newly fee-free markets get their own curves first, pooled with priors later.</span></label></li>
+      <li><input type="checkbox" id="pb9"><label for="pb9"><b>Local currency, FX-neutral reporting.</b><span>With market-specific seasonality.</span></label></li>
+      <li><input type="checkbox" id="pb10"><label for="pb10"><b>Watch the loop.</b><span>When pLTV steers spend, track how the customers it brings in change.</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- refs -->
+<section class="chapter" id="refs" aria-labelledby="refs-t">
+  <div class="wide">
+    <p class="plot"><span class="num">Appendix</span><span>Reference</span></p>
+    <h2 id="refs-t">Glossary and sources</h2>
+    <dl class="gloss">
+      <div><dt>CLTV, CLV, LTV</dt><dd>Expected future value of a customer, usually in contribution margin, discounted to today.</dd></div>
+      <div><dt>pLTV</dt><dd>Predicted LTV for one customer, often made early (day 1 to 30) for bidding and CRM.</dd></div>
+      <div><dt>CAC</dt><dd>Cost to acquire one customer: media, incentives, sales effort.</dd></div>
+      <div><dt>Payback period</dt><dd>Time until cumulative margin repays CAC.</dd></div>
+      <div><dt>Contribution margin</dt><dd>Revenue minus the variable costs a customer causes: fees, shipping subsidies, payments, returns, incentives.</dd></div>
+      <div><dt>GMV</dt><dd>Gross merchandise volume: the total value of goods sold through a marketplace.</dd></div>
+      <div><dt>Take rate</dt><dd>Marketplace revenue as a share of GMV.</dd></div>
+      <div><dt>Retention and survival</dt><dd>Retention r<sub>t</sub> is period to period; survival S(t) is the share still active after t periods.</dd></div>
+      <div><dt>P(alive)</dt><dd>In non-contractual models, the probability a customer has not silently churned.</dd></div>
+      <div><dt>Cohort</dt><dd>Customers grouped by when or how they were acquired.</dd></div>
+      <div><dt>Censoring</dt><dd>Unfinished histories: a young cohort's future isn't observed yet.</dd></div>
+      <div><dt>Discount rate</dt><dd>The rate that converts future money into today's money, usually the cost of capital.</dd></div>
+      <div><dt>Uplift</dt><dd>The change in behaviour caused by an action, such as a coupon, compared with no action.</dd></div>
+      <div><dt>BG/NBD, Pareto/NBD</dt><dd>Buy-till-you-die models of purchase frequency and silent dropout.</dd></div>
+      <div><dt>Gamma-Gamma</dt><dd>A model of average order value that shrinks individual averages toward the population average.</dd></div>
+      <div><dt>sBG</dt><dd>Shifted-beta-geometric model of contractual retention with heterogeneous churn.</dd></div>
+      <div><dt>ZILN</dt><dd>Zero-inflated lognormal loss for training pLTV models on heavy-tailed, zero-heavy targets.</dd></div>
+      <div><dt>EPR</dt><dd>Extended producer responsibility: producers pay for collecting and recycling what they sell.</dd></div>
+      <div><dt>WEEE</dt><dd>The EU's Waste Electrical and Electronic Equipment Directive, and the waste it covers.</dd></div>
+      <div><dt>ITAD</dt><dd>IT asset disposition: retiring, wiping, reselling or recycling business devices.</dd></div>
+      <div><dt>Recommerce</dt><dd>Buying and selling pre-owned or refurbished goods.</dd></div>
+    </dl>
+    <div class="sources">
+      <div>
+        <h3>Methods</h3>
+        <ul>
+          <li>Gupta and Lehmann (2003). Customers as assets. <i>Journal of Interactive Marketing</i> 17(1).</li>
+          <li>Schmittlein, Morrison and Colombo (1987). Counting your customers. <i>Management Science</i> 33(1).</li>
+          <li>Fader, Hardie and Lee (2005). "Counting your customers" the easy way. <i>Marketing Science</i> 24(2).</li>
+          <li>Fader, Hardie and Lee (2005). RFM and CLV: using iso-value curves. <i>Journal of Marketing Research</i> 42(4).</li>
+          <li>Fader and Hardie (2007). How to project customer retention. <i>Journal of Interactive Marketing</i> 21(1).</li>
+          <li>Fader and Hardie (2009). Probability models for customer-base analysis. <i>Journal of Interactive Marketing</i> 23(1).</li>
+          <li>Ascarza (2018). Retention futility. <i>Journal of Marketing Research</i> 55(1).</li>
+          <li>McCarthy and Fader (2018). Customer-based corporate valuation for non-subscription firms. <i>Journal of Marketing Research</i> 55(5).</li>
+          <li><a href="https://arxiv.org/abs/1912.07753" target="_blank" rel="noopener noreferrer">Wang, Liu and Miao (2019). A deep probabilistic model for customer lifetime value prediction (ZILN)</a></li>
+          <li>Tools: <a href="https://lifetimes.readthedocs.io/" target="_blank" rel="noopener noreferrer">lifetimes</a>, <a href="https://www.pymc-marketing.io/" target="_blank" rel="noopener noreferrer">PyMC-Marketing</a>, <a href="https://github.com/google/lifetime_value" target="_blank" rel="noopener noreferrer">google/lifetime_value</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>eBay</h3>
+        <ul>
+          <li><a href="https://finviz.com/news/410508/ebay-inc-reports-third-quarter-2026-results" target="_blank" rel="noopener noreferrer">eBay Inc. reports third quarter 2026 results</a></li>
+          <li><a href="https://valueaddedresource.net/ebay-q3-2026-earnings" target="_blank" rel="noopener noreferrer">Value Added Resource: eBay Q3 2026 earnings</a></li>
+          <li><a href="https://valueaddedresource.net/ebay-uk-buyer-fees-february-4-2025" target="_blank" rel="noopener noreferrer">Value Added Resource: eBay UK buyer protection fee, February 2025</a></li>
+          <li><a href="https://ecommercenews.eu/?p=34182" target="_blank" rel="noopener noreferrer">Ecommerce News: eBay sees private sales growth in Germany (March 2024)</a></li>
+          <li><a href="https://www.valueaddedresource.net/ebays-q4-gmv-gambit-discounts-sellers-enthusiast-buyers/" target="_blank" rel="noopener noreferrer">Value Added Resource: enthusiast buyers (November 2024)</a></li>
+          <li><a href="https://www.valueaddedresource.net/ebay-resell-button-purchase-history/" target="_blank" rel="noopener noreferrer">Value Added Resource: resell button in purchase history</a></li>
+          <li><a href="https://ebaymainstreet.com/blog/powering-more-sustainable-future-how-ebays-investments-are-advancing-circular-economy" target="_blank" rel="noopener noreferrer">eBay Main Street: circular economy impact (June 2026)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>E-waste</h3>
+        <ul>
+          <li><a href="https://www.unitar.org/about/news-stories/press/global-e-waste-monitor-2024-electronic-waste-rising-five-times-faster-documented-e-waste-recycling" target="_blank" rel="noopener noreferrer">UNITAR and ITU: Global E-waste Monitor 2024</a></li>
+          <li><a href="https://www.drishtiias.com/daily-updates/daily-news-analysis/indias-e-waste-management/print_manually" target="_blank" rel="noopener noreferrer">Drishti IAS: India's e-waste management (CPCB figures)</a></li>
+          <li><a href="https://taxguru.in/corporate-law/e-waste-management-rules-2022-1st-april-2023.html" target="_blank" rel="noopener noreferrer">TaxGuru: E-Waste (Management) Rules 2022 targets</a></li>
+          <li><a href="https://allgreenrecycling.com/compliance/state-e-waste-laws/" target="_blank" rel="noopener noreferrer">AllGreen Recycling: US state e-waste laws</a></li>
+          <li><a href="https://govt.chinadaily.com.cn/s/202501/16/WS6788ed49498eec7e1f72d65c/china-includes-smartphones-in-consumer-goods-replacement-program.html" target="_blank" rel="noopener noreferrer">China Daily: smartphones join the trade-in program (January 2025)</a></li>
+          <li><a href="https://enviliance.com/regions/east-asia/cn/report_11894" target="_blank" rel="noopener noreferrer">Enviliance: China drafts a WEEE incentive fund (2024)</a></li>
+          <li><a href="https://telecomlead.com/?p=128354" target="_blank" rel="noopener noreferrer">TelecomLead: global smartphone replacement market 2026</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><p>eBay CLTV Orchard · Explainers series · Market facts as of November 2026. Numbers inside the simulators are teaching values unless a source is named.</p></footer>
+
+<script>
+(function(){
+'use strict';
+/* ---------- helpers ---------- */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const NS = 'http://www.w3.org/2000/svg';
+const RM = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+function safe(name, fn){ try { fn(); } catch (e) { if (window.console) console.error('[cltv] ' + name, e); } }
+function S(tag, attrs, parent){ const e = document.createElementNS(NS, tag); if (attrs) for (const k in attrs){ const v = attrs[k]; if (v !== undefined && v !== null && v !== false) e.setAttribute(k, v); } if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, cls, anchor){ const t = S('text', {x: x, y: y, class: cls || 'tick', 'text-anchor': anchor || 'start'}, parent); t.textContent = s; return t; }
+function clear(n){ while (n.firstChild) n.removeChild(n.firstChild); }
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / ((d1 - d0) || 1);
+function niceStep(span, n){ const raw = span / Math.max(1, n); const p = Math.pow(10, Math.floor(Math.log10(raw))); const f = raw / p; return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p; }
+function ticks(min, max, n){ n = n || 5; if (!(max > min)) return [min]; const st = niceStep(max - min, n); const out = []; const start = Math.ceil(min / st - 1e-9) * st; for (let v = start; v <= max + st * 1e-6; v += st) out.push(Math.abs(v) < st * 1e-9 ? 0 : +v.toPrecision(12)); return out; }
+function niceMax(v, n){ if (!(v > 0)) return 1; const st = niceStep(v, n || 5); return Math.ceil(v / st - 1e-9) * st; }
+function niceMin(v, n){ if (!(v < 0)) return 0; return -niceMax(-v, n); }
+function money(v, dp){ dp = dp || 0; const a = Math.abs(v); const s = a.toLocaleString('en-US', {minimumFractionDigits: dp, maximumFractionDigits: dp}); return (v < 0 && a >= Math.pow(10, -dp) / 2 ? '−' : '') + '$' + s; }
+function moneyK(v){ const a = Math.abs(v); let s; if (a >= 1e6) s = (a / 1e6).toFixed(a >= 1e7 ? 0 : 1) + 'M'; else if (a >= 1e4) s = (a / 1e3).toFixed(0) + 'k'; else if (a >= 1e3) s = (a / 1e3).toFixed(1) + 'k'; else if (a >= 10 || a === 0) s = a.toFixed(0); else s = a.toFixed(1); return (v < 0 && a > 0 ? '−' : '') + '$' + s; }
+const pct = (v, dp) => (v * 100).toFixed(dp || 0) + '%';
+const signPct = (v, dp) => (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(dp === undefined ? 1 : dp) + '%';
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function gauss(rng){ let u = 0, v = 0; while (u === 0) u = rng(); while (v === 0) v = rng(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+function erf(x){ const s = x < 0 ? -1 : 1; x = Math.abs(x); const t = 1 / (1 + 0.3275911 * x); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; }
+const Phi = x => 0.5 * (1 + erf(x / Math.SQRT2));
+function PhiInv(p){
+  if (p <= 0) return -Infinity; if (p >= 1) return Infinity;
+  const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+  const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+  const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+  const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+  const pl = 0.02425; let q, r;
+  if (p < pl){ q = Math.sqrt(-2 * Math.log(p)); return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1); }
+  if (p <= 1 - pl){ q = p - 0.5; r = q * q; return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1); }
+  q = Math.sqrt(-2 * Math.log(1 - p)); return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+}
+
+/* ---------- controls ---------- */
+const FMT = {};
+function fillRange(i){ const min = +i.min, max = +i.max, v = +i.value; i.style.setProperty('--p', clamp((v - min) / ((max - min) || 1) * 100, 0, 100) + '%'); }
+function bind(id, fmtFn, onChange){
+  const i = document.getElementById(id); if (!i) return () => NaN;
+  const out = document.querySelector('output[for="' + id + '"]');
+  FMT[id] = {fmt: fmtFn, out: out};
+  const upd = () => { fillRange(i); if (out) out.textContent = fmtFn(+i.value); };
+  i.addEventListener('input', () => { upd(); if (onChange) onChange(); });
+  upd();
+  return () => +i.value;
+}
+function setQuiet(id, v){ const i = document.getElementById(id); if (!i) return; i.value = v; fillRange(i); const f = FMT[id]; if (f && f.out) f.out.textContent = f.fmt(+i.value); }
+function refreshOut(id){ const i = document.getElementById(id); if (i) setQuiet(id, i.value); }
+
+/* ---------- charts ---------- */
+function chart(el, draw){
+  const c = {el: el, state: null, w: 0};
+  c.render = st => { if (st !== undefined) c.state = st; if (!c.state) return; const w = Math.max(260, Math.floor(el.getBoundingClientRect().width || el.clientWidth || 600)); c.w = w; clear(el); draw(el, w, c.state); };
+  if ('ResizeObserver' in window){ let raf = 0; new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const w = Math.floor(el.getBoundingClientRect().width); if (w && Math.abs(w - c.w) > 1 && c.state) c.render(); }); }).observe(el); }
+  return c;
+}
+function svgIn(el, w, h, label){ return S('svg', {viewBox: '0 0 ' + w + ' ' + h, width: w, height: h, role: 'img', 'aria-label': label}, el); }
+function gridY(svg, y, tk, x0, x1, f){ tk.forEach(v => { const yy = y(v); S('line', {x1: x0, x2: x1, y1: yy, y2: yy, class: Math.abs(v) < 1e-12 ? 'zero' : 'grid'}, svg); txt(svg, x0 - 6, yy + 4, f(v), 'tick', 'end'); }); }
+function axisX(svg, x, tk, y0, f){ tk.forEach(v => { const xx = x(v); S('line', {x1: xx, x2: xx, y1: y0, y2: y0 + 4, class: 'axis'}, svg); txt(svg, xx, y0 + 17, f(v), 'tick', 'middle'); }); }
+function pathOf(pts, x, y){ return pts.map((p, i) => (i ? 'L' : 'M') + x(p[0]).toFixed(2) + ',' + y(p[1]).toFixed(2)).join(' '); }
+
+/* ---------- BG/NBD + Gamma-Gamma (CDNOW parameters) ---------- */
+const BG = {r: 0.243, alpha: 4.414, a: 0.793, b: 2.426};
+const GG = {p: 6.25, q: 3.74, g: 15.44};
+function hyp2f1(a, b, c, z){ let term = 1, sum = 1; for (let n = 0; n < 20000; n++){ term *= (a + n) * (b + n) / ((c + n) * (n + 1)) * z; sum += term; if (Math.abs(term) < 1e-13 * Math.abs(sum)) break; } return sum; }
+function pAlive(x, tx, T){ if (x <= 0) return 1; const P = BG; return 1 / (1 + (P.a / (P.b + x - 1)) * Math.pow((P.alpha + T) / (P.alpha + tx), P.r + x)); }
+function expPurch(t, x, tx, T){ const P = BG; const z = t / (P.alpha + T + t); const hyp = hyp2f1(P.r + x, P.b + x, P.a + P.b + x - 1, z); const first = (P.a + P.b + x - 1) / (P.a - 1); const second = 1 - Math.pow((P.alpha + T) / (P.alpha + T + t), P.r + x) * hyp; const den = 1 + (x > 0 ? (P.a / (P.b + x - 1)) * Math.pow((P.alpha + T) / (P.alpha + tx), P.r + x) : 0); return first * second / den; }
+function ggMean(x, mbar){ const G = GG; return (G.p * (G.g + x * mbar)) / (G.p * x + G.q - 1); }
+const GG_POP = GG.p * GG.g / (GG.q - 1);
+let bgLoad = null;
+
+/* ---------- hero orchard ---------- */
+safe('hero', function(){
+  const host = $('#orchard'); if (!host) return;
+  const N = 100, COLS = 10, ROWS = 10, SEASONS = 10, D = 0.10, MEAN = 10, SIG = 0.8, W = 600, H = 380;
+  const svg = S('svg', {viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': 'An orchard of 100 trees, one per customer. Living trees are green with fruit, dead trees are dotted outlines, and canopy size shows yield.'}, host);
+  S('rect', {x: 0, y: 0, width: W, height: H, rx: 14, class: 'ground'}, svg);
+  const rh = (H - 70) / (ROWS - 1), cw = (W - 60) / (COLS - 1);
+  for (let r = 0; r < ROWS; r++){ const yy = 42 + r * rh + 7; S('line', {x1: 14, x2: W - 14, y1: yy, y2: yy, class: 'furrow'}, svg); }
+  const layer = S('g', {}, svg);
+  let seed = 11, trees = [], timer = null;
+  const btn = $('#hero-play');
+  const o = {season: $('#hero-season'), alive: $('#hero-alive'), nom: $('#hero-nominal'), disc: $('#hero-disc'), per: $('#hero-per'), exp: $('#hero-exp')};
+  const rGet = bind('hero-r', v => pct(v), () => { stop(); showFinal(); });
+  function plant(){
+    const rng = mulberry32(seed); trees = []; clear(layer);
+    for (let i = 0; i < N; i++){
+      const c = i % COLS, r = Math.floor(i / COLS);
+      const x = clamp(30 + c * cw + (r % 2 ? 1 : -1) * cw * 0.12 + (rng() - 0.5) * 10, 18, W - 18);
+      const y = 42 + r * rh + (rng() - 0.5) * 5;
+      const yv = Math.exp(Math.log(MEAN) - SIG * SIG / 2 + SIG * gauss(rng));
+      const u = []; for (let t = 0; t < SEASONS; t++) u.push(rng());
+      const rad = clamp(4.5 + 4.3 * Math.sqrt(yv / MEAN), 4.5, 15);
+      const cy = y - 3 - rad * 0.8;
+      const g = S('g', {class: 'tree'}, layer);
+      S('rect', {x: x - 1.4, y: y - 4, width: 2.8, height: 11, rx: 1.2, class: 'trunk'}, g);
+      S('circle', {cx: x, cy: cy, r: rad, class: 'canopy'}, g);
+      const nf = yv > MEAN * 1.6 ? 3 : (yv > MEAN * 0.7 ? 2 : 1);
+      for (let k = 0; k < nf; k++){ const dx = (k - (nf - 1) / 2) * rad * 0.62; const dy = (k % 2 ? -0.28 : 0.22) * rad; S('circle', {cx: x + dx, cy: cy + dy, r: 1.6 + rad * 0.09, class: 'fruit'}, g); }
+      trees.push({g: g, yv: yv, u: u});
+    }
+  }
+  function aliveAfter(tr, r, s){ for (let t = 0; t < s; t++){ if (tr.u[t] > r) return false; } return true; }
+  function totals(r, s){ let nom = 0, disc = 0; trees.forEach(tr => { for (let t = 0; t < s; t++){ nom += tr.yv; disc += tr.yv / Math.pow(1 + D, t); if (tr.u[t] > r) break; } }); return {nom: nom, disc: disc}; }
+  function aliveCount(r, s){ let n = 0; trees.forEach(tr => { if (aliveAfter(tr, r, s)) n++; }); return n; }
+  function paint(r, s, fruit){ trees.forEach(tr => { const ok = aliveAfter(tr, r, s); tr.g.classList.toggle('dead', !ok); tr.g.classList.toggle('fruiting', ok && fruit); }); }
+  function expected(r){ let e = 0; for (let t = 0; t < SEASONS; t++) e += MEAN * Math.pow(r / (1 + D), t); return e; }
+  function write(r, sH, sA){ const st = totals(r, sH); o.season.textContent = sH + ' / ' + SEASONS; o.alive.textContent = aliveCount(r, sA) + ' of ' + N; o.nom.textContent = money(st.nom); o.disc.textContent = money(st.disc); o.per.textContent = money(st.disc / N, 2);
+    o.exp.textContent = 'Each tree yields about $' + MEAN + ' a season on average, and fruit is discounted ' + Math.round(D * 100) + '% per season (think of a season as a year). At ' + pct(r) + ' survival the expected value per tree planted is ' + money(expected(r), 2) + '. Your orchard differs by luck.'; }
+  function stop(){ if (timer){ clearTimeout(timer); timer = null; } btn.textContent = 'Replay 10 seasons'; }
+  function showFinal(){ const r = rGet(); paint(r, SEASONS, true); write(r, SEASONS, SEASONS); }
+  function play(){
+    stop(); const r = rGet(); if (RM){ showFinal(); return; }
+    let s = 0; paint(r, 0, false); write(r, 0, 0); btn.textContent = 'Playing…';
+    const harvest = () => { trees.forEach(tr => tr.g.classList.toggle('fruiting', aliveAfter(tr, r, s))); write(r, s + 1, s); timer = setTimeout(mort, 520); };
+    const mort = () => { s++; paint(r, s, false); write(r, s, s); if (s < SEASONS) timer = setTimeout(harvest, 260); else timer = setTimeout(() => { timer = null; showFinal(); btn.textContent = 'Replay 10 seasons'; }, 300); };
+    timer = setTimeout(harvest, 250);
+  }
+  btn.addEventListener('click', play);
+  $('#hero-replant').addEventListener('click', () => { stop(); seed += 1; plant(); showFinal(); });
+  plant(); showFinal();
+});
+
+/* ---------- 01 payback ---------- */
+safe('payback', function(){
+  const el = $('#pb-chart'); if (!el) return;
+  const g = {cac: bind('pb-cac', v => money(v), upd), m: bind('pb-m', v => money(v, 1), upd), r: bind('pb-r', v => pct(v), upd), d: bind('pb-d', v => pct(v), upd), h: bind('pb-h', v => v + ' months', upd)};
+  const c = chart(el, draw);
+  function upd(){
+    const cac = g.cac(), m = g.m(), r = g.r(), d = g.d(), H = g.h(); const dm = Math.pow(1 + d, 1 / 12) - 1;
+    let cum = -cac, ltv = 0, pay = null; const pts = [[0, -cac]];
+    for (let k = 0; k < H; k++){ const v = m * Math.pow(r, k) / Math.pow(1 + dm, k); ltv += v; cum += v; pts.push([k + 1, cum]); if (pay === null && cum >= 0) pay = k + 1; }
+    const ratio = ltv / cac;
+    $('#pb-pay').textContent = pay ? 'Month ' + pay : 'Not in ' + H + ' mo';
+    $('#pb-ltv').textContent = money(ltv);
+    const ra = $('#pb-ratio'); ra.textContent = ratio.toFixed(1) + ' : 1'; ra.parentElement.classList.toggle('good', ratio >= 3); ra.parentElement.classList.toggle('bad', ratio < 1); ra.parentElement.classList.toggle('hl', ratio >= 1 && ratio < 3);
+    c.render({cac: cac, H: H, pts: pts, pay: pay, ratio: ratio});
+  }
+  function draw(el, w, s){
+    const h = 270, m = {l: 54, r: 14, t: 16, b: 36};
+    const svg = svgIn(el, w, h, 'Cumulative discounted profit per acquired customer over ' + s.H + ' months. ' + (s.pay ? 'Payback in month ' + s.pay + '.' : 'Payback not reached.') + ' LTV to CAC ' + s.ratio.toFixed(1) + ' to 1.');
+    const ref = 2 * s.cac; const vals = s.pts.map(p => p[1]);
+    const ymin = niceMin(Math.min.apply(null, vals), 4), ymax = niceMax(Math.max(ref * 1.1, Math.max.apply(null, vals), 1), 4);
+    const x = lin(0, s.H, m.l, w - m.r), y = lin(ymin, ymax, h - m.b, m.t);
+    gridY(svg, y, ticks(ymin, ymax, 5), m.l, w - m.r, moneyK);
+    axisX(svg, x, ticks(0, s.H, Math.max(3, Math.min(10, Math.floor(w / 70)))), h - m.b, v => v);
+    txt(svg, w - m.r, h - 3, 'months since acquisition', 'tick', 'end');
+    const y0 = y(0);
+    const pos = 'M' + x(0) + ',' + y0 + ' ' + s.pts.map(p => 'L' + x(p[0]).toFixed(2) + ',' + y(Math.max(0, p[1])).toFixed(2)).join(' ') + ' L' + x(s.H) + ',' + y0 + ' Z';
+    const neg = 'M' + x(0) + ',' + y0 + ' ' + s.pts.map(p => 'L' + x(p[0]).toFixed(2) + ',' + y(Math.min(0, p[1])).toFixed(2)).join(' ') + ' L' + x(s.H) + ',' + y0 + ' Z';
+    S('path', {d: neg, class: 'f-plum-soft'}, svg); S('path', {d: pos, class: 'f-leaf-soft'}, svg);
+    S('line', {x1: m.l, x2: w - m.r, y1: y0, y2: y0, class: 'zero'}, svg);
+    const yr = y(ref); S('line', {x1: m.l, x2: w - m.r, y1: yr, y2: yr, class: 'refline'}, svg); txt(svg, w - m.r - 4, yr - 6, 'LTV = 3 × CAC', 'lab-m', 'end');
+    S('path', {d: pathOf(s.pts, x, y), class: 'line s-ink'}, svg);
+    txt(svg, x(0) + 8, Math.min(h - m.b - 6, y(-s.cac) + 16), 'CAC ' + money(s.cac), 'lab-p');
+    if (s.pay){ const xp = x(s.pay); S('line', {x1: xp, x2: xp, y1: m.t, y2: h - m.b, class: 'mark'}, svg); const right = xp > w - 150; txt(svg, right ? xp - 6 : xp + 6, m.t + 12, 'payback · month ' + s.pay, 'lab-b', right ? 'end' : 'start'); }
+  }
+  upd();
+});
+
+/* ---------- 02 CLTV machine ---------- */
+safe('machine', function(){
+  const el = $('#cm-chart'), es = $('#cm-sens'); if (!el) return;
+  const g = {m: bind('cm-m', v => money(v), upd), r: bind('cm-r', v => pct(v), upd), d: bind('cm-d', v => pct(v), upd), h: bind('cm-h', v => v + (v === 1 ? ' year' : ' years'), upd)};
+  const c = chart(el, drawBars), cs = chart(es, drawSens);
+  function clv(m, r, d, H){ let s = 0; for (let t = 0; t < H; t++) s += m * Math.pow(r, t) / Math.pow(1 + d, t); return s; }
+  function upd(){
+    const m = g.m(), r = g.r(), d = g.d(), H = g.h();
+    const rows = []; for (let t = 0; t < H; t++){ const nom = m * Math.pow(r, t); rows.push({t: t, nom: nom, disc: nom / Math.pow(1 + d, t)}); }
+    const v = clv(m, r, d, H), inf = m * (1 + d) / (1 + d - r);
+    $('#cm-clv').textContent = money(v); $('#cm-inf').textContent = money(inf); $('#cm-life').textContent = (1 / (1 - r)).toFixed(1) + ' years';
+    const sv = [
+      {k: '+1 pt retention', v: clv(m, Math.min(0.99, r + 0.01), d, H) / v - 1},
+      {k: '+5% margin', v: 0.05},
+      {k: '−1 pt discount', v: clv(m, r, Math.max(0, d - 0.01), H) / v - 1},
+      {k: '+2 yrs horizon', v: clv(m, r, d, H + 2) / v - 1}
+    ];
+    c.render({rows: rows}); cs.render({sv: sv});
+  }
+  function drawBars(el, w, st){
+    const h = 220, m = {l: 50, r: 10, t: 12, b: 34}; const n = st.rows.length;
+    const svg = svgIn(el, w, h, 'Yearly margin per customer over ' + n + ' years, undiscounted and in today\'s money.');
+    const ymax = niceMax(Math.max.apply(null, st.rows.map(r => r.nom)), 4); const y = lin(0, ymax, h - m.b, m.t);
+    gridY(svg, y, ticks(0, ymax, 4), m.l, w - m.r, moneyK);
+    const bw = (w - m.l - m.r) / n, pad = Math.min(8, bw * 0.2);
+    st.rows.forEach((r, i) => { const x0 = m.l + i * bw + pad / 2, ww = Math.max(1, bw - pad);
+      S('rect', {x: x0, y: y(r.nom), width: ww, height: Math.max(0, y(0) - y(r.nom)), class: 'f-mango-soft s-mango', 'stroke-width': 0.8}, svg);
+      S('rect', {x: x0 + ww * 0.2, y: y(r.disc), width: ww * 0.6, height: Math.max(0, y(0) - y(r.disc)), class: 'f-mango'}, svg); });
+    const every = Math.max(1, Math.ceil(n / Math.max(1, Math.floor((w - m.l) / 30))));
+    st.rows.forEach((r, i) => { if (i % every === 0 || i === n - 1) txt(svg, m.l + i * bw + bw / 2, h - m.b + 16, String(i + 1), 'tick', 'middle'); });
+    txt(svg, w - m.r, h - 2, 'year', 'tick', 'end');
+  }
+  function drawSens(el, w, st){
+    const sv = st.sv, rowH = 30, ml = Math.min(132, Math.round(w * 0.42)), mr = 62, h = rowH * sv.length + 6;
+    const svg = svgIn(el, w, h, 'CLTV sensitivity: ' + sv.map(s => s.k + ' ' + signPct(s.v)).join(', ') + '.');
+    const vmax = Math.max(0.0001, Math.max.apply(null, sv.map(s => Math.abs(s.v))));
+    const x = lin(0, vmax, ml, w - mr);
+    sv.forEach((s, i) => { const yy = 3 + i * rowH; txt(svg, ml - 10, yy + rowH / 2 + 4, s.k, 'lab', 'end'); S('rect', {x: ml, y: yy + 8, width: Math.max(2, x(Math.abs(s.v)) - ml), height: rowH - 16, rx: 3, class: s.v >= 0 ? 'f-leaf' : 'f-plum'}, svg); txt(svg, x(Math.abs(s.v)) + 6, yy + rowH / 2 + 4, signPct(s.v), 'lab-b'); });
+  }
+  upd();
+});
+
+/* ---------- 03 heavy tails ---------- */
+safe('tails', function(){
+  const ed = $('#ht-dec'), el2 = $('#ht-lor'); if (!ed) return;
+  const MEAN = 100;
+  const g = {s: bind('ht-s', v => v.toFixed(1), upd), z: bind('ht-z', v => pct(v), upd)};
+  const cd = chart(ed, drawDec), cl = chart(el2, drawLor);
+  function L(p, z, s){ if (p <= z) return 0; if (p >= 1) return 1; return Phi(PhiInv((p - z) / (1 - z)) - s); }
+  function upd(){
+    const s = g.s(), z = g.z(); const mu = Math.log(MEAN / (1 - z)) - s * s / 2;
+    const median = z >= 0.5 ? 0 : Math.exp(mu + s * PhiInv((0.5 - z) / (1 - z)));
+    const top = 1 - L(0.9, z, s);
+    let lo = 0, hi = 1; for (let i = 0; i < 60; i++){ const mid = (lo + hi) / 2; if (L(mid, z, s) < 0.5) lo = mid; else hi = mid; }
+    const half = 1 - lo; const gini = z + (1 - z) * (2 * Phi(s / Math.SQRT2) - 1);
+    $('#ht-median').textContent = money(median); $('#ht-top').textContent = pct(top); $('#ht-half').textContent = 'top ' + pct(half, half < 0.1 ? 1 : 0); $('#ht-gini').textContent = gini.toFixed(2);
+    const dec = []; for (let k = 1; k <= 10; k++) dec.push(L(1 - (k - 1) / 10, z, s) - L(1 - k / 10, z, s));
+    cd.render({dec: dec}); cl.render({z: z, s: s, gini: gini, L: p => L(p, z, s)});
+  }
+  function drawDec(el, w, st){
+    const h = 220, m = {l: 40, r: 8, t: 18, b: 36};
+    const svg = svgIn(el, w, h, 'Share of total value by decile. Top 10% of customers hold ' + pct(st.dec[0]) + '.');
+    const ymax = Math.max(0.2, niceMax(Math.max.apply(null, st.dec), 4)); const y = lin(0, ymax, h - m.b, m.t);
+    gridY(svg, y, ticks(0, ymax, 4), m.l, w - m.r, v => Math.round(v * 100) + '%');
+    const bw = (w - m.l - m.r) / 10;
+    S('line', {x1: m.l, x2: w - m.r, y1: y(0.1), y2: y(0.1), class: 'refline'}, svg);
+    st.dec.forEach((v, i) => { const x0 = m.l + i * bw + 3, ww = Math.max(2, bw - 6); S('rect', {x: x0, y: y(v), width: ww, height: Math.max(0, y(0) - y(v)), rx: 2, class: i === 0 ? 'f-mango' : 'f-leaf'}, svg);
+      if (bw > 26 && v >= 0.005) txt(svg, x0 + ww / 2, y(v) - 4, Math.round(v * 100) + '%', 'tick', 'middle');
+      txt(svg, m.l + i * bw + bw / 2, h - m.b + 15, String(i + 1), 'tick', 'middle'); });
+    txt(svg, w - m.r - 2, y(0.1) - 5, 'equal share', 'lab-m', 'end');
+    txt(svg, m.l, h - 3, 'decile, most valuable first', 'tick');
+  }
+  function drawLor(el, w, st){
+    const h = 220, m = {l: 40, r: 18, t: 12, b: 36};
+    const svg = svgIn(el, w, h, 'Lorenz curve of customer value. Gini ' + st.gini.toFixed(2) + '.');
+    const x = lin(0, 1, m.l, w - m.r), y = lin(0, 1, h - m.b, m.t);
+    gridY(svg, y, [0, 0.25, 0.5, 0.75, 1], m.l, w - m.r, v => Math.round(v * 100) + '%');
+    axisX(svg, x, [0, 0.25, 0.5, 0.75, 1], h - m.b, v => Math.round(v * 100) + '%');
+    const pts = [[0, 0]]; if (st.z > 0) pts.push([st.z, 0]); for (let i = 1; i <= 120; i++){ const p = i / 120; if (p > st.z) pts.push([p, st.L(p)]); }
+    const area = pathOf(pts, x, y) + ' L' + x(1) + ',' + y(1) + ' L' + x(0) + ',' + y(0) + ' Z';
+    S('path', {d: area, class: 'f-leaf-soft'}, svg);
+    S('line', {x1: x(0), y1: y(0), x2: x(1), y2: y(1), class: 'line thin s-ink3 dash'}, svg);
+    S('path', {d: pathOf(pts, x, y), class: 'line s-leaf'}, svg);
+    txt(svg, x(0.03), y(0.88), 'Gini ' + st.gini.toFixed(2), 'lab-b');
+    txt(svg, x(0.58), y(0.72), 'perfect equality', 'tick', 'end');
+    txt(svg, w - m.r, h - 3, 'share of customers', 'tick', 'end');
+  }
+  upd();
+});
+
+/* ---------- 04 survivor illusion ---------- */
+safe('ruse', function(){
+  const e1 = $('#ru-surv'), e2 = $('#ru-rate'); if (!e1) return;
+  const g = {h: bind('ru-h', v => pct(v), upd), rh: bind('ru-rh', v => pct(v), upd), rf: bind('ru-rf', v => pct(v), upd)};
+  const c1 = chart(e1, drawSurv), c2 = chart(e2, drawRate);
+  const D = 0.10, M = 100, HZ = 40, SHOW = 12;
+  function upd(){
+    const h = g.h(), rh = g.rh(); let rf = g.rf();
+    if (rf > rh - 0.05){ rf = Math.max(0.05, Math.floor((rh - 0.05) * 20) / 20); setQuiet('ru-rf', rf); }
+    const surv = t => h * Math.pow(rh, t) + (1 - h) * Math.pow(rf, t); const r1 = surv(1);
+    let tv = 0, nv = 0; for (let t = 0; t < HZ; t++){ tv += M * surv(t) / Math.pow(1 + D, t); nv += M * Math.pow(r1, t) / Math.pow(1 + D, t); }
+    $('#ru-true').textContent = money(tv); $('#ru-naive').textContent = money(nv); $('#ru-err').textContent = signPct(nv / tv - 1, 0);
+    const sa = [], sn = [], ra = []; for (let t = 0; t <= SHOW; t++){ sa.push([t, surv(t)]); sn.push([t, Math.pow(r1, t)]); if (t >= 1) ra.push([t, surv(t) / surv(t - 1)]); }
+    c1.render({sa: sa, sn: sn}); c2.render({ra: ra, r1: r1, rh: rh});
+  }
+  function frame(el, w, label, ymin, ymax, yfmt){ const h = 210, m = {l: 44, r: 14, t: 12, b: 34}; const svg = svgIn(el, w, h, label); const x = lin(0, SHOW, m.l, w - m.r), y = lin(ymin, ymax, h - m.b, m.t); gridY(svg, y, ticks(ymin, ymax, 4), m.l, w - m.r, yfmt); axisX(svg, x, [0, 2, 4, 6, 8, 10, 12], h - m.b, v => v); txt(svg, w - m.r, h - 3, 'years since acquisition', 'tick', 'end'); return {svg: svg, x: x, y: y}; }
+  function drawSurv(el, w, st){ const f = frame(el, w, 'Share of cohort still active: true curve versus naive projection.', 0, 1, v => Math.round(v * 100) + '%'); S('path', {d: pathOf(st.sn, f.x, f.y), class: 'line s-sky dash'}, f.svg); S('path', {d: pathOf(st.sa, f.x, f.y), class: 'line s-leaf'}, f.svg); }
+  function drawRate(el, w, st){ const f = frame(el, w, 'Retention rate by year rises toward the hardy group\'s survival.', 0, 1, v => Math.round(v * 100) + '%'); const xr = f.x;
+    S('line', {x1: xr(0), x2: xr(SHOW), y1: f.y(st.rh), y2: f.y(st.rh), class: 'line thin s-ink3 dash'}, f.svg); txt(f.svg, xr(SHOW) - 2, f.y(st.rh) - 6, 'hardy survival', 'tick', 'end');
+    S('path', {d: pathOf([[1, st.r1], [SHOW, st.r1]], xr, f.y), class: 'line s-sky dash'}, f.svg);
+    S('path', {d: pathOf(st.ra, xr, f.y), class: 'line s-leaf'}, f.svg);
+    st.ra.forEach(p => S('circle', {cx: xr(p[0]), cy: f.y(p[1]), r: 3, class: 'f-leaf'}, f.svg)); }
+  upd();
+});
+
+/* ---------- 05 dead or dormant ---------- */
+safe('bgnbd', function(){
+  const tl = $('#bg-tl'), hm = $('#bg-heat'); if (!tl) return;
+  const txIn = $('#bg-tx');
+  const g = {T: bind('bg-T', v => v + ' wks', upd), x: bind('bg-x', v => String(v), upd), tx: bind('bg-tx', v => 'week ' + v, upd), aov: bind('bg-aov', v => money(v), upd)};
+  const cT = chart(tl, drawTL), cH = chart(hm, drawHM);
+  const PRE = {steady: {T: 52, x: 10, tx: 50, aov: 40}, quiet: {T: 52, x: 10, tx: 20, aov: 40}, occasional: {T: 52, x: 2, tx: 20, aov: 40}, once: {T: 52, x: 0, tx: 0, aov: 40}};
+  const chips = $$('[data-bg]');
+  function markChip(id){ chips.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bg === id))); }
+  function upd(fromPreset){
+    const T = g.T(); if (+txIn.max !== T){ txIn.max = T; }
+    const x = g.x(); let tx = Math.min(g.tx(), T); if (x === 0) tx = 0; else if (tx < 1) tx = 1;
+    if (tx !== +txIn.value) setQuiet('bg-tx', tx); else fillRange(txIn);
+    txIn.disabled = x === 0; $('#bg-tx-wrap').classList.toggle('off', x === 0);
+    const aov = g.aov();
+    const pa = pAlive(x, tx, T), ep = expPurch(52, x, tx, T), em = ggMean(x, aov);
+    $('#bg-pa').textContent = pct(pa); $('#bg-pa-bar').style.width = (pa * 100).toFixed(1) + '%';
+    $('#bg-ep').textContent = ep.toFixed(2); $('#bg-em').textContent = money(em, 2); $('#bg-sp').textContent = money(ep * em);
+    let note;
+    if (x === 0) note = 'No repeat purchase yet. BG/NBD treats this customer as alive by construction, the quirk noted below, and with no repeat orders Gamma-Gamma uses the population average order of ' + money(GG_POP, 2) + '.';
+    else { const gap = tx / x, quiet = T - tx; const verdict = quiet > 3 * gap ? 'more than three times their usual gap, so the model suspects they have left' : (quiet > 1.5 * gap ? 'longer than their usual gap, so doubt is creeping in' : 'within their usual rhythm, so there is little reason to doubt them');
+      note = 'Quiet for ' + quiet + ' weeks after buying every ' + gap.toFixed(1) + ' weeks on average: ' + verdict + '. Their own average order is ' + money(aov) + '; with ' + x + ' repeat order' + (x === 1 ? '' : 's') + ' the model expects ' + money(em, 2) + ' next time.'; }
+    $('#bg-note').textContent = note;
+    if (!fromPreset) markChip(null);
+    cT.render({T: T, x: x, tx: tx}); cH.render({T: T, x: x, tx: tx});
+  }
+  function load(cfg, presetId){ txIn.max = cfg.T; setQuiet('bg-T', cfg.T); setQuiet('bg-x', cfg.x); setQuiet('bg-tx', cfg.tx); setQuiet('bg-aov', cfg.aov); upd(true); markChip(presetId || null); }
+  chips.forEach(b => b.addEventListener('click', () => load(PRE[b.dataset.bg], b.dataset.bg)));
+  bgLoad = cfg => { load(cfg, null); const t = $('#bg'); if (t && t.scrollIntoView) t.scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'start'}); };
+  function drawTL(el, w, s){
+    const h = 104, m = {l: 16, r: 18}; const yA = 56;
+    const svg = svgIn(el, w, h, 'Purchase timeline: first purchase at week 0, ' + s.x + ' repeat purchases, the last at week ' + s.tx + ', observed for ' + s.T + ' weeks.');
+    const x = lin(0, s.T, m.l + 8, w - m.r);
+    if (s.T > s.tx){ S('rect', {x: x(s.tx), y: yA - 13, width: Math.max(0, x(s.T) - x(s.tx)), height: 26, rx: 5, class: 'f-plum-soft'}, svg); if (x(s.T) - x(s.tx) > 110) txt(svg, (x(s.tx) + x(s.T)) / 2, yA + 4, 'quiet for ' + (s.T - s.tx) + ' weeks', 'lab-p', 'middle'); }
+    S('line', {x1: x(0), x2: x(s.T), y1: yA, y2: yA, class: 'axis'}, svg);
+    ticks(0, s.T, Math.max(3, Math.min(7, Math.floor(w / 90)))).forEach(v => { S('line', {x1: x(v), x2: x(v), y1: yA + 15, y2: yA + 19, class: 'axis'}, svg); txt(svg, x(v), yA + 32, 'wk ' + v, 'tick', 'middle'); });
+    for (let k = 1; k <= s.x; k++){ S('circle', {cx: x(s.tx * k / s.x), cy: yA, r: 5.5, class: 'f-mango s-surface', 'stroke-width': 1.5}, svg); }
+    S('circle', {cx: x(0), cy: yA, r: 7, class: 'f-surface s-ink', 'stroke-width': 2}, svg); txt(svg, x(0) - 6, yA - 20, 'first purchase', 'tick', 'start');
+    S('line', {x1: x(s.T), x2: x(s.T), y1: yA - 22, y2: yA + 13, class: 's-ink', 'stroke-width': 2}, svg); txt(svg, x(s.T) + 4, yA - 26, 'today', 'tick', 'end');
+  }
+  function drawHM(el, w, s){
+    const XMAX = 15, cols = Math.min(s.T + 1, w < 520 ? 27 : 40), step = s.T / (cols - 1);
+    const m = {l: 46, r: 10, t: 8, b: 40}; const cellH = w < 520 ? 13 : 15; const h = m.t + cellH * (XMAX + 1) + m.b;
+    const svg = svgIn(el, w, h, 'Heatmap of P(alive) by repeat purchases (rows) and week of last purchase (columns). Tap a cell to load it.');
+    const cw = (w - m.l - m.r) / cols;
+    for (let xi = 0; xi <= XMAX; xi++){ for (let ci = 0; ci < cols; ci++){ const tx = Math.round(ci * step); const p = xi === 0 ? 1 : pAlive(xi, Math.max(tx, 1), s.T);
+      const rc = S('rect', {x: (m.l + ci * cw).toFixed(2), y: m.t + (XMAX - xi) * cellH, width: (cw + 0.6).toFixed(2), height: cellH + 0.6, class: 'f-leaf', 'fill-opacity': (0.05 + 0.95 * p).toFixed(3)}, svg); rc.setAttribute('data-x', xi); rc.setAttribute('data-tx', xi === 0 ? 0 : Math.max(tx, 1)); rc.style.cursor = 'pointer'; } }
+    if (s.x <= XMAX){ const ci = Math.round(s.tx / step); S('rect', {x: m.l + ci * cw, y: m.t + (XMAX - s.x) * cellH, width: cw, height: cellH, class: 'hl-cell'}, svg); }
+    [0, 5, 10, 15].forEach(v => txt(svg, m.l - 6, m.t + (XMAX - v) * cellH + cellH * 0.75, String(v), 'tick', 'end'));
+    ticks(0, s.T, Math.max(3, Math.min(7, Math.floor(w / 90)))).forEach(v => txt(svg, m.l + (v / step) * cw + cw / 2, m.t + (XMAX + 1) * cellH + 15, String(v), 'tick', 'middle'));
+    txt(svg, m.l, h - 4, 'week of last purchase →', 'lab');
+    const yc = m.t + (XMAX + 1) * cellH / 2; const yl = txt(svg, 12, yc, 'repeat purchases →', 'lab', 'middle'); yl.setAttribute('transform', 'rotate(-90 12 ' + yc + ')');
+    svg.addEventListener('click', ev => { const t = ev.target; if (t && t.getAttribute && t.getAttribute('data-x') !== null){ setQuiet('bg-x', +t.getAttribute('data-x')); setQuiet('bg-tx', +t.getAttribute('data-tx')); upd(); } });
+  }
+  upd();
+});
+
+/* ---------- 07 fit diagnostic ---------- */
+safe('diagnostic', function(){
+  const form = $('#dx-form'); if (!form) return;
+  const W = {
+    leave: {contract: [8, 'Exits are observed, so retention is directly measurable.'], quiet: [0, 'Churn is invisible, so it has to be inferred with a model (chapter 5).']},
+    freq: {high: [16, 'Frequent repeat purchases give plenty of signal.'], mid: [8, 'A few purchases a year is enough for buy-till-you-die models.'], low: [-16, 'Purchases years apart: discounting and churn swallow most future value, and data is thin.'], once: [-30, 'There is no repeat behaviour to value.']},
+    hist: {short: [-12, 'Less than a full cycle of history, so curves must be borrowed or assumed.'], mid: [0, 'Enough history for early curves; the long tail is still extrapolated.'], long: [6, 'Long history lets you test forecasts against what happened.']},
+    env: {stable: [4, 'A stable environment keeps past behaviour predictive.'], regime: [-10, 'A recent change in fees, pricing or rules means old cohorts may not predict new ones.'], external: [-14, 'Value is driven by outside prices or subsidies that customer data cannot forecast.']},
+    value: {direct: [4, 'Value is mostly what the customer pays, which is easy to count.'], indirect: [-10, 'Much of the value is indirect (network, referrals, supply) and invisible to standard CLTV.']},
+    scale: {few: [-6, 'With a few hundred accounts, statistical models have little to learn from.'], many: [4, 'Many customers make statistical patterns stable.']},
+    use: {budget: [3, 'Aggregate decisions tolerate individual-level error.'], segment: [2, 'Segment decisions need good ranking more than exact values.'], individual: [-3, 'Individual decisions need calibrated, timely predictions and, for treatments, uplift.']}
+  };
+  const P = [
+    {id: 'stream', name: 'Streaming subscription', note: 'Billing makes churn visible, so retention models such as sBG shine.', a: {leave: 'contract', freq: 'high', hist: 'long', env: 'stable', value: 'direct', scale: 'many', use: 'segment'}},
+    {id: 'saas', name: 'Enterprise SaaS', note: 'CLTV fits as a concept, but with few accounts you forecast each account rather than fit a distribution.', a: {leave: 'contract', freq: 'high', hist: 'long', env: 'stable', value: 'direct', scale: 'few', use: 'budget'}},
+    {id: 'game', name: 'Mobile game', note: 'Day-7 pLTV for ad bidding is standard practice, and a few big spenders dominate revenue.', a: {leave: 'quiet', freq: 'high', hist: 'long', env: 'stable', value: 'direct', scale: 'many', use: 'individual'}},
+    {id: 'itad', name: 'E-waste ITAD contracts', note: 'Contracts renew and devices arrive on a refresh cycle, so account-level CLTV works.', a: {leave: 'contract', freq: 'mid', hist: 'long', env: 'stable', value: 'direct', scale: 'few', use: 'budget'}},
+    {id: 'qcom', name: 'Quick-commerce grocery', note: 'Frequent orders give rich signal; promotions and new-city launches are the main noise.', a: {leave: 'quiet', freq: 'high', hist: 'mid', env: 'stable', value: 'direct', scale: 'many', use: 'individual'}},
+    {id: 'ebuy', name: 'eBay buyer', note: 'Non-contractual and heavy-tailed. First category and P(alive) carry much of the signal.', a: {leave: 'quiet', freq: 'mid', hist: 'long', env: 'stable', value: 'direct', scale: 'many', use: 'individual'}},
+    {id: 'car', name: 'Car dealership', note: 'The repeat business is servicing, and the next car comes 5+ years later. Model service as its own stream.', a: {leave: 'quiet', freq: 'low', hist: 'long', env: 'stable', value: 'direct', scale: 'many', use: 'segment'}},
+    {id: 'esell', name: 'eBay C2C seller, UK or DE', note: 'Fee changes broke the history, and much of a private seller\'s value lands on the buyer side.', a: {leave: 'quiet', freq: 'mid', hist: 'long', env: 'regime', value: 'indirect', scale: 'many', use: 'segment'}},
+    {id: 'wed', name: 'Wedding planner', note: 'One purchase per lifetime. The value is referrals, so measure word of mouth instead.', a: {leave: 'quiet', freq: 'once', hist: 'long', env: 'stable', value: 'indirect', scale: 'many', use: 'segment'}},
+    {id: 'ewh', name: 'E-waste pickup, households', note: 'Disposal comes every few years and value follows commodity and resale prices. Price each pickup instead.', a: {leave: 'quiet', freq: 'low', hist: 'mid', env: 'external', value: 'direct', scale: 'many', use: 'individual'}}
+  ];
+  const KEYS = Object.keys(W);
+  function score(a){ let s = 45; const why = []; KEYS.forEach(k => { const w = W[k][a[k]]; s += w[0]; why.push([w[0], w[1]]); }); return {score: clamp(s, 3, 98), why: why}; }
+  function band(s){ return s >= 75 ? ['Strong fit', 'v-strong', 'b-strong'] : s >= 55 ? ['Good fit, with care', 'v-good', 'b-good'] : s >= 35 ? ['Use narrowly', 'v-narrow', 'b-narrow'] : ['Mostly misleading', 'v-poor', 'b-poor']; }
+  function read(){ const a = {}; KEYS.forEach(k => { const el = form.querySelector('input[name="' + k + '"]:checked'); a[k] = el ? el.value : Object.keys(W[k])[0]; }); return a; }
+  function methods(a){
+    const m = [];
+    if (a.freq === 'once') m.push(['Value the first sale plus referrals', 'There is no repeat purchase to model; add referral and cross-sell value where they exist.']);
+    else if (a.freq === 'low') m.push(['Event-based value', 'P(next event comes to us) × value per event, with survival curves on the replacement cycle.']);
+    else if (a.leave === 'contract') m.push(['sBG or discrete-time survival × margin', 'Handles heterogeneous churn; survival models add covariates such as plan and tenure.']);
+    else m.push(['BG/NBD or Pareto/NBD + Gamma-Gamma', 'Needs only recency, frequency and spend, and gives a strong portfolio-level baseline.']);
+    if (a.scale === 'few') m.push(['Account-based forecasting', 'Forecast renewals, expansion and churn risk account by account.']);
+    if (a.use === 'individual' && a.scale === 'many' && a.freq !== 'once') m.push(['Machine-learning pLTV', 'Boosted trees, a two-stage model or a ZILN loss on rich behavioural features, checked by decile calibration.']);
+    if (a.use !== 'individual' && a.freq !== 'once') m.push(['Cohort curves by channel and segment', 'Transparent and easy to reconcile with finance; extrapolate the tail with a fitted curve.']);
+    if (a.hist === 'short') m.push(['Borrow strength', 'Hierarchical models pooled across similar markets or cohorts, and early-signal pLTV from day-7 or day-30 behaviour.']);
+    if (a.value === 'indirect') m.push(['Cross-side value plus experiments', 'Add the value a customer creates for others and estimate it with holdouts or geo tests.']);
+    if (a.env !== 'stable') m.push(['Scenarios and frequent re-fits', 'Shorter horizons, regime flags and stress tests on the outside drivers.']);
+    if (a.use === 'individual' && a.freq !== 'once') m.push(['Uplift models for actions', 'Who responds to a coupon is a different question from who is valuable.']);
+    return m;
+  }
+  function watch(a){
+    const w = ['Use contribution margin, not revenue.'];
+    if (a.leave === 'quiet') w.push('Define "active" with P(alive), not a fixed inactivity window.');
+    if (a.scale === 'many' && a.freq !== 'once') w.push('Heavy tails: report deciles and the median beside the mean.');
+    if (a.hist === 'short') w.push('Censoring: young cohorts are not comparable with old ones yet.');
+    if (a.env === 'regime') w.push('Do not train across the regime change without a flag for it.');
+    if (a.env === 'external') w.push('Separate engagement from value, and stress-test the outside prices.');
+    if (a.value === 'indirect') w.push('Fee-only LTV undervalues this customer.');
+    if (a.freq === 'low' || a.freq === 'once') w.push('Discounting dominates: CLTV is mostly the first transaction.');
+    if (a.use === 'individual') w.push('Feedback loops once predictions steer bidding or CRM.');
+    if (a.scale === 'few') w.push('Concentration: one account can swing the total.');
+    return w;
+  }
+  const out = {score: $('#dx-score'), verdict: $('#dx-verdict'), bar: $('#dx-bar'), methods: $('#dx-methods'), watch: $('#dx-watch'), why: $('#dx-why')};
+  let current = null;
+  function li(parent, b, s){ const l = document.createElement('li'); if (b){ const bb = document.createElement('b'); bb.textContent = b; l.appendChild(bb); } if (s){ const ss = document.createElement('span'); ss.textContent = s; l.appendChild(ss); } parent.appendChild(l); }
+  function render(){
+    const a = read(); const sc = score(a); const bd = band(sc.score);
+    out.score.innerHTML = ''; out.score.appendChild(document.createTextNode(String(sc.score))); const sm = document.createElement('small'); sm.textContent = ' / 100'; out.score.appendChild(sm);
+    out.verdict.textContent = bd[0]; out.verdict.className = 'verdict ' + bd[1]; out.bar.style.width = sc.score + '%';
+    clear(out.methods); methods(a).forEach(mm => li(out.methods, mm[0], mm[1]));
+    clear(out.watch); const pre = current ? P.find(p => p.id === current) : null; if (pre) li(out.watch, null, pre.note); watch(a).forEach(t => li(out.watch, null, t));
+    clear(out.why); li(out.why, '45 points to start', 'Every business starts from the same base.'); sc.why.forEach(wv => li(out.why, (wv[0] > 0 ? '+' : wv[0] < 0 ? '−' : '±') + Math.abs(wv[0]) + ' points', wv[1]));
+    $$('#dx-presets .chip').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === current)));
+    $$('#dx-rank button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === current)));
+  }
+  function load(id){ const p = P.find(q => q.id === id); if (!p) return; KEYS.forEach(k => { const el = form.querySelector('input[name="' + k + '"][value="' + p.a[k] + '"]'); if (el) el.checked = true; }); current = id; render(); }
+  const chipHost = $('#dx-presets');
+  P.forEach(p => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.dataset.id = p.id; b.textContent = p.name; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => load(p.id)); chipHost.appendChild(b); });
+  const rank = $('#dx-rank');
+  P.map(p => ({p: p, s: score(p.a).score})).sort((x, y) => y.s - x.s).forEach(r => { const l = document.createElement('li'); const b = document.createElement('button'); b.type = 'button'; b.dataset.id = r.p.id; b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', r.p.name + ', fit ' + r.s + ' of 100, ' + band(r.s)[0]);
+    const n = document.createElement('span'); n.textContent = r.p.name; const bar = document.createElement('span'); bar.className = 'rb'; const fill = document.createElement('span'); fill.className = band(r.s)[2]; fill.style.width = r.s + '%'; bar.appendChild(fill); const sc = document.createElement('span'); sc.className = 'rs'; sc.textContent = r.s;
+    b.appendChild(n); b.appendChild(bar); b.appendChild(sc); b.addEventListener('click', () => load(r.p.id)); l.appendChild(b); rank.appendChild(l); });
+  form.addEventListener('change', () => { current = null; render(); });
+  load('ebuy');
+});
+
+/* ---------- 08 coupon targeting ---------- */
+safe('coupon', function(){
+  const el = $('#cp-chart'); if (!el) return;
+  const g = {cost: bind('cp-cost', v => money(v), upd), pers: bind('cp-pers', v => pct(v), upd), noise: bind('cp-noise', v => v.toFixed(1), upd)};
+  const N = 2000, K = 500, TYPES = ['sure', 'pers', 'lost', 'dog'];
+  const CLS = {sure: 'f-sky', pers: 'f-leaf', lost: 'f-soil', dog: 'f-plum'};
+  const NAME = {sure: 'sure things', pers: 'persuadables', lost: 'lost causes', dog: 'sleeping dogs'};
+  const c = chart(el, draw);
+  function population(ps){
+    const rest = 1 - ps; const cnt = {sure: Math.round(N * rest * 35 / 80), pers: Math.round(N * ps), lost: Math.round(N * rest * 35 / 80)}; cnt.dog = N - cnt.sure - cnt.pers - cnt.lost;
+    const rng = mulberry32(42); const U = (a, b) => a + (b - a) * rng(); const pop = [];
+    TYPES.forEach(t => { for (let i = 0; i < cnt[t]; i++){ let p0, V, u;
+      if (t === 'sure'){ p0 = U(0.03, 0.12); V = U(350, 650); u = U(0, 0.02); }
+      else if (t === 'pers'){ p0 = U(0.35, 0.6); V = U(150, 320); u = U(0.22, 0.38); }
+      else if (t === 'lost'){ p0 = U(0.75, 0.95); V = U(30, 120); u = U(0, 0.04); }
+      else { p0 = U(0.08, 0.2); V = U(280, 520); u = U(-0.22, -0.1); }
+      pop.push({t: t, p0: p0, V: V, u: u, z1: gauss(rng), z2: gauss(rng), z3: gauss(rng), z4: rng()}); } });
+    return pop;
+  }
+  function upd(){
+    const cost = g.cost(), ps = g.pers(), nz = g.noise(); const pop = population(ps);
+    const uv = pop.map(p => p.u * p.V); const mean = uv.reduce((a, b) => a + b, 0) / uv.length; const sd = Math.sqrt(uv.reduce((a, b) => a + (b - mean) * (b - mean), 0) / uv.length);
+    const rules = [
+      ['Top 500 by predicted LTV', p => p.V * Math.exp(0.15 * p.z1)],
+      ['Top 500 by churn risk', p => p.p0 + 0.06 * p.z2],
+      ['Top 500 by predicted uplift × value', p => p.u * p.V + nz * sd * p.z3],
+      ['500 at random', p => p.z4]
+    ];
+    const res = rules.map(r => { const pick = pop.map(p => ({p: p, s: r[1](p)})).sort((a, b) => b.s - a.s).slice(0, K).map(o => o.p); const mix = {sure: 0, pers: 0, lost: 0, dog: 0}; let inc = 0; pick.forEach(p => { mix[p.t]++; inc += p.u * p.V - cost; }); return {k: r[0], mix: mix, inc: inc}; });
+    c.render({res: res});
+  }
+  function draw(el, w, st){
+    const res = st.res, rowH = 74, m = {l: 2, r: 2, t: 4}; const h = m.t + rowH * res.length;
+    const svg = svgIn(el, w, h, 'Incremental profit by targeting rule: ' + res.map(r => r.k + ' ' + money(r.inc)).join('; ') + '.');
+    const lim = Math.max(1, Math.max.apply(null, res.map(r => Math.abs(r.inc)))) * 1.08;
+    const x0 = m.l, x1 = w - m.r, xm = (x0 + x1) / 2, sx = v => xm + v / lim * (x1 - x0) / 2;
+    res.forEach((r, i) => { const y = m.t + i * rowH;
+      txt(svg, x0, y + 14, r.k, 'lab-b');
+      txt(svg, x1, y + 14, (r.inc >= 0 ? '+' : '') + money(r.inc), r.inc >= 0 ? 'lab-l' : 'lab-p', 'end');
+      let cx = x0; TYPES.forEach(t => { const ww = (x1 - x0) * r.mix[t] / K; if (ww > 0){ S('rect', {x: cx, y: y + 22, width: ww, height: 16, class: CLS[t]}, svg); if (ww > 34) txt(svg, cx + ww / 2, y + 34, String(r.mix[t]), 'tick f-surface', 'middle'); } cx += ww; });
+      S('line', {x1: xm, x2: xm, y1: y + 44, y2: y + 60, class: 'zero'}, svg);
+      const xa = Math.min(sx(0), sx(r.inc)), xb = Math.max(sx(0), sx(r.inc)); S('rect', {x: xa, y: y + 46, width: Math.max(1, xb - xa), height: 12, rx: 2, class: r.inc >= 0 ? 'f-leaf' : 'f-plum'}, svg); });
+  }
+  upd();
+});
+
+/* ---------- 09 mix shift ---------- */
+safe('mix', function(){
+  const el = $('#mx-chart'); if (!el) return;
+  const g = {s: bind('mx-share', v => pct(v), upd)};
+  const c = chart(el, draw);
+  function upd(){ const s4 = g.s(); const q = [0, 1, 2, 3].map(i => { const share = 0.2 + (s4 - 0.2) * i / 3; const org = 120 * Math.pow(1.05, i), paid = 50 * Math.pow(1.05, i); return {i: i, share: share, org: org, paid: paid, blend: (1 - share) * org + share * paid}; }); c.render({q: q}); }
+  function draw(el, w, st){
+    const q = st.q, h = 250, m = {l: 48, r: 104, t: 16, b: 34};
+    const ch = q[3].blend / q[0].blend - 1;
+    const svg = svgIn(el, w, h, 'Organic and paid CLTV both rise each quarter while blended CLTV changes ' + signPct(ch, 0) + '.');
+    const ymax = niceMax(q[3].org * 1.05, 4); const x = lin(0, 3, m.l + 10, w - m.r), y = lin(0, ymax, h - m.b, m.t);
+    gridY(svg, y, ticks(0, ymax, 4), m.l, w - m.r + 10, moneyK);
+    q.forEach(d => txt(svg, x(d.i), h - m.b + 17, 'Q' + (d.i + 1), 'tick', 'middle'));
+    [['org', 's-leaf', 'lab-l', 'organic'], ['paid', 's-sky', 'lab-s', 'paid social'], ['blend', 's-plum', 'lab-p', 'blended']].forEach(sr => { S('path', {d: pathOf(q.map(d => [d.i, d[sr[0]]]), x, y), class: 'line ' + sr[1]}, svg); q.forEach(d => S('circle', {cx: x(d.i), cy: y(d[sr[0]]), r: 3.4, class: sr[1].replace('s-', 'f-')}, svg)); txt(svg, x(3) + 10, y(q[3][sr[0]]) + 4, sr[3] + ' ' + money(q[3][sr[0]]), sr[2]); });
+    txt(svg, m.l + 12, m.t + 12, 'Blended vs Q1: ' + signPct(ch, 0), ch < 0 ? 'lab-p' : 'lab-l');
+  }
+  upd();
+});
+
+/* ---------- 10 e-waste calculator ---------- */
+safe('ewaste', function(){
+  const el = $('#ew-chart'), et = $('#ew-torn'); if (!el) return;
+  const PRE = [
+    {id: 'in', name: 'Cash-competitive (e.g. Indian metros)', unit: 'hh', desc: 'Informal buyers pay cash at the door, so you win on convenience and trust. Low capture, thin margins, cheap acquisition.', v: {n: 3, c: 3.5, rho: 0.25, s: 0.92, m: 4, k: 0.08, km: 12, cac: 3, d: 0.12, shock: false}},
+    {id: 'eu', name: 'Mandated free take-back (e.g. EU)', unit: 'hh', desc: 'Shops and municipal points take old devices free, so you only pay for devices with resale value. Refurbished cross-sell is strong.', v: {n: 4, c: 4, rho: 0.3, s: 0.9, m: 6, k: 0.2, km: 25, cac: 10, d: 0.08, shock: false}},
+    {id: 'us', name: 'Trade-in-led upgrades (e.g. US)', unit: 'hh', desc: 'Disposal is tied to buying the next device. Higher loyalty and margins, costlier acquisition.', v: {n: 4, c: 3, rho: 0.4, s: 0.9, m: 12, k: 0.15, km: 30, cac: 18, d: 0.08, shock: false}},
+    {id: 'cn', name: 'Subsidy waves (e.g. China)', unit: 'hh', desc: 'A national trade-in subsidy pulls disposals forward, then demand dips. The subsidy year is switched on.', v: {n: 3.5, c: 3.5, rho: 0.3, s: 0.92, m: 7, k: 0.1, km: 15, cac: 5, d: 0.1, shock: true}},
+    {id: 'b2b', name: 'Business contract (ITAD)', unit: 'acct', desc: 'A company retires part of its fleet every year under contract. The customer is the account, and contract renewal is the retention rate.', v: {n: 400, c: 4, rho: 0.85, s: 0.88, m: 12, k: 0, km: 0, cac: 2000, d: 0.1, shock: false}}
+  ];
+  const RANGE = {hh: {n: [1, 10, 0.5], cac: [0, 60, 1]}, acct: {n: [50, 2000, 50], cac: [0, 10000, 100]}};
+  const LAB = {hh: {n: 'Devices that will be replaced', rho: 'Chance the next disposal comes to you', s: 'Customer still reachable each year'}, acct: {n: 'Devices under contract', rho: 'Share of retired devices you receive', s: 'Contract renewed each year'}};
+  let unit = 'hh', cur = 'in';
+  const g = {n: bind('ew-n', v => unit === 'hh' ? String(v) : v.toLocaleString('en-US'), upd), c: bind('ew-c', v => v.toFixed(1) + ' yrs', upd), rho: bind('ew-rho', v => pct(v), upd), s: bind('ew-s', v => pct(v), upd), m: bind('ew-m', v => money(v, 1), upd), k: bind('ew-k', v => pct(v), upd), km: bind('ew-km', v => money(v), upd), cac: bind('ew-cac', v => money(v), upd), d: bind('ew-d', v => pct(v), upd)};
+  const shock = $('#ew-shock'); shock.addEventListener('change', () => { markChip(); upd(); });
+  const c1 = chart(el, drawYears), c2 = chart(et, drawTorn);
+  const H = 10;
+  function model(p, sh){ const lam = p.n / p.c, v = p.m + p.k * p.km; const years = []; let dev = 0, cum = 0;
+    for (let y = 0; y <= H; y++){ let ev; if (y === 0) ev = unit === 'hh' ? 1 : lam * p.rho; else { let mult = 1; if (sh){ if (y === 1) mult = 1.8; else if (y <= 3) mult = 0.6; } ev = lam * mult * p.rho * Math.pow(p.s, y); }
+      const val = ev * v / Math.pow(1 + p.d, y); dev += ev; cum += val; years.push({y: y, ev: ev, val: val, cum: cum}); }
+    return {years: years, clv: cum, dev: dev, first: years[0].val}; }
+  function read(){ return {n: g.n(), c: g.c(), rho: g.rho(), s: g.s(), m: g.m(), k: g.k(), km: g.km(), cac: g.cac(), d: g.d()}; }
+  function setLabel(id, text){ const l = document.getElementById(id); if (l && l.firstChild && l.firstChild.nodeType === 3) l.firstChild.nodeValue = text + ' '; }
+  function markChip(){ $$('#ew-presets .chip').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === cur))); }
+  function load(id){ const p = PRE.find(q => q.id === id); if (!p) return; cur = id; unit = p.unit;
+    const rn = RANGE[unit].n, rc = RANGE[unit].cac; const ni = $('#ew-n'), ci = $('#ew-cac'); ni.min = rn[0]; ni.max = rn[1]; ni.step = rn[2]; ci.min = rc[0]; ci.max = rc[1]; ci.step = rc[2];
+    setLabel('ew-n-l', LAB[unit].n); setLabel('ew-rho-l', LAB[unit].rho); setLabel('ew-s-l', LAB[unit].s);
+    Object.keys(p.v).forEach(k => { if (k === 'shock') shock.checked = p.v.shock; else setQuiet('ew-' + k, p.v[k]); });
+    $('#ew-desc').textContent = p.desc; markChip(); upd(true); }
+  function upd(keep){
+    if (keep !== true){ /* manual edit: keep preset chip but description stays */ }
+    const p = read(), sh = shock.checked, r = model(p, sh);
+    $('#ew-clv').textContent = money(r.clv, Math.abs(r.clv) < 100 ? 2 : 0);
+    const rt = $('#ew-ratio'); rt.textContent = p.cac > 0 ? (r.clv / p.cac).toFixed(1) + ' : 1' : 'no CAC'; rt.parentElement.classList.toggle('bad', p.cac > 0 && r.clv < p.cac);
+    $('#ew-first').textContent = r.clv > 0 ? pct(clamp(r.first / r.clv, 0, 1)) : 'n/a';
+    $('#ew-dev').textContent = r.dev.toLocaleString('en-US', {maximumFractionDigits: unit === 'hh' ? 1 : 0});
+    const keys = [['n', unit === 'hh' ? 'Devices' : 'Fleet size'], ['c', 'Cycle length'], ['rho', unit === 'hh' ? 'Comes back' : 'Share received'], ['s', unit === 'hh' ? 'Still reachable' : 'Renewal rate'], ['m', 'Margin per device'], ['k', 'Refurb attach'], ['km', 'Refurb margin'], ['d', 'Discount rate']];
+    const tor = keys.map(kv => { const lo = Object.assign({}, p), hi = Object.assign({}, p); lo[kv[0]] = p[kv[0]] * 0.8; hi[kv[0]] = p[kv[0]] * 1.2; if (kv[0] === 'rho') hi.rho = Math.min(1, hi.rho); if (kv[0] === 's') hi.s = Math.min(0.999, hi.s); const a = model(lo, sh).clv, b = model(hi, sh).clv; return {lab: kv[1], lo: a, hi: b, span: Math.abs(b - a)}; }).filter(t => t.span > 1e-9).sort((x, y) => y.span - x.span);
+    c1.render({r: r, cac: p.cac}); c2.render({tor: tor, base: r.clv});
+    let msg;
+    const fs = r.clv > 0 ? r.first / r.clv : 0;
+    if (r.clv <= 0) msg = 'At these numbers every pickup loses money, so more loyalty only deepens the loss. Fix unit economics before thinking about lifetime value.';
+    else if (unit === 'hh') msg = fs > 0.4 ? 'About ' + pct(fs) + ' of this household\'s 10-year value comes from the first pickup. CLTV here is mostly unit economics: the margin on each device decides the outcome, so price each pickup on its own.' : 'Repeat pickups carry most of the value here, so loyalty and cycle length are the levers to manage.';
+    else msg = 'Only ' + pct(fs) + ' of the value comes from the first contract year; renewals carry the rest. That is a real lifetime, and contract retention is the lever to manage.';
+    if (r.clv > 0 && p.cac > 0 && r.clv < p.cac) msg += ' This customer does not repay acquisition within 10 years.';
+    $('#ew-read').textContent = msg;
+  }
+  function drawYears(el, w, st){
+    const ys = st.r.years, h = 230, m = {l: 54, r: 12, t: 14, b: 34};
+    const svg = svgIn(el, w, h, 'Expected discounted value per year over 10 years; cumulative ' + money(st.r.clv) + ' against acquisition cost ' + money(st.cac) + '.');
+    const vals = ys.map(d => d.val).concat(ys.map(d => d.cum)).concat([st.cac]);
+    const ymin = niceMin(Math.min.apply(null, vals.concat([0])), 4), ymax = niceMax(Math.max.apply(null, vals.concat([0.01])) * 1.08, 4);
+    const y = lin(ymin, ymax, h - m.b, m.t); gridY(svg, y, ticks(ymin, ymax, 4), m.l, w - m.r, moneyK);
+    const n = ys.length, bw = (w - m.l - m.r) / n;
+    ys.forEach((d, i) => { const x0 = m.l + i * bw + bw * 0.18, ww = bw * 0.64; const ya = Math.min(y(0), y(d.val)), yb = Math.max(y(0), y(d.val)); S('rect', {x: x0, y: ya, width: ww, height: Math.max(0.5, yb - ya), rx: 2, class: d.val >= 0 ? 'f-mango' : 'f-plum'}, svg); txt(svg, x0 + ww / 2, h - m.b + 16, i === 0 ? 'now' : String(i), 'tick', 'middle'); });
+    if (st.cac > 0){ const yc = y(st.cac); S('line', {x1: m.l, x2: w - m.r, y1: yc, y2: yc, class: 'line thin s-sky dash'}, svg); txt(svg, w - m.r - 2, yc - 5, 'CAC ' + money(st.cac), 'lab-s', 'end'); }
+    S('path', {d: pathOf(ys.map((d, i) => [m.l + i * bw + bw / 2, d.cum]), v => v, y), class: 'line s-ink'}, svg);
+    ys.forEach((d, i) => S('circle', {cx: m.l + i * bw + bw / 2, cy: y(d.cum), r: 2.6, class: 'f-ink'}, svg));
+    txt(svg, w - m.r, h - 2, 'years after acquisition', 'tick', 'end');
+  }
+  function drawTorn(el, w, st){
+    const tor = st.tor, rowH = 24, ml = Math.min(136, Math.round(w * 0.4)), mr = 60, h = rowH * Math.max(1, tor.length) + 22;
+    const svg = svgIn(el, w, h, 'Sensitivity of CLTV to a 20% change in each input, largest first: ' + tor.map(t => t.lab).join(', ') + '.');
+    if (!tor.length) return;
+    let lo = st.base, hi = st.base; tor.forEach(t => { lo = Math.min(lo, t.lo, t.hi); hi = Math.max(hi, t.lo, t.hi); }); const pad = (hi - lo) * 0.05 || 1;
+    const x = lin(lo - pad, hi + pad, ml, w - mr);
+    tor.forEach((t, i) => { const yy = 4 + i * rowH; const a = Math.min(t.lo, t.hi), b = Math.max(t.lo, t.hi);
+      txt(svg, ml - 8, yy + rowH / 2 + 4, t.lab, 'lab', 'end');
+      if (a < st.base) S('rect', {x: x(a), y: yy + 5, width: Math.max(1, x(Math.min(b, st.base)) - x(a)), height: rowH - 10, class: 'f-plum'}, svg);
+      if (b > st.base) S('rect', {x: x(Math.max(a, st.base)), y: yy + 5, width: Math.max(1, x(b) - x(Math.max(a, st.base))), height: rowH - 10, class: 'f-leaf'}, svg);
+      txt(svg, x(b) + 6, yy + rowH / 2 + 4, '±' + moneyK(t.span / 2), 'tick'); });
+    const xb = x(st.base); S('line', {x1: xb, x2: xb, y1: 0, y2: h - 18, class: 'zero'}, svg);
+    txt(svg, xb, h - 4, 'base ' + moneyK(st.base), 'tick', 'middle');
+  }
+  const host = $('#ew-presets');
+  PRE.forEach(p => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.dataset.id = p.id; b.textContent = p.name; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => load(p.id)); host.appendChild(b); });
+  load('in');
+});
+
+/* ---------- 10 region matrix ---------- */
+safe('matrix', function(){
+  const host = $('#ew-matrix'), det = $('#ew-detail'); if (!host) return;
+  const REG = ['India', 'EU', 'US', 'China', 'Africa & parts of SE Asia'];
+  const LV = {S: ['Strong', 'lv-s'], M: ['Moderate', 'lv-m'], W: ['Weak', 'lv-w']};
+  const ROWS = [
+    {k: 'Household disposer', s: 'sells or drops off old devices', c: [
+      ['W', 'cash at the door', 'Disposal is rare, and informal collectors pay cash at the doorstep. Formal players compete on price and convenience, and formal recycling reached 43% only recently (FY 2023-24). Price each pickup on its own economics. Use CLTV only for repeat-prone segments such as housing societies, offices, or households you also sell refurbished devices to.'],
+      ['W', 'free take-back', 'Take-back is mandated: shops and municipal points accept old devices free, so handing one in earns the consumer little and loyalty is thin. Value sits in the device rather than the relationship, unless disposal feeds a refurbished purchase or a trade-in.'],
+      ['M', 'trade-in loop', 'There is no federal mandate; 25 states and DC run e-waste laws. Trade-in programs from carriers, brands and recommerce sites tie each disposal to the next purchase, creating repeat events every few years. Cycles are lengthening, so keep horizons modest.'],
+      ['M', 'subsidy waves', 'Large platforms run trade-in at scale. The national trade-in subsidy (from January 2025: 15% of the price, up to ¥500, on phones under ¥6,000) pulls purchases forward and then leaves a gap. Treat each policy window as a regime change.'],
+      ['W', 'informal, sparse data', 'Informal collection dominates, and Africa\'s documented formal recycling is under 1%. Identities and transactions are hard to observe. Use per-pickup unit economics and partnerships with communities or businesses.']]},
+    {k: 'Refurbished-device buyer', s: 'buys devices you refurbish', c: [
+      ['M', 'growing, short history', 'Refurbished phone volumes grew 13% in the first half of 2026 while new shipments fell 11%. Buyers come back for upgrades and accessories, but histories are short, so borrow curves from similar cohorts and update fast.'],
+      ['S', 'mature demand', 'Refurbished buying is mainstream, with warranties and repeat purchases that behave like e-commerce. Standard buyer CLTV works: BG/NBD, cohort curves, machine-learning pLTV.'],
+      ['S', 'deep recommerce', 'Large recommerce marketplaces and trade-in programs give rich purchase histories. Non-contractual models apply directly.'],
+      ['M', 'big platforms, policy-sensitive', 'Platforms have strong data, but subsidies on new phones shift demand between new and refurbished. Add policy flags to the models.'],
+      ['W', 'big channel, thin data', 'Used and refurbished devices are a major route to ownership, but trade is fragmented and often informal. CLTV works only inside platforms that capture repeat transactions.']]},
+    {k: 'Business and bulk consumer', s: 'IT asset disposition contracts', c: [
+      ['S', 'contracts and compliance', 'Bulk consumers must hand e-waste only to registered channels under the 2022 Rules, and IT refresh contracts renew yearly. Account-level CLTV (renewal × devices × margin) works well.'],
+      ['S', 'data-security contracts', 'Contracts, GDPR-driven data destruction and audit trails make relationships sticky and observable.'],
+      ['S', 'refresh cycles', 'Enterprise refresh cycles and certified data destruction create repeat contract revenue.'],
+      ['M', 'large but uneven', 'A large enterprise base, but market access and data vary by province and ownership.'],
+      ['M', 'concentrated', 'Fewer formal contracts; demand concentrates in large companies and city hubs.']]},
+    {k: 'Producer buying EPR compliance', s: 'recycling certificates, take-back', c: [
+      ['S', 'targets 60% → 80%', 'Producers must meet rising recycling targets, from 60% in FY 2023-24 to 80% from FY 2027-28, using certificates from registered recyclers. Certificates trade on a CPCB portal within a band of 30% to 100% of the non-compliance penalty. Demand renews every year like a contract, but its value hangs on the rules, so model regulation as a scenario.'],
+      ['M', 'compliance schemes', 'Producers usually meet WEEE obligations through compliance schemes. Contracts run for years but fees are competitive, and many member states fall short of the Directive\'s 65% collection target.'],
+      ['M', 'state by state', 'Obligations differ by state (25 states plus DC), so contracts are fragmented and regional.'],
+      ['W', 'policy-run', 'Processor payments run through state-managed funding: the old disposal subsidy fund was abolished and a new incentive fund was drafted in 2024. Revenue is defined by policy, not by relationships.'],
+      ['W', 'emerging', 'EPR rules are emerging in several countries and enforcement varies. It is too early for relationship models.']]}
+  ];
+  const corner = document.createElement('div'); corner.className = 'mx-h'; corner.textContent = 'Customer ↓ · Region →'; host.appendChild(corner);
+  REG.forEach(r => { const d = document.createElement('div'); d.className = 'mx-h'; d.textContent = r; host.appendChild(d); });
+  const cells = [];
+  function show(ri, ci){ const row = ROWS[ri], cell = row.c[ci]; cells.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ri == ri && b.dataset.ci == ci)));
+    clear(det); const h = document.createElement('h3'); h.textContent = row.k + ' · ' + REG[ci] + ' · ' + LV[cell[0]][0]; const p = document.createElement('p'); p.textContent = cell[2]; det.appendChild(h); det.appendChild(p); }
+  ROWS.forEach((row, ri) => { const rh = document.createElement('div'); rh.className = 'mx-r'; rh.textContent = row.k; const sp = document.createElement('span'); sp.textContent = row.s; rh.appendChild(sp); host.appendChild(rh);
+    row.c.forEach((cell, ci) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'cell ' + LV[cell[0]][1]; b.dataset.ri = ri; b.dataset.ci = ci; b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', row.k + ', ' + REG[ci] + ': ' + LV[cell[0]][0] + ', ' + cell[1]);
+      const lv = document.createElement('span'); lv.className = 'lv'; lv.textContent = LV[cell[0]][0]; const mi = document.createElement('span'); mi.className = 'mini'; mi.textContent = cell[1]; b.appendChild(lv); b.appendChild(mi);
+      b.addEventListener('click', () => show(ri, ci)); host.appendChild(b); cells.push(b); }); });
+  show(0, 0);
+});
+
+/* ---------- 11 C2C seller value ---------- */
+safe('seller', function(){
+  const el = $('#sv-chart'); if (!el) return;
+  const TAU = 0.138, D = 0.10;
+  const g = {items: bind('sv-items', v => String(v), upd), asp: bind('sv-asp', v => money(v), upd), fee: bind('sv-fee', v => pct(v, 1), upd), ret: bind('sv-ret', v => pct(v), upd), lift: bind('sv-lift', v => '+' + pct(v), upd), spill: bind('sv-spill', v => money(v, 2), upd), sab: bind('sv-sab', v => money(v), upd)};
+  const c = chart(el, draw);
+  const SEG = [['fees', 'f-mango', 'seller fees'], ['bpf', 'f-sky', 'buyer protection fee'], ['spill', 'f-leaf', 'spillover'], ['sab', 'f-soil', 'own buying']];
+  function bpf(p){ return 0.75 + 0.04 * Math.min(p, 300) + 0.02 * Math.max(0, Math.min(p, 4000) - 300); }
+  function upd(){
+    const it = g.items(), asp = g.asp(), f = g.fee(), r = g.ret(), lift = g.lift(), sp = g.spill(), sab = g.sab();
+    const yf = 1 + r / (1 + D) + (r * r) / Math.pow(1 + D, 2);
+    const models = [['Seller pays fees', 'classic model', it], ['Buyer pays protection fee', 'UK private sellers since Feb 2025', it * (1 + lift)], ['Free for both sides', 'as Germany launched it in 2023', it * (1 + lift)]].map((mo, i) => {
+      const gmv = mo[2] * asp; const parts = {fees: i === 0 ? mo[2] * (asp * f + 0.40) : 0, bpf: i === 1 ? mo[2] * bpf(asp) : 0, spill: gmv * sp * TAU, sab: sab * TAU};
+      Object.keys(parts).forEach(k => { parts[k] *= yf; }); const total = parts.fees + parts.bpf + parts.spill + parts.sab;
+      return {k: mo[0], sub: mo[1], parts: parts, total: total, direct: total > 0 ? (parts.fees + parts.bpf) / total : 0}; });
+    c.render({models: models});
+  }
+  function draw(el, w, st){
+    const ms = st.models, rowH = 70, h = rowH * ms.length + 8;
+    const svg = svgIn(el, w, h, 'Three-year seller value by fee model: ' + ms.map(m => m.k + ' ' + money(m.total)).join('; ') + '.');
+    const vmax = Math.max(1, Math.max.apply(null, ms.map(m => m.total))) * 1.02; const x0 = 2, x1 = w - 2; const sx = v => (x1 - x0) * v / vmax;
+    ms.forEach((m, i) => { const y = 4 + i * rowH;
+      txt(svg, x0, y + 14, m.k, 'lab-b'); txt(svg, x0, y + 30, m.sub, 'tick');
+      txt(svg, x1, y + 14, money(m.total), 'lab-b', 'end'); txt(svg, x1, y + 30, pct(m.direct) + ' direct', 'tick', 'end');
+      let cx = x0; SEG.forEach(sg => { const ww = sx(m.parts[sg[0]]); if (ww > 0.2){ S('rect', {x: cx, y: y + 38, width: ww, height: 20, class: sg[1]}, svg); if (ww > 46) txt(svg, cx + ww / 2, y + 52, moneyK(m.parts[sg[0]]), sg[0] === 'fees' ? 'tick f-onmango' : 'tick f-surface', 'middle'); } cx += ww; });
+      S('rect', {x: x0, y: y + 38, width: Math.max(1, sx(m.total)), height: 20, class: 'f-none s-ink', 'stroke-width': 0.6, 'stroke-opacity': 0.35}, svg); });
+  }
+  upd();
+});
+
+/* ---------- 11 two buyers ---------- */
+safe('twoBuyers', function(){
+  const A = {T: 48, x: 1, tx: 8, aov: 300}, B = {T: 48, x: 29, tx: 46, aov: 20};
+  function fill(id, cfg){ const host = $('#' + id); if (!host) return; clear(host); const pa = pAlive(cfg.x, cfg.tx, cfg.T), ep = expPurch(52, cfg.x, cfg.tx, cfg.T), em = ggMean(cfg.x, cfg.aov);
+    [['P(alive)', pct(pa)], ['Orders, next 52 wks', ep.toFixed(1)], ['Next order value', money(em)], ['Expected spend', money(ep * em)]].forEach(kv => { const d = document.createElement('div'); d.className = 'stat'; const k = document.createElement('span'); k.className = 'k'; k.textContent = kv[0]; const v = document.createElement('span'); v.className = 'v'; v.textContent = kv[1]; d.appendChild(k); d.appendChild(v); host.appendChild(d); }); }
+  fill('bA', A); fill('bB', B);
+  const dots = $('#bB-dots'); if (dots) for (let i = 0; i < 30; i++) dots.appendChild(document.createElement('i'));
+  $$('[data-load]').forEach(b => b.addEventListener('click', () => { if (bgLoad) bgLoad(b.dataset.load === 'A' ? A : B); }));
+});
+
+/* ---------- small interactions ---------- */
+safe('blights', function(){ $$('.blight').forEach(b => b.addEventListener('click', () => { const on = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded', String(on)); const cue = b.querySelector('.cue'); if (cue) cue.textContent = on ? 'Show symptom' : 'Show fix'; })); });
+safe('playbook', function(){
+  const KEY = 'cltv-orchard-playbook'; let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  $$('#playbook input[type=checkbox]').forEach(cb => { cb.checked = !!saved[cb.id]; cb.closest('li').classList.toggle('done', cb.checked);
+    cb.addEventListener('change', () => { saved[cb.id] = cb.checked; cb.closest('li').classList.toggle('done', cb.checked); try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} }); });
+});
+safe('nav', function(){
+  const bar = $('#progress'), toc = $('#toc');
+  const onScroll = () => { const h = document.documentElement; const max = h.scrollHeight - window.innerHeight; const p = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0; bar.style.transform = 'scaleX(' + p.toFixed(4) + ')'; };
+  window.addEventListener('scroll', onScroll, {passive: true}); onScroll();
+  $$('.toc a').forEach(a => a.addEventListener('click', () => { toc.open = false; }));
+  document.addEventListener('click', e => { if (toc.open && !toc.contains(e.target)) toc.open = false; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && toc.open){ toc.open = false; const s = toc.querySelector('summary'); if (s) s.focus(); } });
+  if ('IntersectionObserver' in window){ const links = new Map(); $$('.toc a').forEach(a => links.set(a.getAttribute('href').slice(1), a));
+    const io = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting){ links.forEach(l => l.classList.remove('cur')); const l = links.get(en.target.id); if (l) l.classList.add('cur'); } }); }, {rootMargin: '-35% 0px -60% 0px'});
+    $$('section.chapter[id]').forEach(s => io.observe(s)); }
+});
+})();
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
