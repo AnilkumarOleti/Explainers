@@ -412,6 +412,14 @@
           "ask": "Why does scrolling feel good and effort feel bad?"
         },
         {
+          "slug": "dopamine-slot-machine",
+          "title": "The Dopamine Slot Machine",
+          "blurb": "Your feed, taken apart like a slot machine: variable rewards, infinite scroll and red badges, each matched to the brain circuit it pulls on.",
+          "artifact": "efa9646d-1614-4034-91aa-1785aa074f74",
+          "note": "Hands-on, about 20 minutes",
+          "ask": "Why can't you stop scrolling?"
+        },
+        {
           "slug": "long-dusk",
           "title": "The Long Dusk",
           "blurb": "Death in pictures: what happens in the body, the stories every culture tells, and why we fear it.",
