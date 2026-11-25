@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Who is watching? | Explainers</title>
+<meta name="description" content="A guided self-inquiry in the way of Nisargadatta Maharaj, with the brain alongside: everything you notice lights up somewhere. The one noticing doesn&#x27;t.">
+<link rel="canonical" href="https://anilkumaroleti.github.io/Explainers/who-is-watching/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Explainers">
+<meta property="og:title" content="Who is watching?">
+<meta property="og:description" content="A guided self-inquiry in the way of Nisargadatta Maharaj, with the brain alongside: everything you notice lights up somewhere. The one noticing doesn&#x27;t.">
+<meta property="og:url" content="https://anilkumaroleti.github.io/Explainers/who-is-watching/">
+<meta property="og:image" content="https://anilkumaroleti.github.io/Explainers/who-is-watching/card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<style>
+/* VOICE    tender and unhurried: a dim room for sitting, with a lab bench beside it
+   IDEA     a diptych: the inside of closed eyes on the left, facing the brain as science draws it on the right
+   PICTURE  left, a field where whatever you notice appears as a coloured mote; right, a stippled brain in two views whose networks glow in the same colours
+   COLOUR & TYPE  eigengrau ground in both themes, ash ink; vermilion = the self-model, sea-glass = the present, white = noticing.
+            Newsreader is the voice inside, IBM Plex Sans the view from outside, Tiro Devanagari for Sanskrit and Marathi
+   LAYOUT   side by side from 980px; below that, practice first and the brain beneath; sources and notes as a calm band at the end */
+:root{color-scheme:dark;--bg:#16161d;--bg2:#1a1a22;--ink:#ebe7df;--ink2:#d0ccd5;--mute:#a4a0ad;--line:rgba(235,231,223,.12);--self:#f26b4e;--now:#7ccfbf;--note:#fff7e8;--serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",system-ui,sans-serif;--deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari",serif}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--now);outline-offset:3px;border-radius:6px}
+a{color:inherit;text-decoration-color:rgba(235,231,223,.35);text-underline-offset:2px}
+a:hover{text-decoration-color:currentColor}
+[hidden]{display:none!important}
+.app{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}
+.inside{position:relative;height:100svh;min-height:620px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 46%,#1c1c24 0%,#16161d 52%,#101016 100%)}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block}
+.top,.stage,.ctrl{position:relative;z-index:1}
+.top{display:flex;align-items:center;gap:12px;padding:6px clamp(12px,2.4vw,24px)}
+.brand{font:500 15px/1 var(--sans);color:var(--ink2);min-height:44px;padding:0 4px}
+.prog{display:flex;align-items:center;gap:3px;margin-left:auto}
+.prog button{width:24px;height:44px;display:grid;place-items:center}
+.prog i{display:block;width:100%;height:3px;border-radius:2px;background:rgba(235,231,223,.16);transition:background .5s}
+.prog .done i{background:rgba(235,231,223,.42)}
+.prog [aria-current=step] i{background:var(--ink)}
+.iconb{width:44px;height:44px;display:grid;place-items:center;color:var(--mute)}
+.iconb[aria-pressed=true]{color:var(--ink2)}
+.iconb .x{opacity:1}.iconb[aria-pressed=true] .x{opacity:0}
+.stage{display:grid;place-items:center;padding:0 clamp(18px,5vw,64px);text-align:center}
+.stage:focus{outline:none}
+.wrap{max-width:640px;width:100%}
+.name{font:500 13px/1.2 var(--sans);color:var(--mute);margin:0 0 18px}
+.say{font:300 clamp(25px,1.1vw + 17px,34px)/1.3 var(--serif);letter-spacing:-.005em;margin:0;text-wrap:balance;transition:opacity .4s}
+.say em{font-style:italic}
+.say .ln{display:block;text-wrap:balance}
+.breath{font:400 16px/1.4 var(--sans);color:var(--mute);margin:22px 0 0;min-height:22px}
+.sub{font:400 16px/1.5 var(--sans);color:var(--mute);max-width:46ch;margin:22px auto 0}
+.hint{font:400 15px/1.4 var(--sans);color:var(--mute);margin:20px 0 0}
+.dev{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;align-items:baseline}
+.dev span{font:400 30px/1.3 var(--deva);color:var(--ink2)}
+.dev small{font:400 13px/1.4 var(--sans);color:var(--mute)}
+.epi{margin:0 auto 28px;max-width:42ch}
+.epi p{font:italic 300 19px/1.45 var(--serif);color:var(--ink2);margin:0}
+.epi cite{display:block;font:400 13px/1.4 var(--sans);font-style:normal;color:var(--mute);margin-top:8px}
+.cover h1{font:300 clamp(40px,2.6vw + 22px,56px)/1.05 var(--serif);letter-spacing:-.015em;margin:0;text-wrap:balance}
+.lede{font:400 17px/1.5 var(--sans);color:var(--ink2);max-width:38ch;margin:18px auto 0;text-wrap:balance}
+.pace{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:30px 0 0}
+.pace label{position:relative;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;border:1px solid var(--line);font:400 15px/1 var(--sans);color:var(--mute);cursor:pointer;transition:border-color .3s,color .3s}
+.pace input{position:absolute;opacity:0;pointer-events:none}
+.pace label:has(input:checked){border-color:rgba(235,231,223,.6);color:var(--ink)}
+.pace label:has(input:focus-visible){outline:2px solid var(--now);outline-offset:3px}
+.begin{margin:22px 0 0;min-height:50px;padding:0 34px;border-radius:999px;background:var(--ink);color:var(--bg);font:600 16px/1 var(--sans)}
+.fine{font:400 14px/1.45 var(--sans);color:var(--mute);margin:20px 0 0}
+.tap{width:116px;height:116px;border-radius:50%;margin:30px auto 0;display:grid;place-items:center;border:1px solid rgba(242,107,78,.65);font:500 15px/1.25 var(--sans);color:var(--ink);background:radial-gradient(circle,rgba(242,107,78,.16),rgba(242,107,78,0) 70%);transition:transform .12s}
+.tap:active{transform:scale(.95)}
+.count{font:400 14px/1.4 var(--sans);color:var(--mute);margin:12px 0 0;min-height:20px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:560px;margin:26px auto 0}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);font:400 15px/1.2 var(--sans);color:var(--ink2);transition:opacity .5s,border-color .3s}
+.chip[data-c=d]{border-color:rgba(242,107,78,.5)}.chip[data-c=n]{border-color:rgba(124,207,191,.5)}.chip[data-c=s]{border-color:rgba(255,247,232,.45)}
+.chip[aria-pressed=true]{opacity:.34;text-decoration:line-through;text-decoration-thickness:1px}
+.end .say{font-size:clamp(23px,.9vw + 16px,30px)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:28px 0 0;text-align:left}
+.two div{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:rgba(22,22,29,.55)}
+.two h3{font:600 15px/1.3 var(--sans);margin:0 0 6px}
+.two p{font:400 15px/1.5 var(--sans);color:var(--ink2);margin:0}
+.end .btn{margin-top:24px}
+.ctrl{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px clamp(14px,2.6vw,26px) 18px}
+.btn{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);font:500 15px/1 var(--sans);display:inline-flex;align-items:center;gap:10px;transition:border-color .5s,color .5s}
+.btn:hover{border-color:rgba(235,231,223,.32);color:var(--ink)}
+.btn.ready{border-color:rgba(235,231,223,.62);color:var(--ink)}
+.go{display:flex;align-items:center;gap:12px;margin-left:auto}
+.ring{width:28px;height:28px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:2}
+.ring .bgc{stroke:rgba(235,231,223,.12)}
+.ring .fg{stroke:rgba(235,231,223,.6);stroke-linecap:round}
+.outside{height:100svh;min-height:620px;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;background:var(--bg2);border-left:1px solid var(--line)}
+.ohead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:20px clamp(16px,2.6vw,28px) 0}
+.ohead h2{font:500 15px/1.3 var(--sans);color:var(--ink2);margin:0}
+.ohead span{font:400 13px/1.3 var(--sans);color:var(--mute)}
+.fig{position:relative;min-height:300px}
+.fig canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:4px 18px;padding:2px clamp(16px,2.6vw,28px) 12px;font:400 13px/1.45 var(--sans);color:var(--mute)}
+.legend b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.cap{padding:16px clamp(16px,2.6vw,28px) 20px;border-top:1px solid var(--line);height:272px;overflow:auto}
+.cap h3{font:600 18px/1.3 var(--sans);margin:0 0 6px;text-wrap:balance}
+.cap p{margin:0 0 10px;color:var(--ink2);max-width:64ch}
+.cap .src{font-size:13px;color:var(--mute);margin:0}
+.phases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:2px 0 10px}
+.phases div{border:1px solid var(--line);border-radius:10px;padding:6px 8px;font:500 13px/1.3 var(--sans);color:var(--mute);transition:color .3s,border-color .3s,background .3s}
+.phases small{display:block;font:400 13px/1.3 var(--sans);opacity:.85}
+.phases .on{color:var(--ink);border-color:rgba(235,231,223,.5);background:rgba(235,231,223,.05)}
+.phases .on[data-c=d]{color:#ffbba9;border-color:rgba(242,107,78,.7)}
+.phases .on[data-c=n]{color:#c2f0e6;border-color:rgba(124,207,191,.7)}
+.stat{display:flex;gap:12px;align-items:baseline}
+.stat b{font:300 34px/1 var(--serif);color:var(--ink);flex:none}
+.stat span{font-size:15px}
+.notes{max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,72px) max(5vw,16px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,4vw,64px)}
+.notes h2{font:300 28px/1.15 var(--serif);margin:0 0 16px}
+.notes h3{font:600 15px/1.3 var(--sans);margin:26px 0 6px}
+.notes h3:first-of-type{margin-top:0}
+.notes ol{margin:0;padding-left:1.3em;color:var(--ink2);font-size:14px;line-height:1.5}
+.notes li{margin:0 0 7px}
+.notes p{margin:0 0 10px;color:var(--ink2);font-size:15px;max-width:60ch}
+.notes .quiet{color:var(--mute)}
+@media (max-width:979px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .inside{height:auto;min-height:max(600px,82svh)}
+  .outside{height:auto;min-height:0;border-left:0;border-top:1px solid var(--line);grid-template-rows:auto auto auto auto}
+  .fig{height:min(58vw,440px)}
+  .cap{height:auto;min-height:220px}
+  .notes{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .fig{height:400px}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .brand{display:none}
+  .prog{margin:0 auto}
+  .prog button{width:20px}
+  .phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+  .say,.chip,.btn,.prog i,.phases div{transition:none}
+  .tap:active{transform:none}
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <section class="inside" id="inside" aria-label="The practice">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <header class="top">
+      <button class="brand" id="home" aria-label="Back to the start">Who is watching?</button>
+      <nav class="prog" id="prog" aria-label="Steps"></nav>
+      <button class="iconb" id="bellb" aria-pressed="true" aria-label="Soft bell at the end of each pause">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/><path class="x" d="M4 4l16 16"/></svg>
+      </button>
+    </header>
+    <div class="stage" id="stage" aria-live="polite"></div>
+    <footer class="ctrl" id="ctrl" hidden>
+      <button class="btn" id="back">Back</button>
+      <div class="go">
+        <svg class="ring" id="ring" viewBox="0 0 28 28" aria-hidden="true"><circle class="bgc" cx="14" cy="14" r="11"/><circle class="fg" id="ringc" cx="14" cy="14" r="11" stroke-dasharray="69.12" stroke-dashoffset="69.12"/></svg>
+        <button class="btn" id="next"><span>Continue</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </footer>
+  </section>
+
+  <section class="outside" aria-label="Meanwhile, in the brain">
+    <div class="ohead"><h2>Meanwhile, in the brain</h2><span>schematic, not a scan</span></div>
+    <div class="fig"><canvas id="brain" role="img" aria-label="Schematic brain"></canvas></div>
+    <div class="legend" aria-hidden="true">
+      <span><b style="background:var(--self)"></b>self-model · default network</span>
+      <span><b style="background:var(--now)"></b>the present · senses, body, attention</span>
+      <span><b style="background:var(--note)"></b>noticing · salience</span>
+    </div>
+    <div class="cap" id="cap"></div>
+  </section>
+</main>
+
+<section class="notes" aria-label="Sources and notes">
+  <div>
+    <h2>Sources</h2>
+    <ol>
+      <li>Raichle, M. E. et al. (2001). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC14647/">A default mode of brain function</a>. <i>PNAS</i> 98, 676–682.</li>
+      <li>Seth, A. (2021). <a href="https://en.wikipedia.org/wiki/Being_You:_A_New_Science_of_Consciousness"><i>Being You: A New Science of Consciousness</i></a>. Faber.</li>
+      <li>Hasenkamp, W. et al. (2012). <a href="https://doi.org/10.1016/j.neuroimage.2011.07.008">Mind wandering and attention during focused meditation</a>. <i>NeuroImage</i> 59, 750–760.</li>
+      <li>Killingsworth, M. A. &amp; Gilbert, D. T. (2010). <a href="https://doi.org/10.1126/science.1192439">A wandering mind is an unhappy mind</a>. <i>Science</i> 330, 932.</li>
+      <li>Farb, N. A. S. et al. (2007). <a href="https://doi.org/10.1093/scan/nsm030">Attending to the present: mindfulness meditation reveals distinct neural modes of self-reference</a>. <i>SCAN</i> 2, 313–322.</li>
+      <li>Buckner, R. L., Andrews-Hanna, J. R. &amp; Schacter, D. L. (2008). <a href="https://doi.org/10.1196/annals.1440.011">The brain’s default network</a>. <i>Ann. N.Y. Acad. Sci.</i> 1124, 1–38.</li>
+      <li>Craig, A. D. (2009). <a href="https://doi.org/10.1038/nrn2555">How do you feel — now? The anterior insula and human awareness</a>. <i>Nat. Rev. Neurosci.</i> 10, 59–70.</li>
+      <li>Botvinick, M. &amp; Cohen, J. (1998). <a href="https://doi.org/10.1038/35784">Rubber hands ‘feel’ touch that eyes see</a>. <i>Nature</i> 391, 756.</li>
+      <li>Blanke, O. et al. (2002). <a href="https://doi.org/10.1038/419269a">Stimulating illusory own-body perceptions</a>. <i>Nature</i> 419, 269–270.</li>
+      <li>Garrison, K. A. et al. (2013). <a href="https://doi.org/10.3389/fnhum.2013.00440">Effortless awareness: using real time neurofeedback to investigate correlates of posterior cingulate cortex activity in meditators’ self-report</a>. <i>Front. Hum. Neurosci.</i> 7, 440.</li>
+      <li>Brewer, J. A. et al. (2011). <a href="https://doi.org/10.1073/pnas.1112029108">Meditation experience is associated with differences in default mode network activity and connectivity</a>. <i>PNAS</i> 108, 20254–20259.</li>
+      <li>Dennett, D. C. (1991). <a href="https://en.wikipedia.org/wiki/Cartesian_theater"><i>Consciousness Explained</i></a>. Little, Brown.</li>
+      <li>Metzinger, T. (2009). <i>The Ego Tunnel: The Science of the Mind and the Myth of the Self</i>.</li>
+      <li>Josipovic, Z. et al. (2012). <a href="https://doi.org/10.3389/fnhum.2011.00183">Influence of meditation on anti-correlated networks in the brain</a>. <i>Front. Hum. Neurosci.</i> 5, 183.</li>
+      <li>Cogitate Consortium (2025). <a href="https://doi.org/10.1038/s41586-025-08888-1">Adversarial testing of global neuronal workspace and integrated information theories of consciousness</a>. <i>Nature</i> 642, 133–142.</li>
+      <li><a href="https://sacred-texts.com/hin/sbe15/sbe15067.htm">Bṛhadāraṇyaka Upaniṣad 3.4.2</a>, in <i>The Upanishads, Part 2</i>, tr. F. Max Müller (Sacred Books of the East, vol. 15).</li>
+      <li>Nisargadatta Maharaj (1973). <i>I Am That</i>, tr. Maurice Frydman; and <i>Prior to Consciousness</i>, ed. Jean Dunn (1985).</li>
+    </ol>
+  </div>
+  <div>
+    <h3>About Nisargadatta Maharaj</h3>
+    <p>Born Maruti Shivrampant Kambli (1897–1981), he sold bidis from a small shop in Khetwadi, Mumbai. In 1933 he met his teacher, Siddharameshwar Maharaj of the Inchegeri lineage, who told him to attend to the bare sense “I am”. His talks, given in Marathi and translated by Maurice Frydman as <i>I Am That</i> (1973), made him known worldwide. The practice here paraphrases his approach in plain words; it doesn’t quote his books.</p>
+    <h3>About the pictures</h3>
+    <p>The brain is a see-through side view, front to the left, like the “glass brain” plots in imaging papers: regions on the brain’s inner face show through the outer one. It is schematic. Regions sit roughly where they are, and brightness shows what the cited studies typically report for that kind of moment, not a reading of your brain.</p>
+    <p>The background is eigengrau, the dark grey people report seeing in total darkness.</p>
+    <h3>Going further</h3>
+    <p>Thomas Metzinger’s <a href="https://www.penguinrandomhouse.com/books/730963/the-elephant-and-the-blind-by-thomas-metzinger/"><i>The Elephant and the Blind</i></a> (2024) gathers more than 500 meditators’ reports of “pure awareness”, from a survey spanning 57 countries, and treats them as data.</p>
+    <h3>If it gets unsettling</h3>
+    <p class="quiet">Self-inquiry can now and then feel strange or unmooring. If it does, open your eyes, feel your feet on the floor, and take a break. If the feeling lingers, talk to someone you trust or to a professional.</p>
+  </div>
+</section>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const mq=matchMedia('(prefers-reduced-motion: reduce)');
+let reduce=mq.matches;
+if(mq.addEventListener) mq.addEventListener('change',e=>{reduce=e.matches});
+const store={get(k,d){try{const v=localStorage.getItem('wiw-'+k);return v===null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem('wiw-'+k,v)}catch(e){}}};
+const now=()=>performance.now()/1000;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+const RGB={d:[242,107,78],n:[124,207,191],s:[255,247,232]};
+const LABC={d:[255,187,169],n:[194,240,230],s:[255,255,255]};
+const ASH=[235,231,223];
+const rgba=(c,a)=>`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${clamp(a,0,1).toFixed(3)})`;
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function spline(pts,closed,seg){const out=[],n=pts.length,get=i=>closed?pts[(i+n)%n]:pts[clamp(i,0,n-1)],last=closed?n:n-1;
+  for(let i=0;i<last;i++){const p0=get(i-1),p1=get(i),p2=get(i+1),p3=get(i+2);
+    for(let k=0;k<seg;k++){const t=k/seg,t2=t*t,t3=t2*t,f=(a,b,c,d)=>.5*(2*b+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);out.push([f(p0[0],p1[0],p2[0],p3[0]),f(p0[1],p1[1],p2[1],p3[1])])}}
+  if(!closed)out.push(pts[n-1]);return out}
+function inPoly(y,z,p){let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const a=p[i],b=p[j];if((a[1]>z)!==(b[1]>z)&&y<(b[0]-a[0])*(z-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+function dSeg(py,pz,ay,az,by,bz){const dy=by-ay,dz=bz-az,L=dy*dy+dz*dz;let t=L?((py-ay)*dy+(pz-az)*dz)/L:0;t=clamp(t,0,1);return Math.hypot(ay+t*dy-py,az+t*dz-pz)}
+function dLine(py,pz,l){let m=1e9;for(let i=0;i<l.length-1;i++)m=Math.min(m,dSeg(py,pz,l[i][0],l[i][1],l[i+1][0],l[i+1][1]));return m}
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+
+/* ---------- anatomy: one see-through side view, in MNI-like millimetres; y = front(+)/back(-), z = up(+)/down(-) ---------- */
+const G={
+  cere:[[70,-4],[71,12],[66,30],[56,46],[42,60],[24,70],[3,76],[-20,78],[-42,74],[-62,64],[-79,49],[-92,31],[-101,12],[-104,-4],[-99,-16],[-88,-23],[-72,-29],[-55,-35],[-38,-40],[-20,-43],[-3,-43],[12,-39],[22,-32],[27,-23],[24,-15],[18,-11],[28,-14],[42,-19],[57,-18],[66,-12]],
+  cbl:[[-46,-41],[-56,-34],[-72,-32],[-88,-36],[-97,-46],[-94,-58],[-80,-66],[-62,-66],[-50,-60],[-44,-50]],
+  stem:[[-12,-42],[-26,-42],[-31,-56],[-33,-72],[-27,-82],[-19,-80],[-16,-64],[-12,-52]],
+  sulci:[[[19,-11],[8,-4],[-6,2],[-22,8],[-36,14],[-46,20],[-52,28]],[[-25,77],[-21,66],[-17,55],[-12,44],[-8,33],[-5,22],[-4,14]],
+    [[-6,76],[-2,62],[3,48],[7,36],[10,25]],[[-40,73],[-36,60],[-31,47],[-27,36],[-24,26]],[[56,40],[42,51],[26,58],[10,62]],
+    [[60,18],[46,25],[30,30],[14,33]],[[18,-27],[2,-22],[-16,-16],[-34,-9],[-50,0],[-60,10]],[[-30,50],[-44,53],[-60,48],[-74,38],[-84,28]],
+    [[8,-36],[-12,-34],[-32,-30],[-52,-24],[-68,-16]],[[10,-3],[13,8],[15,17]],[[57,-7],[45,-9],[34,-7]],[[-80,38],[-89,24],[-95,11]]],
+  cc:[[22,-2],[31,6],[28,18],[12,25],[-8,26],[-26,23],[-37,15],[-39,6]]
+};
+const REG={
+  mPFC:{c:[50,8],s:[10,14],lab:'self-reflection',lo:[0,22]},
+  dACC:{c:[16,34],s:[12,6],lab:'what matters',lo:[0,14]},
+  PCC:{c:[-44,34],s:[11,12],lab:'the ‘me’ hub',lo:[2,-17]},
+  HPC:{c:[-26,-16],s:[13,5],lab:'memory',lo:[-14,-9]},
+  LT:{c:[-6,-31],s:[17,5.5],lab:'facts about you',lo:[0,-13]},
+  V1:{c:[-92,4],s:[10,11],lab:'sight',lo:[0,-17]},
+  dlPFC:{c:[38,36],s:[11,9],lab:'steering',lo:[0,18]},
+  ins:{c:[8,0],s:[13,6],lab:'inner body',lo:[6,-12]},
+  S1:{c:[-26,52],s:[6,15],lab:'body map',lo:[0,24]},
+  A1:{c:[-24,4],s:[8,5],lab:'sound',lo:[0,-11]},
+  AG:{c:[-68,24],s:[10,9],lab:'where you are',lo:[-8,-15]},
+  IPS:{c:[-52,60],s:[11,7],lab:'holding focus',lo:[0,13]}
+};
+const FULL={mPFC:'medial prefrontal cortex',dACC:'anterior cingulate',PCC:'posterior cingulate',HPC:'hippocampus',LT:'lateral temporal cortex',V1:'visual cortex',dlPFC:'dorsolateral prefrontal cortex',ins:'insula',S1:'somatosensory cortex',A1:'auditory cortex',AG:'angular gyrus',IPS:'parietal attention areas'};
+for(const k in REG)Object.assign(REG[k],{lvl:0,tgt:0,col:'d',rgb:RGB.d.slice(),dots:[]});
+const SWEEP=Object.keys(REG).sort((a,b)=>REG[b].c[0]-REG[a].c[0]);
+/* ---------- words ---------- */
+const S={
+  raichle:'<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC14647/">Raichle et al., <i>PNAS</i> 2001</a>',
+  seth:'<a href="https://en.wikipedia.org/wiki/Being_You:_A_New_Science_of_Consciousness">Seth, <i>Being You</i>, 2021</a>',
+  hasen:'<a href="https://doi.org/10.1016/j.neuroimage.2011.07.008">Hasenkamp et al., <i>NeuroImage</i> 2012</a>',
+  kg:'<a href="https://doi.org/10.1126/science.1192439">Killingsworth &amp; Gilbert, <i>Science</i> 2010</a>',
+  farb:'<a href="https://doi.org/10.1093/scan/nsm030">Farb et al., <i>SCAN</i> 2007</a>',
+  buckner:'<a href="https://doi.org/10.1196/annals.1440.011">Buckner et al., 2008</a>',
+  craig:'<a href="https://doi.org/10.1038/nrn2555">Craig, 2009</a>',
+  bot:'<a href="https://doi.org/10.1038/35784">Botvinick &amp; Cohen, <i>Nature</i> 1998</a>',
+  blanke:'<a href="https://doi.org/10.1038/419269a">Blanke et al., <i>Nature</i> 2002</a>',
+  brewer:'<a href="https://doi.org/10.1073/pnas.1112029108">Brewer et al., <i>PNAS</i> 2011</a>',
+  garrison:'<a href="https://doi.org/10.3389/fnhum.2013.00440">Garrison et al., 2013</a>',
+  jos:'<a href="https://doi.org/10.3389/fnhum.2011.00183">Josipovic et al., 2012</a>',
+  dennett:'<a href="https://en.wikipedia.org/wiki/Cartesian_theater">Dennett, <i>Consciousness Explained</i>, 1991</a>',
+  metz:'Metzinger, <i>The Ego Tunnel</i>, 2009',
+  cogitate:'<a href="https://doi.org/10.1038/s41586-025-08888-1">Cogitate Consortium, <i>Nature</i> 2025</a>'
+};
+const B_REST={mPFC:[.52,'d'],PCC:[.56,'d'],HPC:[.3,'d'],AG:[.36,'d'],LT:[.26,'d']};
+const B_ALL={mPFC:[.58,'d'],PCC:[.58,'d'],HPC:[.48,'d'],LT:[.46,'d'],AG:[.46,'d'],dACC:[.45,'s'],ins:[.5,'n'],S1:[.5,'n'],A1:[.46,'n'],V1:[.46,'n'],dlPFC:[.46,'n'],IPS:[.42,'n']};
+const PHASES='<div class="phases" id="phases"><div data-p="w" data-c="d">wandering<small>default</small></div><div data-p="n" data-c="s">noticing<small>salience</small></div><div data-p="r" data-c="n">returning<small>executive</small></div><div data-p="f" data-c="n">staying<small>executive</small></div></div>';
+const CHIPS=[
+  {k:'name',t:'my name',m:'my name',c:'d',b:{LT:[.95,'d'],mPFC:[.72,'d']},labs:{LT:'facts about you',mPFC:'self-reflection'},cap:'<b>My name.</b> Facts about yourself draw on the default network, including the medial prefrontal cortex and the temporal lobe’s store of meanings.',src:S.buckner},
+  {k:'roles',t:'my roles',m:'my roles',c:'d',b:{mPFC:[.95,'d'],PCC:[.55,'d']},labs:{mPFC:'self-reflection'},cap:'<b>My roles.</b> Judging what you’re like (patient, busy, a parent, a manager) reliably engages the medial prefrontal cortex.',src:S.farb},
+  {k:'mem',t:'my memories',m:'my memories',c:'d',b:{HPC:[.95,'d'],PCC:[.75,'d']},labs:{HPC:'memory',PCC:'the ‘me’ hub'},cap:'<b>My memories.</b> Recalling your own past runs through the hippocampus and the posterior cingulate, both part of the default network.',src:S.buckner},
+  {k:'body',t:'my body',m:'my body',c:'n',b:{S1:[.95,'n'],ins:[.8,'n']},labs:{S1:'body map',ins:'inner body'},cap:'<b>My body.</b> Touch and posture are mapped in the somatosensory strip; the body’s inner state, in the insula.',src:S.craig},
+  {k:'feel',t:'my feelings',m:'my feelings',c:'n',b:{ins:[.95,'n'],dACC:[.72,'s']},labs:{ins:'inner body',dACC:'what matters'},cap:'<b>My feelings.</b> The insula and the anterior cingulate, working together, register how you feel right now.',src:S.craig},
+  {k:'th',t:'my thoughts',m:'my thoughts',c:'d',b:{mPFC:[.86,'d'],PCC:[.86,'d'],AG:[.7,'d'],LT:[.6,'d'],HPC:[.6,'d']},labs:{mPFC:'self-reflection',PCC:'the ‘me’ hub'},cap:'<b>My thoughts.</b> Spontaneous, wandering thought is the default network’s home ground.',src:S.buckner},
+  {k:'doer',t:'the one trying to get this right',m:'the one trying',c:'s',b:{PCC:[.9,'d'],dlPFC:[.8,'n'],dACC:[.5,'s']},labs:{PCC:'the ‘me’ hub',dlPFC:'steering'},cap:'<b>The one trying.</b> When meditators reported “efforting” and “controlling”, their posterior cingulate grew more active.',src:S.garrison}
+];
+const STEPS=[
+{id:'cover',field:'cover',brain:B_REST,
+ cap:{t:'Two windows on one moment',b:'Left: what you notice, from the inside. Right: what your brain is doing, as neuroscience sees it from the outside. The colours match: whatever you notice in one colour lights the same colour here.'}},
+{id:'arrive',name:'Arrive',sit:30,field:'breath',breath:true,say:'Sit comfortably.<br>Let your eyes rest, open or closed.<br>Three slow breaths.',
+ brain:{mPFC:[.68,'d'],PCC:[.72,'d'],HPC:[.36,'d'],AG:[.42,'d'],LT:[.3,'d']},labs:{mPFC:'self-reflection',PCC:'the ‘me’ hub'},
+ cap:{t:'Resting? Your brain isn’t.',b:'Start a task and a set of regions, many along the brain’s midline, goes quieter. Stop, and they pick up again. The scientists who mapped this called it the brain’s default mode.',src:S.raichle}},
+{id:'senses',name:'What appears',sit:45,field:'senses',say:'Notice what’s here.<br>Sounds. Weight. Air on the skin.<br>Don’t name them.<br>Just notice that they appear.',
+ brain:{V1:[.78,'n'],A1:[.86,'n'],S1:[.8,'n'],ins:[.34,'n'],mPFC:[.18,'d'],PCC:[.2,'d']},labs:{A1:'sound',S1:'touch',V1:'sight'},
+ cap:{t:'What you notice is a best guess.',b:'Sound, touch and light reach the brain as electrical signals. The brain guesses at their causes, and the guess is what you experience. The neuroscientist Anil Seth calls perception a “controlled hallucination”.',src:S.seth}},
+{id:'thoughts',name:'Catch a thought',sit:60,field:'thought',tap:'I was<br>thinking',say:'Rest on the breath.<br>Each time you notice you were thinking, tap.',
+ after:n=>n===0?'None caught.<br>A quiet minute, or an absorbing one.<br>Either way, something knew.':`You caught ${n===1?'one':n}.<br>Each one appeared.<br>Each one was seen.`,
+ cap:{t:'You’re re-running a brain-scan experiment.',b:'Meditators in a scanner pressed a button each time they caught their mind wandering. The scans split each catch into four phases:',
+  extra:PHASES+'<p class="stat"><b>47%</b><span>of waking moments, people report thinking about something other than what they’re doing.</span></p>',src:'<a href="https://doi.org/10.1016/j.neuroimage.2011.07.008">Hasenkamp et al., 2012</a> · <a href="https://doi.org/10.1126/science.1192439">Killingsworth &amp; Gilbert, 2010</a>'}},
+{id:'story',name:'The story of me',sit:45,field:'story',say:'Watch the thoughts that come.<br>Most have a main character.<br><em>I should… I was… I’ll…</em><br>Who is that “I”?',
+ brain:{mPFC:[.95,'d'],PCC:[.95,'d'],HPC:[.7,'d'],LT:[.66,'d'],AG:[.6,'d']},links:[['mPFC','PCC']],labs:{mPFC:'self-reflection',PCC:'the ‘me’ hub',HPC:'memory',LT:'facts about you'},
+ cap:{t:'The brain tells a story starring you.',b:'Thinking about your own traits, past and plans leans on the default network’s midline hubs. Researchers call this the narrative self: a “me” stitched together across time.',src:S.farb+' · '+S.buckner}},
+{id:'body',name:'The body',sit:45,field:'body',say:'Feel the body from inside.<br>Breath. Pulse. Warmth.<br>Where exactly does it end?<br>Is it the one seeing, or something seen?',
+ brain:{ins:[.95,'n'],S1:[.85,'n'],AG:[.62,'n'],mPFC:[.22,'d'],PCC:[.25,'d']},labs:{ins:'inner body',S1:'body map',AG:'where you are'},
+ cap:{t:'The body you feel is a model, too.',b:'The insula maps the body’s inner state: heartbeat, breath, gut. The map can be fooled. Stroke a rubber hand in time with someone’s hidden hand and it starts to feel like theirs. Electrical stimulation of the right angular gyrus made one patient feel she was floating above her own body.',src:S.craig+' · '+S.bot+' · '+S.blanke}},
+{id:'neti',name:'Not this, not this',field:'neti',say:'Nisargadatta’s way in:<br>find out what you are not.<br>Take each thing you might be.<br>Can you notice it? Then it’s seen,<br>not the seer.',
+ dev:'<p class="dev"><span lang="sa">नेति नेति</span><small>neti, neti · Bṛhadāraṇyaka Upaniṣad</small></p>',
+ after:'All of it, seen.<br>What’s left is whatever has been seeing.',
+ brain:{mPFC:[.4,'d'],PCC:[.4,'d'],S1:[.3,'n'],ins:[.3,'n'],HPC:[.3,'d'],LT:[.3,'d']},labs:{},
+ cap:{t:'Everything on the list has an address.',b:'Tap an item. Each one is something the brain models, and each lights up a different system.',src:S.buckner+' · '+S.craig},
+ capDone:{t:'All seen. All mapped.',b:'Every item turned out to be something noticed, and something the brain models. What’s left is whatever has been doing the noticing.',src:S.buckner+' · '+S.craig}},
+{id:'iam',name:'I am',sit:90,field:'iam',say:'Now drop the list.<br>Don’t be anyone in particular.<br>Only the plain sense of being:<br><em>I am.</em>',
+ dev:'<p class="dev"><span lang="mr">मी आहे</span><small>“I am” in Marathi, the language he taught in</small></p>',
+ sub:'His teacher, Siddharameshwar, told him to go back to the bare “I am”, before it becomes “I am this” or “I am that”. Stay there. When you drift, come back.',
+ brain:{mPFC:[.1,'d'],PCC:[.1,'d'],ins:[.36,'n'],dlPFC:[.26,'n'],S1:[.2,'n']},labs:{mPFC:'quiet',PCC:'quiet'},
+ cap:{t:'Being no one in particular quiets the midline.',b:'Across three styles of meditation, experienced meditators showed less activity in the default network’s two hubs than newcomers did. In real-time scans, “effortless”, undistracted awareness tracked a quieter posterior cingulate.',src:S.brewer+' · '+S.garrison}},
+{id:'who',name:'Who is watching?',field:'who',
+ epi:'<blockquote class="epi"><p>“Thou couldst not see the (true) seer of sight… This is thy Self, who is within all.”</p><cite>Bṛhadāraṇyaka Upaniṣad 3.4.2, tr. Max Müller</cite></blockquote>',
+ say:'Something has been noticing all along.<br>Turn around and look for it.<br>Where is the one who is watching?',hint:'Tap wherever you find it.',
+ after:'Everything you found was seen.<br>The seeing never turns up as a thing.',
+ brain:{},labs:{},
+ cap:{t:'No region is the watcher.',b:'Neuroscience has looked for a place where it all comes together for an inner viewer, and doesn’t find one. Daniel Dennett called that picture the Cartesian theatre. Thomas Metzinger’s account: the “I” behind your eyes is a model the brain can’t see as a model.',src:S.dennett+' · '+S.metz}},
+{id:'rest',name:'Rest as that',sit:75,field:'rest',say:'Stop looking.<br>Don’t be the watcher, either.<br>Rest as the knowing itself,<br>where all of it comes and goes.',
+ sub:'In his last talks, Nisargadatta went further: even “I am” arrives with the body and leaves with it. What you are, he said, is prior to it.',
+ brain:{mPFC:[.3,'d'],PCC:[.32,'d'],AG:[.3,'d'],dlPFC:[.36,'n'],IPS:[.3,'n'],ins:[.36,'n'],dACC:[.24,'s']},links:[['PCC','IPS'],['mPFC','dlPFC']],labs:{},
+ cap:{t:'Inside and outside stop competing.',b:'Normally the inward default network and the outward task networks rise and fall in opposition. In practitioners resting in “nondual awareness”, that opposition weakened.',src:S.jos}},
+{id:'return',name:'Return',sit:20,field:'return',say:'Let it all come back:<br>sounds, thoughts, your name.<br>Move your fingers. Open your eyes.<br>Nothing needs holding on to.',
+ brain:{mPFC:[.6,'d'],PCC:[.66,'d'],HPC:[.4,'d'],AG:[.4,'d'],LT:[.36,'d'],A1:[.36,'n'],V1:[.32,'n'],S1:[.3,'n']},labs:{mPFC:'self-reflection',PCC:'the ‘me’ hub'},
+ cap:{t:'The storyteller comes back. Let it.',b:'The default network is how you remember, plan and imagine what others are thinking. The point isn’t to silence the story. It’s to know it’s a story.',src:S.buckner}},
+{id:'end',field:'end',brain:B_ALL,labs:{},
+ cap:{t:'Every coloured thing has an address.',b:'Sounds, body, feelings, thoughts, the story of you, even the effort of trying: science can map each one. Awareness itself is still argued over. A 2025 head-to-head test of the two leading theories of consciousness challenged key predictions of both.',src:S.cogitate}}
+];
+const COVER='<div class="wrap cover"><h1>Who is watching?</h1><p class="lede">A guided self-inquiry in the way of Nisargadatta Maharaj, with your brain, as science sees it, alongside.</p>'+
+ '<div class="pace" role="radiogroup" aria-label="Pace"><label><input type="radio" name="pace" value=".55">Brisk · 7 min</label><label><input type="radio" name="pace" value="1">Steady · 10 min</label><label><input type="radio" name="pace" value="1.7">Slow · 15 min</label></div>'+
+ '<button class="begin" id="begin">Begin</button><p class="fine">Stop whenever you like: open your eyes and feel your feet.</p></div>';
+const END='<div class="wrap end"><p class="say" id="say"><span class="ln">Everything with colour on the left has an address on the right.</span><span class="ln">Whether the dark ground they appear on has one is where the two views part.</span></p>'+
+ '<div class="two"><div><h3>Where they agree</h3><p>There’s no little person inside, watching. Advaita: anything you can find is seen, so it isn’t the seer. Neuroscience: the “me” is a model the brain builds, and there’s no inner theatre.</p></div>'+
+ '<div><h3>Where they part</h3><p>On what’s left. Advaita: awareness itself, unmade and impersonal, is what you are. Most neuroscience: awareness is something brains do, though how is still open.</p></div></div>'+
+ '<button class="btn ready" id="again">Sit again</button></div>';
+const SENSE_W=['a sound','weight','air','a tingle','light','warmth','a hum','pressure','a breath'];
+const STORY_W=['I should…','I was…','later I’ll…','what will they think?','am I doing this right?','I remember…','I need to…','why did I…'];
+const WHO_W=['a feeling of “here”','the space behind the eyes','pressure in the forehead','a thought: “it’s me”','a sense of looking','a picture of yourself','a stillness'];
+
+/* ---------- brain renderer ---------- */
+const bcv=$('#brain'),bctx=bcv.getContext('2d');
+const B={W:0,H:0,dpr:1,s:1,x:0,y:0,dots:[],P:null,base:null,mask:null,glow:null,links:[],sparks:[],sweep:-9,labA:{},labT:{},labs:null};
+function buildDots(){
+  const cere=spline(G.cere,true,10),cbl=spline(G.cbl,true,8),stem=spline(G.stem,true,8),sul=G.sulci.map(l=>spline(l,false,6)),cc=spline(G.cc,false,8);
+  B.P={cere,cbl,stem,cc};
+  const r=rng(11),out=[],fol=[];
+  for(let i=1;i<=5;i++){const zz=-33-i*6,l=[];for(let y=-100;y<=-40;y+=4)l.push([y,zz+2.2*Math.sin((y+60)/9)]);fol.push(l)}
+  const sample=(poly,sp,kind,ok)=>{let y0=1e9,y1=-1e9,z0=1e9,z1=-1e9;for(const p of poly){y0=Math.min(y0,p[0]);y1=Math.max(y1,p[0]);z0=Math.min(z0,p[1]);z1=Math.max(z1,p[1])}
+    for(let y=y0;y<=y1;y+=sp)for(let z=z0;z<=z1;z+=sp){const py=y+(r()-.5)*sp*.8,pz=z+(r()-.5)*sp*.8;if(inPoly(py,pz,poly)&&ok(py,pz))out.push({y:py,z:pz,k:kind})}};
+  sample(cere,2.15,0,(y,z)=>{for(const l of sul)if(dLine(y,z,l)<1)return false;return true});
+  sample(cbl,1.7,1,(y,z)=>{if(inPoly(y,z,cere))return false;for(const l of fol)if(dLine(y,z,l)<.62)return false;return true});
+  sample(stem,2.1,2,(y,z)=>!inPoly(y,z,cere)&&!inPoly(y,z,cbl));
+  for(const d of out){d.a=d.k===0?.2+.17*((d.z+45)/125)+.09*((d.y+104)/175):d.k===1?.25:.2;d.a=clamp(d.a,.14,.48)}
+  B.dots=out;
+  for(const k in REG){const g=REG[k];g.dots=[];out.forEach((d,i)=>{if(((d.y-g.c[0])/g.s[0])**2+((d.z-g.c[1])/g.s[1])**2<2.2)g.dots.push(i)})}
+}
+const toPx=(y,z)=>[B.x+(73-y)*B.s,B.y+(80-z)*B.s];
+function trace(c,pts,close){c.beginPath();pts.forEach((p,i)=>{const q=toPx(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});if(close)c.closePath()}
+function layoutBrain(){
+  const W=bcv.clientWidth,H=bcv.clientHeight;if(!W||!H)return;
+  const dpr=Math.min(2,window.devicePixelRatio||1);B.W=W;B.H=H;B.dpr=dpr;bcv.width=Math.round(W*dpr);bcv.height=Math.round(H*dpr);
+  const VW=180,VH=166,pad=14,capH=22,s=Math.max(.4,Math.min((W-2*pad)/VW,(H-2*pad-capH)/VH));
+  B.s=s;B.x=(W-VW*s)/2;B.y=(H-VH*s+capH)/2;
+  const mk=()=>{const c=document.createElement('canvas');c.width=bcv.width;c.height=bcv.height;return c};
+  B.base=mk();B.mask=mk();B.glow=mk();
+  const bc=B.base.getContext('2d'),mc=B.mask.getContext('2d');bc.scale(dpr,dpr);mc.scale(dpr,dpr);
+  bc.lineCap='round';bc.lineJoin='round';
+  trace(bc,B.P.cc,false);bc.strokeStyle=rgba(ASH,.05);bc.lineWidth=6.4*s;bc.stroke();bc.strokeStyle=rgba(ASH,.11);bc.lineWidth=1;bc.stroke();
+  const th=toPx(-10,6);bc.beginPath();bc.ellipse(th[0],th[1],12*s,6.5*s,0,0,6.283);bc.fillStyle=rgba(ASH,.025);bc.fill();bc.strokeStyle=rgba(ASH,.09);bc.stroke();
+  bc.strokeStyle=rgba(ASH,.1);for(const p of [B.P.cere,B.P.cbl,B.P.stem]){trace(bc,p,true);bc.stroke()}
+  const dr=clamp(s*.52,.65,1.7);mc.fillStyle='#fff';
+  for(const d of B.dots){const q=toPx(d.y,d.z),rad=d.k===1?dr*.8:dr;bc.fillStyle=rgba(ASH,d.a);bc.beginPath();bc.arc(q[0],q[1],rad,0,6.283);bc.fill();mc.beginPath();mc.arc(q[0],q[1],rad*1.45,0,6.283);mc.fill()}
+  bc.font='400 13px "IBM Plex Sans",system-ui,sans-serif';bc.textBaseline='alphabetic';
+  bc.fillStyle=rgba(ASH,.55);bc.fillText('see-through side view',B.x+2,B.y-8);
+  const f=toPx(66,-36);bc.fillStyle=rgba(ASH,.45);bc.fillText('← front',B.x+2,f[1]);
+}
+function blob(c,g,alpha,spread,col){const q=toPx(g.c[0],g.c[1]),sy=g.s[0]*B.s*spread,sz=g.s[1]*B.s*spread,R=Math.max(sy,sz);
+  c.save();c.translate(q[0],q[1]);c.scale(sy/R,sz/R);const gr=c.createRadialGradient(0,0,0,0,0,R);gr.addColorStop(0,rgba(col,alpha));gr.addColorStop(.45,rgba(col,alpha*.5));gr.addColorStop(1,rgba(col,0));
+  c.fillStyle=gr;c.beginPath();c.arc(0,0,R,0,6.283);c.fill();c.restore()}
+function setBrain(spec,links){
+  spec=spec||{};for(const k in REG){const v=spec[k];REG[k].tgt=v?v[0]:0;if(v)REG[k].col=v[1]}
+  const want=(links||[]).map(l=>l.join('-'));
+  for(const l of B.links)l.tgt=want.includes(l.id)?1:0;
+  for(const id of want)if(!B.links.find(l=>l.id===id)){const p=id.split('-');B.links.push({id,a:p[0],b:p[1],lvl:0,tgt:1})}
+}
+function drawBrain(t,dt){
+  if(!B.base)return;const c=bctx,dpr=B.dpr,st=STEPS[idx];
+  const k=1-Math.exp(-dt/(st.id==='thoughts'?.22:.5));
+  for(const key in REG){const g=REG[key];g.lvl+=(g.tgt-g.lvl)*k;const tc=RGB[g.col];for(let i=0;i<3;i++)g.rgb[i]+=(tc[i]-g.rgb[i])*k}
+  const sw=t-B.sweep,pulse={};
+  SWEEP.forEach((key,i)=>{pulse[key]=sw>=0&&sw<2.6?.9*Math.exp(-(((sw-i*.13)/.14)**2)):0});
+  c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,bcv.width,bcv.height);
+  c.setTransform(dpr,0,0,dpr,0,0);c.globalCompositeOperation='lighter';
+  for(const key in REG){const g=REG[key];if(g.lvl>.02)blob(c,g,g.lvl*.15,2.9,g.rgb);if(pulse[key]>.02)blob(c,g,pulse[key]*.12,2.6,RGB.s)}
+  c.setTransform(1,0,0,1,0,0);c.globalCompositeOperation='source-over';c.drawImage(B.base,0,0);
+  const gc=B.glow.getContext('2d');gc.setTransform(1,0,0,1,0,0);gc.globalCompositeOperation='source-over';gc.clearRect(0,0,B.glow.width,B.glow.height);
+  gc.setTransform(dpr,0,0,dpr,0,0);gc.globalCompositeOperation='lighter';
+  for(const key in REG){const g=REG[key];if(g.lvl>.02)blob(gc,g,Math.pow(g.lvl,1.15)*.95,2.3,g.rgb);if(pulse[key]>.02)blob(gc,g,pulse[key],2.1,RGB.s)}
+  gc.setTransform(1,0,0,1,0,0);gc.globalCompositeOperation='destination-in';gc.drawImage(B.mask,0,0);
+  c.globalCompositeOperation='lighter';c.drawImage(B.glow,0,0);
+  c.setTransform(dpr,0,0,dpr,0,0);
+  drawLinks(c,t,dt);
+  if(!reduce)drawSparks(c,dt);
+  c.globalCompositeOperation='source-over';
+  drawLabels(c,dt);
+}
+function drawLinks(c,t,dt){
+  for(let i=B.links.length-1;i>=0;i--){const l=B.links[i];l.lvl+=(l.tgt-l.lvl)*(1-Math.exp(-dt/.6));if(l.tgt===0&&l.lvl<.01){B.links.splice(i,1);continue}
+    const A=REG[l.a],Z=REG[l.b],p=toPx(A.c[0],A.c[1]),q=toPx(Z.c[0],Z.c[1]),mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,dx=q[0]-p[0],dy=q[1]-p[1],len=Math.hypot(dx,dy)||1;
+    let nx=-dy/len,ny=dx/len;if(ny>0){nx=-nx;ny=-ny}const cx=mx+nx*len*.24,cy=my+ny*len*.24;
+    const gr=c.createLinearGradient(p[0],p[1],q[0],q[1]);gr.addColorStop(0,rgba(A.rgb,.6*l.lvl));gr.addColorStop(1,rgba(Z.rgb,.6*l.lvl));
+    c.strokeStyle=gr;c.lineWidth=1.3;c.beginPath();c.moveTo(p[0],p[1]);c.quadraticCurveTo(cx,cy,q[0],q[1]);c.stroke();
+    if(!reduce)for(let j=0;j<2;j++){const u=(t*.28+j*.5)%1,a=(1-u)*(1-u),b=2*(1-u)*u,e=u*u;c.fillStyle=rgba(ASH,.85*l.lvl);c.beginPath();c.arc(a*p[0]+b*cx+e*q[0],a*p[1]+b*cy+e*q[1],1.8,0,6.283);c.fill()}}
+}
+function drawSparks(c,dt){
+  for(const key in REG){const g=REG[key],L=g.lvl;if(L<.25||!g.dots.length)continue;const n=L*L*dt*60;let m=Math.floor(n)+(Math.random()<n%1?1:0);
+    while(m-->0){const d=B.dots[g.dots[(Math.random()*g.dots.length)|0]];B.sparks.push({y:d.y,z:d.z,life:.45+Math.random()*.5,age:0,rgb:g.rgb.map(x=>x+(255-x)*.45)})}}
+  if(B.sparks.length>900)B.sparks.splice(0,B.sparks.length-900);
+  const dr=clamp(B.s*.52,.65,1.7)*1.25;
+  for(let i=B.sparks.length-1;i>=0;i--){const p=B.sparks[i];p.age+=dt;if(p.age>p.life){B.sparks.splice(i,1);continue}const q=toPx(p.y,p.z);c.fillStyle=rgba(p.rgb,Math.sin(Math.PI*p.age/p.life)*.85);c.beginPath();c.arc(q[0],q[1],dr,0,6.283);c.fill()}
+}
+function drawLabels(c,dt){
+  const labs=B.labs,items=[];c.font='500 13px "IBM Plex Sans",system-ui,sans-serif';
+  for(const key in REG){const g=REG[key];let want=false,text=g.lab;
+    if(labs){if(key in labs){want=true;text=labs[key]}}else if(g.tgt>=.5)want=true;
+    if(want)B.labT[key]=text;
+    const a=B.labA[key]=(B.labA[key]||0)+((want?1:0)-(B.labA[key]||0))*(1-Math.exp(-dt/.3));
+    if(a<.03)continue;text=B.labT[key]||text;
+    const ctr=toPx(g.c[0],g.c[1]),lp=toPx(g.c[0]+g.lo[0],g.c[1]+g.lo[1]),w=c.measureText(text).width+16,h=24;
+    items.push({a,text,cx:ctr[0],cy:ctr[1],x:lp[0]-w/2,y:lp[1]-h/2,w,h,col:g.col,rgb:g.rgb})}
+  items.sort((p,q)=>p.y-q.y);
+  for(let it=0;it<5;it++)for(let i=0;i<items.length;i++)for(let j=i+1;j<items.length;j++){const p=items[i],q=items[j];
+    if(p.x<q.x+q.w+4&&q.x<p.x+p.w+4&&p.y<q.y+q.h+3&&q.y<p.y+p.h+3){const push=(p.y+p.h+3-q.y)/2;p.y-=push;q.y+=push}}
+  c.textBaseline='middle';c.lineWidth=1;
+  for(const p of items){p.x=clamp(p.x,4,B.W-p.w-4);p.y=clamp(p.y,4,B.H-p.h-4);
+    const ax=clamp(p.cx,p.x,p.x+p.w),ay=clamp(p.cy,p.y,p.y+p.h);
+    if(Math.hypot(ax-p.cx,ay-p.cy)>7){c.strokeStyle=rgba(p.rgb,.5*p.a);c.beginPath();c.moveTo(p.cx,p.cy);c.lineTo(ax,ay);c.stroke()}
+    c.fillStyle=rgba(p.rgb,.95*p.a);c.beginPath();c.arc(p.cx,p.cy,2.2,0,6.283);c.fill();
+    c.fillStyle=`rgba(20,20,27,${(.88*p.a).toFixed(3)})`;rr(c,p.x,p.y,p.w,p.h,12);c.fill();c.strokeStyle=rgba(p.rgb,.55*p.a);c.stroke();
+    c.fillStyle=rgba(LABC[p.col],p.a);c.fillText(p.text,p.x+8,p.y+p.h/2+.5)}
+}
+function brainAria(){const st=STEPS[idx],labs=B.labs,on=Object.keys(REG).filter(k=>labs?k in labs:REG[k].tgt>=.5);
+  bcv.setAttribute('aria-label','Schematic see-through brain, side view. '+(on.length?'Highlighted: '+on.map(k=>(labs&&labs[k]?labs[k]+', ':'')+FULL[k]).join('; ')+'.':st.id==='who'?'All regions dim.':'Mixed activity across networks.'))}
+/* ---------- field renderer ---------- */
+const fcv=$('#field'),fctx=fcv.getContext('2d');
+const F={W:0,H:0,dpr:1,grain:[],motes:[],marks:[],body:[],mode:'cover',t0:0,text:null,spawnAt:0,breathTxt:''};
+function layoutField(){const W=fcv.clientWidth,H=fcv.clientHeight;if(!W||!H)return;const dpr=Math.min(2,window.devicePixelRatio||1);
+  F.W=W;F.H=H;F.dpr=dpr;fcv.width=Math.round(W*dpr);fcv.height=Math.round(H*dpr);
+  const r=rng(5);F.grain=[];const n=Math.round(W*H/4800);for(let i=0;i<n;i++)F.grain.push({x:r()*W,y:r()*H,p:r()*6.28,f:.4+r()*1.4});
+  genBody();measureText();if(F.mode==='cover'&&!F.motes.length)for(let i=0;i<4;i++)spawn(i%2?'n':'d',{life:6+i*2.5})}
+function measureText(){const el=$('#stage .wrap');if(!el||!F.W){F.text=null;return}const b=fcv.getBoundingClientRect();let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  const add=r=>{if(!r||!r.width)return;x0=Math.min(x0,r.left);y0=Math.min(y0,r.top);x1=Math.max(x1,r.right);y1=Math.max(y1,r.bottom)};
+  el.querySelectorAll('p,h1,.tap,.chip,.pace label,.begin,.two>div,.btn').forEach(n=>{if(n.matches('p,h1')){const g=document.createRange();g.selectNodeContents(n);add(g.getBoundingClientRect())}else add(n.getBoundingClientRect())});
+  F.text=x0>x1?null:{x:x0-b.left-20,y:y0-b.top-14,w:x1-x0+40,h:y1-y0+28}}
+const inText=(x,y,m)=>F.text&&x>F.text.x-m&&x<F.text.x+F.text.w+m&&y>F.text.y-m&&y<F.text.y+F.text.h+m;
+function genBody(){const r=rng(9),pts=[];
+  const inside=(x,y)=>Math.hypot(x,y+.36)<.085||(Math.abs(x)<.035&&y>-.3&&y<-.25)||(y>-.27&&y<.13&&Math.abs(x)<.1+(y+.27)*.19)||((Math.abs(x)-.17)/.06)**2+((y+.01)/.17)**2<1||(x/.37)**2+((y-.2)/.085)**2<1;
+  let guard=0;while(pts.length<900&&guard++<60000){const x=(r()-.5)*.9,y=r()*.82-.5;if(inside(x,y))pts.push({x,y,a:.45+r()*.35,p:r()*6.28})}
+  const core=pts.length;for(let i=0;i<320;i++){const b=pts[(r()*core)|0],ang=r()*6.28,d=.02+r()*.07;pts.push({x:b.x+Math.cos(ang)*d,y:b.y+Math.sin(ang)*d,a:.12+r()*.18,p:r()*6.28})}
+  F.body=pts}
+function spawn(kind,o){o=o||{};let x=0,y=0;for(let i=0;i<16;i++){x=36+Math.random()*(F.W-72);y=70+Math.random()*Math.max(40,F.H-170);if(!inText(x,y,24))break}
+  if(o.x!==undefined){x=o.x;y=o.y}
+  F.motes.push({x,y,ox:x,oy:y,vx:(Math.random()-.5)*9,vy:(Math.random()-.5)*6-(o.rise||0),r:o.r||2+Math.random()*1.4,rgb:RGB[kind]||ASH,born:now(),life:o.life||8+Math.random()*4,label:o.label||'',keep:!!o.keep,ph:Math.random()*6.28})}
+function mote(c,p,a,showLab){const R=p.r*4.2,gr=c.createRadialGradient(p.x,p.y,0,p.x,p.y,R);gr.addColorStop(0,rgba(p.rgb,.5*a));gr.addColorStop(.28,rgba(p.rgb,.2*a));gr.addColorStop(1,rgba(p.rgb,0));
+  c.fillStyle=gr;c.beginPath();c.arc(p.x,p.y,R,0,6.283);c.fill();c.fillStyle=rgba(p.rgb,.95*a);c.beginPath();c.arc(p.x,p.y,p.r,0,6.283);c.fill();
+  if(p.label&&showLab){c.font='500 13px "IBM Plex Sans",system-ui,sans-serif';const w=c.measureText(p.label).width,T=F.text,
+    clear=x=>!(T&&x<T.x+T.w&&x+w>T.x&&p.y-9<T.y+T.h&&p.y+9>T.y),rx=p.x+p.r+8,lx=p.x-p.r-8-w,okR=rx+w<F.W-8&&clear(rx),okL=lx>8&&clear(lx);
+    if(okR||okL){c.fillStyle=rgba(ASH,.78*a);c.fillText(p.label,okR?rx:lx,p.y+4)}}}
+function setBreath(txt){if(txt===F.breathTxt)return;F.breathTxt=txt;const el=$('#breath');if(el)el.textContent=txt}
+function drawField(t,dt){
+  const c=fctx;c.setTransform(F.dpr,0,0,F.dpr,0,0);c.clearRect(0,0,F.W,F.H);const m=F.mode,cx=F.W/2,cy=F.H*.5,mn=Math.min(F.W,F.H);
+  if(m==='rest'||m==='end'){const a=.03+(reduce?0:.016*Math.sin(t*2*Math.PI/14)),gr=c.createRadialGradient(cx,cy,0,cx,cy,Math.max(F.W,F.H)*.75);gr.addColorStop(0,rgba(ASH,a*1.7));gr.addColorStop(1,rgba(ASH,a*.4));c.fillStyle=gr;c.fillRect(0,0,F.W,F.H)}
+  const gk=m==='iam'||m==='rest'?.6:1;
+  for(const g of F.grain){const a=(reduce?.05:.03+.05*(.5+.5*Math.sin(t*g.f+g.p)))*gk;c.fillStyle=rgba(ASH,a);c.fillRect(g.x,g.y,1.2,1.2)}
+  if(m==='breath'){const ph=reduce?2:(t-F.t0)%10,b=ph<4?.5-.5*Math.cos(Math.PI*ph/4):.5+.5*Math.cos(Math.PI*(ph-4)/6),R=mn*(.22+.15*b);
+    const gr=c.createRadialGradient(cx,cy,R*.55,cx,cy,R);gr.addColorStop(0,rgba(ASH,0));gr.addColorStop(1,rgba(ASH,.04+.03*b));c.fillStyle=gr;c.beginPath();c.arc(cx,cy,R,0,6.283);c.fill();
+    c.strokeStyle=rgba(ASH,.11+.08*b);c.lineWidth=1;c.stroke();setBreath(reduce?'breathe slowly':ph<4?'breathe in':'breathe out')}
+  if(m==='iam'){const k=reduce?0:Math.sin(t*2*Math.PI/10),R=mn*.3*(1+.05*k),gr=c.createRadialGradient(cx,cy,0,cx,cy,R);gr.addColorStop(0,rgba(ASH,.1+.025*k));gr.addColorStop(.5,rgba(ASH,.04));gr.addColorStop(1,rgba(ASH,0));c.fillStyle=gr;c.fillRect(cx-R,cy-R,2*R,2*R)}
+  if(m==='body'){const sc=F.H*.72*(1+(reduce?0:.012*Math.sin(t*2*Math.PI/8))),bx=cx,by=F.H*.56,beat=reduce?.5:Math.exp(-(((t%.92)/.11)**2))+.55*Math.exp(-((((t%.92)-.22)/.09)**2));
+    for(const p of F.body){const x=bx+p.x*sc,y=by+p.y*sc,a=p.a*(.5+.32*beat)*(inText(x,y,0)?.3:1);c.fillStyle=rgba(RGB.n,a);c.fillRect(x-.8,y-.8,1.6,1.6)}}
+  const ambient={senses:['n',1.5,SENSE_W],story:['d',2.4,STORY_W],cover:[null,2.2,null],return:[null,1.7,null],end:[null,3,null]}[m];
+  if(ambient&&t>F.spawnAt&&F.motes.filter(p=>!p.keep).length<(m==='cover'||m==='end'?7:10)){F.spawnAt=t+ambient[1]*(.7+Math.random()*.6);
+    let kind=ambient[0],words=ambient[2];if(!kind){kind=Math.random()<.5?'d':'n';words=m==='return'?(kind==='d'?STORY_W:SENSE_W):null}
+    spawn(kind,{label:words?words[(Math.random()*words.length)|0]:'',life:9+Math.random()*4})}
+  for(let i=F.motes.length-1;i>=0;i--){const p=F.motes[i],age=t-p.born;let a;
+    if(p.keep)a=Math.min(1,age/1.2);else{if(age>p.life){F.motes.splice(i,1);continue}a=Math.min(1,age/1.2)*Math.min(1,(p.life-age)/2.5)}
+    if(!reduce){if(p.keep){p.x=p.ox+14*Math.sin(t*.13+p.ph);p.y=p.oy+10*Math.cos(t*.11+p.ph)}else{p.x+=p.vx*dt;p.y+=p.vy*dt}}
+    const hid=inText(p.x,p.y,0);mote(c,p,a*(hid?.16:1),!hid)}
+  for(let i=F.marks.length-1;i>=0;i--){const k=F.marks[i],age=t-k.t;if(age>7.5){F.marks.splice(i,1);continue}
+    const a=Math.min(1,age/.35)*Math.min(1,(7.5-age)/2)*(inText(k.x,k.y,0)?.55:1),r=8+Math.min(1,age/.8)*20;
+    c.strokeStyle=rgba(ASH,.62*a);c.lineWidth=1;c.beginPath();c.arc(k.x,k.y,r,0,6.283);c.stroke();c.fillStyle=rgba(ASH,.9*a);c.beginPath();c.arc(k.x,k.y,2,0,6.283);c.fill();
+    c.font='500 13px "IBM Plex Sans",system-ui,sans-serif';const w=c.measureText(k.label).width,right=k.x+r+10+w<F.W-8,tx=right?k.x+r+10:k.x-r-10;c.textAlign=right?'left':'right';
+    c.fillStyle=`rgba(22,22,29,${(.95*a).toFixed(3)})`;rr(c,(right?tx:tx-w)-7,k.y-17,w+14,38,8);c.fill();
+    c.fillStyle=rgba(ASH,.88*a);c.fillText(k.label,tx,k.y-3);c.fillStyle=rgba(ASH,.5*a);c.fillText('seen',tx,k.y+14);c.textAlign='left'}
+}
+
+/* ---------- sound ---------- */
+let AC=null,bellOn=store.get('bell','1')==='1';
+function audioInit(){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume()}catch(e){AC=null}}
+function bell(g){if(!bellOn||!AC)return;try{const t=AC.currentTime+.02,out=AC.createGain();out.gain.value=.9;out.connect(AC.destination);
+  [[1,1,5.5],[2.76,.42,3.2],[5.4,.2,2],[8.93,.08,1.2]].forEach(p=>{const o=AC.createOscillator(),gn=AC.createGain();o.type='sine';o.frequency.value=220*p[0];
+    gn.gain.setValueAtTime(.0001,t);gn.gain.exponentialRampToValueAtTime(.09*p[1]*(g||1),t+.015);gn.gain.exponentialRampToValueAtTime(.0001,t+p[2]);o.connect(gn);gn.connect(out);o.start(t);o.stop(t+p[2]+.1)})}catch(e){}}
+
+/* ---------- step engine ---------- */
+let idx=0,pace=parseFloat(store.get('pace','1'))||1,sitT=0;
+const ST={n:0,last:-1,phase:'',neti:new Set(),who:0};
+const stage=$('#stage'),capEl=$('#cap'),ctrl=$('#ctrl'),nextB=$('#next'),backB=$('#back'),ring=$('#ringc'),ringSvg=$('#ring'),prog=$('#prog'),bellB=$('#bellb');
+prog.innerHTML=STEPS.slice(1,-1).map((s,i)=>`<button data-i="${i+1}" aria-label="Go to: ${s.name}"><i></i></button>`).join('');
+bellB.setAttribute('aria-pressed',bellOn?'true':'false');
+function links(el){el.querySelectorAll('a').forEach(a=>{a.target='_blank';a.rel='noopener'})}
+function renderCap(cp){capEl.innerHTML=`<h3>${cp.t}</h3><p>${cp.b}</p>${cp.extra||''}${cp.src?`<p class="src">${cp.src}</p>`:''}`;links(capEl);capEl.scrollTop=0}
+const lines=h=>h.split('<br>').map(l=>`<span class="ln">${l}</span>`).join('');
+function setSay(html){const s=$('#say');if(!s)return;s.style.opacity=0;setTimeout(()=>{s.innerHTML=lines(html);s.style.opacity=1;measureText()},reduce?0:420)}
+function stepHTML(st){return `<div class="wrap">${st.epi||''}<p class="name">${st.name}</p><p class="say" id="say">${lines(st.say)}</p>`+
+  (st.breath?'<p class="breath" id="breath" aria-hidden="true"></p>':'')+(st.dev||'')+(st.sub?`<p class="sub">${st.sub}</p>`:'')+
+  (st.tap?`<button class="tap" id="tapb">${st.tap}</button><p class="count" id="count"></p>`:'')+
+  (st.id==='neti'?'<div class="chips">'+CHIPS.map((ch,i)=>`<button class="chip" data-c="${ch.c}" data-i="${i}" aria-pressed="false">${ch.t}</button>`).join('')+'</div>':'')+
+  (st.hint?`<p class="hint">${st.hint}</p>`:'')+'</div>'}
+function startSit(sec){clearTimeout(sitT);ring.style.transition='none';ring.style.strokeDashoffset='69.12';ringSvg.style.visibility=sec?'visible':'hidden';if(!sec)return;
+  const dur=sec*pace;void ring.getBoundingClientRect();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ring.style.transition=`stroke-dashoffset ${dur}s linear`;ring.style.strokeDashoffset='0'}));
+  sitT=setTimeout(()=>{nextB.classList.add('ready');bell(.8);const st=STEPS[idx];if(st.id==='thoughts')setSay(st.after(ST.n))},dur*1000)}
+function go(i){
+  idx=clamp(i,0,STEPS.length-1);const st=STEPS[idx];
+  nextB.classList.remove('ready');document.body.dataset.step=st.id;
+  stage.innerHTML=st.id==='cover'?COVER:st.id==='end'?END:stepHTML(st);
+  ctrl.hidden=st.id==='cover';nextB.hidden=st.id==='end';nextB.querySelector('span').textContent=idx===STEPS.length-2?'Finish':'Continue';
+  prog.querySelectorAll('button').forEach(b=>{const j=+b.dataset.i;b.classList.toggle('done',j<idx);if(j===idx)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
+  F.mode=st.field;F.t0=now();F.spawnAt=now()+.5;F.marks=[];F.breathTxt='';
+  const tn=now();for(const p of F.motes){if(p.keep&&st.id==='end')continue;const age=tn-p.born;if(p.keep){p.keep=false;p.vx*=.3;p.vy*=.3}p.life=Math.min(p.life,age+2.5)}
+  if(st.id==='end')requestAnimationFrame(()=>{measureText();if(!F.motes.some(p=>p.keep))CHIPS.forEach((ch,j)=>keepMote(ch,j))});
+  ST.n=0;ST.last=-1;ST.phase='';ST.neti=new Set();ST.who=0;B.sweep=-9;
+  B.labs=st.labs||null;
+  if(st.id==='thoughts'){B.labs={mPFC:'self-reflection',PCC:'the ‘me’ hub'};setBrain({mPFC:[.85,'d'],PCC:[.85,'d'],HPC:[.5,'d'],AG:[.5,'d'],LT:[.42,'d']},[])}
+  else setBrain(st.brain,st.links);
+  renderCap(st.cap);startSit(st.sit);bind(st);brainAria();
+  stage.removeAttribute('tabindex');
+  if(st.id==='thoughts')$('#tapb').focus({preventScroll:true});
+  else if(st.id==='who'){stage.setAttribute('tabindex','-1');stage.focus({preventScroll:true})}
+  else if(document.activeElement===document.body&&!ctrl.hidden&&!nextB.hidden)nextB.focus({preventScroll:true});
+  requestAnimationFrame(measureText);
+  if(st.id==='cover'){const rs=[...stage.querySelectorAll('input[name=pace]')],r=rs.find(x=>Math.abs(parseFloat(x.value)-pace)<.01)||rs[1];if(r)r.checked=true}
+}
+function keepMote(ch,j){const a=-Math.PI/2+j*(2*Math.PI/CHIPS.length)+.25,cx=F.W/2,cy=F.H*.5;let x=cx+Math.cos(a)*F.W*.4,y=cy+Math.sin(a)*F.H*.38;
+  for(let i=0;i<12&&inText(x,y,14);i++){x=cx+(x-cx)*1.08;y=cy+(y-cy)*1.08}
+  spawn(ch.c,{x:clamp(x,30,F.W-60),y:clamp(y,76,F.H-100),label:ch.m,keep:true,r:2.6})}
+function bind(st){
+  const tb=$('#tapb');if(tb)tb.onclick=tapThought;
+  stage.querySelectorAll('.chip').forEach(b=>b.onclick=()=>chip(+b.dataset.i,b));
+  const bg=$('#begin');if(bg)bg.onclick=()=>{audioInit();bell(.9);go(1)};
+  stage.querySelectorAll('input[name=pace]').forEach(r=>r.onchange=()=>{pace=parseFloat(r.value)||1;store.set('pace',r.value)});
+  const ag=$('#again');if(ag)ag.onclick=()=>{audioInit();go(1)};
+}
+function tapThought(){if(STEPS[idx].id!=='thoughts')return;ST.n++;ST.last=now();const el=$('#count');if(el)el.textContent=ST.n===1?'1 thought caught':`${ST.n} thoughts caught`;spawn('d',{label:'a thought',life:8,rise:10,r:2.6})}
+function thoughtLogic(t){const lt=ST.last;let dmn=.85,sal=0,exe=.08,ph='w';
+  if(lt>0){const d=t-lt;dmn=d<.5?.85-1.2*d:d<7?.25:.25+.6*smooth(7,14,d);sal=Math.exp(-(((d-.35)/.55)**2));exe=d<.9?.08:d<7?.08+.82*smooth(.9,2.4,d):.9-.82*smooth(7,12,d);ph=d<1.2?'n':d<3?'r':d<7?'f':'w'}
+  const set=(k,v,c)=>{REG[k].tgt=v;REG[k].col=c};
+  set('mPFC',dmn,'d');set('PCC',dmn,'d');set('HPC',dmn*.6,'d');set('AG',dmn*.6,'d');set('LT',dmn*.5,'d');set('ins',sal,'s');set('dACC',sal,'s');set('dlPFC',exe,'n');set('IPS',exe*.85,'n');
+  if(ph!==ST.phase){ST.phase=ph;document.querySelectorAll('#phases div').forEach(d=>d.classList.toggle('on',d.dataset.p===ph));
+    B.labs=ph==='w'?{mPFC:'self-reflection',PCC:'the ‘me’ hub'}:ph==='n'?{ins:'noticing',dACC:'noticing'}:{dlPFC:'steering',IPS:'holding focus'};brainAria()}}
+function chip(i,btn){const st=STEPS[idx],ch=CHIPS[i];if(st.id!=='neti'||ST.neti.has(ch.k))return;ST.neti.add(ch.k);btn.setAttribute('aria-pressed','true');
+  keepMote(ch,i);B.labs=ch.labs;setBrain(ch.b,[]);renderCap({t:st.cap.t,b:ch.cap,src:ch.src});brainAria();
+  if(ST.neti.size===CHIPS.length)setTimeout(()=>{if(STEPS[idx].id!=='neti')return;setSay(st.after);B.labs={};setBrain(B_ALL,[]);renderCap(st.capDone);brainAria();nextB.classList.add('ready');bell(.7)},2800)}
+function tapWho(x,y){if(STEPS[idx].id!=='who')return;if(x===undefined){x=60+Math.random()*(F.W-120);y=90+Math.random()*(F.H-220)}
+  F.marks.push({x,y,t:now(),label:WHO_W[ST.who%WHO_W.length]});ST.who++;B.sweep=now();
+  if(ST.who===3)setTimeout(()=>{if(STEPS[idx].id==='who'){const h=$('.hint');if(h)h.remove();setSay(STEPS[idx].after);nextB.classList.add('ready')}},1500)}
+
+nextB.onclick=()=>{audioInit();if(idx<STEPS.length-1)go(idx+1)};
+backB.onclick=()=>go(idx-1);
+$('#home').onclick=()=>go(0);
+prog.addEventListener('click',e=>{const b=e.target.closest('button');if(b){audioInit();go(+b.dataset.i)}});
+bellB.onclick=()=>{bellOn=!bellOn;store.set('bell',bellOn?'1':'0');bellB.setAttribute('aria-pressed',bellOn?'true':'false');if(bellOn){audioInit();bell(.6)}};
+$('#inside').addEventListener('pointerdown',e=>{if(STEPS[idx].id!=='who'||e.target.closest('button,a,input,label'))return;const b=fcv.getBoundingClientRect();tapWho(e.clientX-b.left,e.clientY-b.top)});
+document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,textarea'))return;const id=STEPS[idx].id;
+  if(e.key==='ArrowRight'&&id!=='cover'&&id!=='end'){e.preventDefault();nextB.click()}
+  else if(e.key==='ArrowLeft'&&idx>0){e.preventDefault();go(idx-1)}
+  else if(e.key===' '&&!(e.target.closest&&e.target.closest('button,a,label'))){if(id==='thoughts'){e.preventDefault();tapThought()}else if(id==='who'){e.preventDefault();tapWho()}}});
+
+buildDots();
+const roBrain=new ResizeObserver(()=>layoutBrain());roBrain.observe(bcv);
+const roField=new ResizeObserver(()=>layoutField());roField.observe(fcv);
+const roStage=new ResizeObserver(()=>measureText());roStage.observe(stage);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{layoutBrain();measureText()});
+go(0);
+let last=now();
+function frame(){const t=now(),dt=Math.min(.05,t-last);last=t;if(STEPS[idx].id==='thoughts')thoughtLogic(t);drawBrain(t,dt);drawField(t,dt);requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+}
+</script>
+<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;text-align:center;padding:48px 16px 40px;margin:0;position:relative;z-index:1"><a href="../" style="display:inline-block;padding:10px 20px;border-radius:999px;background:#101828;color:#fff;border:1px solid rgba(255,255,255,.3);text-decoration:none;font:600 15px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0"><span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>
+</body>
+</html>
