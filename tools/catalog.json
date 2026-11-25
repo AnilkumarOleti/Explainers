@@ -150,6 +150,13 @@
       "name": "AI and technology",
       "pages": [
         {
+          "slug": "how-llms-work",
+          "title": "How LLMs Work",
+          "blurb": "A language model forecasts the next token, draws one and repeats. Every part of that machine, from tokens to training, opened up and working.",
+          "artifact": "ba57ef0a-ab10-4ed3-ba0f-c4307a795b08",
+          "ask": "How does an AI chatbot write its answers?"
+        },
+        {
           "slug": "missing-gauge",
           "title": "The Missing Gauge",
           "blurb": "Why AI says wrong things so confidently: a dial for how smooth an answer sounds, and none for “I don’t know”.",
