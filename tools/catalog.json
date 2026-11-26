@@ -289,6 +289,13 @@
           "ask": "Why do you get faster by running slower?"
         },
         {
+          "slug": "one-second-inside-you",
+          "title": "One Second Inside You",
+          "blurb": "One heartbeat, followed from your whole body down to a spinning motor in your mitochondria, with counters ticking all the way.",
+          "artifact": "4tZTaMYJzEwGR4txVJpygg",
+          "ask": "What happens inside you in one second?"
+        },
+        {
           "slug": "the-marathon-body",
           "title": "The Marathon Body",
           "blurb": "A marathon burns about 3,000 kcal and your quick fuel holds half that. What happens inside you, kilometre by kilometre.",
