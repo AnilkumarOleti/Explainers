@@ -12,7 +12,7 @@ The analytics and data science group includes the eleven picture pages from the 
 
 ## What is in this repository
 
-- `index.html` is the home page: a question to start with, then every page grouped by subject.
+- `index.html` is the home page, a star atlas: every page is a star, and each group is a constellation. Visitors click a star to see its question, filter by constellation, search, or catch a random "shooting star". Pages a visitor opens stay lit for them (kept in their own browser only). Below the sky, every page is listed by group.
 - Each explainer has its own folder, named after its address. Inside are `index.html` (the page), `card.jpg` (the picture shown when the link is shared) and `thumb.webp` (the small picture on the home page).
 - `tools/catalog.json` lists every page: its group, address, title and the line shown under it on the home page. The home page is built from this file.
 - `tools/build.py` builds the pages and the home page. `tools/shots.py` makes the pictures.
