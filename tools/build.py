@@ -308,6 +308,7 @@ def index_html(cat):
            f"<link rel=\"canonical\" href=\"{e(site['url'])}\">\n"
            "<link rel=\"icon\" href=\"favicon.svg\" type=\"image/svg+xml\">\n"
            "<meta name=\"theme-color\" content=\"#090D20\">\n"
+           f"<meta name=\"author\" content=\"{e(site['author'])}\">\n"
            "<meta property=\"og:type\" content=\"website\">\n"
            f"<meta property=\"og:title\" content=\"{e(site['title'])}\">\n"
            f"<meta property=\"og:description\" content=\"{e(desc)}\">\n"
@@ -378,7 +379,7 @@ def index_html(cat):
                             secName=SHORT.get(st["sec"]["id"], st["sec"]["name"])) for st in stars],
                       ensure_ascii=False).replace("</", "<\\/")
     out.append("</div>\n</section>\n</main>\n<footer class=\"foot\">\n"
-               f"<p>A collection by {e(site['author'])}, one idea at a time. "
+               f"<p>Curated by {e(site['author'])}, one idea at a time. "
                f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a> · <a href=\"{e(site['github'])}\">GitHub</a>.</p>\n"
                f"<p>For data science and machine learning, there is also the <a href=\"{e(site['handbook'])}\">DS/ML Learning Handbook</a>.</p>\n"
                "<p>These pages are for understanding. The health pages are not medical advice.</p>\n"
