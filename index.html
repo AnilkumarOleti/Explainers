@@ -88,6 +88,12 @@ a{color:var(--gold)}a:hover{color:var(--gold-hi)}
 .group li a.seen::before{background:var(--gold);box-shadow:0 0 8px var(--gold)}
 .group b{font-weight:500}
 .group i{display:block;font-style:normal;font-size:.86rem;color:var(--muted);margin-top:2px}
+.suggest{margin-top:clamp(56px,8vw,96px);scroll-margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;gap:20px 48px;align-items:center;justify-content:space-between}
+.suggest h2{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.1;color:#fff}
+.suggest p{margin:8px 0 0;color:var(--soft);max-width:46ch}
+.suggest .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ghost{display:inline-block;font:inherit;font-size:.95rem;font-weight:600;line-height:1.2;padding:11px 19px;border-radius:999px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none}
+.ghost:hover{background:var(--gold);color:#14183A}
 .foot{margin-top:clamp(56px,8vw,104px);padding-block:28px 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.94rem}
 .foot p{margin:0 0 8px;max-width:72ch}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -100,7 +106,7 @@ a{color:var(--gold)}a:hover{color:var(--gold-hi)}
 <div class="wrap">
 <header class="top">
 <h1 class="mark"><a href="./">Explainers</a><small>A star atlas of 95 ideas · curated by Anil Kumar Oleti</small></h1>
-<nav aria-label="Site"><a href="#atlas">The sky</a><a href="#constellations">Every page</a><a href="https://anilkumaroleti.github.io/ds-ml-handbook/">DS/ML Handbook</a><a href="https://www.linkedin.com/in/anil-kumar-oleti-342288a6/" rel="me noopener">LinkedIn</a></nav>
+<nav aria-label="Site"><a href="#atlas">The sky</a><a href="#constellations">Every page</a><a href="https://anilkumaroleti.github.io/ds-ml-handbook/">DS/ML Handbook</a><a href="https://www.linkedin.com/in/anil-kumar-oleti-342288a6/" rel="me noopener">LinkedIn</a><a href="#suggest">Suggest an idea</a></nav>
 </header>
 <main>
 <section class="hero">
@@ -380,6 +386,13 @@ a{color:var(--gold)}a:hover{color:var(--gold-hi)}
 <p style="margin:8px 0 0"><button type="button" class="chip" style="border:0;padding-inline:0;color:var(--gold)" data-light="screen">Light up this constellation ↑</button></p>
 </section>
 </div>
+</section>
+<section class="suggest" id="suggest" aria-labelledby="h-suggest">
+<div>
+<h2 id="h-suggest">Is there an idea you wish someone would explain?</h2>
+<p>Tell me what you are curious about. The best ones become a new star.</p>
+</div>
+<div class="acts"><a class="pill" href="https://github.com/AnilkumarOleti/explainers/issues/new?title=Idea%3A%20&amp;body=What%20idea%20or%20question%20would%20you%20like%20explained%3F%0A%0A%0A%0AWhy%20does%20it%20matter%20to%20you%3F%20%28optional%29%0A" rel="noopener">Suggest on GitHub</a><a class="ghost" href="mailto:anilkumaroleti@gmail.com?subject=An%20idea%20for%20Explainers&amp;body=What%20idea%20or%20question%20would%20you%20like%20explained%3F%0A%0A%0A%0AWhy%20does%20it%20matter%20to%20you%3F%20%28optional%29%0A">Or send an email</a></div>
 </section>
 </main>
 <footer class="foot">

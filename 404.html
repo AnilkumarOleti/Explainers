@@ -76,6 +76,12 @@ a{color:var(--gold)}a:hover{color:var(--gold-hi)}
 .group li a.seen::before{background:var(--gold);box-shadow:0 0 8px var(--gold)}
 .group b{font-weight:500}
 .group i{display:block;font-style:normal;font-size:.86rem;color:var(--muted);margin-top:2px}
+.suggest{margin-top:clamp(56px,8vw,96px);scroll-margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;gap:20px 48px;align-items:center;justify-content:space-between}
+.suggest h2{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.1;color:#fff}
+.suggest p{margin:8px 0 0;color:var(--soft);max-width:46ch}
+.suggest .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ghost{display:inline-block;font:inherit;font-size:.95rem;font-weight:600;line-height:1.2;padding:11px 19px;border-radius:999px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none}
+.ghost:hover{background:var(--gold);color:#14183A}
 .foot{margin-top:clamp(56px,8vw,104px);padding-block:28px 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.94rem}
 .foot p{margin:0 0 8px;max-width:72ch}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

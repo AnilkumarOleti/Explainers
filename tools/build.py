@@ -28,6 +28,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRIVATE = re.compile(r"https://claude\.ai/(?:code/)?artifact/[A-Za-z0-9-]+")
@@ -200,6 +201,12 @@ a{color:var(--gold)}a:hover{color:var(--gold-hi)}
 .group li a.seen::before{background:var(--gold);box-shadow:0 0 8px var(--gold)}
 .group b{font-weight:500}
 .group i{display:block;font-style:normal;font-size:.86rem;color:var(--muted);margin-top:2px}
+.suggest{margin-top:clamp(56px,8vw,96px);scroll-margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;gap:20px 48px;align-items:center;justify-content:space-between}
+.suggest h2{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.1;color:#fff}
+.suggest p{margin:8px 0 0;color:var(--soft);max-width:46ch}
+.suggest .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ghost{display:inline-block;font:inherit;font-size:.95rem;font-weight:600;line-height:1.2;padding:11px 19px;border-radius:999px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none}
+.ghost:hover{background:var(--gold);color:#14183A}
 .foot{margin-top:clamp(56px,8vw,104px);padding-block:28px 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.94rem}
 .foot p{margin:0 0 8px;max-width:72ch}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -322,7 +329,8 @@ def index_html(cat):
            f"<small>A star atlas of {len(pages)} ideas · curated by {e(site['author'])}</small></h1>\n"
            "<nav aria-label=\"Site\"><a href=\"#atlas\">The sky</a><a href=\"#constellations\">Every page</a>"
            f"<a href=\"{e(site['handbook'])}\">DS/ML Handbook</a>"
-           f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a></nav>\n</header>\n<main>\n"
+           f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a>"
+           "<a href=\"#suggest\">Suggest an idea</a></nav>\n</header>\n<main>\n"
            "<section class=\"hero\">\n<h2 class=\"vh\">Start here</h2>\n"
            "<p class=\"serif\" style=\"margin:0;font-weight:500;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;"
            "letter-spacing:-.02em;max-width:15ch;color:#fff;text-wrap:balance\">Every star is an idea you can <em>play with.</em></p>\n"
@@ -378,7 +386,15 @@ def index_html(cat):
                             hasAsk=bool(st["p"].get("ask")), sec=st["sec"]["id"],
                             secName=SHORT.get(st["sec"]["id"], st["sec"]["name"])) for st in stars],
                       ensure_ascii=False).replace("</", "<\\/")
-    out.append("</div>\n</section>\n</main>\n<footer class=\"foot\">\n"
+    ask_body = "What idea or question would you like explained?\n\n\n\nWhy does it matter to you? (optional)\n"
+    issue = f"{site['repo']}/issues/new?" + urllib.parse.urlencode({"title": "Idea: ", "body": ask_body}, quote_via=urllib.parse.quote)
+    mail = f"mailto:{site['email']}?" + urllib.parse.urlencode({"subject": "An idea for Explainers", "body": ask_body}, quote_via=urllib.parse.quote)
+    out.append("</div>\n</section>\n"
+               "<section class=\"suggest\" id=\"suggest\" aria-labelledby=\"h-suggest\">\n<div>\n"
+               "<h2 id=\"h-suggest\">Is there an idea you wish someone would explain?</h2>\n"
+               "<p>Tell me what you are curious about. The best ones become a new star.</p>\n</div>\n"
+               f"<div class=\"acts\"><a class=\"pill\" href=\"{e(issue)}\" rel=\"noopener\">Suggest on GitHub</a>"
+               f"<a class=\"ghost\" href=\"{e(mail)}\">Or send an email</a></div>\n</section>\n</main>\n<footer class=\"foot\">\n"
                f"<p>Curated by {e(site['author'])}, one idea at a time. "
                f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a> · <a href=\"{e(site['github'])}\">GitHub</a>.</p>\n"
                f"<p>For data science and machine learning, there is also the <a href=\"{e(site['handbook'])}\">DS/ML Learning Handbook</a>.</p>\n"
