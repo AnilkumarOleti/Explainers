@@ -41,6 +41,21 @@ BACK = ('<div style="clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:bord
         '<span aria-hidden="true">&larr;&nbsp;</span>All explainers</a></div>\n')
 
 
+def next_html(page):
+    """An optional "what to read next" card at the foot of a page: the catalog entry's "next" (slug, title, question)."""
+    n = page.get("next")
+    if not n:
+        return ""
+    return ("<div data-next style=\"clear:both;flex-basis:100%;grid-column:1/-1;box-sizing:border-box;width:100%;padding:40px 16px 0;margin:0;"
+            "position:relative;z-index:1\"><a href=\"../" + e(n["slug"]) + "/\" style=\"display:block;max-width:620px;margin:0 auto;padding:20px 24px 22px;"
+            "border-radius:18px;background:#101828;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);"
+            "font:400 16px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:left\">"
+            "<span style=\"display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#FFD873\">Next question</span>"
+            "<span style=\"display:block;margin-top:8px;font-size:20px;line-height:1.3;font-weight:600\">" + e(n["question"]) + "</span>"
+            "<span style=\"display:block;margin-top:12px;font-weight:600;color:#FFD873\">" + e(n["title"]) + " <span aria-hidden=\"true\">&rarr;</span></span>"
+            "</a></div>\n")
+
+
 def e(t):
     return html.escape(t, quote=True)
 
@@ -117,7 +132,7 @@ def page_html(site, page, base, lead, attrs, body):
             "<meta property=\"og:image:width\" content=\"1200\">\n"
             "<meta property=\"og:image:height\" content=\"630\">\n"
             "<meta name=\"twitter:card\" content=\"summary_large_image\">\n"
-            f"{base}\n{lead}\n{fix}</head>\n<body{attrs}>\n{body}{BACK}</body>\n</html>\n")
+            f"{base}\n{lead}\n{fix}</head>\n<body{attrs}>\n{body}{next_html(page)}{BACK}</body>\n</html>\n")
 
 
 # ---- Star Atlas home page -------------------------------------------------------------------
@@ -207,11 +222,31 @@ a{color:var(--gold)}a:hover{color:var(--gold-hi)}
 .suggest .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .ghost{display:inline-block;font:inherit;font-size:.95rem;font-weight:600;line-height:1.2;padding:11px 19px;border-radius:999px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none}
 .ghost:hover{background:var(--gold);color:#14183A}
+[hidden]{display:none!important}
+.start{padding-bottom:clamp(20px,3vw,32px)}
+.start-top{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.start h2{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(1.35rem,3vw,1.75rem);color:#fff}
+.search{flex:1 1 260px;display:flex;justify-content:flex-end}
+.search input{font:inherit;font-size:1rem;width:min(100%,380px);padding:13px 18px;border-radius:999px;border:1px solid var(--line);background:var(--sky);color:var(--ink)}
+.search input::placeholder{color:var(--muted)}
+.hits{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:8px 16px}
+.hits a{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:12px 16px;min-height:46px;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);text-decoration:none}
+.hits a:hover{border-color:var(--gold)}
+.hits a.seen b::after{content:" \2022";color:var(--gold)}
+.hits small{color:var(--muted);white-space:nowrap}
+.hits .more{color:var(--muted);padding:12px 4px;font-size:.95rem}
+.nomatch{margin:14px 0 0;color:var(--soft)}
+.starters{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.scard{display:flex;gap:14px;align-items:center;height:100%;padding:10px;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--ink);text-decoration:none}
+.scard:hover{border-color:var(--gold)}
+.scard img{flex:none;width:112px;height:auto;aspect-ratio:640/336;object-fit:cover;object-position:top;border-radius:10px;background:#1B2350}
+.scard b{display:block;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.12rem;line-height:1.15;color:#fff}
+.scard i{display:block;margin-top:4px;font-style:normal;font-size:.88rem;line-height:1.4;color:var(--soft)}
 .foot{margin-top:clamp(56px,8vw,104px);padding-block:28px 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.94rem}
 .foot p{margin:0 0 8px;max-width:72ch}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (max-width:960px){.stage{grid-template-columns:1fr}.card{flex-direction:row}.card img{width:42%;aspect-ratio:auto}}
-@media (max-width:600px){.card{flex-direction:column}.card img{width:100%;aspect-ratio:640/336}.sky{height:540px;min-width:780px}.swipe{display:block}}
+@media (max-width:960px){.starters{grid-template-columns:1fr}.stage{grid-template-columns:1fr}.card{flex-direction:row}.card img{width:42%;aspect-ratio:auto}}
+@media (max-width:600px){.search{justify-content:stretch}.search input{width:100%}.card{flex-direction:column}.card img{width:100%;aspect-ratio:640/336}.sky{height:540px;min-width:780px}.swipe{display:block}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dust{animation:none;opacity:.5}.star i,.label,.sky line{transition:none}}
 """.strip()
 
@@ -227,10 +262,29 @@ ATLAS_JS = """
       card={img:document.getElementById('c-img'),sec:document.getElementById('c-sec'),title:document.getElementById('c-title'),
             ask:document.getElementById('c-ask'),go:document.getElementById('c-go')},
       tally=document.getElementById('tally'),sec='',sel=-1;
+  function norm(s){return s.toLowerCase().replace(/[\u2018\u2019']/g,'').replace(/[^a-z0-9]+/g,' ').trim();}
+  D.forEach(function(p){p.hay=' '+norm(p.title+' '+p.ask+' '+p.blurb);});
+  function words(){return norm(q.value).split(' ').filter(Boolean);}
   function match(i){
-    var p=D[i],t=q.value.trim().toLowerCase();
-    if(sec&&p.sec!==sec)return false;
-    return !t||(p.title+' '+p.ask).toLowerCase().indexOf(t)>=0;
+    var p=D[i],w=words();
+    if(w.length)return w.every(function(x){return p.hay.indexOf(' '+x)>=0;});
+    return !sec||p.sec===sec;
+  }
+  var ul=document.getElementById('hits'),no=document.getElementById('nomatch'),cnt=document.getElementById('hitcount'),
+      startList=document.querySelector('.starters');
+  function hits(){var h=[];for(var i=0;i<D.length;i++){if(match(i))h.push(i);}return h;}
+  function renderHits(){
+    var w=words();ul.textContent='';
+    if(!w.length){ul.hidden=true;no.hidden=true;startList.hidden=false;cnt.textContent='';return;}
+    startList.hidden=true;var h=hits();
+    if(!h.length){ul.hidden=true;no.hidden=false;no.textContent='No pages match \u201c'+q.value.trim()+'\u201d. Try one word, or pick a constellation below.';cnt.textContent='No pages match';return;}
+    no.hidden=true;ul.hidden=false;
+    h.slice(0,8).forEach(function(i){
+      var li=document.createElement('li'),a=document.createElement('a'),b=document.createElement('b'),s=document.createElement('small');
+      a.href=D[i].slug+'/';a.setAttribute('data-slug',D[i].slug);if(seen[D[i].slug])a.className='seen';
+      b.textContent=D[i].title;s.textContent=D[i].secName;a.appendChild(b);a.appendChild(s);li.appendChild(a);ul.appendChild(li);});
+    if(h.length>8){var m=document.createElement('li');m.className='more';m.textContent='and '+(h.length-8)+' more, lit up in the sky below';ul.appendChild(m);}
+    cnt.textContent=h.length+(h.length===1?' page matches':' pages match');
   }
   function paint(){
     stars.forEach(function(b,i){
@@ -239,7 +293,8 @@ ATLAS_JS = """
     });
     lines.forEach(function(l){l.classList.toggle('off',!!sec&&l.getAttribute('data-sec')!==sec);});
     labels.forEach(function(l){l.classList.toggle('off',!!sec&&l.getAttribute('data-sec')!==sec);});
-    chips.forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-sec')===sec?'true':'false');});
+    chips.forEach(function(c){c.setAttribute('aria-pressed',!words().length&&c.getAttribute('data-sec')===sec?'true':'false');});
+    renderHits();
     links.forEach(function(a){a.classList.toggle('seen',!!seen[a.getAttribute('data-slug')]);});
     var n=Object.keys(seen).filter(function(s){return D.some(function(p){return p.slug===s;});}).length;
     tally.innerHTML=n?'You have lit <b>'+n+'</b> of '+D.length+' stars. Each page you open stays lit in your sky.'
@@ -259,7 +314,7 @@ ATLAS_JS = """
   [].forEach.call(document.querySelectorAll('[data-light]'),function(b){b.addEventListener('click',function(){
     setSec(b.getAttribute('data-light'));document.getElementById('atlas').scrollIntoView();});});
   q.addEventListener('input',paint);
-  q.addEventListener('keydown',function(ev){if(ev.key==='Enter'){for(var i=0;i<D.length;i++){if(match(i)){pick(i);break;}}}});
+  q.addEventListener('keydown',function(ev){if(ev.key==='Enter'){var h=hits();if(h.length){pick(h[0]);document.getElementById('atlas').scrollIntoView({block:'start'});}}});
   document.getElementById('shoot').addEventListener('click',function(){
     var pool=[];for(var i=0;i<D.length;i++){if(match(i)&&i!==sel)pool.push(i);}
     if(!pool.length)for(i=0;i<D.length;i++)if(i!==sel)pool.push(i);
@@ -301,6 +356,20 @@ def sky(cat):
     return stars, lines, labels
 
 
+def start_html(cat, total):
+    starters = [p for s in cat["sections"] for p in s["pages"] if p.get("starter")]
+    cards = "".join(
+        f"<li><a class=\"scard\" href=\"{e(p['slug'])}/\" data-slug=\"{e(p['slug'])}\">"
+        f"<img src=\"{e(p['slug'])}/thumb.webp\" width=\"640\" height=\"336\" alt=\"\" loading=\"lazy\" decoding=\"async\">"
+        f"<span><b>{e(p['title'])}</b><i>{e(p['starter'])}</i></span></a></li>" for p in starters)
+    return ("<section class=\"start\" aria-labelledby=\"h-start\">\n<div class=\"start-top\"><h2 id=\"h-start\">Not sure where to start?</h2>"
+            f"<div class=\"search\"><label class=\"vh\" for=\"find\">Search all {total} pages</label>"
+            f"<input id=\"find\" type=\"search\" placeholder=\"Search all {total} pages\u2026\" autocomplete=\"off\"></div></div>\n"
+            "<p class=\"vh\" id=\"hitcount\" role=\"status\" aria-live=\"polite\"></p>\n"
+            "<ul class=\"hits\" id=\"hits\" hidden></ul>\n<p class=\"nomatch\" id=\"nomatch\" hidden></p>\n"
+            f"<ul class=\"starters\">{cards}</ul>\n</section>\n")
+
+
 def index_html(cat):
     site = cat["site"]
     pages = [p for s in cat["sections"] for p in s["pages"]]
@@ -336,7 +405,7 @@ def index_html(cat):
            "letter-spacing:-.02em;max-width:15ch;color:#fff;text-wrap:balance\">Every star is an idea you can <em>play with.</em></p>\n"
            f"<p>{e(site['intro'])} Pick a star to see its question. Each one you open stays lit, so your sky slowly fills in.</p>\n"
            "</section>\n"
-           "<section id=\"atlas\" aria-label=\"The star atlas\" style=\"scroll-margin-top:12px\">\n<div class=\"stage\">\n"
+           + start_html(cat, len(pages)) + "<section id=\"atlas\" aria-label=\"The star atlas\" style=\"scroll-margin-top:12px\">\n<div class=\"stage\">\n"
            "<div class=\"scroll\"><div class=\"sky\">\n"]
     for _ in range(110):
         out.append(f"<span class=\"dust\" aria-hidden=\"true\" style=\"left:{rng.uniform(.5, 99.5):.2f}%;top:{rng.uniform(.5, 99.5):.2f}%;"
@@ -367,8 +436,7 @@ def index_html(cat):
                "<button type=\"button\" class=\"chip\" data-sec=\"\" aria-pressed=\"true\">Whole sky</button>\n")
     for s in cat["sections"]:
         out.append(f"<button type=\"button\" class=\"chip\" data-sec=\"{e(s['id'])}\" aria-pressed=\"false\">{e(SHORT.get(s['id'], s['name']))}</button>\n")
-    out.append("<div class=\"find\"><label class=\"vh\" for=\"find\">Find a star</label>"
-               "<input id=\"find\" type=\"search\" placeholder=\"Find a star…\" autocomplete=\"off\">"
+    out.append("<div class=\"find\">"
                "<button type=\"button\" class=\"pill\" id=\"shoot\">Catch a shooting star</button></div>\n</div>\n"
                "<p class=\"tally\" id=\"tally\">Each page you open stays lit in your sky, on this device.</p>\n</section>\n"
                "<section class=\"cons\" id=\"constellations\">\n<h2>Every page, by constellation</h2>\n"
@@ -383,7 +451,7 @@ def index_html(cat):
         out.append(f"</ul>\n<p style=\"margin:8px 0 0\"><button type=\"button\" class=\"chip\" style=\"border:0;padding-inline:0;color:var(--gold)\" "
                    f"data-light=\"{e(s['id'])}\">Light up this constellation ↑</button></p>\n</section>\n")
     data = json.dumps([dict(slug=st["p"]["slug"], title=st["p"]["title"], ask=st["p"].get("ask") or st["p"]["blurb"],
-                            hasAsk=bool(st["p"].get("ask")), sec=st["sec"]["id"],
+                            hasAsk=bool(st["p"].get("ask")), blurb=st["p"]["blurb"], sec=st["sec"]["id"],
                             secName=SHORT.get(st["sec"]["id"], st["sec"]["name"])) for st in stars],
                       ensure_ascii=False).replace("</", "<\\/")
     ask_body = "What idea or question would you like explained?\n\n\n\nWhy does it matter to you? (optional)\n"

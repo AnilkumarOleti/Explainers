@@ -36,6 +36,8 @@
         },
         {
           "slug": "dont-peek",
+          "next": {"slug": "why-ab-winners-shrink", "title": "Why A/B Winners Shrink", "question": "You waited until the end. Why might the winner still disappoint after launch?"},
+          "starter": "Both versions are identical. Drag the slider and watch false wins climb, then try to make five peeks safe again.",
           "title": "Don't Peek",
           "blurb": "Why does checking a test early crown fake winners? Peeking and sequential testing.",
           "ask": "Why does checking a test early crown fake winners?"
@@ -43,7 +45,7 @@
         {
           "slug": "why-ab-winners-shrink",
           "title": "Why A/B Winners Shrink",
-          "blurb": "The test said +4%. After launch you got +1%. Nothing broke.",
+          "blurb": "The test said +4%. After launch you got +1%. Could that happen even if nothing changed?",
           "artifact": "2d7b5948-503e-448c-bbed-9b21fb28294e",
           "ask": "Why do A/B test winners shrink after launch?"
         },
@@ -499,6 +501,7 @@
         },
         {
           "slug": "one-pass",
+          "starter": "A reader can reread. A listener gets one pass. Hear the same sentence at speaking pace and feel where it breaks.",
           "title": "One Pass",
           "blurb": "A reader can reread. A listener gets one pass. Nearly every good presentation habit fixes that one fact.",
           "artifact": "e402ecd9-3ce7-4ccb-96e6-d9701fc2ba58"
@@ -635,6 +638,7 @@
       "pages": [
         {
           "slug": "federer-and-nadal",
+          "starter": "One takes away time, the other takes away space. Switch from clay to grass and watch the match change.",
           "title": "Federer and Nadal",
           "blurb": "Federer took away your time. Nadal took away your space. Forty meetings, compared.",
           "artifact": "070829a7-6314-47a7-95b7-70312751435e"

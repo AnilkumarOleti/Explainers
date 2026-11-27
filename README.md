@@ -22,7 +22,7 @@ The analytics and data science group includes the eleven picture pages from the 
 
 1. Save the page into a folder of its own as `index.html`, inside one parent folder, for example `saved/my-page/index.html`.
    A dashboard is several documents, not one page: export them and run `python3 tools/dashboard.py <export-folder> <csv-folder> saved/my-page` first. Its data must be attached files; a dashboard that runs live queries cannot be made public this way.
-2. Add an entry for it to `tools/catalog.json`, in the group it belongs to. It needs a `slug` (the address), a `title` that matches the page's own title, and a `blurb`. Add `ask` to put its question in the rotation at the top of the home page.
+2. Add an entry for it to `tools/catalog.json`, in the group it belongs to. It needs a `slug` (the address), a `title` that matches the page's own title, and a `blurb`. Add `ask` for the question shown when its star is selected on the home page. Add `starter` (a one-line hook) to feature it in "Not sure where to start?" on the home page. Add `next` (`slug`, `title`, `question`) to end the page with a card pointing to the page to read next.
 3. Run `python3 tools/build.py saved`. Pages that are not in `saved` are left as they are.
 4. Run `python3 tools/shots.py` to make pictures for the pages that have none.
 5. Publish: `git push origin main main:gh-pages`.

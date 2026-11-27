@@ -313,6 +313,8 @@ input[type=range]{accent-color:var(--accent);width:100%}
 .s-night{stroke:var(--night);stroke-width:2;fill:none;stroke-linejoin:round;stroke-linecap:round}
 .s-day{stroke:var(--day);stroke-width:2;fill:none;stroke-linejoin:round;stroke-linecap:round}
 .m-veg{fill:var(--veg);stroke:var(--paper);stroke-width:2}
+.s-proj{stroke-dasharray:5 5}
+.m-proj{fill:var(--paper);stroke:var(--veg)}
 .m-night{fill:var(--night);stroke:var(--paper);stroke-width:2}
 .m-day{fill:var(--day);stroke:var(--paper);stroke-width:2}
 .xhair{stroke:var(--ink-2);stroke-width:1}
@@ -423,8 +425,8 @@ input[type=range]{accent-color:var(--accent);width:100%}
     <h1>The city that needed no fan</h1>
     <p class="dek">For most of the last century, Bengaluru lived under a roof of leaves. In fifty years it has lost most of that roof. This is the story of the trees that held it up, the work they did every day, and the city that is left without them.</p>
     <div class="hero-fig">
-      <p class="hero-num" aria-label="68 percent to 3 percent"><span>68%</span><span class="arrow" aria-hidden="true">&rarr;</span><span>3%</span></p>
-      <p class="hero-lbl">Share of Greater Bengaluru under trees and other vegetation in 1973 and in 2020, from IISc&rsquo;s satellite analysis<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p>
+      <p class="hero-num" aria-label="68 percent to 6 percent"><span>68%</span><span class="arrow" aria-hidden="true">&rarr;</span><span>6%</span></p>
+      <p class="hero-lbl">Share of Greater Bengaluru under trees, parks and other vegetation in 1973 and in 2017, from IISc&rsquo;s satellite maps. Its 2020 figure of 3% is a model projection.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p>
     </div>
     <nav class="toc" aria-label="Chapters">
       <ol>
@@ -498,7 +500,7 @@ input[type=range]{accent-color:var(--accent);width:100%}
         <ul class="waffle-read" id="read-a"></ul>
       </div>
       <div class="waffle-panel">
-        <h4 id="w-year-h"><span id="w-year">2020</span><small id="w-year-note">the latest year in the table</small></h4>
+        <h4 id="w-year-h"><span id="w-year">2017</span><small id="w-year-note">the latest mapped year in the table</small></h4>
         <svg id="waffle-b" viewBox="0 0 200 200" role="img" aria-label="Land cover in the selected year"></svg>
         <ul class="waffle-read" id="read-b" aria-live="polite"></ul>
       </div>
@@ -511,20 +513,20 @@ input[type=range]{accent-color:var(--accent);width:100%}
         <ul class="chips" id="w-chips" aria-label="Years"></ul>
       </div>
     </div>
-    <p class="caption">The squares are arranged by type, with built-up land drawn outward from the centre the way the city grew. They are not a map. Percentages are IISc&rsquo;s. Its table also has a 2003 column, almost identical to 2002, which is left out here.</p>
+    <p class="caption">The squares are arranged by type, with built-up land drawn outward from the centre the way the city grew. They are not a map. Percentages are IISc&rsquo;s. The 2020 column is a model projection, not a map. Its table also has a 2003 column, almost identical to 2002, which is left out here.</p>
     <button type="button" class="btn-link" data-toggle="tbl-land" aria-expanded="false" aria-controls="tbl-land">Show the numbers as a table</button>
     <div class="tbl-wrap" id="tbl-land" hidden></div>
   </figure>
 
   <div class="stats">
-    <div class="stat"><p class="stat-num">68.3% &rarr; 3%</p><p class="stat-lbl">Vegetation, 1973 to 2020<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div>
-    <div class="stat"><p class="stat-num">8% &rarr; 83%</p><p class="stat-lbl">Built-up land, 1973 to 2020. See the note below on this figure.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div>
-    <div class="stat"><p class="stat-num">2,324 &rarr; 696&nbsp;ha</p><p class="stat-lbl">Open water inside the city, 1973 to 2020<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div>
+    <div class="stat"><p class="stat-num">68.3% &rarr; 6.5%</p><p class="stat-lbl">Vegetation, 1973 to 2017. IISc projects about 3% by 2020.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div>
+    <div class="stat"><p class="stat-num">8% &rarr; 79%</p><p class="stat-lbl">Built-up land, 1973 to 2017.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div>
+    <div class="stat"><p class="stat-num">3.4% &rarr; 1%</p><p class="stat-lbl">Open water as a share of the city, 1973 to 2017<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div>
   </div>
 
   <div class="col">
     <div class="note">
-      <p><b>On the numbers.</b> How much green is left depends on who is counting, and where the boundary sits. IISc&rsquo;s summaries describe an 88% loss of vegetation since 1973, which matches its maps from the mid-2010s.<sup class="cite"><a href="#s-7" aria-label="Source 7">7</a></sup> Its 2020 table gives built-up land as 83%, though the same table&rsquo;s hectare figures work out to 93% and its summary text cites 86.6%.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup> A 2025 study in IMD&rsquo;s journal <i>Mausam</i>, covering the wider 2,195&nbsp;km&sup2; urban district, found vegetation fell from 50% to 24% between 1992 and 2022.<sup class="cite"><a href="#s-8" aria-label="Source 8">8</a></sup> Satellite pixels this coarse also miss many single street trees.</p>
+      <p><b>On the numbers.</b> How much green is left depends on who is counting, and where the boundary sits. IISc&rsquo;s last mapped year in this series is 2017, when vegetation covered 6.46% of Greater Bengaluru, down from 68.3% in 1973. That is the 88% loss in its summaries.<sup class="cite"><a href="#s-7" aria-label="Source 7">7</a></sup> The table also carries a 2020 column, but IISc&rsquo;s earlier reports present 2020 as a <a href="https://wgbis.ces.iisc.ac.in/energy/water/paper/ETR114/section5.html" target="_blank" rel="noopener">projected land use</a> from a model, not a new map, so this page draws it dashed. The 2020 column is also where IISc&rsquo;s own figures part ways: built-up land is 83% in its table, the same table&rsquo;s hectare figures work out to 93%, and its summary text cites 86.6%.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup> &ldquo;Vegetation&rdquo; here means trees, parks, plantations and other green cover, not tree canopy alone. A 2025 study in IMD&rsquo;s journal <i>Mausam</i>, covering the wider 2,195 km&sup2; urban district, found vegetation fell from 50% to 24% between 1992 and 2022.<sup class="cite"><a href="#s-8" aria-label="Source 8">8</a></sup> Satellite pixels this coarse also miss many single street trees.</p>
       <p style="margin:0">Every study agrees on the direction.</p>
     </div>
 
@@ -640,7 +642,7 @@ input[type=range]{accent-color:var(--accent);width:100%}
       <li class="tl-item" data-cat="people"><span class="tl-year">2016</span><div class="tl-body"><h4>The human chain<span class="tl-tag">People and law</span></h4><p>More than 5,000 people link hands against the steel flyover, and the green tribunal stays it.<sup class="cite"><a href="#s-21" aria-label="Source 21">21</a>,<a href="#s-22" aria-label="Source 22">22</a></sup></p></div></li>
       <li class="tl-item" data-cat="people"><span class="tl-year">2017</span><div class="tl-body"><h4>The flyover is scrapped<span class="tl-tag">People and law</span></h4><p>The government abandons the project in March.<sup class="cite"><a href="#s-22" aria-label="Source 22">22</a></sup></p></div></li>
       <li class="tl-item" data-cat="people"><span class="tl-year">2019</span><div class="tl-body"><h4>Count the trees<span class="tl-tag">People and law</span></h4><p>Acting on citizens&rsquo; petitions, the High Court orders a tree census.<sup class="cite"><a href="#s-26" aria-label="Source 26">26</a></sup></p></div></li>
-      <li class="tl-item" data-cat="trees"><span class="tl-year">2020</span><div class="tl-body"><h4>About 3% green<span class="tl-tag">Trees</span></h4><p>IISc&rsquo;s classification finds vegetation on about 3% of Greater Bengaluru.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div></li>
+      <li class="tl-item" data-cat="trees"><span class="tl-year">2020</span><div class="tl-body"><h4>Projected: about 3% green<span class="tl-tag">Trees</span></h4><p>IISc&rsquo;s model projects vegetation on about 3% of Greater Bengaluru. The last mapped year, 2017, shows 6.5%.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup></p></div></li>
       <li class="tl-item" data-cat="water"><span class="tl-year">2022</span><div class="tl-body"><h4>Floods on the IT corridor<span class="tl-tag">Water</span></h4><p>131.6&nbsp;mm falls in a night and lakes overflow into homes.<sup class="cite"><a href="#s-29" aria-label="Source 29">29</a>,<a href="#s-30" aria-label="Source 30">30</a></sup> It becomes the wettest year in the city&rsquo;s record.<sup class="cite"><a href="#s-31" aria-label="Source 31">31</a></sup></p></div></li>
       <li class="tl-item" data-cat="water"><span class="tl-year">2024</span><div class="tl-body"><h4>The borewells fail<span class="tl-tag">Water</span></h4><p>In March, 6,900 of the city&rsquo;s 13,900 borewells are reported dry, and no rain falls all month.<sup class="cite"><a href="#s-32" aria-label="Source 32">32</a>,<a href="#s-33" aria-label="Source 33">33</a></sup> In April the city reaches 38.5&deg;C.<sup class="cite"><a href="#s-34" aria-label="Source 34">34</a></sup></p></div></li>
       <li class="tl-item" data-cat="people"><span class="tl-year">2025</span><div class="tl-body"><h4>6.8 lakh trees counted<span class="tl-tag">People and law</span></h4><p>The census is still under way.<sup class="cite"><a href="#s-35" aria-label="Source 35">35</a></sup></p></div></li>
@@ -781,10 +783,10 @@ input[type=range]{accent-color:var(--accent);width:100%}
       <li class="key"><span class="sw ln bg-day"></span>Afternoon maximum</li>
     </ul>
     <div class="chart" id="tchart">
-      <svg id="tsvg" viewBox="0 0 760 488" tabindex="0" role="img" aria-label="Top panel: vegetation fell from 68.3% in 1973 to 3% in 2020. Bottom panel: compared with the 1980s, night-time minimum temperatures were 0.15, 0.06 and 0.62 degrees higher in the 1990s, 2000s and 2010 to 2022, while afternoon maximums were 0.20, 0.37 and 1.04 degrees lower. Use the arrow keys to step through the values."></svg>
+      <svg id="tsvg" viewBox="0 0 760 488" tabindex="0" role="img" aria-label="Top panel: vegetation fell from 68.3% in 1973 to 6.46% in 2017, and IISc projects 3% for 2020. Bottom panel: compared with the 1980s, night-time minimum temperatures were 0.15, 0.06 and 0.62 degrees higher in the 1990s, 2000s and 2010 to 2022, while afternoon maximums were 0.20, 0.37 and 1.04 degrees lower. Use the arrow keys to step through the values."></svg>
       <div class="tip" id="ttip" hidden></div>
     </div>
-    <p class="caption">Vegetation from IISc.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup> Temperatures are decade averages relative to the 1980s, from Dhanya et al. (2025), who used IMD&rsquo;s reanalysis data at the Bengaluru observatory&rsquo;s location.<sup class="cite"><a href="#s-8" aria-label="Source 8">8</a></sup> The temperature panel cannot separate the city&rsquo;s own heat from global warming.</p>
+    <p class="caption">Vegetation from IISc.<sup class="cite"><a href="#s-1" aria-label="Source 1">1</a></sup> The dashed 2020 point is IISc&rsquo;s projection, not a map. Temperatures are decade averages relative to the 1980s, from Dhanya et al. (2025), who used IMD&rsquo;s reanalysis data at the Bengaluru observatory&rsquo;s location.<sup class="cite"><a href="#s-8" aria-label="Source 8">8</a></sup> The temperature panel cannot separate the city&rsquo;s own heat from global warming.</p>
     <button type="button" class="btn-link" data-toggle="tbl-temp" aria-expanded="false" aria-controls="tbl-temp">Show the numbers as a table</button>
     <div class="tbl-wrap" id="tbl-temp" hidden></div>
   </figure>
@@ -1274,7 +1276,7 @@ const LAND = [
   { y: 2010, built: 54.4, veg: 23.4, water: 0.9, other: 21.3 },
   { y: 2016, built: 76.9, veg: 7.5, water: 1, other: 14.6 },
   { y: 2017, built: 78.65, veg: 6.46, water: 1.03, other: 13.86 },
-  { y: 2020, built: 83.3, veg: 3, water: 1, other: 12.7 }
+  { y: 2020, built: 83.3, veg: 3, water: 1, other: 12.7, proj: true }
 ];
 const CATS = ["built", "other", "veg", "water"];
 const NAMES = { veg: "Vegetation", water: "Water", other: "Open and other", built: "Built-up" };
@@ -1337,7 +1339,7 @@ if (wa && wb) {
   const chips = LAND.map((d, i) => {
     const li = doc.createElement("li");
     const b = doc.createElement("button");
-    b.type = "button"; b.className = "chip"; b.textContent = d.y; b.setAttribute("aria-pressed", "false");
+    b.type = "button"; b.className = "chip"; b.textContent = d.proj ? d.y + " (projected)" : d.y; b.setAttribute("aria-pressed", "false");
     b.addEventListener("click", () => { stopPlay(); setYear(i); });
     li.appendChild(b); chipsEl.appendChild(li); return b;
   });
@@ -1347,10 +1349,10 @@ if (wa && wb) {
     const d = LAND[i];
     paint(rb, assign(d)); readout($("#read-b"), d);
     yearEl.textContent = d.y;
-    note.textContent = i === LAND.length - 1 ? "the latest year in the table" : i === 0 ? "the same year, for reference" : "";
+    note.textContent = d.proj ? "a model projection, not a map" : i === LAND.length - 2 ? "the latest mapped year in the table" : i === 0 ? "the same year, for reference" : "";
     range.value = i;
     chips.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
-    wb.setAttribute("aria-label", `Land cover in ${d.y}: ${d.veg}% vegetation, ${d.water}% water, ${d.other}% open and other land, ${d.built}% built-up`);
+    wb.setAttribute("aria-label", `Land cover in ${d.y}${d.proj ? " (projection)" : ""}: ${d.veg}% vegetation, ${d.water}% water, ${d.other}% open and other land, ${d.built}% built-up`);
   }
   range.addEventListener("input", () => { stopPlay(); setYear(+range.value); });
   let timer = 0;
@@ -1361,11 +1363,11 @@ if (wa && wb) {
     play.textContent = "Pause";
     timer = setInterval(() => { i++; if (i >= LAND.length) { stopPlay(); return; } setYear(i); }, RM ? 1400 : 1100);
   });
-  setYear(LAND.length - 1);
+  setYear(LAND.length - 2);
   const t = $("#tbl-land");
   if (t) {
     let h = '<table><caption>Land cover of Greater Bengaluru, % of area (IISc)</caption><thead><tr><th scope="col">Year</th><th scope="col">Vegetation</th><th scope="col">Water</th><th scope="col">Open and other</th><th scope="col">Built-up</th></tr></thead><tbody>';
-    LAND.forEach((d) => { h += `<tr><th scope="row">${d.y}</th><td>${d.veg}</td><td>${d.water}</td><td>${d.other}</td><td>${d.built}</td></tr>`; });
+    LAND.forEach((d) => { h += `<tr><th scope="row">${d.y}${d.proj ? " (projection)" : ""}</th><td>${d.veg}</td><td>${d.water}</td><td>${d.other}</td><td>${d.built}</td></tr>`; });
     t.innerHTML = h + "</tbody></table>";
   }
 }
@@ -1404,7 +1406,7 @@ tlChips.forEach((b) => b.addEventListener("click", () => {
 (function tchart() {
   const svg = $("#tsvg"), tip = $("#ttip"), box = $("#tchart");
   if (!svg || !box) return;
-  const VEG = LAND.map((d) => ({ y: d.y, v: d.veg }));
+  const VEG = LAND.map((d) => ({ y: d.y, v: d.veg, proj: !!d.proj }));
   const DEC = [
     { a: 1980, b: 1990, lbl: "1980s", n: 0, d: 0 },
     { a: 1990, b: 2000, lbl: "1990s", n: 0.15, d: -0.20 },
@@ -1452,14 +1454,18 @@ tlChips.forEach((b) => b.addEventListener("click", () => {
       E("line", { x1: ML, x2: W - MR, y1: yB(v), y2: yB(v), class: v === 0 ? "baseline" : "gridline" }, g);
       E("text", { x: ML - 7, y: yB(v) + 4, "text-anchor": "end" }, g).textContent = v === 0 ? "0" : minus(v, 1);
     });
-    let area = `M${x(VEG[0].y)},${yA(0)}`;
-    VEG.forEach((p) => (area += ` L${x(p.y)},${yA(p.v)}`));
-    area += ` L${x(VEG[VEG.length - 1].y)},${yA(0)} Z`;
+    const OBS = VEG.filter((p) => !p.proj), PRJ = VEG.filter((p) => p.proj), lastObs = OBS[OBS.length - 1];
+    let area = `M${x(OBS[0].y)},${yA(0)}`;
+    OBS.forEach((p) => (area += ` L${x(p.y)},${yA(p.v)}`));
+    area += ` L${x(lastObs.y)},${yA(0)} Z`;
     E("path", { d: area, class: "a-veg" }, g);
-    E("path", { d: VEG.map((p, i) => (i ? "L" : "M") + x(p.y) + "," + yA(p.v)).join(" "), class: "s-veg" }, g);
-    VEG.forEach((p) => E("circle", { cx: x(p.y), cy: yA(p.v), r: 4.5, class: "m-veg" }, g));
+    E("path", { d: OBS.map((p, i) => (i ? "L" : "M") + x(p.y) + "," + yA(p.v)).join(" "), class: "s-veg" }, g);
+    if (PRJ.length) E("path", { d: [lastObs].concat(PRJ).map((p, i) => (i ? "L" : "M") + x(p.y) + "," + yA(p.v)).join(" "), class: "s-veg s-proj" }, g);
+    OBS.forEach((p) => E("circle", { cx: x(p.y), cy: yA(p.v), r: 4.5, class: "m-veg" }, g));
+    PRJ.forEach((p) => E("circle", { cx: x(p.y), cy: yA(p.v), r: 4.5, class: "m-veg m-proj" }, g));
     E("text", { x: x(1973) + 10, y: yA(68.3) - 10, class: "lbl" }, g).textContent = compact ? "68.3%" : "68.3% in 1973";
-    E("text", { x: x(2020) + 10, y: yA(3) - 8, class: "lbl" }, g).textContent = compact ? "3%" : "3% in 2020";
+    E("text", { x: x(2017) + 8, y: yA(lastObs.v) - 16, class: "lbl" }, g).textContent = compact ? "6.5%" : "6.5% in 2017";
+    if (PRJ.length && !compact) E("text", { x: x(2020) + 10, y: yA(PRJ[0].v) + 4, class: "lbl2" }, g).textContent = "3% projected";
     const step = (key) => {
       let d = `M${x(DEC[0].a)},${yB(DEC[0][key])}`;
       DEC.forEach((s, i) => { if (i) d += ` V${yB(s[key])}`; d += ` H${x(s.b)}`; });
@@ -1496,7 +1502,7 @@ tlChips.forEach((b) => b.addEventListener("click", () => {
       cx = x(p.y); cy = yA(p.v);
       hx.setAttribute("y1", A.t); hx.setAttribute("y2", A.b);
       ring.setAttribute("cy", cy);
-      html = `<span class="t">${p.y} &middot; IISc</span><span class="r"><span class="k" style="background:var(--veg)"></span><b>${pct(p.v)}%</b>&nbsp;vegetation</span>`;
+      html = `<span class="t">${p.y} &middot; ${p.proj ? "IISc projection" : "IISc"}</span><span class="r"><span class="k" style="background:var(--veg)"></span><b>${pct(p.v)}%</b>&nbsp;vegetation</span>`;
     } else {
       const d = DEC[s.i];
       cx = x((d.a + d.b) / 2); cy = Math.min(yB(d.n), yB(d.d));
@@ -1553,7 +1559,7 @@ tlChips.forEach((b) => b.addEventListener("click", () => {
   const t = $("#tbl-temp");
   if (t) {
     let h = '<table><caption>Vegetation, % of Greater Bengaluru (IISc)</caption><thead><tr><th scope="col">Year</th><th scope="col">Vegetation</th></tr></thead><tbody>';
-    VEG.forEach((p) => (h += `<tr><th scope="row">${p.y}</th><td>${pct(p.v)}%</td></tr>`));
+    VEG.forEach((p) => (h += `<tr><th scope="row">${p.y}${p.proj ? " (projection)" : ""}</th><td>${pct(p.v)}%</td></tr>`));
     h += '</tbody></table><table style="margin-top:1rem"><caption>Change against the 1980s average, °C (Dhanya et al., 2025)</caption><thead><tr><th scope="col">Period</th><th scope="col">Night-time minimum</th><th scope="col">Afternoon maximum</th></tr></thead><tbody>';
     DEC.forEach((d) => (h += `<tr><th scope="row">${d.lbl}</th><td>${minus(d.n, 2)}</td><td>${minus(d.d, 2)}</td></tr>`));
     t.innerHTML = h + "</tbody></table>";
