@@ -320,7 +320,8 @@ def index_html(cat):
            f"<header class=\"top\">\n<h1 class=\"mark\"><a href=\"./\">{e(site['title'])}</a>"
            f"<small>A star atlas of {len(pages)} ideas</small></h1>\n"
            "<nav aria-label=\"Site\"><a href=\"#atlas\">The sky</a><a href=\"#constellations\">Every page</a>"
-           f"<a href=\"{e(site['handbook'])}\">DS/ML Handbook</a></nav>\n</header>\n<main>\n"
+           f"<a href=\"{e(site['handbook'])}\">DS/ML Handbook</a>"
+           f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a></nav>\n</header>\n<main>\n"
            "<section class=\"hero\">\n<h2 class=\"vh\">Start here</h2>\n"
            "<p class=\"serif\" style=\"margin:0;font-weight:500;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;"
            "letter-spacing:-.02em;max-width:15ch;color:#fff;text-wrap:balance\">Every star is an idea you can <em>play with.</em></p>\n"
@@ -377,7 +378,8 @@ def index_html(cat):
                             secName=SHORT.get(st["sec"]["id"], st["sec"]["name"])) for st in stars],
                       ensure_ascii=False).replace("</", "<\\/")
     out.append("</div>\n</section>\n</main>\n<footer class=\"foot\">\n"
-               f"<p>A collection by <a href=\"{e(site['github'])}\">{e(site['author'])}</a>, one idea at a time.</p>\n"
+               f"<p>A collection by {e(site['author'])}, one idea at a time. "
+               f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a> · <a href=\"{e(site['github'])}\">GitHub</a>.</p>\n"
                f"<p>For data science and machine learning, there is also the <a href=\"{e(site['handbook'])}\">DS/ML Learning Handbook</a>.</p>\n"
                "<p>These pages are for understanding. The health pages are not medical advice.</p>\n"
                "</footer>\n</div>\n"
