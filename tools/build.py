@@ -319,7 +319,7 @@ def index_html(cat):
            "<meta name=\"twitter:card\" content=\"summary_large_image\">\n"
            f"{ATLAS_FONTS}\n<style>\n{ATLAS_CSS}\n</style>\n</head>\n<body>\n<div class=\"wrap\">\n"
            f"<header class=\"top\">\n<h1 class=\"mark\"><a href=\"./\">{e(site['title'])}</a>"
-           f"<small>A star atlas of {len(pages)} ideas</small></h1>\n"
+           f"<small>A star atlas of {len(pages)} ideas · curated by {e(site['author'])}</small></h1>\n"
            "<nav aria-label=\"Site\"><a href=\"#atlas\">The sky</a><a href=\"#constellations\">Every page</a>"
            f"<a href=\"{e(site['handbook'])}\">DS/ML Handbook</a>"
            f"<a href=\"{e(site['linkedin'])}\" rel=\"me noopener\">LinkedIn</a></nav>\n</header>\n<main>\n"
